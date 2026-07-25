@@ -101,6 +101,11 @@ Everything the tab displays is computed from those points, not stored:
   earlier, with a `flatBandPct` dead-band so small wobbles don't read as a trend
 - the **12-month percentile** is the rank of the latest point inside its own series
 
+Two edge cases the flag handles, because a refining margin genuinely crosses zero:
+a **negative baseline** keeps its sign (the denominator is `Math.abs`, so −4.0 → −1.0
+reads as Rising), and a **zero baseline** has no percentage at all, so it falls back
+to the raw move rather than being called Flat.
+
 So swapping in the live feed changes no code — the flags and percentiles
 recompute themselves.
 

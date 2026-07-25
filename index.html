@@ -1274,9 +1274,16 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
     DATA.macro.directionFlags.forEach(function (f) { flags[f.id] = f; });
     var latest = values[values.length - 1];
     var prior = values[values.length - 1 - back];
-    var pct = prior === 0 ? 0 : (latest - prior) / Math.abs(prior) * 100;
-    var id = pct > bandPct ? 'rising' : (pct < -bandPct ? 'falling' : 'flat');
-    return { id: id, meta: flags[id], pct: pct, prior: prior };
+    var diff = latest - prior;
+    /* Math.abs on the denominator keeps the sign meaningful for a series that
+       can go negative (a refining margin can). A zero baseline has no percentage
+       at all, so fall back to the raw move rather than calling it flat - a series
+       coming off zero is a direction, not a non-event. */
+    var pct = prior === 0 ? null : diff / Math.abs(prior) * 100;
+    var id = pct === null
+      ? (diff === 0 ? 'flat' : (diff > 0 ? 'rising' : 'falling'))
+      : (pct > bandPct ? 'rising' : (pct < -bandPct ? 'falling' : 'flat'));
+    return { id: id, meta: flags[id], pct: pct, diff: diff, prior: prior };
   }
 
   /* where the latest point ranks inside its own 12 points */
@@ -1371,11 +1378,17 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
         }).join('') + '</div>';
       }
 
+      /* A single-line tile prints its unit beside the value. A paired tile has no
+         room there - the unit would wrap and leave that tile's chart shorter than
+         its neighbours - so it rides the subtitle, where it is still on screen
+         without hovering. */
+      var sub = t.lines.length > 1 ? t.plainSub + ' · ' + t.unit : t.plainSub;
+
       return '<div class="card mtile">' +
         '<div class="card__head">' +
           '<div class="card__headL">' +
             '<span class="card__title">' + esc(t.label) + '</span>' +
-            '<span class="card__sub">' + esc(t.plainSub) + '</span>' +
+            '<span class="card__sub">' + esc(sub) + '</span>' +
           '</div>' +
           '<span class="chip" style="--c:' + tag.color + '" title="' + esc(tag.plainLabel + ' - ' + t.source) + '">' +
             '<span class="chip__sw"></span>' + esc(tag.label) + '</span>' +
@@ -1385,7 +1398,9 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
             '<span class="mflag" style="--c:' + f.meta.color + '" title="' +
               esc((t.lines.length > 1 ? pl.label + ', c' : 'C') + 'ompared with ' +
                   monthLabel(pl.series[pl.series.length - 1 - m.flagLookbackMonths].date) +
-                  ': ' + (f.pct >= 0 ? '+' : '') + f.pct.toFixed(1) + '%') + '">' +
+                  ': ' + (f.pct === null
+                            ? (f.diff >= 0 ? '+' : '') + fmt(f.diff, t.decimals) + ' ' + t.unit
+                            : (f.pct >= 0 ? '+' : '') + f.pct.toFixed(1) + '%')) + '">' +
               '<i>' + f.meta.glyph + '</i>' + esc(f.meta.label) + '</span>' +
           '</div>' +
           '<div class="chart-wrap"><div class="chart" id="ch-macro-' + t.id + '"></div></div>' +
@@ -1408,12 +1423,14 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
   /* Does the market backdrop agree with where the scores are heading?
      Placeholder logic against SEED.scores until real scoring lands. Each tile
      declares in macro.json which direction supports a stronger capex cycle. */
+  var AGREE_THRESHOLD = 4;   /* of six readings, how many must back the scores */
+
   function renderMacroScore() {
-    var supportive = [], against = [], neutral = [];
+    var helps = [], hurts = [], neutral = [];
     MACRO_TILES.forEach(function (row) {
       if (row.flag.id === 'flat') { neutral.push(row); return; }
       var dir = row.flag.id === 'rising' ? 'up' : 'down';
-      (dir === row.tile.supports ? supportive : against).push(row);
+      (dir === row.tile.supports ? helps : hurts).push(row);
     });
 
     var up = 0, down = 0;
@@ -1421,21 +1438,34 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
       var s = SEED.scores[k];
       if (s.score > s.prev) up++; else if (s.score < s.prev) down++;
     });
-    var scoresUp = up > down;
-    var n = MACRO_TILES.length;
-    var agree = (supportive.length >= 4 && scoresUp) || (supportive.length <= 2 && !scoresUp);
+    /* three states, not two: scores that tie are not easing, and there is
+       nothing for the backdrop to agree or disagree with */
+    var trend = up > down ? 'improving' : (down > up ? 'easing' : 'mixed');
 
-    var c = agree ? '#0F7A3A' : '#E9A526';
-    var head = agree ? 'Scores agree with the market backdrop' : 'Conflict - flagged for review';
-    var say = agree
-      ? 'Scores are ' + (scoresUp ? 'improving' : 'easing') + ', and ' + supportive.length +
-        ' of ' + n + ' market readings point the same way.'
-      : 'Scores are ' + (scoresUp ? 'improving' : 'easing') + ', but only ' + supportive.length +
-        ' of ' + n + ' market readings back that up.';
+    var n = MACRO_TILES.length;
+    /* whichever set actually points the same way as the scores. Flat readings
+       are in neither, so they never count as agreement by omission. */
+    var backing = trend === 'improving' ? helps : (trend === 'easing' ? hurts : []);
+
+    var c, ico, head, say;
+    if (trend === 'mixed') {
+      c = '#7C8496'; ico = '=';
+      head = 'Scores are mixed - nothing to check yet';
+      say = 'The three group scores do not point one way, so there is nothing for the market backdrop to agree or disagree with.';
+    } else {
+      var agree = backing.length >= AGREE_THRESHOLD;
+      c = agree ? '#0F7A3A' : '#E9A526';
+      ico = agree ? '✓' : '!';
+      head = agree ? 'Scores agree with the market backdrop' : 'Conflict - flagged for review';
+      say = 'Scores are ' + trend + ', ' +
+            (agree ? 'and ' + backing.length : 'but only ' + backing.length) +
+            ' of ' + n + ' market readings ' +
+            (agree ? 'point the same way.' : 'back that up.');
+    }
 
     var tally = MACRO_TILES.map(function (row) {
       var state = row.flag.id === 'flat' ? 'neutral'
-                : (supportive.indexOf(row) !== -1 ? 'helps' : 'hurts');
+                : (helps.indexOf(row) !== -1 ? 'helps' : 'hurts');
       var col = state === 'helps' ? '#0F7A3A' : (state === 'hurts' ? '#E9A526' : '#7C8496');
       var word = state === 'helps' ? 'helps the cycle'
                : (state === 'hurts' ? 'works against the cycle' : 'no clear direction');
@@ -1448,7 +1478,7 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
     el('macroScore').innerHTML =
       '<div class="mscore__body" style="--c:' + c + '">' +
         '<span class="mscore__verdict">' +
-          '<span class="mscore__ico">' + (agree ? '✓' : '!') + '</span>' +
+          '<span class="mscore__ico">' + ico + '</span>' +
           '<span class="mscore__txt">' +
             '<span class="mscore__hd">' + esc(head) + '</span>' +
             '<span class="mscore__say">' + esc(say) + '</span>' +
