@@ -191,9 +191,21 @@ and `supports` / `supportsWhy`. Points live one level down, in `lines[]`:
 
 Every tile carries an array of lines even when it has only one, so the gas tile's
 two lines need no special case. `primary: true` names the line that drives the
-flag and the percentile. `supports` (`"up"` / `"down"`) says which direction backs
-a stronger capex cycle — that is a judgement call, so it lives in the data where
-it can be argued with, not buried in code.
+flag and the percentile — and because the flag then describes only that line, a
+multi-line tile prints its name on the badge (`JKM ↑ Rising`).
+
+A line may override `sourceTag` and `source`. The gas tile mixes an Official APM
+line with an External JKM line, and the tile renders one chip per distinct source
+rather than filing both under the tile-level tag.
+
+`supports` (`"up"` / `"down"`) says which direction backs a stronger capex cycle —
+that is a judgement call, so it lives in the data where it can be argued with, not
+buried in code.
+
+The rupee series is labelled **USD/INR**, not INR/USD, because the values are
+rupees per dollar. The distinction matters: a *falling* USD/INR means a
+*strengthening* rupee, so a chip reading "Rupee ↓" would say the opposite of what
+happened.
 
 `data/framework.json` — `trajectoryFlags`, `toneScale` (diverging, with a named
 neutral), `cycleStages` (each with a 0–100 `range`), `sourceTags`, `standingSix`

@@ -82,6 +82,10 @@ h1,h2,h3,p{margin:0;}
   --accent2:#0891B2;
   height:100dvh;
   display:grid;
+  /* an explicit minmax(0,...) column: grid children default to min-width:auto,
+     so a wide panel would push .stage past the viewport and get clipped by the
+     page's overflow:hidden with no way to scroll to it */
+  grid-template-columns:minmax(0, 1fr);
   grid-template-rows:48px auto minmax(0,1fr);
   overflow:hidden;
   position:relative;
@@ -164,7 +168,7 @@ h1,h2,h3,p{margin:0;}
 .tab:focus-visible{outline:2px solid color-mix(in srgb, var(--c) 60%, transparent); outline-offset:2px;}
 
 /* ---------------------------- stage / panels ----------------------------- */
-.stage{position:relative; z-index:1; min-height:0; overflow:hidden;}
+.stage{position:relative; z-index:1; min-height:0; min-width:0; overflow:hidden;}
 .panel{
   position:absolute; inset:0;
   padding:2px 18px 16px;
@@ -421,8 +425,11 @@ h1,h2,h3,p{margin:0;}
 .mtile .card__headL{flex-direction:column; align-items:flex-start; gap:1px; min-width:0;}
 .mtile .card__title, .mtile .card__sub{max-width:100%;}
 
-/* value + direction flag, one tight row above the sparkline */
-.mtop{flex:0 0 auto; display:flex; align-items:baseline; justify-content:space-between; gap:8px; min-width:0;}
+/* value + direction flag, one tight row above the sparkline. Wraps rather than
+   overflowing when the card gets narrow - .card hides overflow, so an unwrapped
+   row would silently cut the value or the flag in half. */
+.mtop{flex:0 0 auto; display:flex; align-items:baseline; justify-content:space-between; gap:6px 8px; min-width:0; flex-wrap:wrap;}
+.mtags{display:flex; align-items:center; gap:4px; flex:0 0 auto; flex-wrap:wrap; justify-content:flex-end;}
 .mval{
   font-size:clamp(19px, 1.75vw, 25px); font-weight:760; letter-spacing:-.035em;
   color:var(--ink-1); line-height:1; white-space:nowrap;
@@ -446,6 +453,8 @@ h1,h2,h3,p{margin:0;}
   font-size:11px; font-weight:700; letter-spacing:-.008em; white-space:nowrap;
 }
 .mflag i{font-style:normal; font-size:12px; line-height:1;}
+/* names the line the flag was computed from, on two-line tiles */
+.mflag b{font-weight:800; opacity:.72; letter-spacing:.01em;}
 
 /* percentile: a 0-100 track, filled to where today sits in the last 12 months */
 .mfoot{flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; gap:10px; min-width:0;}
@@ -626,6 +635,21 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
   .tiles--3x2{grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:none;}
   .tiles--2x2{grid-template-columns:minmax(0,1fr); grid-template-rows:none;}
   .tiles > .card{min-height:210px;}
+  .tiles{grid-template-columns:minmax(0,1fr) !important; grid-template-rows:none !important;}
+  .tiles > .card{grid-column:auto !important; grid-row:auto !important;}
+  .six{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+/* one column on a phone: two columns leave ~140px inside each card, which is
+   narrower than a value plus its unit plus the direction flag */
+@media (max-width:640px){
+  .tiles--3x2{grid-template-columns:minmax(0,1fr);}
+  .six{grid-template-columns:minmax(0,1fr);}
+  .heat__grid{grid-template-columns:minmax(96px,1fr) repeat(4, minmax(40px,1fr));}
+  /* the brand ran underneath the header pills at this width */
+  .brand{min-width:0;}
+  .brand__name{min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .brand__name span{display:none;}
+  #stagePill{display:none;}
 }
 </style>
 </head>
@@ -1266,6 +1290,25 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
     for (var i = 0; i < tile.lines.length; i++) if (tile.lines[i].primary) return tile.lines[i];
     return tile.lines[0];
   }
+  function lineName(ln) { return ln.shortLabel || ln.label; }
+
+  /* One chip per distinct source across a tile's lines. The gas tile mixes an
+     Official APM line with an External JKM line, and a single tile-level chip
+     would file the official reading as an outside source. */
+  function tileSources(t) {
+    var out = [], seen = {};
+    t.lines.forEach(function (ln) {
+      var id = ln.sourceTag || t.sourceTag;
+      if (!seen[id]) {
+        seen[id] = { id: id, tag: tagById[id] || tagById.unknown, lines: [], sources: [] };
+        out.push(seen[id]);
+      }
+      seen[id].lines.push(lineName(ln));
+      var src = ln.source || t.source;
+      if (seen[id].sources.indexOf(src) === -1) seen[id].sources.push(src);
+    });
+    return out;
+  }
 
   /* which way it has moved: latest vs `back` points earlier, with a flat band
      so small wobbles do not read as a trend */
@@ -1361,7 +1404,7 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
 
     el('macroTiles').innerHTML = MACRO_TILES.map(function (row) {
       var t = row.tile, f = row.flag, pl = primaryLine(t);
-      var tag = tagById[t.sourceTag] || tagById.unknown;
+      var multi = t.lines.length > 1;
 
       /* one big value, or one per line when the tile carries two */
       var valueHTML;
@@ -1369,11 +1412,15 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
         valueHTML = '<div class="mval">' + fmt(pl.series[pl.series.length - 1].value, t.decimals) +
                     '<em>' + esc(t.unit) + '</em></div>';
       } else {
+        /* short keys here: the flag badge alongside also carries a line name, and
+           the full label ("JKM (imported)") pushed the badge onto a second row,
+           which left this tile's chart shorter than its neighbours. The long form
+           stays in the hover title and in the subtitle. */
         valueHTML = '<div class="mval mval--pair">' + t.lines.map(function (ln) {
           var last = ln.series[ln.series.length - 1].value;
-          return '<span class="mkey" style="--c:' + ln.color + '">' +
+          return '<span class="mkey" style="--c:' + ln.color + '" title="' + esc(ln.label) + '">' +
                    '<i></i><b>' + fmt(last, t.decimals) + '</b>' +
-                   '<span>' + esc(ln.label) + '</span>' +
+                   '<span>' + esc(lineName(ln)) + '</span>' +
                  '</span>';
         }).join('') + '</div>';
       }
@@ -1381,8 +1428,9 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
       /* A single-line tile prints its unit beside the value. A paired tile has no
          room there - the unit would wrap and leave that tile's chart shorter than
          its neighbours - so it rides the subtitle, where it is still on screen
-         without hovering. */
-      var sub = t.lines.length > 1 ? t.plainSub + ' · ' + t.unit : t.plainSub;
+         without hovering. It leads the subtitle so that if the text ellipsises on
+         a narrow card it is the description that gets cut, never the unit. */
+      var sub = multi ? t.unit + ' · ' + t.plainSub : t.plainSub;
 
       return '<div class="card mtile">' +
         '<div class="card__head">' +
@@ -1390,17 +1438,25 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
             '<span class="card__title">' + esc(t.label) + '</span>' +
             '<span class="card__sub">' + esc(sub) + '</span>' +
           '</div>' +
-          '<span class="chip" style="--c:' + tag.color + '" title="' + esc(tag.plainLabel + ' - ' + t.source) + '">' +
-            '<span class="chip__sw"></span>' + esc(tag.label) + '</span>' +
+          '<span class="mtags">' + tileSources(t).map(function (s) {
+            return '<span class="chip" style="--c:' + s.tag.color + '" title="' +
+              esc((multi ? s.lines.join(', ') + ' - ' : '') +
+                  s.tag.plainLabel + ' - ' + s.sources.join('; ')) + '">' +
+              '<span class="chip__sw"></span>' + esc(s.tag.label) + '</span>';
+          }).join('') + '</span>' +
         '</div>' +
         '<div class="card__body">' +
           '<div class="mtop">' + valueHTML +
+            /* the flag is computed from the primary line only, so on a two-line
+               tile it has to say which line it is talking about - otherwise it
+               reads as describing both, and they can move apart */
             '<span class="mflag" style="--c:' + f.meta.color + '" title="' +
-              esc((t.lines.length > 1 ? pl.label + ', c' : 'C') + 'ompared with ' +
+              esc((multi ? pl.label + ', c' : 'C') + 'ompared with ' +
                   monthLabel(pl.series[pl.series.length - 1 - m.flagLookbackMonths].date) +
                   ': ' + (f.pct === null
                             ? (f.diff >= 0 ? '+' : '') + fmt(f.diff, t.decimals) + ' ' + t.unit
                             : (f.pct >= 0 ? '+' : '') + f.pct.toFixed(1) + '%')) + '">' +
+              (multi ? '<b>' + esc(lineName(pl)) + '</b>' : '') +
               '<i>' + f.meta.glyph + '</i>' + esc(f.meta.label) + '</span>' +
           '</div>' +
           '<div class="chart-wrap"><div class="chart" id="ch-macro-' + t.id + '"></div></div>' +
