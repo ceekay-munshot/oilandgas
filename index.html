@@ -414,6 +414,67 @@ h1,h2,h3,p{margin:0;}
   border:1px dashed var(--axis);
 }
 
+/* ============================ MACRO TILES =============================== */
+.mtile .card__body{padding:9px 12px 10px; gap:6px;}
+/* stack title over sub: side by side they fight the source chip for width and
+   both end up ellipsised */
+.mtile .card__headL{flex-direction:column; align-items:flex-start; gap:1px; min-width:0;}
+.mtile .card__title, .mtile .card__sub{max-width:100%;}
+
+/* value + direction flag, one tight row above the sparkline */
+.mtop{flex:0 0 auto; display:flex; align-items:baseline; justify-content:space-between; gap:8px; min-width:0;}
+.mval{
+  font-size:clamp(19px, 1.75vw, 25px); font-weight:760; letter-spacing:-.035em;
+  color:var(--ink-1); line-height:1; white-space:nowrap;
+}
+.mval em{font-style:normal; font-size:11.5px; font-weight:600; color:var(--ink-3); margin-left:4px; letter-spacing:-.01em;}
+
+/* two-line tile: both current values, each with its own colour key = the legend */
+.mval--pair{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+.mkey{display:flex; align-items:baseline; gap:6px; min-width:0;}
+.mkey i{width:9px; height:9px; border-radius:50%; background:var(--c); flex:0 0 auto; align-self:center;}
+.mkey b{font-size:clamp(15px, 1.32vw, 19px); font-weight:760; letter-spacing:-.03em; color:var(--ink-1); line-height:1;}
+.mkey span{font-size:10px; font-weight:600; color:var(--ink-3); white-space:nowrap;}
+
+.mflag{
+  flex:0 0 auto;
+  display:inline-flex; align-items:center; gap:5px;
+  padding:3px 9px 3px 7px; border-radius:999px;
+  background:color-mix(in srgb, var(--c) 12%, #fff);
+  border:1px solid color-mix(in srgb, var(--c) 28%, #fff);
+  color:color-mix(in srgb, var(--c) 80%, var(--ink-1));
+  font-size:11px; font-weight:700; letter-spacing:-.008em; white-space:nowrap;
+}
+.mflag i{font-style:normal; font-size:12px; line-height:1;}
+
+/* percentile: a 0-100 track, filled to where today sits in the last 12 months */
+.mfoot{flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; gap:10px; min-width:0;}
+.mpct{display:flex; align-items:center; gap:7px; min-width:0; flex:1 1 auto;}
+.mpct__track{
+  display:block;
+  flex:1 1 auto; min-width:34px; max-width:110px; height:6px; border-radius:3px;
+  background:color-mix(in srgb, var(--c) 20%, #fff);
+  overflow:hidden;
+}
+.mpct__fill{display:block; height:100%; border-radius:3px; background:var(--c); transition:width var(--t);}
+.mpct__lab{font-size:10.5px; font-weight:700; color:var(--ink-2); white-space:nowrap; font-variant-numeric:tabular-nums;}
+.masof{font-size:10px; font-weight:500; color:var(--ink-4); white-space:nowrap;}
+
+/* ---- macro vs scores strip ---- */
+.mscore{flex:0 0 auto;}
+.mscore__body{display:flex; align-items:center; gap:14px; padding:10px 14px; flex-wrap:wrap;}
+.mscore__verdict{display:flex; align-items:center; gap:9px; min-width:0; flex:0 0 auto;}
+.mscore__ico{
+  display:grid; place-items:center; width:26px; height:26px; border-radius:9px;
+  background:color-mix(in srgb, var(--c) 14%, #fff);
+  color:color-mix(in srgb, var(--c) 78%, var(--ink-1));
+  font-size:14px; font-weight:800; line-height:1; flex:0 0 auto;
+}
+.mscore__txt{min-width:0;}
+.mscore__hd{display:block; font-size:12.5px; font-weight:750; letter-spacing:-.015em; color:color-mix(in srgb, var(--c) 74%, var(--ink-1));}
+.mscore__say{display:block; margin-top:1px; font-size:11px; font-weight:500; color:var(--ink-2); line-height:1.3;}
+.mscore__tally{display:flex; align-items:center; gap:5px; flex-wrap:wrap; margin-left:auto;}
+
 /* ============================ TABLES ==================================== */
 .tablewrap{flex:1 1 auto; min-height:0; overflow:auto;}
 /* the table takes what it needs; the empty state grows into whatever is left,
@@ -649,9 +710,10 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
     <section class="panel" id="panel-macro" role="tabpanel" aria-labelledby="tab-macro" hidden>
       <div class="phead">
         <h2>The market backdrop</h2>
-        <p>Prices and borrowing costs that push the whole sector up or down.</p>
+        <p>Prices and freight that push the whole sector up or down. Each tile shows today, which way it has moved over three months, and where that sits against the last twelve.</p>
       </div>
       <div class="tiles tiles--3x2" id="macroTiles"></div>
+      <div class="card mscore" id="macroScore"></div>
     </section>
 
     <!-- ======================= 3. KPIs ================================= -->
@@ -825,23 +887,27 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
   };
 
   /* ------------------------------------------------------------ data model */
-  var DATA = { companies: null, framework: null };
-  var byId = {};        /* company id -> company */
-  var stageById = {};   /* stage id    -> stage   */
-  var groupById = {};   /* group id    -> group   */
+  var DATA = { companies: null, framework: null, macro: null };
+  var byId = {};        /* company id -> company    */
+  var stageById = {};   /* stage id    -> stage     */
+  var groupById = {};   /* group id    -> group     */
+  var tagById = {};     /* source tag id -> tag     */
 
   function load() {
     return Promise.all([
       fetch('data/companies.json', { cache: 'no-cache' }).then(chk),
-      fetch('data/framework.json', { cache: 'no-cache' }).then(chk)
+      fetch('data/framework.json', { cache: 'no-cache' }).then(chk),
+      fetch('data/macro.json', { cache: 'no-cache' }).then(chk)
     ]).then(function (r) {
       DATA.companies = r[0];
       DATA.framework = r[1];
+      DATA.macro = r[2];
       DATA.companies.groups.forEach(function (g) {
         groupById[g.id] = g;
         g.companies.forEach(function (c) { byId[c.id] = c; });
       });
       DATA.framework.cycleStages.forEach(function (s) { stageById[s.id] = s; });
+      DATA.framework.sourceTags.forEach(function (t) { tagById[t.id] = t; });
     });
     function chk(res) {
       if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
@@ -966,7 +1032,11 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
   function mount(id, option) {
     var node = el(id);
     if (!node) return;
-    var c = charts[id] || echarts.init(node, null, { renderer: 'canvas' });
+    var c = charts[id];
+    /* a re-render replaces the container, so drop an instance bound to a node
+       that is no longer in the document */
+    if (c && (c.isDisposed() || c.getDom() !== node)) { try { c.dispose(); } catch (e) {} c = null; }
+    if (!c) c = echarts.init(node, null, { renderer: 'canvas' });
     charts[id] = c;
     c.setOption(option, true);
     return c;
@@ -1169,26 +1239,225 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
   }
 
   /* -------------------------------------------------------------- 2. macro */
-  var MACRO_TILES = [
-    { t: 'Crude oil price',    s: 'What a barrel costs',          k: 'line' },
-    { t: 'Domestic gas price', s: 'What Indian gas sells for',     k: 'line' },
-    { t: 'Refining margin',    s: 'Profit on each barrel refined', k: 'line' },
-    { t: 'Rupee vs US dollar', s: 'How dear imports are',          k: 'line' },
-    { t: 'Interest rate',      s: 'Cost of borrowing to build',    k: 'line' },
-    { t: 'Fuel sold',          s: 'Diesel and petrol volumes',     k: 'bars' }
-  ];
+
+  /* MACRO_TILES is now derived from data/macro.json rather than written here,
+     so adding or reordering a tile is a data change, not a code change. */
+  var MACRO_TILES = [];
+
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function monthLabel(iso) {          /* 2026-03-01 -> Mar 26 */
+    var p = String(iso).split('-');
+    return MONTHS[(+p[1]) - 1] + ' ' + p[0].slice(2);
+  }
+  function dayLabel(iso) {            /* 2026-07-01 -> 1 Jul 2026 */
+    var p = String(iso).split('-');
+    return (+p[2]) + ' ' + MONTHS[(+p[1]) - 1] + ' ' + p[0];
+  }
+  function fmt(v, d) { return Number(v).toFixed(d == null ? 1 : d); }
+  function ordinal(n) {
+    var r10 = n % 10, r100 = n % 100;
+    if (r10 === 1 && r100 !== 11) return n + 'st';
+    if (r10 === 2 && r100 !== 12) return n + 'nd';
+    if (r10 === 3 && r100 !== 13) return n + 'rd';
+    return n + 'th';
+  }
+
+  function primaryLine(tile) {
+    for (var i = 0; i < tile.lines.length; i++) if (tile.lines[i].primary) return tile.lines[i];
+    return tile.lines[0];
+  }
+
+  /* which way it has moved: latest vs `back` points earlier, with a flat band
+     so small wobbles do not read as a trend */
+  function directionFlag(values, back, bandPct) {
+    var flags = {};
+    DATA.macro.directionFlags.forEach(function (f) { flags[f.id] = f; });
+    var latest = values[values.length - 1];
+    var prior = values[values.length - 1 - back];
+    var pct = prior === 0 ? 0 : (latest - prior) / Math.abs(prior) * 100;
+    var id = pct > bandPct ? 'rising' : (pct < -bandPct ? 'falling' : 'flat');
+    return { id: id, meta: flags[id], pct: pct, prior: prior };
+  }
+
+  /* where the latest point ranks inside its own 12 points */
+  function percentileOf(values) {
+    var latest = values[values.length - 1];
+    var below = values.filter(function (v) { return v < latest; }).length;
+    return Math.round(below / (values.length - 1) * 100);
+  }
+
+  function sparkOption(tile) {
+    var dates = primaryLine(tile).series.map(function (p) { return monthLabel(p.date); });
+    var single = tile.lines.length === 1;
+    return {
+      animationDuration: 700,
+      animationEasing: 'cubicOut',
+      grid: { left: 3, right: 9, top: 10, bottom: 3, containLabel: false },
+      tooltip: Object.assign({}, TOOLTIP, {
+        trigger: 'axis',
+        axisPointer: { type: 'line', lineStyle: { color: AXIS, width: 1 } },
+        formatter: function (ps) {
+          var out = '<b>' + esc(ps[0].axisValue) + '</b>';
+          ps.forEach(function (p) {
+            out += '<br><span style="display:inline-block;width:7px;height:7px;border-radius:50%;' +
+                   'background:' + p.color + ';margin-right:5px"></span>' +
+                   (tile.lines.length > 1 ? esc(p.seriesName) + ' ' : '') +
+                   '<b>' + fmt(p.data, tile.decimals) + '</b> ' + esc(tile.unit);
+          });
+          return out;
+        }
+      }),
+      xAxis: { type: 'category', data: dates, show: false, boundaryGap: false },
+      yAxis: {
+        type: 'value', show: false, scale: true,
+        min: function (v) { return v.min - (v.max - v.min || 1) * 0.22; },
+        max: function (v) { return v.max + (v.max - v.min || 1) * 0.22; }
+      },
+      series: tile.lines.map(function (ln) {
+        var vals = ln.series.map(function (p) { return p.value; });
+        return {
+          type: 'line', name: ln.label, data: vals,
+          smooth: 0.32, showSymbol: false,
+          /* itemStyle too, not just lineStyle: params.color in the tooltip and the
+             hover symbol both read itemStyle, and fall back to the default
+             ECharts palette without it */
+          itemStyle: { color: ln.color },
+          /* bold on purpose - the line is the point of a sparkline */
+          lineStyle: { width: 3, color: ln.color, cap: 'round', join: 'round' },
+          /* a wash under a single line; two washes would muddy each other */
+          areaStyle: single ? { color: ln.color, opacity: 0.10 } : null,
+          emphasis: { disabled: true },
+          /* end dot with a surface ring, so it stays legible over the line */
+          markPoint: {
+            silent: true,
+            symbol: 'circle', symbolSize: 9,
+            itemStyle: { color: ln.color, borderColor: WHITE, borderWidth: 2 },
+            label: { show: false },
+            data: [{ coord: [vals.length - 1, vals[vals.length - 1]] }]
+          }
+        };
+      })
+    };
+  }
+
   function renderMacro() {
-    el('macroTiles').innerHTML = MACRO_TILES.map(function (m) {
-      return '<div class="card">' +
+    var m = DATA.macro;
+    MACRO_TILES = m.tiles.map(function (t) {
+      var pv = primaryLine(t).series.map(function (p) { return p.value; });
+      return {
+        tile: t,
+        values: pv,
+        flag: directionFlag(pv, m.flagLookbackMonths, m.flatBandPct),
+        pct: percentileOf(pv)
+      };
+    });
+
+    el('macroTiles').innerHTML = MACRO_TILES.map(function (row) {
+      var t = row.tile, f = row.flag, pl = primaryLine(t);
+      var tag = tagById[t.sourceTag] || tagById.unknown;
+
+      /* one big value, or one per line when the tile carries two */
+      var valueHTML;
+      if (t.lines.length === 1) {
+        valueHTML = '<div class="mval">' + fmt(pl.series[pl.series.length - 1].value, t.decimals) +
+                    '<em>' + esc(t.unit) + '</em></div>';
+      } else {
+        valueHTML = '<div class="mval mval--pair">' + t.lines.map(function (ln) {
+          var last = ln.series[ln.series.length - 1].value;
+          return '<span class="mkey" style="--c:' + ln.color + '">' +
+                   '<i></i><b>' + fmt(last, t.decimals) + '</b>' +
+                   '<span>' + esc(ln.label) + '</span>' +
+                 '</span>';
+        }).join('') + '</div>';
+      }
+
+      return '<div class="card mtile">' +
         '<div class="card__head">' +
-          '<div class="card__headL"><span class="card__title">' + esc(m.t) + '</span>' +
-            '<span class="card__sub">' + esc(m.s) + '</span></div>' +
-          '<span class="chip chip--ghost">' + (m.k === 'bars' ? 'Bars' : 'Line') + '</span>' +
+          '<div class="card__headL">' +
+            '<span class="card__title">' + esc(t.label) + '</span>' +
+            '<span class="card__sub">' + esc(t.plainSub) + '</span>' +
+          '</div>' +
+          '<span class="chip" style="--c:' + tag.color + '" title="' + esc(tag.plainLabel + ' - ' + t.source) + '">' +
+            '<span class="chip__sw"></span>' + esc(tag.label) + '</span>' +
         '</div>' +
-        '<div class="card__body"><div class="ghost" data-ghost="' + m.k + '"></div></div>' +
+        '<div class="card__body">' +
+          '<div class="mtop">' + valueHTML +
+            '<span class="mflag" style="--c:' + f.meta.color + '" title="' +
+              esc((t.lines.length > 1 ? pl.label + ', c' : 'C') + 'ompared with ' +
+                  monthLabel(pl.series[pl.series.length - 1 - m.flagLookbackMonths].date) +
+                  ': ' + (f.pct >= 0 ? '+' : '') + f.pct.toFixed(1) + '%') + '">' +
+              '<i>' + f.meta.glyph + '</i>' + esc(f.meta.label) + '</span>' +
+          '</div>' +
+          '<div class="chart-wrap"><div class="chart" id="ch-macro-' + t.id + '"></div></div>' +
+          '<div class="mfoot">' +
+            '<span class="mpct" style="--c:' + pl.color + '" title="' +
+              esc('Today is higher than ' + row.pct + '% of the last 12 months.') + '">' +
+              '<span class="mpct__track"><span class="mpct__fill" style="width:' + row.pct + '%"></span></span>' +
+              '<span class="mpct__lab">' + ordinal(row.pct) + ' %ile</span>' +
+            '</span>' +
+            '<span class="masof">as of ' + esc(dayLabel(t.asOf)) + '</span>' +
+          '</div>' +
+        '</div>' +
       '</div>';
     }).join('');
-    fillGhosts(el('macroTiles'));
+
+    MACRO_TILES.forEach(function (row) { mount('ch-macro-' + row.tile.id, sparkOption(row.tile)); });
+    renderMacroScore();
+  }
+
+  /* Does the market backdrop agree with where the scores are heading?
+     Placeholder logic against SEED.scores until real scoring lands. Each tile
+     declares in macro.json which direction supports a stronger capex cycle. */
+  function renderMacroScore() {
+    var supportive = [], against = [], neutral = [];
+    MACRO_TILES.forEach(function (row) {
+      if (row.flag.id === 'flat') { neutral.push(row); return; }
+      var dir = row.flag.id === 'rising' ? 'up' : 'down';
+      (dir === row.tile.supports ? supportive : against).push(row);
+    });
+
+    var up = 0, down = 0;
+    Object.keys(SEED.scores).forEach(function (k) {
+      var s = SEED.scores[k];
+      if (s.score > s.prev) up++; else if (s.score < s.prev) down++;
+    });
+    var scoresUp = up > down;
+    var n = MACRO_TILES.length;
+    var agree = (supportive.length >= 4 && scoresUp) || (supportive.length <= 2 && !scoresUp);
+
+    var c = agree ? '#0F7A3A' : '#E9A526';
+    var head = agree ? 'Scores agree with the market backdrop' : 'Conflict - flagged for review';
+    var say = agree
+      ? 'Scores are ' + (scoresUp ? 'improving' : 'easing') + ', and ' + supportive.length +
+        ' of ' + n + ' market readings point the same way.'
+      : 'Scores are ' + (scoresUp ? 'improving' : 'easing') + ', but only ' + supportive.length +
+        ' of ' + n + ' market readings back that up.';
+
+    var tally = MACRO_TILES.map(function (row) {
+      var state = row.flag.id === 'flat' ? 'neutral'
+                : (supportive.indexOf(row) !== -1 ? 'helps' : 'hurts');
+      var col = state === 'helps' ? '#0F7A3A' : (state === 'hurts' ? '#E9A526' : '#7C8496');
+      var word = state === 'helps' ? 'helps the cycle'
+               : (state === 'hurts' ? 'works against the cycle' : 'no clear direction');
+      return '<span class="chip" style="--c:' + col + '" title="' +
+        esc(row.tile.label + ' is ' + row.flag.meta.label.toLowerCase() + ' - ' + word +
+            '. ' + row.tile.supportsWhy) + '">' +
+        '<span class="chip__sw"></span>' + esc(row.tile.shortLabel) + ' ' + row.flag.meta.glyph + '</span>';
+    }).join('');
+
+    el('macroScore').innerHTML =
+      '<div class="mscore__body" style="--c:' + c + '">' +
+        '<span class="mscore__verdict">' +
+          '<span class="mscore__ico">' + (agree ? '✓' : '!') + '</span>' +
+          '<span class="mscore__txt">' +
+            '<span class="mscore__hd">' + esc(head) + '</span>' +
+            '<span class="mscore__say">' + esc(say) + '</span>' +
+          '</span>' +
+        '</span>' +
+        '<span class="mscore__tally">' + tally +
+          '<span class="chip" style="--c:var(--seed)"><span class="chip__sw"></span>SEED scores</span>' +
+        '</span>' +
+      '</div>';
   }
 
   /* --------------------------------------------------------------- 3. KPIs */
@@ -1354,7 +1623,9 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
   }
 
   function resizeAll() {
-    Object.keys(charts).forEach(function (k) { charts[k].resize(); });
+    Object.keys(charts).forEach(function (k) {
+      if (charts[k] && !charts[k].isDisposed()) charts[k].resize();
+    });
   }
 
   function setHash() {

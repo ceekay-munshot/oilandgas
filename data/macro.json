@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "title": "Market backdrop",
+  "placeholder": true,
+  "note": "Six market series shaped exactly like the live feed will be. The VALUES are realistic placeholders, not real observations - a later step swaps them for the real feed without changing this shape. Each tile holds one or more lines; every line carries its own 12 monthly points, oldest first.",
+  "updated": "2026-07-25",
+  "flatBandPct": 1.5,
+  "months": 12,
+  "flagLookbackMonths": 3,
+
+  "tiles": [
+    {
+      "id": "brent",
+      "label": "Crude Oil - Brent",
+      "shortLabel": "Brent",
+      "plainSub": "What a barrel of oil costs",
+      "unit": "$/bbl",
+      "decimals": 1,
+      "source": "Investing.com",
+      "sourceTag": "external",
+      "asOf": "2026-07-01",
+      "supports": "up",
+      "supportsWhy": "Dearer crude pays for more drilling and new projects.",
+      "lines": [
+        {
+          "id": "brent",
+          "label": "Brent",
+          "color": "#E8590C",
+          "primary": true,
+          "series": [
+            { "date": "2025-08-01", "value": 68.9 },
+            { "date": "2025-09-01", "value": 70.2 },
+            { "date": "2025-10-01", "value": 69.1 },
+            { "date": "2025-11-01", "value": 71.8 },
+            { "date": "2025-12-01", "value": 70.4 },
+            { "date": "2026-01-01", "value": 72.6 },
+            { "date": "2026-02-01", "value": 71.3 },
+            { "date": "2026-03-01", "value": 73.9 },
+            { "date": "2026-04-01", "value": 75.2 },
+            { "date": "2026-05-01", "value": 79.6 },
+            { "date": "2026-06-01", "value": 81.7 },
+            { "date": "2026-07-01", "value": 80.4 }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "indian-basket",
+      "label": "Crude Oil - Indian Basket",
+      "shortLabel": "Indian Basket",
+      "plainSub": "What India actually pays per barrel",
+      "unit": "$/bbl",
+      "decimals": 1,
+      "source": "PPAC, Ministry of Petroleum & Natural Gas",
+      "sourceTag": "official",
+      "asOf": "2026-07-01",
+      "supports": "up",
+      "supportsWhy": "Same signal as Brent, priced for the mix India really buys.",
+      "lines": [
+        {
+          "id": "indian-basket",
+          "label": "Indian Basket",
+          "color": "#9A3412",
+          "primary": true,
+          "series": [
+            { "date": "2025-08-01", "value": 66.5 },
+            { "date": "2025-09-01", "value": 67.8 },
+            { "date": "2025-10-01", "value": 66.7 },
+            { "date": "2025-11-01", "value": 69.4 },
+            { "date": "2025-12-01", "value": 68.0 },
+            { "date": "2026-01-01", "value": 70.1 },
+            { "date": "2026-02-01", "value": 68.9 },
+            { "date": "2026-03-01", "value": 71.5 },
+            { "date": "2026-04-01", "value": 72.8 },
+            { "date": "2026-05-01", "value": 77.2 },
+            { "date": "2026-06-01", "value": 79.3 },
+            { "date": "2026-07-01", "value": 78.0 }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "sing-grm",
+      "label": "Refining Margin - Singapore",
+      "shortLabel": "Singapore GRM",
+      "plainSub": "Profit on each barrel refined",
+      "unit": "$/bbl",
+      "decimals": 1,
+      "source": "Reuters, Singapore complex margin",
+      "sourceTag": "external",
+      "asOf": "2026-07-01",
+      "supports": "up",
+      "supportsWhy": "Fatter margins pay for refinery upgrades.",
+      "lines": [
+        {
+          "id": "sing-grm",
+          "label": "Singapore GRM",
+          "color": "#0F7A3A",
+          "primary": true,
+          "series": [
+            { "date": "2025-08-01", "value": 5.4 },
+            { "date": "2025-09-01", "value": 6.1 },
+            { "date": "2025-10-01", "value": 7.2 },
+            { "date": "2025-11-01", "value": 8.4 },
+            { "date": "2025-12-01", "value": 8.9 },
+            { "date": "2026-01-01", "value": 7.8 },
+            { "date": "2026-02-01", "value": 7.1 },
+            { "date": "2026-03-01", "value": 6.6 },
+            { "date": "2026-04-01", "value": 6.9 },
+            { "date": "2026-05-01", "value": 5.8 },
+            { "date": "2026-06-01", "value": 4.9 },
+            { "date": "2026-07-01", "value": 4.2 }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "domestic-gas",
+      "label": "Gas Price - APM and JKM",
+      "shortLabel": "Gas (JKM)",
+      "plainSub": "Home-set price vs imported price",
+      "unit": "$/mmbtu",
+      "decimals": 2,
+      "source": "PPAC (APM) and Platts (JKM)",
+      "sourceTag": "external",
+      "asOf": "2026-07-01",
+      "supports": "down",
+      "supportsWhy": "Cheaper imported gas means more of it gets burned here.",
+      "lines": [
+        {
+          "id": "jkm",
+          "label": "JKM (imported)",
+          "color": "#7C3AED",
+          "primary": true,
+          "sourceTag": "external",
+          "series": [
+            { "date": "2025-08-01", "value": 11.8 },
+            { "date": "2025-09-01", "value": 12.4 },
+            { "date": "2025-10-01", "value": 13.1 },
+            { "date": "2025-11-01", "value": 13.9 },
+            { "date": "2025-12-01", "value": 13.4 },
+            { "date": "2026-01-01", "value": 12.9 },
+            { "date": "2026-02-01", "value": 12.2 },
+            { "date": "2026-03-01", "value": 11.6 },
+            { "date": "2026-04-01", "value": 11.9 },
+            { "date": "2026-05-01", "value": 12.6 },
+            { "date": "2026-06-01", "value": 13.3 },
+            { "date": "2026-07-01", "value": 12.8 }
+          ]
+        },
+        {
+          "id": "apm",
+          "label": "APM (home-set)",
+          "color": "#0891B2",
+          "primary": false,
+          "sourceTag": "official",
+          "series": [
+            { "date": "2025-08-01", "value": 6.50 },
+            { "date": "2025-09-01", "value": 6.50 },
+            { "date": "2025-10-01", "value": 6.50 },
+            { "date": "2025-11-01", "value": 6.50 },
+            { "date": "2025-12-01", "value": 6.75 },
+            { "date": "2026-01-01", "value": 6.75 },
+            { "date": "2026-02-01", "value": 6.75 },
+            { "date": "2026-03-01", "value": 6.75 },
+            { "date": "2026-04-01", "value": 6.75 },
+            { "date": "2026-05-01", "value": 6.90 },
+            { "date": "2026-06-01", "value": 6.90 },
+            { "date": "2026-07-01", "value": 6.90 }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "inr-usd",
+      "label": "Rupee vs US Dollar",
+      "shortLabel": "Rupee",
+      "plainSub": "How dear imports are",
+      "unit": "Rs",
+      "decimals": 1,
+      "source": "RBI reference rate",
+      "sourceTag": "official",
+      "asOf": "2026-07-01",
+      "supports": "down",
+      "supportsWhy": "A stronger rupee makes imported crude and kit cheaper.",
+      "lines": [
+        {
+          "id": "inr-usd",
+          "label": "INR/USD",
+          "color": "#DB2777",
+          "primary": true,
+          "series": [
+            { "date": "2025-08-01", "value": 83.4 },
+            { "date": "2025-09-01", "value": 83.9 },
+            { "date": "2025-10-01", "value": 84.3 },
+            { "date": "2025-11-01", "value": 84.8 },
+            { "date": "2025-12-01", "value": 85.2 },
+            { "date": "2026-01-01", "value": 85.9 },
+            { "date": "2026-02-01", "value": 86.4 },
+            { "date": "2026-03-01", "value": 86.1 },
+            { "date": "2026-04-01", "value": 86.8 },
+            { "date": "2026-05-01", "value": 87.3 },
+            { "date": "2026-06-01", "value": 87.0 },
+            { "date": "2026-07-01", "value": 87.6 }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "baltic-dirty",
+      "label": "Freight - Baltic Dirty Tanker",
+      "shortLabel": "Freight",
+      "plainSub": "Cost of shipping crude by sea",
+      "unit": "index",
+      "decimals": 0,
+      "source": "Baltic Exchange",
+      "sourceTag": "external",
+      "asOf": "2026-07-01",
+      "supports": "up",
+      "supportsWhy": "Busier tankers mean more cargoes are actually moving.",
+      "lines": [
+        {
+          "id": "baltic-dirty",
+          "label": "Baltic Dirty Tanker",
+          "color": "#B91C1C",
+          "primary": true,
+          "series": [
+            { "date": "2025-08-01", "value": 1180 },
+            { "date": "2025-09-01", "value": 1240 },
+            { "date": "2025-10-01", "value": 1120 },
+            { "date": "2025-11-01", "value": 980 },
+            { "date": "2025-12-01", "value": 910 },
+            { "date": "2026-01-01", "value": 860 },
+            { "date": "2026-02-01", "value": 890 },
+            { "date": "2026-03-01", "value": 950 },
+            { "date": "2026-04-01", "value": 1020 },
+            { "date": "2026-05-01", "value": 980 },
+            { "date": "2026-06-01", "value": 900 },
+            { "date": "2026-07-01", "value": 845 }
+          ]
+        }
+      ]
+    }
+  ],
+
+  "directionFlags": [
+    { "id": "rising",  "label": "Rising", "glyph": "↑", "color": "#2563EB" },
+    { "id": "flat",    "label": "Flat",   "glyph": "→", "color": "#7C8496" },
+    { "id": "falling", "label": "Falling","glyph": "↓", "color": "#E07C05" }
+  ]
+}
