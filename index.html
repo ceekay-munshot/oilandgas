@@ -1,0 +1,1421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Where India's oil and gas spending cycle is right now, and which companies benefit.">
+<title>Oil &amp; Gas Cycle Dashboard</title>
+
+<style>
+/* ============================================================================
+   DESIGN SYSTEM
+   Light, colourful, modern. Every data colour below was checked with a
+   colour-blindness + contrast validator against a #FFFFFF chart surface.
+   Chart colours live in /data/framework.json - the tokens here mirror them
+   so CSS and ECharts never drift apart.
+   ========================================================================= */
+:root{
+  color-scheme: light;
+
+  /* --- group identity: used on every tab, never reassigned --------------- */
+  --g-leading:    #7C3AED;   /* Moves first  */
+  --g-coincident: #0D9488;   /* Moving now   */
+  --g-lagging:    #E07C05;   /* Moves last   */
+
+  /* --- ink -------------------------------------------------------------- */
+  --ink-1:#0F1424;   /* titles, values      */
+  --ink-2:#454B5E;   /* body                */
+  --ink-3:#7C8496;   /* labels, axes        */
+  --ink-4:#A3AAB9;   /* hints, ghosts       */
+
+  /* --- surfaces --------------------------------------------------------- */
+  --plane:#F3F5FB;
+  --surface:#FFFFFF;
+  --surface-2:#FAFBFE;
+  --grid:#E9ECF3;    /* gridline hairline   */
+  --axis:#CDD4E1;    /* baseline / axis     */
+  --hair:rgba(15,20,36,.10);
+
+  /* --- direction (paired with an arrow + a word, never colour alone) ----- */
+  --good:#0F7A3A;
+  --bad:#C42433;
+  --seed:#B45309;
+
+  /* --- shape, space, motion, type --------------------------------------- */
+  --r-card:16px;
+  --r-tile:12px;
+  --r-chip:7px;
+  --gap:12px;
+  --t:.28s cubic-bezier(.4,0,.2,1);
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --shadow:0 1px 2px rgba(15,20,36,.045), 0 10px 28px -20px rgba(15,20,36,.30);
+
+  /* --- navigation accents (chrome only - never a data colour) ------------ */
+  --tab-cockpit:#7C3AED;
+  --tab-macro:#0891B2;
+  --tab-kpis:#0D9488;
+  --tab-commentary:#DB2777;
+  --tab-insight:#E07C05;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+
+html,body{
+  height:100%; margin:0;
+  overflow:hidden;              /* the page itself never scrolls */
+  overscroll-behavior:none;
+}
+body{
+  font-family:var(--font);
+  color:var(--ink-1);
+  background:var(--plane);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+button{font:inherit;color:inherit;}
+h1,h2,h3,p{margin:0;}
+
+/* ============================ SHELL ====================================== */
+.app{
+  --accent:var(--tab-cockpit);
+  --accent2:#0891B2;
+  height:100dvh;
+  display:grid;
+  grid-template-rows:48px auto minmax(0,1fr);
+  overflow:hidden;
+  position:relative;
+  isolation:isolate;
+}
+/* the colourful wash - retints itself to the active tab */
+.app::before{
+  content:"";
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(1200px 460px at 8% -12%,  color-mix(in srgb, var(--accent)  26%, transparent), transparent 68%),
+    radial-gradient(1000px 420px at 102% -6%, color-mix(in srgb, var(--accent2) 20%, transparent), transparent 70%),
+    radial-gradient(900px 500px at 50% 118%,  color-mix(in srgb, var(--accent)  10%, transparent), transparent 72%);
+  transition:background var(--t);
+}
+
+/* ---------------------------- top bar ------------------------------------ */
+.topbar{
+  position:relative; z-index:3;
+  height:48px;
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  padding:0 18px;
+  background:rgba(255,255,255,.84);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--hair);
+}
+.brand{display:flex; align-items:center; gap:10px; min-width:0;}
+/* logo = the five cycle stages as five bars */
+.brand__mark{
+  display:flex; gap:2px; padding:3px;
+  background:var(--surface); border:1px solid var(--hair);
+  border-radius:8px; box-shadow:0 1px 3px rgba(15,20,36,.10);
+  flex:0 0 auto;
+}
+.brand__mark i{width:4px; height:18px; border-radius:2px; display:block;}
+.brand__name{font-size:14.5px; font-weight:700; letter-spacing:-.015em; white-space:nowrap;}
+.brand__name span{color:var(--ink-3); font-weight:500;}
+
+.topbar__right{display:flex; align-items:center; gap:8px; flex:0 0 auto;}
+
+/* ---------------------------- tab bar ------------------------------------ */
+.tabbar{
+  position:relative; z-index:3;
+  display:flex; align-items:center; gap:6px;
+  padding:9px 18px 10px;
+  overflow-x:auto; scrollbar-width:none;
+}
+.tabbar::-webkit-scrollbar{display:none;}
+.tab{
+  --c:var(--ink-3);
+  appearance:none; cursor:pointer;
+  display:flex; align-items:center; gap:8px;
+  padding:7px 15px 7px 11px;
+  border:1px solid transparent; border-radius:999px;
+  background:rgba(255,255,255,.5);
+  font-size:13.5px; font-weight:600; letter-spacing:-.012em;
+  color:var(--ink-3);
+  white-space:nowrap;
+  transition:background var(--t), color var(--t), border-color var(--t), box-shadow var(--t), transform var(--t);
+}
+.tab__n{
+  display:grid; place-items:center;
+  width:18px; height:18px; border-radius:6px;
+  background:rgba(15,20,36,.06);
+  font-size:10.5px; font-weight:700; color:var(--ink-3);
+  transition:background var(--t), color var(--t);
+}
+.tab:hover{background:rgba(255,255,255,.85); color:var(--ink-1);}
+.tab[aria-selected="true"]{
+  background:var(--surface);
+  color:color-mix(in srgb, var(--c) 76%, var(--ink-1));
+  border-color:color-mix(in srgb, var(--c) 30%, transparent);
+  box-shadow:0 2px 12px color-mix(in srgb, var(--c) 20%, transparent),
+             0 1px 2px rgba(15,20,36,.06);
+}
+.tab[aria-selected="true"] .tab__n{
+  background:color-mix(in srgb, var(--c) 14%, #fff);
+  color:color-mix(in srgb, var(--c) 78%, var(--ink-1));
+}
+.tab:focus-visible{outline:2px solid color-mix(in srgb, var(--c) 60%, transparent); outline-offset:2px;}
+
+/* ---------------------------- stage / panels ----------------------------- */
+.stage{position:relative; z-index:1; min-height:0; overflow:hidden;}
+.panel{
+  position:absolute; inset:0;
+  padding:2px 18px 16px;
+  display:flex; flex-direction:column; gap:var(--gap);
+  min-height:0;
+  opacity:0; visibility:hidden; transform:translateY(8px);
+  transition:opacity var(--t), transform var(--t), visibility var(--t);
+}
+.panel.is-active{opacity:1; visibility:visible; transform:none;}
+@media (prefers-reduced-motion:reduce){
+  .panel{transition:none;} .app::before{transition:none;}
+}
+
+/* ============================ COMPONENTS ================================= */
+
+/* --- pill (header badges) ------------------------------------------------ */
+.pill{
+  --c:var(--ink-3);
+  display:inline-flex; align-items:center; gap:6px;
+  padding:4px 11px 4px 9px;
+  border-radius:999px;
+  background:color-mix(in srgb, var(--c) 12%, #fff);
+  border:1px solid color-mix(in srgb, var(--c) 28%, #fff);
+  color:color-mix(in srgb, var(--c) 80%, var(--ink-1));
+  font-size:11.5px; font-weight:650; letter-spacing:-.005em; white-space:nowrap;
+}
+.pill b{font-weight:750;}
+.pill__dot{width:7px; height:7px; border-radius:50%; background:var(--c); flex:0 0 auto;}
+.pill--seed{--c:var(--seed);}
+
+/* --- chip (source tags, framework vocabulary) --------------------------- */
+.chip{
+  --c:var(--ink-3);
+  display:inline-flex; align-items:center; gap:5px;
+  padding:2px 8px;
+  border-radius:var(--r-chip);
+  background:color-mix(in srgb, var(--c) 11%, #fff);
+  border:1px solid color-mix(in srgb, var(--c) 26%, #fff);
+  color:color-mix(in srgb, var(--c) 82%, var(--ink-1));
+  font-size:10.5px; font-weight:680; letter-spacing:.015em; line-height:1.6;
+  white-space:nowrap;
+}
+.chip__sw{width:6px; height:6px; border-radius:50%; background:var(--c); flex:0 0 auto;}
+.chip--ghost{
+  background:var(--surface-2); border:1px dashed var(--axis);
+  color:var(--ink-4); font-weight:600;
+}
+
+/* --- card --------------------------------------------------------------- */
+.card{
+  display:flex; flex-direction:column; min-height:0;
+  background:var(--surface);
+  border:1px solid var(--hair);
+  border-radius:var(--r-card);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  transition:box-shadow var(--t), border-color var(--t);
+}
+.card:hover{
+  border-color:color-mix(in srgb, var(--accent) 22%, var(--hair));
+  box-shadow:0 1px 2px rgba(15,20,36,.05), 0 16px 34px -22px rgba(15,20,36,.34);
+}
+.card__head{
+  flex:0 0 auto;
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:9px 13px;
+  border-bottom:1px solid var(--hair);
+}
+.card__headL{display:flex; align-items:center; gap:8px; min-width:0;}
+.card__title{font-size:13px; font-weight:680; letter-spacing:-.012em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.card__sub{font-size:11px; font-weight:450; color:var(--ink-3); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.card__body{flex:1 1 auto; min-height:0; display:flex; flex-direction:column;}
+
+/* chart box: absolute fill so ECharts always has a measurable size */
+.chart-wrap{position:relative; flex:1 1 auto; min-height:0;}
+.chart{position:absolute; inset:0;}
+
+/* --- alert strip -------------------------------------------------------- */
+.alerts{
+  flex:0 0 auto;
+  display:grid; gap:10px;
+  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+}
+.alert{
+  display:flex; align-items:center; gap:9px;
+  padding:7px 12px 7px 9px;
+  background:var(--surface);
+  border:1px solid var(--hair);
+  border-left:4px solid var(--c, var(--ink-3));
+  border-radius:11px;
+  box-shadow:0 1px 2px rgba(15,20,36,.04);
+  min-width:0;
+}
+.alert__ico{
+  flex:0 0 auto; display:grid; place-items:center;
+  width:22px; height:22px; border-radius:7px;
+  background:color-mix(in srgb, var(--c) 13%, #fff);
+  color:color-mix(in srgb, var(--c) 78%, var(--ink-1));
+  font-size:12px; font-weight:800; line-height:1;
+}
+.alert__txt{min-width:0;}
+.alert__msg{
+  font-size:12px; font-weight:600; color:var(--ink-1); letter-spacing:-.008em;
+  line-height:1.3;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+}
+.alert__meta{display:flex; align-items:center; gap:5px; margin-top:3px;}
+
+/* --- segmented control (subtabs) --------------------------------------- */
+.subbar{flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px;}
+.segmented{
+  display:inline-flex; gap:4px; padding:4px;
+  background:rgba(255,255,255,.72);
+  border:1px solid var(--hair);
+  border-radius:999px;
+  box-shadow:0 1px 2px rgba(15,20,36,.04);
+}
+.seg{
+  --c:var(--ink-3);
+  appearance:none; cursor:pointer; border:1px solid transparent;
+  display:flex; align-items:center; gap:7px;
+  padding:6px 14px; border-radius:999px;
+  background:transparent; color:var(--ink-3);
+  font-size:12.5px; font-weight:650; letter-spacing:-.01em; white-space:nowrap;
+  transition:background var(--t), color var(--t), border-color var(--t);
+}
+.seg__dot{width:7px; height:7px; border-radius:50%; background:currentColor; opacity:.4; transition:all var(--t);}
+.seg:hover{color:var(--ink-1); background:rgba(15,20,36,.04);}
+.seg[aria-selected="true"]{
+  background:color-mix(in srgb, var(--c) 13%, #fff);
+  border-color:color-mix(in srgb, var(--c) 32%, #fff);
+  color:color-mix(in srgb, var(--c) 80%, var(--ink-1));
+}
+.seg[aria-selected="true"] .seg__dot{background:var(--c); opacity:1; box-shadow:0 0 0 3px color-mix(in srgb, var(--c) 16%, transparent);}
+.seg:focus-visible{outline:2px solid color-mix(in srgb, var(--c) 60%, transparent); outline-offset:2px;}
+
+/* --- panel heading ----------------------------------------------------- */
+.phead{flex:0 0 auto; display:flex; align-items:baseline; gap:10px; padding:4px 2px 0; flex-wrap:wrap;}
+.phead h2{font-size:16px; font-weight:750; letter-spacing:-.022em;}
+.phead p{font-size:12px; color:var(--ink-3); font-weight:500;}
+
+/* ============================ COCKPIT =================================== */
+.cockpit{
+  flex:1 1 auto; min-height:0;
+  display:grid; gap:var(--gap);
+  grid-template-columns:minmax(300px, 0.95fr) minmax(0, 1.78fr);
+  grid-template-rows:minmax(0,1fr) minmax(0,.72fr) auto;
+}
+.cockpit__dial{grid-column:1; grid-row:1 / span 2; min-height:0;}
+.cockpit__gauges{
+  grid-column:2; grid-row:1;
+  display:grid; gap:var(--gap); grid-template-columns:repeat(3, minmax(0,1fr)); min-height:0;
+}
+.cockpit__div{grid-column:2; grid-row:2; min-height:0;}
+.cockpit__alerts{grid-column:1 / -1; grid-row:3;}
+
+/* the verdict lives INSIDE the dial, where the arc is hollow - so the card has
+   no dead band between the arc and its answer. Anchored on the gauge centre. */
+.verdict{
+  position:absolute; left:50%; top:64%; transform:translate(-50%,-50%);
+  width:55%; text-align:center; pointer-events:none;
+}
+/* the dot sits ABOVE the word, never beside it - a long stage name wraps to two
+   lines and an inline dot detaches from the text it belongs to */
+.verdict__dot{
+  width:11px; height:11px; border-radius:50%; background:var(--c);
+  margin:0 auto 8px; box-shadow:0 0 0 4px color-mix(in srgb, var(--c) 18%, transparent);
+}
+.verdict__word{font-size:clamp(17px, 1.72vw, 24px); font-weight:770; letter-spacing:-.032em; line-height:1.1; text-wrap:balance;}
+.verdict__tech{margin-top:3px; font-size:10.5px; color:var(--ink-3); font-weight:600; letter-spacing:.01em;}
+.verdict__say{margin-top:7px; font-size:11.5px; color:var(--ink-2); font-weight:500; line-height:1.35; text-wrap:pretty;}
+
+/* the dial's legend = the five stages, in order. Takes the slack the arc cannot
+   use (the arc is width-limited) so the card has no dead band at its foot. */
+.cockpit__dial .chart-wrap{flex:0 1 auto; aspect-ratio:1.34; width:100%; min-height:150px;}
+.stagelist{
+  flex:1 1 auto; min-height:0;
+  display:flex; flex-direction:column; justify-content:space-evenly; gap:2px;
+  padding:7px 11px 9px; border-top:1px solid var(--hair); background:var(--surface-2);
+}
+.stagelist__row{
+  display:flex; align-items:center; gap:9px;
+  padding:4px 8px; border-radius:9px;
+  border:1px solid transparent;
+  transition:background var(--t), border-color var(--t);
+  min-width:0;
+}
+.stagelist__txt{min-width:0; display:flex; flex-direction:column;}
+.stagelist__why{
+  font-size:10.5px; color:var(--ink-3); font-weight:450; line-height:1.3;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.stagelist__row[data-on="1"]{
+  background:color-mix(in srgb, var(--c) 10%, #fff);
+  border-color:color-mix(in srgb, var(--c) 28%, #fff);
+}
+.stagelist__bar{width:18px; height:8px; border-radius:3px; background:var(--c); flex:0 0 auto; opacity:.8; transition:opacity var(--t), box-shadow var(--t);}
+.stagelist__row[data-on="1"] .stagelist__bar{opacity:1; box-shadow:0 0 0 3px color-mix(in srgb, var(--c) 20%, transparent);}
+.stagelist__lab{font-size:11.5px; font-weight:600; color:var(--ink-3); white-space:nowrap;}
+.stagelist__row[data-on="1"] .stagelist__lab{color:var(--ink-1); font-weight:700;}
+.stagelist__you{
+  margin-left:auto; font-size:9.5px; font-weight:800; letter-spacing:.06em;
+  color:color-mix(in srgb, var(--c) 78%, var(--ink-1));
+}
+
+/* gauge card footer: arrow + change */
+.gfoot{
+  flex:0 0 auto;
+  display:flex; align-items:center; justify-content:center; gap:7px;
+  padding:0 10px 11px;
+}
+.gfoot__arrow{
+  display:grid; place-items:center;
+  width:21px; height:21px; border-radius:7px;
+  background:color-mix(in srgb, var(--c) 14%, #fff);
+  color:color-mix(in srgb, var(--c) 80%, var(--ink-1));
+  font-size:12px; font-weight:800; line-height:1;
+}
+.gfoot__txt{font-size:11.5px; font-weight:600; color:var(--ink-2);}
+.gfoot__txt b{color:var(--ink-1); font-weight:750;}
+
+/* ============================ GHOST TILES =============================== */
+.tiles{
+  flex:1 1 auto; min-height:0;
+  display:grid; gap:var(--gap);
+}
+.tiles--3x2{grid-template-columns:repeat(3, minmax(0,1fr)); grid-template-rows:repeat(2, minmax(0,1fr));}
+.tiles--2x2{grid-template-columns:repeat(2, minmax(0,1fr)); grid-template-rows:repeat(2, minmax(0,1fr));}
+.ghost{
+  flex:1 1 auto; min-height:0;
+  display:grid; place-items:center; gap:8px;
+  padding:10px; position:relative;
+  background:
+    linear-gradient(var(--surface-2), var(--surface-2)) padding-box;
+}
+.ghost{overflow:hidden;}
+.ghost svg{width:100%; height:100%; max-height:100%; display:block;}
+.tiles .ghost svg{max-height:230px;}
+.ghost__note{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  display:flex; flex-direction:column; align-items:center; gap:5px;
+  text-align:center;
+}
+.ghost__lab{
+  font-size:11px; font-weight:650; color:var(--ink-4);
+  background:rgba(255,255,255,.9); padding:3px 9px; border-radius:999px;
+  border:1px dashed var(--axis);
+}
+
+/* ============================ TABLES ==================================== */
+.tablewrap{flex:1 1 auto; min-height:0; overflow:auto;}
+/* the table takes what it needs; the empty state grows into whatever is left,
+   so a short group (3 rows) leaves no dead white below it */
+.tablecol{display:flex; flex-direction:column; min-height:100%;}
+.tablecol > table{flex:0 0 auto;}
+.tablecol > .ghost{flex:1 1 auto; min-height:0; overflow:hidden;}
+table.kpi{width:100%; border-collapse:separate; border-spacing:0; font-size:12px;}
+table.kpi thead th{
+  position:sticky; top:0; z-index:2;
+  background:var(--surface);
+  padding:8px 10px; text-align:right;
+  font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--ink-3);
+  border-bottom:1px solid var(--axis);
+  white-space:nowrap;
+}
+table.kpi thead th:first-child,
+table.kpi tbody td:first-child{text-align:left; padding-left:13px;}
+table.kpi thead th:nth-child(2),
+table.kpi tbody td:nth-child(2){text-align:left;}
+table.kpi tbody td{
+  padding:7px 10px; text-align:right;
+  border-bottom:1px solid var(--grid);
+  color:var(--ink-2);
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+table.kpi tbody tr:hover td{background:var(--surface-2);}
+table.kpi td.co{font-weight:670; color:var(--ink-1); letter-spacing:-.01em;}
+table.kpi td.co i{
+  display:inline-block; width:7px; height:7px; border-radius:50%;
+  background:var(--c); margin-right:7px; vertical-align:1px;
+}
+table.kpi td.what{color:var(--ink-3); font-weight:450; max-width:230px; overflow:hidden; text-overflow:ellipsis;}
+table.kpi td.empty{color:var(--ink-4); font-weight:500;}
+.grouphead{
+  flex:0 0 auto; display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  padding:9px 13px; border-bottom:1px solid var(--hair);
+}
+.grouphead__name{display:flex; align-items:center; gap:8px;}
+.grouphead__name b{font-size:14px; font-weight:750; letter-spacing:-.02em;}
+.grouphead__desc{font-size:11.5px; color:var(--ink-3); font-weight:500; flex:1 1 260px; min-width:0;}
+
+/* ============================ HEAT STRIP SHELL ========================== */
+.heat{flex:1 1 auto; min-height:0; display:flex; overflow:auto; padding:6px 13px 10px;}
+.heat__grid{
+  flex:1 1 auto; min-height:0;
+  display:grid; gap:3px 6px;
+  grid-template-columns:minmax(150px, 1.1fr) repeat(4, minmax(58px, 1fr));
+  grid-template-rows:auto; grid-auto-rows:minmax(21px, 1fr);
+  align-items:stretch;
+}
+.heat__colhead{font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-3); text-align:center; padding-bottom:3px; align-self:end;}
+.heat__row{
+  display:flex; align-items:center; gap:7px;
+  font-size:11px; font-weight:620; color:var(--ink-1); letter-spacing:-.01em;
+  overflow:hidden; padding-right:8px;
+}
+.heat__row i{width:6px; height:6px; border-radius:50%; background:var(--c); flex:0 0 auto;}
+.heat__row span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.heat__cell{
+  border-radius:5px;
+  background:var(--surface-2); border:1px dashed var(--axis);
+  display:grid; place-items:center;
+  font-size:9.5px; color:var(--ink-4); font-weight:600;
+}
+.legendbox{
+  flex:1 1 auto; min-height:0; overflow:auto;
+  display:flex; flex-direction:column; justify-content:space-evenly; gap:4px;
+  padding:9px 13px 12px;
+}
+.legendrow{display:flex; align-items:center; gap:10px; min-width:0;}
+.legendrow__sw{width:26px; height:15px; border-radius:5px; background:var(--c); flex:0 0 auto;}
+.legendrow__txt{min-width:0; display:flex; flex-direction:column;}
+.legendrow__lab{font-size:11.5px; font-weight:680; color:var(--ink-1); white-space:nowrap;}
+.legendrow__lab span{color:var(--ink-3); font-weight:500; margin-left:5px;}
+.legendrow__plain{font-size:10.5px; color:var(--ink-3); font-weight:450; line-height:1.3; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+
+/* ============================ SIX CARDS ================================= */
+.six{flex:0 0 auto; display:grid; gap:10px; grid-template-columns:repeat(6, minmax(0,1fr)); padding:11px 13px 13px;}
+.sixcard{
+  display:flex; flex-direction:column; gap:3px; justify-content:flex-start;
+  padding:11px 12px; border-radius:var(--r-tile);
+  background:var(--surface-2); border:1px solid var(--hair);
+  border-left:3px solid var(--accent);
+  min-width:0;
+}
+/* a long slot name ("Deep Industries / Jindal Drilling") wraps rather than
+   getting its tail cut off */
+.sixcard__t{font-size:12.5px; font-weight:700; color:var(--ink-1); letter-spacing:-.012em; line-height:1.25;}
+.sixcard__w{font-size:10.5px; color:var(--ink-3); font-weight:500; line-height:1.35; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;}
+/* slots pinned to the card foot so the card reads as structured, not hollow */
+.sixcard__slots{display:flex; gap:5px; flex-wrap:wrap; margin-top:auto; padding-top:8px;}
+.chiprow{display:flex; flex-wrap:wrap; gap:6px; padding:11px 13px 13px; overflow:auto; min-height:0; align-content:flex-start;}
+
+/* ============================ BOOT / ERROR ============================== */
+.boot{
+  position:fixed; inset:0; z-index:40;
+  display:grid; place-items:center; padding:24px;
+  background:var(--plane);
+}
+.boot__card{
+  max-width:520px; width:100%;
+  background:var(--surface); border:1px solid var(--hair);
+  border-radius:var(--r-card); box-shadow:var(--shadow);
+  padding:22px 24px;
+}
+.boot__card h3{font-size:15px; font-weight:750; letter-spacing:-.02em; margin-bottom:8px;}
+.boot__card p{font-size:12.5px; color:var(--ink-2); line-height:1.5; margin-bottom:10px;}
+.boot__card code{
+  display:block; padding:9px 12px; border-radius:9px;
+  background:#0F1424; color:#E8EBF2;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12px;
+  margin-bottom:9px; overflow:auto;
+}
+.boot__spin{
+  width:26px; height:26px; border-radius:50%;
+  border:3px solid color-mix(in srgb, var(--g-leading) 22%, #fff);
+  border-top-color:var(--g-leading);
+  animation:spin .8s linear infinite; margin:0 auto 12px;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+[hidden]{display:none !important;}
+.sr{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+
+/* ============================ TIGHTEN UP ON SHORT SCREENS =============== */
+@media (max-height:760px){
+  :root{--gap:9px;}
+  .panel{padding:0 14px 12px;}
+  .card__head{padding:7px 11px;}
+  .verdict{padding:0 12px 7px;}
+  .stagelist{padding:6px 10px 8px; gap:1px;}
+  .phead h2{font-size:15px;}
+}
+@media (max-height:600px){
+  /* below this the instrument genuinely cannot fit - let the panel scroll */
+  .stage{overflow:auto;}
+  .panel{position:relative; height:auto; min-height:100%;}
+  .cockpit{grid-template-rows:minmax(300px,1fr) minmax(180px,.74fr);}
+}
+@media (max-width:900px){
+  .cockpit{grid-template-columns:minmax(0,1fr); grid-template-rows:auto auto auto;}
+  .cockpit__dial{grid-column:1; grid-row:1;}
+  .cockpit__gauges{grid-column:1; grid-row:2;}
+  .cockpit__div{grid-column:1; grid-row:3;}
+  .stage{overflow:auto;}
+  .panel{position:relative; height:auto; min-height:100%;}
+  .tiles--3x2{grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:none;}
+  .tiles--2x2{grid-template-columns:minmax(0,1fr); grid-template-rows:none;}
+  .tiles > .card{min-height:210px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===================== BOOT / ERROR OVERLAY ========================== -->
+<div class="boot" id="boot">
+  <div class="boot__card" id="bootCard">
+    <div class="boot__spin"></div>
+    <p style="text-align:center;margin:0;">Loading the Oil &amp; Gas Cycle Dashboard&hellip;</p>
+  </div>
+</div>
+
+<!-- ============================== APP ================================== -->
+<div class="app" id="app" hidden>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand__mark" id="brandMark" aria-hidden="true"></div>
+      <h1 class="brand__name">Oil &amp; Gas Cycle Dashboard <span>&middot; India</span></h1>
+    </div>
+    <div class="topbar__right">
+      <span class="pill" id="stagePill"><span class="pill__dot"></span><b>&mdash;</b></span>
+      <span class="pill pill--seed" title="Every number on this page is a placeholder until real data is loaded.">
+        <span class="pill__dot"></span>SEED DATA
+      </span>
+    </div>
+  </header>
+
+  <nav class="tabbar" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" id="tab-cockpit"    aria-controls="panel-cockpit"    aria-selected="true"  style="--c:var(--tab-cockpit)"><span class="tab__n">1</span>Cockpit</button>
+    <button class="tab" role="tab" id="tab-macro"      aria-controls="panel-macro"      aria-selected="false" style="--c:var(--tab-macro)"><span class="tab__n">2</span>Macro</button>
+    <button class="tab" role="tab" id="tab-kpis"       aria-controls="panel-kpis"       aria-selected="false" style="--c:var(--tab-kpis)"><span class="tab__n">3</span>KPIs</button>
+    <button class="tab" role="tab" id="tab-commentary" aria-controls="panel-commentary" aria-selected="false" style="--c:var(--tab-commentary)"><span class="tab__n">4</span>Commentary</button>
+    <button class="tab" role="tab" id="tab-insight"    aria-controls="panel-insight"    aria-selected="false" style="--c:var(--tab-insight)"><span class="tab__n">5</span>Insight &amp; Action</button>
+  </nav>
+
+  <main class="stage">
+
+    <!-- ======================= 1. COCKPIT ============================== -->
+    <section class="panel is-active" id="panel-cockpit" role="tabpanel" aria-labelledby="tab-cockpit">
+      <div class="cockpit">
+
+        <div class="card cockpit__dial">
+          <div class="card__head">
+            <div class="card__headL">
+              <span class="card__title">Where are we in the cycle?</span>
+            </div>
+            <span class="chip" style="--c:var(--seed)"><span class="chip__sw"></span>SEED</span>
+          </div>
+          <div class="card__body">
+            <div class="chart-wrap">
+              <div class="chart" id="ch-dial"></div>
+              <div class="verdict" id="verdict"></div>
+            </div>
+            <div class="stagelist" id="stagelist"></div>
+          </div>
+        </div>
+
+        <div class="cockpit__gauges" id="gauges"></div>
+
+        <div class="card cockpit__div">
+          <div class="card__head">
+            <div class="card__headL">
+              <span class="card__title">How far ahead the early movers are</span>
+              <span class="card__sub">Moves&nbsp;first score minus moves&nbsp;last score, in points</span>
+            </div>
+            <span class="chip" style="--c:var(--seed)"><span class="chip__sw"></span>SEED</span>
+          </div>
+          <div class="card__body">
+            <div class="chart-wrap"><div class="chart" id="ch-div"></div></div>
+          </div>
+        </div>
+
+        <div class="alerts cockpit__alerts" id="alerts"></div>
+
+      </div>
+    </section>
+
+    <!-- ======================= 2. MACRO ================================ -->
+    <section class="panel" id="panel-macro" role="tabpanel" aria-labelledby="tab-macro" hidden>
+      <div class="phead">
+        <h2>The market backdrop</h2>
+        <p>Prices and borrowing costs that push the whole sector up or down.</p>
+      </div>
+      <div class="tiles tiles--3x2" id="macroTiles"></div>
+    </section>
+
+    <!-- ======================= 3. KPIs ================================= -->
+    <section class="panel" id="panel-kpis" role="tabpanel" aria-labelledby="tab-kpis" hidden>
+      <div class="subbar">
+        <div class="segmented" role="tablist" aria-label="Company groups" id="kpiSegs"></div>
+        <div id="kpiFlagLegend" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+      </div>
+      <div class="card" style="flex:1 1 auto;min-height:0;">
+        <div class="grouphead" id="kpiGroupHead"></div>
+        <div class="tablewrap">
+          <div class="tablecol">
+            <table class="kpi" id="kpiTable"></table>
+            <div class="ghost" id="kpiEmpty"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 4. COMMENTARY =========================== -->
+    <section class="panel" id="panel-commentary" role="tabpanel" aria-labelledby="tab-commentary" hidden>
+      <div class="phead">
+        <h2>What management said</h2>
+        <p>How upbeat or worried each company sounded, over the last four quarters.</p>
+      </div>
+      <div class="tiles" style="grid-template-columns:minmax(0,1.55fr) minmax(240px,.85fr);grid-template-rows:minmax(0,1fr) minmax(0,.62fr);">
+        <div class="card" style="grid-row:1 / span 2;">
+          <div class="card__head">
+            <div class="card__headL"><span class="card__title">Tone over 4 quarters</span>
+              <span class="card__sub" id="toneHeatSub">Heat strip</span></div>
+            <span class="chip chip--ghost">No data yet</span>
+          </div>
+          <div class="card__body"><div class="heat" id="toneHeat"></div></div>
+        </div>
+        <div class="card">
+          <div class="card__head"><div class="card__headL"><span class="card__title">How we score tone</span></div></div>
+          <div class="card__body"><div class="legendbox" id="toneLegend"></div></div>
+        </div>
+        <div class="card">
+          <div class="card__head">
+            <div class="card__headL"><span class="card__title">What changed this quarter</span></div>
+            <span class="chip chip--ghost">No data yet</span>
+          </div>
+          <div class="card__body"><div class="ghost" data-ghost="bars"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 5. INSIGHT & ACTION ====================== -->
+    <section class="panel" id="panel-insight" role="tabpanel" aria-labelledby="tab-insight" hidden>
+      <div class="phead">
+        <h2>The summary, and what to look at next</h2>
+        <p>One read of the cycle, then the shortlist worth digging into.</p>
+      </div>
+      <div class="tiles" style="grid-template-columns:minmax(0,1.22fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto auto;">
+        <div class="card">
+          <div class="card__head">
+            <div class="card__headL"><span class="card__title">The read</span>
+              <span class="card__sub">Where the cycle is, in a few lines</span></div>
+            <span class="chip chip--ghost">No data yet</span>
+          </div>
+          <div class="card__body"><div class="ghost" data-ghost="text"></div></div>
+        </div>
+        <div class="card">
+          <div class="card__head">
+            <div class="card__headL"><span class="card__title">What to research now</span>
+              <span class="card__sub">The shortlist, most useful first</span></div>
+            <span class="chip chip--ghost">No data yet</span>
+          </div>
+          <div class="card__body"><div class="ghost" data-ghost="list"></div></div>
+        </div>
+        <div class="card" style="grid-column:1 / -1;">
+          <div class="card__head">
+            <div class="card__headL"><span class="card__title">The six we always check</span>
+              <span class="card__sub">Read every quarter, no exceptions</span></div>
+            <span class="chip chip--ghost">Verdicts land in a later step</span>
+          </div>
+          <div class="card__body"><div class="six" id="sixGrid"></div></div>
+        </div>
+        <div class="card" style="grid-column:1 / -1;">
+          <div class="card__head">
+            <div class="card__headL"><span class="card__title">Where our facts come from</span>
+              <span class="card__sub">Every number on this site carries one of these labels</span></div>
+          </div>
+          <div class="card__body"><div class="chiprow" id="sourceChips"></div></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<p class="sr" id="live" role="status" aria-live="polite"></p>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script>
+/* ==========================================================================
+   Oil & Gas Cycle Dashboard - foundation
+   Prompt 1 of ~12: shell, design system, navigation, and one real screen.
+   Every number in SEED below is a placeholder. Nothing here computes a score.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  /* ---------------------------------------------------------------- tokens */
+  var FONT = getComputedStyle(document.documentElement).getPropertyValue('--font').trim()
+          || 'system-ui, sans-serif';
+  var INK1 = '#0F1424', INK3 = '#7C8496', GRID = '#E9ECF3', AXIS = '#CDD4E1', WHITE = '#FFFFFF';
+
+  var TAB_ACCENT = {
+    cockpit:    ['#7C3AED', '#0891B2'],
+    macro:      ['#0891B2', '#7C3AED'],
+    kpis:       ['#0D9488', '#0891B2'],
+    commentary: ['#DB2777', '#7C3AED'],
+    insight:    ['#E07C05', '#DB2777']
+  };
+
+  /* =====================================================================
+     SEED VALUES - placeholders only. Prompt 2+ replaces this whole object
+     with a fetch of a real scores file. Shape is deliberately final.
+     ===================================================================== */
+  var SEED = {
+    /* 0-100 position along the five cycle stages; the stage name is derived
+       from framework.json ranges, so only this number has to change. */
+    cyclePosition: 52,
+
+    /* one score per group, plus the previous quarter to get the arrow */
+    scores: {
+      leading:    { score: 72, prev: 66 },
+      coincident: { score: 58, prev: 56 },
+      lagging:    { score: 41, prev: 44 }
+    },
+
+    /* leading score minus lagging score, oldest to newest */
+    divergence: [18, 22, 27, 31],
+
+    alerts: [
+      { tone: 'good',    glyph: '↑', msg: 'Early movers have led for 4 quarters running', source: 'derived' },
+      { tone: 'warn',    glyph: '!',      msg: 'Refiners and shippers still lag by a wide margin', source: 'derived' },
+      { tone: 'neutral', glyph: '●', msg: 'Next big read: the coming results season', source: 'estimate' }
+    ]
+  };
+
+  var ALERT_TONE = { good: '#0F7A3A', warn: '#E9A526', bad: '#C42433', neutral: '#2563EB' };
+
+  /* ------------------------------------------------------------- utilities */
+  function el(id) { return document.getElementById(id); }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  /* mix a hex toward another hex - used for chart track colours so the
+     unfilled part of a meter is a lighter step of the same hue */
+  function mix(hex, toward, amount) {
+    function p(h) { return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]; }
+    var a = p(hex), b = p(toward), o = '#';
+    for (var i = 0; i < 3; i++) {
+      var v = Math.round(a[i] + (b[i] - a[i]) * amount).toString(16);
+      o += v.length === 1 ? '0' + v : v;
+    }
+    return o;
+  }
+  var TOOLTIP = {
+    backgroundColor: WHITE,
+    borderColor: 'rgba(15,20,36,.12)',
+    borderWidth: 1,
+    padding: [7, 10],
+    extraCssText: 'border-radius:10px;box-shadow:0 8px 24px -10px rgba(15,20,36,.30);',
+    textStyle: { color: INK1, fontSize: 12, fontFamily: FONT, fontWeight: 500 }
+  };
+
+  /* ------------------------------------------------------------ data model */
+  var DATA = { companies: null, framework: null };
+  var byId = {};        /* company id -> company */
+  var stageById = {};   /* stage id    -> stage   */
+  var groupById = {};   /* group id    -> group   */
+
+  function load() {
+    return Promise.all([
+      fetch('data/companies.json', { cache: 'no-cache' }).then(chk),
+      fetch('data/framework.json', { cache: 'no-cache' }).then(chk)
+    ]).then(function (r) {
+      DATA.companies = r[0];
+      DATA.framework = r[1];
+      DATA.companies.groups.forEach(function (g) {
+        groupById[g.id] = g;
+        g.companies.forEach(function (c) { byId[c.id] = c; });
+      });
+      DATA.framework.cycleStages.forEach(function (s) { stageById[s.id] = s; });
+    });
+    function chk(res) {
+      if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+      return res.json();
+    }
+  }
+
+  function bootError(e) {
+    var offline = (typeof echarts === 'undefined');
+    el('bootCard').innerHTML =
+      '<h3>' + (offline ? 'Charts library did not load' : 'Could not load the data files') + '</h3>' +
+      (offline
+        ? '<p>This page pulls Apache ECharts from a CDN. Check the internet connection and reload.</p>'
+        : '<p>Browsers block reading local files when you open <code style="display:inline;padding:1px 5px;background:#EEF0F6;color:#0F1424;">index.html</code> straight from disk. ' +
+          'Serve the folder over HTTP instead &mdash; run this inside the project folder:</p>' +
+          '<code>python3 -m http.server 8000</code>' +
+          '<p>Then open <b>http://localhost:8000</b>. On Cloudflare Pages it just works.</p>') +
+      '<p style="color:#7C8496;font-size:11.5px;margin:0;">' + esc(e && e.message ? e.message : String(e)) + '</p>';
+  }
+
+  /* ================================================================ RENDER */
+
+  /* the five-bar logo, straight from the cycle stage colours */
+  function renderBrand() {
+    el('brandMark').innerHTML = DATA.framework.cycleStages.map(function (s) {
+      return '<i style="background:' + s.color + '"></i>';
+    }).join('');
+  }
+
+  function currentStage() {
+    var p = SEED.cyclePosition, st = DATA.framework.cycleStages;
+    for (var i = 0; i < st.length; i++) {
+      if (p >= st[i].range[0] && p < st[i].range[1]) return st[i];
+    }
+    return st[st.length - 1];
+  }
+
+  function renderStagePill() {
+    var s = currentStage();
+    var pill = el('stagePill');
+    pill.style.setProperty('--c', s.color);
+    pill.innerHTML = '<span class="pill__dot"></span><b>' + esc(s.plainLabel) + '</b>';
+    pill.title = s.label + ' - ' + s.meaning;
+  }
+
+  function renderAlerts() {
+    var tags = {};
+    DATA.framework.sourceTags.forEach(function (t) { tags[t.id] = t; });
+    el('alerts').innerHTML = SEED.alerts.map(function (a) {
+      var t = tags[a.source] || tags.unknown;
+      return '<div class="alert" style="--c:' + ALERT_TONE[a.tone] + '">' +
+        '<span class="alert__ico" aria-hidden="true">' + a.glyph + '</span>' +
+        '<div class="alert__txt">' +
+          '<div class="alert__msg">' + esc(a.msg) + '</div>' +
+          '<div class="alert__meta">' +
+            '<span class="chip" style="--c:' + t.color + '" title="' + esc(t.meaning) + '">' +
+              '<span class="chip__sw"></span>' + esc(t.label) + '</span>' +
+            '<span class="chip" style="--c:#B45309"><span class="chip__sw"></span>SEED</span>' +
+          '</div>' +
+        '</div></div>';
+    }).join('');
+  }
+
+  function renderVerdict() {
+    var s = currentStage();
+    var v = el('verdict');
+    v.style.setProperty('--c', s.color);
+    v.innerHTML =
+      '<div class="verdict__dot"></div>' +
+      '<div class="verdict__word">' + esc(s.plainLabel) + '</div>' +
+      '<div class="verdict__tech">' + esc(s.label) + '</div>' +
+      '<div class="verdict__say">' + esc(s.meaning) + '</div>';
+  }
+
+  function renderStageList() {
+    var cur = currentStage();
+    el('stagelist').innerHTML = DATA.framework.cycleStages.map(function (s) {
+      var on = s.id === cur.id ? '1' : '0';
+      return '<div class="stagelist__row" data-on="' + on + '" style="--c:' + s.color + '" title="' + esc(s.meaning) + '">' +
+        '<span class="stagelist__bar"></span>' +
+        '<span class="stagelist__txt">' +
+          '<span class="stagelist__lab">' + esc(s.plainLabel) + '</span>' +
+          '<span class="stagelist__why">' + esc(s.meaning) + '</span>' +
+        '</span>' +
+        (on === '1' ? '<span class="stagelist__you">YOU ARE HERE</span>' : '') +
+      '</div>';
+    }).join('');
+  }
+
+  /* three score gauges: one per group, each with an arrow and the change */
+  function renderGauges() {
+    var html = DATA.framework.groupMeta.map(function (g) {
+      var s = SEED.scores[g.id];
+      var d = s.score - s.prev;
+      var up = d > 0, flat = d === 0;
+      var c = flat ? '#7C8496' : (up ? '#0F7A3A' : '#C42433');
+      var glyph = flat ? '→' : (up ? '↑' : '↓');
+      return '' +
+        '<div class="card">' +
+          '<div class="card__head">' +
+            '<div class="card__headL">' +
+              '<span class="pill__dot" style="background:' + g.color + '"></span>' +
+              '<span class="card__title">' + esc(g.plainLabel) + '</span>' +
+              '<span class="card__sub">' + esc(g.name) + '</span>' +
+            '</div>' +
+            '<span class="chip" style="--c:#B45309"><span class="chip__sw"></span>SEED</span>' +
+          '</div>' +
+          '<div class="card__body">' +
+            '<div class="chart-wrap"><div class="chart" id="ch-g-' + g.id + '"></div></div>' +
+            '<div class="gfoot" style="--c:' + c + '">' +
+              '<span class="gfoot__arrow" aria-hidden="true">' + glyph + '</span>' +
+              '<span class="gfoot__txt"><b>' + (up ? '+' : '') + d + '</b> vs last quarter</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    }).join('');
+    el('gauges').innerHTML = html;
+  }
+
+  /* ---------------------------------------------------------- ECharts bits */
+  var charts = {};
+  function mount(id, option) {
+    var node = el(id);
+    if (!node) return;
+    var c = charts[id] || echarts.init(node, null, { renderer: 'canvas' });
+    charts[id] = c;
+    c.setOption(option, true);
+    return c;
+  }
+
+  function dialOption() {
+    var stages = DATA.framework.cycleStages;
+    var bands = stages.map(function (s) { return [s.range[1] / 100, s.color]; });
+    return {
+      animationDuration: 900,
+      animationEasing: 'cubicOut',
+      tooltip: Object.assign({}, TOOLTIP, {
+        formatter: function () {
+          var s = currentStage();
+          return '<b>' + esc(s.plainLabel) + '</b><br>' +
+                 '<span style="color:#7C8496">' + esc(s.label) + '</span>';
+        }
+      }),
+      series: [{
+        type: 'gauge',
+        min: 0, max: 100,
+        startAngle: 206, endAngle: -26,
+        center: ['50%', '64%'], radius: '92%',
+        splitNumber: 5,
+        axisLine: { lineStyle: { width: 26, color: bands } },
+        /* white radial separators = the 2px surface gap between fills */
+        splitLine: { show: true, distance: -26, length: 26, lineStyle: { color: WHITE, width: 3 } },
+        axisTick: { show: false },
+        axisLabel: { show: false },
+        /* a dot riding the arc, not a needle through the middle - the hollow
+           centre is where the plain-English answer goes. The white ring is the
+           surface ring that keeps it legible where it crosses the band. */
+        pointer: {
+          show: true,
+          icon: 'circle',
+          width: 19, length: 19,
+          offsetCenter: [0, '-94%'],
+          itemStyle: { color: INK1, borderColor: WHITE, borderWidth: 4, shadowBlur: 9, shadowColor: 'rgba(15,20,36,.30)' }
+        },
+        anchor: { show: false },
+        progress: { show: false },
+        detail: { show: false },
+        title: { show: false },
+        data: [{ value: SEED.cyclePosition }]
+      }]
+    };
+  }
+
+  function gaugeOption(group) {
+    var s = SEED.scores[group.id];
+    return {
+      animationDuration: 900,
+      animationEasing: 'cubicOut',
+      tooltip: Object.assign({}, TOOLTIP, {
+        formatter: function () {
+          return '<b>' + esc(group.plainLabel) + '</b><br>' +
+            'Score <b>' + s.score + '</b> out of 100<br>' +
+            '<span style="color:#7C8496">Last quarter ' + s.prev + '</span>';
+        }
+      }),
+      series: [{
+        type: 'gauge',
+        min: 0, max: 100,
+        startAngle: 222, endAngle: -42,
+        center: ['50%', '54%'], radius: '94%',
+        /* unfilled track = a lighter step of the same hue */
+        axisLine: { lineStyle: { width: 11, color: [[1, mix(group.color, WHITE, 0.8)]] } },
+        progress: { show: true, width: 11, roundCap: true, itemStyle: { color: group.color } },
+        pointer: { show: false },
+        axisTick: { show: false },
+        splitLine: { show: false },
+        axisLabel: { show: false },
+        title: { show: false },
+        detail: {
+          valueAnimation: true,
+          offsetCenter: [0, '4%'],
+          fontSize: 30, fontWeight: 700, fontFamily: FONT,
+          color: INK1,
+          formatter: '{value}'
+        },
+        data: [{ value: s.score }]
+      }]
+    };
+  }
+
+  function divergenceOption() {
+    var labels = DATA.companies.quarterLabels;
+    var vals = SEED.divergence;
+    var lead = groupById.leading.color, lag = groupById.lagging.color;
+    return {
+      animationDuration: 800,
+      animationEasing: 'cubicOut',
+      grid: { left: 4, right: 14, top: 28, bottom: 4, containLabel: true },
+      tooltip: Object.assign({}, TOOLTIP, {
+        trigger: 'item',
+        formatter: function (p) {
+          var ahead = p.value >= 0 ? 'ahead of' : 'behind';
+          return '<b>' + esc(p.name) + '</b><br>Moves first is <b>' + Math.abs(p.value) +
+                 '</b> points ' + ahead + ' moves last';
+        }
+      }),
+      xAxis: {
+        type: 'category', data: labels,
+        axisLine: { lineStyle: { color: AXIS, width: 1 } },
+        axisTick: { show: false },
+        axisLabel: { color: INK3, fontSize: 11, fontFamily: FONT, fontWeight: 600 }
+      },
+      yAxis: {
+        type: 'value',
+        splitLine: { lineStyle: { color: GRID, width: 1, type: 'solid' } },
+        axisLine: { show: false }, axisTick: { show: false },
+        axisLabel: { color: INK3, fontSize: 10, fontFamily: FONT }
+      },
+      series: [{
+        type: 'bar',
+        data: vals,
+        barWidth: 22,
+        itemStyle: {
+          color: function (p) { return p.value >= 0 ? lead : lag; },
+          /* 4px rounded data-end, square at the baseline */
+          borderRadius: function (p) { return p.value >= 0 ? [4, 4, 0, 0] : [0, 0, 4, 4]; }
+        },
+        /* label the latest bar only - never a number on every point */
+        label: {
+          show: true, position: 'top',
+          color: INK1, fontSize: 12, fontWeight: 700, fontFamily: FONT,
+          formatter: function (p) {
+            return p.dataIndex === vals.length - 1 ? (p.value >= 0 ? '+' : '') + p.value : '';
+          }
+        },
+        markLine: {
+          silent: true, symbol: 'none',
+          lineStyle: { color: AXIS, width: 1, type: 'solid' },
+          label: { show: false },
+          data: [{ yAxis: 0 }]
+        }
+      }]
+    };
+  }
+
+  function drawCockpit() {
+    mount('ch-dial', dialOption());
+    DATA.framework.groupMeta.forEach(function (g) { mount('ch-g-' + g.id, gaugeOption(g)); });
+    mount('ch-div', divergenceOption());
+  }
+
+  /* ------------------------------------------------------ ghost placeholders */
+  /* skeletons of the chart that will land here later. Proportional (never
+     stretched), one flat gray, no fake data values. */
+  var G_GRID = '#EDF0F6', G_MARK = '#DFE4EE';
+  var GHOST = {
+    line: '<svg viewBox="0 0 320 170" aria-hidden="true">' +
+      '<g stroke="' + G_GRID + '" stroke-width="2">' +
+        '<line x1="14" y1="38" x2="306" y2="38"/><line x1="14" y1="84" x2="306" y2="84"/>' +
+        '<line x1="14" y1="130" x2="306" y2="130"/></g>' +
+      '<polyline fill="none" stroke="' + G_MARK + '" stroke-width="5" stroke-linecap="round" ' +
+        'stroke-linejoin="round" points="20,96 68,68 116,88 164,58 212,92 260,66 300,90"/>' +
+      '<g fill="' + G_MARK + '"><circle cx="300" cy="90" r="7"/></g>' +
+      '<line x1="14" y1="152" x2="306" y2="152" stroke="' + G_MARK + '" stroke-width="2"/></svg>',
+    bars: '<svg viewBox="0 0 320 170" aria-hidden="true">' +
+      '<g stroke="' + G_GRID + '" stroke-width="2">' +
+        '<line x1="14" y1="46" x2="306" y2="46"/><line x1="14" y1="99" x2="306" y2="99"/></g>' +
+      '<g fill="' + G_MARK + '">' +
+        '<rect x="38"  y="66"  width="38" height="86" rx="5"/><rect x="106" y="52" width="38" height="100" rx="5"/>' +
+        '<rect x="174" y="74"  width="38" height="78" rx="5"/><rect x="242" y="60" width="38" height="92" rx="5"/>' +
+      '</g>' +
+      '<line x1="14" y1="152" x2="306" y2="152" stroke="' + G_MARK + '" stroke-width="2"/></svg>',
+    strip: '<svg viewBox="0 0 320 170" aria-hidden="true">' +
+      '<g fill="' + G_MARK + '">' +
+        '<rect x="18" y="26" width="66" height="30" rx="6"/><rect x="94" y="26" width="66" height="30" rx="6"/>' +
+        '<rect x="170" y="26" width="66" height="30" rx="6"/><rect x="246" y="26" width="56" height="30" rx="6"/>' +
+        '<rect x="18" y="70" width="66" height="30" rx="6"/><rect x="94" y="70" width="66" height="30" rx="6"/>' +
+        '<rect x="170" y="70" width="66" height="30" rx="6"/><rect x="246" y="70" width="56" height="30" rx="6"/>' +
+        '<rect x="18" y="114" width="66" height="30" rx="6"/><rect x="94" y="114" width="66" height="30" rx="6"/>' +
+        '<rect x="170" y="114" width="66" height="30" rx="6"/><rect x="246" y="114" width="56" height="30" rx="6"/>' +
+      '</g></svg>',
+    list: '<svg viewBox="0 0 320 170" aria-hidden="true">' +
+      '<g fill="' + G_MARK + '">' +
+        '<circle cx="28" cy="26" r="9"/><rect x="48" y="20" width="252" height="12" rx="6"/>' +
+        '<circle cx="28" cy="62" r="9"/><rect x="48" y="56" width="216" height="12" rx="6"/>' +
+        '<circle cx="28" cy="98" r="9"/><rect x="48" y="92" width="240" height="12" rx="6"/>' +
+        '<circle cx="28" cy="134" r="9"/><rect x="48" y="128" width="188" height="12" rx="6"/>' +
+      '</g></svg>',
+    text: '<svg viewBox="0 0 320 170" aria-hidden="true">' +
+      '<g fill="' + G_MARK + '">' +
+        '<rect x="20" y="26" width="210" height="13" rx="6"/><rect x="20" y="56" width="272" height="13" rx="6"/>' +
+        '<rect x="20" y="86" width="248" height="13" rx="6"/><rect x="20" y="116" width="162" height="13" rx="6"/>' +
+      '</g></svg>'
+  };
+  function ghostHTML(kind, note) {
+    return (GHOST[kind] || GHOST.line) +
+      '<div class="ghost__note"><span class="ghost__lab">' + esc(note || 'No data yet') + '</span></div>';
+  }
+  function fillGhosts(root) {
+    (root || document).querySelectorAll('.ghost[data-ghost]').forEach(function (n) {
+      if (n.dataset.done) return;
+      n.dataset.done = '1';
+      n.innerHTML = ghostHTML(n.dataset.ghost, n.dataset.note);
+    });
+  }
+
+  /* -------------------------------------------------------------- 2. macro */
+  var MACRO_TILES = [
+    { t: 'Crude oil price',    s: 'What a barrel costs',          k: 'line' },
+    { t: 'Domestic gas price', s: 'What Indian gas sells for',     k: 'line' },
+    { t: 'Refining margin',    s: 'Profit on each barrel refined', k: 'line' },
+    { t: 'Rupee vs US dollar', s: 'How dear imports are',          k: 'line' },
+    { t: 'Interest rate',      s: 'Cost of borrowing to build',    k: 'line' },
+    { t: 'Fuel sold',          s: 'Diesel and petrol volumes',     k: 'bars' }
+  ];
+  function renderMacro() {
+    el('macroTiles').innerHTML = MACRO_TILES.map(function (m) {
+      return '<div class="card">' +
+        '<div class="card__head">' +
+          '<div class="card__headL"><span class="card__title">' + esc(m.t) + '</span>' +
+            '<span class="card__sub">' + esc(m.s) + '</span></div>' +
+          '<span class="chip chip--ghost">' + (m.k === 'bars' ? 'Bars' : 'Line') + '</span>' +
+        '</div>' +
+        '<div class="card__body"><div class="ghost" data-ghost="' + m.k + '"></div></div>' +
+      '</div>';
+    }).join('');
+    fillGhosts(el('macroTiles'));
+  }
+
+  /* --------------------------------------------------------------- 3. KPIs */
+  var kpiActive = 'leading';
+  function renderKpiChrome() {
+    el('kpiSegs').innerHTML = DATA.framework.groupMeta.map(function (g) {
+      return '<button class="seg" role="tab" data-group="' + g.id + '" style="--c:' + g.color + '" ' +
+        'aria-selected="' + (g.id === kpiActive) + '">' +
+        '<span class="seg__dot"></span>' + esc(g.name) + '</button>';
+    }).join('');
+    el('kpiSegs').querySelectorAll('.seg').forEach(function (b) {
+      b.addEventListener('click', function () { setKpiGroup(b.dataset.group); });
+    });
+    /* the trajectory vocabulary, shown as the Trend column's key */
+    el('kpiFlagLegend').innerHTML = DATA.framework.trajectoryFlags.map(function (f) {
+      return '<span class="chip" style="--c:' + f.color + '" title="' + esc(f.meaning) + '">' +
+        '<span class="chip__sw"></span>' + f.glyph + ' ' + esc(f.plainLabel) + '</span>';
+    }).join('');
+  }
+  function setKpiGroup(id) {
+    kpiActive = id;
+    el('kpiSegs').querySelectorAll('.seg').forEach(function (b) {
+      b.setAttribute('aria-selected', String(b.dataset.group === id));
+    });
+    renderKpiTable();
+    setHash();
+  }
+  function renderKpiTable() {
+    var g = groupById[kpiActive];
+    var qs = DATA.companies.quarterLabels;
+
+    el('kpiGroupHead').innerHTML =
+      '<span class="grouphead__name">' +
+        '<span class="pill__dot" style="background:' + g.color + '"></span>' +
+        '<b>' + esc(g.plainLabel) + '</b>' +
+        '<span class="card__sub">' + esc(g.name) + '</span>' +
+      '</span>' +
+      '<span class="grouphead__desc">' + esc(g.plainDescription) + '</span>' +
+      '<span class="chip" style="--c:' + g.color + '"><span class="chip__sw"></span>' +
+        g.companies.length + ' companies</span>' +
+      '<span class="chip chip--ghost">Numbers land in a later step</span>';
+
+    el('kpiTable').innerHTML =
+      '<caption class="sr">Company numbers over the last four quarters for the ' + esc(g.name) + ' group. No data loaded yet.</caption>' +
+      '<thead><tr><th>Company</th><th>What it does</th>' +
+        qs.map(function (q) { return '<th>' + esc(q) + '</th>'; }).join('') +
+        '<th>Trend</th></tr></thead>' +
+      '<tbody>' + g.companies.map(function (c) {
+        return '<tr>' +
+          '<td class="co" style="--c:' + g.color + '"><i></i>' + esc(c.name) + '</td>' +
+          '<td class="what">' + esc(c.what) + '</td>' +
+          qs.map(function () { return '<td class="empty">&ndash;</td>'; }).join('') +
+          '<td class="empty">&ndash;</td>' +
+        '</tr>';
+      }).join('') + '</tbody>';
+
+    var e = el('kpiEmpty');
+    e.innerHTML = ghostHTML('bars',
+      'Numbers for these ' + g.companies.length + ' companies land in a later step');
+  }
+
+  /* ---------------------------------------------------------- 4. commentary */
+  function renderCommentary() {
+    var qs = DATA.companies.quarterLabels;
+    /* every tracked company gets a row - this is the shape the real heat strip
+       will take, so the skeleton matches what lands here later */
+    var rows = [];
+    DATA.companies.groups.forEach(function (g) {
+      g.companies.forEach(function (c) { rows.push({ name: c.name, what: c.what, color: g.color }); });
+    });
+    /* counts come from the data file, never hardcoded */
+    el('toneHeatSub').textContent =
+      'Heat strip · all ' + rows.length + ' companies, colour-coded by group';
+    el('toneHeat').innerHTML =
+      '<div class="heat__grid">' +
+        '<div></div>' + qs.map(function (q) { return '<div class="heat__colhead">' + esc(q) + '</div>'; }).join('') +
+        rows.map(function (r) {
+          return '<div class="heat__row" style="--c:' + r.color + '" title="' + esc(r.what) + '">' +
+              '<i></i><span>' + esc(r.name) + '</span></div>' +
+            qs.map(function () { return '<div class="heat__cell">&ndash;</div>'; }).join('');
+        }).join('') +
+      '</div>';
+
+    var t = DATA.framework.toneScale;
+    el('toneLegend').innerHTML = t.steps.map(function (s) {
+      return '<div class="legendrow" style="--c:' + s.color + '" title="' + esc(s.meaning) + '">' +
+        '<span class="legendrow__sw"></span>' +
+        '<span class="legendrow__txt">' +
+          '<span class="legendrow__lab">' + esc(s.plainLabel) + '<span>' + esc(s.label) + '</span></span>' +
+          '<span class="legendrow__plain">' + esc(s.meaning) + '</span>' +
+        '</span>' +
+      '</div>';
+    }).join('');
+  }
+
+  /* ------------------------------------------------------------- 5. insight */
+  function renderInsight() {
+    el('sixGrid').innerHTML = DATA.framework.standingSix.slots.map(function (s) {
+      var c = (s.companyIds || []).map(function (id) { return byId[id]; }).filter(Boolean);
+      var col = (c[0] && findGroupColor(c[0])) || '#7C3AED';
+      return '<div class="sixcard" style="border-left-color:' + col + '">' +
+        '<div class="sixcard__t">' + esc(s.label) + '</div>' +
+        '<div class="sixcard__w">' + esc(s.why) + '</div>' +
+        /* the slots the real read will fill: how they sounded, which way it is going */
+        '<div class="sixcard__slots">' +
+          '<span class="chip chip--ghost">Tone &ndash;</span>' +
+          '<span class="chip chip--ghost">Trend &ndash;</span>' +
+          '<span class="chip chip--ghost">What to check &ndash;</span>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    el('sourceChips').innerHTML = DATA.framework.sourceTags.map(function (t) {
+      return '<span class="chip" style="--c:' + t.color + '" title="' + esc(t.meaning) + '">' +
+        '<span class="chip__sw"></span>' + esc(t.label) +
+        '<span style="opacity:.72;font-weight:550">&middot; ' + esc(t.plainLabel) + '</span></span>';
+    }).join('');
+  }
+  function findGroupColor(company) {
+    var found = null;
+    DATA.companies.groups.forEach(function (g) {
+      if (g.companies.indexOf(company) !== -1) found = g.color;
+    });
+    return found;
+  }
+
+  /* ============================================================ NAVIGATION */
+  var TABS = ['cockpit', 'macro', 'kpis', 'commentary', 'insight'];
+  var active = 'cockpit';
+  var drawn = {};
+
+  function setTab(name, opts) {
+    if (TABS.indexOf(name) === -1) name = 'cockpit';
+    active = name;
+
+    TABS.forEach(function (t) {
+      var tab = el('tab-' + t), panel = el('panel-' + t);
+      var on = t === name;
+      tab.setAttribute('aria-selected', String(on));
+      tab.tabIndex = on ? 0 : -1;
+      panel.classList.toggle('is-active', on);
+      if (on) panel.removeAttribute('hidden'); else panel.setAttribute('hidden', '');
+    });
+
+    var app = el('app');
+    app.style.setProperty('--accent', TAB_ACCENT[name][0]);
+    app.style.setProperty('--accent2', TAB_ACCENT[name][1]);
+
+    if (!drawn[name]) { drawn[name] = true; drawTab(name); }
+    /* panels are laid out only once visible - let the browser settle, then resize */
+    requestAnimationFrame(function () { resizeAll(); });
+
+    el('live').textContent = el('tab-' + name).textContent.replace(/^\d/, '').trim() + ' tab';
+    if (!opts || !opts.silent) setHash();
+  }
+
+  function drawTab(name) {
+    if (name === 'cockpit')    drawCockpit();
+    if (name === 'macro')      renderMacro();
+    if (name === 'kpis')       { renderKpiChrome(); renderKpiTable(); }
+    if (name === 'commentary') { renderCommentary(); fillGhosts(el('panel-commentary')); }
+    if (name === 'insight')    { renderInsight(); fillGhosts(el('panel-insight')); }
+  }
+
+  function resizeAll() {
+    Object.keys(charts).forEach(function (k) { charts[k].resize(); });
+  }
+
+  function setHash() {
+    var h = '#' + active + (active === 'kpis' ? '/' + kpiActive : '');
+    if (location.hash !== h) history.replaceState(null, '', h);
+  }
+  function readHash() {
+    var parts = (location.hash || '').replace(/^#/, '').split('/');
+    var tab = parts[0], sub = parts[1];
+    if (sub && groupById[sub]) kpiActive = sub;
+    setTab(TABS.indexOf(tab) !== -1 ? tab : 'cockpit', { silent: true });
+  }
+
+  function wireNav() {
+    TABS.forEach(function (t) {
+      el('tab-' + t).addEventListener('click', function () { setTab(t); });
+    });
+    el('tab-cockpit').parentNode.addEventListener('keydown', function (e) {
+      var i = TABS.indexOf(active), n = null;
+      if (e.key === 'ArrowRight') n = TABS[(i + 1) % TABS.length];
+      if (e.key === 'ArrowLeft')  n = TABS[(i - 1 + TABS.length) % TABS.length];
+      if (e.key === 'Home')       n = TABS[0];
+      if (e.key === 'End')        n = TABS[TABS.length - 1];
+      if (n) { e.preventDefault(); setTab(n); el('tab-' + n).focus(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.target.matches('input,textarea,select')) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      var i = parseInt(e.key, 10);
+      if (i >= 1 && i <= TABS.length) { setTab(TABS[i - 1]); el('tab-' + TABS[i - 1]).focus(); }
+    });
+    window.addEventListener('hashchange', readHash);
+
+    var raf = null;
+    window.addEventListener('resize', function () {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(resizeAll);
+    });
+    if (window.ResizeObserver) {
+      new ResizeObserver(function () { resizeAll(); }).observe(el('app'));
+    }
+  }
+
+  /* ==================================================================== GO */
+  if (typeof echarts === 'undefined') { bootError(new Error('echarts is not defined')); return; }
+
+  load().then(function () {
+    renderBrand();
+    renderStagePill();
+    renderAlerts();
+    renderVerdict();
+    renderStageList();
+    renderGauges();
+    wireNav();
+
+    el('boot').hidden = true;
+    el('app').hidden = false;
+    readHash();
+  }).catch(bootError);
+
+})();
+</script>
+</body>
+</html>
