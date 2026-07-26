@@ -2,14 +2,17 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-07-26T15:00:37.855Z",
+  "generatedAt": "2026-07-26T15:52:36.430Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
       "name": "Deep Industries",
       "slug": "DEEPINDS",
-      "view": "quarterly",
+      "view": "yearly",
       "url": "https://www.screener.in/company/DEEPINDS/consolidated/#shareholding",
+      "via": "matrix",
+      "toggled": "button.plausible-event-name=Toggle+Company+Insights \"Quarterly\"",
+      "note": null,
       "periods": [
         "Mar 2022",
         "Mar 2023",
@@ -110,8 +113,11 @@
     "engineers-india": {
       "name": "Engineers India",
       "slug": "ENGINERSIN",
-      "view": "quarterly",
+      "view": "yearly",
       "url": "https://www.screener.in/company/ENGINERSIN/consolidated/#shareholding",
+      "via": "matrix",
+      "toggled": "button.plausible-event-name=Toggle+Company+Insights \"Quarterly\"",
+      "note": null,
       "periods": [
         "Mar 2017",
         "Mar 2018",
@@ -278,8 +284,11 @@
     "petronet-lng": {
       "name": "Petronet LNG",
       "slug": "PETRONET",
-      "view": "quarterly",
+      "view": "yearly",
       "url": "https://www.screener.in/company/PETRONET/consolidated/#shareholding",
+      "via": "matrix",
+      "toggled": "button.plausible-event-name=Toggle+Company+Insights \"Quarterly\"",
+      "note": null,
       "periods": [
         "Mar 2016",
         "Mar 2017",
@@ -456,8 +465,11 @@
     "igl": {
       "name": "IGL",
       "slug": "IGL",
-      "view": "quarterly",
+      "view": "yearly",
       "url": "https://www.screener.in/company/IGL/consolidated/#shareholding",
+      "via": "matrix",
+      "toggled": "button.plausible-event-name=Toggle+Company+Insights \"Quarterly\"",
+      "note": null,
       "periods": [
         "Mar 2016",
         "Mar 2017",
