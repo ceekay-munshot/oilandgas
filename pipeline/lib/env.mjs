@@ -45,8 +45,31 @@ export function loadEnv({ path = resolve(ROOT, '.env'), env = process.env } = {}
 export function credentialReport(env = process.env) {
   const names = [
     'FIRECRAWL_API_KEY', 'SCRAPEDO_API_KEY',
+    'SCREENER_PAID_EMAIL', 'SCREENER_PAID_PASSWORD',
     'SCREENER_EMAIL', 'SCREENER_PASSWORD',
     'OPENAI_API_KEY', 'MISTRAL_API_KEY'
   ];
   return names.map((n) => ({ name: n, present: Boolean(env[n]) }));
+}
+
+/**
+ * Which Screener login to use. The paid pair wins when both are set, because
+ * only a subscribed account can read concall AI Summaries - the densest source
+ * the KPI extractor has. The free pair stays supported as a fallback so the
+ * pipeline still runs on a fork, or if the subscription lapses.
+ *
+ * GitHub will not let you see an existing secret's value, which makes editing one
+ * in place feel broken; adding a separate PAID pair is easier than overwriting,
+ * so both are read.
+ *
+ * @returns {{email:string|null, password:string|null, tier:'paid'|'free'|'none'}}
+ */
+export function screenerCredentials(env = process.env) {
+  if (env.SCREENER_PAID_EMAIL && env.SCREENER_PAID_PASSWORD) {
+    return { email: env.SCREENER_PAID_EMAIL, password: env.SCREENER_PAID_PASSWORD, tier: 'paid' };
+  }
+  if (env.SCREENER_EMAIL && env.SCREENER_PASSWORD) {
+    return { email: env.SCREENER_EMAIL, password: env.SCREENER_PASSWORD, tier: 'free' };
+  }
+  return { email: null, password: null, tier: 'none' };
 }
