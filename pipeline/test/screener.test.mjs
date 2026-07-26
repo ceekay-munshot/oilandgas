@@ -96,18 +96,23 @@ test('periodToIso maps month-year, rejects TTM', () => {
 
 /* ------------------------------------------------------------- documents --- */
 
+// Mirrors the real Screener concall row: Transcript | AI Summary | PPT | REC,
+// with PPT greyed out (no href) on the older quarters.
 const DOC_HTML = `
 <section id="documents"><div class="documents concalls"><h3>Concalls</h3>
   <ul class="list-links">
     <li><div class="ink-600">Aug 2025</div>
       <a href="https://www.bseindia.com/x/aug-transcript.pdf">Transcript</a>
-      <a href="/company/x/notes/">Notes</a>
+      <a href="/company/x/concall/summary/aug/">AI Summary</a>
       <a href="https://www.bseindia.com/x/aug-ppt.pdf">PPT</a>
       <a href="https://rec.example/audio">REC</a></li>
     <li><div class="ink-600">May 2025</div>
-      <a href="https://site.example/may-transcript.pdf">Transcript</a></li>
+      <a href="https://site.example/may-transcript.pdf">Transcript</a>
+      <a href="/company/x/concall/summary/may/">AI Summary</a>
+      <a>PPT</a></li>
     <li><div class="ink-600">Feb 2025</div>
       <a href="//cdn.example/feb-transcript.pdf">Transcript</a>
+      <a href="/company/x/concall/summary/feb/">AI Summary</a>
       <a href="https://site.example/feb-ppt.pdf">PPT</a></li>
   </ul>
 </div></section>`;
@@ -119,7 +124,20 @@ test('parseConcalls returns rows newest-first with classified links', () => {
   assert.equal(c[0].periodIso, '2025-08');
   assert.equal(c[0].transcript, 'https://www.bseindia.com/x/aug-transcript.pdf');
   assert.equal(c[0].ppt, 'https://www.bseindia.com/x/aug-ppt.pdf');
-  assert.equal(c[0].notes, 'https://www.screener.in/company/x/notes/');
+  assert.equal(c[0].summary, 'https://www.screener.in/company/x/concall/summary/aug/');
+});
+
+test('parseConcalls maps the "AI Summary" button to summary, and a greyed PPT to null', () => {
+  const c = parseConcalls(DOC_HTML);
+  assert.equal(c[1].period, 'May 2025');
+  assert.equal(c[1].summary, 'https://www.screener.in/company/x/concall/summary/may/');
+  assert.equal(c[1].ppt, null);                        // <a>PPT</a> with no href
+});
+
+test('parseConcalls still accepts the older "Notes" label as a summary', () => {
+  const old = '<div class="documents concalls"><ul><li><div>Aug 2025</div> ' +
+    '<a href="/n/">Notes</a></li></ul></div>';
+  assert.equal(parseConcalls(old)[0].summary, 'https://www.screener.in/n/');
 });
 
 test('absoluteUrl resolves protocol-relative and site-relative hrefs', () => {
@@ -128,17 +146,17 @@ test('absoluteUrl resolves protocol-relative and site-relative hrefs', () => {
   assert.equal(absoluteUrl('https://x/y.pdf'), 'https://x/y.pdf');
 });
 
-test('selectDocuments takes notes and PPT as primary, transcripts as fallback', () => {
+test('selectDocuments takes AI summaries and PPT as primary, transcripts as fallback', () => {
   const c = parseConcalls(DOC_HTML);
-  const picked = selectDocuments(c, { transcripts: 4, notes: 4 });
-  assert.equal(picked.transcripts.length, 3);          // only three rows carry a transcript
+  const picked = selectDocuments(c, { transcripts: 4, summaries: 4 });
+  assert.equal(picked.transcripts.length, 3);          // three rows carry a transcript
   assert.equal(picked.transcripts[0].periodIso, '2025-08');
   assert.equal(picked.transcripts[0].role, 'transcript');
-  assert.equal(picked.ppt.periodIso, '2025-08');       // newest PPT, not Feb's
+  assert.equal(picked.ppt.periodIso, '2025-08');       // newest real PPT, not the greyed one
   assert.equal(picked.ppt.role, 'ppt');
-  assert.equal(picked.notes.length, 1);                // only Aug carries a Notes link
-  assert.equal(picked.notes[0].role, 'notes');
-  assert.equal(picked.notes[0].url, 'https://www.screener.in/company/x/notes/');
+  assert.equal(picked.summaries.length, 3);            // every quarter has an AI Summary
+  assert.equal(picked.summaries[0].role, 'summary');
+  assert.equal(picked.summaries[0].url, 'https://www.screener.in/company/x/concall/summary/aug/');
 });
 
 test('selectDocuments caps transcripts at the requested count', () => {

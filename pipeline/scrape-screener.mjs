@@ -93,10 +93,10 @@ async function gatherDoc(context, slug, doc, { env = process.env } = {}) {
     if (cached) return { ...doc, source, ...cached, cache: relCache(txt), cached: true };
   }
 
-  // Notes are Screener HTML pages; transcripts and PPTs are PDFs. A PDF-expected
-  // role that comes back as HTML is a miss (not_pdf) worth a scraper retry; an
-  // HTML-expected role reads its text straight from the page.
-  const htmlOk = doc.role === 'notes' || doc.role === 'summary';
+  // An AI Summary is a Screener HTML page; transcripts and PPTs are PDFs. A
+  // PDF-expected role that comes back as HTML is a miss (not_pdf) worth a scraper
+  // retry; an HTML-expected role reads its text straight from the page.
+  const htmlOk = doc.role === 'summary';
 
   await mkdir(dir, { recursive: true });
   let status, chars = 0, pages = null, errMsg = null, via = 'browser';
@@ -224,11 +224,11 @@ async function main() {
           tables: fin.tables
         };
 
-        // 3. documents, in the extractor's priority order: Notes (Screener's own
-        //    concall summary) and PPT first, transcripts as the fallback.
+        // 3. documents, in the extractor's priority order: Screener's AI Summary
+        //    and PPT first, transcripts as the fallback.
         const concalls = parseConcalls(html);
-        const picked = selectDocuments(concalls, { transcripts: 4, notes: 4 });
-        const docs = [...picked.notes, ...(picked.ppt ? [picked.ppt] : []), ...picked.transcripts];
+        const picked = selectDocuments(concalls, { transcripts: 4, summaries: 4 });
+        const docs = [...picked.summaries, ...(picked.ppt ? [picked.ppt] : []), ...picked.transcripts];
 
         const gathered = [];
         for (const d of docs) {
@@ -251,9 +251,9 @@ async function main() {
         manifest.companies[co.id] = {
           name: co.name, slug, view, url,
           analysis: { pros: analysis.pros.length, cons: analysis.cons.length },
-          notesFound: concalls.filter((c) => c.notes).length,
+          summariesFound: concalls.filter((c) => c.summary).length,
           transcriptsFound: concalls.filter((c) => c.transcript).length,
-          notes: byRole('notes'),         // primary: Screener's concall summary
+          summaries: byRole('summary'),   // primary: Screener's AI Summary
           ppt: ppt && manifestDoc(ppt),   // primary
           transcripts: byRole('transcript') // fallback
         };
@@ -267,7 +267,7 @@ async function main() {
         ok++;
         const man = manifest.companies[co.id];
         if (opts.verbose) reportCompany(co, financials.companies[co.id], man);
-        else console.log(`  ${co.id.padEnd(20)} ${view} · ${fin.sectionsFound.length} tables · ${man.notes.length} notes · ${man.ppt ? 'ppt · ' : ''}${man.transcripts.length} transcripts`);
+        else console.log(`  ${co.id.padEnd(20)} ${view} · ${fin.sectionsFound.length} tables · ${man.summaries.length} summaries · ${man.ppt ? 'ppt · ' : ''}${man.transcripts.length} transcripts`);
       } catch (e) {
         failed++;
         const msg = (e && e.message ? e.message : String(e)).slice(0, 200);
@@ -300,11 +300,11 @@ function reportCompany(co, fin, man) {
   }).join(', ') : '';
   console.log(`  ${co.name} [${fin.slug}] · ${fin.view}`);
   console.log(`     financials: ${fin.sectionsFound.join(', ') || 'none'} | quarters ${qLine}${sampleRows ? ' | latest ' + sampleRows : ''}`);
-  console.log(`     screener summary: ${fin.analysis.pros.length} pros, ${fin.analysis.cons.length} cons`);
+  console.log(`     pros/cons: ${fin.analysis.pros.length} pros, ${fin.analysis.cons.length} cons`);
   const tag = (x) => `${x.periodIso || x.period}:${x.status}/${x.chars}c${x.via && x.via !== 'browser' ? `(${x.via})` : ''}`;
-  const n = man.notes || [];
-  console.log(`     notes (primary): ${n.length} cached of ${man.notesFound} found` +
-    (n.length ? ' -> ' + n.map(tag).join(', ') : ''));
+  const s = man.summaries || [];
+  console.log(`     AI summaries (primary): ${s.length} cached of ${man.summariesFound} found` +
+    (s.length ? ' -> ' + s.map(tag).join(', ') : ''));
   console.log(`     ppt (primary): ${man.ppt ? tag(man.ppt) : 'none'}`);
   const t = man.transcripts || [];
   console.log(`     transcripts (fallback): ${t.length} cached of ${man.transcriptsFound} found` +
@@ -337,16 +337,16 @@ function freshManifest() {
     cacheDir: 'pipeline/cache/docs',
     sourcePriority: [
       'financials.json analysis (Screener Pros/Cons - the cheapest summary)',
-      'notes (Screener\'s own concall summary)',
+      'summary (Screener\'s "AI Summary" of each concall)',
       'ppt (investor presentation)',
       'transcript (full call - FALLBACK, only when the above fall short)'
     ],
-    note: 'Per company, in priority order: Screener concall notes and the latest investor PPT ' +
-          'are the primary material; full transcripts are the fallback. status ok = text ' +
-          'extracted; ocr_needed = a scanned PDF with no text layer (not a failure); thin = an ' +
-          'HTML page with almost no text; not_pdf/http_* = the link did not return a usable ' +
-          'document. via names who fetched it (browser or a scraper). The extracted text is ' +
-          'cached under cacheDir, which is gitignored.',
+    note: 'Per company, in priority order: Screener\'s AI Summary of each concall and the ' +
+          'latest investor PPT are the primary material; full transcripts are the fallback. ' +
+          'status ok = text extracted; ocr_needed = a scanned PDF with no text layer (not a ' +
+          'failure); thin = an HTML page with almost no text; not_pdf/http_* = the link did not ' +
+          'return a usable document. via names who fetched it (browser or a scraper). The ' +
+          'extracted text is cached under cacheDir, which is gitignored.',
     companies: {}
   };
 }

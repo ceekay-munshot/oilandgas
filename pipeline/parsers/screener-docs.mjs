@@ -55,12 +55,15 @@ export function absoluteUrl(href, base = 'https://www.screener.in') {
   return base.replace(/\/$/, '') + (h.startsWith('/') ? h : `/${h}`);
 }
 
-/** Classify a concall anchor by its visible text. */
+/**
+ * Classify a concall anchor by its visible text. Screener labels the summary
+ * button "AI Summary" now (it was "Notes" before); both map to `summary`.
+ */
 function linkKind(text) {
   const t = String(text).toLowerCase();
   if (t.includes('transcript')) return 'transcript';
+  if (t.includes('summary') || t.includes('note')) return 'summary';
   if (t.includes('ppt') || t.includes('present')) return 'ppt';
-  if (t.includes('note')) return 'notes';
   if (t.includes('rec')) return 'rec';
   return null;
 }
@@ -68,7 +71,7 @@ function linkKind(text) {
 /**
  * @param {string} html full company-page markup
  * @returns {{period:string, periodIso:string|null, transcript:string|null,
- *            ppt:string|null, notes:string|null}[]} newest first
+ *            ppt:string|null, summary:string|null}[]} newest first
  */
 export function parseConcalls(html) {
   const $ = load(html);
@@ -83,14 +86,16 @@ export function parseConcalls(html) {
     const $li = $(li);
     const label = ($li.text().match(MONTH_RE) || [])[0] || null;
 
-    const links = { transcript: null, ppt: null, notes: null };
+    const links = { transcript: null, ppt: null, summary: null };
     $li.find('a').each((__, a) => {
       const kind = linkKind($(a).text());
       if (!kind || kind === 'rec') return;
+      // A greyed-out button (no PPT that quarter) is an <a> with no usable href;
+      // absoluteUrl returns null and it is simply not captured.
       if (!links[kind]) links[kind] = absoluteUrl($(a).attr('href'));
     });
 
-    if (label && (links.transcript || links.ppt || links.notes)) {
+    if (label && (links.transcript || links.ppt || links.summary)) {
       out.push({ period: label, periodIso: periodIso(label), ...links });
     }
   });
@@ -100,22 +105,22 @@ export function parseConcalls(html) {
 
 /**
  * The raw material prompt 7 reads, in the priority the extractor should try:
- *   notes   - Screener's own concise concall summary (dense, cheap, HTML)
- *   ppt     - the latest investor presentation (guidance, capex, segments)
+ *   summaries   - Screener's own "AI Summary" of each call (dense, cheap, HTML)
+ *   ppt         - the latest investor presentation (guidance, capex, segments)
  *   transcripts - the full calls, FALLBACK only when the above fall short
  *
  * Each doc carries a `role` naming which of those it is; `role` also tells the
- * downloader whether to expect a PDF (transcript/ppt) or HTML (notes).
+ * downloader whether to expect a PDF (transcript/ppt) or HTML (summary).
  *
- * @returns {{notes:object[], ppt:object|null, transcripts:object[]}}
+ * @returns {{summaries:object[], ppt:object|null, transcripts:object[]}}
  */
-export function selectDocuments(concalls, { transcripts = 4, notes = 4 } = {}) {
+export function selectDocuments(concalls, { transcripts = 4, summaries = 4 } = {}) {
   const pick = (key, role, n) => concalls.filter((c) => c[key]).slice(0, n)
     .map((c) => ({ type: role, role, period: c.period, periodIso: c.periodIso, url: c[key] }));
 
   const firstPpt = concalls.find((c) => c.ppt);
   return {
-    notes: pick('notes', 'notes', notes),
+    summaries: pick('summary', 'summary', summaries),
     ppt: firstPpt
       ? { type: 'ppt', role: 'ppt', period: firstPpt.period, periodIso: firstPpt.periodIso, url: firstPpt.ppt }
       : null,
