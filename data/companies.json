@@ -3,7 +3,12 @@
   "title": "Company backbone",
   "note": "The 26 companies the dashboard tracks, split into three groups by when they feel the spending cycle. Names and business descriptions only - no KPI numbers, scores or commentary yet.",
   "updated": "2026-07-25",
-  "quarterLabels": ["Q2 FY26", "Q3 FY26", "Q4 FY26", "Q1 FY27"],
+  "quarterLabels": [
+    "Q2 FY26",
+    "Q3 FY26",
+    "Q4 FY26",
+    "Q1 FY27"
+  ],
   "groups": [
     {
       "id": "leading",
@@ -12,14 +17,52 @@
       "plainDescription": "These feel a spending upturn before anyone else. Drillers, pipe makers and project builders get the orders first.",
       "color": "#7C3AED",
       "companies": [
-        { "id": "ongc", "name": "ONGC", "what": "State-run oil and gas producer" },
-        { "id": "oil-india", "name": "Oil India", "what": "State-run oil and gas producer" },
-        { "id": "deep-industries", "name": "Deep Industries", "what": "Oilfield services for producers" },
-        { "id": "jindal-drilling", "name": "Jindal Drilling", "what": "Offshore drilling services" },
-        { "id": "engineers-india", "name": "Engineers India", "what": "Designs and manages refinery projects" },
-        { "id": "lt", "name": "L&T", "what": "Builds large energy projects" },
-        { "id": "ratnamani", "name": "Ratnamani Metals", "what": "Makes steel pipes and tubes" },
-        { "id": "welspun-corp", "name": "Welspun Corp", "what": "Makes large pipeline pipes" }
+        {
+          "id": "ongc",
+          "name": "ONGC",
+          "what": "State-run oil and gas producer",
+          "screenerSlug": "ONGC",
+          "screenerName": "Oil & Natural Gas Corpn Ltd"
+        },
+        {
+          "id": "oil-india",
+          "name": "Oil India",
+          "what": "State-run oil and gas producer"
+        },
+        {
+          "id": "deep-industries",
+          "name": "Deep Industries",
+          "what": "Oilfield services for producers",
+          "screenerSlug": "DEEPINDS",
+          "screenerName": "Deep Industries Ltd"
+        },
+        {
+          "id": "jindal-drilling",
+          "name": "Jindal Drilling",
+          "what": "Offshore drilling services"
+        },
+        {
+          "id": "engineers-india",
+          "name": "Engineers India",
+          "what": "Designs and manages refinery projects",
+          "screenerSlug": "ENGINERSIN",
+          "screenerName": "Engineers India Ltd"
+        },
+        {
+          "id": "lt",
+          "name": "L&T",
+          "what": "Builds large energy projects"
+        },
+        {
+          "id": "ratnamani",
+          "name": "Ratnamani Metals",
+          "what": "Makes steel pipes and tubes"
+        },
+        {
+          "id": "welspun-corp",
+          "name": "Welspun Corp",
+          "what": "Makes large pipeline pipes"
+        }
       ]
     },
     {
@@ -29,22 +72,88 @@
       "plainDescription": "These move at the same time as the cycle. Refiners, gas sellers and fuel retailers show what is happening right now.",
       "color": "#0D9488",
       "companies": [
-        { "id": "reliance", "name": "Reliance", "what": "Refining and petrochemicals" },
-        { "id": "iocl", "name": "IOCL", "what": "Refining and fuel retail" },
-        { "id": "bpcl", "name": "BPCL", "what": "Refining and fuel retail" },
-        { "id": "hpcl", "name": "HPCL", "what": "Refining and fuel retail" },
-        { "id": "gail", "name": "GAIL", "what": "Moves and sells natural gas" },
-        { "id": "petronet-lng", "name": "Petronet LNG", "what": "Imports liquefied natural gas" },
-        { "id": "igl", "name": "IGL", "what": "Piped gas and CNG in cities" },
-        { "id": "mahanagar-gas", "name": "Mahanagar Gas", "what": "Piped gas and CNG in cities" },
-        { "id": "gujarat-gas", "name": "Gujarat Gas", "what": "Piped gas and CNG in cities" },
-        { "id": "aegis-logistics", "name": "Aegis Logistics", "what": "Storage terminals for gas and liquids" },
-        { "id": "aegis-vopak", "name": "Aegis Vopak", "what": "Storage terminals for gas and chemicals" },
-        { "id": "supreme-petrochem", "name": "Supreme Petrochem", "what": "Makes plastics from oil products" },
-        { "id": "castrol-india", "name": "Castrol India", "what": "Makes engine oils and lubricants" },
-        { "id": "gandhar-oil", "name": "Gandhar Oil", "what": "Makes speciality white oils" },
-        { "id": "linde-india", "name": "Linde India", "what": "Supplies industrial gases to plants" },
-        { "id": "adani-ports", "name": "Adani Ports", "what": "Ports and cargo handling" }
+        {
+          "id": "reliance",
+          "name": "Reliance",
+          "what": "Refining and petrochemicals"
+        },
+        {
+          "id": "iocl",
+          "name": "IOCL",
+          "what": "Refining and fuel retail"
+        },
+        {
+          "id": "bpcl",
+          "name": "BPCL",
+          "what": "Refining and fuel retail"
+        },
+        {
+          "id": "hpcl",
+          "name": "HPCL",
+          "what": "Refining and fuel retail"
+        },
+        {
+          "id": "gail",
+          "name": "GAIL",
+          "what": "Moves and sells natural gas"
+        },
+        {
+          "id": "petronet-lng",
+          "name": "Petronet LNG",
+          "what": "Imports liquefied natural gas",
+          "screenerSlug": "PETRONET",
+          "screenerName": "Petronet LNG Ltd"
+        },
+        {
+          "id": "igl",
+          "name": "IGL",
+          "what": "Piped gas and CNG in cities"
+        },
+        {
+          "id": "mahanagar-gas",
+          "name": "Mahanagar Gas",
+          "what": "Piped gas and CNG in cities"
+        },
+        {
+          "id": "gujarat-gas",
+          "name": "Gujarat Gas",
+          "what": "Piped gas and CNG in cities"
+        },
+        {
+          "id": "aegis-logistics",
+          "name": "Aegis Logistics",
+          "what": "Storage terminals for gas and liquids"
+        },
+        {
+          "id": "aegis-vopak",
+          "name": "Aegis Vopak",
+          "what": "Storage terminals for gas and chemicals"
+        },
+        {
+          "id": "supreme-petrochem",
+          "name": "Supreme Petrochem",
+          "what": "Makes plastics from oil products"
+        },
+        {
+          "id": "castrol-india",
+          "name": "Castrol India",
+          "what": "Makes engine oils and lubricants"
+        },
+        {
+          "id": "gandhar-oil",
+          "name": "Gandhar Oil",
+          "what": "Makes speciality white oils"
+        },
+        {
+          "id": "linde-india",
+          "name": "Linde India",
+          "what": "Supplies industrial gases to plants"
+        },
+        {
+          "id": "adani-ports",
+          "name": "Adani Ports",
+          "what": "Ports and cargo handling"
+        }
       ]
     },
     {
@@ -54,9 +163,21 @@
       "plainDescription": "These respond only after the cycle has been running a while. Shipping rates and factory equipment orders come late.",
       "color": "#E07C05",
       "companies": [
-        { "id": "ge-shipping", "name": "GE Shipping", "what": "Owns oil and gas tankers" },
-        { "id": "shipping-corp", "name": "Shipping Corp of India", "what": "State-run shipping fleet" },
-        { "id": "thermax", "name": "Thermax", "what": "Makes boilers and heating equipment" }
+        {
+          "id": "ge-shipping",
+          "name": "GE Shipping",
+          "what": "Owns oil and gas tankers"
+        },
+        {
+          "id": "shipping-corp",
+          "name": "Shipping Corp of India",
+          "what": "State-run shipping fleet"
+        },
+        {
+          "id": "thermax",
+          "name": "Thermax",
+          "what": "Makes boilers and heating equipment"
+        }
       ]
     }
   ]
