@@ -46,8 +46,12 @@ export function looksLikePeriod(label) {
  * never 0 - a period a company did not report is missing, not zero.
  */
 export function parseCell(raw) {
-  const s = clean(raw).replace(/[ⓘℹⓘ]/g, '').replace(/,/g, '').replace(/%$/, '').trim();
-  if (!s || s === '-' || s === '–' || s === '—') return null;
+  const s = clean(raw)
+    .replace(/[\u24D8\u2139\u24BE]/g, '')      // info glyphs the cell may carry
+    .replace(/,/g, '')
+    .replace(/%$/, '')
+    .trim();
+  if (!s || s === '-' || s === '–' || s === '—' || /^n\/?a$/i.test(s)) return null;
   return /^-?\d+(?:\.\d+)?$/.test(s) ? Number(s) : null;
 }
 
@@ -149,4 +153,53 @@ export function insightsToText(table, quarterLabel) {
     );
   }
   return lines.join('\n');
+}
+
+/**
+ * Interpret the TEXT MATRIX the browser extracts (sources/screener-insights).
+ *
+ * Preferred over parseInsightsTable: the browser has already resolved <br>, block
+ * boundaries and nested spans into lines, so the label/unit split is reading data
+ * rather than inferring structure. The markup route produced "Order BookRs Crore"
+ * with no unit and every value null, because the cell separates its name from its
+ * unit with a <br> that a child walk cannot see.
+ *
+ * A label cell arrives as lines, e.g.
+ *   ['Order Book', 'Rs Crore']
+ *   ['Consultancy Order Book', 'INR mn ・Standalone data']
+ *
+ * @param {{periods:string[], rows:{lines:string[], cells:string[]}[]}} matrix
+ * @returns {{periods:string[], periodsIso:(string|null)[],
+ *            rows:{label:string, unit:string|null, scope:string|null, values:(number|null)[]}[]}|null}
+ */
+export function parseInsightsMatrix(matrix) {
+  if (!matrix || !Array.isArray(matrix.rows) || !matrix.rows.length) return null;
+  const periods = (matrix.periods || []).map(clean).filter(Boolean);
+  if (!periods.length) return null;
+
+  const rows = [];
+  for (const r of matrix.rows) {
+    const lines = (r.lines || []).map(clean).filter(Boolean);
+    if (!lines.length) continue;
+
+    const label = lines[0];
+    // Everything after the name is the unit line, which may carry a scope note
+    // after a separator. Screener uses a katakana middle dot here, not a Latin one.
+    const rest = lines.slice(1).join(' ');
+    const [unitPart, ...noteParts] = rest.split(/[·・|]/);
+    const unit = clean(unitPart) || null;
+
+    const values = (r.cells || []).map(parseCell);
+    while (values.length < periods.length) values.push(null);
+
+    rows.push({
+      label,
+      unit,
+      scope: noteParts.length ? clean(noteParts.join(' ')) : null,
+      values: values.slice(0, periods.length)
+    });
+  }
+
+  if (!rows.length) return null;
+  return { periods, periodsIso: periods.map(periodToIso), rows };
 }
