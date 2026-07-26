@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Concall transcript & investor-PPT manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-07-26T10:00:27.699Z",
+  "generatedAt": "2026-07-26T10:45:02.535Z",
   "cacheDir": "pipeline/cache/docs",
   "note": "Per company: the last four concall transcripts and the latest investor PPT that were found and cached. status ok = text extracted; ocr_needed = a scanned PDF with no text layer (not a failure); not_pdf/http_* = the link did not return a usable PDF. The extracted text is cached under cacheDir, which is gitignored.",
   "companies": {
@@ -11,10 +11,31 @@
       "slug": "ONGC",
       "view": "consolidated",
       "url": "https://www.screener.in/company/ONGC/consolidated/",
+      "analysis": {
+        "pros": 3,
+        "cons": 1
+      },
+      "summariesFound": 0,
       "transcriptsFound": 11,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "Feb 2025",
+        "periodIso": "2025-02",
+        "url": "https://ongcindia.com/documents/77751/2660534/InvestorPresentation_Q3-FY25.pdf/551ceb5b-6e93-7f8b-16e6-85b057d0e079",
+        "source": "ongcindia.com",
+        "status": "error",
+        "chars": 0,
+        "pages": null,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/ONGC/ppt-2025-02.txt",
+        "error": "apiRequestContext.get: Timeout 60000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/InvestorPresentation_Q3-FY25.pdf/551ceb5b-6e9"
+      },
       "transcripts": [
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "May 2026",
           "periodIso": "2026-05",
           "url": "https://www.morningstar.com/stocks/xnse/ongc/earnings-transcript",
@@ -22,10 +43,12 @@
           "status": "not_pdf",
           "chars": 0,
           "pages": null,
+          "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/transcript-2026-05.txt"
         },
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "Feb 2026",
           "periodIso": "2026-02",
           "url": "https://ongcindia.com/web/eng/investors/transcription",
@@ -33,10 +56,13 @@
           "status": "error",
           "chars": 0,
           "pages": null,
-          "cache": "pipeline/cache/docs/ONGC/transcript-2026-02.txt"
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ONGC/transcript-2026-02.txt",
+          "error": "apiRequestContext.get: Timeout 60000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; L"
         },
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "Nov 2025",
           "periodIso": "2025-11",
           "url": "https://ongcindia.com/documents/77751/2660534/Transcription181125.pdf/6f9e95e9-c665-e747-03f8-feba399d7aa3",
@@ -44,10 +70,13 @@
           "status": "error",
           "chars": 0,
           "pages": null,
-          "cache": "pipeline/cache/docs/ONGC/transcript-2025-11.txt"
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ONGC/transcript-2025-11.txt",
+          "error": "apiRequestContext.get: Timeout 60000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Transcription181125.pdf/6f9e95e9-c665-e747-03"
         },
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "Aug 2025",
           "periodIso": "2025-08",
           "url": "https://ongcindia.com/web/eng/investors/transcription",
@@ -55,29 +84,41 @@
           "status": "error",
           "chars": 0,
           "pages": null,
-          "cache": "pipeline/cache/docs/ONGC/transcript-2025-08.txt"
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ONGC/transcript-2025-08.txt",
+          "error": "apiRequestContext.get: Timeout 60000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; L"
         }
-      ],
-      "ppt": {
-        "type": "ppt",
-        "period": "Feb 2025",
-        "periodIso": "2025-02",
-        "url": "https://ongcindia.com/documents/77751/2660534/InvestorPresentation_Q3-FY25.pdf/551ceb5b-6e93-7f8b-16e6-85b057d0e079",
-        "source": "ongcindia.com",
-        "status": "error",
-        "chars": 0,
-        "cache": "pipeline/cache/docs/ONGC/ppt-2025-02.txt"
-      }
+      ]
     },
     "deep-industries": {
       "name": "Deep Industries",
       "slug": "DEEPINDS",
       "view": "consolidated",
       "url": "https://www.screener.in/company/DEEPINDS/consolidated/",
+      "analysis": {
+        "pros": 2,
+        "cons": 2
+      },
+      "summariesFound": 0,
       "transcriptsFound": 18,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "May 2026",
+        "periodIso": "2026-05",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6d258381-9775-406f-b0cf-e5a6158251fb.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 22753,
+        "pages": 40,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/DEEPINDS/ppt-2026-05.txt"
+      },
       "transcripts": [
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "May 2026",
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=49c56f22-6c78-43f8-a25b-78897451fe58.pdf",
@@ -85,10 +126,12 @@
           "status": "ok",
           "chars": 54013,
           "pages": 21,
+          "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-05.txt"
         },
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "Feb 2026",
           "periodIso": "2026-02",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=18a25427-b051-4169-81f9-ebe0e689c779.pdf",
@@ -96,10 +139,12 @@
           "status": "ok",
           "chars": 43907,
           "pages": 18,
+          "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-02.txt"
         },
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "Nov 2025",
           "periodIso": "2025-11",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=72248828-6ea5-447e-9c6f-c1ca3a1d3338.pdf",
@@ -107,10 +152,12 @@
           "status": "ok",
           "chars": 43454,
           "pages": 19,
+          "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/transcript-2025-11.txt"
         },
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "Aug 2025",
           "periodIso": "2025-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5a0fd0bf-4d5b-45ce-8d07-d7ddb54c36bb.pdf",
@@ -118,40 +165,53 @@
           "status": "ok",
           "chars": 46014,
           "pages": 19,
+          "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/transcript-2025-08.txt"
         }
-      ],
-      "ppt": {
-        "type": "ppt",
-        "period": "May 2026",
-        "periodIso": "2026-05",
-        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6d258381-9775-406f-b0cf-e5a6158251fb.pdf",
-        "source": "bseindia.com",
-        "status": "ok",
-        "chars": 22753,
-        "cache": "pipeline/cache/docs/DEEPINDS/ppt-2026-05.txt"
-      }
+      ]
     },
     "engineers-india": {
       "name": "Engineers India",
       "slug": "ENGINERSIN",
       "view": "consolidated",
       "url": "https://www.screener.in/company/ENGINERSIN/consolidated/",
+      "analysis": {
+        "pros": 3,
+        "cons": 2
+      },
+      "summariesFound": 0,
       "transcriptsFound": 27,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "May 2026",
+        "periodIso": "2026-05",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f4b1c97e-c79c-49a1-9644-dfbaa8ad7d63.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 43722,
+        "pages": 51,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/ENGINERSIN/ppt-2026-05.txt"
+      },
       "transcripts": [
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "May 2026",
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e847f7c3-416c-4b5e-b6b1-94d72890123f.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 47204,
+          "pages": 20,
+          "via": "browser",
           "cache": "pipeline/cache/docs/ENGINERSIN/transcript-2026-05.txt"
         },
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "Feb 2026",
           "periodIso": "2026-02",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2b887e74-0831-4716-b6f0-a1649d6d6346.pdf",
@@ -159,10 +219,12 @@
           "status": "ok",
           "chars": 52142,
           "pages": 19,
+          "via": "browser",
           "cache": "pipeline/cache/docs/ENGINERSIN/transcript-2026-02.txt"
         },
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "Nov 2025",
           "periodIso": "2025-11",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=ccf15d05-134e-4c5b-bb24-7f0abfaf5c9f.pdf",
@@ -170,10 +232,12 @@
           "status": "ok",
           "chars": 41199,
           "pages": 17,
+          "via": "browser",
           "cache": "pipeline/cache/docs/ENGINERSIN/transcript-2025-11.txt"
         },
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "Aug 2025",
           "periodIso": "2025-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=54d333e5-5223-48b7-a8b5-e191f70971c8.pdf",
@@ -181,29 +245,28 @@
           "status": "ok",
           "chars": 46971,
           "pages": 19,
+          "via": "browser",
           "cache": "pipeline/cache/docs/ENGINERSIN/transcript-2025-08.txt"
         }
-      ],
-      "ppt": {
-        "type": "ppt",
-        "period": "May 2026",
-        "periodIso": "2026-05",
-        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f4b1c97e-c79c-49a1-9644-dfbaa8ad7d63.pdf",
-        "source": "bseindia.com",
-        "status": "ok",
-        "chars": 43722,
-        "cache": "pipeline/cache/docs/ENGINERSIN/ppt-2026-05.txt"
-      }
+      ]
     },
     "petronet-lng": {
       "name": "Petronet LNG",
       "slug": "PETRONET",
       "view": "consolidated",
       "url": "https://www.screener.in/company/PETRONET/consolidated/",
+      "analysis": {
+        "pros": 1,
+        "cons": 1
+      },
+      "summariesFound": 0,
       "transcriptsFound": 18,
+      "summaries": [],
+      "ppt": null,
       "transcripts": [
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "May 2026",
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=45927674-115d-483f-b483-06375698d3df.pdf",
@@ -211,10 +274,12 @@
           "status": "ok",
           "chars": 39009,
           "pages": 17,
+          "via": "browser",
           "cache": "pipeline/cache/docs/PETRONET/transcript-2026-05.txt"
         },
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "Feb 2026",
           "periodIso": "2026-02",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=0dcb549d-331d-4dd0-b55c-be3683e65a6b.pdf",
@@ -222,10 +287,12 @@
           "status": "ok",
           "chars": 35957,
           "pages": 14,
+          "via": "browser",
           "cache": "pipeline/cache/docs/PETRONET/transcript-2026-02.txt"
         },
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "Nov 2025",
           "periodIso": "2025-11",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6a452d1f-2aef-47fe-a744-4411444ad183.pdf",
@@ -233,10 +300,12 @@
           "status": "ok",
           "chars": 40053,
           "pages": 18,
+          "via": "browser",
           "cache": "pipeline/cache/docs/PETRONET/transcript-2025-11.txt"
         },
         {
           "type": "transcript",
+          "role": "transcript",
           "period": "Aug 2025",
           "periodIso": "2025-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=38e845f8-d8af-4a94-ac4d-8842008ae0b4.pdf",
@@ -244,10 +313,1660 @@
           "status": "ok",
           "chars": 33349,
           "pages": 13,
+          "via": "browser",
           "cache": "pipeline/cache/docs/PETRONET/transcript-2025-08.txt"
         }
-      ],
-      "ppt": null
+      ]
+    },
+    "oil-india": {
+      "name": "Oil India",
+      "slug": "OIL",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/OIL/consolidated/",
+      "analysis": {
+        "pros": 1,
+        "cons": 0
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 21,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "May 2026",
+        "periodIso": "2026-05",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=653d5f5c-6d22-4e92-9000-d3a4f470f2c9.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 35000,
+        "pages": 41,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/OIL/ppt-2026-05.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2a520951-8bd3-4612-92b2-5e1b1ca8af5b.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 87489,
+          "pages": 30,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/OIL/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6d71db85-f319-40c8-8df5-32d2a7964686.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 66835,
+          "pages": 24,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/OIL/transcript-2026-02.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=9dc539df-9ad6-432c-bb55-30e5f3f573cf.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 56287,
+          "pages": 21,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/OIL/transcript-2025-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6c3dda1-8e29-48fc-b146-16a6d6aaaab7.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 51358,
+          "pages": 18,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/OIL/transcript-2025-08.txt"
+        }
+      ]
+    },
+    "jindal-drilling": {
+      "name": "Jindal Drilling",
+      "slug": "JINDRILL",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/JINDRILL/consolidated/",
+      "analysis": {
+        "pros": 4,
+        "cons": 2
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 10,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "Feb 2026",
+        "periodIso": "2026-02",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=42f20d96-9150-4b8e-ac7b-8b560a830c93.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 6595,
+        "pages": 14,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/JINDRILL/ppt-2026-02.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=61dd5caa-f533-46f2-9e87-7620d44fc396.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 19823,
+          "pages": 12,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/JINDRILL/transcript-2026-02.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e255411f-390f-4ecb-ba56-3c01eb590ee8.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 28975,
+          "pages": 17,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/JINDRILL/transcript-2025-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5adf3f05-32a0-412c-bea6-bd8148785e05.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 23000,
+          "pages": 13,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/JINDRILL/transcript-2025-08.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jun 2025",
+          "periodIso": "2025-06",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5445d663-465a-4563-8f40-cf578a5dc1f7.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 32340,
+          "pages": 18,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/JINDRILL/transcript-2025-06.txt"
+        }
+      ]
+    },
+    "lt": {
+      "name": "L&T",
+      "slug": "LTF",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/LTF/consolidated/",
+      "analysis": {
+        "pros": 2,
+        "cons": 5
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 41,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "Jul 2026",
+        "periodIso": "2026-07",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=098e93a3-e70c-4273-ac1a-6d212108f5cc.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 49297,
+        "pages": 73,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/LTF/ppt-2026-07.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jul 2026",
+          "periodIso": "2026-07",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=45a426fa-4107-46c0-a820-debcc3161104.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 84705,
+          "pages": 31,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/LTF/transcript-2026-07.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=661bf44f-58a3-471b-9d47-3be55dcb2552.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 85785,
+          "pages": null,
+          "via": "firecrawl",
+          "cache": "pipeline/cache/docs/LTF/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jan 2026",
+          "periodIso": "2026-01",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b3d88d48-d382-458d-9f64-7f45d0a04592.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 67173,
+          "pages": 21,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/LTF/transcript-2026-01.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2284dbfe-c7b2-4a7d-a7a7-694c4ce2eaf3.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 186471,
+          "pages": 40,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/LTF/transcript-2025-11.txt"
+        }
+      ]
+    },
+    "ratnamani": {
+      "name": "Ratnamani Metals",
+      "slug": "RATNAMANI",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/RATNAMANI/consolidated/",
+      "analysis": {
+        "pros": 1,
+        "cons": 0
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 21,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "May 2026",
+        "periodIso": "2026-05",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6ee05b84-ac34-4cc1-a151-847e3842cd8e.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 28079,
+        "pages": 34,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/RATNAMANI/ppt-2026-05.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=03bac5da-1f60-490f-9fcf-1a86d67bf7a3.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 49272,
+          "pages": 20,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/RATNAMANI/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=3e10b258-8f66-4986-a4ef-3253a8f2353a.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 35124,
+          "pages": 15,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/RATNAMANI/transcript-2025-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2025",
+          "periodIso": "2025-05",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=3c4c5606-d76f-4247-ad9c-a0fe80bc1232.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 40149,
+          "pages": 17,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/RATNAMANI/transcript-2025-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2024",
+          "periodIso": "2024-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=303bf7e5-0780-4330-b940-6bbd4b4cd67c.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 31838,
+          "pages": 14,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/RATNAMANI/transcript-2024-11.txt"
+        }
+      ]
+    },
+    "welspun-corp": {
+      "name": "Welspun Corp",
+      "slug": "WELCORP",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/WELCORP/consolidated/",
+      "analysis": {
+        "pros": 1,
+        "cons": 1
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 22,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "Jul 2026",
+        "periodIso": "2026-07",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b5e4e9df-dcfb-4ec7-87cf-e0960b89f5a0.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 13704,
+        "pages": 19,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/WELCORP/ppt-2026-07.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.welspuncorp.com/uploads/investor_data/investorreport_Financial%20year%202025%20-%202026_1646.pdf",
+          "source": "welspuncorp.com",
+          "status": "ok",
+          "chars": 53312,
+          "pages": 18,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/WELCORP/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.welspuncorp.com/uploads/investor_data/investorreport_Financial%20year%202025%20-%202026_1602.pdf",
+          "source": "welspuncorp.com",
+          "status": "ok",
+          "chars": 49233,
+          "pages": 17,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/WELCORP/transcript-2026-02.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.welspuncorp.com/uploads/investor_data/investorreport_Financial%20year%202025%20-%202026_1553.pdf",
+          "source": "welspuncorp.com",
+          "status": "ok",
+          "chars": 53583,
+          "pages": 19,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/WELCORP/transcript-2025-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jul 2025",
+          "periodIso": "2025-07",
+          "url": "https://www.welspuncorp.com/uploads/investor_data/investorreport_Financial%20year%202025%20-%202026_1502.pdf",
+          "source": "welspuncorp.com",
+          "status": "ok",
+          "chars": 68592,
+          "pages": 22,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/WELCORP/transcript-2025-07.txt"
+        }
+      ]
+    },
+    "reliance": {
+      "name": "Reliance",
+      "slug": "RELIANCE",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/RELIANCE/consolidated/",
+      "analysis": {
+        "pros": 0,
+        "cons": 2
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 19,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "Jul 2026",
+        "periodIso": "2026-07",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=01d1656c-cf53-4d52-94c3-7ed0edd50271.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 45023,
+        "pages": 77,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/RELIANCE/ppt-2026-07.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jul 2026",
+          "periodIso": "2026-07",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c9d3d96a-8b04-4b41-b454-3f98d1f90702.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 98758,
+          "pages": 32,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-07.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Apr 2026",
+          "periodIso": "2026-04",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 95411,
+          "pages": null,
+          "via": "firecrawl",
+          "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jan 2026",
+          "periodIso": "2026-01",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=26290395-526a-441f-a347-c8ac12e4adf3.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 108378,
+          "pages": 38,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-01.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jan 2026",
+          "periodIso": "2026-01",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=26290395-526a-441f-a347-c8ac12e4adf3.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 108378,
+          "pages": 38,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-01.txt"
+        }
+      ]
+    },
+    "iocl": {
+      "name": "IOCL",
+      "slug": "IOC",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/IOC/consolidated/",
+      "analysis": {
+        "pros": 2,
+        "cons": 0
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 7,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "May 2026",
+        "periodIso": "2026-05",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=079d0455-3f8d-4ec4-8aa5-c73a4d0c691e.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 4332,
+        "pages": 9,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/IOC/ppt-2026-05.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.iocl.com/uploads/IOcltranscriptQ4FY26_AntiquMa192026.pdf",
+          "source": "iocl.com",
+          "status": "ok",
+          "chars": 46146,
+          "pages": 16,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IOC/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Oct 2025",
+          "periodIso": "2025-10",
+          "url": "https://www.iocl.com/uploads/Concall_Transcript_FY25_26_Q2.pdf",
+          "source": "iocl.com",
+          "status": "ok",
+          "chars": 50752,
+          "pages": 21,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IOC/transcript-2025-10.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.iocl.com/uploads/ConcallTranscriptQ1FY25-26.pdf",
+          "source": "iocl.com",
+          "status": "ok",
+          "chars": 48490,
+          "pages": 18,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IOC/transcript-2025-08.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2025",
+          "periodIso": "2025-05",
+          "url": "https://www.iocl.com/uploads/concalltranscriptQ42025.pdf",
+          "source": "iocl.com",
+          "status": "ok",
+          "chars": 41751,
+          "pages": 16,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IOC/transcript-2025-05.txt"
+        }
+      ]
+    },
+    "bpcl": {
+      "name": "BPCL",
+      "slug": "BPCL",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/BPCL/consolidated/",
+      "analysis": {
+        "pros": 2,
+        "cons": 0
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 9,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "Jan 2026",
+        "periodIso": "2026-01",
+        "url": "https://www.bharatpetroleum.in/images/files/bpcl-investor-presentation-q3-2026.pdf",
+        "source": "bharatpetroleum.in",
+        "status": "ok",
+        "chars": 31451,
+        "pages": null,
+        "via": "firecrawl",
+        "cache": "pipeline/cache/docs/BPCL/ppt-2026-01.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.bharatpetroleum.in/pdf/conferencecallrecording/bpcl-transcript-q4-investor-concall-d4352b.pdf",
+          "source": "bharatpetroleum.in",
+          "status": "ok",
+          "chars": 50489,
+          "pages": null,
+          "via": "firecrawl",
+          "cache": "pipeline/cache/docs/BPCL/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.bharatpetroleum.in/images/files/Concall%20Transcript_Q1.pdf",
+          "source": "bharatpetroleum.in",
+          "status": "ok",
+          "chars": 46351,
+          "pages": null,
+          "via": "firecrawl",
+          "cache": "pipeline/cache/docs/BPCL/transcript-2025-08.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2025",
+          "periodIso": "2025-05",
+          "url": "https://www.bharatpetroleum.in/images/files/Q4_Concall_Transcript.pdf",
+          "source": "bharatpetroleum.in",
+          "status": "ok",
+          "chars": 42642,
+          "pages": null,
+          "via": "firecrawl",
+          "cache": "pipeline/cache/docs/BPCL/transcript-2025-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jan 2025",
+          "periodIso": "2025-01",
+          "url": "https://www.bharatpetroleum.in/images/files/Concall-Recording-Q3-2025.pdf",
+          "source": "bharatpetroleum.in",
+          "status": "ok",
+          "chars": 56622,
+          "pages": null,
+          "via": "firecrawl",
+          "cache": "pipeline/cache/docs/BPCL/transcript-2025-01.txt"
+        }
+      ]
+    },
+    "hpcl": {
+      "name": "HPCL",
+      "slug": "HINDPETRO",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/HINDPETRO/consolidated/",
+      "analysis": {
+        "pros": 4,
+        "cons": 2
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 8,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "May 2026",
+        "periodIso": "2026-05",
+        "url": "https://www.hindustanpetroleum.com/documents/pdf/Investor-Presentation-Q4-FY-2025-26.pdf",
+        "source": "hindustanpetroleum.com",
+        "status": "ok",
+        "chars": 27638,
+        "pages": 51,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/HINDPETRO/ppt-2026-05.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.hindustanpetroleum.com/documents/pdf/Post%20Earning%20Concall%20Transript%20-%20Q4FY26.pdf",
+          "source": "hindustanpetroleum.com",
+          "status": "ok",
+          "chars": 80658,
+          "pages": 27,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/HINDPETRO/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jan 2026",
+          "periodIso": "2026-01",
+          "url": "https://www.hindustanpetroleum.com/documents/pdf/Post%20Earning%20Concall%20Transript%20-%20Q3FY26.pdf",
+          "source": "hindustanpetroleum.com",
+          "status": "ok",
+          "chars": 67384,
+          "pages": 23,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/HINDPETRO/transcript-2026-01.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Oct 2025",
+          "periodIso": "2025-10",
+          "url": "https://www.hindustanpetroleum.com/documents/pdf/Antique-HPCL-Oct-31-2025.pdf",
+          "source": "hindustanpetroleum.com",
+          "status": "ok",
+          "chars": 64621,
+          "pages": 22,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/HINDPETRO/transcript-2025-10.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.hindustanpetroleum.com/documents/pdf/Post-Earning-Concall-Transcript-Q1FY26.pdf",
+          "source": "hindustanpetroleum.com",
+          "status": "ok",
+          "chars": 65880,
+          "pages": 22,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/HINDPETRO/transcript-2025-08.txt"
+        }
+      ]
+    },
+    "gail": {
+      "name": "GAIL",
+      "slug": "GAIL",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/GAIL/consolidated/",
+      "analysis": {
+        "pros": 1,
+        "cons": 1
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 22,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "May 2026",
+        "periodIso": "2026-05",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=07a07684-1220-4a04-a416-ac2cb360abbf.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 28095,
+        "pages": 47,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/GAIL/ppt-2026-05.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.gailonline.com/pdf/InvestorsZone/GAIL_Earnings_Call_Q3_FY_26.pdf",
+          "source": "gailonline.com",
+          "status": "http_404",
+          "chars": 0,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GAIL/transcript-2026-02.txt",
+          "error": "scraper returned only 5 chars"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Oct 2025",
+          "periodIso": "2025-10",
+          "url": "https://www.gailonline.com/pdf/InvestorsZone/GAIL_Earnings_Call_Q2_FY26_updated_041125.pdf",
+          "source": "gailonline.com",
+          "status": "http_404",
+          "chars": 0,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GAIL/transcript-2025-10.txt",
+          "error": "scraper returned only 5 chars"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jul 2025",
+          "periodIso": "2025-07",
+          "url": "https://www.gailonline.com/pdf/InvestorsZone/GAIL%20Q1FY26%20Earnings%20Call%20Transcript.pdf",
+          "source": "gailonline.com",
+          "status": "http_404",
+          "chars": 0,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GAIL/transcript-2025-07.txt",
+          "error": "scraper returned only 5 chars"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2025",
+          "periodIso": "2025-05",
+          "url": "https://www.gailonline.com/pdf/InvestorsZone/GAIL%20Analysts%20Meet%20Q4%20FY25%2014.05.2025.pdf",
+          "source": "gailonline.com",
+          "status": "http_404",
+          "chars": 0,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GAIL/transcript-2025-05.txt",
+          "error": "scraper returned only 5 chars"
+        }
+      ]
+    },
+    "igl": {
+      "name": "IGL",
+      "slug": "IGL",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/IGL/consolidated/",
+      "analysis": {
+        "pros": 2,
+        "cons": 1
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 13,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "Jul 2024",
+        "periodIso": "2024-07",
+        "url": "https://www.iglonline.net/uploads/announcement/Investor_Presentation_Q1_24-25_240724.pptx",
+        "source": "iglonline.net",
+        "status": "not_pdf",
+        "chars": 0,
+        "pages": null,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/IGL/ppt-2024-07.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.iglonline.net/uploads/announcement/Link_of_Transcript_Earning_Call_Q3_Dec_31_2025.pdf",
+          "source": "iglonline.net",
+          "status": "ok",
+          "chars": 42251,
+          "pages": 16,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/transcript-2026-02.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.iglonline.net/uploads/announcement/Link_of_Transcript_Earning_Call_Q2_-_Sep_30,_2025.pdf",
+          "source": "iglonline.net",
+          "status": "ok",
+          "chars": 40456,
+          "pages": 16,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/transcript-2025-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jul 2025",
+          "periodIso": "2025-07",
+          "url": "https://www.iglonline.net/uploads/announcement/Link%20of%20Transcript%20Earning%20Call%20Q1%20-%20July%2031,%202025.pdf",
+          "source": "iglonline.net",
+          "status": "ok",
+          "chars": 34948,
+          "pages": 15,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/transcript-2025-07.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Apr 2025",
+          "periodIso": "2025-04",
+          "url": "https://www.iglonline.net/uploads/announcement/Transcript%20of%20Q4%20Earning%20Call%20-%20April%2028,%202025.pdf",
+          "source": "iglonline.net",
+          "status": "ok",
+          "chars": 44776,
+          "pages": 18,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/transcript-2025-04.txt"
+        }
+      ]
+    },
+    "mahanagar-gas": {
+      "name": "Mahanagar Gas",
+      "slug": "MGL",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/MGL/consolidated/",
+      "analysis": {
+        "pros": 2,
+        "cons": 0
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 51,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "May 2026",
+        "periodIso": "2026-05",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=3099f331-8c1e-4458-a357-a59091e7ef1a.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 9956,
+        "pages": 17,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/MGL/ppt-2026-05.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=eddac62c-66d1-4e8e-a63d-b835d850e183.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 48579,
+          "pages": 20,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/MGL/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f2c6a672-f572-49af-8017-3aed7d222c22.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 49096,
+          "pages": 19,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/MGL/transcript-2026-02.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=0b4d6735-bdda-4151-9e32-0162007c47e4.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 53961,
+          "pages": 20,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/MGL/transcript-2025-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jul 2025",
+          "periodIso": "2025-07",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=89d0e8de-99ff-4a91-8c06-b077724a2ba0.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 45066,
+          "pages": 20,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/MGL/transcript-2025-07.txt"
+        }
+      ]
+    },
+    "gujarat-gas": {
+      "name": "Gujarat Gas",
+      "slug": "GUJRATGAS",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/GUJRATGAS/consolidated/",
+      "analysis": {
+        "pros": 1,
+        "cons": 0
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 0,
+      "summaries": [],
+      "ppt": null,
+      "transcripts": []
+    },
+    "aegis-logistics": {
+      "name": "Aegis Logistics",
+      "slug": "AEGISLOG",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/AEGISLOG/consolidated/",
+      "analysis": {
+        "pros": 4,
+        "cons": 2
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 40,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "Jun 2026",
+        "periodIso": "2026-06",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d49bc953-4ed0-4a72-9a0d-085525fe2916.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 17480,
+        "pages": 37,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/AEGISLOG/ppt-2026-06.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jun 2026",
+          "periodIso": "2026-06",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d2ebd557-5ec3-4cb1-b90f-9d56e37dbbde.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 36499,
+          "pages": 14,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/AEGISLOG/transcript-2026-06.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=1b37f48b-924c-4da8-a968-b646d3dc0653.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 32819,
+          "pages": 13,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/AEGISLOG/transcript-2026-02.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=06b0ba8f-8eb6-42e0-98c0-4cb53ff2ae90.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 40909,
+          "pages": 17,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/AEGISLOG/transcript-2025-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=33def260-c9ef-4d18-85ef-3a82fdb609f4.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 42356,
+          "pages": 17,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/AEGISLOG/transcript-2025-08.txt"
+        }
+      ]
+    },
+    "aegis-vopak": {
+      "name": "Aegis Vopak",
+      "slug": "AEGISVOPAK",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/AEGISVOPAK/consolidated/",
+      "analysis": {
+        "pros": 1,
+        "cons": 3
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 4,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "Jun 2026",
+        "periodIso": "2026-06",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=65945fff-94c1-4f73-88e5-afebff5b29de.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 33478,
+        "pages": 38,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/AEGISVOPAK/ppt-2026-06.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jun 2026",
+          "periodIso": "2026-06",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=53674766-2875-4330-9e54-960fcfc5a869.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 33550,
+          "pages": 14,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/AEGISVOPAK/transcript-2026-06.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5243a51d-6033-46df-a525-011d334eab57.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 38173,
+          "pages": 15,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/AEGISVOPAK/transcript-2026-02.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f821c543-5736-46c9-82de-a187bf5a824b.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 29541,
+          "pages": 12,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/AEGISVOPAK/transcript-2025-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e48b67b5-4ef0-4344-b33f-abe9e66e8993.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 43188,
+          "pages": 16,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/AEGISVOPAK/transcript-2025-08.txt"
+        }
+      ]
+    },
+    "supreme-petrochem": {
+      "name": "Supreme Petrochem",
+      "slug": "SPLPETRO",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/SPLPETRO/consolidated/",
+      "analysis": {
+        "pros": 1,
+        "cons": 1
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 16,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "Apr 2026",
+        "periodIso": "2026-04",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=785105c1-8aa6-430e-9d00-1808b95f96b4.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 23244,
+        "pages": 24,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/SPLPETRO/ppt-2026-04.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Apr 2026",
+          "periodIso": "2026-04",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e0aca11e-1b05-4087-b721-fe5651591c4f.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 49772,
+          "pages": null,
+          "via": "firecrawl",
+          "cache": "pipeline/cache/docs/SPLPETRO/transcript-2026-04.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jan 2026",
+          "periodIso": "2026-01",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=8f285582-d889-4ee0-9e5c-3cff975e8a74.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 42970,
+          "pages": 17,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/SPLPETRO/transcript-2026-01.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Oct 2025",
+          "periodIso": "2025-10",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f1ac2735-ec84-4336-8c9d-a1d12e7fa65e.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 39868,
+          "pages": 16,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/SPLPETRO/transcript-2025-10.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jul 2025",
+          "periodIso": "2025-07",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e998b1d5-ed78-4f0c-8cae-e25589a3c16a.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 32354,
+          "pages": 15,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/SPLPETRO/transcript-2025-07.txt"
+        }
+      ]
+    },
+    "castrol-india": {
+      "name": "Castrol India",
+      "slug": "CASTROLIND",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/CASTROLIND/consolidated/",
+      "analysis": {
+        "pros": 0,
+        "cons": 0
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 17,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "May 2026",
+        "periodIso": "2026-05",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7eb74aec-c941-4dc2-aa92-37f612ad2230.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 15403,
+        "pages": 27,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/CASTROLIND/ppt-2026-05.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b2502bf8-680b-48ed-a5f0-5409b7938365.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 40455,
+          "pages": 14,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=40456ee7-02fc-47c0-ad1d-c6e0f24b6062.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 50278,
+          "pages": 18,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-02.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6f33d826-204e-4df1-8310-f9a4c716f3d9.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 51231,
+          "pages": 18,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/CASTROLIND/transcript-2025-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=38016e7c-eaef-4ce9-aa5c-2151888cb1c8.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 36344,
+          "pages": 14,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/CASTROLIND/transcript-2025-08.txt"
+        }
+      ]
+    },
+    "gandhar-oil": {
+      "name": "Gandhar Oil",
+      "slug": "GANDHAR",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/GANDHAR/consolidated/",
+      "analysis": {
+        "pros": 1,
+        "cons": 2
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 8,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "Jun 2026",
+        "periodIso": "2026-06",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=0f239cc8-074f-4d8c-9ce2-12b43cbca501.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 21617,
+        "pages": 25,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/GANDHAR/ppt-2026-06.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jun 2026",
+          "periodIso": "2026-06",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c910a60c-4939-4caa-ad4d-c1abf632e8e9.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 44489,
+          "pages": 17,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GANDHAR/transcript-2026-06.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=267f664c-e17b-4b83-bffd-046d524f3571.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 38983,
+          "pages": 15,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GANDHAR/transcript-2026-02.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7673f256-56d3-40d8-bcab-489612c6ed01.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 29120,
+          "pages": 12,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GANDHAR/transcript-2025-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2025",
+          "periodIso": "2025-05",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=51ad6c4b-4ae8-4635-8634-c195916855ca.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 27634,
+          "pages": 12,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GANDHAR/transcript-2025-05.txt"
+        }
+      ]
+    },
+    "linde-india": {
+      "name": "Linde India",
+      "slug": "LINDEINDIA",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/LINDEINDIA/consolidated/",
+      "analysis": {
+        "pros": 2,
+        "cons": 3
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 0,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "Aug 2025",
+        "periodIso": "2025-08",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f1a49cd4-1e2a-492d-931c-a13ab1abc5cb.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 23822,
+        "pages": 19,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/LINDEINDIA/ppt-2025-08.txt"
+      },
+      "transcripts": []
+    },
+    "adani-ports": {
+      "name": "Adani Ports",
+      "slug": "ADANIPORTS",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/ADANIPORTS/consolidated/",
+      "analysis": {
+        "pros": 2,
+        "cons": 3
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 40,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "May 2026",
+        "periodIso": "2026-05",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=872a9876-e6af-4d7c-964a-3ccacf26f2d4.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 28854,
+        "pages": null,
+        "via": "firecrawl",
+        "cache": "pipeline/cache/docs/ADANIPORTS/ppt-2026-05.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.adaniports.com/-/media/project/ports/investor/transcripts/apsez-q4fy26-earnings-conference-call_transcript.pdf",
+          "source": "adaniports.com",
+          "status": "ok",
+          "chars": 74842,
+          "pages": 25,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ADANIPORTS/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.adaniports.com/-/media/Project/Ports/Investor/Transcripts/Q3--9M-FY26-earnings-call-transcript-UPDATED.pdf",
+          "source": "adaniports.com",
+          "status": "ok",
+          "chars": 74842,
+          "pages": 25,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ADANIPORTS/transcript-2026-02.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.adaniports.com/-/media/Project/Ports/Investor/Transcripts/Transcript-InvestecQ2--H1-FY26--Updated.pdf",
+          "source": "adaniports.com",
+          "status": "ok",
+          "chars": 50787,
+          "pages": 19,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ADANIPORTS/transcript-2025-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.adaniports.com/-/media/Project/Ports/Investor/Transcripts/Q1-FY26-",
+          "source": "adaniports.com",
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ADANIPORTS/transcript-2025-08.txt"
+        }
+      ]
+    },
+    "ge-shipping": {
+      "name": "GE Shipping",
+      "slug": "GESHIP",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/GESHIP/consolidated/",
+      "analysis": {
+        "pros": 3,
+        "cons": 3
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 41,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "May 2026",
+        "periodIso": "2026-05",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=56a661b5-7d2f-45e1-bcda-bbbfd7fb88ab.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 33280,
+        "pages": 47,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/GESHIP/ppt-2026-05.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=ceb8c526-89cd-4ec0-b3a2-00258e7fb63b.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 65351,
+          "pages": 24,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GESHIP/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=4c510083-090a-4e67-a696-b662c6921a10.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 67434,
+          "pages": 25,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GESHIP/transcript-2026-02.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Dec 2025",
+          "periodIso": "2025-12",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=bdfeb886-263a-40bf-accb-79e8073435e8.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 51380,
+          "pages": 21,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GESHIP/transcript-2025-12.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=476e1829-179a-4594-a289-3e21c2609667.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 48143,
+          "pages": 19,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GESHIP/transcript-2025-08.txt"
+        }
+      ]
+    },
+    "shipping-corp": {
+      "name": "Shipping Corp of India",
+      "error": "Screener search returned no usable company for \"Shipping Corp of India\""
+    },
+    "thermax": {
+      "name": "Thermax",
+      "slug": "THERMAX",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/THERMAX/consolidated/",
+      "analysis": {
+        "pros": 0,
+        "cons": 3
+      },
+      "summariesFound": 0,
+      "transcriptsFound": 41,
+      "summaries": [],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "May 2026",
+        "periodIso": "2026-05",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=3361ee88-86b9-47f1-bd58-e78f249e9163.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 19276,
+        "pages": 20,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/THERMAX/ppt-2026-05.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://tmx-drupal-global-prod-s3.s3.ap-south-1.amazonaws.com/s3fs-public/2026-05/Q4-FY2026-Results-Conference-Call.pdf",
+          "source": "tmx-drupal-global-prod-s3.s3.ap-south-1.amazonaws.com",
+          "status": "ok",
+          "chars": 50243,
+          "pages": 17,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/THERMAX/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.thermaxglobal.com/wp-content/uploads/2026/02/Q3-FY2026-Results-Conference-Call.pdf",
+          "source": "thermaxglobal.com",
+          "status": "ok",
+          "chars": 724,
+          "pages": null,
+          "via": "firecrawl",
+          "cache": "pipeline/cache/docs/THERMAX/transcript-2026-02.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.thermaxglobal.com/wp-content/uploads/2025/11/Q2-FY2026-Results-Conference-Call.pdf",
+          "source": "thermaxglobal.com",
+          "status": "ok",
+          "chars": 726,
+          "pages": null,
+          "via": "firecrawl",
+          "cache": "pipeline/cache/docs/THERMAX/transcript-2025-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.thermaxglobal.com/wp-content/uploads/2025/08/Q1-FY2026-Results-Conference-Call.pdf",
+          "source": "thermaxglobal.com",
+          "status": "ok",
+          "chars": 728,
+          "pages": null,
+          "via": "firecrawl",
+          "cache": "pipeline/cache/docs/THERMAX/transcript-2025-08.txt"
+        }
+      ]
     }
   }
 }
