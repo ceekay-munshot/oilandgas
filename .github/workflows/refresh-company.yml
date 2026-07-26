@@ -66,7 +66,19 @@ jobs:
 
       # A manual run honours the chosen scope; the weekly schedule does all 27.
       - name: Scrape Screener
+        if: ${{ github.event.inputs.scope != 'dump' }}
         run: node pipeline/scrape-screener.mjs --scope ${{ github.event.inputs.scope || 'all' }}
+
+      # Recon only - dump one company's concall markup, no scrape, no extract.
+      - name: Dump concall markup
+        if: ${{ github.event.inputs.scope == 'dump' }}
+        run: node pipeline/scrape-screener.mjs --scope dump
+
+      # Step 3: read the documents just cached above and extract the KPIs. Same
+      # job on purpose - the cache is gitignored and lives only for this run.
+      - name: Extract KPIs
+        if: ${{ github.event.inputs.scope != 'dump' }}
+        run: node pipeline/extract-kpis.mjs --scope ${{ github.event.inputs.scope || 'all' }}
 
       - name: Commit if anything changed
         run: |
@@ -74,16 +86,16 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # data/companies.json carries the resolved slugs; the other two are the
-          # gathered material. The document cache is gitignored and never staged.
-          if git diff --quiet -- data/financials.json data/docs-manifest.json data/companies.json; then
+          # companies.json carries the resolved slugs; the rest is the gathered
+          # material and the extracted KPIs. The document cache is gitignored.
+          if git diff --quiet -- data/financials.json data/docs-manifest.json data/companies.json data/kpis.json; then
             echo "No company-data change - nothing to commit."
             exit 0
           fi
 
-          git add data/financials.json data/docs-manifest.json data/companies.json
+          git add data/financials.json data/docs-manifest.json data/companies.json data/kpis.json
           # No [skip ci]: the deploy has to run so the dashboard sees new data.
-          git commit -m "chore(data): refresh company financials & docs manifest"
+          git commit -m "chore(data): refresh company financials, docs & KPIs"
 
           for attempt in 1 2 3 4 5; do
             if git push origin HEAD:main; then

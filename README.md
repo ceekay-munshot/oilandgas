@@ -379,8 +379,21 @@ after the US close so the previous day's spot prints are in.
 > run re-arms it.
 
 `refresh-full.yml` is the same idea for the whole chain — macro → screener → KPIs →
-commentary → rescore → one commit. Only step 1 exists today; the rest are commented
-out with the prompt that adds them, so the running order is settled up front.
+commentary → rescore → one commit. Steps 1–3 exist today (macro, the Screener
+scrape, and the KPI extractor); commentary and rescore are commented out with the
+prompt that adds them, so the running order is settled up front.
+
+**The KPI extractor** (`pipeline/extract-kpis.mjs`) is step 3. It reads the concall
+transcripts + investor PPT + financials the screener step cached *in the same job*
+(the cache is gitignored, so the two must run together), pre-filters each company's
+text to just the passages near its KPI keywords (never the whole transcript, capped
+~24k chars), and makes **one structured LLM call per company** via `lib/llm.mjs`
+(OpenAI strict `json_schema`, Mistral fallback, temperature 0). The KPIs it looks
+for are the client's exact list in `data/kpi-spec.json` — not invented here. A
+quarter the sources don't state comes back `null` with a note; every value records
+its source tag; trajectory flags are computed in code (`lib/kpi-flag.mjs`), never by
+the model. Output is `data/kpis.json`. Run the smoke set first
+(`Refresh company data → scope smoke`) before the full 27.
 
 ### Adding a source
 
