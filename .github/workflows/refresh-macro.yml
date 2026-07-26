@@ -30,10 +30,12 @@ jobs:
         with:
           node-version: '22'
 
-      # No lockfile is committed and the fetcher uses only Node built-ins, so
-      # there is nothing to install for this job. The dependencies in
-      # package.json are for the Screener/PDF steps in prompts 4-6.
+      # Nothing to install: the macro fetcher uses only Node built-ins. The
+      # dependencies in pipeline/package.json are for the Screener/PDF steps in
+      # prompts 4-6. (package.json lives under pipeline/ so Cloudflare keeps
+      # treating the repo root as a static site.)
       - name: Verify parsers
+        working-directory: pipeline
         run: npm test
 
       - name: Fetch macro series

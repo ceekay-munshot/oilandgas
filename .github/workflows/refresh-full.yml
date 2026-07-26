@@ -43,6 +43,7 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
+        working-directory: pipeline
         env:
           # the screener step installs chromium explicitly; don't also pull
           # browsers during npm install
@@ -50,6 +51,7 @@ jobs:
         run: npm install --no-audit --no-fund
 
       - name: Verify parsers
+        working-directory: pipeline
         run: npm test
 
       # --- 1. macro -------------------------------------------------------
@@ -66,9 +68,10 @@ jobs:
       #   env:
       #     SCREENER_EMAIL: ${{ secrets.SCREENER_EMAIL }}
       #     SCREENER_PASSWORD: ${{ secrets.SCREENER_PASSWORD }}
+      #   working-directory: pipeline
       #   run: |
       #     npx playwright install --with-deps chromium
-      #     node pipeline/fetch-screener.mjs
+      #     node fetch-screener.mjs
 
       # --- 3. kpis --------------------------------------------------------
       # added in prompt 5 - per-company quarterly KPIs to data/kpis.json

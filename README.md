@@ -45,6 +45,7 @@ pipeline/
   parsers/ fred.mjs frankfurter.mjs ppac.mjs      pure, no network, unit-tested
   sources/ macro-sources.mjs   one fetcher per series
   test/    parsers.test.mjs    `npm test`
+  package.json                 pipeline deps - deliberately NOT at the repo root
 .github/workflows/
   refresh-macro.yml            daily + manual; commits data back to main
   refresh-full.yml             the whole ordered pipeline (steps 2-5 land in prompts 4-7)
@@ -267,11 +268,17 @@ The dashboard feeds itself. Nothing here reads from another repository.
 ### Run it locally
 
 ```bash
+cd pipeline
 npm install          # only needed for prompts 4-6; the macro fetch uses Node built-ins
 npm test             # 18 parser tests, no network
-npm run fetch:macro  # writes data/macro.json
-node pipeline/fetch-macro.mjs --dry-run   # print what it would write, touch nothing
+npm run fetch:macro  # writes ../data/macro.json
+node fetch-macro.mjs --dry-run            # print what it would write, touch nothing
 ```
+
+`package.json` lives under `pipeline/`, not at the repo root, and needs to stay
+there: Cloudflare Workers Builds treats a root `package.json` as "this is a Node
+project, run a build", and the deploy fails because there is no build to run. With
+it one level down the root is still plain static files and the deploy is untouched.
 
 With no credentials at all you still get Brent, WTI, the Indian crude basket and
 USD/INR — those four come from key-free public endpoints. The other three series
