@@ -97,7 +97,7 @@ export async function resolveSlug(context, query, { timeout = 30_000 } = {}) {
  * in the returned HTML.
  * @returns {Promise<{html:string, url:string, view:'consolidated'|'standalone', status:number}>}
  */
-export async function getCompanyPage(context, slug, { timeout = 45_000, expand = true } = {}) {
+export async function getCompanyPage(context, slug, { timeout = 45_000, expand = true, keepPage = false } = {}) {
   const page = await context.newPage();
   try {
     let view = 'consolidated';
@@ -117,9 +117,14 @@ export async function getCompanyPage(context, slug, { timeout = 45_000, expand =
     if (expand) await expandSchedules(page).catch(() => {});
 
     const html = await page.content();
-    return { html, url: page.url(), view, status: resp.status() };
+    // keepPage hands the live page back so the caller can also read the Investors
+    // view off it - one page load per company instead of two, which is what stopped
+    // Screener returning 429 partway through a batch. The caller must close it.
+    return keepPage
+      ? { html, url: page.url(), view, status: resp.status(), page }
+      : { html, url: page.url(), view, status: resp.status() };
   } finally {
-    await page.close().catch(() => {});
+    if (!keepPage) await page.close().catch(() => {});
   }
 }
 

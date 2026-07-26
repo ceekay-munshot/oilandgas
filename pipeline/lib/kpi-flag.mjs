@@ -55,11 +55,18 @@ export function trajectoryFlag(series, flatBandPct = 1.5) {
 
   if (last > 0 && prev < 0) return 'inflecting-up';
   if (last < 0 && prev > 0) return 'inflecting-down';
-  if (last === 0 && prev === 0) return 'steady';
   if (last > 0) return last > prev ? 'accelerating' : (last < prev ? 'decelerating' : 'steady');
   if (last < 0) return 'decelerating';              // sustained decline - cautionary
-  // last === 0 (just went flat)
-  return prev > 0 ? 'decelerating' : 'inflecting-up';
+
+  /* The latest move is inside the dead band, so the series is flat NOW. That is
+     'steady' whatever it did before.
+     This used to return 'inflecting-up' when the previous move was down - "was
+     falling, now flat" - and that was wrong in a way that mattered: framework.json
+     defines inflecting-up as "was falling, has just started to rise", and flat is
+     not rising. It put Deep Industries' order book (3051, 3050, 2967, 3000 - a
+     +33 move inside a 45-wide band) into the "Just turned up" filter, which is the
+     one list the client is meant to act on. A false positive there is expensive. */
+  return 'steady';
 }
 
 /** Convenience: values + basis -> flag id. */

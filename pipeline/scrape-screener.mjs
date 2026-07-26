@@ -34,7 +34,7 @@ import { openScreener, resolveSlug, getCompanyPage, downloadDoc, maskEmail } fro
 import { parseAllFinancials } from './parsers/screener-financials.mjs';
 import { parseConcalls, selectDocuments, looksLikeDoc } from './parsers/screener-docs.mjs';
 import { parseProsCons } from './parsers/screener-summary.mjs';
-import { fetchInsights } from './sources/screener-insights.mjs';
+import { insightsFromPage } from './sources/screener-insights.mjs';
 import { parseInsightsTable } from './parsers/screener-insights.mjs';
 import { extractPdfText, isPdf, classifyHtml } from './lib/pdf.mjs';
 import { scrapePage } from './lib/scrape.mjs';
@@ -262,7 +262,8 @@ async function main() {
         }
 
         // 2. financials + Screener's own Pros/Cons capsule
-        const { html, url, view } = await getCompanyPage(session.context, slug);
+        // keepPage: the Investors view is read off this same page load.
+        const { html, url, view, page: coPage } = await getCompanyPage(session.context, slug, { keepPage: true });
         const fin = parseAllFinancials(html);
         const asOf = asOfFrom(fin);
         const analysis = parseProsCons(html);
@@ -278,7 +279,14 @@ async function main() {
                (Wells Drilled, Crude Oil Production, reserves...), so for the KPIs
                it covers the extractor needs no model at all. Best-effort: a
                company without it simply has an empty entry with the reason. */
-        const ins = await fetchInsights(session.context, slug);
+        let ins;
+        try {
+          ins = await insightsFromPage(coPage);
+        } catch (e) {
+          ins = { html: null, view: 'unknown', url, note: (e && e.message) ? e.message.slice(0, 160) : String(e) };
+        } finally {
+          await coPage.close().catch(() => {});
+        }
         let insTable = null;
         if (ins.html) {
           try { insTable = parseInsightsTable(ins.html); } catch { insTable = null; }
