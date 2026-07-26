@@ -3,10 +3,14 @@
 An instrument that shows where India's oil & gas capex cycle is right now, and
 which companies benefit.
 
-**Steps 1–2 of ~12 are in.** The shell, the navigation and the design system are
-done; the **Cockpit** and **Macro** tabs are built. Every number on both is a
-clearly-labelled placeholder shaped exactly like the real thing. There is no
-scoring logic and no real KPI or commentary data yet.
+**Steps 1–3 of ~12 are in.** The shell, navigation and design system are done, the
+**Cockpit** and **Macro** tabs are built, and the dashboard now has **its own data
+pipeline** — it fetches its own market data and commits it back on a schedule, with
+no dependency on any other repository.
+
+Three of the six market series are **live**. The other three, plus every score on
+the Cockpit, are honestly marked as not-yet-live rather than filled with
+plausible-looking numbers.
 
 ---
 
@@ -31,15 +35,30 @@ with no build command and no output directory; it is plain static files.
 ## What's in the box
 
 ```
-index.html              everything: design system, shell, navigation, charts
-data/companies.json     the company backbone, grouped
-data/framework.json     the fixed vocabulary (flags, tone, stages, source tags)
-data/macro.json         six market series, 12 monthly points each
-README.md
+index.html                     the dashboard: design system, shell, navigation, charts
+data/companies.json            the company backbone, grouped
+data/framework.json            the fixed vocabulary (flags, tone, stages, source tags)
+data/macro.json                six market series - WRITTEN BY THE PIPELINE, do not hand-edit
+pipeline/
+  fetch-macro.mjs              step 1: refresh the market backdrop
+  lib/     llm.mjs http.mjs scrape.mjs dates.mjs errors.mjs
+  parsers/ fred.mjs frankfurter.mjs ppac.mjs      pure, no network, unit-tested
+  sources/ macro-sources.mjs   one fetcher per series
+  test/    parsers.test.mjs    `npm test`
+.github/workflows/
+  refresh-macro.yml            daily + manual; commits data back to main
+  refresh-full.yml             the whole ordered pipeline (steps 2-5 land in prompts 4-7)
+.env.example                   every credential the pipeline reads
 ```
 
-One external dependency: **Apache ECharts 5.5.1** from jsDelivr, used for every
-chart. No frameworks, no build step, no bundler.
+**The dashboard** has one external dependency: Apache ECharts 5.5.1 from jsDelivr.
+No framework, no build step — it is still just files.
+
+**The pipeline** is Node ESM. Parsers are pure functions kept apart from anything
+that touches the network, so they can be tested without one. `playwright`,
+`cheerio` and `pdf-parse` are declared now because steps 2–4 need them; the macro
+fetcher itself uses only Node built-ins, which is why the daily workflow installs
+nothing.
 
 ---
 
@@ -72,7 +91,9 @@ Five tabs, and three subtabs under KPIs:
   and its plain-English label
 - The standing six, and which companies each slot points at
 
-**Placeholder (`SEED`)** — the Cockpit's numbers. They live in one `SEED` object
+**Placeholder (`SEED`)** — the Cockpit's cycle stage and three group scores, tagged
+*SEED · not yet live* on screen. They arrive for real with the KPI pipeline in
+prompts 5–7. They They live in one `SEED` object
 near the top of the `<script>` in `index.html`, and they are marked `SEED` in the
 header and on every card that uses them:
 
@@ -92,8 +113,24 @@ ranges in `framework.json` — set the number and the words, the colour and the
 "you are here" marker all follow. Replacing this object with a fetch of a real
 scores file is the natural next step.
 
-**Placeholder (`data/macro.json`)** — the Macro tab's six series. The *shape* is
-final; only the values are stand-ins, and the file says so (`"placeholder": true`).
+**Live (`data/macro.json`)** — written by the pipeline, never by hand. Three of the
+six tiles carry real observations; the other three carry an empty series, an
+`Unknown` chip and *"Awaiting live source"* instead of a chart. Nothing is
+estimated, interpolated or carried forward.
+
+| Tile | Status | Source |
+|---|---|---|
+| Crude Oil — Brent & WTI | **live** | FRED / U.S. EIA daily spot, averaged by month |
+| Crude Oil — Indian Basket | **live** | PPAC, Ministry of Petroleum & Natural Gas |
+| Rupee vs US Dollar | **live** | Frankfurter / ECB reference rates |
+| Refining Margin — Singapore | awaiting | needs a scraper key |
+| Gas Price — APM and JKM | awaiting | needs a scraper key |
+| Freight — Baltic Dirty Tanker | awaiting | needs a scraper key |
+
+A month still in progress is marked `partial` and the tile stamp reads
+*"month to date"* — a mean taken on the 24th is not a month, and saying otherwise
+would overstate it.
+
 Everything the tab displays is computed from those points, not stored:
 
 - the **current value** is the last point
@@ -106,8 +143,8 @@ a **negative baseline** keeps its sign (the denominator is `Math.abs`, so −4.0
 reads as Rising), and a **zero baseline** has no percentage at all, so it falls back
 to the raw move rather than being called Flat.
 
-So swapping in the live feed changes no code — the flags and percentiles
-recompute themselves.
+None of that is stored, so a refreshed file changes no code — the flags and
+percentiles recompute themselves.
 
 The remaining three tabs are on-brand empty layouts: the right cards, the right
 titles, the right shapes — with a visible *"No data yet"* on each tile. Nothing
@@ -223,10 +260,78 @@ from the file, so correcting the list in either direction needs no code change.
 
 ---
 
+## The pipeline
+
+The dashboard feeds itself. Nothing here reads from another repository.
+
+### Run it locally
+
+```bash
+npm install          # only needed for prompts 4-6; the macro fetch uses Node built-ins
+npm test             # 18 parser tests, no network
+npm run fetch:macro  # writes data/macro.json
+node pipeline/fetch-macro.mjs --dry-run   # print what it would write, touch nothing
+```
+
+With no credentials at all you still get Brent, WTI, the Indian crude basket and
+USD/INR — those four come from key-free public endpoints. The other three series
+report exactly why they are unavailable.
+
+### Turning it on in GitHub
+
+**1. Allow Actions to push.** Settings → Actions → General → *Workflow permissions*
+→ **Read and write permissions** → Save. Without this the fetch runs and the commit
+step fails with a 403.
+
+**2. Add the secrets you have.** Settings → Secrets and variables → Actions →
+*New repository secret*. Every one is optional; each unlocks a later step.
+
+| Secret | Unlocks | Needed from |
+|---|---|---|
+| `FIRECRAWL_API_KEY` *or* `SCRAPEDO_API_KEY` | Singapore GRM, gas APM+JKM, Baltic freight | now |
+| `SCREENER_EMAIL`, `SCREENER_PASSWORD` | company financials | prompt 4 |
+| `OPENAI_API_KEY` *or* `MISTRAL_API_KEY` | commentary tone | prompt 6 |
+
+Names must match `.env.example` exactly. Keys are read from `process.env` at run
+time and never written into `data/*.json` or served to the browser.
+
+**3. Run it by hand once.** Actions tab → **Refresh macro data** → *Run workflow* →
+branch `main` → *Run workflow*. Takes well under a minute. If anything changed it
+pushes a `chore(data): refresh macro series` commit to `main`; if nothing changed it
+says so and exits clean.
+
+**4. Leave it alone.** From then on it runs at **06:25 UTC daily** (≈11:55 IST),
+after the US close so the previous day's spot prints are in.
+
+> On a brand-new fork the scheduled run is disabled until someone opens the Actions
+> tab once, and it may skip if the repository has no activity for 60 days. A manual
+> run re-arms it.
+
+`refresh-full.yml` is the same idea for the whole chain — macro → screener → KPIs →
+commentary → rescore → one commit. Only step 1 exists today; the rest are commented
+out with the prompt that adds them, so the running order is settled up front.
+
+### Adding a source
+
+1. Write a pure parser in `pipeline/parsers/` — raw text or JSON in, dated points
+   out. No network, no `process.env`.
+2. Add a test to `pipeline/test/parsers.test.mjs`. Both a good payload and a
+   malformed one, so a source that silently changes shape fails loudly.
+3. Add a fetcher to `pipeline/sources/macro-sources.mjs` that does the network call
+   and hands the bytes to the parser.
+4. Point a tile's `fetch` at it in `pipeline/fetch-macro.mjs`.
+
+A fetcher that throws is not a bug — the orchestrator turns any throw into
+`status: "awaiting"` with the reason attached, and the run still exits 0. Throwing
+is how you say "I could not get this", and it is always the right answer when the
+alternative is a guess.
+
+---
+
 ## Not in this step
 
-No real market feed, no KPI or commentary data, no scoring maths, no deployment
-config.
+No KPI or commentary data, no scoring maths, no deployment config. Three market
+series still have no feed. The Cockpit scores are still `SEED`.
 
 The **"Scores agree / Conflict"** strip under the Macro tiles is deliberately
 crude for now: it counts how many tiles are moving in their `supports` direction

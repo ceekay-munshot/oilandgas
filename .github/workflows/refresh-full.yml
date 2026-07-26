@@ -1,0 +1,119 @@
+name: Refresh everything
+
+# The whole client pipeline, in order. Only step 1 exists today; the rest are
+# commented out with the prompt that adds them, so the running order is settled
+# before the steps arrive.
+#
+#   1  macro       market backdrop           -> data/macro.json     LIVE
+#   2  screener    company financials        -> data/raw/screener/  prompt 4
+#   3  kpis        quarterly KPIs per group  -> data/kpis.json      prompt 5
+#   4  commentary  management tone           -> data/commentary.json prompt 6
+#   5  rescore     cycle + group scores      -> data/scores.json    prompt 7
+#   6  commit      one commit for the lot
+#
+# Steps run in one job on purpose: each reads what the one before it wrote, and
+# a single commit at the end keeps the history one row per refresh.
+
+on:
+  workflow_dispatch:
+    inputs:
+      skip_macro:
+        description: 'Skip the macro fetch (use the committed data/macro.json)'
+        type: boolean
+        default: false
+  schedule:
+    - cron: '40 6 * * 1'      # 06:40 UTC Mondays - weekly, once KPIs exist
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-full
+  cancel-in-progress: false
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        env:
+          # the screener step installs chromium explicitly; don't also pull
+          # browsers during npm install
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm install --no-audit --no-fund
+
+      - name: Verify parsers
+        run: npm test
+
+      # --- 1. macro -------------------------------------------------------
+      - name: 'Step 1/5 - macro'
+        if: ${{ !inputs.skip_macro }}
+        env:
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+          SCRAPEDO_API_KEY: ${{ secrets.SCRAPEDO_API_KEY }}
+        run: node pipeline/fetch-macro.mjs
+
+      # --- 2. screener ----------------------------------------------------
+      # added in prompt 4 - Playwright login, quarterly tables to data/raw/
+      # - name: 'Step 2/5 - screener'
+      #   env:
+      #     SCREENER_EMAIL: ${{ secrets.SCREENER_EMAIL }}
+      #     SCREENER_PASSWORD: ${{ secrets.SCREENER_PASSWORD }}
+      #   run: |
+      #     npx playwright install --with-deps chromium
+      #     node pipeline/fetch-screener.mjs
+
+      # --- 3. kpis --------------------------------------------------------
+      # added in prompt 5 - per-company quarterly KPIs to data/kpis.json
+      # - name: 'Step 3/5 - kpis'
+      #   run: node pipeline/build-kpis.mjs
+
+      # --- 4. commentary --------------------------------------------------
+      # added in prompt 6 - earnings-call tone via pipeline/lib/llm.mjs
+      # - name: 'Step 4/5 - commentary'
+      #   env:
+      #     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      #     MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      #     FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+      #   run: node pipeline/fetch-commentary.mjs
+
+      # --- 5. rescore -----------------------------------------------------
+      # added in prompt 7 - replaces the SEED scores on the Cockpit
+      # - name: 'Step 5/5 - rescore'
+      #   run: node pipeline/rescore.mjs
+
+      # --- 6. commit ------------------------------------------------------
+      - name: Commit if anything changed
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- data/; then
+            echo "No data change - nothing to commit."
+            exit 0
+          fi
+
+          git add data/
+          git commit -m "chore(data): full pipeline refresh [skip ci]"
+
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected, rebasing and retrying ($attempt/5)..."
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            sleep $(( attempt * 3 ))
+          done
+
+          echo "Could not push after 5 attempts."
+          exit 1
