@@ -1,10 +1,15 @@
 {
-  "schemaVersion": 1,
-  "title": "Concall transcript & investor-PPT manifest",
+  "schemaVersion": 2,
+  "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-07-26T11:58:41.248Z",
+  "generatedAt": "2026-07-26T12:28:11.389Z",
   "cacheDir": "pipeline/cache/docs",
-  "note": "Per company: the last four concall transcripts and the latest investor PPT that were found and cached. status ok = text extracted; ocr_needed = a scanned PDF with no text layer (not a failure); not_pdf/http_* = the link did not return a usable PDF. The extracted text is cached under cacheDir, which is gitignored.",
+  "sourcePriority": [
+    "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
+    "ppt (investor presentation)",
+    "transcript (full concall - the primary text source)"
+  ],
+  "note": "Per company: Screener's Pros/Cons capsule (in financials.json), the latest investor PPT, and the full concall transcripts. Screener's \"AI Summary\" is a Premium feature (free tier: 10 reads / 30 days) and is not fetched - aiSummary/summariesAvailable record that it exists. status ok = text extracted; ocr_needed = a scanned PDF with no text layer (not a failure); not_pdf/http_* = the link did not return a usable document. via names who fetched it (browser or a scraper). The extracted text is cached under cacheDir, which is gitignored.",
   "companies": {
     "ongc": {
       "name": "ONGC",
@@ -15,66 +20,9 @@
         "pros": 3,
         "cons": 1
       },
-      "summariesFound": 11,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 11,
       "transcriptsFound": 11,
-      "summaries": [
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "May 2026",
-          "periodIso": "2026-05",
-          "url": "https://www.screener.in/concalls/summary/23213136/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/ONGC/summary-2026-05.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Feb 2026",
-          "periodIso": "2026-02",
-          "url": "https://www.screener.in/concalls/summary/23133303/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/ONGC/summary-2026-02.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Nov 2025",
-          "periodIso": "2025-11",
-          "url": "https://www.screener.in/concalls/summary/23083047/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/ONGC/summary-2025-11.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Aug 2025",
-          "periodIso": "2025-08",
-          "url": "https://www.screener.in/concalls/summary/23036045/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/ONGC/summary-2025-08.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        }
-      ],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -156,66 +104,9 @@
         "pros": 2,
         "cons": 2
       },
-      "summariesFound": 19,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 19,
       "transcriptsFound": 18,
-      "summaries": [
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "May 2026",
-          "periodIso": "2026-05",
-          "url": "https://www.screener.in/concalls/summary/23185220/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/DEEPINDS/summary-2026-05.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Feb 2026",
-          "periodIso": "2026-02",
-          "url": "https://www.screener.in/concalls/summary/23103567/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/DEEPINDS/summary-2026-02.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Nov 2025",
-          "periodIso": "2025-11",
-          "url": "https://www.screener.in/concalls/summary/23052054/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/DEEPINDS/summary-2025-11.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Aug 2025",
-          "periodIso": "2025-08",
-          "url": "https://www.screener.in/concalls/summary/23026935/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/DEEPINDS/summary-2025-08.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        }
-      ],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -293,66 +184,9 @@
         "pros": 3,
         "cons": 2
       },
-      "summariesFound": 27,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 27,
       "transcriptsFound": 27,
-      "summaries": [
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "May 2026",
-          "periodIso": "2026-05",
-          "url": "https://www.screener.in/concalls/summary/23201915/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2026-05.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Feb 2026",
-          "periodIso": "2026-02",
-          "url": "https://www.screener.in/concalls/summary/23115755/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2026-02.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Nov 2025",
-          "periodIso": "2025-11",
-          "url": "https://www.screener.in/concalls/summary/23056847/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2025-11.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Aug 2025",
-          "periodIso": "2025-08",
-          "url": "https://www.screener.in/concalls/summary/23035590/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2025-08.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        }
-      ],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -430,66 +264,9 @@
         "pros": 1,
         "cons": 1
       },
-      "summariesFound": 18,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 18,
       "transcriptsFound": 18,
-      "summaries": [
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "May 2026",
-          "periodIso": "2026-05",
-          "url": "https://www.screener.in/concalls/summary/23163826/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/PETRONET/summary-2026-05.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Feb 2026",
-          "periodIso": "2026-02",
-          "url": "https://www.screener.in/concalls/summary/23126426/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/PETRONET/summary-2026-02.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Nov 2025",
-          "periodIso": "2025-11",
-          "url": "https://www.screener.in/concalls/summary/23051938/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/PETRONET/summary-2025-11.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Aug 2025",
-          "periodIso": "2025-08",
-          "url": "https://www.screener.in/concalls/summary/23023691/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 208,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/PETRONET/summary-2025-08.txt",
-          "sample": "Limit exceeded - Upgrade to premium or try again later Free users can read 10 summaries within the last 30 days. Get Premium Notes viewed: 10 / 10 in the last 3"
-        }
-      ],
       "ppt": null,
       "transcripts": [
         {
@@ -555,9 +332,9 @@
         "pros": 1,
         "cons": 0
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 21,
       "transcriptsFound": 21,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -635,9 +412,9 @@
         "pros": 4,
         "cons": 2
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 10,
       "transcriptsFound": 10,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -715,9 +492,9 @@
         "pros": 2,
         "cons": 5
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 41,
       "transcriptsFound": 41,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -752,10 +529,10 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=661bf44f-58a3-471b-9d47-3be55dcb2552.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 85785,
+          "status": "not_pdf",
+          "chars": 0,
           "pages": null,
-          "via": "firecrawl",
+          "via": "browser",
           "cache": "pipeline/cache/docs/LTF/transcript-2026-05.txt"
         },
         {
@@ -795,9 +572,9 @@
         "pros": 1,
         "cons": 0
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 21,
       "transcriptsFound": 21,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -875,9 +652,9 @@
         "pros": 1,
         "cons": 1
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 23,
       "transcriptsFound": 22,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -955,9 +732,9 @@
         "pros": 0,
         "cons": 2
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 20,
       "transcriptsFound": 19,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -992,10 +769,10 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 95411,
+          "status": "not_pdf",
+          "chars": 0,
           "pages": null,
-          "via": "firecrawl",
+          "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
         {
@@ -1035,9 +812,9 @@
         "pros": 2,
         "cons": 0
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 7,
       "transcriptsFound": 7,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1115,9 +892,9 @@
         "pros": 2,
         "cons": 0
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 10,
       "transcriptsFound": 9,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1139,10 +916,10 @@
           "periodIso": "2026-05",
           "url": "https://www.bharatpetroleum.in/pdf/conferencecallrecording/bpcl-transcript-q4-investor-concall-d4352b.pdf",
           "source": "bharatpetroleum.in",
-          "status": "ok",
-          "chars": 50489,
+          "status": "http_403",
+          "chars": 0,
           "pages": null,
-          "via": "firecrawl",
+          "via": "browser",
           "cache": "pipeline/cache/docs/BPCL/transcript-2026-05.txt"
         },
         {
@@ -1152,10 +929,10 @@
           "periodIso": "2025-08",
           "url": "https://www.bharatpetroleum.in/images/files/Concall%20Transcript_Q1.pdf",
           "source": "bharatpetroleum.in",
-          "status": "ok",
-          "chars": 46351,
+          "status": "http_403",
+          "chars": 0,
           "pages": null,
-          "via": "firecrawl",
+          "via": "browser",
           "cache": "pipeline/cache/docs/BPCL/transcript-2025-08.txt"
         },
         {
@@ -1165,10 +942,10 @@
           "periodIso": "2025-05",
           "url": "https://www.bharatpetroleum.in/images/files/Q4_Concall_Transcript.pdf",
           "source": "bharatpetroleum.in",
-          "status": "ok",
-          "chars": 42642,
+          "status": "http_403",
+          "chars": 0,
           "pages": null,
-          "via": "firecrawl",
+          "via": "browser",
           "cache": "pipeline/cache/docs/BPCL/transcript-2025-05.txt"
         },
         {
@@ -1178,10 +955,10 @@
           "periodIso": "2025-01",
           "url": "https://www.bharatpetroleum.in/images/files/Concall-Recording-Q3-2025.pdf",
           "source": "bharatpetroleum.in",
-          "status": "ok",
-          "chars": 56622,
+          "status": "http_403",
+          "chars": 0,
           "pages": null,
-          "via": "firecrawl",
+          "via": "browser",
           "cache": "pipeline/cache/docs/BPCL/transcript-2025-01.txt"
         }
       ]
@@ -1195,9 +972,9 @@
         "pros": 4,
         "cons": 2
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 12,
       "transcriptsFound": 8,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1275,9 +1052,9 @@
         "pros": 1,
         "cons": 1
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 23,
       "transcriptsFound": 22,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1303,8 +1080,7 @@
           "chars": 0,
           "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2026-02.txt",
-          "error": "scraper returned only 5 chars"
+          "cache": "pipeline/cache/docs/GAIL/transcript-2026-02.txt"
         },
         {
           "type": "transcript",
@@ -1317,8 +1093,7 @@
           "chars": 0,
           "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2025-10.txt",
-          "error": "scraper returned only 5 chars"
+          "cache": "pipeline/cache/docs/GAIL/transcript-2025-10.txt"
         },
         {
           "type": "transcript",
@@ -1331,8 +1106,7 @@
           "chars": 0,
           "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2025-07.txt",
-          "error": "scraper returned only 5 chars"
+          "cache": "pipeline/cache/docs/GAIL/transcript-2025-07.txt"
         },
         {
           "type": "transcript",
@@ -1345,8 +1119,7 @@
           "chars": 0,
           "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2025-05.txt",
-          "error": "scraper returned only 5 chars"
+          "cache": "pipeline/cache/docs/GAIL/transcript-2025-05.txt"
         }
       ]
     },
@@ -1359,9 +1132,9 @@
         "pros": 2,
         "cons": 1
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 14,
       "transcriptsFound": 13,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1439,9 +1212,9 @@
         "pros": 2,
         "cons": 0
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 52,
       "transcriptsFound": 51,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1519,9 +1292,9 @@
         "pros": 1,
         "cons": 0
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 0,
       "transcriptsFound": 0,
-      "summaries": [],
       "ppt": null,
       "transcripts": []
     },
@@ -1534,9 +1307,9 @@
         "pros": 4,
         "cons": 2
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 40,
       "transcriptsFound": 40,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1614,9 +1387,9 @@
         "pros": 1,
         "cons": 3
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 4,
       "transcriptsFound": 4,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1694,9 +1467,9 @@
         "pros": 1,
         "cons": 1
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 16,
       "transcriptsFound": 16,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1719,9 +1492,9 @@
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e0aca11e-1b05-4087-b721-fe5651591c4f.pdf",
           "source": "bseindia.com",
           "status": "ok",
-          "chars": 49772,
-          "pages": null,
-          "via": "firecrawl",
+          "chars": 46273,
+          "pages": 18,
+          "via": "browser",
           "cache": "pipeline/cache/docs/SPLPETRO/transcript-2026-04.txt"
         },
         {
@@ -1774,9 +1547,9 @@
         "pros": 0,
         "cons": 0
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 17,
       "transcriptsFound": 17,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1854,9 +1627,9 @@
         "pros": 1,
         "cons": 2
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 9,
       "transcriptsFound": 8,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1934,9 +1707,9 @@
         "pros": 2,
         "cons": 3
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 0,
       "transcriptsFound": 0,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1961,9 +1734,9 @@
         "pros": 2,
         "cons": 3
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 40,
       "transcriptsFound": 40,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1972,9 +1745,9 @@
         "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=872a9876-e6af-4d7c-964a-3ccacf26f2d4.pdf",
         "source": "bseindia.com",
         "status": "ok",
-        "chars": 28854,
-        "pages": null,
-        "via": "firecrawl",
+        "chars": 43783,
+        "pages": 45,
+        "via": "browser",
         "cache": "pipeline/cache/docs/ADANIPORTS/ppt-2026-05.txt"
       },
       "transcripts": [
@@ -2041,9 +1814,9 @@
         "pros": 3,
         "cons": 3
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 42,
       "transcriptsFound": 41,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -2114,7 +1887,57 @@
     },
     "shipping-corp": {
       "name": "Shipping Corp of India",
-      "error": "Screener search returned no usable company for \"Shipping Corp of India\""
+      "slug": "SCI",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/SCI/consolidated/",
+      "analysis": {
+        "pros": 1,
+        "cons": 5
+      },
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 2,
+      "transcriptsFound": 2,
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "May 2026",
+        "periodIso": "2026-05",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=190af81e-ee66-4d86-b41c-ffa4c17960ed.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 17836,
+        "pages": 31,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/SCI/ppt-2026-05.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.shipindia.com/upload/investorsubpage/transcript.pdf",
+          "source": "shipindia.com",
+          "status": "ok",
+          "chars": 55234,
+          "pages": 21,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/SCI/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.shipindia.com/upload/investorsubpage/Transcript_Antique-ShippingCorp-Nov10-2025.pdf",
+          "source": "shipindia.com",
+          "status": "ok",
+          "chars": 96434,
+          "pages": 21,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/SCI/transcript-2025-11.txt"
+        }
+      ]
     },
     "thermax": {
       "name": "Thermax",
@@ -2125,9 +1948,9 @@
         "pros": 0,
         "cons": 3
       },
-      "summariesFound": 0,
+      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
+      "summariesAvailable": 42,
       "transcriptsFound": 41,
-      "summaries": [],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -2162,10 +1985,10 @@
           "periodIso": "2026-02",
           "url": "https://www.thermaxglobal.com/wp-content/uploads/2026/02/Q3-FY2026-Results-Conference-Call.pdf",
           "source": "thermaxglobal.com",
-          "status": "ok",
-          "chars": 724,
+          "status": "http_403",
+          "chars": 0,
           "pages": null,
-          "via": "firecrawl",
+          "via": "browser",
           "cache": "pipeline/cache/docs/THERMAX/transcript-2026-02.txt"
         },
         {
@@ -2175,10 +1998,10 @@
           "periodIso": "2025-11",
           "url": "https://www.thermaxglobal.com/wp-content/uploads/2025/11/Q2-FY2026-Results-Conference-Call.pdf",
           "source": "thermaxglobal.com",
-          "status": "ok",
-          "chars": 726,
+          "status": "http_403",
+          "chars": 0,
           "pages": null,
-          "via": "firecrawl",
+          "via": "browser",
           "cache": "pipeline/cache/docs/THERMAX/transcript-2025-11.txt"
         },
         {
@@ -2188,10 +2011,10 @@
           "periodIso": "2025-08",
           "url": "https://www.thermaxglobal.com/wp-content/uploads/2025/08/Q1-FY2026-Results-Conference-Call.pdf",
           "source": "thermaxglobal.com",
-          "status": "ok",
-          "chars": 728,
+          "status": "http_403",
+          "chars": 0,
           "pages": null,
-          "via": "firecrawl",
+          "via": "browser",
           "cache": "pipeline/cache/docs/THERMAX/transcript-2025-08.txt"
         }
       ]
