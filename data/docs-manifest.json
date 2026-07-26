@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Concall transcript & investor-PPT manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-07-26T10:45:02.535Z",
+  "generatedAt": "2026-07-26T11:26:51.938Z",
   "cacheDir": "pipeline/cache/docs",
   "note": "Per company: the last four concall transcripts and the latest investor PPT that were found and cached. status ok = text extracted; ocr_needed = a scanned PDF with no text layer (not a failure); not_pdf/http_* = the link did not return a usable PDF. The extracted text is cached under cacheDir, which is gitignored.",
   "companies": {
@@ -15,9 +15,62 @@
         "pros": 3,
         "cons": 1
       },
-      "summariesFound": 0,
+      "summariesFound": 11,
       "transcriptsFound": 11,
-      "summaries": [],
+      "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.screener.in/concalls/summary/23213136/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 892,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ONGC/summary-2026-05.txt"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.screener.in/concalls/summary/23133303/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 892,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ONGC/summary-2026-02.txt"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.screener.in/concalls/summary/23083047/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 892,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ONGC/summary-2025-11.txt"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.screener.in/concalls/summary/23036045/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 892,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ONGC/summary-2025-08.txt"
+        }
+      ],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -30,7 +83,7 @@
         "pages": null,
         "via": "browser",
         "cache": "pipeline/cache/docs/ONGC/ppt-2025-02.txt",
-        "error": "apiRequestContext.get: Timeout 60000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/InvestorPresentation_Q3-FY25.pdf/551ceb5b-6e9"
+        "error": "apiRequestContext.get: Timeout 40000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/InvestorPresentation_Q3-FY25.pdf/551ceb5b-6e9"
       },
       "transcripts": [
         {
@@ -58,7 +111,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/transcript-2026-02.txt",
-          "error": "apiRequestContext.get: Timeout 60000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; L"
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; L"
         },
         {
           "type": "transcript",
@@ -72,7 +125,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/transcript-2025-11.txt",
-          "error": "apiRequestContext.get: Timeout 60000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Transcription181125.pdf/6f9e95e9-c665-e747-03"
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Transcription181125.pdf/6f9e95e9-c665-e747-03"
         },
         {
           "type": "transcript",
@@ -86,7 +139,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/transcript-2025-08.txt",
-          "error": "apiRequestContext.get: Timeout 60000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; L"
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; L"
         }
       ]
     },
@@ -99,9 +152,62 @@
         "pros": 2,
         "cons": 2
       },
-      "summariesFound": 0,
+      "summariesFound": 19,
       "transcriptsFound": 18,
-      "summaries": [],
+      "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.screener.in/concalls/summary/23185220/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 916,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/DEEPINDS/summary-2026-05.txt"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.screener.in/concalls/summary/23103567/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 916,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/DEEPINDS/summary-2026-02.txt"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.screener.in/concalls/summary/23052054/",
+          "source": "screener.in",
+          "status": "http_403",
+          "chars": 0,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/DEEPINDS/summary-2025-11.txt"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.screener.in/concalls/summary/23026935/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 916,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/DEEPINDS/summary-2025-08.txt"
+        }
+      ],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -179,9 +285,62 @@
         "pros": 3,
         "cons": 2
       },
-      "summariesFound": 0,
+      "summariesFound": 27,
       "transcriptsFound": 27,
-      "summaries": [],
+      "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.screener.in/concalls/summary/23201915/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 916,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2026-05.txt"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.screener.in/concalls/summary/23115755/",
+          "source": "screener.in",
+          "status": "http_429",
+          "chars": 0,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2026-02.txt"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.screener.in/concalls/summary/23056847/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 916,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2025-11.txt"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.screener.in/concalls/summary/23035590/",
+          "source": "screener.in",
+          "status": "http_429",
+          "chars": 0,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2025-08.txt"
+        }
+      ],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -259,9 +418,62 @@
         "pros": 1,
         "cons": 1
       },
-      "summariesFound": 0,
+      "summariesFound": 18,
       "transcriptsFound": 18,
-      "summaries": [],
+      "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.screener.in/concalls/summary/23163826/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 907,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/PETRONET/summary-2026-05.txt"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.screener.in/concalls/summary/23126426/",
+          "source": "screener.in",
+          "status": "http_429",
+          "chars": 0,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/PETRONET/summary-2026-02.txt"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.screener.in/concalls/summary/23051938/",
+          "source": "screener.in",
+          "status": "http_429",
+          "chars": 0,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/PETRONET/summary-2025-11.txt"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.screener.in/concalls/summary/23023691/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 907,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/PETRONET/summary-2025-08.txt"
+        }
+      ],
       "ppt": null,
       "transcripts": [
         {
