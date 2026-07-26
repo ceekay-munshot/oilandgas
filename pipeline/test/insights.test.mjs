@@ -152,3 +152,55 @@ test('the P&L table still parses as a table - rejecting it is the browser\'s job
   assert.ok(t && t.rows.length === 6);
   assert.deepEqual(t.periods, ['Sep 2025', 'Dec 2025', 'Mar 2026']);
 });
+
+/* ------------------------------- the browser's text matrix (preferred) ------ */
+
+import { parseInsightsMatrix } from '../parsers/screener-insights.mjs';
+
+/* Exactly the shape the live run produced, which the markup parser could not
+   read: the label cell separates name from unit with a <br>, so cheerio's child
+   walk saw nothing and returned "Order BookRs Crore" with unit null and every
+   value null. innerText gives the browser's already-resolved lines instead.
+   Note Screener's separator here is a katakana middle dot, not a Latin one. */
+const MATRIX = {
+  periods: ['Jun 2025', 'Sep 2025', 'Dec 2025', 'Mar 2026'],
+  rows: [
+    { lines: ['Order Book', 'Rs Crore'], cells: ['3,051', '3,050', '2,967', '3,000'] },
+    { lines: ['Consultancy Order Book', 'INR mn ・Standalone data'], cells: ['1,21,450', '', '1,45,000', '1,51,090'] },
+    { lines: ['Kochi Terminal Capacity Utilization', '%'], cells: ['21 ⓘ', '23 ⓘ', '20 ⓘ', '22 ⓘ'] },
+    { lines: ['Onshore Rigs (Drilling + Workover)', 'Number'], cells: ['12', '12', '13', '-'] }
+  ]
+};
+
+test('parseInsightsMatrix splits the name from the unit across the <br>', () => {
+  const t = parseInsightsMatrix(MATRIX);
+  const ob = t.rows.find((r) => r.label === 'Order Book');
+  assert.equal(ob.label, 'Order Book');          // not "Order BookRs Crore"
+  assert.equal(ob.unit, 'Rs Crore');
+});
+
+test('parseInsightsMatrix reads the values the markup route lost', () => {
+  const t = parseInsightsMatrix(MATRIX);
+  assert.deepEqual(t.rows.find((r) => r.label === 'Order Book').values, [3051, 3050, 2967, 3000]);
+});
+
+test('parseInsightsMatrix handles the katakana middle dot in the unit line', () => {
+  const t = parseInsightsMatrix(MATRIX);
+  const c = t.rows.find((r) => r.label === 'Consultancy Order Book');
+  assert.equal(c.unit, 'INR mn');
+  assert.equal(c.scope, 'Standalone data');
+  assert.deepEqual(c.values, [121450, null, 145000, 151090]);   // blank -> null
+});
+
+test('parseInsightsMatrix strips the info glyph and maps a dash to null', () => {
+  const t = parseInsightsMatrix(MATRIX);
+  assert.deepEqual(t.rows.find((r) => r.label.startsWith('Kochi')).values, [21, 23, 20, 22]);
+  assert.deepEqual(t.rows.find((r) => r.label.startsWith('Onshore')).values, [12, 12, 13, null]);
+});
+
+test('parseInsightsMatrix labels periods and returns null on an empty matrix', () => {
+  const t = parseInsightsMatrix(MATRIX);
+  assert.deepEqual(t.periodsIso, ['2025-06', '2025-09', '2025-12', '2026-03']);
+  assert.equal(parseInsightsMatrix(null), null);
+  assert.equal(parseInsightsMatrix({ periods: [], rows: [] }), null);
+});

@@ -38,6 +38,79 @@ async function clickAny(page, selectors, timeout = 3500) {
  * A row-label check backs the anchor up: if the rows read like a standard P&L, it
  * is the wrong table however it was found.
  */
+/**
+ * Read the table as TEXT in the browser, not as markup.
+ *
+ * The markup route failed twice over: the label cell turned out to separate its
+ * name from its unit with a <br> (or bare text nodes), so cheerio's child walk saw
+ * nothing and produced labels like "Order BookRs Crore" with no unit, and every
+ * value came back null. innerText is the right tool - the browser has already
+ * resolved <br>, block boundaries and nested spans into lines, so there is no
+ * structure left to guess at.
+ *
+ * @returns {Promise<{periods:string[], rows:{lines:string[], cells:string[]}[]}|null>}
+ */
+async function insightsMatrix(page, tableIndexHint) {
+  return page.evaluate((hint) => {
+    const lines = (el) => String((el && (el.innerText || el.textContent)) || '')
+      .split('\n').map((s) => s.replace(/\s+/g, ' ').trim()).filter(Boolean);
+    const t = hint != null ? document.querySelectorAll('table')[hint] : null;
+    if (!t) return null;
+
+    const heads = Array.from(t.querySelectorAll('thead th, thead td')).map((th) =>
+      String((th.innerText || th.textContent) || '').replace(/\s+/g, ' ').trim());
+    const PERIOD = /^(?:[A-Z][a-z]{2}\s+\d{4}|TTM|Q[1-4]\s*FY\d{2})$/;
+    const first = heads.findIndex((h) => PERIOD.test(h));
+    if (first === -1) return null;
+    const periods = heads.slice(first).filter(Boolean);
+
+    const rows = [];
+    for (const tr of Array.from(t.querySelectorAll('tbody tr'))) {
+      const cells = Array.from(tr.querySelectorAll('td, th'));
+      if (cells.length < 2) continue;
+      rows.push({
+        lines: lines(cells[0]),
+        cells: cells.slice(1).map((c) =>
+          String((c.innerText || c.textContent) || '').replace(/\s+/g, ' ').trim())
+      });
+    }
+    return rows.length ? { periods, rows } : null;
+  }, tableIndexHint);
+}
+
+/** Index of the Insights table among document.querySelectorAll('table'), or null. */
+async function insightsTableIndex(page) {
+  return page.evaluate(() => {
+    const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
+    const PERIOD = /^(?:[A-Z][a-z]{2}\s+\d{4}|TTM|Q[1-4]\s*FY\d{2})$/;
+    const PNL = /^(sales|expenses|operating profit|opm ?%|other income|interest|depreciation|profit before tax|tax ?%|net profit|eps)\b/i;
+    const all = Array.from(document.querySelectorAll('table'));
+
+    const hasPeriods = (t) => Array.from(t.querySelectorAll('thead th, thead td'))
+      .map((th) => clean(th.textContent)).filter((h) => PERIOD.test(h)).length >= 2;
+    const looksLikePnl = (t) => {
+      const labels = Array.from(t.querySelectorAll('tbody tr'))
+        .map((tr) => clean((tr.querySelector('td, th') || {}).textContent)).filter(Boolean);
+      if (!labels.length) return true;
+      return labels.filter((l) => PNL.test(l)).length >= Math.max(2, Math.ceil(labels.length * 0.5));
+    };
+
+    const markers = Array.from(document.querySelectorAll('body *')).filter((el) => {
+      if (el.children.length > 2) return false;
+      const t = clean(el.textContent);
+      return /Extracted by Screener/i.test(t) || /^Insights\b/i.test(t) || /^In ?beta$/i.test(t);
+    });
+    for (const m of markers) {
+      for (let el = m; el && el !== document.body; el = el.parentElement) {
+        const t = el.querySelector('table');
+        if (t && hasPeriods(t) && !looksLikePnl(t)) return all.indexOf(t);
+      }
+    }
+    for (const t of all) if (hasPeriods(t) && !looksLikePnl(t)) return all.indexOf(t);
+    return null;
+  });
+}
+
 async function insightsTableHtml(page) {
   return page.evaluate(() => {
     const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
@@ -106,27 +179,32 @@ export async function insightsFromPage(page) {
       await page.waitForTimeout(1800);
     }
 
-    let html = await insightsTableHtml(page);
-    if (!html) {
+    let idx = await insightsTableIndex(page);
+    if (idx == null) {
       if (await clickAny(page, ['button:has-text("Yearly")', 'label:has-text("Yearly")', 'text=/^\\s*Yearly\\s*$/'])) {
         view = 'yearly';
         await page.waitForTimeout(1500);
-        html = await insightsTableHtml(page);
+        idx = await insightsTableIndex(page);
       }
     }
 
-    if (!html) {
+    // The text matrix is what gets parsed; the HTML is kept only as a sample so a
+    // future shape change can be diagnosed from the committed output.
+    const matrix = idx == null ? null : await insightsMatrix(page, idx);
+    const html = idx == null ? null : await insightsTableHtml(page);
+
+    if (!matrix) {
       const premium = await page.locator('text=/Upgrade to premium|Get Premium|Subscribe/i').count().catch(() => 0);
       return {
-        html: null, view, url: page.url(),
+        html: null, matrix: null, view, url: page.url(),
         note: premium
           ? 'Insights appears to be premium-gated on this account'
           : 'no Insights table on this page (the P&L table is deliberately not accepted)'
       };
     }
-    return { html, view, url: page.url(), note: null };
+    return { html, matrix, view, url: page.url(), note: null };
   } catch (e) {
-    return { html: null, view: 'unknown', url: page.url(), note: (e && e.message ? e.message : String(e)).slice(0, 160) };
+    return { html: null, matrix: null, view: 'unknown', url: page.url(), note: (e && e.message ? e.message : String(e)).slice(0, 160) };
   }
 }
 

@@ -35,7 +35,7 @@ import { parseAllFinancials } from './parsers/screener-financials.mjs';
 import { parseConcalls, selectDocuments, looksLikeDoc } from './parsers/screener-docs.mjs';
 import { parseProsCons } from './parsers/screener-summary.mjs';
 import { insightsFromPage } from './sources/screener-insights.mjs';
-import { parseInsightsTable } from './parsers/screener-insights.mjs';
+import { parseInsightsTable, parseInsightsMatrix } from './parsers/screener-insights.mjs';
 import { extractPdfText, isPdf, classifyHtml } from './lib/pdf.mjs';
 import { scrapePage } from './lib/scrape.mjs';
 import { toText } from './parsers/quote.mjs';
@@ -287,8 +287,13 @@ async function main() {
         } finally {
           await coPage.close().catch(() => {});
         }
+        /* The browser's text matrix is preferred - it has already resolved the
+           <br> between a row's name and its unit, which the markup route could
+           not see (it produced "Order BookRs Crore" and all-null values). The
+           HTML parse stays as a fallback. */
         let insTable = null;
-        if (ins.html) {
+        try { insTable = parseInsightsMatrix(ins.matrix); } catch { insTable = null; }
+        if (!insTable && ins.html) {
           try { insTable = parseInsightsTable(ins.html); } catch { insTable = null; }
         }
         insights.companies[co.id] = insTable
