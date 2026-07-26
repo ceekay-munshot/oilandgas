@@ -127,25 +127,80 @@ export function parseInsightsTable(html) {
 }
 
 /**
+ * Quarterly or yearly view, read off the period headers rather than off whatever
+ * we clicked.
+ *
+ * Both views label columns the same way ("Mar 2025"), so the click cannot be
+ * trusted and the first run proved it: every company recorded view "quarterly"
+ * while the columns were Mar 2016..Mar 2026 - annual data, because the Quarterly
+ * toggle that got clicked belonged to a different card. The tell is the months: a
+ * quarterly run cycles through them, a yearly one repeats the same year-end month.
+ *
+ * @returns {'quarterly'|'yearly'|'unknown'}
+ */
+export function viewFromPeriods(periods) {
+  const months = (periods || [])
+    .map(periodToIso)
+    .filter(Boolean)
+    .map((iso) => iso.slice(5, 7));
+  if (months.length < 2) return 'unknown';
+  return new Set(months).size > 1 ? 'quarterly' : 'yearly';
+}
+
+/**
  * Flatten the table into the compact text the KPI extractor puts in front of the
  * model - one line per row, each period labelled with the fiscal quarter it
  * closes so a value can be filed without the model working out India's
  * April-March year for itself.
+ *
+ * A YEARLY table is labelled as annual instead. "Mar 2026" closes Q4 FY26 either
+ * way, so annotating an annual column with a quarter would invite the model to
+ * file a full-year order inflow as a single quarter - which is exactly the error
+ * that makes a trend line look like a step change.
  *
  * @param {object} table  output of parseInsightsTable
  * @param {(y:number,m:number)=>string|null} quarterLabel from lib/fiscal.mjs
  */
 export function insightsToText(table, quarterLabel) {
   if (!table || !table.rows.length) return '';
+  const cadence = viewFromPeriods(table.periods);
   const heads = table.periods.map((p, i) => {
     const iso = table.periodsIso[i];
-    const fq = iso && quarterLabel
-      ? quarterLabel(Number(iso.slice(0, 4)), Number(iso.slice(5, 7)))
-      : null;
+    if (!iso) return p;
+    const year = Number(iso.slice(0, 4));
+    const month = Number(iso.slice(5, 7));
+    if (cadence === 'yearly') {
+      // Mar year-end -> FY label; any other year-end is named by its month only.
+      return month === 3 ? `${p} (FY${String(year).slice(2)}, FULL YEAR)` : `${p} (FULL YEAR)`;
+    }
+    // An undetermined cadence gets NO fiscal annotation. Falling through to the
+    // quarter label would put the riskiest reading on the one case the classifier
+    // refused to decide - e.g. headers "Mar 2026 | TTM", where a twelve-month
+    // total would be annotated "(Q4 FY26)" and filed as three months.
+    if (cadence !== 'quarterly') return p;
+    const fq = quarterLabel ? quarterLabel(year, month) : null;
     return fq ? `${p} (${fq})` : p;
   });
 
-  const lines = [`periods: ${heads.join(' | ')}`];
+  const lines = [];
+  if (cadence === 'yearly') {
+    // Annual columns are still worth having, and the distinction is what makes
+    // them safe: a stock measure is a position AS OF the column date, so Mar 2026
+    // genuinely gives the Q4 FY26 order book. Only a flow measure is a total that
+    // must not be filed as one quarter.
+    lines.push('NOTE: these columns are FULL YEARS, not quarters. A STOCK measure ' +
+               '(order book, capacity, connections, reserves, utilisation %) is the ' +
+               'position AS OF the column date, so the Mar 2026 column gives the ' +
+               'Q4 FY26 value and you may use it. A FLOW measure (order inflow, ' +
+               'revenue, volume, capex) is a twelve-month total - do not file it ' +
+               'into a quarter slot.');
+  } else if (cadence !== 'quarterly') {
+    lines.push('NOTE: the reporting cadence of these columns could not be ' +
+               'determined - they may be quarters or full years. Use a value only ' +
+               'if another excerpt makes its period explicit; otherwise treat this ' +
+               'table as background context.');
+  }
+  lines.push(`periods: ${heads.join(' | ')}`);
   for (const r of table.rows) {
     lines.push(
       `${r.label}${r.unit ? ` [${r.unit}]` : ''}: ` +

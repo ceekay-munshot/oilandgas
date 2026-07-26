@@ -9,11 +9,17 @@
  * model - once per company - for the four-quarter value of each KPI with a unit
  * and a source tag. Trajectory flags are computed in code, never by the model.
  *
- *   node pipeline/extract-kpis.mjs [--scope smoke|all] [--only a,b] [--provider openai|mistral] [--dry-run]
+ *   node pipeline/extract-kpis.mjs [--scope smoke|all] [--only a,b] [--provider openai|mistral] [--dry-run] [--refresh]
  *
  * Honesty: a KPI/quarter the excerpts do not state comes back null with a note.
  * A company whose model call fails is written all-null with the error noted, and
  * the run continues - never a guessed number, never a red build for one company.
+ *
+ * ACCUMULATES. Extracted values are kept in data/kpi-store.json across runs, so a
+ * run only asks the model about cells it does not already have and a null can
+ * never overwrite a number. In the steady state - no new concall - a run makes
+ * zero calls and spends nothing. --refresh re-asks everything (use after a prompt
+ * or parser fix that should change existing answers).
  */
 
 import { readFile, writeFile } from 'node:fs/promises';
@@ -25,8 +31,14 @@ import { callLLM, availableProviders, resolvedModel } from './lib/llm.mjs';
 import { reportedQuarter, quarterIndex, quarterLabel } from './lib/fiscal.mjs';
 import { insightsToText } from './parsers/screener-insights.mjs';
 import {
-  preFilter, financialsToText, buildMessages, normalizeResult, coverageOf, KPI_SCHEMA
+  preFilter, financialsToText, buildMessages, normalizeResult, coverageOf, KPI_SCHEMA,
+  PROMPT_VERSION
 } from './parsers/kpi-prompt.mjs';
+import { flagFor } from './lib/kpi-flag.mjs';
+import {
+  freshStore, fingerprintFor, docsSignature, planCompany, mergeIntoStore,
+  renderWindow, storeTotals, seedFromWindow, cellsOf
+} from './lib/kpi-store.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SMOKE = ['deep-industries', 'petronet-lng', 'igl', 'engineers-india'];
@@ -45,7 +57,10 @@ function parseArgs(argv) {
     scope: get('--scope') || 'all',
     only: (get('--only') || '').split(',').map((s) => s.trim()).filter(Boolean),
     provider: get('--provider'),
-    dryRun: args.includes('--dry-run')
+    dryRun: args.includes('--dry-run'),
+    // Re-ask cells the store already answered. Only for after a fix that should
+    // change existing answers - it spends the key on work already paid for.
+    refresh: args.includes('--refresh')
   };
 }
 
@@ -233,13 +248,37 @@ async function main() {
     companies: (await readJson(resolve(ROOT, 'data/kpis.json'), {})).companies || {}
   };
 
+  // The durable store: every value ever extracted, for every quarter ever seen.
+  const storePath = resolve(ROOT, 'data/kpi-store.json');
+  const store = { ...freshStore(), companies: (await readJson(storePath, {})).companies || {} };
+
+  /* Adopt what earlier runs already extracted. Those numbers were paid for before
+     the store existed; without this, the first run under the new scheme would buy
+     every one of them a second time. Only companies with nothing in the store are
+     seeded, so this quietly stops mattering after the first run. */
+  let seeded = 0;
+  for (const [id, prev] of Object.entries(out.companies)) {
+    if (Object.keys(cellsOf(store, id)).length) continue;
+    seeded += seedFromWindow({
+      store, companyId: id, kpiObjects: prev.kpis, quarters: prev.quarters,
+      at: new Date().toISOString()
+    });
+  }
+  if (seeded) console.log(`seeded ${seeded} previously extracted cells from data/kpis.json\n`);
+
   let usedProvider = null;
+  let calls = 0, skippedCalls = 0, totalGained = 0, totalKept = 0;
   for (const id of ids) {
     const kpis = spec.companies[id];
     const name = nameById[id] || id;
     const fin = financials.companies && financials.companies[id];
     const man = manifest.companies && manifest.companies[id];
     const slug = (fin && fin.slug) || (man && man.slug) || null;
+    // The previous entry, before this run overwrites it: a company that needs no
+    // call keeps the provenance of the run that actually produced its numbers,
+    // rather than reporting provider null because nothing was asked today.
+    const prior = out.companies[id] || null;
+    let called = false;
 
     process.stdout.write(`  ${id.padEnd(20)} `);
     const perQuarter = await gatherByQuarter(man);
@@ -249,18 +288,40 @@ async function main() {
       insightsDoc.companies && insightsDoc.companies[id]);
     const ctxChars = blocks.reduce((n, b) => n + b.text.length, 0);
 
+    /* What is actually worth asking about. The fingerprint covers the documents
+       in this window, this company's KPI spec and the prompt version, so an
+       unchanged run asks nothing and a new concall (or a prompt fix) re-opens
+       exactly the cells whose answer could now differ. */
+    const fingerprint = fingerprintFor({
+      promptVersion: PROMPT_VERSION, docs: docsSignature(blocks), kpiSpec: kpis
+    });
+    const plan = opts.refresh
+      ? { ask: kpis, skip: [], settledCells: 0, openCells: kpis.length * quarters.length }
+      : planCompany({ store, companyId: id, kpis, quarters, fingerprint });
+
     if (opts.dryRun) {
-      console.log(`window ${quarters.join(' ')} · ${sourceCount} sources · ${ctxChars} chars · KPIs ${kpis.length} (dry-run)`);
+      console.log(`window ${quarters.join(' ')} · ${sourceCount} sources · ${ctxChars} chars · ` +
+        `ask ${plan.ask.length}/${kpis.length} KPIs (${plan.openCells} open cells) (dry-run)`);
       continue;
     }
 
-    let kpiObjects, note = null;
-    if (!blocks.length) {
-      // No cached text at all - honest all-null, no wasted call.
-      kpiObjects = normalizeResult({ kpis: [] }, kpis, quarters, { flatBandPct });
+    let note = null, merged = { gained: 0, kept: 0 };
+    if (!plan.ask.length) {
+      // Everything already answered against these inputs: no call, no spend.
+      skippedCalls++;
+      console.log(`complete · ${quarters.join(' ')} · ${plan.settledCells} cells held, no call made`);
+    } else if (!blocks.length) {
+      // No cached text at all - honest all-null, still no wasted call.
       note = 'no cached documents to read';
+      merged = mergeIntoStore({
+        store, companyId: id, quarters, fingerprint, model: null, at: new Date().toISOString(),
+        kpiObjects: normalizeResult({ kpis: [] }, plan.ask, quarters, { flatBandPct })
+      });
+      console.log(`0 gained · ${note}`);
     } else {
-      const { system, user } = buildMessages({ companyName: name, kpis, quarters, blocks });
+      // Ask about the incomplete KPIs only. A company with one open KPI sends one
+      // KPI, which is cheaper AND a narrower question than asking for all of them.
+      const { system, user } = buildMessages({ companyName: name, kpis: plan.ask, quarters, blocks });
       let raw = null, err = null;
       for (const provider of providers) {
         try {
@@ -269,27 +330,44 @@ async function main() {
           break;
         } catch (e) { err = e; }
       }
+      calls++; called = true;
+      const at = new Date().toISOString();
       if (raw) {
-        kpiObjects = normalizeResult(raw, kpis, quarters, { flatBandPct });
+        merged = mergeIntoStore({
+          store, companyId: id, quarters, fingerprint,
+          model: usedProvider ? resolvedModel(usedProvider) : null, at,
+          kpiObjects: normalizeResult(raw, plan.ask, quarters, { flatBandPct })
+        });
       } else {
-        kpiObjects = normalizeResult({ kpis: [] }, kpis, quarters, { flatBandPct });
+        // A failed call records nothing: the cells stay open for the next run
+        // rather than being written off as unavailable.
         note = `extraction failed: ${(err && err.message ? err.message : String(err)).slice(0, 140)}`;
       }
+      console.log(`asked ${plan.ask.length}/${kpis.length} KPIs · +${merged.gained} new` +
+        (plan.settledCells ? ` · ${plan.settledCells} held` : '') +
+        (note ? ' · ' + note : ''));
     }
+    totalGained += merged.gained; totalKept += plan.settledCells;
 
+    // The window view the dashboard reads, rendered from the store - so it shows
+    // everything we have ever learned, not only what this run happened to return.
+    const kpiObjects = renderWindow({ store, companyId: id, kpis, quarters, flagFor, flatBandPct });
     const cov = coverageOf(kpiObjects);
     out.companies[id] = {
       name, slug, quarters, asOf: asOfFrom(kpiObjects, quarters),
-      provider: usedProvider, model: usedProvider ? resolvedModel(usedProvider) : null, ctxChars,
+      provider: called && usedProvider ? usedProvider : (prior && prior.provider) || null,
+      model: called && usedProvider ? resolvedModel(usedProvider) : (prior && prior.model) || null,
+      ctxChars,
       ...(note ? { note } : {}),
       kpis: kpiObjects
     };
+    store.generatedAt = new Date().toISOString();
+    await writeJson(storePath, store);
     await writeJson(resolve(ROOT, 'data/kpis.json'), withCoverage(out));
 
-    console.log(`${cov.real}/${cov.cells} cells · ${quarters.join(' ')}${note ? ' · ' + note : ''}`);
-    // A couple of example values for the log.
+    console.log(`      -> ${cov.real}/${cov.cells} cells now filled`);
     for (const k of kpiObjects) {
-      const shown = k.values.map((v, i) => (v == null ? '·' : v)).join(', ');
+      const shown = k.values.map((v) => (v == null ? '·' : v)).join(', ');
       console.log(`      ${k.label.padEnd(28)} [${shown}] ${k.unit || ''} ${k.flag ? '· ' + k.flag : ''}`);
     }
   }
@@ -300,6 +378,20 @@ async function main() {
     `\ndone: ${doc.coverage.realCells}/${doc.coverage.kpiCells} cells filled across ` +
     `${doc.coverage.companies} companies (${doc.coverage.nullCells} null).`
   );
+  if (!opts.dryRun) {
+    const t = storeTotals(store);
+    console.log(
+      `store: ${t.real}/${t.cells} cells held across ${t.companies} companies and ` +
+      `every quarter seen so far -> data/kpi-store.json`
+    );
+    console.log(
+      `spend: ${calls} model call${calls === 1 ? '' : 's'} made, ${skippedCalls} skipped ` +
+      `(already complete), +${totalGained} new cell${totalGained === 1 ? '' : 's'} this run, ` +
+      `${totalKept} carried over.`
+    );
+    if (!calls && !skippedCalls) console.log('       (nothing selected)');
+    else if (!calls) console.log('       nothing new to extract - this run cost nothing.');
+  }
   if (opts.scope !== 'all' && !opts.only.length) {
     console.log('smoke run only. Scale up with: node pipeline/extract-kpis.mjs --scope all');
   }

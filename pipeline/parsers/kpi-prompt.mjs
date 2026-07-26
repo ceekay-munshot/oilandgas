@@ -102,6 +102,20 @@ export function financialsToText(fin) {
 }
 
 /**
+ * Bump this whenever a change here could change the right answer for a cell the
+ * store already recorded as empty.
+ *
+ * The store will not re-ask a settled cell, which is the point - but "settled"
+ * has to mean "settled given this prompt". Without a version, an improved prompt
+ * would keep being served the old null as though it were established fact.
+ *
+ *   1  first extractor
+ *   2  quarter-aligned excerpt headings (lib/fiscal.mjs)
+ *   3  flow measures must be single-quarter, not year-to-date
+ */
+export const PROMPT_VERSION = 3;
+
+/**
  * Build the system + user messages for one company.
  * @returns {{system:string, user:string}}
  */
@@ -111,6 +125,7 @@ export function buildMessages({ companyName, kpis, quarters, blocks }) {
     'Extract ONLY numbers explicitly present in the provided excerpts. Never estimate, guess, annualise, or infer a number that is not stated.',
     'Each excerpt heading names the fiscal quarter that document reports on. A number stated in that document belongs in THAT quarter\'s slot - not the first slot, and not spread across the others. A document may also quote the year-ago or previous quarter for comparison; place such a figure in the quarter it actually belongs to if that quarter is in the list, otherwise ignore it.',
     'For each KPI and each quarter, return the value if the excerpts state it, otherwise null with a short note saying what was missing.',
+    'FLOW measures (order inflow, revenue, volume, capex) must be the figure FOR THAT QUARTER ALONE. Indian companies routinely quote these year-to-date ("for the nine months", "YTD", "for the year so far") or for the full year. If the excerpt gives only a cumulative or full-year figure and the single-quarter figure is not stated, return null and say so in the note - a rising YTD series read as four quarters invents a trend that is not there. STOCK measures (order book, capacity, connections, reserves, utilisation %) are point-in-time and need no such care.',
     'Tag every non-null value with sourceTag: "company-filing" (a reported number in a results table or PPT), "mgmt-claim" (a figure management stated on the call as guidance or commentary), "derived" (you computed it from other reported numbers - explain in notes), "inference" (implied, not stated), or "unknown".',
     'Values are plain numbers only - no units, no commas, no % sign. Put the unit in the unit field.',
     'Output STRICT JSON matching the schema and nothing else.'
