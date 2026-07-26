@@ -143,15 +143,18 @@ async function expandSchedules(page) {
  * cookies). Returns the raw bytes; interpreting them is lib/pdf.mjs's job.
  * @returns {Promise<{status:number, ok:boolean, contentType:string, buffer:Buffer}>}
  */
-export async function downloadDoc(context, url, { timeout = 60_000 } = {}) {
+export async function downloadDoc(context, url, { timeout = 60_000, headers = {} } = {}) {
   const resp = await context.request.get(url, {
     timeout,
     maxRedirects: 8,
     // Some hosts (BSE, company sites) serve an interstitial to requests that
     // arrive with no referer or an unhelpful Accept; look like the browser did.
+    // Callers can add headers (the AI Summary needs an XHR header to get the
+    // fragment instead of the app shell).
     headers: {
       referer: `${BASE}/`,
-      accept: 'application/pdf,application/octet-stream,*/*'
+      accept: 'application/pdf,application/octet-stream,*/*',
+      ...headers
     }
   });
   const buffer = Buffer.from(await resp.body());

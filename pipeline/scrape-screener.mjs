@@ -102,14 +102,19 @@ async function gatherDoc(context, slug, doc, { env = process.env } = {}) {
   let status, chars = 0, pages = null, errMsg = null, via = 'browser', sample = null;
   try {
     // Fallback transcripts get a short leash so a slow own-site host fails fast;
-    // primaries are worth waiting a little longer for.
+    // primaries are worth waiting a little longer for. The AI Summary is fetched
+    // the way its modal does - as an XHR - so Screener returns the summary
+    // fragment rather than the full app shell (whose chrome alone is ~900 chars).
     const timeout = doc.role === 'transcript' ? 25_000 : 40_000;
-    let dl = await downloadDoc(context, doc.url, { timeout });
+    const dlOpts = doc.role === 'summary'
+      ? { timeout, headers: { 'x-requested-with': 'XMLHttpRequest', accept: 'text/html, */*; q=0.01' } }
+      : { timeout };
+    let dl = await downloadDoc(context, doc.url, dlOpts);
     // Screener rate-limits its own summary endpoint; a 429 clears on a short
     // back-off, so retry rather than record a miss.
     for (let a = 0; !dl.ok && dl.status === 429 && a < 3; a++) {
       await sleep(2500 * (a + 1));
-      dl = await downloadDoc(context, doc.url, { timeout });
+      dl = await downloadDoc(context, doc.url, dlOpts);
     }
     if (!dl.ok) {
       status = `http_${dl.status}`;
@@ -121,9 +126,17 @@ async function gatherDoc(context, slug, doc, { env = process.env } = {}) {
       if (status === 'ok') await writeFile(txt, ex.text || '');
     } else if (htmlOk) {
       const text = toText(dl.buffer.toString('utf8'));
-      const v = classifyHtml(text);
-      status = v.status; chars = v.chars;               // ok | thin
-      if (status === 'ok') { await writeFile(txt, text); sample = text.slice(0, 160); }
+      sample = text.slice(0, 160);
+      // Guard: a plain GET of the summary URL returns the app shell, whose nav
+      // ("Create a stock screen ...") is ~900 chars of chrome, not the summary.
+      // Never cache that as content - if the XHR fetch still lands here, say so.
+      if (/Create a stock screen|Feed Screens Tools Account/i.test(text)) {
+        status = 'shell'; chars = text.length;
+      } else {
+        const v = classifyHtml(text);
+        status = v.status; chars = v.chars;             // ok | thin
+        if (status === 'ok') await writeFile(txt, text);
+      }
     } else {
       status = 'not_pdf';                                // expected a PDF, got a page
     }
