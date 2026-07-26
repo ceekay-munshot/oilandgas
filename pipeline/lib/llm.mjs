@@ -1,10 +1,8 @@
 /**
  * Provider-agnostic LLM call.
  *
- * STUB - wired but deliberately not called by anything yet. The commentary
- * scorer in prompt 6 is its first consumer. It is here now so that the provider
- * choice, the JSON contract and the error taxonomy are settled before anything
- * depends on them.
+ * Live: the KPI extractor (extract-kpis.mjs) makes one call per company through
+ * this. The commentary scorer will be its second consumer.
  *
  * Contract: temperature 0, JSON out, schema enforced where the provider can do
  * it (OpenAI strict `json_schema`) and validated locally where it cannot
@@ -19,17 +17,32 @@
 import { HttpError, LlmSchemaError, MissingCredentialError } from './errors.mjs';
 import { request } from './http.mjs';
 
+/**
+ * Models are deliberately NOT the cheap tier.
+ *
+ * This started on gpt-4o-mini, chosen when the wrapper was a stub with no
+ * consumer, and it stayed there once the job became careful numeric extraction:
+ * find one specific KPI across four quarters of noisy transcript text, put each
+ * number in the right quarter, and refuse to guess when it is not stated. The
+ * small models are materially worse at all three, and the whole run is one call
+ * per company - 27 calls - so the cheap tier saves cents and costs coverage.
+ *
+ * Overridable per provider by env (OPENAI_MODEL / MISTRAL_MODEL) so the model can
+ * be changed without a deploy.
+ */
 export const PROVIDERS = {
   openai: {
     envKey: 'OPENAI_API_KEY',
+    modelEnvKey: 'OPENAI_MODEL',
     endpoint: 'https://api.openai.com/v1/chat/completions',
-    defaultModel: 'gpt-4o-mini',
+    defaultModel: 'gpt-4o',
     supportsStrictSchema: true
   },
   mistral: {
     envKey: 'MISTRAL_API_KEY',
+    modelEnvKey: 'MISTRAL_MODEL',
     endpoint: 'https://api.mistral.ai/v1/chat/completions',
-    defaultModel: 'mistral-small-latest',
+    defaultModel: 'mistral-large-latest',
     supportsStrictSchema: false
   }
 };
@@ -62,8 +75,9 @@ export async function callLLM({
   const key = apiKey || process.env[spec.envKey];
   if (!key) throw new MissingCredentialError(spec.envKey);
 
+  const chosenModel = model || (spec.modelEnvKey && process.env[spec.modelEnvKey]) || spec.defaultModel;
   const body = {
-    model: model || spec.defaultModel,
+    model: chosenModel,
     temperature: 0,
     max_tokens: maxTokens,
     messages: [
@@ -129,7 +143,16 @@ export async function callLLM({
     }
   }
 
+  // Attach the model non-enumerably so it never lands in the JSON we write.
+  try { Object.defineProperty(parsed, '__model', { value: chosenModel, enumerable: false }); } catch { /* frozen */ }
   return parsed;
+}
+
+/** The model a provider will actually use, given env overrides. */
+export function resolvedModel(provider, env = process.env) {
+  const spec = PROVIDERS[provider];
+  if (!spec) return null;
+  return (spec.modelEnvKey && env[spec.modelEnvKey]) || spec.defaultModel;
 }
 
 /** Models sometimes wrap JSON in ```json fences even when told not to. */
