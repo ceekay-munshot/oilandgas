@@ -37,10 +37,11 @@ export class ParseError extends PipelineError {
 
 /** A required credential is absent, so the source is simply unavailable. */
 export class MissingCredentialError extends PipelineError {
-  constructor(names) {
+  constructor(names, humanReason) {
     const list = [].concat(names).join(' or ');
     super(`No credential set: ${list}`, { retryable: false, meta: { names: [].concat(names) } });
     this.names = [].concat(names);
+    this.humanReason = humanReason || `needs ${list}`;
   }
 }
 
@@ -48,5 +49,17 @@ export class MissingCredentialError extends PipelineError {
 export class LlmSchemaError extends PipelineError {
   constructor(message, { provider, model, raw, cause } = {}) {
     super(message, { cause, retryable: false, meta: { provider, model, raw } });
+  }
+}
+
+/**
+ * There is no reachable free source for this series, and no amount of retrying
+ * or key-adding will change that today. `humanReason` is written for the tile,
+ * not for a log: it is shown to whoever is looking at the dashboard.
+ */
+export class SourceUnavailableError extends PipelineError {
+  constructor(humanReason, { detail, cause } = {}) {
+    super(detail || humanReason, { cause, retryable: false, meta: { humanReason } });
+    this.humanReason = humanReason;
   }
 }

@@ -23,6 +23,17 @@ jobs:
   macro:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
+    # Job-level so every step sees them. GitHub does not expose secrets to the
+    # process automatically - without this block the script reads undefined.
+    env:
+      FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+      SCRAPEDO_API_KEY:  ${{ secrets.SCRAPEDO_API_KEY }}
+      SCREENER_EMAIL:    ${{ secrets.SCREENER_EMAIL }}
+      SCREENER_PASSWORD: ${{ secrets.SCREENER_PASSWORD }}
+      OPENAI_API_KEY:    ${{ secrets.OPENAI_API_KEY }}
+      MISTRAL_API_KEY:   ${{ secrets.MISTRAL_API_KEY }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -39,9 +50,6 @@ jobs:
         run: npm test
 
       - name: Fetch macro series
-        env:
-          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
-          SCRAPEDO_API_KEY: ${{ secrets.SCRAPEDO_API_KEY }}
         run: node pipeline/fetch-macro.mjs
 
       - name: Commit if anything changed

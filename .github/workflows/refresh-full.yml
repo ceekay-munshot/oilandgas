@@ -35,6 +35,16 @@ jobs:
   pipeline:
     runs-on: ubuntu-latest
     timeout-minutes: 60
+
+    # Job-level so every step sees them, including the ones added in prompts 4-7.
+    env:
+      FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+      SCRAPEDO_API_KEY:  ${{ secrets.SCRAPEDO_API_KEY }}
+      SCREENER_EMAIL:    ${{ secrets.SCREENER_EMAIL }}
+      SCREENER_PASSWORD: ${{ secrets.SCREENER_PASSWORD }}
+      OPENAI_API_KEY:    ${{ secrets.OPENAI_API_KEY }}
+      MISTRAL_API_KEY:   ${{ secrets.MISTRAL_API_KEY }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -57,17 +67,11 @@ jobs:
       # --- 1. macro -------------------------------------------------------
       - name: 'Step 1/5 - macro'
         if: ${{ !inputs.skip_macro }}
-        env:
-          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
-          SCRAPEDO_API_KEY: ${{ secrets.SCRAPEDO_API_KEY }}
         run: node pipeline/fetch-macro.mjs
 
       # --- 2. screener ----------------------------------------------------
       # added in prompt 4 - Playwright login, quarterly tables to data/raw/
       # - name: 'Step 2/5 - screener'
-      #   env:
-      #     SCREENER_EMAIL: ${{ secrets.SCREENER_EMAIL }}
-      #     SCREENER_PASSWORD: ${{ secrets.SCREENER_PASSWORD }}
       #   working-directory: pipeline
       #   run: |
       #     npx playwright install --with-deps chromium
@@ -81,10 +85,6 @@ jobs:
       # --- 4. commentary --------------------------------------------------
       # added in prompt 6 - earnings-call tone via pipeline/lib/llm.mjs
       # - name: 'Step 4/5 - commentary'
-      #   env:
-      #     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      #     MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
-      #     FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
       #   run: node pipeline/fetch-commentary.mjs
 
       # --- 5. rescore -----------------------------------------------------

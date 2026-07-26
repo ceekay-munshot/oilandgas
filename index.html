@@ -478,6 +478,20 @@ h1,h2,h3,p{margin:0;}
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
 
+/* one observation and no history: say so where the chart would be */
+.mspot{
+  flex:1 1 auto; min-height:0; display:grid; place-items:center; text-align:center;
+  padding:10px 14px; border-radius:var(--r-tile); background:var(--surface-2);
+  border:1px dashed var(--axis);
+  font-size:11px; font-weight:550; color:var(--ink-3); line-height:1.4;
+}
+/* a series standing in for the one the tile is named after */
+.mstandin{
+  flex:0 0 auto; margin-top:2px;
+  font-size:10px; font-weight:600; color:var(--seed); letter-spacing:-.005em;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+
 /* ---- macro vs scores strip ---- */
 .mscore{flex:0 0 auto;}
 .mscore__body{display:flex; align-items:center; gap:14px; padding:10px 14px; flex-wrap:wrap;}
@@ -1338,6 +1352,9 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
   /* which way it has moved: latest vs `back` points earlier, with a flat band
      so small wobbles do not read as a trend */
   function directionFlag(values, back, bandPct) {
+    /* A spot quote with no history cannot have a 3-month direction. Say nothing
+       rather than reading past the start of the array. */
+    if (!Array.isArray(values) || values.length < back + 1) return null;
     var flags = {};
     DATA.macro.directionFlags.forEach(function (f) { flags[f.id] = f; });
     var latest = values[values.length - 1];
@@ -1356,6 +1373,7 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
 
   /* where the latest point ranks inside its own 12 points */
   function percentileOf(values) {
+    if (!Array.isArray(values) || values.length < 2) return null;   /* nothing to rank against */
     var latest = values[values.length - 1];
     var below = values.filter(function (v) { return v < latest; }).length;
     return Math.round(below / (values.length - 1) * 100);
@@ -1468,6 +1486,7 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
 
       var f = row.flag, pl = primaryLine(t), shown = liveLines(t);
       var multi = shown.length > 1;
+      var spot = pl.series.length < 2;   /* one observation: value only, no trend */
 
       /* one big value, or one per line when the tile shows two */
       var valueHTML;
@@ -1513,22 +1532,39 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
             /* the flag is computed from the primary line only, so on a two-line
                tile it has to say which line it is talking about - otherwise it
                reads as describing both, and they can move apart */
-            '<span class="mflag" style="--c:' + f.meta.color + '" title="' +
-              esc((multi ? pl.label + ', c' : 'C') + 'ompared with ' +
-                  monthLabel(pl.series[pl.series.length - 1 - m.flagLookbackMonths].date) +
-                  ': ' + (f.pct === null
-                            ? (f.diff >= 0 ? '+' : '') + fmt(f.diff, t.decimals) + ' ' + t.unit
-                            : (f.pct >= 0 ? '+' : '') + f.pct.toFixed(1) + '%')) + '">' +
-              (multi ? '<b>' + esc(lineName(pl)) + '</b>' : '') +
-              '<i>' + f.meta.glyph + '</i>' + esc(f.meta.label) + '</span>' +
+            (f
+              ? '<span class="mflag" style="--c:' + f.meta.color + '" title="' +
+                  esc((multi ? pl.label + ', c' : 'C') + 'ompared with ' +
+                      monthLabel(pl.series[pl.series.length - 1 - m.flagLookbackMonths].date) +
+                      ': ' + (f.pct === null
+                                ? (f.diff >= 0 ? '+' : '') + fmt(f.diff, t.decimals) + ' ' + t.unit
+                                : (f.pct >= 0 ? '+' : '') + f.pct.toFixed(1) + '%')) + '">' +
+                  (multi ? '<b>' + esc(lineName(pl)) + '</b>' : '') +
+                  '<i>' + f.meta.glyph + '</i>' + esc(f.meta.label) + '</span>'
+              : '<span class="mflag" style="--c:#7C8496" title="' +
+                  esc(pl.notes || 'A single observation, so there is no trend to report.') +
+                  '">today only</span>') +
           '</div>' +
-          '<div class="chart-wrap"><div class="chart" id="ch-macro-' + t.id + '"></div></div>' +
+          (spot
+            ? '<div class="mspot">' + esc(pl.notes || 'Spot quote - no history published.') + '</div>'
+            : '<div class="chart-wrap"><div class="chart" id="ch-macro-' + t.id + '"></div></div>') +
+          (t.standIn ? '<div class="mstandin" title="' + esc(t.standIn) + '">Stand-in &middot; not the named series</div>' : '') +
+          /* a tile can be live on one line and still be missing another */
+          (function () {
+            var gone = (t.lines || []).filter(function (l) { return l.status === 'awaiting'; });
+            if (!gone.length) return '';
+            return '<div class="mstandin" style="color:var(--ink-4)" title="' +
+              esc(gone.map(function (l) { return lineName(l) + ': ' + (l.awaitingReason || 'no source'); }).join(' · ')) +
+              '">' + esc(gone.map(lineName).join(', ')) + ' still awaiting</div>';
+          })() +
           '<div class="mfoot">' +
-            '<span class="mpct" style="--c:' + pl.color + '" title="' +
-              esc('Today is higher than ' + row.pct + '% of the last 12 months.') + '">' +
-              '<span class="mpct__track"><span class="mpct__fill" style="width:' + row.pct + '%"></span></span>' +
-              '<span class="mpct__lab">' + ordinal(row.pct) + ' %ile</span>' +
-            '</span>' +
+            (row.pct === null
+              ? '<span class="mpct__lab" style="color:var(--ink-4)">no 12-month range yet</span>'
+              : '<span class="mpct" style="--c:' + pl.color + '" title="' +
+                  esc('Today is higher than ' + row.pct + '% of the last 12 months.') + '">' +
+                  '<span class="mpct__track"><span class="mpct__fill" style="width:' + row.pct + '%"></span></span>' +
+                  '<span class="mpct__lab">' + ordinal(row.pct) + ' %ile</span>' +
+                '</span>') +
             '<span class="masof">' + esc(asOfLabel(pl)) + '</span>' +
           '</div>' +
         '</div>' +
@@ -1536,7 +1572,9 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
     }).join('');
 
     MACRO_TILES.forEach(function (row) {
-      if (row.live) mount('ch-macro-' + row.tile.id, sparkOption(row.tile));
+      if (row.live && primaryLine(row.tile).series.length >= 2) {
+        mount('ch-macro-' + row.tile.id, sparkOption(row.tile));
+      }
     });
     renderMacroScore();
   }
@@ -1549,10 +1587,10 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
   function renderMacroScore() {
     /* Awaiting tiles are not evidence either way - they are excluded from the
        count entirely, and the sentence says how many readings it actually had. */
-    var scored = MACRO_TILES.filter(function (row) { return row.live; });
+    var scored = MACRO_TILES.filter(function (row) { return row.live && row.flag; });
     var helps = [], hurts = [], neutral = [];
     scored.forEach(function (row) {
-      if (row.flag.id === 'flat') { neutral.push(row); return; }
+      if (!row.flag || row.flag.id === 'flat') { neutral.push(row); return; }
       var dir = row.flag.id === 'rising' ? 'up' : 'down';
       (dir === row.tile.supports ? helps : hurts).push(row);
     });
@@ -1598,7 +1636,7 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
     }
 
     var tally = scored.map(function (row) {
-      var state = row.flag.id === 'flat' ? 'neutral'
+      var state = !row.flag || row.flag.id === 'flat' ? 'neutral'
                 : (helps.indexOf(row) !== -1 ? 'helps' : 'hurts');
       var col = state === 'helps' ? '#0F7A3A' : (state === 'hurts' ? '#E9A526' : '#7C8496');
       var word = state === 'helps' ? 'helps the cycle'
