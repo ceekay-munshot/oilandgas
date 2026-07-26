@@ -1,0 +1,100 @@
+name: Refresh company data
+
+# Step 2 of the client pipeline. Logs into Screener, scrapes the financial
+# statements and downloads the last four concall transcripts + latest investor
+# PPT for each company, then commits data/financials.json, data/docs-manifest.json
+# and the resolved slugs in data/companies.json.
+#
+# The extracted document text is cached under pipeline/cache/ (gitignored) - too
+# large to commit, and prompt 7's AI extractor reads it from the same run.
+#
+# Run the smoke scope (4 companies) first from the Actions tab to confirm login
+# and parsing before scaling to all 27.
+
+on:
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: 'How many companies'
+        type: choice
+        options: [smoke, all]
+        default: smoke
+  schedule:
+    - cron: '30 5 * * 1'      # 05:30 UTC Mondays, before refresh-full at 06:40
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-company
+  cancel-in-progress: false
+
+jobs:
+  company:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    # Job-level so every step sees them.
+    env:
+      SCREENER_EMAIL:    ${{ secrets.SCREENER_EMAIL }}
+      SCREENER_PASSWORD: ${{ secrets.SCREENER_PASSWORD }}
+      FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+      SCRAPEDO_API_KEY:  ${{ secrets.SCRAPEDO_API_KEY }}
+      OPENAI_API_KEY:    ${{ secrets.OPENAI_API_KEY }}
+      MISTRAL_API_KEY:   ${{ secrets.MISTRAL_API_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        working-directory: pipeline
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'   # chromium is installed explicitly below
+        run: npm install --no-audit --no-fund
+
+      - name: Verify parsers
+        working-directory: pipeline
+        run: npm test
+
+      - name: Install Chromium
+        working-directory: pipeline
+        run: npx playwright install --with-deps chromium
+
+      # A manual run honours the chosen scope; the weekly schedule does all 27.
+      - name: Scrape Screener
+        run: node pipeline/scrape-screener.mjs --scope ${{ github.event.inputs.scope || 'all' }}
+
+      - name: Commit if anything changed
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # data/companies.json carries the resolved slugs; the other two are the
+          # gathered material. The document cache is gitignored and never staged.
+          if git diff --quiet -- data/financials.json data/docs-manifest.json data/companies.json; then
+            echo "No company-data change - nothing to commit."
+            exit 0
+          fi
+
+          git add data/financials.json data/docs-manifest.json data/companies.json
+          # No [skip ci]: the deploy has to run so the dashboard sees new data.
+          git commit -m "chore(data): refresh company financials & docs manifest"
+
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected, rebasing and retrying ($attempt/5)..."
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            sleep $(( attempt * 3 ))
+          done
+
+          echo "Could not push after 5 attempts."
+          exit 1

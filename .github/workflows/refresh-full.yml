@@ -70,12 +70,15 @@ jobs:
         run: node pipeline/fetch-macro.mjs
 
       # --- 2. screener ----------------------------------------------------
-      # added in prompt 4 - Playwright login, quarterly tables to data/raw/
-      # - name: 'Step 2/5 - screener'
-      #   working-directory: pipeline
-      #   run: |
-      #     npx playwright install --with-deps chromium
-      #     node fetch-screener.mjs
+      # Logs into Screener and gathers financials + concall transcripts/PPTs for
+      # all 27 companies. The document cache it writes under pipeline/cache/ is
+      # what step 3's extractor reads, so the two run in the same job.
+      - name: 'Step 2/5 - screener (install Chromium)'
+        working-directory: pipeline
+        run: npx playwright install --with-deps chromium
+
+      - name: 'Step 2/5 - screener (scrape)'
+        run: node pipeline/scrape-screener.mjs --scope all
 
       # --- 3. kpis --------------------------------------------------------
       # added in prompt 5 - per-company quarterly KPIs to data/kpis.json

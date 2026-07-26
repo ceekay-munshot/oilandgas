@@ -1,0 +1,296 @@
+#!/usr/bin/env node
+/**
+ * Client pipeline, step 2: gather the raw company material from Screener.
+ *
+ * This prompt GATHERS; it does not compute KPIs. For each company it logs in,
+ * resolves the Screener slug (and saves it back so future runs go direct),
+ * scrapes the financial statements as context, and downloads the last four
+ * concall transcripts plus the latest investor PPT, caching the extracted text.
+ * No KPI value is invented here - that is prompt 7's extractor, reading this
+ * cache in the same workflow run.
+ *
+ *   node pipeline/scrape-screener.mjs [--scope smoke|all] [--only id1,id2] [--headful]
+ *
+ * Writes data/financials.json + data/docs-manifest.json (and slugs back into
+ * data/companies.json). Document text is cached under pipeline/cache/docs/ which
+ * is gitignored - too large to commit, and prompt 7 reads it from the same run.
+ *
+ * Resilient by design: per-company failures are logged and skipped, already
+ * cached documents are not re-downloaded, and outputs are written after every
+ * company so a crash resumes rather than restarts.
+ */
+
+import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import { loadEnv } from './lib/env.mjs';
+import { openScreener, resolveSlug, getCompanyPage, downloadDoc, maskEmail } from './sources/screener-session.mjs';
+import { parseAllFinancials } from './parsers/screener-financials.mjs';
+import { parseConcalls, selectDocuments } from './parsers/screener-docs.mjs';
+import { extractPdfText } from './lib/pdf.mjs';
+import { MissingCredentialError } from './lib/errors.mjs';
+
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const CACHE_DIR = resolve(ROOT, 'pipeline/cache/docs');
+const SMOKE = ['deep-industries', 'ongc', 'petronet-lng', 'engineers-india'];
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+function parseArgs(argv) {
+  const args = argv.slice(2);
+  const get = (flag) => { const i = args.indexOf(flag); return i > -1 ? args[i + 1] : undefined; };
+  return {
+    scope: get('--scope') || 'all',
+    only: (get('--only') || '').split(',').map((s) => s.trim()).filter(Boolean),
+    headful: args.includes('--headful'),
+    verbose: args.includes('--verbose') || (get('--scope') || '') === 'smoke'
+  };
+}
+
+/** Flatten companies.json into a worklist, keeping a handle on the source object. */
+function collectCompanies(doc) {
+  const list = [];
+  for (const g of doc.groups || []) {
+    for (const co of g.companies || []) list.push({ ref: co, group: g.id });
+  }
+  return list;
+}
+
+async function readJson(path, fallback) {
+  try { return JSON.parse(await readFile(path, 'utf8')); }
+  catch { return fallback; }
+}
+
+async function writeJson(path, obj) {
+  await writeFile(path, JSON.stringify(obj, null, 2) + '\n');
+}
+
+async function exists(path) {
+  try { await access(path); return true; } catch { return false; }
+}
+
+function hostOf(url) {
+  try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return null; }
+}
+
+function docCachePaths(slug, doc) {
+  const key = `${doc.type}-${(doc.periodIso || doc.period || 'unknown').replace(/[^\w-]/g, '_')}`;
+  const dir = resolve(CACHE_DIR, slug);
+  return { dir, txt: resolve(dir, `${key}.txt`), meta: resolve(dir, `${key}.meta.json`) };
+}
+
+/** Fetch + extract one document, or return the cached meta if we already have it. */
+async function gatherDoc(context, slug, doc) {
+  const { dir, txt, meta } = docCachePaths(slug, doc);
+  const source = hostOf(doc.url);
+
+  if (await exists(meta)) {
+    const cached = await readJson(meta, null);
+    if (cached) return { ...doc, source, ...cached, cache: relCache(txt), cached: true };
+  }
+
+  await mkdir(dir, { recursive: true });
+  let status, chars = 0, pages = null, errMsg = null;
+  try {
+    const dl = await downloadDoc(context, doc.url);
+    if (!dl.ok) {
+      status = `http_${dl.status}`;
+    } else {
+      const ex = await extractPdfText(dl.buffer);
+      status = ex.status;          // ok | ocr_needed | not_pdf
+      chars = ex.chars;
+      pages = ex.pages;
+      await writeFile(txt, ex.text || '');
+    }
+  } catch (e) {
+    status = 'error';
+    errMsg = (e && e.message) ? e.message.slice(0, 160) : String(e);
+    await writeFile(txt, '').catch(() => {});
+  }
+
+  const record = { status, chars, pages, ...(errMsg ? { error: errMsg } : {}) };
+  await writeJson(meta, { ...record, url: doc.url, source, at: new Date().toISOString() });
+  return { ...doc, source, ...record, cache: relCache(txt), cached: false };
+}
+
+function relCache(abs) { return abs.slice(ROOT.length + 1); }
+
+/** Latest quarter label from the parsed quarterly table, for an "as of" stamp. */
+function asOfFrom(fin) {
+  const q = fin.tables?.quarters;
+  if (!q || !q.periods.length) return null;
+  return q.periodsIso[q.periods.length - 1] || q.periods[q.periods.length - 1];
+}
+
+async function main() {
+  const opts = parseArgs(process.argv);
+  loadEnv();
+
+  const email = process.env.SCREENER_EMAIL;
+  const password = process.env.SCREENER_PASSWORD;
+  if (!email || !password) {
+    throw new MissingCredentialError(
+      ['SCREENER_EMAIL', 'SCREENER_PASSWORD'],
+      'Screener needs an account login - set SCREENER_EMAIL and SCREENER_PASSWORD as secrets'
+    );
+  }
+
+  const companiesPath = resolve(ROOT, 'data/companies.json');
+  const financialsPath = resolve(ROOT, 'data/financials.json');
+  const manifestPath = resolve(ROOT, 'data/docs-manifest.json');
+
+  const companiesDoc = await readJson(companiesPath, null);
+  if (!companiesDoc) throw new Error('data/companies.json not found or unreadable');
+
+  const all = collectCompanies(companiesDoc);
+  let work = all;
+  if (opts.only.length) work = all.filter((c) => opts.only.includes(c.ref.id));
+  else if (opts.scope === 'smoke') work = all.filter((c) => SMOKE.includes(c.ref.id));
+
+  console.log(`scrape-screener: ${opts.scope}${opts.only.length ? ' (--only)' : ''} -> ${work.length} of ${all.length} companies`);
+  if (!work.length) { console.log('nothing selected; check --scope/--only against companies.json ids'); return; }
+
+  // Merge into whatever a previous run wrote, so a partial run is not lost.
+  const financials = await readJson(financialsPath, freshFinancials());
+  const manifest = await readJson(manifestPath, freshManifest());
+  financials.companies = financials.companies || {};
+  manifest.companies = manifest.companies || {};
+
+  const session = await openScreener({ email, password, headless: !opts.headful });
+  console.log(`logged in as ${maskEmail(email)}\n`);
+
+  let ok = 0, failed = 0, docsCached = 0, docsOcr = 0;
+
+  try {
+    for (const { ref: co } of work) {
+      try {
+        // 1. slug: stored wins; otherwise search by name and save it back.
+        let slug = co.screenerSlug;
+        let matchedName;
+        if (!slug) {
+          const r = await resolveSlug(session.context, co.name);
+          slug = r.slug; matchedName = r.matchedName;
+          co.screenerSlug = slug;
+          if (matchedName) co.screenerName = matchedName;
+          await writeJson(companiesPath, companiesDoc);   // persist immediately
+        }
+
+        // 2. financials
+        const { html, url, view } = await getCompanyPage(session.context, slug);
+        const fin = parseAllFinancials(html);
+        const asOf = asOfFrom(fin);
+        financials.companies[co.id] = {
+          name: co.name, slug, view, url, asOf,
+          sourceTag: 'external', source: 'Screener.in',
+          sectionsFound: fin.sectionsFound, sectionsMissing: fin.sectionsMissing,
+          tables: fin.tables
+        };
+
+        // 3. documents: last 4 transcripts + latest PPT
+        const concalls = parseConcalls(html);
+        const picked = selectDocuments(concalls, { transcripts: 4 });
+        const docs = [...picked.transcripts, ...(picked.ppt ? [picked.ppt] : [])];
+
+        const gathered = [];
+        for (const d of docs) {
+          const g = await gatherDoc(session.context, slug, d);
+          gathered.push(g);
+          if (g.cached) docsCached++;
+          if (g.status === 'ocr_needed') docsOcr++;
+          await sleep(150);
+        }
+
+        const transcripts = gathered.filter((g) => g.type === 'transcript')
+          .map(({ type, period, periodIso, url: u, source, status, chars, pages, cache }) =>
+            ({ type, period, periodIso, url: u, source, status, chars, pages, cache }));
+        const ppt = gathered.find((g) => g.type === 'ppt') || null;
+
+        manifest.companies[co.id] = {
+          name: co.name, slug, view, url,
+          transcriptsFound: concalls.filter((c) => c.transcript).length,
+          transcripts,
+          ppt: ppt && { type: 'ppt', period: ppt.period, periodIso: ppt.periodIso, url: ppt.url, source: ppt.source, status: ppt.status, chars: ppt.chars, cache: ppt.cache }
+        };
+
+        // 4. persist after every company (resumable)
+        financials.generatedAt = new Date().toISOString();
+        manifest.generatedAt = new Date().toISOString();
+        await writeJson(financialsPath, financials);
+        await writeJson(manifestPath, manifest);
+
+        ok++;
+        if (opts.verbose) reportCompany(co, financials.companies[co.id], manifest.companies[co.id]);
+        else console.log(`  ${co.id.padEnd(20)} ${view} · ${fin.sectionsFound.length} tables · ${transcripts.length} transcripts${ppt ? ' · ppt' : ''}`);
+      } catch (e) {
+        failed++;
+        const msg = (e && e.message ? e.message : String(e)).slice(0, 200);
+        manifest.companies[co.id] = { ...(manifest.companies[co.id] || {}), name: co.name, error: msg };
+        await writeJson(manifestPath, manifest).catch(() => {});
+        console.log(`  ${co.id.padEnd(20)} FAILED: ${msg}`);
+      }
+      await sleep(300);   // courtesy gap between companies
+    }
+  } finally {
+    await session.close().catch(() => {});
+  }
+
+  console.log(
+    `\ndone: ${ok} ok, ${failed} failed of ${work.length}. ` +
+    `${docsOcr} document(s) need OCR, ${docsCached} served from cache.`
+  );
+  console.log(`wrote ${relCache(financialsPath)} and ${relCache(manifestPath)}`);
+  if (opts.scope !== 'all' && !opts.only.length) {
+    console.log('\nsmoke run only. Scale up with:  node pipeline/scrape-screener.mjs --scope all');
+  }
+}
+
+function reportCompany(co, fin, man) {
+  const q = fin.tables?.quarters;
+  const qLine = q ? `${q.periods[0]}..${q.periods[q.periods.length - 1]} (${q.periods.length} quarters)` : 'no quarterly table';
+  const sampleRows = q ? ['Sales', 'OPM %', 'Net Profit'].filter((r) => q.rows[r]).map((r) => {
+    const v = q.rows[r]; return `${r}=${v[v.length - 1]}`;
+  }).join(', ') : '';
+  console.log(`  ${co.name} [${fin.slug}] · ${fin.view}`);
+  console.log(`     financials: ${fin.sectionsFound.join(', ') || 'none'} | quarters ${qLine}${sampleRows ? ' | latest ' + sampleRows : ''}`);
+  const t = man.transcripts || [];
+  console.log(`     transcripts: ${t.length} cached of ${man.transcriptsFound} found` +
+    (t.length ? ' -> ' + t.map((x) => `${x.periodIso || x.period}:${x.status}/${x.chars}c`).join(', ') : ''));
+  console.log(`     ppt: ${man.ppt ? `${man.ppt.periodIso || man.ppt.period} ${man.ppt.status}/${man.ppt.chars}c` : 'none'}`);
+}
+
+function freshFinancials() {
+  return {
+    schemaVersion: 1,
+    title: 'Company financials (raw context from Screener)',
+    generatedBy: 'pipeline/scrape-screener.mjs',
+    generatedAt: null,
+    source: 'Screener.in (consolidated where available)',
+    sourceTag: 'external',
+    tag: '[External]',
+    note: 'Raw financial statements scraped from Screener for context. These are NOT the ' +
+          'client KPIs - prompt 7\'s extractor derives those. Blank cells are null, never 0. ' +
+          'Series run oldest -> newest, left as Screener labels them.',
+    companies: {}
+  };
+}
+
+function freshManifest() {
+  return {
+    schemaVersion: 1,
+    title: 'Concall transcript & investor-PPT manifest',
+    generatedBy: 'pipeline/scrape-screener.mjs',
+    generatedAt: null,
+    cacheDir: 'pipeline/cache/docs',
+    note: 'Per company: the last four concall transcripts and the latest investor PPT that ' +
+          'were found and cached. status ok = text extracted; ocr_needed = a scanned PDF with ' +
+          'no text layer (not a failure); not_pdf/http_* = the link did not return a usable PDF. ' +
+          'The extracted text is cached under cacheDir, which is gitignored.',
+    companies: {}
+  };
+}
+
+main().catch((e) => {
+  console.error('scrape-screener failed outright:', e?.humanReason || e?.stack || e);
+  process.exit(1);
+});

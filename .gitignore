@@ -4,3 +4,6 @@ node_modules/
 *.log
 .DS_Store
 pipeline/.cache/
+# Cached concall-transcript / PPT text - large, and prompt 7 reads it from the
+# same workflow run. Only data/financials.json + data/docs-manifest.json ship.
+pipeline/cache/
