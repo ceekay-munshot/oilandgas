@@ -92,12 +92,12 @@ jobs:
 
           # companies.json carries the resolved slugs; the rest is the gathered
           # material and the extracted KPIs. The document cache is gitignored.
-          if git diff --quiet -- data/financials.json data/docs-manifest.json data/companies.json data/kpis.json; then
+          if git diff --quiet -- data/financials.json data/docs-manifest.json data/companies.json data/kpis.json data/insights.json; then
             echo "No company-data change - nothing to commit."
             exit 0
           fi
 
-          git add data/financials.json data/docs-manifest.json data/companies.json data/kpis.json
+          git add data/financials.json data/docs-manifest.json data/companies.json data/kpis.json data/insights.json
           # No [skip ci]: the deploy has to run so the dashboard sees new data.
           git commit -m "chore(data): refresh company financials, docs & KPIs"
 

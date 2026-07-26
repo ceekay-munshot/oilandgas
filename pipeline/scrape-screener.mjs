@@ -34,6 +34,8 @@ import { openScreener, resolveSlug, getCompanyPage, downloadDoc, maskEmail } fro
 import { parseAllFinancials } from './parsers/screener-financials.mjs';
 import { parseConcalls, selectDocuments, looksLikeDoc } from './parsers/screener-docs.mjs';
 import { parseProsCons } from './parsers/screener-summary.mjs';
+import { fetchInsights } from './sources/screener-insights.mjs';
+import { parseInsightsTable } from './parsers/screener-insights.mjs';
 import { extractPdfText, isPdf, classifyHtml } from './lib/pdf.mjs';
 import { scrapePage } from './lib/scrape.mjs';
 import { toText } from './parsers/quote.mjs';
@@ -210,6 +212,7 @@ async function main() {
   const companiesPath = resolve(ROOT, 'data/companies.json');
   const financialsPath = resolve(ROOT, 'data/financials.json');
   const manifestPath = resolve(ROOT, 'data/docs-manifest.json');
+  const insightsPath = resolve(ROOT, 'data/insights.json');
 
   const companiesDoc = await readJson(companiesPath, null);
   if (!companiesDoc) throw new Error('data/companies.json not found or unreadable');
@@ -231,6 +234,7 @@ async function main() {
   // wrote, so a partial run is not lost and stale header fields do not linger.
   const financials = { ...freshFinancials(), companies: (await readJson(financialsPath, {})).companies || {} };
   const manifest = { ...freshManifest(), companies: (await readJson(manifestPath, {})).companies || {} };
+  const insights = { ...freshInsights(), companies: (await readJson(insightsPath, {})).companies || {} };
 
   const session = await openScreener({ email, password, headless: !opts.headful });
   console.log(`logged in as ${maskEmail(email)} (${tier} account)` +
@@ -269,6 +273,23 @@ async function main() {
           sectionsFound: fin.sectionsFound, sectionsMissing: fin.sectionsMissing,
           tables: fin.tables
         };
+
+        /* 2b. Premium's Investors -> Insights grid. Structured per-period rows
+               (Wells Drilled, Crude Oil Production, reserves...), so for the KPIs
+               it covers the extractor needs no model at all. Best-effort: a
+               company without it simply has an empty entry with the reason. */
+        const ins = await fetchInsights(session.context, slug);
+        let insTable = null;
+        if (ins.html) {
+          try { insTable = parseInsightsTable(ins.html); } catch { insTable = null; }
+        }
+        insights.companies[co.id] = insTable
+          ? { name: co.name, slug, view: ins.view, url: ins.url,
+              periods: insTable.periods, periodsIso: insTable.periodsIso, rows: insTable.rows }
+          : { name: co.name, slug, view: ins.view, url: ins.url,
+              periods: [], rows: [], note: ins.note || 'no Insights table found' };
+        insights.generatedAt = new Date().toISOString();
+        await writeJson(insightsPath, insights);
 
         /* 3. documents, in the extractor's priority order: Screener's per-quarter
               AI Summary first (dense, and one document per quarter, which is
@@ -333,7 +354,7 @@ async function main() {
         const secs = ((Date.now() - t0) / 1000).toFixed(0);
         if (opts.verbose) {
           console.log(` done (${secs}s)`);
-          reportCompany(co, financials.companies[co.id], man);
+          reportCompany(co, financials.companies[co.id], man, insights.companies[co.id]);
         } else {
           console.log(` ${view} · ${fin.sectionsFound.length} tables · ${analysis.pros.length + analysis.cons.length} pros/cons · ${man.ppt ? 'ppt · ' : ''}${man.transcripts.length} transcripts (${secs}s)`);
         }
@@ -355,7 +376,7 @@ async function main() {
     `${docsRecovered} recovered via scraper, ${docsOcr} need OCR, ${docsGated} premium-gated, ` +
     `${docsCached} served from cache.`
   );
-  console.log(`wrote ${relCache(financialsPath)} and ${relCache(manifestPath)}`);
+  console.log(`wrote ${relCache(financialsPath)}, ${relCache(manifestPath)} and ${relCache(insightsPath)}`);
   if (opts.scope !== 'all' && !opts.only.length) {
     console.log('\nsmoke run only. Scale up with:  node pipeline/scrape-screener.mjs --scope all');
   }
@@ -453,7 +474,7 @@ async function dumpConcalls(all, opts, { email, password }) {
   }
 }
 
-function reportCompany(co, fin, man) {
+function reportCompany(co, fin, man, ins) {
   const q = fin.tables?.quarters;
   const qLine = q ? `${q.periods[0]}..${q.periods[q.periods.length - 1]} (${q.periods.length} quarters)` : 'no quarterly table';
   const sampleRows = q ? ['Sales', 'OPM %', 'Net Profit'].filter((r) => q.rows[r]).map((r) => {
@@ -461,7 +482,15 @@ function reportCompany(co, fin, man) {
   }).join(', ') : '';
   console.log(`  ${co.name} [${fin.slug}] · ${fin.view}`);
   console.log(`     financials: ${fin.sectionsFound.join(', ') || 'none'} | quarters ${qLine}${sampleRows ? ' | latest ' + sampleRows : ''}`);
-  console.log(`     pros/cons (primary): ${fin.analysis.pros.length} pros, ${fin.analysis.cons.length} cons`);
+  console.log(`     pros/cons: ${fin.analysis.pros.length} pros, ${fin.analysis.cons.length} cons`);
+  if (ins) {
+    console.log(`     INSIGHTS (${ins.view}): ${ins.rows.length} rows x ${ins.periods.length} periods` +
+      (ins.note ? ` - ${ins.note}` : ''));
+    ins.rows.slice(0, 5).forEach(function (r) {
+      console.log(`        ${r.label} [${r.unit || '?'}]: ` +
+        r.values.map(function (v) { return v == null ? '.' : v; }).join(' | '));
+    });
+  }
   const tag = (x) => `${x.periodIso || x.period}:${x.status}/${x.chars}c${x.via && x.via !== 'browser' ? `(${x.via})` : ''}`;
   var sums = man.summaries || [];
   console.log(`     AI summaries (primary): ${sums.filter(function (x) { return x.status === 'ok'; }).length} ok of ${man.summariesAvailable} available` +
@@ -485,6 +514,20 @@ function freshFinancials() {
           'Pros/Cons capsule per company under `analysis`. These are NOT the client KPIs - ' +
           'prompt 7\'s extractor derives those. Blank cells are null, never 0. Series run ' +
           'oldest -> newest, left as Screener labels them.',
+    companies: {}
+  };
+}
+
+function freshInsights() {
+  return {
+    schemaVersion: 1,
+    title: 'Screener Premium Investors -> Insights, per company',
+    generatedBy: 'pipeline/scrape-screener.mjs',
+    generatedAt: null,
+    note: 'Structured operational rows lifted straight from Screener\'s Insights grid - already ' +
+          'per-period, so no model is involved and nothing is estimated. `view` says whether the ' +
+          'quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever ' +
+          'published annually. A blank period is null, never 0. Units come from the row label.',
     companies: {}
   };
 }
