@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-07-26T15:52:36.430Z",
+  "generatedAt": "2026-07-26T16:23:18.573Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -10,9 +10,9 @@
       "slug": "DEEPINDS",
       "view": "yearly",
       "url": "https://www.screener.in/company/DEEPINDS/consolidated/#shareholding",
-      "via": "matrix",
-      "toggled": "button.plausible-event-name=Toggle+Company+Insights \"Quarterly\"",
-      "note": null,
+      "via": "quarterly-fragment",
+      "toggled": "/insights/company/1274867/quarter/?is_consolidated=1",
+      "note": "insights tab HTTP 403; kept the annual view",
       "periods": [
         "Mar 2022",
         "Mar 2023",
@@ -31,79 +31,207 @@
       ],
       "rows": [
         {
-          "label": "Onshore Rigs (Drilling + Workover)Number",
-          "unit": null,
+          "label": "Onshore Rigs (Drilling + Workover)",
+          "unit": "Number",
           "scope": null,
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
+            11,
+            11,
+            14,
+            17,
+            20,
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 07 May 2022",
+              "quote": "Owns & Operates 8 Workover Rigs with capacity ranging from 30T to 100T, 3 Drilling Rigs with capacity of 1000Hp.",
+              "page": 24
+            },
+            {
+              "doc": "Presentation - 28 May 2023",
+              "quote": "Owns & Operates 8 Workover Rigs with capacity ranging from 30T to 100T, 3 Drilling Rigs with capacity of 1000Hp.",
+              "page": 20
+            },
+            {
+              "doc": "Presentation - 16 May 2024",
+              "quote": "Owns & Operates 9 Workover Rigs with capacity ranging from 30T to 100T, 5 Drilling Rigs with capacity of 1000Hp.",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 02 May 2025",
+              "quote": "Owns & operates 11 Workover Rigs with capacity ranging from 30T to 150T, 6 Drilling Rigs with capacity of 1000Hp.",
+              "page": 33
+            },
+            {
+              "doc": "Presentation - 14 May 2026",
+              "quote": "Asset base of 20 Onshore Rigs including 6 Drilling and 14 workover Rigs",
+              "page": 6
+            },
             null
           ]
         },
         {
-          "label": "Order BookRs Crore",
-          "unit": null,
+          "label": "Order Book",
+          "unit": "Rs Crore",
           "scope": null,
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
+            632,
+            1078,
+            1210,
+            2960,
+            3007,
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 06 Feb 2023",
+              "quote": "Strong Order Book 400 434 556 632",
+              "page": 7
+            },
+            {
+              "doc": "Presentation - 06 Feb 2023",
+              "quote": "Order book has increased to Rs. 1,078 Cr.",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 16 May 2024",
+              "quote": "Order Book (Rs. Cr.) ... 1210",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 02 May 2025",
+              "quote": "Order Book (Rs in Cr.) 632 1078 1210 2960",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 14 May 2026",
+              "quote": "Order Book (Rs in Cr.) FY24 FY25 As on date 1210 2960 3007",
+              "page": 20
+            },
             null
           ]
         },
         {
-          "label": "Total Gas Compression CapacityHorsepower (HP)",
-          "unit": null,
+          "label": "Total Gas Compression Capacity",
+          "unit": "Horsepower (HP)",
+          "scope": null,
+          "values": [
+            87000,
+            null,
+            87000,
+            null,
+            87000,
+            87000
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 15 Aug 2021",
+              "quote": "Natural Gas Compressors packages ranging from 180 HP to 1,680 HP Compression capability of about 5.00 MMSCMD of natural gas",
+              "page": 8
+            },
+            null,
+            {
+              "doc": "Presentation - 28 May 2023",
+              "quote": "Natural Gas Compressors packages ranging from 180 HP to 1,680 HP Compression capability with total capacity of ~87,000 HP.",
+              "page": 16
+            },
+            null,
+            {
+              "doc": "Presentation - 02 May 2025",
+              "quote": "Natural Gas Compressors packages ranging from 180 HP to 1,680 HP Compression capability with total capacity of ~87,000 HP.",
+              "page": 30
+            },
+            {
+              "doc": "Presentation - 14 May 2026",
+              "quote": "Asset Size: The Company owns around more than 80 gas compressors.",
+              "page": 34
+            }
+          ]
+        },
+        {
+          "label": "Customer Concentration - Top Client (ONGC) % of Revenue",
+          "unit": "%",
           "scope": null,
           "values": [
             null,
             null,
             null,
+            65.45,
+            40,
+            null
+          ],
+          "citations": [
             null,
             null,
+            null,
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "ONGC contributed 65.45% of total revenue (₹312.53 Cr) in FY 2024-25",
+              "page": 129
+            },
+            {
+              "doc": "Presentation - 14 May 2026",
+              "quote": "Through strategic diversification and expanded overseas operations we have successfully reduced single client dependency to below 40% of total revenue",
+              "page": 22
+            },
             null
           ]
         },
         {
-          "label": "Customer Concentration - Top Client (ONGC) % of Revenue%",
-          "unit": null,
+          "label": "Production Enhancement Contract (PEC) Annual Revenue",
+          "unit": "Rs Crore",
           "scope": null,
           "values": [
             null,
             null,
             null,
             null,
+            60,
+            150
+          ],
+          "citations": [
             null,
-            null
+            null,
+            null,
+            null,
+            {
+              "doc": "Concall Transcript - 14 Nov 2025",
+              "quote": "In this financial year FY26, we are expecting total revenue of around 60 crores from this production enhancement contract",
+              "page": 12
+            },
+            {
+              "doc": "Concall Transcript - 21 May 2026",
+              "quote": "once we have that, it will again regain to what our original projections were. So a run rate of INR120 crores to INR150-odd crores from this particular contract",
+              "page": 9
+            }
           ]
         },
         {
-          "label": "Production Enhancement Contract (PEC) Annual RevenueRs Crore",
-          "unit": null,
+          "label": "Revenue Mix - Natural Gas Services Share",
+          "unit": "%",
           "scope": null,
           "values": [
             null,
             null,
-            null,
-            null,
+            62,
+            62,
             null,
             null
-          ]
-        },
-        {
-          "label": "Revenue Mix - Natural Gas Services Share%",
-          "unit": null,
-          "scope": null,
-          "values": [
+          ],
+          "citations": [
             null,
             null,
-            null,
-            null,
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "The revenue mix remains stable at 62% Gas Compression/Processing and 38% Workover/Drilling Rig Services (FY 2023-24)",
+              "page": 129
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Natural Gas Compression/Processing Services: 62% of revenue. Workover and Drilling Rig Services: 38% of revenue (FY 2024-25)",
+              "page": 129
+            },
             null,
             null
           ]
@@ -115,9 +243,9 @@
       "slug": "ENGINERSIN",
       "view": "yearly",
       "url": "https://www.screener.in/company/ENGINERSIN/consolidated/#shareholding",
-      "via": "matrix",
-      "toggled": "button.plausible-event-name=Toggle+Company+Insights \"Quarterly\"",
-      "note": null,
+      "via": "quarterly-fragment",
+      "toggled": "/insights/company/935/quarter/?is_consolidated=1",
+      "note": "insights tab HTTP 403; kept the annual view",
       "periods": [
         "Mar 2017",
         "Mar 2018",
@@ -144,139 +272,483 @@
       ],
       "rows": [
         {
-          "label": "Consultancy Order BookINR mn ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "Consultancy Order Book",
+          "unit": "INR mn",
+          "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            40208,
+            41739,
+            43124,
+            44561,
+            45816,
+            48983,
+            48296,
+            46367,
+            66482,
+            108648
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Consultancy 46,170 48,940 38,610 41,739 40,208 30,100 24,543",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Consultancy 46,170 48,940 38,610 41,739 40,208 30,100 24,543",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Consultancy 46,170 48,940 38,610 41,739 40,208 30,100 24,543",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2022",
+              "quote": "Consultancy 50,383 52,980 44,984 42,314 44,304 42,357 45,816",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2022",
+              "quote": "Consultancy 50,383 52,980 44,984 42,314 44,304 42,357 45,816",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 05 Aug 2022",
+              "quote": "Consultancy 47,935 44,984 52,980 50,383 48,983",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy 47513 48531 49,792 47,935 45,994 45,046 48296",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy 47513 48531 49,792 47,935 45,994 45,046 48296",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Consultancy 68,133 55,223 64,957 55,538 66,482",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 22 May 2026",
+              "quote": "Consultancy (Domestic) 43,736 (Overseas) 64,912 Total 108,648 (sum)",
+              "page": 28
+            }
           ]
         },
         {
-          "label": "Consultancy Order InflowINR mn ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "Consultancy Order Inflow",
+          "unit": "INR mn",
+          "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            22963,
+            16608,
+            15853,
+            16172,
+            15562,
+            16871,
+            12615,
+            12949,
+            45764,
+            60095
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Consultancy Total 14,811 778 13,201 832 938 13,675 1,161 835",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Consultancy Total 14,811 778 13,201 832 938 13,675 1,161 835",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Consultancy Total 14,811 778 13,201 832 938 13,675 1,161 835",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2022",
+              "quote": "Consultancy Total 15,062 564 11,672 2,826 680 5,940 1,886 7,056",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2022",
+              "quote": "Consultancy Total 15,062 564 11,672 2,826 680 5,940 1,886 7,056",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 05 Aug 2022",
+              "quote": "Consultancy Total 2,250 2,826 11,672 564 1,809",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Consultancy Total 6,083 11,723 16,905 2,683 14,453",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 22 May 2026",
+              "quote": "Consultancy Total 60,095 45,764 12,949 12,615 16,871",
+              "page": 28
+            }
           ]
         },
         {
-          "label": "Order Book Consultancy Share% ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "Order Book Consultancy Share",
+          "unit": "%",
+          "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            51.8,
+            53,
+            38.5,
+            46.6,
+            57.4,
+            64,
+            62.8,
+            59.3,
+            56.7,
+            71.9
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Consultancy 40,208 of Total Order Book 77,619 (52%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Consultancy 41,739 of Total Order Book 78,731 (53%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Consultancy 43,124 of Total Order Book 1,11,887 (39%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2022",
+              "quote": "Consultancy 44,561 of Total Order Book 95,554 (47%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2022",
+              "quote": "Consultancy 45,816 of Total Order Book 79,819 (57%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 05 Aug 2022",
+              "quote": "Consultancy 48,983 of Total Order Book 76,549 (64%)",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy 48,296 of Total Order Book 76,946 (63%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy 46,367 of Total Order Book 78,235 (59%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Consultancy 66,482 of Total Order Book 117,173 (57%)",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 22 May 2026",
+              "quote": "Consultancy 108,648 of Total Order Book 151,093 (72%)",
+              "page": 28
+            }
           ]
         },
         {
-          "label": "Order Inflow / Business Secured TotalINR mn ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "Order Inflow / Business Secured Total",
+          "unit": "INR mn",
+          "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            57081,
+            21405,
+            58905,
+            16172,
+            15692,
+            16871,
+            47078,
+            34062,
+            82141,
+            79781
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Total Business secured 57,863 908 56,123 832 3,385 16,025 1,161 835",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Total Business secured 57,863 908 56,123 832 3,385 16,025 1,161 835",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Total Business secured 57,863 908 56,123 832 3,385 16,025 1,161 835",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2022",
+              "quote": "Total Business secured 15,062 564 11,672 2,826 810 5,940 1,886 7,056",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2022",
+              "quote": "Total Business secured 15,062 564 11,672 2,826 810 5,940 1,886 7,056",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 05 Aug 2022",
+              "quote": "Total Business secured 2,250 2,826 11,672 564 1,809",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Total Business secured 14,292 23,791 27,577 18,784 11,989",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 22 May 2026",
+              "quote": "Total Business secured 79,781 82,141 34,062 47,078 16,871",
+              "page": 28
+            }
           ]
         },
         {
-          "label": "Total Order BookINR mn ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "Total Order Book",
+          "unit": "INR mn",
+          "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            77619,
+            78731,
+            111887,
+            95554,
+            79819,
+            76549,
+            76946,
+            78235,
+            117173,
+            151093
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Total Order Book 107,870 114,640 72,290 78,731 77,619 37,887 36,409",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Total Order Book 107,870 114,640 72,290 78,731 77,619 37,887 36,409",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 08 Feb 2019",
+              "quote": "Total Order Book 107,870 114,640 72,290 78,731 77,619 37,887 36,409",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2022",
+              "quote": "Total Order Book 82,121 80,292 75,304 91,168 89,780 82,972 79,819",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2022",
+              "quote": "Total Order Book 82,121 80,292 75,304 91,168 89,780 82,972 79,819",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 05 Aug 2022",
+              "quote": "Total Order Book 88,338 75,304 80,292 82,121 76,549",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Order Book 79,906 81,883 81,025 88,338 84,313 78,656 76,946",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Order Book 79,906 81,883 81,025 88,338 84,313 78,656 76,946",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Total Order Book 121,443 96,581 1,11,553 1,13,524 1,17,173",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 22 May 2026",
+              "quote": "Total Order Book 151,093 117,173 78,235 76,946 76,549",
+              "page": 28
+            }
           ]
         },
         {
-          "label": "Active Patentscount ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "Active Patents",
+          "unit": "count",
+          "scope": "Standalone data",
           "values": [
             null,
             null,
             null,
             null,
             null,
+            33,
+            null,
+            47,
+            46,
+            58
+          ],
+          "citations": [
             null,
             null,
             null,
             null,
-            null
+            null,
+            {
+              "doc": "Presentation - 27 May 2022",
+              "quote": "In-house and collaborative R&D (33 active patents)",
+              "page": 5
+            },
+            null,
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "47 live Patents",
+              "page": 60
+            },
+            {
+              "doc": "Credit Rating - 08 Dec 2025",
+              "quote": "EIL holds 46 live patents for such process technologies",
+              "page": 2
+            },
+            {
+              "doc": "Presentation - 22 May 2026",
+              "quote": "(58 active Patents, 74 pending grant)",
+              "page": 13
+            }
           ]
         },
         {
-          "label": "Manpower (Total Employees)count ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "Manpower (Total Employees)",
+          "unit": "count",
+          "scope": "Standalone data",
           "values": [
             null,
             null,
             null,
             null,
             null,
+            2710,
+            null,
+            2658,
+            2700,
+            2735
+          ],
+          "citations": [
             null,
             null,
             null,
             null,
-            null
+            null,
+            {
+              "doc": "Presentation - 27 May 2022",
+              "quote": "Total 2710",
+              "page": 15
+            },
+            null,
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "2,658 employees (as of March 31, 2024)",
+              "page": 96
+            },
+            {
+              "doc": "Credit Rating - 08 Dec 2025",
+              "quote": "EIL has a strong management team and employs a workforce of 2,700 experienced professionals",
+              "page": 2
+            },
+            {
+              "doc": "Presentation - 22 May 2026",
+              "quote": "Total 2735",
+              "page": 11
+            }
           ]
         },
         {
-          "label": "Order Book Domestic Share% ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "Order Book Domestic Share",
+          "unit": "%",
+          "scope": "Standalone data",
           "values": [
             null,
             null,
             null,
             null,
             null,
+            89,
+            null,
+            68,
+            77,
+            57
+          ],
+          "citations": [
             null,
             null,
             null,
             null,
-            null
+            null,
+            {
+              "doc": "Presentation - 27 May 2022",
+              "quote": "OBP: Domestic Vs Overseas 89% Domestic 11% Overseas",
+              "page": 30
+            },
+            null,
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "9M FY 23-24 Consultancy Domestic Vs Overseas 68% Domestic",
+              "page": 16
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "9M FY 24-25 Consultancy Domestic Vs Overseas 77% Domestic",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 22 May 2026",
+              "quote": "OBP: Domestic Vs Overseas 57% Domestic 43% Overseas",
+              "page": 31
+            }
           ]
         }
       ]
@@ -286,9 +758,9 @@
       "slug": "PETRONET",
       "view": "yearly",
       "url": "https://www.screener.in/company/PETRONET/consolidated/#shareholding",
-      "via": "matrix",
-      "toggled": "button.plausible-event-name=Toggle+Company+Insights \"Quarterly\"",
-      "note": null,
+      "via": "quarterly-fragment",
+      "toggled": "/insights/company/2461/quarter/?is_consolidated=1",
+      "note": "insights tab HTTP 403; kept the annual view",
       "periods": [
         "Mar 2016",
         "Mar 2017",
@@ -317,147 +789,575 @@
       ],
       "rows": [
         {
-          "label": "Dahej Terminal Installed Regasification CapacityMMTPA",
-          "unit": null,
+          "label": "Dahej Terminal Installed Regasification Capacity",
+          "unit": "MMTPA",
           "scope": null,
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            10,
+            15,
+            15,
+            15,
+            17.5,
+            17.5,
+            17.5,
+            17.5,
+            17.5,
+            17.5,
+            22.5
+          ],
+          "citations": [
+            {
+              "doc": "Annual Report - 31 Mar 2016",
+              "quote": "Expansion of Dahej Terminal from 10 MMTPA to 15 MMTPA",
+              "page": 9
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "name plate capacity was expanded from 10 MMTPA to 15 MMTPA during the last quarter of 2016",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2017-18 Dahej 15 MMTPA (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2018-19 Dahej 15 MMTPA (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "FY 2019-20 Dahej 17.1 MMTPA (Five years at a Glance, pro rata)",
+              "page": 19
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2020-21 Dahej Installed Regasification capacity 17.5 MMTPA",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2021-22 Dahej Installed Regasification capacity 17.5 MMTPA",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2022-23 Dahej Installed Regasification capacity 17.5 MMTPA",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2023-24 Dahej Installed Regasification capacity 17.5 MMTPA",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2024-25 Dahej Installed Regasification capacity 17.5 MMTPA",
+              "page": 23
+            },
+            {
+              "doc": "Credit Rating - 16 Apr 2026",
+              "quote": "Dahej, with capacity of 17.5 MMTPA (the largest and oldest facility in India, expanded to 22.5 MMTPA on 31st March 2026)",
+              "page": 1
+            }
+          ]
+        },
+        {
+          "label": "Dahej Terminal LNG Throughput",
+          "unit": "TBTU",
+          "scope": null,
+          "values": [
+            566,
+            714.25,
+            815.55,
+            820.15,
+            885.06,
+            849.24,
+            792.91,
+            703.41,
+            864.9,
+            875.78,
+            833
+          ],
+          "citations": [
+            {
+              "doc": "Annual Report - 31 Mar 2016",
+              "quote": "supplied 566 TBTUs of RLNG",
+              "page": 8
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "supplied 714.25 TBTUs of RLNG",
+              "page": 15
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2017-18 Dahej 815.55 TBTU (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2018-19 Dahej 820.15 TBTU (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "FY 2019-20 Dahej 885.06 TBTU (Five years at a Glance)",
+              "page": 19
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2020-21 Dahej Total send out 849.24 TBTU",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2021-22 Dahej Total send out 792.91 TBTU",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2022-23 Dahej Total send out 703.41 TBTU",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2023-24 Dahej Total send out 864.90 TBTU",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2024-25 Dahej Total send out 875.78 TBTU",
+              "page": 23
+            },
+            {
+              "doc": "Concall Transcript - 11 May 2026",
+              "quote": "At the Dahej terminal, LNG throughput during the quarter stood at 201 TBTU",
+              "page": 3
+            }
+          ]
+        },
+        {
+          "label": "Total LNG Throughput",
+          "unit": "TBTU",
+          "scope": null,
+          "values": [
+            566,
+            714.25,
+            847.15,
+            844.25,
+            927.84,
+            896.16,
+            846.94,
+            751.66,
+            918.95,
+            934.41,
+            901
+          ],
+          "citations": [
+            {
+              "doc": "Annual Report - 31 Mar 2016",
+              "quote": "During the financial year 2015-16, the Dahej Terminal handled 170 LNG Cargoes and supplied 566 TBTUs of RLNG",
+              "page": 8
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "During the financial year 2016-17, the Dahej Terminal handled 217 LNG Cargoes and supplied 714.25 TBTUs of RLNG",
+              "page": 15
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2017-18 Dahej 815.55 TBTU; Kochi 31.6 TBTU (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2018-19 Dahej 820.15 TBTU; Kochi 24.1 TBTU (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "FY 2019-20 Dahej 885.06 TBTU; Kochi 42.78 TBTU (Five years at a Glance)",
+              "page": 19
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2020-21 Total send out (TBTU) 896.16",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2021-22 Total send out (TBTU) 846.94",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2022-23 Total send out (TBTU) 751.66",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2023-24 Total send out (TBTU) 918.95",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2024-25 Total send out (TBTU) 934.41",
+              "page": 23
+            },
+            {
+              "doc": "Concall Transcript - 11 May 2026",
+              "quote": "Kochi terminal achieved its highest ever annual volume throughput of 68 TBTU during FY '25-'26",
+              "page": 4
+            }
+          ]
+        },
+        {
+          "label": "Kochi Terminal Capacity Utilization",
+          "unit": "%",
+          "scope": null,
+          "values": [
+            3,
+            5.67,
+            12.1,
+            10,
+            16.4,
+            18.1,
+            20.7,
+            18.6,
+            20.8,
+            22.6,
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Annual Report - 31 Mar 2016",
+              "quote": "The average capacity utilization during the year was only 3% [Kochi]",
+              "page": 10
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "The average capacity utilization during the year was 5.67%",
+              "page": 17
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2017-18 Kochi 12.1% (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2018-19 Kochi 10.0% (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "FY 2019-20 Kochi 16.4% (Five years at a Glance)",
+              "page": 19
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2020-21 Kochi Capacity utilization 18.1%",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2021-22 Kochi Capacity utilization 20.7%",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2022-23 Kochi Capacity utilization 18.6%",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2023-24 Kochi Capacity utilization 20.8%",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2024-25 Kochi Capacity utilization 22.6%",
+              "page": 23
+            },
             null
           ]
         },
         {
-          "label": "Dahej Terminal LNG ThroughputTBTU",
-          "unit": null,
+          "label": "LNG Cargoes Unloaded at Dahej Terminal",
+          "unit": "Number",
           "scope": null,
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            170,
+            217,
+            241,
+            241,
+            254,
+            254,
+            232,
+            212,
+            254,
+            258,
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Annual Report - 31 Mar 2016",
+              "quote": "the Dahej Terminal handled 170 LNG Cargoes",
+              "page": 8
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "the Dahej Terminal handled 217 LNG Cargoes",
+              "page": 15
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2017-18 Dahej 241 LNG cargoes (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2018-19 Dahej 241 LNG cargoes (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "FY 2019-20 Dahej LNG cargoes (Five years at a Glance)",
+              "page": 19
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2020-21 Dahej 254 cargoes (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "FY 2021-22 Dahej 232 LNG cargoes (Five years at a Glance)",
+              "page": 19
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "FY 2022-23 Dahej 212 LNG cargoes (Five years at a Glance)",
+              "page": 19
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2023-24 Dahej LNG cargos unloaded 254",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2024-25 Dahej LNG cargos unloaded 258",
+              "page": 23
+            },
             null
           ]
         },
         {
-          "label": "Total LNG ThroughputTBTU",
-          "unit": null,
+          "label": "LNG Trucks Filled",
+          "unit": "Number",
           "scope": null,
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            2224,
+            2840,
+            2843,
+            3199,
+            2502,
+            3228,
+            4511,
+            8481,
+            11496,
+            15169,
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Annual Report - 31 Mar 2016",
+              "quote": "2,224 LNG Road Tankers",
+              "page": 8
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "2840 LNG Road Tankers were also loaded and dispatched",
+              "page": 15
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2017-18 Dahej 2,843 LNG trucks filled (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2018-19 Dahej 3,049 LNG trucks filled; Kochi 150 LNG trucks filled (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "FY 2019-20 Dahej LNG trucks filled (Five years at a Glance)",
+              "page": 19
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2020-21 Dahej 2,852 LNG trucks filled; Kochi 376 LNG trucks filled (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "FY 2021-22 Dahej 4,040 LNG trucks filled; Kochi 471 LNG trucks filled (Five years at a Glance)",
+              "page": 19
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "FY 2022-23 Dahej 6,987 LNG trucks filled; Kochi 1,494 LNG trucks filled (Five years at a Glance)",
+              "page": 19
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2023-24 Dahej LNG truck filled 9,266; Kochi 2,230 (Five years at a Glance)",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2024-25 Total LNG truck filled (Numbers) 15,169",
+              "page": 23
+            },
             null
           ]
         },
         {
-          "label": "Kochi Terminal Capacity Utilization%",
-          "unit": null,
+          "label": "Dahej Terminal Capacity Utilization",
+          "unit": "%",
           "scope": null,
           "values": [
+            111,
             null,
+            104.97,
+            105,
+            99.9,
+            93.7,
+            87.5,
+            77.8,
+            95.5,
+            96.6,
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Annual Report - 31 Mar 2016",
+              "quote": "operate its Dahej Terminal at 111% capacity utilization",
+              "page": 8
+            },
             null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2017-18 Dahej 104.97% (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2018-19 Dahej 105.0% (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "FY 2019-20 Dahej 99.9% (Five years at a Glance)",
+              "page": 19
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2020-21 Dahej Capacity utilization 93.7%",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2021-22 Dahej Capacity utilization 87.5%",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2022-23 Dahej Capacity utilization 77.8%",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2023-24 Dahej Capacity utilization 95.5%",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2024-25 Dahej Capacity utilization 96.6%",
+              "page": 23
+            },
             null
           ]
         },
         {
-          "label": "LNG Cargoes Unloaded at Dahej TerminalNumber",
-          "unit": null,
+          "label": "Kochi Terminal LNG Throughput",
+          "unit": "TBTU",
           "scope": null,
           "values": [
             null,
             null,
+            31.6,
+            24.1,
+            42.78,
+            46.92,
+            54.03,
+            48.25,
+            54.05,
+            58.63,
+            68
+          ],
+          "citations": [
             null,
             null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "label": "LNG Trucks FilledNumber",
-          "unit": null,
-          "scope": null,
-          "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "label": "Dahej Terminal Capacity Utilization%",
-          "unit": null,
-          "scope": null,
-          "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "label": "Kochi Terminal LNG ThroughputTBTU",
-          "unit": null,
-          "scope": null,
-          "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2017-18 Kochi 31.6 TBTU (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2018-19 Kochi 24.1 TBTU (Five years at a Glance)",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "FY 2019-20 Kochi 42.78 TBTU (Five years at a Glance)",
+              "page": 19
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2020-21 Kochi Total send out 46.92 TBTU",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2021-22 Kochi Total send out 54.03 TBTU",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2022-23 Kochi Total send out 48.25 TBTU",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2023-24 Kochi Total send out 54.05 TBTU",
+              "page": 23
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2024-25 Kochi Total send out 58.63 TBTU",
+              "page": 23
+            },
+            {
+              "doc": "Concall Transcript - 11 May 2026",
+              "quote": "Kochi terminal achieved its highest ever annual volume throughput of 68 TBTU during FY '25-'26",
+              "page": 4
+            }
           ]
         }
       ]
@@ -467,9 +1367,9 @@
       "slug": "IGL",
       "view": "yearly",
       "url": "https://www.screener.in/company/IGL/consolidated/#shareholding",
-      "via": "matrix",
-      "toggled": "button.plausible-event-name=Toggle+Company+Insights \"Quarterly\"",
-      "note": null,
+      "via": "quarterly-fragment",
+      "toggled": "/insights/company/1471/quarter/?is_consolidated=1",
+      "note": "insights tab HTTP 403; kept the annual view",
       "periods": [
         "Mar 2016",
         "Mar 2017",
@@ -496,139 +1396,543 @@
       ],
       "rows": [
         {
-          "label": "CNG StationsNumber ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "CNG Stations",
+          "unit": "Number",
+          "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            340,
+            421,
+            446,
+            500,
+            555,
+            612,
+            711,
+            791,
+            882,
+            954
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 17 Nov 2016",
+              "quote": "No of CNG Stations Nos 324 325 326 340 418",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 13 Nov 2017",
+              "quote": "No. of CNG Stations Nos 324 325 326 340 421 425",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 12 May 2023",
+              "quote": "CNG Stations (Cumulative Nos.) 446 500 555 612 711 791",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "CNG Stations (Cumulative Nos.) 500 555 612 711 791 882",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "CNG Stations (Cumulative Nos.) 500 555 612 711 791 882",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "CNG Stations (Cumulative Nos.) 500 555 612 711 791 882",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "CNG Stations (Cumulative Nos.) 500 555 612 711 791 882",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "CNG Stations (Cumulative Nos.) 500 555 612 711 791 882",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "CNG Stations (Cumulative Nos.) 500 555 612 711 791 882",
+              "page": 13
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "The Company has 954 CNG stations as on March 31, 2025 spread all around the Geographical Areas of the Company.",
+              "page": 47
+            }
           ]
         },
         {
-          "label": "CNG Vehicles ServedNumber ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "CNG Vehicles Served",
+          "unit": "Number",
+          "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            868573,
+            971687,
+            1199502,
+            1259252,
+            1299322,
+            1376592,
+            1533715,
+            1703416,
+            1893055,
+            2100000
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 13 Nov 2017",
+              "quote": "Total 687666 754758 817117 868573 971687 992223",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 13 Nov 2017",
+              "quote": "Total 687666 754758 817117 868573 971687 992223",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 May 2023",
+              "quote": "Total 1,199,502 1,259,252 1,299,322 1,376,592 1,533,715 1,703,416",
+              "page": 16
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Total 1,259,252 1,299,322 1,376,592 1,533,715 1,703,416 1,893,055",
+              "page": 16
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Total 1,259,252 1,299,322 1,376,592 1,533,715 1,703,416 1,893,055",
+              "page": 16
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Total 1,259,252 1,299,322 1,376,592 1,533,715 1,703,416 1,893,055",
+              "page": 16
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Total 1,259,252 1,299,322 1,376,592 1,533,715 1,703,416 1,893,055",
+              "page": 16
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Total 1,259,252 1,299,322 1,376,592 1,533,715 1,703,416 1,893,055",
+              "page": 16
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Total 1,259,252 1,299,322 1,376,592 1,533,715 1,703,416 1,893,055",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "The Company had 954 stations as on 31st March 2025, through which it provided gas to around 21 lakh vehicles.",
+              "page": 53
+            }
           ]
         },
         {
-          "label": "MDPE Pipeline Networkkm ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "MDPE Pipeline Network",
+          "unit": "km",
+          "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            9444,
+            9940,
+            10755,
+            12023,
+            13455,
+            15262,
+            17240,
+            20632,
+            23565,
+            27399
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 13 Nov 2017",
+              "quote": "MDPE Pipeline 7783 8438 8966 9444 9940 10215",
+              "page": 16
+            },
+            {
+              "doc": "Presentation - 13 Nov 2017",
+              "quote": "MDPE Pipeline 7783 8438 8966 9444 9940 10215",
+              "page": 16
+            },
+            {
+              "doc": "Presentation - 12 May 2023",
+              "quote": "MDPE Pipeline 10,755 12,023 13,455 15,262 17,240 20,632",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "MDPE Pipeline 12,023 13,455 15,262 17,240 20,632 23565",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "MDPE Pipeline 12,023 13,455 15,262 17,240 20,632 23565",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "MDPE Pipeline 12,023 13,455 15,262 17,240 20,632 23565",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "MDPE Pipeline 12,023 13,455 15,262 17,240 20,632 23565",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "MDPE Pipeline 12,023 13,455 15,262 17,240 20,632 23565",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "MDPE Pipeline 12,023 13,455 15,262 17,240 20,632 23565",
+              "page": 18
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "As on 31st March 2025, total PNG connections provided stood at 30.07 Lakh households and 12,141 Commercial & Industrial consumers.",
+              "page": 53
+            }
           ]
         },
         {
-          "label": "PNG Domestic ConnectionsLakhs ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "PNG Domestic Connections",
+          "unit": "Lakhs",
+          "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            6.36,
+            7.42,
+            8.92,
+            11.02,
+            13.75,
+            16.85,
+            20.6,
+            23.7,
+            27,
+            30.07
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 13 Nov 2017",
+              "quote": "Domestic 386696 459467 560752 636318 742205 802999",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 13 Nov 2017",
+              "quote": "Domestic 386696 459467 560752 636318 742205 802999",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 12 May 2023",
+              "quote": "Domestic (Lakhs) 8.92 11.02 13.75 16.85 20.6 23.7",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Domestic (Lakhs) 11.02 13.75 16.85 20.6 23.7 27.00",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Domestic (Lakhs) 11.02 13.75 16.85 20.6 23.7 27.00",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Domestic (Lakhs) 11.02 13.75 16.85 20.6 23.7 27.00",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Domestic (Lakhs) 11.02 13.75 16.85 20.6 23.7 27.00",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Domestic (Lakhs) 11.02 13.75 16.85 20.6 23.7 27.00",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Domestic (Lakhs) 11.02 13.75 16.85 20.6 23.7 27.00",
+              "page": 17
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "As on 31st March 2025, total PNG connections provided stood at 30.07 Lakh households",
+              "page": 53
+            }
           ]
         },
         {
-          "label": "PNG Industrial and Commercial ConnectionsNumber ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "PNG Industrial and Commercial Connections",
+          "unit": "Number",
+          "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            2580,
+            2870,
+            3593,
+            4337,
+            5566,
+            6687,
+            7720,
+            9021,
+            10585,
+            12141
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 13 Nov 2017",
+              "quote": "Commercial/ Industrial 1382 1876 2292 2580 2870 3119",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 13 Nov 2017",
+              "quote": "Commercial/ Industrial 1382 1876 2292 2580 2870 3119",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 12 May 2023",
+              "quote": "Industrial/ Commercial (Nos.) 3,593 4,337 5,566 6,687 7,720 9021",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Industrial/ Commercial (Nos.) 4,337 5,566 6,687 7,720 9021 10585",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Industrial/ Commercial (Nos.) 4,337 5,566 6,687 7,720 9021 10585",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Industrial/ Commercial (Nos.) 4,337 5,566 6,687 7,720 9021 10585",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Industrial/ Commercial (Nos.) 4,337 5,566 6,687 7,720 9021 10585",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Industrial/ Commercial (Nos.) 4,337 5,566 6,687 7,720 9021 10585",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Industrial/ Commercial (Nos.) 4,337 5,566 6,687 7,720 9021 10585",
+              "page": 17
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "As on 31st March 2025, total PNG connections provided stood at 30.07 Lakh households and 12,141 Commercial & Industrial consumers.",
+              "page": 53
+            }
           ]
         },
         {
-          "label": "Steel Pipeline Networkkm ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "Steel Pipeline Network",
+          "unit": "km",
+          "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            707,
+            778,
+            919,
+            1006,
+            1150,
+            1265,
+            1571,
+            1868,
+            2055,
+            2347
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 13 Nov 2017",
+              "quote": "Steel Pipeline 631 658 681 707 778 867",
+              "page": 16
+            },
+            {
+              "doc": "Presentation - 13 Nov 2017",
+              "quote": "Steel Pipeline 631 658 681 707 778 867",
+              "page": 16
+            },
+            {
+              "doc": "Presentation - 12 May 2023",
+              "quote": "Steel Pipeline 919 1,006 1,150 1,265 1,571 1,868",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Steel Pipeline 1,006 1,150 1,265 1,571 1,868 2055",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Steel Pipeline 1,006 1,150 1,265 1,571 1,868 2055",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Steel Pipeline 1,006 1,150 1,265 1,571 1,868 2055",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Steel Pipeline 1,006 1,150 1,265 1,571 1,868 2055",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Steel Pipeline 1,006 1,150 1,265 1,571 1,868 2055",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Steel Pipeline 1,006 1,150 1,265 1,571 1,868 2055",
+              "page": 18
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "As on 31st March 2025, total PNG connections provided stood at 30.07 Lakh households and 12,141 Commercial & Industrial consumers.",
+              "page": 53
+            }
           ]
         },
         {
-          "label": "Total Sales VolumeMMSCMD ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "Total Sales Volume",
+          "unit": "MMSCMD",
+          "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            4,
+            4.59,
+            5.18,
+            5.91,
+            6.44,
+            5.33,
+            6.99,
+            8.09,
+            8.43,
+            8.99
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 17 Nov 2016",
+              "quote": "Daily Average Sale 3.67 3.79 3.84 4.00",
+              "page": 9
+            },
+            {
+              "doc": "Presentation - 13 Nov 2017",
+              "quote": "Daily Average Sale 3.67 3.79 3.84 4.00 4.59",
+              "page": 9
+            },
+            {
+              "doc": "Presentation - 12 May 2023",
+              "quote": "Daily Average Sale 5.18 5.91 6.44 5.33 6.99 8.09",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Daily Average Sale 5.91 6.44 5.33 6.99 8.09 8.43",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Daily Average Sale 5.91 6.44 5.33 6.99 8.09 8.43",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Daily Average Sale 5.91 6.44 5.33 6.99 8.09 8.43",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Daily Average Sale 5.91 6.44 5.33 6.99 8.09 8.43",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Daily Average Sale 5.91 6.44 5.33 6.99 8.09 8.43",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Daily Average Sale 5.91 6.44 5.33 6.99 8.09 8.43",
+              "page": 8
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "The Company achieved its highest-ever sales volume of 3280.87 mmscm, equivalent to 8.99 mmscmd, during FY 2024-25.",
+              "page": 53
+            }
           ]
         },
         {
-          "label": "CNG Sale per DayLakh kg/day ・Standalone data",
-          "unit": null,
-          "scope": null,
+          "label": "CNG Sale per Day",
+          "unit": "Lakh kg/day",
+          "scope": "Standalone data",
           "values": [
             null,
             null,
             null,
+            31.34,
+            33.67,
+            26.23,
+            35.81,
+            44.14,
+            44.99,
+            50
+          ],
+          "citations": [
             null,
             null,
             null,
-            null,
-            null,
-            null,
-            null
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Sale (Lakh kg/day) 31.34 33.67 26.23 35.81 44.14 44.99",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Sale (Lakh kg/day) 31.34 33.67 26.23 35.81 44.14 44.99",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Sale (Lakh kg/day) 31.34 33.67 26.23 35.81 44.14 44.99",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Sale (Lakh kg/day) 31.34 33.67 26.23 35.81 44.14 44.99",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Sale (Lakh kg/day) 31.34 33.67 26.23 35.81 44.14 44.99",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2024",
+              "quote": "Sale (Lakh kg/day) 31.34 33.67 26.23 35.81 44.14 44.99",
+              "page": 13
+            },
+            {
+              "doc": "Concall Transcript - 13 Feb 2026",
+              "quote": "On the CNG segment, the CNG segment continued to perform strongly with average daily sales exceeding 50 lakh kgs per day, equivalent to 6.93 million SCM",
+              "page": 4
+            }
           ]
         }
       ]

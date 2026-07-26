@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Extracted KPI values, kept across runs",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-26T15:53:16.989Z",
+  "generatedAt": "2026-07-26T16:23:53.939Z",
   "note": "One entry per company/KPI/quarter, for every quarter ever extracted - not just the current window. A run only asks the model about cells it does not already have, and a null never overwrites a real value. Delete a cell (or run with --refresh) to force re-extraction.",
   "companies": {
     "deep-industries": {
@@ -62,27 +62,27 @@
           "unit": "%",
           "sourceTag": null,
           "note": "Q1 FY26 utilisation was stated as 100% for workover and normal rigs. No other quarters had utilisation figures.",
-          "fingerprint": "87b52a7efbfd",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:05.069Z"
+          "fingerprint": "d2d131e9a280",
+          "attempts": 2,
+          "at": "2026-07-26T16:23:46.822Z"
         },
         "asset-utilisation|Q3 FY26": {
           "value": null,
           "unit": "%",
           "sourceTag": null,
           "note": "Q1 FY26 utilisation was stated as 100% for workover and normal rigs. No other quarters had utilisation figures.",
-          "fingerprint": "87b52a7efbfd",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:05.069Z"
+          "fingerprint": "d2d131e9a280",
+          "attempts": 2,
+          "at": "2026-07-26T16:23:46.822Z"
         },
         "asset-utilisation|Q4 FY26": {
           "value": null,
           "unit": "%",
           "sourceTag": null,
           "note": "Q1 FY26 utilisation was stated as 100% for workover and normal rigs. No other quarters had utilisation figures.",
-          "fingerprint": "87b52a7efbfd",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:05.069Z"
+          "fingerprint": "d2d131e9a280",
+          "attempts": 2,
+          "at": "2026-07-26T16:23:46.822Z"
         },
         "day-rate|Q1 FY26": {
           "value": 30000,
@@ -99,30 +99,30 @@
           "unit": "$/day",
           "sourceTag": null,
           "note": "Q1 FY26 day rate for Dolphin contract was $30,000/day. No other quarters had day-rate figures.",
-          "fingerprint": "87b52a7efbfd",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:05.069Z"
+          "fingerprint": "d2d131e9a280",
+          "attempts": 2,
+          "at": "2026-07-26T16:23:46.822Z"
         },
         "day-rate|Q3 FY26": {
           "value": null,
           "unit": "$/day",
           "sourceTag": null,
           "note": "Q1 FY26 day rate for Dolphin contract was $30,000/day. No other quarters had day-rate figures.",
-          "fingerprint": "87b52a7efbfd",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:05.069Z"
+          "fingerprint": "d2d131e9a280",
+          "attempts": 2,
+          "at": "2026-07-26T16:23:46.822Z"
         },
         "day-rate|Q4 FY26": {
           "value": null,
           "unit": "$/day",
           "sourceTag": null,
           "note": "Q1 FY26 day rate for Dolphin contract was $30,000/day. No other quarters had day-rate figures.",
-          "fingerprint": "87b52a7efbfd",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:05.069Z"
+          "fingerprint": "d2d131e9a280",
+          "attempts": 2,
+          "at": "2026-07-26T16:23:46.822Z"
         }
       },
-      "updatedAt": "2026-07-26T15:53:05.069Z"
+      "updatedAt": "2026-07-26T16:23:46.822Z"
     },
     "engineers-india": {
       "cells": {
@@ -211,39 +211,39 @@
           "unit": "₹ cr",
           "sourceTag": null,
           "note": "Bid pipeline not mentioned in any excerpt.",
-          "fingerprint": "1b28c767aa5c",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:07.648Z"
+          "fingerprint": "71ef25a2c8e1",
+          "attempts": 2,
+          "at": "2026-07-26T16:23:48.154Z"
         },
         "bid-pipeline|Q2 FY26": {
           "value": null,
           "unit": "₹ cr",
           "sourceTag": null,
           "note": "Bid pipeline not mentioned in any excerpt.",
-          "fingerprint": "1b28c767aa5c",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:07.648Z"
+          "fingerprint": "71ef25a2c8e1",
+          "attempts": 2,
+          "at": "2026-07-26T16:23:48.154Z"
         },
         "bid-pipeline|Q3 FY26": {
           "value": null,
           "unit": "₹ cr",
           "sourceTag": null,
           "note": "Bid pipeline not mentioned in any excerpt.",
-          "fingerprint": "1b28c767aa5c",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:07.648Z"
+          "fingerprint": "71ef25a2c8e1",
+          "attempts": 2,
+          "at": "2026-07-26T16:23:48.154Z"
         },
         "bid-pipeline|Q4 FY26": {
           "value": null,
           "unit": "₹ cr",
           "sourceTag": null,
           "note": "Bid pipeline not mentioned in any excerpt.",
-          "fingerprint": "1b28c767aa5c",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:07.648Z"
+          "fingerprint": "71ef25a2c8e1",
+          "attempts": 2,
+          "at": "2026-07-26T16:23:48.154Z"
         }
       },
-      "updatedAt": "2026-07-26T15:53:07.648Z"
+      "updatedAt": "2026-07-26T16:23:48.154Z"
     },
     "petronet-lng": {
       "cells": {
@@ -301,10 +301,10 @@
           "value": null,
           "unit": "%",
           "sourceTag": null,
-          "note": "Q1 FY26 value not provided; Q2 FY26 Kochi utilisation 27% from management claim; Q3 FY26 Kochi utilisation 29% from management claim; Q4 FY26 Dahej utilisation 90.1% from management claim.",
-          "fingerprint": "d179ce3b9154",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:15.275Z"
+          "note": "Q1 FY26 regas utilisation % not stated. Q2 FY26 Kochi utilisation was 27% (mgmt-claim). Q3 FY26 Kochi utilisation was 29% (mgmt-claim). Q4 FY26 Dahej utilisation was 90.1% (mgmt-claim).",
+          "fingerprint": "473c02d49e4e",
+          "attempts": 2,
+          "at": "2026-07-26T16:23:51.343Z"
         },
         "regas-utilisation|Q2 FY26": {
           "value": 27,
@@ -317,16 +317,17 @@
           "at": "2026-07-26T15:53:15.275Z"
         },
         "volume|Q2 FY26": {
-          "value": null,
-          "unit": "tmt",
-          "sourceTag": null,
-          "note": "Q1 FY26 value not provided; Q2 FY26 value not provided; Q3 FY26 total volume 233 TBTU from management claim; Q4 FY26 total volume 219 TBTU from management claim.",
-          "fingerprint": "d179ce3b9154",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:15.275Z"
+          "value": 211,
+          "unit": "TBTU",
+          "sourceTag": "mgmt-claim",
+          "note": "Q1 FY26 total volume was 220 TBTU (mgmt-claim). Q2 FY26 Dahej volume was 211 TBTU (mgmt-claim). Q3 FY26 total volume was 233 TBTU (mgmt-claim). Q4 FY26 total volume was 219 TBTU (mgmt-claim).",
+          "fingerprint": "473c02d49e4e",
+          "attempts": 2,
+          "model": "gpt-4o",
+          "at": "2026-07-26T16:23:51.343Z"
         }
       },
-      "updatedAt": "2026-07-26T15:53:15.275Z"
+      "updatedAt": "2026-07-26T16:23:51.343Z"
     },
     "igl": {
       "cells": {
@@ -391,25 +392,26 @@
           "at": "2026-07-26T15:53:02.330Z"
         },
         "cng-png-volume-growth|Q4 FY26": {
-          "value": null,
+          "value": 6,
           "unit": "percent",
-          "sourceTag": null,
+          "sourceTag": "mgmt-claim",
           "note": null,
-          "fingerprint": "e38efe4dfe9b",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:16.989Z"
+          "fingerprint": "54fab392b95e",
+          "attempts": 2,
+          "model": "gpt-4o",
+          "at": "2026-07-26T16:23:53.938Z"
         },
         "ebitda-per-scm|Q2 FY26": {
           "value": null,
           "unit": "INR/scm",
           "sourceTag": null,
-          "note": null,
-          "fingerprint": "e38efe4dfe9b",
-          "attempts": 1,
-          "at": "2026-07-26T15:53:16.989Z"
+          "note": "Q2 FY26 value not explicitly stated.",
+          "fingerprint": "54fab392b95e",
+          "attempts": 2,
+          "at": "2026-07-26T16:23:53.938Z"
         }
       },
-      "updatedAt": "2026-07-26T15:53:16.989Z"
+      "updatedAt": "2026-07-26T16:23:53.938Z"
     }
   }
 }

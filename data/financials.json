@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Company financials (raw context from Screener)",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-07-26T15:53:01.781Z",
+  "generatedAt": "2026-07-26T16:23:43.559Z",
   "source": "Screener.in (consolidated where available)",
   "sourceTag": "external",
   "tag": "[External]",
@@ -15467,7 +15467,7 @@
               6.63,
               8.31
             ],
-            "Expenses": [
+            "Expenses -": [
               2887,
               2910,
               2851,
@@ -15480,6 +15480,62 @@
               11612,
               12934,
               14324
+            ],
+            "Material Cost %": [
+              64,
+              62,
+              55,
+              55,
+              59,
+              57,
+              45,
+              57,
+              74,
+              70,
+              74,
+              77
+            ],
+            "Manufacturing Cost %": [
+              10,
+              11,
+              12,
+              12,
+              12,
+              12,
+              15,
+              11,
+              8,
+              8,
+              8,
+              0
+            ],
+            "Employee Cost %": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              3,
+              2,
+              1,
+              2,
+              1,
+              2
+            ],
+            "Other Cost %": [
+              3,
+              4,
+              5,
+              5,
+              5,
+              5,
+              7,
+              5,
+              3,
+              3,
+              3,
+              10
             ],
             "Operating Profit": [
               794,
@@ -15509,7 +15565,7 @@
               13,
               11
             ],
-            "Other Income": [
+            "Other Income -": [
               31,
               78,
               108,
@@ -15521,6 +15577,34 @@
               469,
               596,
               691,
+              675
+            ],
+            "Exceptional items": [
+              0,
+              -1,
+              0,
+              42,
+              87,
+              83,
+              12,
+              60,
+              59,
+              53,
+              75,
+              0
+            ],
+            "Other income normal": [
+              31,
+              78,
+              108,
+              111,
+              127,
+              210,
+              228,
+              341,
+              410,
+              543,
+              616,
               675
             ],
             "Interest": [
@@ -15625,10 +15709,16 @@
           "order": [
             "Sales -",
             "Sales Growth %",
-            "Expenses",
+            "Expenses -",
+            "Material Cost %",
+            "Manufacturing Cost %",
+            "Employee Cost %",
+            "Other Cost %",
             "Operating Profit",
             "OPM %",
-            "Other Income",
+            "Other Income -",
+            "Exceptional items",
+            "Other income normal",
             "Interest",
             "Depreciation",
             "Profit before tax",
