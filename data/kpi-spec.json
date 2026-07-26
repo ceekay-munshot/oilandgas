@@ -1,8 +1,9 @@
 {
   "schemaVersion": 1,
   "title": "Per-company KPI specification",
-  "note": "The exact KPIs the client tracks for each company, verbatim from the client doc - not invented by the pipeline. flagBasis says how the 4-quarter series is turned into a trajectory: 'level' flags the values themselves, 'qoq' flags the quarter-on-quarter change, 'yoy' means the value is already a year-on-year figure. keywords are only used to pre-filter the source text before the LLM reads it. unit is a hint; the extractor records whatever unit the source actually states.",
+  "note": "The exact KPIs the client tracks for each company, verbatim from the client doc - not invented by the pipeline. flagBasis says how the series is read: 'level' is the value itself, 'qoq' a quarter-on-quarter stock like an order book, 'yoy' a figure that is already year-on-year. keywords are only used to pre-filter the source text before the LLM reads it. unit is a hint; the extractor records whatever unit the source actually states.",
   "updated": "2026-07-26",
+  "quartersNote": "Only a fallback for a company with no cached documents. Each company's real window is the four most recent quarters its own concalls report, derived per run by the extractor, so it rolls forward by itself as new calls appear on Screener.",
   "quarters": ["Q2 FY26", "Q3 FY26", "Q4 FY26", "Q1 FY27"],
   "flatBandPct": 1.5,
   "sourceTagGuide": {

@@ -51,23 +51,75 @@ async function readText(path) {
 async function writeJson(path, obj) { await writeFile(path, JSON.stringify(obj, null, 2) + '\n'); }
 
 /**
- * Ordered source texts for one company: PPT, then transcripts, then financials.
+ * Every cached per-quarter document for one company, newest quarter first, with
+ * the AI Summary preferred over the transcript for the same quarter.
  *
- * Every document is labelled with the fiscal quarter it REPORTS (not its own
- * publication month), because that label is what tells the model which slot a
- * number belongs in. A document reporting a quarter outside the target window is
- * dropped: its numbers are real but belong to no column here, and leaving them in
- * only invites them to be filed against the wrong quarter.
+ * The summary is Screener's own digest of that call - a few thousand characters
+ * of exactly the operational numbers these KPIs want - so when both exist the
+ * summary leads and the transcript follows as corroboration. Each is tagged with
+ * the fiscal quarter it REPORTS (not its publication month), which is what tells
+ * the model which slot a number belongs in.
+ *
+ * @returns {Map<string, {quarter:string, docs:{label:string,text:string}[]}>}
+ *          keyed by quarter label, insertion-ordered newest first
  */
-async function gatherSources(man, fin, quarters) {
+async function gatherByQuarter(man) {
+  const perQuarter = new Map();
+  const add = (q, doc) => {
+    if (!perQuarter.has(q)) perQuarter.set(q, { quarter: q, docs: [] });
+    perQuarter.get(q).docs.push(doc);
+  };
+
+  // Summaries first so they lead within each quarter.
+  for (const kind of ['summaries', 'transcripts']) {
+    for (const d of (man && man[kind]) || []) {
+      if (d.status !== 'ok' || !d.cache) continue;
+      const q = reportedQuarter(d.periodIso);
+      if (!q) continue;
+      const text = await readText(resolve(ROOT, d.cache));
+      if (!text) continue;
+      add(q, {
+        label: kind === 'summaries'
+          ? `CONCALL AI SUMMARY - reports ${q}`
+          : `CONCALL TRANSCRIPT [management call] - reports ${q}`,
+        text
+      });
+    }
+  }
+
+  // Newest quarter first.
+  return new Map([...perQuarter.entries()].sort((a, b) => (qKey(b[0]) - qKey(a[0]))));
+}
+
+/** 'Q3 FY26' -> a sortable integer (FY*10 + quarter). */
+function qKey(label) {
+  const m = String(label).match(/^Q(\d)\s*FY(\d{2})$/);
+  return m ? Number(m[2]) * 10 + Number(m[1]) : -1;
+}
+
+/**
+ * The window this company is actually reported on: the four most recent quarters
+ * that yielded text, oldest first. Rolling by construction - when a new concall
+ * lands on Screener the newest quarter enters and the oldest drops out, with no
+ * hardcoded quarter list to maintain.
+ */
+function windowFor(perQuarter, fallback) {
+  const have = [...perQuarter.keys()].slice(0, 4);
+  if (!have.length) return (fallback || []).slice(-4);
+  return have.slice().sort((a, b) => qKey(a) - qKey(b));   // oldest -> newest
+}
+
+/** Blocks for the model: the in-window quarters' documents, plus the financials. */
+async function buildBlocks(perQuarter, quarters, man, fin, keywords) {
   const sources = [];
-  const skipped = [];
+  for (const q of [...quarters].reverse()) {           // newest first - it matters most
+    const bucket = perQuarter.get(q);
+    if (bucket) sources.push(...bucket.docs);
+  }
 
   if (man && man.ppt && man.ppt.status === 'ok' && man.ppt.cache) {
     const t = await readText(resolve(ROOT, man.ppt.cache));
     if (t) {
-      // A deck usually carries a multi-quarter trend table, so it is not pinned
-      // to one slot - it is labelled with what it reports and left to the model.
       const q = reportedQuarter(man.ppt.periodIso);
       sources.push({
         label: `INVESTOR PPT [company filing] - published ${man.ppt.periodIso || '?'}` +
@@ -77,25 +129,15 @@ async function gatherSources(man, fin, quarters) {
     }
   }
 
-  for (const tr of (man && man.transcripts) || []) {
-    if (tr.status !== 'ok' || !tr.cache) continue;
-    const q = reportedQuarter(tr.periodIso);
-    if (!q || quarterIndex(q, quarters) === -1) {
-      skipped.push(`${tr.periodIso}->${q || '?'}`);
-      continue;
-    }
-    const t = await readText(resolve(ROOT, tr.cache));
-    if (t) sources.push({ label: `CONCALL TRANSCRIPT [management call] - reports ${q}`, text: t });
-  }
-
   const finText = financialsToText(fin);
   if (finText) {
     sources.push({
-      label: 'SCREENER FINANCIALS [company filing] - quarterly table, columns are labelled with their quarter-end month',
+      label: 'SCREENER FINANCIALS [company filing] - quarterly table, each column labelled with the quarter it closes',
       text: finText
     });
   }
-  return { sources, skipped };
+
+  return { blocks: preFilter(sources, keywords, { maxChars: MAX_CONTEXT }), sourceCount: sources.length };
 }
 
 /** The latest quarter label that has any value, for an "as of" stamp. */
@@ -121,7 +163,9 @@ async function main() {
     for (const c of g.companies) nameById[c.id] = c.name;
   }
 
-  const quarters = spec.quarters;
+  // spec.quarters is only a fallback now: each company's real window is derived
+  // from the quarters its own cached documents report.
+  const fallbackQuarters = spec.quarters || [];
   const flatBandPct = spec.flatBandPct ?? 1.5;
 
   let ids = Object.keys(spec.companies);
@@ -138,7 +182,7 @@ async function main() {
 
   // Merge into any previous kpis.json so a partial run is not lost.
   const out = {
-    ...freshDoc(quarters, flatBandPct),
+    ...freshDoc(fallbackQuarters, flatBandPct),
     companies: (await readJson(resolve(ROOT, 'data/kpis.json'), {})).companies || {}
   };
 
@@ -151,13 +195,14 @@ async function main() {
     const slug = (fin && fin.slug) || (man && man.slug) || null;
 
     process.stdout.write(`  ${id.padEnd(20)} `);
-    const { sources, skipped } = await gatherSources(man, fin, quarters);
-    const blocks = preFilter(sources, kpis.flatMap((k) => k.keywords), { maxChars: MAX_CONTEXT });
+    const perQuarter = await gatherByQuarter(man);
+    const quarters = windowFor(perQuarter, fallbackQuarters);
+    const { blocks, sourceCount } = await buildBlocks(
+      perQuarter, quarters, man, fin, kpis.flatMap((k) => k.keywords));
     const ctxChars = blocks.reduce((n, b) => n + b.text.length, 0);
 
     if (opts.dryRun) {
-      console.log(`sources: ${sources.length} · filtered ${ctxChars} chars · KPIs ${kpis.length} (dry-run, no call)`);
-      if (skipped.length) console.log(`      outside the window: ${skipped.join(', ')}`);
+      console.log(`window ${quarters.join(' ')} · ${sourceCount} sources · ${ctxChars} chars · KPIs ${kpis.length} (dry-run)`);
       continue;
     }
 
@@ -186,14 +231,14 @@ async function main() {
 
     const cov = coverageOf(kpiObjects);
     out.companies[id] = {
-      name, slug, asOf: asOfFrom(kpiObjects, quarters),
+      name, slug, quarters, asOf: asOfFrom(kpiObjects, quarters),
       provider: usedProvider, ctxChars,
       ...(note ? { note } : {}),
       kpis: kpiObjects
     };
     await writeJson(resolve(ROOT, 'data/kpis.json'), withCoverage(out));
 
-    console.log(`${cov.real}/${cov.cells} cells${note ? ' · ' + note : ''}`);
+    console.log(`${cov.real}/${cov.cells} cells · ${quarters.join(' ')}${note ? ' · ' + note : ''}`);
     // A couple of example values for the log.
     for (const k of kpiObjects) {
       const shown = k.values.map((v, i) => (v == null ? '·' : v)).join(', ');
@@ -214,7 +259,7 @@ async function main() {
 
 function freshDoc(quarters, flatBandPct) {
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     title: 'Per-company KPIs, extracted from Screener documents',
     generatedBy: 'pipeline/extract-kpis.mjs',
     generatedAt: new Date().toISOString(),
@@ -222,23 +267,45 @@ function freshDoc(quarters, flatBandPct) {
     flatBandPct,
     note: 'Each KPI value is taken straight from a company filing/PPT or a management statement on ' +
           'the concall - never estimated. A quarter the sources do not state is null. Trajectory ' +
-          'flags are computed in code from the four values on the KPI\'s flagBasis. sourceTags name ' +
-          'where each value came from (framework.json).',
+          'flags are computed in code from the four values. sourceTags name where each value came ' +
+          'from (framework.json). Each company carries its OWN `quarters` - the four most recent ' +
+          'quarters its documents actually report, oldest first - so values[i] aligns to that ' +
+          'company\'s quarters[i], not to the top-level list, which is only a display fallback. ' +
+          'The window rolls forward on its own as new concalls appear on Screener.',
     coverage: { companies: 0, kpiCells: 0, realCells: 0, nullCells: 0 },
     companies: {}
   };
 }
 
 function withCoverage(doc) {
-  let kpiCells = 0, realCells = 0;
+  let kpiCells = 0, realCells = 0, flagged = 0, totalKpis = 0;
   const list = Object.values(doc.companies);
+  const windows = new Map();
   for (const c of list) {
-    for (const k of c.kpis) for (const v of k.values) { kpiCells++; if (v != null) realCells++; }
+    for (const k of c.kpis) {
+      totalKpis++;
+      if (k.flag) flagged++;
+      for (const v of k.values) { kpiCells++; if (v != null) realCells++; }
+    }
+    if (Array.isArray(c.quarters) && c.quarters.length) {
+      const key = c.quarters.join('|');
+      windows.set(key, (windows.get(key) || 0) + 1);
+    }
   }
+  // The top-level window is whichever one the most companies are on - a display
+  // fallback for the table header; each company's own list stays authoritative.
+  let common = doc.quarters;
+  let best = 0;
+  for (const [key, n] of windows) if (n > best) { best = n; common = key.split('|'); }
+
   return {
     ...doc,
+    quarters: common,
     generatedAt: doc.generatedAt || new Date().toISOString(),
-    coverage: { companies: list.length, kpiCells, realCells, nullCells: kpiCells - realCells }
+    coverage: {
+      companies: list.length, kpiCells, realCells, nullCells: kpiCells - realCells,
+      kpis: totalKpis, kpisWithTrend: flagged
+    }
   };
 }
 
@@ -250,4 +317,4 @@ if (invokedDirectly) {
   });
 }
 
-export { asOfFrom, gatherSources };
+export { asOfFrom, windowFor, qKey };
