@@ -101,7 +101,10 @@ async function gatherDoc(context, slug, doc, { env = process.env } = {}) {
   await mkdir(dir, { recursive: true });
   let status, chars = 0, pages = null, errMsg = null, via = 'browser';
   try {
-    const dl = await downloadDoc(context, doc.url);
+    // Fallback transcripts get a short leash so a slow own-site host fails fast;
+    // primaries are worth waiting a little longer for.
+    const timeout = doc.role === 'transcript' ? 25_000 : 40_000;
+    const dl = await downloadDoc(context, doc.url, { timeout });
     if (!dl.ok) {
       status = `http_${dl.status}`;
     } else if (isPdf(dl.buffer)) {
@@ -123,13 +126,14 @@ async function gatherDoc(context, slug, doc, { env = process.env } = {}) {
     errMsg = (e && e.message) ? e.message.slice(0, 160) : String(e);
   }
 
-  // A download that errored, or came back a scan or a non-PDF, gets one scraper
-  // retry - but only for URLs that actually name a document. Firecrawl reaches
-  // own-site PDFs a plain request cannot (ONGC blocks the runner) and OCRs
-  // scanned ones, which is precisely this gap.
-  if (status !== 'ok' && looksLikeDoc(doc.url) && (env.FIRECRAWL_API_KEY || env.SCRAPEDO_API_KEY)) {
+  // A failed primary document (AI Summary or PPT) gets one scraper retry - only
+  // for URLs that name a document. Transcripts are the FALLBACK, so a failed one
+  // is left flagged rather than chased through Firecrawl: paying 45s per own-site
+  // transcript is what made ONGC take minutes, and the summary already covers it.
+  const primary = doc.role === 'summary' || doc.role === 'ppt';
+  if (status !== 'ok' && primary && looksLikeDoc(doc.url) && (env.FIRECRAWL_API_KEY || env.SCRAPEDO_API_KEY)) {
     try {
-      const res = await scrapePage(doc.url, { env });
+      const res = await scrapePage(doc.url, { env, timeoutMs: 45_000, retries: 1 });
       const text = toText(res.html);
       if (text.length >= 200) {
         await writeFile(txt, text);
@@ -198,7 +202,12 @@ async function main() {
   let ok = 0, failed = 0, docsCached = 0, docsOcr = 0, docsRecovered = 0;
 
   try {
+    let i = 0;
     for (const { ref: co } of work) {
+      i++;
+      const t0 = Date.now();
+      // Progress before the work, so a slow company never looks like a freeze.
+      process.stdout.write(`[${i}/${work.length}] ${co.id} ...`);
       try {
         // 1. slug: stored wins; otherwise search by name and save it back.
         let slug = co.screenerSlug;
@@ -266,14 +275,19 @@ async function main() {
 
         ok++;
         const man = manifest.companies[co.id];
-        if (opts.verbose) reportCompany(co, financials.companies[co.id], man);
-        else console.log(`  ${co.id.padEnd(20)} ${view} · ${fin.sectionsFound.length} tables · ${man.summaries.length} summaries · ${man.ppt ? 'ppt · ' : ''}${man.transcripts.length} transcripts`);
+        const secs = ((Date.now() - t0) / 1000).toFixed(0);
+        if (opts.verbose) {
+          console.log(` done (${secs}s)`);
+          reportCompany(co, financials.companies[co.id], man);
+        } else {
+          console.log(` ${view} · ${fin.sectionsFound.length} tables · ${man.summaries.length} summaries · ${man.ppt ? 'ppt · ' : ''}${man.transcripts.length} transcripts (${secs}s)`);
+        }
       } catch (e) {
         failed++;
         const msg = (e && e.message ? e.message : String(e)).slice(0, 200);
         manifest.companies[co.id] = { ...(manifest.companies[co.id] || {}), name: co.name, error: msg };
         await writeJson(manifestPath, manifest).catch(() => {});
-        console.log(`  ${co.id.padEnd(20)} FAILED: ${msg}`);
+        console.log(` FAILED: ${msg}`);
       }
       await sleep(300);   // courtesy gap between companies
     }
