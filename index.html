@@ -543,6 +543,40 @@ table.kpi td.co i{
 }
 table.kpi td.what{color:var(--ink-3); font-weight:450; max-width:230px; overflow:hidden; text-overflow:ellipsis;}
 table.kpi td.empty{color:var(--ink-4); font-weight:500;}
+/* ---- KPI real-data cells ---------------------------------------------------
+   the company name uses rowspan, so on continuation rows the KPI label becomes
+   the DOM first-child and nth-child alignment flips - pin the numbers back and
+   keep the KPI column padding steady between the two row shapes. */
+table.kpi tbody td.num{text-align:right;}
+table.kpi tbody td.what{padding-left:13px;}
+table.kpi td.co[rowspan]{vertical-align:top;}
+.kpiunit{color:var(--ink-4); font-weight:500; font-size:10px; margin-left:2px;}
+.kpimuted{color:var(--ink-4); font-weight:500;}
+.kpidot{
+  display:inline-block; width:6px; height:6px; border-radius:50%;
+  background:var(--c); margin-right:5px; vertical-align:1px;
+}
+/* four-bar quarter spark - CSS only, scaled to the KPI's own min..max;
+   older quarters dimmed, the newest full-strength, nulls left as empty slots */
+.kpispark{
+  display:inline-flex; align-items:flex-end; gap:2px;
+  width:44px; height:18px; flex:0 0 auto; vertical-align:middle;
+}
+.kpispark__b{
+  flex:1 1 0; min-width:0; min-height:2px; border-radius:2px 2px 0 0;
+  background:color-mix(in srgb, var(--c) 40%, #fff);
+}
+.kpispark__b--last{background:var(--c);}
+.kpispark__b--nil{height:2px; min-height:2px; border-radius:0; background:var(--grid);}
+.kpitrend{display:inline-flex; align-items:center; justify-content:flex-end; gap:8px;}
+/* the "Just turned" filter - a chip that doubles as an aria-pressed toggle */
+.chip.kpitoggle{cursor:pointer; appearance:none; -webkit-appearance:none; font-family:inherit;}
+.chip.kpitoggle[aria-pressed="true"]{
+  background:color-mix(in srgb, var(--c) 20%, #fff);
+  border-color:color-mix(in srgb, var(--c) 46%, #fff);
+  color:color-mix(in srgb, var(--c) 82%, var(--ink-1));
+}
+.chip.kpitoggle:focus-visible{outline:2px solid color-mix(in srgb, var(--c) 60%, transparent); outline-offset:2px;}
 .grouphead{
   flex:0 0 auto; display:flex; align-items:center; gap:10px; flex-wrap:wrap;
   padding:9px 13px; border-bottom:1px solid var(--hair);
@@ -935,27 +969,36 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
   };
 
   /* ------------------------------------------------------------ data model */
-  var DATA = { companies: null, framework: null, macro: null };
+  var DATA = { companies: null, framework: null, macro: null, kpis: null };
   var byId = {};        /* company id -> company    */
   var stageById = {};   /* stage id    -> stage     */
   var groupById = {};   /* group id    -> group     */
   var tagById = {};     /* source tag id -> tag     */
+  var flagById = {};    /* trajectory flag id -> flag */
 
   function load() {
     return Promise.all([
       fetch('data/companies.json', { cache: 'no-cache' }).then(chk),
       fetch('data/framework.json', { cache: 'no-cache' }).then(chk),
-      fetch('data/macro.json', { cache: 'no-cache' }).then(chk)
+      fetch('data/macro.json', { cache: 'no-cache' }).then(chk),
+      /* kpis.json is filled company-by-company by the pipeline, so a 404 or a
+         half-written file is normal - swallow any error and resolve to null
+         rather than let it reject the batch and block the whole dashboard */
+      fetch('data/kpis.json', { cache: 'no-cache' })
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .catch(function () { return null; })
     ]).then(function (r) {
       DATA.companies = r[0];
       DATA.framework = r[1];
       DATA.macro = r[2];
+      DATA.kpis = r[3];
       DATA.companies.groups.forEach(function (g) {
         groupById[g.id] = g;
         g.companies.forEach(function (c) { byId[c.id] = c; });
       });
       DATA.framework.cycleStages.forEach(function (s) { stageById[s.id] = s; });
       DATA.framework.sourceTags.forEach(function (t) { tagById[t.id] = t; });
+      DATA.framework.trajectoryFlags.forEach(function (f) { flagById[f.id] = f; });
     });
     function chk(res) {
       if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
@@ -1664,6 +1707,7 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
 
   /* --------------------------------------------------------------- 3. KPIs */
   var kpiActive = 'leading';
+  var kpiJustTurned = false;   /* "Just turned" filter: only the two inflection flags */
   function renderKpiChrome() {
     el('kpiSegs').innerHTML = DATA.framework.groupMeta.map(function (g) {
       return '<button class="seg" role="tab" data-group="' + g.id + '" style="--c:' + g.color + '" ' +
@@ -1687,9 +1731,70 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
     renderKpiTable();
     setHash();
   }
+  /* a KPI has "just turned" when its trajectory is one of the two inflections */
+  function kpiIsTurned(k) {
+    return !!k && (k.flag === 'inflecting-up' || k.flag === 'inflecting-down');
+  }
+  /* compact number: thousands-grouped (Indian - this is a rupees-crore world)
+     once it gets big, otherwise the value as-is with any small decimals kept */
+  function kpiNum(v) {
+    var n = Number(v);
+    if (!isFinite(n)) return String(v);
+    if (Math.abs(n) >= 1000) return n < 0 ? '-' + Math.round(-n).toLocaleString('en-IN')
+                                          : Math.round(n).toLocaleString('en-IN');
+    return String(Math.round(n * 100) / 100);
+  }
+  /* a tiny source-tag dot; empty string when the tag is absent or unrecognised */
+  function kpiTagDot(id) {
+    var t = id == null ? null : tagById[id];
+    if (!t) return '';
+    return '<span class="kpidot" style="--c:' + t.color + '" title="' +
+      esc(t.label + ' - ' + t.meaning) + '"></span>';
+  }
+  /* four CSS bars scaled to this KPI's own min..max; nulls become empty slots,
+     the newest quarter reads full-strength so the eye lands on "now" */
+  function kpiSpark(values, color) {
+    values = values || [];
+    var nums = [];
+    values.forEach(function (v) { if (v != null && isFinite(Number(v))) nums.push(Number(v)); });
+    if (!nums.length) return '';
+    var mn = Math.min.apply(null, nums), mx = Math.max.apply(null, nums);
+    var last = values.length - 1;
+    var bars = values.map(function (v, i) {
+      if (v == null || !isFinite(Number(v))) return '<span class="kpispark__b kpispark__b--nil"></span>';
+      var pct = mx === mn ? 100 : Math.round(20 + (Number(v) - mn) / (mx - mn) * 80);
+      return '<span class="kpispark__b' + (i === last ? ' kpispark__b--last' : '') +
+        '" style="height:' + pct + '%"></span>';
+    }).join('');
+    return '<span class="kpispark" style="--c:' + color + '" aria-hidden="true">' + bars + '</span>';
+  }
+
   function renderKpiTable() {
     var g = groupById[kpiActive];
-    var qs = DATA.companies.quarterLabels;
+    var kdata = (DATA.kpis && DATA.kpis.companies) || null;
+    /* the value arrays line up with kpis.json's own quarter list when present,
+       otherwise the placeholder falls back to the companies file's labels */
+    var qs = (DATA.kpis && DATA.kpis.quarters) || DATA.companies.quarterLabels;
+    var ncol = qs.length + 2;   /* KPI + quarters + Trend, for the awaiting rowspan */
+
+    /* ---- group head: name, description, count, coverage, "Just turned" ---- */
+    var cover;
+    if (DATA.kpis && DATA.kpis.coverage) {
+      var cv = DATA.kpis.coverage;
+      cover = '<span class="chip" style="--c:#0B7A5C" title="' +
+        esc(cv.realCells + ' of ' + cv.kpiCells + ' KPI cells carry a real number; ' +
+            cv.nullCells + ' still blank') + '">' +
+        '<span class="chip__sw"></span>' + esc(cv.realCells + '/' + cv.kpiCells) + ' cells filled</span>';
+    } else {
+      cover = '<span class="chip chip--ghost">Awaiting extraction</span>';
+    }
+    var upF = flagById['inflecting-up'], dnF = flagById['inflecting-down'];
+    var toggle = '<button type="button" class="chip kpitoggle" id="kpiTurnToggle" ' +
+      'aria-pressed="' + (kpiJustTurned ? 'true' : 'false') + '" ' +
+      'style="--c:' + ((upF && upF.color) || '#0E9FC0') + '" ' +
+      'title="Show only the KPIs that just turned up or down this quarter">' +
+      '<span class="chip__sw"></span>' +
+      ((upF && upF.glyph) || '') + ((dnF && dnF.glyph) || '') + ' Just turned</button>';
 
     el('kpiGroupHead').innerHTML =
       '<span class="grouphead__name">' +
@@ -1700,25 +1805,80 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
       '<span class="grouphead__desc">' + esc(g.plainDescription) + '</span>' +
       '<span class="chip" style="--c:' + g.color + '"><span class="chip__sw"></span>' +
         g.companies.length + ' companies</span>' +
-      '<span class="chip chip--ghost">Numbers land in a later step</span>';
+      cover + toggle;
 
-    el('kpiTable').innerHTML =
-      '<caption class="sr">Company numbers over the last four quarters for the ' + esc(g.name) + ' group. No data loaded yet.</caption>' +
-      '<thead><tr><th>Company</th><th>What it does</th>' +
-        qs.map(function (q) { return '<th>' + esc(q) + '</th>'; }).join('') +
-        '<th>Trend</th></tr></thead>' +
-      '<tbody>' + g.companies.map(function (c) {
+    var tog = el('kpiTurnToggle');
+    if (tog) tog.addEventListener('click', function () {
+      kpiJustTurned = !kpiJustTurned;
+      renderKpiTable();
+    });
+
+    /* ---- body: one block of rows per company, name cell spanning the block ---- */
+    var shown = 0;
+    var body = g.companies.map(function (c) {
+      var entry = kdata ? kdata[c.id] : null;
+      var kpis = (entry && entry.kpis) ? entry.kpis : [];
+      if (kpiJustTurned) kpis = kpis.filter(kpiIsTurned);
+
+      /* nothing to show for this company: awaiting extraction (never while filtering) */
+      if (!kpis.length) {
+        if (kpiJustTurned) return '';
+        shown++;
         return '<tr>' +
           '<td class="co" style="--c:' + g.color + '"><i></i>' + esc(c.name) + '</td>' +
-          '<td class="what">' + esc(c.what) + '</td>' +
-          qs.map(function () { return '<td class="empty">&ndash;</td>'; }).join('') +
-          '<td class="empty">&ndash;</td>' +
+          '<td class="empty" colspan="' + ncol + '">Awaiting extraction</td>' +
         '</tr>';
-      }).join('') + '</tbody>';
+      }
 
-    var e = el('kpiEmpty');
-    e.innerHTML = ghostHTML('bars',
-      'Numbers for these ' + g.companies.length + ' companies land in a later step');
+      shown++;
+      return kpis.map(function (k, j) {
+        var cells = '';
+        /* company name once, spanning this company's KPI rows */
+        if (j === 0) {
+          cells += '<td class="co" rowspan="' + kpis.length + '" style="--c:' + g.color + '">' +
+            '<i></i>' + esc(c.name) + '</td>';
+        }
+        /* KPI label + unit, titled with how the trajectory was judged */
+        cells += '<td class="what"' + (k.flagBasis ? ' title="flagged on ' + esc(k.flagBasis) + '"' : '') +
+          '>' + esc(k.label) +
+          (k.unit ? ' <span class="kpiunit">' + esc(k.unit) + '</span>' : '') + '</td>';
+        /* four quarter values, aligned to qs; null -> dash titled with the note */
+        var vals = k.values || [], tags = k.sourceTags || [];
+        for (var i = 0; i < qs.length; i++) {
+          var v = vals[i];
+          if (v == null || v === '' || !isFinite(Number(v))) {
+            cells += '<td class="empty num"' + (k.notes ? ' title="' + esc(k.notes) + '"' : '') + '>&ndash;</td>';
+          } else {
+            cells += '<td class="num">' + kpiTagDot(tags[i]) + esc(kpiNum(v)) + '</td>';
+          }
+        }
+        /* trend: the 4-bar spark beside the trajectory chip (or a muted dash) */
+        var flag = k.flag ? flagById[k.flag] : null;
+        var trend = flag
+          ? '<span class="chip" style="--c:' + flag.color + '" title="' + esc(flag.meaning) + '">' +
+              '<span class="chip__sw"></span>' + flag.glyph + ' ' + esc(flag.plainLabel) + '</span>'
+          : '<span class="kpimuted">&ndash;</span>';
+        cells += '<td><span class="kpitrend">' + kpiSpark(k.values, g.color) + trend + '</span></td>';
+        return '<tr>' + cells + '</tr>';
+      }).join('');
+    }).join('');
+
+    el('kpiTable').innerHTML =
+      '<caption class="sr">Key numbers over the last four quarters for the ' + esc(g.name) +
+        ' group' + (DATA.kpis ? '' : ', awaiting extraction') + '.</caption>' +
+      '<thead><tr><th>Company</th><th>KPI</th>' +
+        qs.map(function (q) { return '<th>' + esc(q) + '</th>'; }).join('') +
+        '<th>Trend</th></tr></thead>' +
+      '<tbody>' + body + '</tbody>';
+
+    /* The ghost states the absence of rows - so it appears only when there are
+       none. Drawn under real rows it reads as "no data", which is a lie about a
+       table that just filled. */
+    el('kpiEmpty').innerHTML = shown === 0
+      ? ghostHTML('bars', !DATA.kpis
+          ? 'Awaiting extraction'
+          : (kpiJustTurned ? 'No KPIs just turned this quarter' : 'No KPIs to show for this group yet'))
+      : '';
   }
 
   /* ---------------------------------------------------------- 4. commentary */
