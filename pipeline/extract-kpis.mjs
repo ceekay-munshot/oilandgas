@@ -22,6 +22,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { loadEnv } from './lib/env.mjs';
 import { callLLM, availableProviders } from './lib/llm.mjs';
+import { reportedQuarter, quarterIndex } from './lib/fiscal.mjs';
 import {
   preFilter, financialsToText, buildMessages, normalizeResult, coverageOf, KPI_SCHEMA
 } from './parsers/kpi-prompt.mjs';
@@ -49,22 +50,52 @@ async function readText(path) {
 }
 async function writeJson(path, obj) { await writeFile(path, JSON.stringify(obj, null, 2) + '\n'); }
 
-/** Ordered source texts for one company: PPT, then transcripts, then financials. */
-async function gatherSources(man, fin) {
+/**
+ * Ordered source texts for one company: PPT, then transcripts, then financials.
+ *
+ * Every document is labelled with the fiscal quarter it REPORTS (not its own
+ * publication month), because that label is what tells the model which slot a
+ * number belongs in. A document reporting a quarter outside the target window is
+ * dropped: its numbers are real but belong to no column here, and leaving them in
+ * only invites them to be filed against the wrong quarter.
+ */
+async function gatherSources(man, fin, quarters) {
   const sources = [];
+  const skipped = [];
+
   if (man && man.ppt && man.ppt.status === 'ok' && man.ppt.cache) {
     const t = await readText(resolve(ROOT, man.ppt.cache));
-    if (t) sources.push({ label: `INVESTOR PPT ${man.ppt.periodIso || ''} [company filing]`, text: t });
-  }
-  for (const tr of (man && man.transcripts) || []) {
-    if (tr.status === 'ok' && tr.cache) {
-      const t = await readText(resolve(ROOT, tr.cache));
-      if (t) sources.push({ label: `CONCALL TRANSCRIPT ${tr.periodIso || ''} [management call]`, text: t });
+    if (t) {
+      // A deck usually carries a multi-quarter trend table, so it is not pinned
+      // to one slot - it is labelled with what it reports and left to the model.
+      const q = reportedQuarter(man.ppt.periodIso);
+      sources.push({
+        label: `INVESTOR PPT [company filing] - published ${man.ppt.periodIso || '?'}` +
+               (q ? `, reports ${q}` : '') + '; may contain a multi-quarter trend table',
+        text: t
+      });
     }
   }
+
+  for (const tr of (man && man.transcripts) || []) {
+    if (tr.status !== 'ok' || !tr.cache) continue;
+    const q = reportedQuarter(tr.periodIso);
+    if (!q || quarterIndex(q, quarters) === -1) {
+      skipped.push(`${tr.periodIso}->${q || '?'}`);
+      continue;
+    }
+    const t = await readText(resolve(ROOT, tr.cache));
+    if (t) sources.push({ label: `CONCALL TRANSCRIPT [management call] - reports ${q}`, text: t });
+  }
+
   const finText = financialsToText(fin);
-  if (finText) sources.push({ label: 'SCREENER FINANCIALS [company filing]', text: finText });
-  return sources;
+  if (finText) {
+    sources.push({
+      label: 'SCREENER FINANCIALS [company filing] - quarterly table, columns are labelled with their quarter-end month',
+      text: finText
+    });
+  }
+  return { sources, skipped };
 }
 
 /** The latest quarter label that has any value, for an "as of" stamp. */
@@ -120,12 +151,13 @@ async function main() {
     const slug = (fin && fin.slug) || (man && man.slug) || null;
 
     process.stdout.write(`  ${id.padEnd(20)} `);
-    const sources = await gatherSources(man, fin);
+    const { sources, skipped } = await gatherSources(man, fin, quarters);
     const blocks = preFilter(sources, kpis.flatMap((k) => k.keywords), { maxChars: MAX_CONTEXT });
     const ctxChars = blocks.reduce((n, b) => n + b.text.length, 0);
 
     if (opts.dryRun) {
       console.log(`sources: ${sources.length} · filtered ${ctxChars} chars · KPIs ${kpis.length} (dry-run, no call)`);
+      if (skipped.length) console.log(`      outside the window: ${skipped.join(', ')}`);
       continue;
     }
 
