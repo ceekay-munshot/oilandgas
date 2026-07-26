@@ -214,11 +214,10 @@ async function main() {
   console.log(`scrape-screener: ${opts.scope}${opts.only.length ? ' (--only)' : ''} -> ${work.length} of ${all.length} companies`);
   if (!work.length) { console.log('nothing selected; check --scope/--only against companies.json ids'); return; }
 
-  // Merge into whatever a previous run wrote, so a partial run is not lost.
-  const financials = await readJson(financialsPath, freshFinancials());
-  const manifest = await readJson(manifestPath, freshManifest());
-  financials.companies = financials.companies || {};
-  manifest.companies = manifest.companies || {};
+  // Keep the current header/schema but carry over any companies a previous run
+  // wrote, so a partial run is not lost and stale header fields do not linger.
+  const financials = { ...freshFinancials(), companies: (await readJson(financialsPath, {})).companies || {} };
+  const manifest = { ...freshManifest(), companies: (await readJson(manifestPath, {})).companies || {} };
 
   const session = await openScreener({ email, password, headless: !opts.headful });
   console.log(`logged in as ${maskEmail(email)}\n`);
@@ -257,11 +256,14 @@ async function main() {
           tables: fin.tables
         };
 
-        // 3. documents, in the extractor's priority order: Screener's AI Summary
-        //    and PPT first, transcripts as the fallback.
+        // 3. documents. Screener's "AI Summary" turned out to be a Premium
+        //    feature (free tier: 10 reads / 30 days), so it is NOT fetched - the
+        //    quota runs out almost immediately and the endpoint just returns
+        //    "Upgrade to premium". The free material carries the load instead:
+        //    Pros/Cons (above), the investor PPT, and the full transcripts.
         const concalls = parseConcalls(html);
         const picked = selectDocuments(concalls, { transcripts: 4, summaries: 4 });
-        const docs = [...picked.summaries, ...(picked.ppt ? [picked.ppt] : []), ...picked.transcripts];
+        const docs = [...(picked.ppt ? [picked.ppt] : []), ...picked.transcripts];
 
         const gathered = [];
         for (const d of docs) {
@@ -270,9 +272,7 @@ async function main() {
           if (g.cached) docsCached++;
           if (g.status === 'ocr_needed') docsOcr++;
           if (g.via && g.via !== 'browser') docsRecovered++;
-          // Space out fetches - the AI Summary hits Screener's own rate-limited
-          // endpoint, so hammering it is what drew the 429s.
-          await sleep(500);
+          await sleep(250);   // courtesy gap between document fetches
         }
 
         const manifestDoc = (g) => ({
@@ -287,11 +287,12 @@ async function main() {
         manifest.companies[co.id] = {
           name: co.name, slug, view, url,
           analysis: { pros: analysis.pros.length, cons: analysis.cons.length },
-          summariesFound: concalls.filter((c) => c.summary).length,
+          // AI Summary is Premium-gated, so we note how many exist but do not fetch.
+          aiSummary: 'premium-gated (Screener Premium; free tier caps at 10/30 days)',
+          summariesAvailable: concalls.filter((c) => c.summary).length,
           transcriptsFound: concalls.filter((c) => c.transcript).length,
-          summaries: byRole('summary'),   // primary: Screener's AI Summary
           ppt: ppt && manifestDoc(ppt),   // primary
-          transcripts: byRole('transcript') // fallback
+          transcripts: byRole('transcript') // primary text source
         };
 
         // 4. persist after every company (resumable)
@@ -307,7 +308,7 @@ async function main() {
           console.log(` done (${secs}s)`);
           reportCompany(co, financials.companies[co.id], man);
         } else {
-          console.log(` ${view} · ${fin.sectionsFound.length} tables · ${man.summaries.length} summaries · ${man.ppt ? 'ppt · ' : ''}${man.transcripts.length} transcripts (${secs}s)`);
+          console.log(` ${view} · ${fin.sectionsFound.length} tables · ${analysis.pros.length + analysis.cons.length} pros/cons · ${man.ppt ? 'ppt · ' : ''}${man.transcripts.length} transcripts (${secs}s)`);
         }
       } catch (e) {
         failed++;
@@ -372,14 +373,12 @@ function reportCompany(co, fin, man) {
   }).join(', ') : '';
   console.log(`  ${co.name} [${fin.slug}] · ${fin.view}`);
   console.log(`     financials: ${fin.sectionsFound.join(', ') || 'none'} | quarters ${qLine}${sampleRows ? ' | latest ' + sampleRows : ''}`);
-  console.log(`     pros/cons: ${fin.analysis.pros.length} pros, ${fin.analysis.cons.length} cons`);
+  console.log(`     pros/cons (primary): ${fin.analysis.pros.length} pros, ${fin.analysis.cons.length} cons`);
   const tag = (x) => `${x.periodIso || x.period}:${x.status}/${x.chars}c${x.via && x.via !== 'browser' ? `(${x.via})` : ''}`;
-  const s = man.summaries || [];
-  console.log(`     AI summaries (primary): ${s.length} cached of ${man.summariesFound} found` +
-    (s.length ? ' -> ' + s.map(tag).join(', ') : ''));
+  console.log(`     ai summary: premium-gated (${man.summariesAvailable} available, not fetched)`);
   console.log(`     ppt (primary): ${man.ppt ? tag(man.ppt) : 'none'}`);
   const t = man.transcripts || [];
-  console.log(`     transcripts (fallback): ${t.length} cached of ${man.transcriptsFound} found` +
+  console.log(`     transcripts (primary text): ${t.length} cached of ${man.transcriptsFound} found` +
     (t.length ? ' -> ' + t.map(tag).join(', ') : ''));
 }
 
@@ -409,16 +408,16 @@ function freshManifest() {
     cacheDir: 'pipeline/cache/docs',
     sourcePriority: [
       'financials.json analysis (Screener Pros/Cons - the cheapest summary)',
-      'summary (Screener\'s "AI Summary" of each concall)',
       'ppt (investor presentation)',
-      'transcript (full call - FALLBACK, only when the above fall short)'
+      'transcript (full concall - the primary text source)'
     ],
-    note: 'Per company, in priority order: Screener\'s AI Summary of each concall and the ' +
-          'latest investor PPT are the primary material; full transcripts are the fallback. ' +
-          'status ok = text extracted; ocr_needed = a scanned PDF with no text layer (not a ' +
-          'failure); thin = an HTML page with almost no text; not_pdf/http_* = the link did not ' +
-          'return a usable document. via names who fetched it (browser or a scraper). The ' +
-          'extracted text is cached under cacheDir, which is gitignored.',
+    note: 'Per company: Screener\'s Pros/Cons capsule (in financials.json), the latest investor ' +
+          'PPT, and the full concall transcripts. Screener\'s "AI Summary" is a Premium feature ' +
+          '(free tier: 10 reads / 30 days) and is not fetched - aiSummary/summariesAvailable ' +
+          'record that it exists. status ok = text extracted; ocr_needed = a scanned PDF with ' +
+          'no text layer (not a failure); not_pdf/http_* = the link did not return a usable ' +
+          'document. via names who fetched it (browser or a scraper). The extracted text is ' +
+          'cached under cacheDir, which is gitignored.',
     companies: {}
   };
 }
