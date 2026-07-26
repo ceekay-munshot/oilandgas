@@ -362,12 +362,23 @@ async function main() {
 }
 
 /**
- * Print the raw markup around the concalls list for one company, so the actual
- * "AI Summary" element (button? link? data-attribute?) can be read from evidence
- * instead of guessed. Writes nothing.
+ * Print the raw markup for the parts of a company page we read, so a selector is
+ * written from evidence rather than guessed. Writes nothing.
+ *
+ * Two rounds of guessing on the "AI Summary" button earned this: it turned out to
+ * be a <button data-url> loaded as an XHR, not a link, and no amount of reasoning
+ * about it from the outside would have said so.
+ *
+ * Now also hunts Premium's Investors -> Insights table ("Extracted by Screener
+ * AI") - a per-period grid of the operational KPIs this dashboard actually wants
+ * (Wells Drilled, Crude Oil Production, reserves...). If that is inline in the
+ * page we can parse it deterministically and skip the model entirely for those
+ * KPIs; if it arrives by XHR we need the endpoint and the Quarterly toggle.
  */
 async function dumpConcalls(all, opts, { email, password }) {
-  const id = opts.only[0] || 'deep-industries';
+  // ONGC by default: it is the company whose Insights table we have a
+  // screenshot of, so the dump can be checked against something known.
+  const id = opts.only[0] || 'ongc';
   const entry = all.find((c) => c.ref.id === id);
   if (!entry) { console.log(`no company "${id}" in companies.json`); return; }
   const co = entry.ref;
@@ -383,10 +394,60 @@ async function dumpConcalls(all, opts, { email, password }) {
       console.log(`===== ${label} @${i} =====`);
       console.log(i < 0 ? '(marker not found)\n' : html.slice(i, i + pad) + '\n');
     };
-    // The concall list, a summary button, and the pros/cons block.
     window('CONCALLS LIST', /Concalls/i, 4000);
     window('AI SUMMARY', /AI\s*Summary/i, 1400);
     window('PROS BLOCK', /class="[^"]*\bpros\b/i, 900);
+
+    /* --- Premium: Investors -> Insights ------------------------------------
+       Is it in this HTML at all, and if so under what markup? These markers are
+       from the real table: the heading, the "In beta" badge, the attribution, the
+       Yearly/Quarterly toggle, and a couple of actual row labels. */
+    console.log('===== INSIGHTS: which markers are present in the page HTML =====');
+    for (const [name, re] of [
+      ['Insights heading', /Insights/i],
+      ['In beta badge', /In\s*beta/i],
+      ['Extracted by Screener AI', /Extracted by Screener/i],
+      ['Quarterly toggle', /Quarterly/i],
+      ['investors section id/href', /investors/i],
+      ['a real row label', /Proved Reserves|Wells Drilled|Production \(Standalone\)/i],
+      ['data-url attributes', /data-url="[^"]*"/i]
+    ]) {
+      const i = html.search(re);
+      console.log(`  [${name}] ${i < 0 ? 'NOT PRESENT' : '@' + i}`);
+    }
+    window('INSIGHTS BLOCK', /Insights/i, 5000);
+    window('INVESTORS ANCHOR', /investors/i, 700);
+
+    // Every data-url on the page: that is how the AI Summary was found, and the
+    // Insights toggle may well use the same mechanism.
+    const urls = [...html.matchAll(/data-url="([^"]+)"/g)].map((m) => m[1]);
+    console.log(`\n===== all data-url values (${urls.length}) =====`);
+    [...new Set(urls)].slice(0, 40).forEach((u) => console.log('  ' + u));
+
+    /* And what the browser actually requests when the Investors tab is opened -
+       the definitive answer if the table is loaded on demand. */
+    console.log('\n===== network calls when the Investors tab is clicked =====');
+    const page = await session.context.newPage();
+    const seen = [];
+    page.on('request', (r) => {
+      const u = r.url();
+      if (/screener\.in/.test(u) && !/\.(css|js|woff2?|png|jpg|svg|ico)(\?|$)/.test(u)) seen.push(`${r.method()} ${u}`);
+    });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+    for (const sel of ['a[href*="investors" i]', 'text=Investors']) {
+      try { await page.click(sel, { timeout: 4000 }); break; } catch { /* try the next */ }
+    }
+    await page.waitForTimeout(2500);
+    // Then the Quarterly toggle, which is the view we need.
+    try { await page.click('text=Quarterly', { timeout: 4000 }); await page.waitForTimeout(2500); }
+    catch { console.log('  (no Quarterly control found to click)'); }
+    [...new Set(seen)].slice(0, 40).forEach((s) => console.log('  ' + s));
+
+    const after = await page.content();
+    const j = after.search(/Proved Reserves|Wells Drilled|Extracted by Screener/i);
+    console.log(`\n===== rendered Insights after clicking (marker @${j}) =====`);
+    console.log(j < 0 ? '(still not present - it may need a different route)' : after.slice(j - 2500 < 0 ? 0 : j - 2500, j + 3500));
+    await page.close().catch(() => {});
   } finally {
     await session.close().catch(() => {});
   }
