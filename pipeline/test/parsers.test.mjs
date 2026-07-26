@@ -232,8 +232,9 @@ test('extractLabelledNumber refuses a value outside the plausible range', () => 
 test('a plausible range cannot catch a wrong number that falls inside it', () => {
   // "2026" is a year, but BDTI legitimately trades in the hundreds-to-thousands,
   // so the range lets it through. This is a real limit of label-anchored
-  // extraction and the reason BDTI ships as "awaiting" rather than as an
-  // unverified scrape - the guard narrows the failure mode, it does not close it.
+  // extraction, and the reason BDTI is no longer read this way: it now goes
+  // through parseInvestingQuote, which anchors on a whole sentence. The generic
+  // scanner stays for probes, where a loose second opinion is useful.
   assert.equal(
     extractLabelledNumber('<p>BDTI page updated 2026</p>', { labels: [/BDTI/], plausible: [100, 5000] }),
     2026
@@ -254,4 +255,110 @@ test('extractLabelledNumber reads a 4-digit number whole, not its first three di
   assert.equal(extractLabelledNumber('<p>BDTI 2026</p>', { labels: [/BDTI/] }), 2026);
   assert.equal(extractLabelledNumber('<p>BDTI 1,234</p>', { labels: [/BDTI/] }), 1234);
   assert.equal(extractLabelledNumber('<p>BDTI 12.75</p>', { labels: [/BDTI/] }), 12.75);
+});
+
+/* ------------------------------------------------- ppac notification (APM) -- */
+
+import { parsePpacGasNotification } from '../parsers/ppac-notification.mjs';
+import { parseInvestingQuote } from '../parsers/investing.mjs';
+
+/* Verbatim OCR of the July 2026 notification, as Firecrawl returned it in the
+   probe run on 2026-07-26. Not a hand-written fixture - this is the text the
+   parser has to survive. */
+const APM_JULY_2026 =
+  'No. PPAC/Gas Pricing/June 2026 Petroleum Planning & Analysis Cell ' +
+  '(Ministry of Petroleum & Natural Gas, Govt. of India) Dated: 30.06.2026 NOTIFICATION ' +
+  'Sub: Domestic Natural Gas Price for the period 1st July 2026 to 31st July 2026. ' +
+  'In accordance with MoPNG’s Notification No. L-12015/1/2022-GP-II dated 7th April 2023, ' +
+  'the price of Domestic Natural Gas for the period 1st July 2026 to 31st July 2026 is ' +
+  'notified as US$ 8.73/MMBTU on Gross Calorific Value (GCV) basis. Further, in accordance ' +
+  'with Para 4 of the said notification, for the gas produced by ONGC/OIL from their ' +
+  'nomination fields, the above-mentioned APM price shall be subject to a ceiling of ' +
+  'US$ 7.00/MMBTU on GCV basis for the same period. (P. Manoj Kumar) Director General';
+
+test('parsePpacGasNotification reads both prices out of the real July 2026 notification', () => {
+  const d = parsePpacGasNotification(APM_JULY_2026);
+  assert.equal(d.notified, 8.73);
+  assert.equal(d.ceiling, 7);
+  assert.equal(d.periodStart, '2026-07-01');
+  assert.equal(d.periodLabel, '1 July 2026 to 31 July 2026');
+  assert.equal(d.publishedOn, '2026-06-30');
+});
+
+test('the reported value is the ONGC/OIL ceiling, not the notified price', () => {
+  // The two differ by 25%. Reading the wrong one gives a number that looks
+  // entirely reasonable, which is exactly why this is pinned by a test.
+  assert.equal(parsePpacGasNotification(APM_JULY_2026).value, 7);
+});
+
+test('parsePpacGasNotification falls back to the notified price when no ceiling is set', () => {
+  const noCeiling = APM_JULY_2026.replace(
+    /Further,[\s\S]*?same period\./,
+    ''
+  );
+  const d = parsePpacGasNotification(noCeiling);
+  assert.equal(d.ceiling, null);
+  assert.equal(d.value, 8.73);
+});
+
+test('parsePpacGasNotification refuses a document with no price at all', () => {
+  assert.throws(
+    () => parsePpacGasNotification('NOTIFICATION Sub: Domestic Natural Gas Price. Download the PDF.'),
+    ParseError
+  );
+});
+
+test('parsePpacGasNotification rejects an OCR misread outside any plausible price', () => {
+  // A dropped decimal point turns 7.00 into 700 - in range for nothing.
+  assert.throws(
+    () => parsePpacGasNotification(APM_JULY_2026.replace('US$ 7.00/MMBTU', 'US$ 700/MMBTU')),
+    ParseError
+  );
+});
+
+test('parsePpacGasNotification handles OCR that loses the space after US$', () => {
+  const tight = APM_JULY_2026.replace('US$ 7.00/MMBTU', 'US$7.00 / MMBTU');
+  assert.equal(parsePpacGasNotification(tight).ceiling, 7);
+});
+
+/* ------------------------------------------------------- investing.com ----- */
+
+/* Verbatim from the same probe run - investing.com answers a plain GET with 403,
+   so this is what came back through Firecrawl. */
+const BDTI_PAGE =
+  'Advertisement Baltic Dirty Tanker (BAID) Find here information about the Baltic Dirty ' +
+  'Tanker index (BAID). Assess the Baltic Dirty Tanker stock price and overall performance. ' +
+  'How Is The Baltic Dirty Tanker Doing Today? The Baltic Dirty Tanker live stock price is ' +
+  '1,107.00. What Is the Baltic Dirty Tanker Ticker Symbol? BAID is the ticker symbol of the ' +
+  'Baltic Dirty Tanker index. Is Baltic Dirty Tanker a Good Stock Market Index to Invest In?';
+
+const BDTI_OPTS = { name: 'Baltic Dirty Tanker', ticker: 'BAID', plausible: [100, 5000], source: 'BDTI' };
+
+test('parseInvestingQuote reads the real BDTI level, comma group and all', () => {
+  const q = parseInvestingQuote(BDTI_PAGE, BDTI_OPTS);
+  assert.equal(q.value, 1107);
+  assert.equal(q.ticker, 'BAID');
+});
+
+test('parseInvestingQuote refuses a page served for a different instrument', () => {
+  // Same template, different index - the number would parse perfectly and be wrong.
+  const wrong = BDTI_PAGE.replace('BAID is the ticker symbol', 'BDRY is the ticker symbol');
+  assert.throws(() => parseInvestingQuote(wrong, BDTI_OPTS), ParseError);
+});
+
+test('parseInvestingQuote throws when the quote sentence is gone', () => {
+  const gutted = BDTI_PAGE.replace('live stock price is 1,107.00', 'is currently unavailable');
+  assert.throws(() => parseInvestingQuote(gutted, BDTI_OPTS), ParseError);
+});
+
+test('parseInvestingQuote rejects a level outside the plausible range', () => {
+  const silly = BDTI_PAGE.replace('1,107.00', '4.00');
+  assert.throws(() => parseInvestingQuote(silly, BDTI_OPTS), ParseError);
+});
+
+test('parseInvestingQuote will not take a number belonging to another sentence', () => {
+  // The name has to sit directly in front of "live stock price is". A nearby
+  // number - an ad, a related index - must not be picked up instead.
+  const noisy = 'Baltic Dirty Tanker 999 Advertisement. Brent Crude live stock price is 82.10.';
+  assert.throws(() => parseInvestingQuote(noisy, BDTI_OPTS), ParseError);
 });

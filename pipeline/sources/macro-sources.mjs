@@ -12,6 +12,9 @@ import { parseTradingEconomicsQuote } from '../parsers/tradingeconomics.mjs';
 import { parseFredCsv } from '../parsers/fred.mjs';
 import { parseFrankfurter } from '../parsers/frankfurter.mjs';
 import { parsePpacFyTable, fyWindow } from '../parsers/ppac.mjs';
+import { parsePpacGasNotification } from '../parsers/ppac-notification.mjs';
+import { parseInvestingQuote } from '../parsers/investing.mjs';
+import { findGasNotifications } from './ppac-docs.mjs';
 import { monthlyAverage, takeLastMonths, lastMonths, round, markPartialMonth } from '../lib/dates.mjs';
 
 const MONTHS = 12;
@@ -123,35 +126,22 @@ export async function fetchCrackSpread({ today }) {
 }
 
 /* -------------------------------------------------------------------------
-   Series with no free source at all.
+   Series behind a paywall, a bot wall or a scanned PDF.
 
    Each throws with a reason written for the tile, not for a log. With a
    scraper key the page fetch below runs for real; without one the tile says
    what is missing. Neither path ever invents a number.
 
-   NOT YET VERIFIED AGAINST A LIVE RESPONSE. The extraction is pure and tested
-   against fixtures (parsers/quote.mjs), but no request has been made with a
-   real key, so the labels and plausible ranges below are a first pass. Run
-   `node pipeline/fetch-macro.mjs --probe <id>` with a key set to see exactly
-   what comes back.
+   All three have now completed a real request from CI (probe run 2026-07-26),
+   and the parsers below are anchored on the text those responses actually
+   contained - not on documentation. Re-run
+   `node pipeline/fetch-macro.mjs --probe <id>` to see the current pages.
    ------------------------------------------------------------------------- */
 
 const NEEDS_SCRAPER = ['FIRECRAWL_API_KEY', 'SCRAPEDO_API_KEY'];
 
 function hasScraper(env) {
   return Boolean(env.FIRECRAWL_API_KEY || env.SCRAPEDO_API_KEY);
-}
-
-/** Shared shape: scrape one page, read one number, return one dated point. */
-async function singleQuote({ env, today, url, labels, plausible, source, sourceTag, unit, notes }) {
-  const { html, via } = await scrapePage(url, { env });
-  const value = extractLabelledNumber(html, { labels, plausible, source: unit });
-  return {
-    points: [{ date: `${String(today).slice(0, 7)}-01`, value, partial: true }],
-    source: `${source} (scraped via ${via}, ${url})`,
-    sourceTag,
-    notes
-  };
 }
 
 /**
@@ -194,9 +184,18 @@ export async function fetchJkm({ env = process.env, today } = {}) {
 }
 
 /**
- * APM - the administered domestic gas ceiling, a gazetted figure. PPAC posts it
+ * APM - the administered domestic gas price, a gazetted figure. PPAC posts it
  * monthly, but only as a scanned one-page PDF with no text layer: pdf-parse
- * returns an empty string, so it needs a rendered page or OCR, not a PDF pass.
+ * returns an empty string, so it takes an OCR pass rather than a PDF pass.
+ *
+ * The notification carries two prices. The July 2026 one reads "notified as
+ * US$ 8.73/MMBTU", then caps ONGC and Oil India's nomination gas at "a ceiling
+ * of US$ 7.00/MMBTU". The ceiling is what those producers actually realise, so
+ * that is the number on the tile - but both are reported, because the gap
+ * between them is 25% and either would look perfectly plausible alone.
+ *
+ * One point, not twelve: a 12-month history would mean OCR-ing twelve separate
+ * PDFs on every run. The tile shows the current month and says so.
  */
 export async function fetchApmGas({ env = process.env, today } = {}) {
   if (!hasScraper(env)) {
@@ -205,21 +204,69 @@ export async function fetchApmGas({ env = process.env, today } = {}) {
       'PPAC publishes APM as scanned PDFs only - add a scraper key'
     );
   }
-  return singleQuote({
-    env, today,
-    url: 'https://ppac.gov.in/natural-gas/gas-price',
-    labels: [/APM[^0-9]{0,40}/, /administered price[^0-9]{0,40}/, /domestic gas price[^0-9]{0,40}/],
-    plausible: [1, 20],           // $/mmbtu
-    source: 'PPAC, Ministry of Petroleum & Natural Gas - administered (APM) gas price',
-    sourceTag: 'official',
-    unit: 'APM $/mmbtu'
-  });
+
+  const docs = await findGasNotifications();
+  if (!docs.length) {
+    throw new SourceUnavailableError(
+      'PPAC listed no gas-price notification to read',
+      { detail: 'no download.php links matched on either listing page' }
+    );
+  }
+
+  // Usually the same document posted under two folders, so the second is a
+  // free retry rather than a different reading.
+  const attempts = [];
+  for (const url of docs) {
+    let html;
+    try {
+      ({ html } = await scrapePage(url, { env }));
+    } catch (e) {
+      attempts.push(`${url}: ${e.message}`);
+      continue;
+    }
+    let doc;
+    try {
+      doc = parsePpacGasNotification(html);
+    } catch (e) {
+      attempts.push(`${url}: ${e.message}`);
+      continue;
+    }
+
+    const bothPrices = doc.ceiling !== null && doc.notified !== null;
+    return {
+      points: [{ date: doc.periodStart || `${String(today).slice(0, 7)}-01`, value: doc.value }],
+      source:
+        'PPAC, Ministry of Petroleum & Natural Gas - domestic gas notification' +
+        (doc.periodLabel ? ` for ${doc.periodLabel}` : '') +
+        (doc.publishedOn ? `, issued ${doc.publishedOn}` : '') +
+        ` (${url})`,
+      sourceTag: 'official',
+      notes: bothPrices
+        ? `ONGC/OIL nomination-gas ceiling of $${doc.ceiling.toFixed(2)}/mmbtu, ` +
+          `below the notified price of $${doc.notified.toFixed(2)}. This month only - ` +
+          'PPAC publishes each month as a separate scanned notification.'
+        : 'This month only - PPAC publishes each month as a separate scanned notification.'
+    };
+  }
+
+  throw new SourceUnavailableError(
+    'Could not read the PPAC gas notification',
+    { detail: attempts.join('; ') }
+  );
 }
 
 /**
  * BDTI. The Baltic Exchange licenses its indices and publishes no free feed;
  * the Dry Index (BDI) is widely republished but measures dry bulk, not crude
  * tankers, so it is not a stand-in for this tile.
+ *
+ * investing.com republishes the number and answers a plain GET with 403 - a bot
+ * wall, which is what the scraper is for. Trading Economics was the intended
+ * fallback and has been dropped: its page returned 4,656 characters with no
+ * mention of the index at all, so it is not a second source, just a second way
+ * to fail.
+ *
+ * Spot only: the free page carries the latest value, no history.
  */
 export async function fetchBalticDirty({ env = process.env, today } = {}) {
   if (!hasScraper(env)) {
@@ -228,15 +275,22 @@ export async function fetchBalticDirty({ env = process.env, today } = {}) {
       'Baltic Exchange licenses BDTI - add a scraper key to read a republisher'
     );
   }
-  return singleQuote({
-    env, today,
-    url: 'https://tradingeconomics.com/commodity/baltic-dirty-tanker',
-    labels: [/Baltic Dirty Tanker/, /BDTI/],
-    plausible: [100, 5000],       // index points
-    source: 'Baltic Dirty Tanker Index, free republisher',
-    sourceTag: 'external',
-    unit: 'BDTI index'
+
+  const url = 'https://www.investing.com/indices/baltic-dirty-tanker';
+  const { html, via } = await scrapePage(url, { env });
+  const q = parseInvestingQuote(html, {
+    name: 'Baltic Dirty Tanker',
+    ticker: 'BAID',
+    plausible: [100, 5000],      // index points
+    source: 'BDTI'
   });
+
+  return {
+    points: [{ date: `${String(today).slice(0, 7)}-01`, value: q.value, spot: true }],
+    source: `investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via ${via})`,
+    sourceTag: 'external',
+    notes: 'Latest level only - the Baltic Exchange licenses the history, so this line has no 12-month trend.'
+  };
 }
 
 export { scrapePage, SourceUnavailableError };
