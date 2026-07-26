@@ -28,7 +28,8 @@ import { loadEnv } from './lib/env.mjs';
 import { openScreener, resolveSlug, getCompanyPage, downloadDoc, maskEmail } from './sources/screener-session.mjs';
 import { parseAllFinancials } from './parsers/screener-financials.mjs';
 import { parseConcalls, selectDocuments, looksLikeDoc } from './parsers/screener-docs.mjs';
-import { extractPdfText } from './lib/pdf.mjs';
+import { parseProsCons } from './parsers/screener-summary.mjs';
+import { extractPdfText, isPdf, classifyHtml } from './lib/pdf.mjs';
 import { scrapePage } from './lib/scrape.mjs';
 import { toText } from './parsers/quote.mjs';
 import { MissingCredentialError } from './lib/errors.mjs';
@@ -92,18 +93,30 @@ async function gatherDoc(context, slug, doc, { env = process.env } = {}) {
     if (cached) return { ...doc, source, ...cached, cache: relCache(txt), cached: true };
   }
 
+  // Notes are Screener HTML pages; transcripts and PPTs are PDFs. A PDF-expected
+  // role that comes back as HTML is a miss (not_pdf) worth a scraper retry; an
+  // HTML-expected role reads its text straight from the page.
+  const htmlOk = doc.role === 'notes' || doc.role === 'summary';
+
   await mkdir(dir, { recursive: true });
   let status, chars = 0, pages = null, errMsg = null, via = 'browser';
   try {
     const dl = await downloadDoc(context, doc.url);
     if (!dl.ok) {
       status = `http_${dl.status}`;
-    } else {
+    } else if (isPdf(dl.buffer)) {
       const ex = await extractPdfText(dl.buffer);
       status = ex.status;          // ok | ocr_needed | not_pdf
       chars = ex.chars;
       pages = ex.pages;
       if (status === 'ok') await writeFile(txt, ex.text || '');
+    } else if (htmlOk) {
+      const text = toText(dl.buffer.toString('utf8'));
+      const v = classifyHtml(text);
+      status = v.status; chars = v.chars;               // ok | thin
+      if (status === 'ok') await writeFile(txt, text);
+    } else {
+      status = 'not_pdf';                                // expected a PDF, got a page
     }
   } catch (e) {
     status = 'error';
@@ -198,21 +211,24 @@ async function main() {
           await writeJson(companiesPath, companiesDoc);   // persist immediately
         }
 
-        // 2. financials
+        // 2. financials + Screener's own Pros/Cons capsule
         const { html, url, view } = await getCompanyPage(session.context, slug);
         const fin = parseAllFinancials(html);
         const asOf = asOfFrom(fin);
+        const analysis = parseProsCons(html);
         financials.companies[co.id] = {
           name: co.name, slug, view, url, asOf,
           sourceTag: 'external', source: 'Screener.in',
+          analysis,                       // Screener's auto Pros/Cons - the cheapest summary
           sectionsFound: fin.sectionsFound, sectionsMissing: fin.sectionsMissing,
           tables: fin.tables
         };
 
-        // 3. documents: last 4 transcripts + latest PPT
+        // 3. documents, in the extractor's priority order: Notes (Screener's own
+        //    concall summary) and PPT first, transcripts as the fallback.
         const concalls = parseConcalls(html);
-        const picked = selectDocuments(concalls, { transcripts: 4 });
-        const docs = [...picked.transcripts, ...(picked.ppt ? [picked.ppt] : [])];
+        const picked = selectDocuments(concalls, { transcripts: 4, notes: 4 });
+        const docs = [...picked.notes, ...(picked.ppt ? [picked.ppt] : []), ...picked.transcripts];
 
         const gathered = [];
         for (const d of docs) {
@@ -225,18 +241,21 @@ async function main() {
         }
 
         const manifestDoc = (g) => ({
-          type: g.type, period: g.period, periodIso: g.periodIso, url: g.url,
-          source: g.source, status: g.status, chars: g.chars, pages: g.pages,
+          type: g.type, role: g.role || g.type, period: g.period, periodIso: g.periodIso,
+          url: g.url, source: g.source, status: g.status, chars: g.chars, pages: g.pages,
           via: g.via, cache: g.cache, ...(g.error ? { error: g.error } : {})
         });
-        const transcripts = gathered.filter((g) => g.type === 'transcript').map(manifestDoc);
-        const ppt = gathered.find((g) => g.type === 'ppt') || null;
+        const byRole = (r) => gathered.filter((g) => (g.role || g.type) === r).map(manifestDoc);
+        const ppt = gathered.find((g) => (g.role || g.type) === 'ppt') || null;
 
         manifest.companies[co.id] = {
           name: co.name, slug, view, url,
+          analysis: { pros: analysis.pros.length, cons: analysis.cons.length },
+          notesFound: concalls.filter((c) => c.notes).length,
           transcriptsFound: concalls.filter((c) => c.transcript).length,
-          transcripts,
-          ppt: ppt && manifestDoc(ppt)
+          notes: byRole('notes'),         // primary: Screener's concall summary
+          ppt: ppt && manifestDoc(ppt),   // primary
+          transcripts: byRole('transcript') // fallback
         };
 
         // 4. persist after every company (resumable)
@@ -246,8 +265,9 @@ async function main() {
         await writeJson(manifestPath, manifest);
 
         ok++;
-        if (opts.verbose) reportCompany(co, financials.companies[co.id], manifest.companies[co.id]);
-        else console.log(`  ${co.id.padEnd(20)} ${view} · ${fin.sectionsFound.length} tables · ${transcripts.length} transcripts${ppt ? ' · ppt' : ''}`);
+        const man = manifest.companies[co.id];
+        if (opts.verbose) reportCompany(co, financials.companies[co.id], man);
+        else console.log(`  ${co.id.padEnd(20)} ${view} · ${fin.sectionsFound.length} tables · ${man.notes.length} notes · ${man.ppt ? 'ppt · ' : ''}${man.transcripts.length} transcripts`);
       } catch (e) {
         failed++;
         const msg = (e && e.message ? e.message : String(e)).slice(0, 200);
@@ -280,11 +300,15 @@ function reportCompany(co, fin, man) {
   }).join(', ') : '';
   console.log(`  ${co.name} [${fin.slug}] · ${fin.view}`);
   console.log(`     financials: ${fin.sectionsFound.join(', ') || 'none'} | quarters ${qLine}${sampleRows ? ' | latest ' + sampleRows : ''}`);
+  console.log(`     screener summary: ${fin.analysis.pros.length} pros, ${fin.analysis.cons.length} cons`);
   const tag = (x) => `${x.periodIso || x.period}:${x.status}/${x.chars}c${x.via && x.via !== 'browser' ? `(${x.via})` : ''}`;
+  const n = man.notes || [];
+  console.log(`     notes (primary): ${n.length} cached of ${man.notesFound} found` +
+    (n.length ? ' -> ' + n.map(tag).join(', ') : ''));
+  console.log(`     ppt (primary): ${man.ppt ? tag(man.ppt) : 'none'}`);
   const t = man.transcripts || [];
-  console.log(`     transcripts: ${t.length} cached of ${man.transcriptsFound} found` +
+  console.log(`     transcripts (fallback): ${t.length} cached of ${man.transcriptsFound} found` +
     (t.length ? ' -> ' + t.map(tag).join(', ') : ''));
-  console.log(`     ppt: ${man.ppt ? tag(man.ppt) : 'none'}`);
 }
 
 function freshFinancials() {
@@ -296,24 +320,33 @@ function freshFinancials() {
     source: 'Screener.in (consolidated where available)',
     sourceTag: 'external',
     tag: '[External]',
-    note: 'Raw financial statements scraped from Screener for context. These are NOT the ' +
-          'client KPIs - prompt 7\'s extractor derives those. Blank cells are null, never 0. ' +
-          'Series run oldest -> newest, left as Screener labels them.',
+    note: 'Raw financial statements scraped from Screener for context, plus Screener\'s auto ' +
+          'Pros/Cons capsule per company under `analysis`. These are NOT the client KPIs - ' +
+          'prompt 7\'s extractor derives those. Blank cells are null, never 0. Series run ' +
+          'oldest -> newest, left as Screener labels them.',
     companies: {}
   };
 }
 
 function freshManifest() {
   return {
-    schemaVersion: 1,
-    title: 'Concall transcript & investor-PPT manifest',
+    schemaVersion: 2,
+    title: 'Concall summary, PPT & transcript manifest',
     generatedBy: 'pipeline/scrape-screener.mjs',
     generatedAt: null,
     cacheDir: 'pipeline/cache/docs',
-    note: 'Per company: the last four concall transcripts and the latest investor PPT that ' +
-          'were found and cached. status ok = text extracted; ocr_needed = a scanned PDF with ' +
-          'no text layer (not a failure); not_pdf/http_* = the link did not return a usable PDF. ' +
-          'The extracted text is cached under cacheDir, which is gitignored.',
+    sourcePriority: [
+      'financials.json analysis (Screener Pros/Cons - the cheapest summary)',
+      'notes (Screener\'s own concall summary)',
+      'ppt (investor presentation)',
+      'transcript (full call - FALLBACK, only when the above fall short)'
+    ],
+    note: 'Per company, in priority order: Screener concall notes and the latest investor PPT ' +
+          'are the primary material; full transcripts are the fallback. status ok = text ' +
+          'extracted; ocr_needed = a scanned PDF with no text layer (not a failure); thin = an ' +
+          'HTML page with almost no text; not_pdf/http_* = the link did not return a usable ' +
+          'document. via names who fetched it (browser or a scraper). The extracted text is ' +
+          'cached under cacheDir, which is gitignored.',
     companies: {}
   };
 }

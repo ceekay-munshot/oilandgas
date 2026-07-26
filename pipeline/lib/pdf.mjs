@@ -39,6 +39,16 @@ export function classify(buffer, text) {
 }
 
 /**
+ * Verdict for an HTML document (a Screener Notes page, say) rather than a PDF.
+ * There is no OCR case here - HTML either carries text or it does not.
+ * @returns {{status:'ok'|'thin', chars:number}}
+ */
+export function classifyHtml(text) {
+  const chars = normalizeText(text).length;
+  return { status: chars >= 200 ? 'ok' : 'thin', chars };
+}
+
+/**
  * Extract text from a PDF buffer.
  * @param {Buffer} buffer
  * @returns {Promise<{status:string, chars:number, text:string, pages:number|null}>}
