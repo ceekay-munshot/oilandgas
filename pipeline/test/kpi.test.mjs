@@ -206,3 +206,45 @@ test('the smoke set\'s real transcript dates land in the target window', () => {
   // older than the window and is dropped rather than misfiled.
   assert.deepEqual(mapped.map((q) => quarterIndex(q, W)), [2, 1, 0, -1]);
 });
+
+/* ------------------------------------------------ rolling quarter window ---- */
+
+import { windowFor, qKey } from '../extract-kpis.mjs';
+
+const mapOf = (labels) => new Map(labels.map((q) => [q, { quarter: q, docs: [] }]));
+
+test('qKey sorts quarters across a fiscal-year boundary', () => {
+  assert.ok(qKey('Q1 FY27') > qKey('Q4 FY26'));
+  assert.ok(qKey('Q4 FY26') > qKey('Q3 FY26'));
+  assert.equal(qKey('nonsense'), -1);
+});
+
+test('windowFor takes the four most recent quarters, oldest first', () => {
+  // gatherByQuarter hands them newest-first; the window is chronological.
+  const m = mapOf(['Q4 FY26', 'Q3 FY26', 'Q2 FY26', 'Q1 FY26', 'Q4 FY25']);
+  assert.deepEqual(windowFor(m, []), ['Q1 FY26', 'Q2 FY26', 'Q3 FY26', 'Q4 FY26']);
+});
+
+test('windowFor rolls forward on its own when a new quarter lands', () => {
+  const before = windowFor(mapOf(['Q4 FY26', 'Q3 FY26', 'Q2 FY26', 'Q1 FY26']), []);
+  const after = windowFor(mapOf(['Q1 FY27', 'Q4 FY26', 'Q3 FY26', 'Q2 FY26', 'Q1 FY26']), []);
+  assert.deepEqual(before, ['Q1 FY26', 'Q2 FY26', 'Q3 FY26', 'Q4 FY26']);
+  assert.deepEqual(after, ['Q2 FY26', 'Q3 FY26', 'Q4 FY26', 'Q1 FY27']);  // oldest dropped
+});
+
+test('a company behind on filings gets its own older window, not empty columns', () => {
+  // IGL's cached calls stopped at Feb 2026 (Q3 FY26) while others reached Q4 FY26.
+  assert.deepEqual(
+    windowFor(mapOf(['Q3 FY26', 'Q2 FY26', 'Q1 FY26', 'Q4 FY25']), []),
+    ['Q4 FY25', 'Q1 FY26', 'Q2 FY26', 'Q3 FY26']
+  );
+});
+
+test('windowFor falls back to the spec window when nothing was cached', () => {
+  const fb = ['Q2 FY26', 'Q3 FY26', 'Q4 FY26', 'Q1 FY27'];
+  assert.deepEqual(windowFor(new Map(), fb), fb);
+});
+
+test('windowFor copes with fewer than four cached quarters', () => {
+  assert.deepEqual(windowFor(mapOf(['Q4 FY26', 'Q3 FY26']), []), ['Q3 FY26', 'Q4 FY26']);
+});

@@ -552,6 +552,17 @@ table.kpi tbody td.what{padding-left:13px;}
 table.kpi td.co[rowspan]{vertical-align:top;}
 .kpiunit{color:var(--ink-4); font-weight:500; font-size:10px; margin-left:2px;}
 .kpimuted{color:var(--ink-4); font-weight:500;}
+/* each company sits on its own rolling 4-quarter window, so the window has to be
+   stated per company rather than in the header. A second line inside the rowspan
+   cell, small enough to ride inside the existing row block without growing it. */
+.kpiwin{
+  display:block; margin-top:2px; padding-left:14px;
+  font-size:10.5px; line-height:1.2; font-weight:500;
+  letter-spacing:0; color:var(--ink-4); text-transform:none;
+}
+/* only drawn when asOf disagrees with the window's newest quarter - i.e. when the
+   file itself says the company is behind - so it should catch the eye a little */
+.kpiasof{color:#B07310; font-weight:600;}
 .kpidot{
   display:inline-block; width:6px; height:6px; border-radius:50%;
   background:var(--c); margin-right:5px; vertical-align:1px;
@@ -1708,6 +1719,18 @@ table.kpi td.co[rowspan]{vertical-align:top;}
   /* --------------------------------------------------------------- 3. KPIs */
   var kpiActive = 'leading';
   var kpiJustTurned = false;   /* "Just turned" filter: only the two inflection flags */
+  /* Companies report on their own clocks, so kpis.json carries a per-company
+     quarter window (schemaVersion 2) and no single set of quarter names can head
+     the table any more. The columns are therefore positions, not quarters, and
+     every value states the quarter it actually belongs to in its own title. */
+  var KPI_COLS = [
+    { lab: '3 back', why: 'three quarters before that company’s latest' },
+    { lab: '2 back', why: 'two quarters before that company’s latest' },
+    { lab: 'Last',   why: 'the quarter before that company’s latest' },
+    { lab: 'Latest', why: 'the most recent quarter that company has reported' }
+  ];
+  var KPI_COL_WHY = 'Columns are positions, not fixed quarters: the 4 most recent ' +
+    'quarters each company has reported; the exact quarter is shown on every value.';
   function renderKpiChrome() {
     el('kpiSegs').innerHTML = DATA.framework.groupMeta.map(function (g) {
       return '<button class="seg" role="tab" data-group="' + g.id + '" style="--c:' + g.color + '" ' +
@@ -1751,9 +1774,64 @@ table.kpi td.co[rowspan]{vertical-align:top;}
     return '<span class="kpidot" style="--c:' + t.color + '" title="' +
       esc(t.label + ' - ' + t.meaning) + '"></span>';
   }
+  /* the same tag in words, for a cell title - '' when the tag is absent/unknown */
+  function kpiTagText(id) {
+    var t = id == null ? null : tagById[id];
+    return t ? t.label + ' - ' + t.meaning : '';
+  }
+  /* One company's alignment axis: which quarter each of the 4 columns holds.
+     entry.quarters is authoritative (schemaVersion 2); a v1 file carries only the
+     one global window, and if even that is missing the companies file supplies it.
+     Columns are positions relative to that company's LATEST reported quarter, so a
+     company with fewer than 4 quarters on record pads at the OLD end - its newest
+     quarter has to land under "Latest" or the heading is false. pad is that offset
+     and every values/sourceTags read goes through it, so a number can never drift
+     onto the wrong quarter. A window longer than 4 keeps its newest 4. */
+  function kpiAxis(entry) {
+    var src = (entry && entry.quarters && entry.quarters.length) ? entry.quarters
+      : ((DATA.kpis && DATA.kpis.quarters && DATA.kpis.quarters.length) ? DATA.kpis.quarters
+        : (DATA.companies.quarterLabels || []));
+    var n = KPI_COLS.length;
+    var from = src.length > n ? src.length - n : 0;   /* drop quarters older than the newest 4 */
+    var pad = src.length - from < n ? n - (src.length - from) : 0;
+    var labs = [];
+    for (var i = 0; i < n; i++) {
+      var s = i - pad + from;
+      labs.push((i < pad || src[s] == null) ? '' : String(src[s]));
+    }
+    return { labs: labs, pad: pad, from: from };
+  }
+  /* read a per-KPI array (values, sourceTags) at column i through that axis;
+     null for a column the company has no quarter for, and never past either end */
+  function kpiAt(arr, ax, i) {
+    var s = i - ax.pad + ax.from;
+    return (!arr || i < ax.pad || s < 0 || s >= arr.length) ? null : arr[s];
+  }
+  /* the quarter name for column i, falling back to the position when the company
+     has no quarter there - a title must never read "undefined" at a reader who is
+     checking a number, and must never invent a quarter either */
+  function kpiQLab(ax, i) { return (ax && ax.labs[i]) || KPI_COLS[i].lab; }
+  /* "Q1 FY26 -> Q4 FY26" under the company name: a company that has not filed its
+     latest quarter shows an older range than its peers, which is the whole point
+     of the line. asOf always rides in the title, and is drawn as well when it
+     disagrees with the newest quarter in the window. */
+  function kpiWindowLine(entry, ax) {
+    var first = '', last = '';
+    for (var i = 0; i < ax.labs.length; i++) {
+      if (ax.labs[i]) { if (!first) first = ax.labs[i]; last = ax.labs[i]; }
+    }
+    if (!first) return '';
+    var range = first === last ? first : first + ' → ' + last;
+    var asOf = (entry && entry.asOf) ? String(entry.asOf) : '';
+    var t = 'The 4 most recent quarters this company has reported: ' + range +
+      (asOf ? '. Latest reported quarter: ' + asOf + '.' : '.');
+    return '<span class="kpiwin" title="' + esc(t) + '">' + esc(range) +
+      (asOf && asOf !== last ? ' <span class="kpiasof">as of ' + esc(asOf) + '</span>' : '') +
+      '</span>';
+  }
   /* four CSS bars scaled to this KPI's own min..max; nulls become empty slots,
      the newest quarter reads full-strength so the eye lands on "now" */
-  function kpiSpark(values, color) {
+  function kpiSpark(values, color, ax) {
     values = values || [];
     var nums = [];
     values.forEach(function (v) { if (v != null && isFinite(Number(v))) nums.push(Number(v)); });
@@ -1766,16 +1844,26 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       return '<span class="kpispark__b' + (i === last ? ' kpispark__b--last' : '') +
         '" style="height:' + pct + '%"></span>';
     }).join('');
-    return '<span class="kpispark" style="--c:' + color + '" aria-hidden="true">' + bars + '</span>';
+    /* the spark is the one place all four quarters sit side by side, and the bars
+       carry no labels at all - so name every quarter with its value in the title */
+    var t = '';
+    for (var i = 0; i < KPI_COLS.length; i++) {
+      var q = values[i];
+      t += (i ? ' · ' : '') + kpiQLab(ax, i) + ': ' +
+        (q == null || q === '' || !isFinite(Number(q)) ? '–' : kpiNum(q));
+    }
+    /* aria-hidden stays: the bars restate numbers the row already spells out, and
+       each of those cells names its own quarter for a screen reader */
+    return '<span class="kpispark" style="--c:' + color + '" aria-hidden="true" title="' +
+      esc(t) + '">' + bars + '</span>';
   }
 
   function renderKpiTable() {
     var g = groupById[kpiActive];
     var kdata = (DATA.kpis && DATA.kpis.companies) || null;
-    /* the value arrays line up with kpis.json's own quarter list when present,
-       otherwise the placeholder falls back to the companies file's labels */
-    var qs = (DATA.kpis && DATA.kpis.quarters) || DATA.companies.quarterLabels;
-    var ncol = qs.length + 2;   /* KPI + quarters + Trend, for the awaiting rowspan */
+    /* the quarter columns are fixed in number and relative in meaning, so the
+       count no longer depends on any data file's quarter list */
+    var ncol = KPI_COLS.length + 2;   /* KPI + quarters + Trend, for the awaiting rowspan */
 
     /* ---- group head: name, description, count, coverage, "Just turned" ---- */
     var cover;
@@ -1831,25 +1919,38 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       }
 
       shown++;
+      /* this company's own window - every quarter title and the spark read from it */
+      var ax = kpiAxis(entry);
       return kpis.map(function (k, j) {
         var cells = '';
-        /* company name once, spanning this company's KPI rows */
+        /* company name once, spanning this company's KPI rows, with the window
+           it reports on underneath - the header cannot state it any more */
         if (j === 0) {
           cells += '<td class="co" rowspan="' + kpis.length + '" style="--c:' + g.color + '">' +
-            '<i></i>' + esc(c.name) + '</td>';
+            '<i></i>' + esc(c.name) + kpiWindowLine(entry, ax) + '</td>';
         }
         /* KPI label + unit, titled with how the trajectory was judged */
         cells += '<td class="what"' + (k.flagBasis ? ' title="flagged on ' + esc(k.flagBasis) + '"' : '') +
           '>' + esc(k.label) +
           (k.unit ? ' <span class="kpiunit">' + esc(k.unit) + '</span>' : '') + '</td>';
-        /* four quarter values, aligned to qs; null -> dash titled with the note */
-        var vals = k.values || [], tags = k.sourceTags || [];
-        for (var i = 0; i < qs.length; i++) {
-          var v = vals[i];
+        /* four quarter values, pulled onto this company's own axis. Every cell
+           names the quarter it belongs to, because the column heading cannot:
+           without it a number under "Latest" is unattributable. Nulls stay a dash,
+           titled with the quarter and the note that says why it is blank. */
+        var vals = [], tags = [];
+        for (var q = 0; q < KPI_COLS.length; q++) {
+          vals.push(kpiAt(k.values, ax, q));
+          tags.push(kpiAt(k.sourceTags, ax, q));
+        }
+        for (var i = 0; i < KPI_COLS.length; i++) {
+          var v = vals[i], qlab = kpiQLab(ax, i);
           if (v == null || v === '' || !isFinite(Number(v))) {
-            cells += '<td class="empty num"' + (k.notes ? ' title="' + esc(k.notes) + '"' : '') + '>&ndash;</td>';
+            cells += '<td class="empty num" title="' +
+              esc(qlab + ' · not stated' + (k.notes ? ' · ' + k.notes : '')) + '">&ndash;</td>';
           } else {
-            cells += '<td class="num">' + kpiTagDot(tags[i]) + esc(kpiNum(v)) + '</td>';
+            var tag = kpiTagText(tags[i]);
+            cells += '<td class="num" title="' + esc(qlab + (tag ? ' · ' + tag : '')) + '">' +
+              kpiTagDot(tags[i]) + esc(kpiNum(v)) + '</td>';
           }
         }
         /* trend: the 4-bar spark beside the trajectory chip (or a muted dash) */
@@ -1858,16 +1959,22 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           ? '<span class="chip" style="--c:' + flag.color + '" title="' + esc(flag.meaning) + '">' +
               '<span class="chip__sw"></span>' + flag.glyph + ' ' + esc(flag.plainLabel) + '</span>'
           : '<span class="kpimuted">&ndash;</span>';
-        cells += '<td><span class="kpitrend">' + kpiSpark(k.values, g.color) + trend + '</span></td>';
+        cells += '<td><span class="kpitrend">' + kpiSpark(vals, g.color, ax) + trend + '</span></td>';
         return '<tr>' + cells + '</tr>';
       }).join('');
     }).join('');
 
     el('kpiTable').innerHTML =
-      '<caption class="sr">Key numbers over the last four quarters for the ' + esc(g.name) +
-        ' group' + (DATA.kpis ? '' : ', awaiting extraction') + '.</caption>' +
+      '<caption class="sr">Key numbers for the ' + esc(g.name) + ' group over each ' +
+        'company’s four most recent reported quarters' +
+        (DATA.kpis ? '' : ', awaiting extraction') +
+        '. Quarter columns are relative positions; every value states its own quarter.' +
+      '</caption>' +
       '<thead><tr><th>Company</th><th>KPI</th>' +
-        qs.map(function (q) { return '<th>' + esc(q) + '</th>'; }).join('') +
+        KPI_COLS.map(function (col) {
+          return '<th title="' + esc(col.lab + ' — ' + col.why + '. ' + KPI_COL_WHY) +
+            '">' + esc(col.lab) + '</th>';
+        }).join('') +
         '<th>Trend</th></tr></thead>' +
       '<tbody>' + body + '</tbody>';
 

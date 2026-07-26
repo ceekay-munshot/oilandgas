@@ -2,12 +2,17 @@
 /**
  * Client pipeline, step 2: gather the raw company material from Screener.
  *
- * This prompt GATHERS; it does not compute KPIs. For each company it logs in,
+ * This step GATHERS; it does not compute KPIs. For each company it logs in,
  * resolves the Screener slug (and saves it back so future runs go direct),
- * scrapes the financial statements as context, and downloads the last four
- * concall transcripts plus the latest investor PPT, caching the extracted text.
- * No KPI value is invented here - that is prompt 7's extractor, reading this
- * cache in the same workflow run.
+ * scrapes the financial statements as context, and downloads the recent concall
+ * AI Summaries and transcripts plus the latest investor PPT, caching the text.
+ * No KPI value is invented here - that is extract-kpis.mjs, reading this cache in
+ * the same workflow run.
+ *
+ * Six summaries and six transcripts are fetched rather than four, because a
+ * quarter whose summary is premium-gated or whose transcript is a scan should not
+ * cost us that quarter: the extractor picks the four most recent quarters that
+ * actually yielded text.
  *
  *   node pipeline/scrape-screener.mjs [--scope smoke|all] [--only id1,id2] [--headful]
  *
@@ -129,10 +134,14 @@ async function gatherDoc(context, slug, doc, { env = process.env } = {}) {
     } else if (htmlOk) {
       const text = toText(dl.buffer.toString('utf8'));
       sample = text.slice(0, 160);
-      // Guard: a plain GET of the summary URL returns the app shell, whose nav
-      // ("Create a stock screen ...") is ~900 chars of chrome, not the summary.
-      // Never cache that as content - if the XHR fetch still lands here, say so.
-      if (/Create a stock screen|Feed Screens Tools Account/i.test(text)) {
+      /* Two things that are not a summary and must never be cached as one:
+         the app shell (a plain GET returns the page frame - ~900 chars of nav),
+         and the free-tier paywall notice ("Limit exceeded - Upgrade to premium.
+         Free users can read 10 summaries within the last 30 days"). Both are
+         recorded as their own status so the manifest shows what happened. */
+      if (/Limit exceeded|Upgrade to premium|Get Premium|read \d+ summaries/i.test(text)) {
+        status = 'gated'; chars = text.length;
+      } else if (/Create a stock screen|Feed Screens Tools Account/i.test(text)) {
         status = 'shell'; chars = text.length;
       } else {
         const v = classifyHtml(text);
@@ -224,7 +233,7 @@ async function main() {
   const session = await openScreener({ email, password, headless: !opts.headful });
   console.log(`logged in as ${maskEmail(email)}\n`);
 
-  let ok = 0, failed = 0, docsCached = 0, docsOcr = 0, docsRecovered = 0;
+  let ok = 0, failed = 0, docsCached = 0, docsOcr = 0, docsRecovered = 0, docsGated = 0;
 
   try {
     let i = 0;
@@ -258,14 +267,25 @@ async function main() {
           tables: fin.tables
         };
 
-        // 3. documents. Screener's "AI Summary" turned out to be a Premium
-        //    feature (free tier: 10 reads / 30 days), so it is NOT fetched - the
-        //    quota runs out almost immediately and the endpoint just returns
-        //    "Upgrade to premium". The free material carries the load instead:
-        //    Pros/Cons (above), the investor PPT, and the full transcripts.
+        /* 3. documents, in the extractor's priority order: Screener's per-quarter
+              AI Summary first (dense, and one document per quarter, which is
+              exactly what the KPI extractor needs), then the PPT, then the full
+              transcripts as the fallback.
+
+              The AI Summary needs a Screener account that can read summaries. On
+              a free account the endpoint returns "Limit exceeded - Upgrade to
+              premium" after ten reads in 30 days; gatherDoc detects that and
+              records status "gated" rather than caching the notice, so a
+              downgrade shows up as an honest gap and the transcripts still carry
+              the quarter.
+
+              Six of each, not four: a quarter whose summary is gated or whose
+              transcript is a scan should not cost us the quarter, and the
+              extractor picks the four most recent quarters that actually yielded
+              text. */
         const concalls = parseConcalls(html);
-        const picked = selectDocuments(concalls, { transcripts: 4, summaries: 4 });
-        const docs = [...(picked.ppt ? [picked.ppt] : []), ...picked.transcripts];
+        const picked = selectDocuments(concalls, { transcripts: 6, summaries: 6 });
+        const docs = [...picked.summaries, ...(picked.ppt ? [picked.ppt] : []), ...picked.transcripts];
 
         const gathered = [];
         for (const d of docs) {
@@ -273,8 +293,11 @@ async function main() {
           gathered.push(g);
           if (g.cached) docsCached++;
           if (g.status === 'ocr_needed') docsOcr++;
+          if (g.status === 'gated') docsGated++;
           if (g.via && g.via !== 'browser') docsRecovered++;
-          await sleep(250);   // courtesy gap between document fetches
+          // The summary endpoint is Screener's own and rate-limited; the rest are
+          // external hosts, so only the summaries need the wider gap.
+          await sleep(d.role === 'summary' ? 500 : 200);
         }
 
         const manifestDoc = (g) => ({
@@ -289,12 +312,11 @@ async function main() {
         manifest.companies[co.id] = {
           name: co.name, slug, view, url,
           analysis: { pros: analysis.pros.length, cons: analysis.cons.length },
-          // AI Summary is Premium-gated, so we note how many exist but do not fetch.
-          aiSummary: 'premium-gated (Screener Premium; free tier caps at 10/30 days)',
           summariesAvailable: concalls.filter((c) => c.summary).length,
           transcriptsFound: concalls.filter((c) => c.transcript).length,
-          ppt: ppt && manifestDoc(ppt),   // primary
-          transcripts: byRole('transcript') // primary text source
+          summaries: byRole('summary'),     // primary: per-quarter AI Summary
+          ppt: ppt && manifestDoc(ppt),     // primary
+          transcripts: byRole('transcript') // fallback text, per quarter
         };
 
         // 4. persist after every company (resumable)
@@ -327,7 +349,7 @@ async function main() {
 
   console.log(
     `\ndone: ${ok} ok, ${failed} failed of ${work.length}. ` +
-    `${docsRecovered} document(s) recovered via scraper, ${docsOcr} still need OCR, ` +
+    `${docsRecovered} recovered via scraper, ${docsOcr} need OCR, ${docsGated} premium-gated, ` +
     `${docsCached} served from cache.`
   );
   console.log(`wrote ${relCache(financialsPath)} and ${relCache(manifestPath)}`);
@@ -377,7 +399,9 @@ function reportCompany(co, fin, man) {
   console.log(`     financials: ${fin.sectionsFound.join(', ') || 'none'} | quarters ${qLine}${sampleRows ? ' | latest ' + sampleRows : ''}`);
   console.log(`     pros/cons (primary): ${fin.analysis.pros.length} pros, ${fin.analysis.cons.length} cons`);
   const tag = (x) => `${x.periodIso || x.period}:${x.status}/${x.chars}c${x.via && x.via !== 'browser' ? `(${x.via})` : ''}`;
-  console.log(`     ai summary: premium-gated (${man.summariesAvailable} available, not fetched)`);
+  var sums = man.summaries || [];
+  console.log(`     AI summaries (primary): ${sums.filter(function (x) { return x.status === 'ok'; }).length} ok of ${man.summariesAvailable} available` +
+    (sums.length ? ' -> ' + sums.map(tag).join(', ') : ''));
   console.log(`     ppt (primary): ${man.ppt ? tag(man.ppt) : 'none'}`);
   const t = man.transcripts || [];
   console.log(`     transcripts (primary text): ${t.length} cached of ${man.transcriptsFound} found` +
@@ -410,16 +434,17 @@ function freshManifest() {
     cacheDir: 'pipeline/cache/docs',
     sourcePriority: [
       'financials.json analysis (Screener Pros/Cons - the cheapest summary)',
+      'summary (Screener\'s per-quarter "AI Summary" - dense, one document per quarter)',
       'ppt (investor presentation)',
-      'transcript (full concall - the primary text source)'
+      'transcript (full concall - fallback when the summary is missing or gated)'
     ],
-    note: 'Per company: Screener\'s Pros/Cons capsule (in financials.json), the latest investor ' +
-          'PPT, and the full concall transcripts. Screener\'s "AI Summary" is a Premium feature ' +
-          '(free tier: 10 reads / 30 days) and is not fetched - aiSummary/summariesAvailable ' +
-          'record that it exists. status ok = text extracted; ocr_needed = a scanned PDF with ' +
-          'no text layer (not a failure); not_pdf/http_* = the link did not return a usable ' +
-          'document. via names who fetched it (browser or a scraper). The extracted text is ' +
-          'cached under cacheDir, which is gitignored.',
+    note: 'Per company: Screener\'s Pros/Cons capsule (in financials.json), its per-quarter ' +
+          '"AI Summary" of each concall, the latest investor PPT, and the full transcripts. ' +
+          'status ok = text extracted; gated = the summary endpoint returned the Premium paywall ' +
+          'notice, which is never cached as content; ocr_needed = a scanned PDF with no text ' +
+          'layer; shell = the app frame rather than the fragment; not_pdf/http_* = the link did ' +
+          'not return a usable document. via names who fetched it. The extracted text is cached ' +
+          'under cacheDir, which is gitignored.',
     companies: {}
   };
 }
