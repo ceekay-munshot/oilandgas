@@ -36,7 +36,9 @@ import { MissingCredentialError } from './lib/errors.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const CACHE_DIR = resolve(ROOT, 'pipeline/cache/docs');
-const SMOKE = ['deep-industries', 'ongc', 'petronet-lng', 'engineers-india'];
+// Kept in step with the KPI extractor's smoke set so `--scope smoke` scrapes
+// exactly the companies the extractor will then read from the cache.
+const SMOKE = ['deep-industries', 'petronet-lng', 'igl', 'engineers-india'];
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 

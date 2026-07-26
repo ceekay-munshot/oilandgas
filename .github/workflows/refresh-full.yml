@@ -81,9 +81,10 @@ jobs:
         run: node pipeline/scrape-screener.mjs --scope all
 
       # --- 3. kpis --------------------------------------------------------
-      # added in prompt 5 - per-company quarterly KPIs to data/kpis.json
-      # - name: 'Step 3/5 - kpis'
-      #   run: node pipeline/build-kpis.mjs
+      # Reads the documents the screener step just cached and extracts each
+      # company's KPIs to data/kpis.json (one LLM call per company).
+      - name: 'Step 3/5 - kpis'
+        run: node pipeline/extract-kpis.mjs --scope all
 
       # --- 4. commentary --------------------------------------------------
       # added in prompt 6 - earnings-call tone via pipeline/lib/llm.mjs
