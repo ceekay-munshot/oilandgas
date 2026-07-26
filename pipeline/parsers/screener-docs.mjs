@@ -36,6 +36,16 @@ function periodIso(label) {
   return `${m[2]}-${String(MONTHS[m[1].toLowerCase()]).padStart(2, '0')}`;
 }
 
+/**
+ * A URL that names an actual document, so it is worth a scraper retry when a
+ * direct download fails. Index / landing / HTML pages are excluded on purpose:
+ * recovering ONGC's "/investors/transcription" listing would hand back a nav
+ * menu dressed up as a transcript, the kind of fake this pipeline refuses.
+ */
+export function looksLikeDoc(url) {
+  return /\.pdf(\/|\?|$)/i.test(url) || /AnnPdfOpen|AttachLive|corpfiling/i.test(url);
+}
+
 /** Make a possibly-relative Screener href absolute. */
 export function absoluteUrl(href, base = 'https://www.screener.in') {
   const h = String(href || '').trim();

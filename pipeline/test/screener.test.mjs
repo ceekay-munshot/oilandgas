@@ -11,7 +11,7 @@ import assert from 'node:assert/strict';
 import {
   parseFinancialTable, parseAllFinancials, cleanLabel, parseCell, periodToIso
 } from '../parsers/screener-financials.mjs';
-import { parseConcalls, selectDocuments, absoluteUrl } from '../parsers/screener-docs.mjs';
+import { parseConcalls, selectDocuments, absoluteUrl, looksLikeDoc } from '../parsers/screener-docs.mjs';
 import { parseCompanySlug, slugFromUrl } from '../parsers/screener-search.mjs';
 import { isPdf, classify, normalizeText } from '../lib/pdf.mjs';
 import { ParseError } from '../lib/errors.mjs';
@@ -182,4 +182,20 @@ test('classify separates real text, scanned PDFs and non-PDFs', () => {
 test('normalizeText collapses whitespace for an honest char count', () => {
   assert.equal(normalizeText('  a\n\n  b  '), 'a b');
   assert.equal(classify(PDF_BYTES, '   \n  ').status, 'ocr_needed');   // whitespace-only = scanned
+});
+
+/* ---------------------------------------------------- scraper-retry gate --- */
+
+test('looksLikeDoc allows real document URLs', () => {
+  // ONGC's own-site PDF (Liferay-style path with .pdf mid-URL) and BSE filings.
+  assert.equal(looksLikeDoc('https://ongcindia.com/documents/77751/x/Transcription181125.pdf/6f9e'), true);
+  assert.equal(looksLikeDoc('https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=abc.pdf'), true);
+  assert.equal(looksLikeDoc('https://site/report.pdf'), true);
+  assert.equal(looksLikeDoc('https://site/report.pdf?v=2'), true);
+});
+
+test('looksLikeDoc refuses index/landing/HTML pages so they are not faked', () => {
+  // Recovering these would hand back a nav menu, not a transcript.
+  assert.equal(looksLikeDoc('https://ongcindia.com/web/eng/investors/transcription'), false);
+  assert.equal(looksLikeDoc('https://www.morningstar.com/stocks/xnse/ongc/earnings-transcript'), false);
 });

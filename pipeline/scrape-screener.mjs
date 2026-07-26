@@ -22,13 +22,15 @@
 
 import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { loadEnv } from './lib/env.mjs';
 import { openScreener, resolveSlug, getCompanyPage, downloadDoc, maskEmail } from './sources/screener-session.mjs';
 import { parseAllFinancials } from './parsers/screener-financials.mjs';
-import { parseConcalls, selectDocuments } from './parsers/screener-docs.mjs';
+import { parseConcalls, selectDocuments, looksLikeDoc } from './parsers/screener-docs.mjs';
 import { extractPdfText } from './lib/pdf.mjs';
+import { scrapePage } from './lib/scrape.mjs';
+import { toText } from './parsers/quote.mjs';
 import { MissingCredentialError } from './lib/errors.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -81,7 +83,7 @@ function docCachePaths(slug, doc) {
 }
 
 /** Fetch + extract one document, or return the cached meta if we already have it. */
-async function gatherDoc(context, slug, doc) {
+async function gatherDoc(context, slug, doc, { env = process.env } = {}) {
   const { dir, txt, meta } = docCachePaths(slug, doc);
   const source = hostOf(doc.url);
 
@@ -91,7 +93,7 @@ async function gatherDoc(context, slug, doc) {
   }
 
   await mkdir(dir, { recursive: true });
-  let status, chars = 0, pages = null, errMsg = null;
+  let status, chars = 0, pages = null, errMsg = null, via = 'browser';
   try {
     const dl = await downloadDoc(context, doc.url);
     if (!dl.ok) {
@@ -101,15 +103,35 @@ async function gatherDoc(context, slug, doc) {
       status = ex.status;          // ok | ocr_needed | not_pdf
       chars = ex.chars;
       pages = ex.pages;
-      await writeFile(txt, ex.text || '');
+      if (status === 'ok') await writeFile(txt, ex.text || '');
     }
   } catch (e) {
     status = 'error';
     errMsg = (e && e.message) ? e.message.slice(0, 160) : String(e);
-    await writeFile(txt, '').catch(() => {});
   }
 
-  const record = { status, chars, pages, ...(errMsg ? { error: errMsg } : {}) };
+  // A download that errored, or came back a scan or a non-PDF, gets one scraper
+  // retry - but only for URLs that actually name a document. Firecrawl reaches
+  // own-site PDFs a plain request cannot (ONGC blocks the runner) and OCRs
+  // scanned ones, which is precisely this gap.
+  if (status !== 'ok' && looksLikeDoc(doc.url) && (env.FIRECRAWL_API_KEY || env.SCRAPEDO_API_KEY)) {
+    try {
+      const res = await scrapePage(doc.url, { env });
+      const text = toText(res.html);
+      if (text.length >= 200) {
+        await writeFile(txt, text);
+        status = 'ok'; chars = text.length; via = res.via; pages = null; errMsg = null;
+      } else {
+        errMsg = errMsg || `scraper returned only ${text.length} chars`;
+      }
+    } catch (e) {
+      errMsg = errMsg || (e && e.message ? e.message.slice(0, 160) : String(e));
+    }
+  }
+
+  if (status !== 'ok') await writeFile(txt, '').catch(() => {});
+
+  const record = { status, chars, pages, via, ...(errMsg ? { error: errMsg } : {}) };
   await writeJson(meta, { ...record, url: doc.url, source, at: new Date().toISOString() });
   return { ...doc, source, ...record, cache: relCache(txt), cached: false };
 }
@@ -160,7 +182,7 @@ async function main() {
   const session = await openScreener({ email, password, headless: !opts.headful });
   console.log(`logged in as ${maskEmail(email)}\n`);
 
-  let ok = 0, failed = 0, docsCached = 0, docsOcr = 0;
+  let ok = 0, failed = 0, docsCached = 0, docsOcr = 0, docsRecovered = 0;
 
   try {
     for (const { ref: co } of work) {
@@ -194,23 +216,27 @@ async function main() {
 
         const gathered = [];
         for (const d of docs) {
-          const g = await gatherDoc(session.context, slug, d);
+          const g = await gatherDoc(session.context, slug, d, { env: process.env });
           gathered.push(g);
           if (g.cached) docsCached++;
           if (g.status === 'ocr_needed') docsOcr++;
+          if (g.via && g.via !== 'browser') docsRecovered++;
           await sleep(150);
         }
 
-        const transcripts = gathered.filter((g) => g.type === 'transcript')
-          .map(({ type, period, periodIso, url: u, source, status, chars, pages, cache }) =>
-            ({ type, period, periodIso, url: u, source, status, chars, pages, cache }));
+        const manifestDoc = (g) => ({
+          type: g.type, period: g.period, periodIso: g.periodIso, url: g.url,
+          source: g.source, status: g.status, chars: g.chars, pages: g.pages,
+          via: g.via, cache: g.cache, ...(g.error ? { error: g.error } : {})
+        });
+        const transcripts = gathered.filter((g) => g.type === 'transcript').map(manifestDoc);
         const ppt = gathered.find((g) => g.type === 'ppt') || null;
 
         manifest.companies[co.id] = {
           name: co.name, slug, view, url,
           transcriptsFound: concalls.filter((c) => c.transcript).length,
           transcripts,
-          ppt: ppt && { type: 'ppt', period: ppt.period, periodIso: ppt.periodIso, url: ppt.url, source: ppt.source, status: ppt.status, chars: ppt.chars, cache: ppt.cache }
+          ppt: ppt && manifestDoc(ppt)
         };
 
         // 4. persist after every company (resumable)
@@ -237,7 +263,8 @@ async function main() {
 
   console.log(
     `\ndone: ${ok} ok, ${failed} failed of ${work.length}. ` +
-    `${docsOcr} document(s) need OCR, ${docsCached} served from cache.`
+    `${docsRecovered} document(s) recovered via scraper, ${docsOcr} still need OCR, ` +
+    `${docsCached} served from cache.`
   );
   console.log(`wrote ${relCache(financialsPath)} and ${relCache(manifestPath)}`);
   if (opts.scope !== 'all' && !opts.only.length) {
@@ -253,10 +280,11 @@ function reportCompany(co, fin, man) {
   }).join(', ') : '';
   console.log(`  ${co.name} [${fin.slug}] · ${fin.view}`);
   console.log(`     financials: ${fin.sectionsFound.join(', ') || 'none'} | quarters ${qLine}${sampleRows ? ' | latest ' + sampleRows : ''}`);
+  const tag = (x) => `${x.periodIso || x.period}:${x.status}/${x.chars}c${x.via && x.via !== 'browser' ? `(${x.via})` : ''}`;
   const t = man.transcripts || [];
   console.log(`     transcripts: ${t.length} cached of ${man.transcriptsFound} found` +
-    (t.length ? ' -> ' + t.map((x) => `${x.periodIso || x.period}:${x.status}/${x.chars}c`).join(', ') : ''));
-  console.log(`     ppt: ${man.ppt ? `${man.ppt.periodIso || man.ppt.period} ${man.ppt.status}/${man.ppt.chars}c` : 'none'}`);
+    (t.length ? ' -> ' + t.map(tag).join(', ') : ''));
+  console.log(`     ppt: ${man.ppt ? tag(man.ppt) : 'none'}`);
 }
 
 function freshFinancials() {
@@ -290,7 +318,12 @@ function freshManifest() {
   };
 }
 
-main().catch((e) => {
-  console.error('scrape-screener failed outright:', e?.humanReason || e?.stack || e);
-  process.exit(1);
-});
+// Only run when invoked directly - importing this module (e.g. for looksLikeDoc
+// in the tests) must not kick off a scrape.
+const invokedDirectly = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+if (invokedDirectly) {
+  main().catch((e) => {
+    console.error('scrape-screener failed outright:', e?.humanReason || e?.stack || e);
+    process.exit(1);
+  });
+}
