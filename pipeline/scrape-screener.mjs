@@ -99,12 +99,18 @@ async function gatherDoc(context, slug, doc, { env = process.env } = {}) {
   const htmlOk = doc.role === 'summary';
 
   await mkdir(dir, { recursive: true });
-  let status, chars = 0, pages = null, errMsg = null, via = 'browser';
+  let status, chars = 0, pages = null, errMsg = null, via = 'browser', sample = null;
   try {
     // Fallback transcripts get a short leash so a slow own-site host fails fast;
     // primaries are worth waiting a little longer for.
     const timeout = doc.role === 'transcript' ? 25_000 : 40_000;
-    const dl = await downloadDoc(context, doc.url, { timeout });
+    let dl = await downloadDoc(context, doc.url, { timeout });
+    // Screener rate-limits its own summary endpoint; a 429 clears on a short
+    // back-off, so retry rather than record a miss.
+    for (let a = 0; !dl.ok && dl.status === 429 && a < 3; a++) {
+      await sleep(2500 * (a + 1));
+      dl = await downloadDoc(context, doc.url, { timeout });
+    }
     if (!dl.ok) {
       status = `http_${dl.status}`;
     } else if (isPdf(dl.buffer)) {
@@ -117,7 +123,7 @@ async function gatherDoc(context, slug, doc, { env = process.env } = {}) {
       const text = toText(dl.buffer.toString('utf8'));
       const v = classifyHtml(text);
       status = v.status; chars = v.chars;               // ok | thin
-      if (status === 'ok') await writeFile(txt, text);
+      if (status === 'ok') { await writeFile(txt, text); sample = text.slice(0, 160); }
     } else {
       status = 'not_pdf';                                // expected a PDF, got a page
     }
@@ -148,7 +154,7 @@ async function gatherDoc(context, slug, doc, { env = process.env } = {}) {
 
   if (status !== 'ok') await writeFile(txt, '').catch(() => {});
 
-  const record = { status, chars, pages, via, ...(errMsg ? { error: errMsg } : {}) };
+  const record = { status, chars, pages, via, ...(sample ? { sample } : {}), ...(errMsg ? { error: errMsg } : {}) };
   await writeJson(meta, { ...record, url: doc.url, source, at: new Date().toISOString() });
   return { ...doc, source, ...record, cache: relCache(txt), cached: false };
 }
@@ -251,13 +257,16 @@ async function main() {
           if (g.cached) docsCached++;
           if (g.status === 'ocr_needed') docsOcr++;
           if (g.via && g.via !== 'browser') docsRecovered++;
-          await sleep(150);
+          // Space out fetches - the AI Summary hits Screener's own rate-limited
+          // endpoint, so hammering it is what drew the 429s.
+          await sleep(500);
         }
 
         const manifestDoc = (g) => ({
           type: g.type, role: g.role || g.type, period: g.period, periodIso: g.periodIso,
           url: g.url, source: g.source, status: g.status, chars: g.chars, pages: g.pages,
-          via: g.via, cache: g.cache, ...(g.error ? { error: g.error } : {})
+          via: g.via, cache: g.cache,
+          ...(g.sample ? { sample: g.sample } : {}), ...(g.error ? { error: g.error } : {})
         });
         const byRole = (r) => gathered.filter((g) => (g.role || g.type) === r).map(manifestDoc);
         const ppt = gathered.find((g) => (g.role || g.type) === 'ppt') || null;
