@@ -12,8 +12,9 @@ import {
   parseFinancialTable, parseAllFinancials, cleanLabel, parseCell, periodToIso
 } from '../parsers/screener-financials.mjs';
 import { parseConcalls, selectDocuments, absoluteUrl, looksLikeDoc } from '../parsers/screener-docs.mjs';
+import { parseProsCons } from '../parsers/screener-summary.mjs';
 import { parseCompanySlug, slugFromUrl } from '../parsers/screener-search.mjs';
-import { isPdf, classify, normalizeText } from '../lib/pdf.mjs';
+import { isPdf, classify, classifyHtml, normalizeText } from '../lib/pdf.mjs';
 import { ParseError } from '../lib/errors.mjs';
 
 /* ------------------------------------------------------------ financials --- */
@@ -127,17 +128,48 @@ test('absoluteUrl resolves protocol-relative and site-relative hrefs', () => {
   assert.equal(absoluteUrl('https://x/y.pdf'), 'https://x/y.pdf');
 });
 
-test('selectDocuments takes the last N transcripts and the latest PPT', () => {
+test('selectDocuments takes notes and PPT as primary, transcripts as fallback', () => {
   const c = parseConcalls(DOC_HTML);
-  const picked = selectDocuments(c, { transcripts: 4 });
+  const picked = selectDocuments(c, { transcripts: 4, notes: 4 });
   assert.equal(picked.transcripts.length, 3);          // only three rows carry a transcript
   assert.equal(picked.transcripts[0].periodIso, '2025-08');
+  assert.equal(picked.transcripts[0].role, 'transcript');
   assert.equal(picked.ppt.periodIso, '2025-08');       // newest PPT, not Feb's
+  assert.equal(picked.ppt.role, 'ppt');
+  assert.equal(picked.notes.length, 1);                // only Aug carries a Notes link
+  assert.equal(picked.notes[0].role, 'notes');
+  assert.equal(picked.notes[0].url, 'https://www.screener.in/company/x/notes/');
 });
 
 test('selectDocuments caps transcripts at the requested count', () => {
   const c = parseConcalls(DOC_HTML);
   assert.equal(selectDocuments(c, { transcripts: 2 }).transcripts.length, 2);
+});
+
+/* --------------------------------------------------- screener pros/cons ---- */
+
+const PROSCONS_HTML = `
+<div class="company-info">
+  <div class="pros"><p class="title">Pros</p><ul>
+    <li>Company is almost debt free.</li>
+    <li>Company has delivered good profit growth of 25% CAGR.</li>
+  </ul></div>
+  <div class="cons"><p class="title">Cons</p><ul>
+    <li>Stock is trading at 4x its book value.</li>
+  </ul></div>
+</div>`;
+
+test('parseProsCons reads Screener\'s auto capsule, bullets only', () => {
+  const { pros, cons } = parseProsCons(PROSCONS_HTML);
+  assert.deepEqual(pros, [
+    'Company is almost debt free.',
+    'Company has delivered good profit growth of 25% CAGR.'
+  ]);
+  assert.deepEqual(cons, ['Stock is trading at 4x its book value.']);
+});
+
+test('parseProsCons returns empty lists when the section is absent', () => {
+  assert.deepEqual(parseProsCons('<div>no analysis here</div>'), { pros: [], cons: [] });
 });
 
 /* ---------------------------------------------------------------- search --- */
@@ -182,6 +214,11 @@ test('classify separates real text, scanned PDFs and non-PDFs', () => {
 test('normalizeText collapses whitespace for an honest char count', () => {
   assert.equal(normalizeText('  a\n\n  b  '), 'a b');
   assert.equal(classify(PDF_BYTES, '   \n  ').status, 'ocr_needed');   // whitespace-only = scanned
+});
+
+test('classifyHtml passes a real page and flags a near-empty one as thin', () => {
+  assert.equal(classifyHtml('x'.repeat(500)).status, 'ok');
+  assert.equal(classifyHtml('   ').status, 'thin');
 });
 
 /* ---------------------------------------------------- scraper-retry gate --- */

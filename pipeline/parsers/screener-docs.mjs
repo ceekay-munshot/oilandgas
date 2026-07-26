@@ -90,7 +90,7 @@ export function parseConcalls(html) {
       if (!links[kind]) links[kind] = absoluteUrl($(a).attr('href'));
     });
 
-    if (label && (links.transcript || links.ppt)) {
+    if (label && (links.transcript || links.ppt || links.notes)) {
       out.push({ period: label, periodIso: periodIso(label), ...links });
     }
   });
@@ -99,16 +99,26 @@ export function parseConcalls(html) {
 }
 
 /**
- * The raw material prompt 7 reads: the last `n` transcripts (one per quarter)
- * and the single most recent investor PPT.
- * @returns {{transcripts:object[], ppt:object|null}}
+ * The raw material prompt 7 reads, in the priority the extractor should try:
+ *   notes   - Screener's own concise concall summary (dense, cheap, HTML)
+ *   ppt     - the latest investor presentation (guidance, capex, segments)
+ *   transcripts - the full calls, FALLBACK only when the above fall short
+ *
+ * Each doc carries a `role` naming which of those it is; `role` also tells the
+ * downloader whether to expect a PDF (transcript/ppt) or HTML (notes).
+ *
+ * @returns {{notes:object[], ppt:object|null, transcripts:object[]}}
  */
-export function selectDocuments(concalls, { transcripts = 4 } = {}) {
-  const withTranscript = concalls.filter((c) => c.transcript).slice(0, transcripts)
-    .map((c) => ({ type: 'transcript', period: c.period, periodIso: c.periodIso, url: c.transcript }));
+export function selectDocuments(concalls, { transcripts = 4, notes = 4 } = {}) {
+  const pick = (key, role, n) => concalls.filter((c) => c[key]).slice(0, n)
+    .map((c) => ({ type: role, role, period: c.period, periodIso: c.periodIso, url: c[key] }));
+
   const firstPpt = concalls.find((c) => c.ppt);
-  const ppt = firstPpt
-    ? { type: 'ppt', period: firstPpt.period, periodIso: firstPpt.periodIso, url: firstPpt.ppt }
-    : null;
-  return { transcripts: withTranscript, ppt };
+  return {
+    notes: pick('notes', 'notes', notes),
+    ppt: firstPpt
+      ? { type: 'ppt', role: 'ppt', period: firstPpt.period, periodIso: firstPpt.periodIso, url: firstPpt.ppt }
+      : null,
+    transcripts: pick('transcript', 'transcript', transcripts)
+  };
 }
