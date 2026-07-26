@@ -29,7 +29,12 @@ import {
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SMOKE = ['deep-industries', 'petronet-lng', 'igl', 'engineers-india'];
-const MAX_CONTEXT = 24000;
+/* Context budget, reserved per source rather than pooled. Pooling let the
+   newest quarter's transcript eat everything and left the other three
+   quarters unrepresented - see buildBlocks. */
+const PER_QUARTER_CHARS = 6000;   // x4 quarters
+const PPT_CHARS = 6000;
+const FIN_CHARS = 4000;
 
 function parseArgs(argv) {
   const args = argv.slice(2);
@@ -109,35 +114,59 @@ function windowFor(perQuarter, fallback) {
   return have.slice().sort((a, b) => qKey(a) - qKey(b));   // oldest -> newest
 }
 
-/** Blocks for the model: the in-window quarters' documents, plus the financials. */
+/**
+ * Blocks for the model, with a budget RESERVED PER QUARTER.
+ *
+ * The first version pooled one budget across every document and spent it in
+ * order, which starved the trend it was supposed to build: the newest quarter's
+ * transcript alone filled all 24,000 characters, the other three quarters never
+ * reached the model at all, and every KPI came back with exactly one value and no
+ * flag. Coverage looked like an extraction problem and was really an allocation
+ * one.
+ *
+ * So each quarter now gets its own slice, and the PPT and financials get theirs.
+ * A quarter with little text does not hand its leftover to a greedier neighbour -
+ * four thin quarters beat one exhaustive one, because three points is what a
+ * trajectory needs and one is worth nothing.
+ */
 async function buildBlocks(perQuarter, quarters, man, fin, keywords) {
-  const sources = [];
-  for (const q of [...quarters].reverse()) {           // newest first - it matters most
+  const blocks = [];
+  let sourceCount = 0;
+
+  for (const q of [...quarters].reverse()) {            // newest first
     const bucket = perQuarter.get(q);
-    if (bucket) sources.push(...bucket.docs);
+    if (!bucket || !bucket.docs.length) continue;
+    sourceCount += bucket.docs.length;
+    // Summaries lead inside the bucket, so a compact summary is what survives the
+    // slice and a 45,000-character transcript is only drawn on for the remainder.
+    blocks.push(...preFilter(bucket.docs, keywords, { maxChars: PER_QUARTER_CHARS }));
   }
 
   if (man && man.ppt && man.ppt.status === 'ok' && man.ppt.cache) {
     const t = await readText(resolve(ROOT, man.ppt.cache));
     if (t) {
       const q = reportedQuarter(man.ppt.periodIso);
-      sources.push({
+      sourceCount++;
+      blocks.push(...preFilter([{
         label: `INVESTOR PPT [company filing] - published ${man.ppt.periodIso || '?'}` +
                (q ? `, reports ${q}` : '') + '; may contain a multi-quarter trend table',
         text: t
-      });
+      }], keywords, { maxChars: PPT_CHARS }));
     }
   }
 
   const finText = financialsToText(fin);
   if (finText) {
-    sources.push({
+    sourceCount++;
+    // Not keyword-filtered: it is already a compact table and every row is
+    // labelled with the quarter it closes, which is the whole point of including it.
+    blocks.push({
       label: 'SCREENER FINANCIALS [company filing] - quarterly table, each column labelled with the quarter it closes',
-      text: finText
+      text: finText.slice(0, FIN_CHARS)
     });
   }
 
-  return { blocks: preFilter(sources, keywords, { maxChars: MAX_CONTEXT }), sourceCount: sources.length };
+  return { blocks, sourceCount };
 }
 
 /** The latest quarter label that has any value, for an "as of" stamp. */
