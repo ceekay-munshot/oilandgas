@@ -136,3 +136,122 @@ test('availableProviders reports only providers with a key present', () => {
   assert.deepEqual(availableProviders({ OPENAI_API_KEY: 'x' }), ['openai']);
   assert.deepEqual(availableProviders({}), []);
 });
+
+/* ---------------------------------------------------------------- crack ---- */
+
+import { crackSpread321 } from '../parsers/crack.mjs';
+import { parseTradingEconomicsQuote } from '../parsers/tradingeconomics.mjs';
+import { extractLabelledNumber, toText } from '../parsers/quote.mjs';
+
+test('crackSpread321 applies the 3-2-1 formula in $/bbl', () => {
+  const out = crackSpread321({
+    gasoline:   [{ date: '2026-06-01', value: 3 }],      // $/gal
+    distillate: [{ date: '2026-06-01', value: 3 }],      // $/gal
+    crude:      [{ date: '2026-06-01', value: 80 }]      // $/bbl
+  });
+  // (2*3 + 3)/3 = 3 $/gal -> 126 $/bbl -> 126 - 80 = 46
+  assert.deepEqual(out, [{ date: '2026-06-01', value: 46 }]);
+});
+
+test('crackSpread321 skips a month missing from any leg rather than part-computing', () => {
+  const out = crackSpread321({
+    gasoline:   [{ date: '2026-05-01', value: 3 }, { date: '2026-06-01', value: 3 }],
+    distillate: [{ date: '2026-06-01', value: 3 }],                 // May absent
+    crude:      [{ date: '2026-05-01', value: 80 }, { date: '2026-06-01', value: 80 }]
+  });
+  assert.equal(out.length, 1);
+  assert.equal(out[0].date, '2026-06-01');
+});
+
+test('crackSpread321 marks the month partial only when every leg is', () => {
+  const one = (partial) => [{ date: '2026-06-01', value: 3, ...(partial ? { partial: true } : {}) }];
+  assert.equal(crackSpread321({
+    gasoline: one(true), distillate: one(true),
+    crude: [{ date: '2026-06-01', value: 80, partial: true }]
+  })[0].partial, true);
+  assert.equal(crackSpread321({
+    gasoline: one(true), distillate: one(false),
+    crude: [{ date: '2026-06-01', value: 80, partial: true }]
+  })[0].partial, undefined);
+});
+
+test('crackSpread321 throws on an empty leg', () => {
+  assert.throws(() => crackSpread321({ gasoline: [], distillate: [{ date: 'x', value: 1 }], crude: [] }), ParseError);
+});
+
+/* ------------------------------------------------- trading economics ------- */
+
+/* Trimmed from the real page fetched 2026-07-26. */
+const TE_FIXTURE = `
+<div><p>LNG JKM rose to 22 USD/MMBTU on July 24, 2026, up 0.80% from the previous day.</p>
+<table><tr><td>Actual</td><td>Previous</td><td>Highest</td><td>Lowest</td><td>Dates</td><td>Unit</td><td>Frequency</td></tr>
+<tr><td>22.00</td><td>21.83</td><td>69.96</td><td>2.00</td><td>2012 - 2026</td><td>USD/MMBTU</td><td>daily</td></tr></table></div>`;
+
+test('parseTradingEconomicsQuote prefers the stats table and dates from the lede', () => {
+  assert.deepEqual(
+    parseTradingEconomicsQuote(TE_FIXTURE, { plausible: [1, 80], expectUnit: 'mmbtu' }),
+    { value: 22, previous: 21.83, unit: 'USD/MMBTU', date: '2026-07-24' }
+  );
+});
+
+test('parseTradingEconomicsQuote falls back to the lede when the table is gone', () => {
+  const q = parseTradingEconomicsQuote('<p>LNG JKM fell to 18.4 USD/MMBTU on June 3, 2026.</p>', {});
+  assert.equal(q.value, 18.4);
+  assert.equal(q.date, '2026-06-03');
+});
+
+test('parseTradingEconomicsQuote rejects a value outside the plausible range', () => {
+  // the page reformats and the parser lands on a year: must fail, not publish 2026
+  assert.throws(
+    () => parseTradingEconomicsQuote('<p>LNG JKM rose to 2026 USD/MMBTU on July 24, 2026.</p>', { plausible: [1, 80] }),
+    ParseError
+  );
+});
+
+test('parseTradingEconomicsQuote rejects the wrong unit', () => {
+  assert.throws(() => parseTradingEconomicsQuote(TE_FIXTURE, { expectUnit: '$/bbl' }), ParseError);
+});
+
+test('parseTradingEconomicsQuote throws when no anchor is present', () => {
+  assert.throws(() => parseTradingEconomicsQuote('<p>Nothing quoted here.</p>', {}), ParseError);
+});
+
+/* -------------------------------------------------------------- quote ------ */
+
+test('toText strips markup and collapses whitespace', () => {
+  assert.equal(toText('<div>a <script>x=1</script> <b>b</b>&nbsp;c</div>'), 'a b c');
+});
+
+test('extractLabelledNumber refuses a value outside the plausible range', () => {
+  assert.throws(
+    () => extractLabelledNumber('<p>BDTI page updated 2026</p>', { labels: [/BDTI/], plausible: [100, 1000] }),
+    ParseError
+  );
+});
+
+test('a plausible range cannot catch a wrong number that falls inside it', () => {
+  // "2026" is a year, but BDTI legitimately trades in the hundreds-to-thousands,
+  // so the range lets it through. This is a real limit of label-anchored
+  // extraction and the reason BDTI ships as "awaiting" rather than as an
+  // unverified scrape - the guard narrows the failure mode, it does not close it.
+  assert.equal(
+    extractLabelledNumber('<p>BDTI page updated 2026</p>', { labels: [/BDTI/], plausible: [100, 5000] }),
+    2026
+  );
+});
+
+test('extractLabelledNumber reads the nearest number after the label', () => {
+  assert.equal(
+    extractLabelledNumber('<p>Baltic Dirty Tanker Index 1,234 points</p>', {
+      labels: [/Baltic Dirty Tanker Index/], plausible: [100, 5000]
+    }),
+    1234
+  );
+});
+
+test('extractLabelledNumber reads a 4-digit number whole, not its first three digits', () => {
+  // regression: the comma-grouped alternative used `*`, so "2026" matched as 202
+  assert.equal(extractLabelledNumber('<p>BDTI 2026</p>', { labels: [/BDTI/] }), 2026);
+  assert.equal(extractLabelledNumber('<p>BDTI 1,234</p>', { labels: [/BDTI/] }), 1234);
+  assert.equal(extractLabelledNumber('<p>BDTI 12.75</p>', { labels: [/BDTI/] }), 12.75);
+});

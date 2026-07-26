@@ -3,14 +3,14 @@
 An instrument that shows where India's oil & gas capex cycle is right now, and
 which companies benefit.
 
-**Steps 1–3 of ~12 are in.** The shell, navigation and design system are done, the
+**Steps 1–4 of ~13 are in.** The shell, navigation and design system are done, the
 **Cockpit** and **Macro** tabs are built, and the dashboard now has **its own data
 pipeline** — it fetches its own market data and commits it back on a schedule, with
 no dependency on any other repository.
 
-Three of the six market series are **live**. The other three, plus every score on
-the Cockpit, are honestly marked as not-yet-live rather than filled with
-plausible-looking numbers.
+**Five of the six** market tiles are live, all from key-free public sources. The
+sixth, plus every score on the Cockpit, is honestly marked as not-yet-live rather
+than filled with plausible-looking numbers.
 
 ---
 
@@ -38,17 +38,18 @@ with no build command and no output directory; it is plain static files.
 index.html                     the dashboard: design system, shell, navigation, charts
 data/companies.json            the company backbone, grouped
 data/framework.json            the fixed vocabulary (flags, tone, stages, source tags)
-data/macro.json                six market series - WRITTEN BY THE PIPELINE, do not hand-edit
+data/macro.json                six market tiles - WRITTEN BY THE PIPELINE, do not hand-edit
 pipeline/
   fetch-macro.mjs              step 1: refresh the market backdrop
-  lib/     llm.mjs http.mjs scrape.mjs dates.mjs errors.mjs
-  parsers/ fred.mjs frankfurter.mjs ppac.mjs      pure, no network, unit-tested
+  lib/     llm.mjs http.mjs scrape.mjs dates.mjs errors.mjs env.mjs
+  parsers/ fred.mjs frankfurter.mjs ppac.mjs crack.mjs
+           tradingeconomics.mjs quote.mjs         pure, no network, 32 unit tests
   sources/ macro-sources.mjs   one fetcher per series
   test/    parsers.test.mjs    `npm test`
   package.json                 pipeline deps - deliberately NOT at the repo root
 .github/workflows/
   refresh-macro.yml            daily + manual; commits data back to main
-  refresh-full.yml             the whole ordered pipeline (steps 2-5 land in prompts 4-7)
+  refresh-full.yml             the whole ordered pipeline (steps 2-5 land in prompts 5-7)
 .env.example                   every credential the pipeline reads
 ```
 
@@ -70,7 +71,7 @@ Five tabs, and three subtabs under KPIs:
 | # | Tab | What it answers |
 |---|-----|-----------------|
 | 1 | **Cockpit** | Where are we in the cycle — the five-second answer |
-| 2 | **Macro** | The market backdrop: six price and freight series |
+| 2 | **Macro** | The market backdrop: six price and freight tiles, five of them live |
 | 3 | **KPIs** | Company numbers over the last four quarters — *Leading / Coincident / Lagging* |
 | 4 | **Commentary** | How upbeat or worried management sounded |
 | 5 | **Insight & Action** | The summary, and what to research now |
@@ -94,7 +95,7 @@ Five tabs, and three subtabs under KPIs:
 
 **Placeholder (`SEED`)** — the Cockpit's cycle stage and three group scores, tagged
 *SEED · not yet live* on screen. They arrive for real with the KPI pipeline in
-prompts 5–7. They They live in one `SEED` object
+prompts 5–7. They live in one `SEED` object
 near the top of the `<script>` in `index.html`, and they are marked `SEED` in the
 header and on every card that uses them:
 
@@ -114,19 +115,36 @@ ranges in `framework.json` — set the number and the words, the colour and the
 "you are here" marker all follow. Replacing this object with a fetch of a real
 scores file is the natural next step.
 
-**Live (`data/macro.json`)** — written by the pipeline, never by hand. Three of the
-six tiles carry real observations; the other three carry an empty series, an
-`Unknown` chip and *"Awaiting live source"* instead of a chart. Nothing is
-estimated, interpolated or carried forward.
+**Live (`data/macro.json`)** — written by the pipeline, never by hand. A tile with
+no source carries an empty series, an `Unknown` chip and *"Awaiting live source"*
+instead of a chart. Nothing is estimated, interpolated or carried forward.
 
 | Tile | Status | Source |
 |---|---|---|
 | Crude Oil — Brent & WTI | **live** | FRED / U.S. EIA daily spot, averaged by month |
 | Crude Oil — Indian Basket | **live** | PPAC, Ministry of Petroleum & Natural Gas |
 | Rupee vs US Dollar | **live** | Frankfurter / ECB reference rates |
-| Refining Margin — Singapore | awaiting | needs a scraper key |
-| Gas Price — APM and JKM | awaiting | needs a scraper key |
-| Freight — Baltic Dirty Tanker | awaiting | needs a scraper key |
+| Refining Margin — crack spread | **live** | derived 3-2-1 crack from FRED — **a stand-in**, see below |
+| Gas Price — APM and JKM | **part live** | JKM spot from Trading Economics; APM still awaiting |
+| Freight — Baltic Dirty Tanker | awaiting | Baltic Exchange licenses BDTI; no free feed found |
+
+None of this needs an API key.
+
+**Two honesty caveats the tiles carry on their face:**
+
+- The **crack spread is not Singapore GRM.** The Platts assessment is paywalled, so
+  the tile shows a US Gulf 3-2-1 crack computed from EIA spot prices — a real
+  refining margin, at a different level. The tile is renamed, tagged `Derived`, and
+  labelled *"Stand-in · not the named series"*.
+- **JKM is a spot quote with no history.** Trading Economics publishes today's
+  number, not a free 12-month series, so that line shows the value and says
+  *"today only"* — no trend arrow, no percentile, no one-point line pretending to
+  be a chart.
+
+**Still awaiting, with the reason shown on the tile:** APM (PPAC publishes it only
+as scanned PDFs with no text layer) and BDTI (licensed by the Baltic Exchange).
+Both have a scraper path wired and ready; neither has been run against a live
+response, which is why they are not switched on speculatively.
 
 A month still in progress is marked `partial` and the tile stamp reads
 *"month to date"* — a mean taken on the 24th is not a month, and saying otherwise
@@ -269,11 +287,21 @@ The dashboard feeds itself. Nothing here reads from another repository.
 
 ```bash
 cd pipeline
-npm install          # only needed for prompts 4-6; the macro fetch uses Node built-ins
-npm test             # 18 parser tests, no network
+npm install          # only needed for prompts 5-7; the macro fetch uses Node built-ins
+npm test             # 32 parser tests, no network
 npm run fetch:macro  # writes ../data/macro.json
 node fetch-macro.mjs --dry-run            # print what it would write, touch nothing
+node fetch-macro.mjs --probe jkm          # run ONE fetcher and dump what came back
 ```
+
+For local runs with credentials, copy `.env.example` to `.env` in the repo root and
+fill in what you have. It is gitignored and loaded automatically via Node's built-in
+`process.loadEnvFile` — no dependency, and values already in the environment win over
+the file. In CI there is no `.env` and the secrets come from the job's `env:` block.
+
+`--probe <lineId>` is the tool for the two unverified scrapers: it runs a single
+fetcher with your key and prints the parsed result, or the failure plus a sample of
+the page text. That output is what turns a guess into a working selector.
 
 `package.json` lives under `pipeline/`, not at the repo root, and needs to stay
 there: Cloudflare Workers Builds treats a root `package.json` as "this is a Node
@@ -295,12 +323,15 @@ step fails with a 403.
 
 | Secret | Unlocks | Needed from |
 |---|---|---|
-| `FIRECRAWL_API_KEY` *or* `SCRAPEDO_API_KEY` | Singapore GRM, gas APM+JKM, Baltic freight | now |
-| `SCREENER_EMAIL`, `SCREENER_PASSWORD` | company financials | prompt 4 |
+| `FIRECRAWL_API_KEY` *or* `SCRAPEDO_API_KEY` | APM gas price, Baltic freight | now |
+| `SCREENER_EMAIL`, `SCREENER_PASSWORD` | company financials | prompt 5 |
 | `OPENAI_API_KEY` *or* `MISTRAL_API_KEY` | commentary tone | prompt 6 |
 
-Names must match `.env.example` exactly. Keys are read from `process.env` at run
-time and never written into `data/*.json` or served to the browser.
+Names must match `.env.example` exactly. Both workflows map every secret in a
+**job-level `env:` block**, so each step sees them — GitHub does not expose secrets
+to a process automatically, and a step without the mapping reads `undefined`. Keys
+are read from `process.env` at run time and never written into `data/*.json` or
+served to the browser.
 
 **3. Run it by hand once.** Actions tab → **Refresh macro data** → *Run workflow* →
 branch `main` → *Run workflow*. Takes well under a minute. If anything changed it
@@ -337,8 +368,14 @@ alternative is a guess.
 
 ## Not in this step
 
-No KPI or commentary data, no scoring maths, no deployment config. Three market
-series still have no feed. The Cockpit scores are still `SEED`.
+No KPI or commentary data, no scoring maths, no deployment config. The Cockpit
+scores are still `SEED`.
+
+**Unverified:** the Firecrawl / Scrape.do path in `lib/scrape.mjs` has still never
+completed a real request — there was no key available when it was written. The
+extraction it feeds is pure and tested against fixtures, and `--probe` exists to
+fix it against a real response, but treat the APM and BDTI fetchers as a first
+draft until someone runs them with a key.
 
 The **"Scores agree / Conflict"** strip under the Macro tiles is deliberately
 crude for now: it counts how many tiles are moving in their `supports` direction

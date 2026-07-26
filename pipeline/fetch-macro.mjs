@@ -20,9 +20,10 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { todayIso } from './lib/dates.mjs';
+import { loadEnv, credentialReport } from './lib/env.mjs';
 import {
   fetchBrent, fetchWti, fetchUsdInr, fetchIndianBasket,
-  fetchSingaporeGrm, fetchApmGas, fetchJkm, fetchBalticDirty
+  fetchCrackSpread, fetchApmGas, fetchJkm, fetchBalticDirty
 } from './sources/macro-sources.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -52,11 +53,11 @@ const TILES = [
     ]
   },
   {
-    id: 'sing-grm', label: 'Refining Margin - Singapore', shortLabel: 'Singapore GRM',
+    id: 'crack-spread', label: 'Refining Margin - crack spread', shortLabel: 'Crack spread',
     plainSub: 'Profit on each barrel refined', unit: '$/bbl', decimals: 1,
     supports: 'up', supportsWhy: 'Fatter margins pay for refinery upgrades.',
     lines: [
-      { id: 'sing-grm', label: 'Singapore GRM', color: '#0F7A3A', primary: true, fetch: fetchSingaporeGrm }
+      { id: 'crack-321', label: '3-2-1 crack (US Gulf)', shortLabel: 'Crack', color: '#0F7A3A', primary: true, fetch: fetchCrackSpread }
     ]
   },
   {
@@ -89,13 +90,15 @@ const TILES = [
 async function fetchLine(line, ctx) {
   const { fetch: fn, ...meta } = line;
   try {
-    const { points, source, sourceTag } = await fn(ctx);
+    const { points, source, sourceTag, standIn, notes } = await fn(ctx);
     if (!Array.isArray(points) || !points.length) throw new Error('source returned no points');
     return {
       ...meta,
       status: 'live',
       source,
       sourceTag,
+      ...(standIn ? { standIn } : {}),
+      ...(notes ? { notes } : {}),
       asOf: points[points.length - 1].date,
       series: points
     };
@@ -107,9 +110,8 @@ async function fetchLine(line, ctx) {
       sourceTag: 'unknown',
       asOf: null,
       series: [],
-      awaitingReason: e?.name === 'MissingCredentialError'
-        ? `needs ${(e.names || []).join(' or ')}`
-        : (e?.message || String(e)).slice(0, 200)
+      /* written for the tile, not for a log */
+      awaitingReason: e?.humanReason || (e?.message || String(e)).slice(0, 160)
     };
   }
 }
@@ -117,6 +119,40 @@ async function fetchLine(line, ctx) {
 async function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes('--dry-run');
+  const probeIdx = args.indexOf('--probe');
+
+  // Local runs pick up a gitignored .env; in CI the secrets are already set.
+  const loaded = loadEnv();
+  const creds = credentialReport();
+  console.log(
+    `  credentials: ${creds.filter((c) => c.present).map((c) => c.name).join(', ') || 'none'}` +
+    (loaded.loaded ? '  (.env loaded)' : '  (no .env - using the environment)')
+  );
+  console.log('');
+
+  /* --probe <lineId>: run one fetcher and dump what actually came back, so an
+     unverified scrape can be fixed against a real response instead of a guess. */
+  if (probeIdx > -1) {
+    const wanted = args[probeIdx + 1];
+    const all = TILES.flatMap((t) => t.lines.map((l) => ({ tile: t, line: l })));
+    const hit = all.find((x) => x.line.id === wanted);
+    if (!hit) {
+      console.error(`unknown line "${wanted}". Try one of: ${all.map((x) => x.line.id).join(', ')}`);
+      process.exit(1);
+    }
+    console.log(`  probing ${hit.tile.id}/${hit.line.id} ...`);
+    try {
+      const r = await hit.line.fetch({ today: todayIso(), env: process.env });
+      console.log(JSON.stringify(r, null, 2));
+    } catch (e) {
+      console.error(`  FAILED: ${e?.name}: ${e?.message}`);
+      if (e?.humanReason) console.error(`  tile would read: "${e.humanReason}"`);
+      if (e?.meta?.sample) console.error(`  page text sample:\n${e.meta.sample}`);
+      process.exit(1);
+    }
+    return;
+  }
+
   const outIdx = args.indexOf('--out');
   const outPath = outIdx > -1 ? resolve(args[outIdx + 1]) : resolve(ROOT, 'data/macro.json');
   const today = todayIso();
@@ -132,9 +168,11 @@ async function main() {
     // The tile inherits the primary line's provenance; the dashboard still
     // renders one chip per distinct source across the lines.
     const primary = built.find((l) => l.primary) || built[0];
+    const standIn = built.find((l) => l.standIn);
     tiles.push({
       ...tileMeta,
       status: live.length ? 'live' : 'awaiting',
+      ...(standIn ? { standIn: standIn.standIn } : {}),
       source: primary.source,
       sourceTag: primary.sourceTag,
       asOf: primary.asOf,

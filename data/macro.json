@@ -2,15 +2,15 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-07-26T07:27:11.008Z",
+  "generatedAt": "2026-07-26T08:05:22.463Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
   "flagLookbackMonths": 3,
   "coverage": {
-    "tilesLive": 3,
+    "tilesLive": 5,
     "tilesTotal": 6,
-    "linesLive": 4,
+    "linesLive": 6,
     "linesTotal": 8
   },
   "tiles": [
@@ -232,30 +232,82 @@
       ]
     },
     {
-      "id": "sing-grm",
-      "label": "Refining Margin - Singapore",
-      "shortLabel": "Singapore GRM",
+      "id": "crack-spread",
+      "label": "Refining Margin - crack spread",
+      "shortLabel": "Crack spread",
       "plainSub": "Profit on each barrel refined",
       "unit": "$/bbl",
       "decimals": 1,
       "supports": "up",
       "supportsWhy": "Fatter margins pay for refinery upgrades.",
-      "status": "awaiting",
-      "source": null,
-      "sourceTag": "unknown",
-      "asOf": null,
+      "status": "live",
+      "standIn": "US Gulf Coast crack spread, standing in for Singapore GRM (a paywalled Platts assessment)",
+      "source": "Derived 3-2-1 crack spread from FRED / U.S. EIA spot prices (US Gulf gasoline, NY Harbor heating oil, WTI), monthly mean of daily",
+      "sourceTag": "derived",
+      "asOf": "2026-07-01",
       "lines": [
         {
-          "id": "sing-grm",
-          "label": "Singapore GRM",
+          "id": "crack-321",
+          "label": "3-2-1 crack (US Gulf)",
+          "shortLabel": "Crack",
           "color": "#0F7A3A",
           "primary": true,
-          "status": "awaiting",
-          "source": null,
-          "sourceTag": "unknown",
-          "asOf": null,
-          "series": [],
-          "awaitingReason": "needs FIRECRAWL_API_KEY or SCRAPEDO_API_KEY"
+          "status": "live",
+          "source": "Derived 3-2-1 crack spread from FRED / U.S. EIA spot prices (US Gulf gasoline, NY Harbor heating oil, WTI), monthly mean of daily",
+          "sourceTag": "derived",
+          "standIn": "US Gulf Coast crack spread, standing in for Singapore GRM (a paywalled Platts assessment)",
+          "asOf": "2026-07-01",
+          "series": [
+            {
+              "date": "2025-08-01",
+              "value": 24.18
+            },
+            {
+              "date": "2025-09-01",
+              "value": 24.91
+            },
+            {
+              "date": "2025-10-01",
+              "value": 22.53
+            },
+            {
+              "date": "2025-11-01",
+              "value": 24.9
+            },
+            {
+              "date": "2025-12-01",
+              "value": 19.87
+            },
+            {
+              "date": "2026-01-01",
+              "value": 24.38
+            },
+            {
+              "date": "2026-02-01",
+              "value": 22.72
+            },
+            {
+              "date": "2026-03-01",
+              "value": 42.32
+            },
+            {
+              "date": "2026-04-01",
+              "value": 42.14
+            },
+            {
+              "date": "2026-05-01",
+              "value": 46.65
+            },
+            {
+              "date": "2026-06-01",
+              "value": 43.79
+            },
+            {
+              "date": "2026-07-01",
+              "value": 57.88,
+              "partial": true
+            }
+          ]
         }
       ]
     },
@@ -268,10 +320,10 @@
       "decimals": 2,
       "supports": "down",
       "supportsWhy": "Cheaper imported gas means more of it gets burned here.",
-      "status": "awaiting",
-      "source": null,
-      "sourceTag": "unknown",
-      "asOf": null,
+      "status": "live",
+      "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
+      "sourceTag": "external",
+      "asOf": "2026-07-24",
       "lines": [
         {
           "id": "jkm",
@@ -279,12 +331,18 @@
           "shortLabel": "JKM",
           "color": "#7C3AED",
           "primary": true,
-          "status": "awaiting",
-          "source": null,
-          "sourceTag": "unknown",
-          "asOf": null,
-          "series": [],
-          "awaitingReason": "needs FIRECRAWL_API_KEY or SCRAPEDO_API_KEY"
+          "status": "live",
+          "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
+          "sourceTag": "external",
+          "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
+          "asOf": "2026-07-24",
+          "series": [
+            {
+              "date": "2026-07-24",
+              "value": 22,
+              "spot": true
+            }
+          ]
         },
         {
           "id": "apm",
@@ -297,7 +355,7 @@
           "sourceTag": "unknown",
           "asOf": null,
           "series": [],
-          "awaitingReason": "needs FIRECRAWL_API_KEY or SCRAPEDO_API_KEY"
+          "awaitingReason": "PPAC publishes APM as scanned PDFs only - add a scraper key"
         }
       ]
     },
@@ -402,7 +460,7 @@
           "sourceTag": "unknown",
           "asOf": null,
           "series": [],
-          "awaitingReason": "needs FIRECRAWL_API_KEY or SCRAPEDO_API_KEY"
+          "awaitingReason": "Baltic Exchange licenses BDTI - add a scraper key to read a republisher"
         }
       ]
     }
