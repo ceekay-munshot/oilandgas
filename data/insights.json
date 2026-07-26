@@ -1,0 +1,583 @@
+{
+  "schemaVersion": 1,
+  "title": "Screener Premium Investors -> Insights, per company",
+  "generatedBy": "pipeline/scrape-screener.mjs",
+  "generatedAt": "2026-07-26T14:09:03.942Z",
+  "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
+  "companies": {
+    "deep-industries": {
+      "name": "Deep Industries",
+      "slug": "DEEPINDS",
+      "view": "quarterly",
+      "url": "https://www.screener.in/company/DEEPINDS/consolidated/#shareholding",
+      "periods": [
+        "Mar 2023",
+        "Jun 2023",
+        "Sep 2023",
+        "Dec 2023",
+        "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
+        "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
+        "Mar 2026"
+      ],
+      "periodsIso": [
+        "2023-03",
+        "2023-06",
+        "2023-09",
+        "2023-12",
+        "2024-03",
+        "2024-06",
+        "2024-09",
+        "2024-12",
+        "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12",
+        "2026-03"
+      ],
+      "rows": [
+        {
+          "label": "Sales +",
+          "unit": null,
+          "scope": null,
+          "values": [
+            103.46,
+            101.32,
+            101.32,
+            104.69,
+            119.66,
+            123.46,
+            130.62,
+            154.83,
+            167.23,
+            199.5,
+            221.01,
+            221.5,
+            248.71
+          ]
+        },
+        {
+          "label": "Expenses +",
+          "unit": null,
+          "scope": null,
+          "values": [
+            61.49,
+            58.33,
+            62.76,
+            64.68,
+            81.83,
+            72.87,
+            73.14,
+            88.1,
+            110.57,
+            117.9,
+            129.41,
+            121.33,
+            166.81
+          ]
+        },
+        {
+          "label": "Operating Profit",
+          "unit": "Operating Profit",
+          "scope": null,
+          "values": [
+            41.97,
+            42.99,
+            38.56,
+            40.01,
+            37.83,
+            50.59,
+            57.48,
+            66.73,
+            56.66,
+            81.6,
+            91.6,
+            100.17,
+            81.9
+          ]
+        },
+        {
+          "label": "OPM %",
+          "unit": "OPM %",
+          "scope": null,
+          "values": [
+            40.57,
+            42.43,
+            38.06,
+            38.22,
+            31.61,
+            40.98,
+            44.01,
+            43.1,
+            33.88,
+            40.9,
+            41.45,
+            45.22,
+            32.93
+          ]
+        },
+        {
+          "label": "Other Income +",
+          "unit": null,
+          "scope": null,
+          "values": [
+            49.85,
+            6.62,
+            9.66,
+            9.14,
+            11.79,
+            10.85,
+            7.12,
+            8.53,
+            -245.22,
+            13.43,
+            21.26,
+            9.91,
+            -183.34
+          ]
+        },
+        {
+          "label": "Interest",
+          "unit": "Interest",
+          "scope": null,
+          "values": [
+            2.85,
+            1.63,
+            0.98,
+            2.92,
+            2.92,
+            2.52,
+            3.07,
+            3.22,
+            3.04,
+            4.13,
+            6.51,
+            4.32,
+            2.67
+          ]
+        },
+        {
+          "label": "Depreciation",
+          "unit": "Depreciation",
+          "scope": null,
+          "values": [
+            8.95,
+            9.03,
+            9.31,
+            8.98,
+            7.06,
+            9.82,
+            10.24,
+            10.45,
+            10.66,
+            13.04,
+            14.9,
+            15.65,
+            15.64
+          ]
+        },
+        {
+          "label": "Profit before tax",
+          "unit": "Profit before tax",
+          "scope": null,
+          "values": [
+            80.02,
+            38.95,
+            37.93,
+            37.25,
+            39.64,
+            49.1,
+            51.29,
+            61.59,
+            -202.26,
+            77.86,
+            91.45,
+            90.11,
+            -119.75
+          ]
+        },
+        {
+          "label": "Tax %",
+          "unit": "Tax %",
+          "scope": null,
+          "values": [
+            9.7,
+            20.39,
+            22.2,
+            24.97,
+            7.49,
+            21.1,
+            19.01,
+            22.7,
+            2.18,
+            20.74,
+            22.12,
+            20.82,
+            -93.97
+          ]
+        },
+        {
+          "label": "Net Profit +",
+          "unit": null,
+          "scope": null,
+          "values": [
+            72.26,
+            31.01,
+            29.52,
+            27.94,
+            36.68,
+            38.75,
+            41.55,
+            47.62,
+            -206.66,
+            61.7,
+            71.22,
+            71.35,
+            -7.22
+          ]
+        },
+        {
+          "label": "EPS in Rs",
+          "unit": "EPS in Rs",
+          "scope": null,
+          "values": [
+            11.29,
+            4.88,
+            4.59,
+            4.25,
+            5.64,
+            5.79,
+            6,
+            6.81,
+            -32.68,
+            9.19,
+            10.53,
+            10.63,
+            -2.24
+          ]
+        },
+        {
+          "label": "Raw PDF",
+          "unit": "Raw PDF",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    "engineers-india": {
+      "name": "Engineers India",
+      "slug": "ENGINERSIN",
+      "view": "quarterly",
+      "url": "https://www.screener.in/company/ENGINERSIN/consolidated/#shareholding",
+      "periods": [
+        "Mar 2023",
+        "Jun 2023",
+        "Sep 2023",
+        "Dec 2023",
+        "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
+        "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
+        "Mar 2026"
+      ],
+      "periodsIso": [
+        "2023-03",
+        "2023-06",
+        "2023-09",
+        "2023-12",
+        "2024-03",
+        "2024-06",
+        "2024-09",
+        "2024-12",
+        "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12",
+        "2026-03"
+      ],
+      "rows": [
+        {
+          "label": "Sales +",
+          "unit": null,
+          "scope": null,
+          "values": [
+            880,
+            818,
+            790,
+            868,
+            805,
+            624,
+            689,
+            765,
+            1010,
+            870,
+            921,
+            1210,
+            926
+          ]
+        },
+        {
+          "label": "Expenses +",
+          "unit": null,
+          "scope": null,
+          "values": [
+            713,
+            747,
+            691,
+            818,
+            728,
+            573,
+            627,
+            667,
+            709,
+            798,
+            802,
+            858,
+            774
+          ]
+        },
+        {
+          "label": "Operating Profit",
+          "unit": "Operating Profit",
+          "scope": null,
+          "values": [
+            167,
+            71,
+            99,
+            50,
+            77,
+            51,
+            62,
+            98,
+            301,
+            72,
+            120,
+            352,
+            152
+          ]
+        },
+        {
+          "label": "OPM %",
+          "unit": "OPM %",
+          "scope": null,
+          "values": [
+            19,
+            9,
+            12,
+            6,
+            10,
+            8,
+            9,
+            13,
+            30,
+            8,
+            13,
+            29,
+            16
+          ]
+        },
+        {
+          "label": "Other Income +",
+          "unit": null,
+          "scope": null,
+          "values": [
+            45,
+            94,
+            44,
+            30,
+            51,
+            39,
+            47,
+            38,
+            74,
+            36,
+            37,
+            101,
+            101
+          ]
+        },
+        {
+          "label": "Interest",
+          "unit": "Interest",
+          "scope": null,
+          "values": [
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "label": "Depreciation",
+          "unit": "Depreciation",
+          "scope": null,
+          "values": [
+            7,
+            8,
+            8,
+            8,
+            11,
+            10,
+            10,
+            10,
+            11,
+            11,
+            10,
+            10,
+            11
+          ]
+        },
+        {
+          "label": "Profit before tax",
+          "unit": "Profit before tax",
+          "scope": null,
+          "values": [
+            204,
+            156,
+            134,
+            71,
+            117,
+            79,
+            99,
+            126,
+            364,
+            97,
+            146,
+            442,
+            242
+          ]
+        },
+        {
+          "label": "Tax %",
+          "unit": "Tax %",
+          "scope": null,
+          "values": [
+            23,
+            25,
+            24,
+            26,
+            23,
+            26,
+            22,
+            25,
+            23,
+            25,
+            25,
+            21,
+            19
+          ]
+        },
+        {
+          "label": "Net Profit +",
+          "unit": null,
+          "scope": null,
+          "values": [
+            190,
+            139,
+            127,
+            63,
+            116,
+            92,
+            100,
+            109,
+            280,
+            65,
+            83,
+            347,
+            196
+          ]
+        },
+        {
+          "label": "EPS in Rs",
+          "unit": "EPS in Rs",
+          "scope": null,
+          "values": [
+            3.38,
+            2.47,
+            2.27,
+            1.13,
+            2.06,
+            1.63,
+            1.77,
+            1.93,
+            4.98,
+            1.16,
+            1.49,
+            6.18,
+            3.48
+          ]
+        },
+        {
+          "label": "Raw PDF",
+          "unit": "Raw PDF",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    "petronet-lng": {
+      "name": "Petronet LNG",
+      "slug": "PETRONET",
+      "view": "unknown",
+      "url": "https://www.screener.in/company/PETRONET/consolidated/",
+      "periods": [],
+      "rows": [],
+      "note": "company page HTTP 429"
+    },
+    "igl": {
+      "name": "IGL",
+      "slug": "IGL",
+      "view": "unknown",
+      "url": "https://www.screener.in/company/IGL/consolidated/",
+      "periods": [],
+      "rows": [],
+      "note": "company page HTTP 429"
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-26T13:39:54.875Z",
+  "generatedAt": "2026-07-26T14:09:31.016Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -14,10 +14,10 @@
   "coverage": {
     "companies": 4,
     "kpiCells": 40,
-    "realCells": 8,
-    "nullCells": 32,
+    "realCells": 17,
+    "nullCells": 23,
     "kpis": 10,
-    "kpisWithTrend": 0
+    "kpisWithTrend": 2
   },
   "companies": {
     "deep-industries": {
@@ -29,9 +29,9 @@
         "Q3 FY26",
         "Q4 FY26"
       ],
-      "asOf": "Q1 FY26",
+      "asOf": "Q4 FY26",
       "provider": "openai",
-      "ctxChars": 24000,
+      "ctxChars": 34459,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -39,7 +39,27 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            100,
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "No asset utilisation % reported."
+        },
+        {
+          "id": "day-rate",
+          "label": "Day-rate",
+          "unit": "₹/day",
+          "flagBasis": "level",
+          "values": [
+            30000,
             null,
             null,
             null
@@ -51,27 +71,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY26 states 100% utilization."
-        },
-        {
-          "id": "day-rate",
-          "label": "Day-rate",
-          "unit": "null",
-          "flagBasis": "level",
-          "values": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "sourceTags": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": null,
-          "notes": "No day-rate information provided."
+          "notes": "Day-rate for Dolphin contract reported."
         },
         {
           "id": "order-book",
@@ -79,19 +79,19 @@
           "unit": "₹ cr",
           "flagBasis": "qoq",
           "values": [
-            3000,
-            null,
-            null,
-            null
+            3051,
+            3050,
+            2967,
+            3000
           ],
           "sourceTags": [
             "mgmt-claim",
-            null,
-            null,
-            null
+            "mgmt-claim",
+            "mgmt-claim",
+            "mgmt-claim"
           ],
-          "flag": null,
-          "notes": "Order book stated as revolving consistently over INR 3,000 crores in Q4 FY26."
+          "flag": "inflecting-up",
+          "notes": "Order book values reported for Q1 FY26, Q2 FY26, Q3 FY26, and Q4 FY26."
         }
       ]
     },
@@ -106,7 +106,7 @@
       ],
       "asOf": "Q4 FY26",
       "provider": "openai",
-      "ctxChars": 23998,
+      "ctxChars": 33243,
       "kpis": [
         {
           "id": "order-inflow",
@@ -126,7 +126,7 @@
             "company-filing"
           ],
           "flag": null,
-          "notes": "Q4 FY26 order inflow is reported as ₹7,979 cr."
+          "notes": "Q1 FY26, Q2 FY26, Q3 FY26 values missing."
         },
         {
           "id": "order-book",
@@ -134,19 +134,19 @@
           "unit": "₹ cr",
           "flagBasis": "qoq",
           "values": [
-            null,
+            12145,
             null,
             null,
             15109
           ],
           "sourceTags": [
-            null,
+            "company-filing",
             null,
             null,
             "company-filing"
           ],
           "flag": null,
-          "notes": "Q4 FY26 order book is reported as ₹15,109 cr."
+          "notes": "Q2 FY26, Q3 FY26 values missing."
         },
         {
           "id": "bid-pipeline",
@@ -166,7 +166,7 @@
             null
           ],
           "flag": null,
-          "notes": "No bid pipeline figure reported."
+          "notes": "No values reported for any quarter."
         }
       ]
     },
@@ -181,7 +181,7 @@
       ],
       "asOf": "Q4 FY26",
       "provider": "openai",
-      "ctxChars": 24000,
+      "ctxChars": 26371,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -191,17 +191,17 @@
           "values": [
             null,
             null,
-            null,
+            94,
             90.1
           ],
           "sourceTags": [
             null,
             null,
-            null,
+            "company-filing",
             "company-filing"
           ],
           "flag": null,
-          "notes": "Q1 FY26, Q2 FY26, Q3 FY26 values missing."
+          "notes": "Q1 FY26 regas utilisation not reported."
         },
         {
           "id": "volume",
@@ -209,19 +209,19 @@
           "unit": "tmt",
           "flagBasis": "level",
           "values": [
-            null,
-            null,
-            null,
+            220,
+            211,
+            233,
             219
           ],
           "sourceTags": [
-            null,
-            null,
-            null,
+            "company-filing",
+            "company-filing",
+            "company-filing",
             "company-filing"
           ],
-          "flag": null,
-          "notes": "Q1 FY26, Q2 FY26, Q3 FY26 values missing."
+          "flag": "inflecting-down",
+          "notes": null
         }
       ]
     },
@@ -234,9 +234,9 @@
         "Q3 FY26",
         "Q4 FY26"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "openai",
-      "ctxChars": 24000,
+      "ctxChars": 26269,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -246,7 +246,7 @@
           "values": [
             null,
             null,
-            10.17,
+            10,
             null
           ],
           "sourceTags": [
@@ -256,7 +256,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q3 FY26 has a stated growth of 10.17% in CNG sales volume excluding DTC/DIMTS."
+          "notes": "Q3 FY26 has a stated growth of 10% in CNG sales volume; other quarters have no data."
         },
         {
           "id": "ebitda-per-scm",
@@ -264,19 +264,19 @@
           "unit": "₹/scm",
           "flagBasis": "level",
           "values": [
+            6.16,
             null,
             null,
-            5.4,
-            null
+            4.85
           ],
           "sourceTags": [
-            null,
-            null,
             "mgmt-claim",
-            null
+            null,
+            null,
+            "company-filing"
           ],
           "flag": null,
-          "notes": "Q3 FY26 has a stated EBITDA/SCM of ~₹5.4."
+          "notes": "Q1 FY26 has EBITDA/SCM of ₹6.16; Q4 FY26 has ₹4.85; other quarters have no data."
         }
       ]
     }
