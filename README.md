@@ -3,14 +3,15 @@
 An instrument that shows where India's oil & gas capex cycle is right now, and
 which companies benefit.
 
-**Steps 1–4 of ~13 are in.** The shell, navigation and design system are done, the
+**Steps 1–5 of ~13 are in.** The shell, navigation and design system are done, the
 **Cockpit** and **Macro** tabs are built, and the dashboard now has **its own data
 pipeline** — it fetches its own market data and commits it back on a schedule, with
 no dependency on any other repository.
 
-**Five of the six** market tiles are live, all from key-free public sources. The
-sixth, plus every score on the Cockpit, is honestly marked as not-yet-live rather
-than filled with plausible-looking numbers.
+**All six** market tiles now have a working source. Four need no key at all; the
+other two go through a scraper and are wired to parsers written from real
+responses, not from documentation. Every score on the Cockpit is still honestly
+marked as not-yet-live rather than filled with plausible-looking numbers.
 
 ---
 
@@ -43,14 +44,17 @@ pipeline/
   fetch-macro.mjs              step 1: refresh the market backdrop
   lib/     llm.mjs http.mjs scrape.mjs dates.mjs errors.mjs env.mjs
   parsers/ fred.mjs frankfurter.mjs ppac.mjs crack.mjs
-           tradingeconomics.mjs quote.mjs         pure, no network, 32 unit tests
+           ppac-notification.mjs investing.mjs
+           tradingeconomics.mjs quote.mjs         pure, no network, 43 unit tests
   sources/ macro-sources.mjs   one fetcher per series
+           ppac-docs.mjs       finds PPAC's newest gas notification
+           probe.mjs           scraper diagnostics
   test/    parsers.test.mjs    `npm test`
   package.json                 pipeline deps - deliberately NOT at the repo root
 .github/workflows/
   refresh-macro.yml            daily + manual; commits data back to main
   refresh-full.yml             the whole ordered pipeline (steps 2-5 land in prompts 5-7)
-  probe-macro.yml              manual diagnostic for the two unverified scrapers
+  probe-macro.yml              manual: scraper diagnostics + a full dry run
 .env.example                   every credential the pipeline reads
 ```
 
@@ -72,7 +76,7 @@ Five tabs, and three subtabs under KPIs:
 | # | Tab | What it answers |
 |---|-----|-----------------|
 | 1 | **Cockpit** | Where are we in the cycle — the five-second answer |
-| 2 | **Macro** | The market backdrop: six price and freight tiles, five of them live |
+| 2 | **Macro** | The market backdrop: six price and freight tiles, all six sourced |
 | 3 | **KPIs** | Company numbers over the last four quarters — *Leading / Coincident / Lagging* |
 | 4 | **Commentary** | How upbeat or worried management sounded |
 | 5 | **Insight & Action** | The summary, and what to research now |
@@ -126,10 +130,11 @@ instead of a chart. Nothing is estimated, interpolated or carried forward.
 | Crude Oil — Indian Basket | **live** | PPAC, Ministry of Petroleum & Natural Gas |
 | Rupee vs US Dollar | **live** | Frankfurter / ECB reference rates |
 | Refining Margin — crack spread | **live** | derived 3-2-1 crack from FRED — **a stand-in**, see below |
-| Gas Price — APM and JKM | **part live** | JKM spot from Trading Economics; APM still awaiting |
-| Freight — Baltic Dirty Tanker | awaiting | Baltic Exchange licenses BDTI; no free feed found |
+| Gas Price — APM and JKM | **live** | JKM spot from Trading Economics; APM from PPAC's monthly notification |
+| Freight — Baltic Dirty Tanker | **live** | investing.com's published BAID level |
 
-None of this needs an API key.
+The first four need no API key. The gas notification and the freight index need a
+scraper key — see *Turning it on in GitHub*.
 
 **Two honesty caveats the tiles carry on their face:**
 
@@ -142,10 +147,20 @@ None of this needs an API key.
   *"today only"* — no trend arrow, no percentile, no one-point line pretending to
   be a chart.
 
-**Still awaiting, with the reason shown on the tile:** APM (PPAC publishes it only
-as scanned PDFs with no text layer) and BDTI (licensed by the Baltic Exchange).
-Both have a scraper path wired and ready; neither has been run against a live
-response, which is why they are not switched on speculatively.
+- **APM is the ceiling, not the notified price.** PPAC's monthly notification
+  carries two numbers. July 2026 is *"notified as US$ 8.73/MMBTU"*, and then caps
+  ONGC and Oil India's nomination gas at *"a ceiling of US$ 7.00/MMBTU"*. What
+  those producers actually realise is the ceiling, so that is the tile value —
+  but the parser reads both and the tile note names both, because the gap is 25%
+  and either number alone looks entirely reasonable.
+- **APM and BDTI are single readings.** PPAC publishes each month as its own
+  scanned PDF and the Baltic Exchange licenses the history, so a 12-month trend
+  would mean OCR-ing twelve documents every run or inventing one. Both lines show
+  the current value and say *"today only"*.
+
+**Without a scraper key** those two tiles fall back to *"Awaiting live source"*
+with the reason on their face — the run still succeeds and the other four are
+unaffected.
 
 A month still in progress is marked `partial` and the tile stamp reads
 *"month to date"* — a mean taken on the 24th is not a month, and saying otherwise
@@ -289,7 +304,7 @@ The dashboard feeds itself. Nothing here reads from another repository.
 ```bash
 cd pipeline
 npm install          # only needed for prompts 5-7; the macro fetch uses Node built-ins
-npm test             # 32 parser tests, no network
+npm test             # 43 parser tests, no network
 npm run fetch:macro  # writes ../data/macro.json
 node fetch-macro.mjs --dry-run            # print what it would write, touch nothing
 node fetch-macro.mjs --probe jkm          # run ONE fetcher and dump what came back
@@ -300,10 +315,10 @@ fill in what you have. It is gitignored and loaded automatically via Node's buil
 `process.loadEnvFile` — no dependency, and values already in the environment win over
 the file. In CI there is no `.env` and the secrets come from the job's `env:` block.
 
-`--probe <id>` is the tool for the two unverified scrapers. For `apm` and
+`--probe <id>` is the tool for the two scraper-backed series. For `apm` and
 `baltic-dirty` it runs a full diagnostic rather than just the fetcher: which
 scraper answered, how many bytes came back, the text around every keyword worth
-anchoring on, and what each extractor makes of it. It always exits 0 — proving a
+anchoring on, and what the parsers make of it. It always exits 0 — proving a
 source is unreachable is a result, and a red job would bury the log.
 
 **You do not need a local key for this.** The `Probe macro scrapers` workflow runs
@@ -314,9 +329,9 @@ there: Cloudflare Workers Builds treats a root `package.json` as "this is a Node
 project, run a build", and the deploy fails because there is no build to run. With
 it one level down the root is still plain static files and the deploy is untouched.
 
-With no credentials at all you still get Brent, WTI, the Indian crude basket and
-USD/INR — those four come from key-free public endpoints. The other three series
-report exactly why they are unavailable.
+With no credentials at all you still get Brent, WTI, the Indian crude basket,
+USD/INR, the derived crack spread and the JKM spot quote — those come from
+key-free public endpoints. APM and BDTI report exactly why they are unavailable.
 
 ### Turning it on in GitHub
 
@@ -339,9 +354,17 @@ to a process automatically, and a step without the mapping reads `undefined`. Ke
 are read from `process.env` at run time and never written into `data/*.json` or
 served to the browser.
 
-**2a. Probing the two unfinished scrapers.** Actions tab → **Probe macro scrapers**
-→ *Run workflow* → target `both`. Read-only, commits nothing, and prints the full
-page context for APM and BDTI. Paste the log back to finish those fetchers.
+**2a. Checking the scraper-backed tiles.** Actions tab → **Probe macro scrapers**
+→ *Run workflow*, and pick a target:
+
+- `full-dry-run` — runs all six tiles exactly as the daily refresh does, with the
+  keys in place, and prints the coverage table **without writing anything**. This
+  is the one that answers *"are all six actually live?"*.
+- `both` / `apm` / `baltic-dirty` — the deep diagnostic: which scraper answered,
+  how many bytes, the text around every keyword, and what the parsers make of it.
+  Run this when a tile goes back to *awaiting* and you need to know why.
+
+Read-only in every mode, commits nothing. Each run spends a few Firecrawl credits.
 
 **3. Run it by hand once.** Actions tab → **Refresh macro data** → *Run workflow* →
 branch `main` → *Run workflow*. Takes well under a minute. If anything changed it
@@ -381,11 +404,12 @@ alternative is a guess.
 No KPI or commentary data, no scoring maths, no deployment config. The Cockpit
 scores are still `SEED`.
 
-**Unverified:** the Firecrawl / Scrape.do path in `lib/scrape.mjs` has still never
-completed a real request — there was no key available when it was written. The
-extraction it feeds is pure and tested against fixtures, and `--probe` exists to
-fix it against a real response, but treat the APM and BDTI fetchers as a first
-draft until someone runs them with a key.
+**`lib/scrape.mjs` has now completed real requests.** The probe run on 2026-07-26
+made five Firecrawl calls, all successful, including an OCR pass over a scanned
+PPAC PDF and a way past investing.com's 403. Both the APM and BDTI parsers are
+anchored on the text those responses actually contained, and the test fixtures
+quote it verbatim. What has *not* run yet is the assembled fetchers end to end —
+`Probe macro scrapers` → `full-dry-run` is the one-click check.
 
 The **"Scores agree / Conflict"** strip under the Macro tiles is deliberately
 crude for now: it counts how many tiles are moving in their `supports` direction
