@@ -1,0 +1,20 @@
+{
+  "name": "oilandgas-pipeline",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "Data pipeline for the Oil & Gas Cycle Dashboard. Kept out of the repo root so Cloudflare keeps treating the root as a static site.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "fetch:macro": "node fetch-macro.mjs",
+    "fetch:all": "npm run fetch:macro",
+    "test": "node --test \"test/*.test.mjs\""
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "pdf-parse": "^2.4.5",
+    "playwright": "^1.49.0"
+  }
+}

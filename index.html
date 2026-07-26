@@ -469,6 +469,15 @@ h1,h2,h3,p{margin:0;}
 .mpct__lab{font-size:10.5px; font-weight:700; color:var(--ink-2); white-space:nowrap; font-variant-numeric:tabular-nums;}
 .masof{font-size:10px; font-weight:500; color:var(--ink-4); white-space:nowrap;}
 
+/* a source we could not reach: ghost body, plain statement, no chart */
+.mtile--awaiting .card__body{padding:6px 12px 10px; gap:4px;}
+.mtile--awaiting .ghost{flex:1 1 auto; min-height:0;}
+.mawait{
+  flex:0 0 auto; text-align:center;
+  font-size:10.5px; font-weight:600; color:var(--ink-4); letter-spacing:-.005em;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+
 /* ---- macro vs scores strip ---- */
 .mscore{flex:0 0 auto;}
 .mscore__body{display:flex; align-items:center; gap:14px; padding:10px 14px; flex-wrap:wrap;}
@@ -674,8 +683,9 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
     </div>
     <div class="topbar__right">
       <span class="pill" id="stagePill"><span class="pill__dot"></span><b>&mdash;</b></span>
-      <span class="pill pill--seed" title="Every number on this page is a placeholder until real data is loaded.">
-        <span class="pill__dot"></span>SEED DATA
+      <span class="pill pill--seed" id="seedPill"
+            title="The cycle stage and the three group scores are placeholders. Market data on the Macro tab is live.">
+        <span class="pill__dot"></span>SEED SCORES
       </span>
     </div>
   </header>
@@ -699,7 +709,7 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
             <div class="card__headL">
               <span class="card__title">Where are we in the cycle?</span>
             </div>
-            <span class="chip" style="--c:var(--seed)"><span class="chip__sw"></span>SEED</span>
+            <span class="chip" style="--c:var(--seed)" title="Placeholder - real scores arrive with the KPI pipeline."><span class="chip__sw"></span>SEED &middot; not yet live</span>
           </div>
           <div class="card__body">
             <div class="chart-wrap">
@@ -718,7 +728,7 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
               <span class="card__title">How far ahead the early movers are</span>
               <span class="card__sub">Moves&nbsp;first score minus moves&nbsp;last score, in points</span>
             </div>
-            <span class="chip" style="--c:var(--seed)"><span class="chip__sw"></span>SEED</span>
+            <span class="chip" style="--c:var(--seed)" title="Placeholder - real scores arrive with the KPI pipeline."><span class="chip__sw"></span>SEED &middot; not yet live</span>
           </div>
           <div class="card__body">
             <div class="chart-wrap"><div class="chart" id="ch-div"></div></div>
@@ -989,7 +999,8 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
           '<div class="alert__meta">' +
             '<span class="chip" style="--c:' + t.color + '" title="' + esc(t.meaning) + '">' +
               '<span class="chip__sw"></span>' + esc(t.label) + '</span>' +
-            '<span class="chip" style="--c:#B45309"><span class="chip__sw"></span>SEED</span>' +
+            '<span class="chip" style="--c:#B45309" title="Placeholder - not yet live. Real scores arrive with the KPI pipeline.">' +
+            '<span class="chip__sw"></span>SEED</span>' +
           '</div>' +
         '</div></div>';
     }).join('');
@@ -1037,7 +1048,8 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
               '<span class="card__title">' + esc(g.plainLabel) + '</span>' +
               '<span class="card__sub">' + esc(g.name) + '</span>' +
             '</div>' +
-            '<span class="chip" style="--c:#B45309"><span class="chip__sw"></span>SEED</span>' +
+            '<span class="chip" style="--c:#B45309" title="Placeholder - not yet live. Real scores arrive with the KPI pipeline.">' +
+            '<span class="chip__sw"></span>SEED</span>' +
           '</div>' +
           '<div class="card__body">' +
             '<div class="chart-wrap"><div class="chart" id="ch-g-' + g.id + '"></div></div>' +
@@ -1286,9 +1298,22 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
     return n + 'th';
   }
 
+  /* Lines the pipeline actually filled. A line with status "awaiting" carries an
+     empty series on purpose - it is a source we could not reach, not a zero. */
+  function liveLines(tile) {
+    return (tile.lines || []).filter(function (l) {
+      return l.status !== 'awaiting' && Array.isArray(l.series) && l.series.length;
+    });
+  }
+  function tileIsLive(tile) { return liveLines(tile).length > 0; }
+
+  /* The line the flag and percentile are computed from: the primary one when it
+     has data, otherwise the first line that does. */
   function primaryLine(tile) {
-    for (var i = 0; i < tile.lines.length; i++) if (tile.lines[i].primary) return tile.lines[i];
-    return tile.lines[0];
+    var live = liveLines(tile);
+    var pool = live.length ? live : (tile.lines || []);
+    for (var i = 0; i < pool.length; i++) if (pool[i].primary) return pool[i];
+    return pool[0];
   }
   function lineName(ln) { return ln.shortLabel || ln.label; }
 
@@ -1297,8 +1322,8 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
      would file the official reading as an outside source. */
   function tileSources(t) {
     var out = [], seen = {};
-    t.lines.forEach(function (ln) {
-      var id = ln.sourceTag || t.sourceTag;
+    (liveLines(t).length ? liveLines(t) : t.lines).forEach(function (ln) {
+      var id = ln.sourceTag || t.sourceTag || 'unknown';
       if (!seen[id]) {
         seen[id] = { id: id, tag: tagById[id] || tagById.unknown, lines: [], sources: [] };
         out.push(seen[id]);
@@ -1337,8 +1362,9 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
   }
 
   function sparkOption(tile) {
+    var shown = liveLines(tile);
     var dates = primaryLine(tile).series.map(function (p) { return monthLabel(p.date); });
-    var single = tile.lines.length === 1;
+    var single = shown.length === 1;
     return {
       animationDuration: 700,
       animationEasing: 'cubicOut',
@@ -1351,7 +1377,7 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
           ps.forEach(function (p) {
             out += '<br><span style="display:inline-block;width:7px;height:7px;border-radius:50%;' +
                    'background:' + p.color + ';margin-right:5px"></span>' +
-                   (tile.lines.length > 1 ? esc(p.seriesName) + ' ' : '') +
+                   (shown.length > 1 ? esc(p.seriesName) + ' ' : '') +
                    '<b>' + fmt(p.data, tile.decimals) + '</b> ' + esc(tile.unit);
           });
           return out;
@@ -1363,7 +1389,7 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
         min: function (v) { return v.min - (v.max - v.min || 1) * 0.22; },
         max: function (v) { return v.max + (v.max - v.min || 1) * 0.22; }
       },
-      series: tile.lines.map(function (ln) {
+      series: shown.map(function (ln) {
         var vals = ln.series.map(function (p) { return p.value; });
         return {
           type: 'line', name: ln.label, data: vals,
@@ -1390,12 +1416,46 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
     };
   }
 
+  /* A source we could not reach. It gets the same card so the grid keeps its
+     shape, but a ghost body and a plain statement instead of a chart - never a
+     flat line at zero, which would read as data. */
+  function awaitingTileHTML(t) {
+    var why = (liveLines(t).length ? '' : (t.lines[0] && t.lines[0].awaitingReason) || '');
+    var tag = tagById.unknown;
+    return '<div class="card mtile mtile--awaiting">' +
+      '<div class="card__head">' +
+        '<div class="card__headL">' +
+          '<span class="card__title">' + esc(t.label) + '</span>' +
+          '<span class="card__sub">' + esc(t.unit + ' · ' + t.plainSub) + '</span>' +
+        '</div>' +
+        '<span class="chip" style="--c:' + tag.color + '" title="' +
+          esc(tag.plainLabel + (why ? ' - ' + why : '')) + '">' +
+          '<span class="chip__sw"></span>' + esc(tag.label) + '</span>' +
+      '</div>' +
+      '<div class="card__body">' +
+        '<div class="ghost">' + ghostHTML('line', 'Awaiting live source') + '</div>' +
+        '<div class="mawait"' + (why ? ' title="' + esc(why) + '"' : '') + '>No feed connected yet</div>' +
+      '</div>' +
+    '</div>';
+  }
+
+  /* Monthly averages, so the stamp names a month, not a day. A month still in
+     progress is a month-to-date figure and says so. */
+  function asOfLabel(line) {
+    var last = line.series[line.series.length - 1];
+    return 'to ' + monthLabel(last.date) + (last.partial ? ' · month to date' : '');
+  }
+
   function renderMacro() {
     var m = DATA.macro;
+    /* Only tiles the pipeline filled get a flag and a percentile. An awaiting
+       tile has no numbers at all, so there is nothing to rank it against. */
     MACRO_TILES = m.tiles.map(function (t) {
+      if (!tileIsLive(t)) return { tile: t, live: false, values: [], flag: null, pct: null };
       var pv = primaryLine(t).series.map(function (p) { return p.value; });
       return {
         tile: t,
+        live: true,
         values: pv,
         flag: directionFlag(pv, m.flagLookbackMonths, m.flatBandPct),
         pct: percentileOf(pv)
@@ -1403,12 +1463,15 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
     });
 
     el('macroTiles').innerHTML = MACRO_TILES.map(function (row) {
-      var t = row.tile, f = row.flag, pl = primaryLine(t);
-      var multi = t.lines.length > 1;
+      var t = row.tile;
+      if (!row.live) return awaitingTileHTML(t);
 
-      /* one big value, or one per line when the tile carries two */
+      var f = row.flag, pl = primaryLine(t), shown = liveLines(t);
+      var multi = shown.length > 1;
+
+      /* one big value, or one per line when the tile shows two */
       var valueHTML;
-      if (t.lines.length === 1) {
+      if (shown.length === 1) {
         valueHTML = '<div class="mval">' + fmt(pl.series[pl.series.length - 1].value, t.decimals) +
                     '<em>' + esc(t.unit) + '</em></div>';
       } else {
@@ -1416,7 +1479,7 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
            the full label ("JKM (imported)") pushed the badge onto a second row,
            which left this tile's chart shorter than its neighbours. The long form
            stays in the hover title and in the subtitle. */
-        valueHTML = '<div class="mval mval--pair">' + t.lines.map(function (ln) {
+        valueHTML = '<div class="mval mval--pair">' + shown.map(function (ln) {
           var last = ln.series[ln.series.length - 1].value;
           return '<span class="mkey" style="--c:' + ln.color + '" title="' + esc(ln.label) + '">' +
                    '<i></i><b>' + fmt(last, t.decimals) + '</b>' +
@@ -1466,13 +1529,15 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
               '<span class="mpct__track"><span class="mpct__fill" style="width:' + row.pct + '%"></span></span>' +
               '<span class="mpct__lab">' + ordinal(row.pct) + ' %ile</span>' +
             '</span>' +
-            '<span class="masof">as of ' + esc(dayLabel(t.asOf)) + '</span>' +
+            '<span class="masof">' + esc(asOfLabel(pl)) + '</span>' +
           '</div>' +
         '</div>' +
       '</div>';
     }).join('');
 
-    MACRO_TILES.forEach(function (row) { mount('ch-macro-' + row.tile.id, sparkOption(row.tile)); });
+    MACRO_TILES.forEach(function (row) {
+      if (row.live) mount('ch-macro-' + row.tile.id, sparkOption(row.tile));
+    });
     renderMacroScore();
   }
 
@@ -1482,8 +1547,11 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
   var AGREE_THRESHOLD = 4;   /* of six readings, how many must back the scores */
 
   function renderMacroScore() {
+    /* Awaiting tiles are not evidence either way - they are excluded from the
+       count entirely, and the sentence says how many readings it actually had. */
+    var scored = MACRO_TILES.filter(function (row) { return row.live; });
     var helps = [], hurts = [], neutral = [];
-    MACRO_TILES.forEach(function (row) {
+    scored.forEach(function (row) {
       if (row.flag.id === 'flat') { neutral.push(row); return; }
       var dir = row.flag.id === 'rising' ? 'up' : 'down';
       (dir === row.tile.supports ? helps : hurts).push(row);
@@ -1498,28 +1566,38 @@ table.kpi td.empty{color:var(--ink-4); font-weight:500;}
        nothing for the backdrop to agree or disagree with */
     var trend = up > down ? 'improving' : (down > up ? 'easing' : 'mixed');
 
-    var n = MACRO_TILES.length;
+    var n = scored.length;
+    var awaiting = MACRO_TILES.length - n;
     /* whichever set actually points the same way as the scores. Flat readings
        are in neither, so they never count as agreement by omission. */
     var backing = trend === 'improving' ? helps : (trend === 'easing' ? hurts : []);
 
     var c, ico, head, say;
-    if (trend === 'mixed') {
+    if (!n) {
+      c = '#7C8496'; ico = '=';
+      head = 'No live market readings yet';
+      say = 'Every market series is still awaiting a live source, so there is nothing to check the scores against.';
+    } else if (trend === 'mixed') {
       c = '#7C8496'; ico = '=';
       head = 'Scores are mixed - nothing to check yet';
       say = 'The three group scores do not point one way, so there is nothing for the market backdrop to agree or disagree with.';
     } else {
-      var agree = backing.length >= AGREE_THRESHOLD;
+      /* the bar is "most of what we can actually see", so it tracks the number
+         of live readings rather than a hard 4-of-6 that three sources could
+         never clear */
+      var need = Math.max(2, Math.ceil(n * (AGREE_THRESHOLD / 6)));
+      var agree = backing.length >= need;
       c = agree ? '#0F7A3A' : '#E9A526';
       ico = agree ? '✓' : '!';
       head = agree ? 'Scores agree with the market backdrop' : 'Conflict - flagged for review';
       say = 'Scores are ' + trend + ', ' +
             (agree ? 'and ' + backing.length : 'but only ' + backing.length) +
-            ' of ' + n + ' market readings ' +
-            (agree ? 'point the same way.' : 'back that up.');
+            ' of ' + n + ' live market reading' + (n === 1 ? '' : 's') + ' ' +
+            (agree ? 'point the same way.' : 'back that up.') +
+            (awaiting ? ' ' + awaiting + ' more ' + (awaiting === 1 ? 'is' : 'are') + ' still awaiting a source.' : '');
     }
 
-    var tally = MACRO_TILES.map(function (row) {
+    var tally = scored.map(function (row) {
       var state = row.flag.id === 'flat' ? 'neutral'
                 : (helps.indexOf(row) !== -1 ? 'helps' : 'hurts');
       var col = state === 'helps' ? '#0F7A3A' : (state === 'hurts' ? '#E9A526' : '#7C8496');

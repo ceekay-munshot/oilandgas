@@ -1,0 +1,74 @@
+name: Refresh macro data
+
+# Step 1 of the client pipeline. Fetches the six market series and commits
+# data/macro.json back to main when anything changed.
+#
+# Runs with no secrets at all: Brent, WTI, the Indian crude basket and USD/INR
+# come from key-free public endpoints. Adding FIRECRAWL_API_KEY or
+# SCRAPEDO_API_KEY lights up the three series still marked "awaiting".
+
+on:
+  workflow_dispatch:          # Actions tab -> Refresh macro data -> Run workflow
+  schedule:
+    - cron: '25 6 * * *'      # 06:25 UTC daily (~11:55 IST), after the US close
+
+permissions:
+  contents: write             # required to push the refreshed data back
+
+concurrency:
+  group: refresh-macro
+  cancel-in-progress: false   # never interrupt a run mid-commit
+
+jobs:
+  macro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Nothing to install: the macro fetcher uses only Node built-ins. The
+      # dependencies in pipeline/package.json are for the Screener/PDF steps in
+      # prompts 4-6. (package.json lives under pipeline/ so Cloudflare keeps
+      # treating the repo root as a static site.)
+      - name: Verify parsers
+        working-directory: pipeline
+        run: npm test
+
+      - name: Fetch macro series
+        env:
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+          SCRAPEDO_API_KEY: ${{ secrets.SCRAPEDO_API_KEY }}
+        run: node pipeline/fetch-macro.mjs
+
+      - name: Commit if anything changed
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- data/; then
+            echo "No data change - nothing to commit."
+            exit 0
+          fi
+
+          git add data/
+          git commit -m "chore(data): refresh macro series [skip ci]"
+
+          # Another run (or a human) may have pushed while we were fetching.
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected, rebasing and retrying ($attempt/5)..."
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            sleep $(( attempt * 3 ))
+          done
+
+          echo "Could not push after 5 attempts."
+          exit 1
