@@ -323,3 +323,23 @@ test('a thin quarter does not surrender its slice to a greedier one', () => {
   assert.match(out[0].text, /Rs 900 cr/);          // the thin quarter survives intact
   assert.ok(out[1].text.length <= 6200);           // the fat one is capped, not unbounded
 });
+
+/* --------------------------------------------- flat is not "just turned up" -- */
+
+test('a series that stopped falling reads steady, not inflecting-up', () => {
+  // Deep Industries' real order book: 3051, 3050, 2967, 3000. The last move is
+  // +33 on a ~3000 level, inside the 1.5% (45-wide) dead band, so the series is
+  // flat now. framework.json defines inflecting-up as "was falling, has just
+  // started to rise" - flat is not rising, and calling it so put this KPI in the
+  // "Just turned up" filter, the one list the client is meant to act on.
+  assert.equal(trajectoryFlag([3051, 3050, 2967, 3000], 1.5), 'steady');
+});
+
+test('a genuine turn up is still flagged as one', () => {
+  // Same shape, but the final move is comfortably outside the band.
+  assert.equal(trajectoryFlag([3051, 3050, 2967, 3400], 1.5), 'inflecting-up');
+});
+
+test('Petronet\'s real volume series still flags inflecting-down', () => {
+  assert.equal(trajectoryFlag([220, 211, 233, 219], 1.5), 'inflecting-down');
+});

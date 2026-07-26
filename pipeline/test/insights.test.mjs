@@ -114,3 +114,41 @@ test('periodToIso and looksLikePeriod accept month-year and TTM, reject labels',
   assert.equal(looksLikePeriod('Q4 FY26'), true);
   assert.equal(looksLikePeriod('Crude Oil Production'), false);
 });
+
+/* ------------------------------------ not the Quarterly Results table ------- */
+
+/* The first live run captured THIS instead of Insights: a real period-headed
+   table, just the wrong one. Every row is a standard P&L line. */
+const PNL_HTML = `
+<section id="quarters"><table class="data-table">
+  <thead><tr><th class="text"></th><th>Sep 2025</th><th>Dec 2025</th><th>Mar 2026</th></tr></thead>
+  <tbody>
+    <tr><td class="text">Sales +</td><td>221.01</td><td>221.50</td><td>248.71</td></tr>
+    <tr><td class="text">Expenses +</td><td>129.41</td><td>121.33</td><td>166.81</td></tr>
+    <tr><td class="text">Operating Profit</td><td>91.60</td><td>100.17</td><td>81.90</td></tr>
+    <tr><td class="text">OPM %</td><td>41.45</td><td>45.22</td><td>32.93</td></tr>
+    <tr><td class="text">Interest</td><td>6.51</td><td>4.32</td><td>2.67</td></tr>
+    <tr><td class="text">Depreciation</td><td>14.90</td><td>15.65</td><td>15.64</td></tr>
+  </tbody>
+</table></section>`;
+
+test('a P&L label cell yields no unit - the label is not its own unit', () => {
+  // The bug: with no separate unit line, `rest` equalled the label, so rows came
+  // out as "Operating Profit [Operating Profit]".
+  const t = parseInsightsTable(PNL_HTML);
+  const op = t.rows.find((r) => r.label.startsWith('Operating Profit'));
+  assert.equal(op.unit, null);
+  const opm = t.rows.find((r) => r.label.startsWith('OPM'));
+  assert.equal(opm.unit, null);
+});
+
+test('the P&L table still parses as a table - rejecting it is the browser\'s job', () => {
+  // parseInsightsTable is deliberately not the guard: it reads whatever table it
+  // is handed. Choosing the RIGHT table happens in the page, where the Insights
+  // card's own wording ("Extracted by Screener AI") can be anchored on, and where
+  // a P&L-shaped table is refused. Pinning this so the split of responsibility is
+  // explicit rather than accidental.
+  const t = parseInsightsTable(PNL_HTML);
+  assert.ok(t && t.rows.length === 6);
+  assert.deepEqual(t.periods, ['Sep 2025', 'Dec 2025', 'Mar 2026']);
+});

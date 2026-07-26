@@ -70,11 +70,12 @@ function splitLabelCell($, td) {
   if (name && all.startsWith(name)) rest = clean(all.slice(name.length));
 
   const [unitPart, ...noteParts] = rest.split(/[·|]/);
-  return {
-    label: name || all,
-    unit: clean(unitPart) || null,
-    scope: noteParts.length ? clean(noteParts.join(' ')) : null
-  };
+  const label = name || all;
+  let unit = clean(unitPart) || null;
+  // A cell with no separate unit line leaves `rest` equal to the label itself;
+  // reporting that as the unit gave rows like "Operating Profit [Operating Profit]".
+  if (unit && (unit === label || unit.length >= all.length)) unit = null;
+  return { label, unit, scope: noteParts.length ? clean(noteParts.join(' ')) : null };
 }
 
 /**
