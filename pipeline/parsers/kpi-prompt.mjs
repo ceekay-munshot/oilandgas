@@ -12,6 +12,7 @@
  */
 
 import { flagFor } from '../lib/kpi-flag.mjs';
+import { quarterLabel } from '../lib/fiscal.mjs';
 
 /** Source tags the dashboard knows (framework.json). Anything else -> unknown. */
 const ALLOWED_TAGS = new Set([
@@ -78,7 +79,15 @@ export function financialsToText(fin) {
   const lines = [];
   const q = fin.tables.quarters;
   if (q && q.periods && q.periods.length) {
-    lines.push('QUARTERLY (Screener, company filing) periods: ' + q.periods.join(' | '));
+    // Label each column with the fiscal quarter it closes, so a value in the
+    // "Mar 2026" column can be filed against Q4 FY26 without the model having to
+    // work out India's April-March fiscal year for itself.
+    const heads = q.periods.map((p, i) => {
+      const iso = (q.periodsIso && q.periodsIso[i]) || null;
+      const fq = iso ? quarterLabel(Number(iso.slice(0, 4)), Number(iso.slice(5, 7))) : null;
+      return fq ? `${p} (${fq})` : p;
+    });
+    lines.push('QUARTERLY (Screener, company filing) periods: ' + heads.join(' | '));
     for (const row of q.order || Object.keys(q.rows || {})) {
       const vals = q.rows[row];
       if (!vals) continue;
@@ -100,7 +109,8 @@ export function buildMessages({ companyName, kpis, quarters, blocks }) {
   const system = [
     'You are a precise financial-data extractor for Indian oil & gas companies.',
     'Extract ONLY numbers explicitly present in the provided excerpts. Never estimate, guess, annualise, or infer a number that is not stated.',
-    'For each KPI and each of the four quarters, return the value if the excerpts state it, otherwise null with a short note saying what was missing.',
+    'Each excerpt heading names the fiscal quarter that document reports on. A number stated in that document belongs in THAT quarter\'s slot - not the first slot, and not spread across the others. A document may also quote the year-ago or previous quarter for comparison; place such a figure in the quarter it actually belongs to if that quarter is in the list, otherwise ignore it.',
+    'For each KPI and each quarter, return the value if the excerpts state it, otherwise null with a short note saying what was missing.',
     'Tag every non-null value with sourceTag: "company-filing" (a reported number in a results table or PPT), "mgmt-claim" (a figure management stated on the call as guidance or commentary), "derived" (you computed it from other reported numbers - explain in notes), "inference" (implied, not stated), or "unknown".',
     'Values are plain numbers only - no units, no commas, no % sign. Put the unit in the unit field.',
     'Output STRICT JSON matching the schema and nothing else.'
@@ -115,12 +125,13 @@ export function buildMessages({ companyName, kpis, quarters, blocks }) {
   const user = [
     `Company: ${companyName}`,
     '',
-    `The values array for each KPI is in THIS quarter order: ${quarterList}`,
+    `The values array for each KPI has exactly ${quarters.length} slots, in THIS order: ${quarterList}`,
+    'Use the quarter named in each excerpt heading to decide which slot a number goes in.',
     '',
-    'Extract these KPIs (one object per id; values and sourceTags each length 4):',
+    'Extract these KPIs (one object per id; values and sourceTags each length ' + quarters.length + '):',
     kpiList,
     '',
-    'Source excerpts (the heading tells you the document type):',
+    'Source excerpts:',
     context || '(no relevant excerpts were found - return nulls with a note)'
   ].join('\n');
 

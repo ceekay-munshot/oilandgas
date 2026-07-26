@@ -8,6 +8,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { trajectoryFlag, flagBasisSeries, flagFor } from '../lib/kpi-flag.mjs';
+import { reportedQuarter, quarterLabel, quarterIndex } from '../lib/fiscal.mjs';
 import {
   preFilter, financialsToText, buildMessages, normalizeResult, coverageOf, KPI_SCHEMA
 } from '../parsers/kpi-prompt.mjs';
@@ -156,4 +157,52 @@ test('KPI_SCHEMA is strict-schema shaped (all props required, no extras)', () =>
   const item = KPI_SCHEMA.properties.kpis.items;
   assert.deepEqual(item.required.sort(), ['id', 'notes', 'sourceTags', 'unit', 'values']);
   assert.equal(item.additionalProperties, false);
+});
+
+/* ---------------------------------------------------- fiscal quarters ------- */
+
+test('quarterLabel maps a quarter-end month onto the Indian fiscal year', () => {
+  assert.equal(quarterLabel(2025, 6), 'Q1 FY26');    // Apr-Jun 2025
+  assert.equal(quarterLabel(2025, 9), 'Q2 FY26');    // Jul-Sep 2025
+  assert.equal(quarterLabel(2025, 12), 'Q3 FY26');   // Oct-Dec 2025
+  assert.equal(quarterLabel(2026, 3), 'Q4 FY26');    // Jan-Mar 2026 closes FY26
+  assert.equal(quarterLabel(2026, 6), 'Q1 FY27');
+  assert.equal(quarterLabel(2026, 5), null);         // not a quarter-end
+});
+
+test('reportedQuarter gives the quarter a concall discusses, not the month it happened', () => {
+  // This is the mapping the first extraction run lacked.
+  assert.equal(reportedQuarter('2025-11'), 'Q2 FY26');   // Nov call -> Jul-Sep 2025
+  assert.equal(reportedQuarter('2026-02'), 'Q3 FY26');   // Feb call -> Oct-Dec 2025
+  assert.equal(reportedQuarter('2026-05'), 'Q4 FY26');   // May call -> Jan-Mar 2026
+  assert.equal(reportedQuarter('2025-08'), 'Q1 FY26');   // Aug call -> Apr-Jun 2025
+});
+
+test('reportedQuarter wraps correctly across the calendar year', () => {
+  assert.equal(reportedQuarter('2026-01'), 'Q3 FY26');   // Jan -> Oct-Dec 2025
+  assert.equal(reportedQuarter('2026-04'), 'Q4 FY26');   // Apr -> Jan-Mar 2026
+  assert.equal(reportedQuarter('2026-07-24'), 'Q1 FY27');// full dates accepted
+});
+
+test('reportedQuarter rejects unparseable input rather than guessing', () => {
+  assert.equal(reportedQuarter(''), null);
+  assert.equal(reportedQuarter(null), null);
+  assert.equal(reportedQuarter('2026-13'), null);
+});
+
+test('quarterIndex places a quarter in the target window', () => {
+  const W = ['Q2 FY26', 'Q3 FY26', 'Q4 FY26', 'Q1 FY27'];
+  assert.equal(quarterIndex('Q2 FY26', W), 0);
+  assert.equal(quarterIndex('Q4 FY26', W), 2);
+  assert.equal(quarterIndex('Q1 FY26', W), -1);   // older than the window
+});
+
+test('the smoke set\'s real transcript dates land in the target window', () => {
+  // Deep Industries had 2026-05, 2026-02, 2025-11, 2025-08 cached.
+  const W = ['Q2 FY26', 'Q3 FY26', 'Q4 FY26', 'Q1 FY27'];
+  const mapped = ['2026-05', '2026-02', '2025-11', '2025-08'].map((d) => reportedQuarter(d));
+  assert.deepEqual(mapped, ['Q4 FY26', 'Q3 FY26', 'Q2 FY26', 'Q1 FY26']);
+  // Three of the four are in-window; the August call reports a quarter that is
+  // older than the window and is dropped rather than misfiled.
+  assert.deepEqual(mapped.map((q) => quarterIndex(q, W)), [2, 1, 0, -1]);
 });
