@@ -308,10 +308,12 @@ async function main() {
             insWhy = [insWhy, `${via} parse failed: ${(e && e.message) || e}`].filter(Boolean).join('; ').slice(0, 180);
           }
         };
-        // The quarterly fragment first (markup), then the browser text matrix,
-        // then the annual table the page loaded with - so a quarterly view that
-        // fails to parse falls back to annual data rather than to nothing.
-        tryParse(parseInsightsTable, ins.html, 'quarterly-fragment');
+        // The fetched markup first, then the browser text matrix, then the annual
+        // table the page loaded with - so a quarterly view that fails to parse
+        // falls back to annual data rather than to nothing. `htmlKind` names what
+        // ins.html actually IS: labelling it "quarterly-fragment" merely because a
+        // fragment had been attempted is a claim about intent, not about data.
+        tryParse(parseInsightsTable, ins.html, ins.htmlKind || 'page-table');
         tryParse(parseInsightsMatrix, ins.matrix, 'matrix');
         tryParse(parseInsightsTable, ins.fallbackHtml, 'annual-fallback');
         // The SOURCE's reason wins over a generic one: "premium-gated" and "the
