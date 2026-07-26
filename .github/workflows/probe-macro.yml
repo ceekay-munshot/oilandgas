@@ -1,14 +1,19 @@
 name: Probe macro scrapers
 
-# Manual only. Runs the two fetchers that have never completed a real request -
-# APM (the administered gas ceiling) and BDTI (Baltic Dirty Tanker) - and prints
-# everything they see: which scraper answered, how big the document was, the text
-# around every keyword worth anchoring on, and what the current extractors make
-# of it.
+# Manual only. Two things it can do:
 #
-# It exists because those two were written from documentation. This is the first
-# time lib/scrape.mjs makes a real call, so the log is the deliverable: paste it
-# back and the selectors get written from evidence.
+#   both / apm / baltic-dirty  - point the scraper at the two sources that only
+#     answer a rendered request, and print everything they return: which scraper
+#     answered, how big the document was, the text around every keyword worth
+#     anchoring on, and what the parsers make of it.
+#
+#   full-dry-run - run all six tiles exactly as the daily refresh does, with the
+#     scraper keys in place, and print the coverage table without writing
+#     anything. This is how to check that all six are genuinely live.
+#
+# The probe exists because APM and BDTI were originally written from
+# documentation. The log is the deliverable: selectors get written from what it
+# prints, not from what a doc page claims.
 #
 # Commits nothing and touches no data file. Safe to run repeatedly, though each
 # run spends a few Firecrawl credits.
@@ -19,7 +24,7 @@ on:
       target:
         description: 'Which to probe'
         type: choice
-        options: [both, apm, baltic-dirty]
+        options: [both, apm, baltic-dirty, full-dry-run]
         default: both
 
 permissions:
@@ -59,6 +64,12 @@ jobs:
       - name: Probe Baltic Dirty Tanker
         if: ${{ inputs.target == 'both' || inputs.target == 'baltic-dirty' }}
         run: node pipeline/fetch-macro.mjs --probe baltic-dirty
+
+      # All six tiles, keys and all, writing nothing. The coverage line at the
+      # end is the answer to "are they actually live?".
+      - name: Full dry run (all six tiles, nothing written)
+        if: ${{ inputs.target == 'full-dry-run' }}
+        run: node pipeline/fetch-macro.mjs --dry-run
 
       - name: What to do with this log
         if: always()

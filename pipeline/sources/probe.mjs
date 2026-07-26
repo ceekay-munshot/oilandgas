@@ -12,29 +12,31 @@
  */
 
 import { scrapePage } from '../lib/scrape.mjs';
-import { getText } from '../lib/http.mjs';
 import { toText, extractLabelledNumber } from '../parsers/quote.mjs';
-import { parseTradingEconomicsQuote } from '../parsers/tradingeconomics.mjs';
+import { parsePpacGasNotification } from '../parsers/ppac-notification.mjs';
+import { parseInvestingQuote } from '../parsers/investing.mjs';
+import { findGasNotifications } from './ppac-docs.mjs';
 
 /**
- * The unverified targets. `candidates` are the URLs worth trying in order;
- * `keywords` are what to show context around so the next version can anchor
- * properly.
+ * The scraper-backed targets. `candidates` are the URLs worth trying in order;
+ * `keywords` are what to show context around; `parsers` are the extractors the
+ * fetcher now relies on, so a re-run says whether they still read the page.
  */
 export const SCRAPE_TARGETS = {
   apm: {
-    label: 'APM - administered domestic gas ceiling',
+    label: 'APM - domestic gas notification (notified price and ONGC/OIL ceiling)',
     unit: '$/mmbtu',
     plausible: [1, 20],
     /* The PPAC gas-price page carries NO price - it is a list of download links,
        and the number only exists inside monthly PDFs that are scanned images.
        So the probe discovers the newest PDF with a plain GET (that part works
        without a key) and points the scraper at the PDF itself, where Firecrawl's
-       document handling is the thing being tested. */
-    discover: discoverLatestApmPdf,
+       OCR is the thing being tested. */
+    discover: findGasNotifications,
     candidates: ['https://ppac.gov.in/natural-gas/gas-price'],
-    keywords: ['APM', 'administered', 'MMBTU', 'MMBtu', 'ceiling', 'US$', 'GCV', 'per unit'],
-    labels: [/APM[^0-9]{0,40}/, /administered price[^0-9]{0,40}/, /ceiling[^0-9]{0,40}/]
+    keywords: ['APM', 'administered', 'MMBTU', 'MMBtu', 'ceiling', 'US$', 'GCV', 'Dated'],
+    labels: [/APM[^0-9]{0,40}/, /administered price[^0-9]{0,40}/, /ceiling[^0-9]{0,40}/],
+    parsers: [['parsePpacGasNotification', (html) => parsePpacGasNotification(html)]]
   },
   'baltic-dirty': {
     label: 'BDTI - Baltic Dirty Tanker Index',
@@ -43,37 +45,20 @@ export const SCRAPE_TARGETS = {
     /* Checked by plain GET first: hellenicshippingnews and balticexchange.com do
        not mention BDTI at all, so they are not listed. investing.com does, but
        answers a plain GET with 403 - a bot wall, which is precisely the case
-       Firecrawl is here for. */
+       Firecrawl is here for. Trading Economics was probed too and returned a
+       page with no mention of the index, so it is gone from the fetcher; it
+       stays here only so a future run can tell if that ever changes. */
     candidates: [
       'https://www.investing.com/indices/baltic-dirty-tanker',
       'https://tradingeconomics.com/commodity/baltic-dirty-tanker'
     ],
-    keywords: ['BDTI', 'Dirty Tanker', 'Baltic Dirty', 'Tanker Index', 'TD3C', 'Worldscale'],
-    labels: [/Baltic Dirty Tanker Index/, /Baltic Dirty Tanker/, /BDTI/]
+    keywords: ['BDTI', 'Dirty Tanker', 'Baltic Dirty', 'Tanker Index', 'live stock price', 'ticker symbol'],
+    labels: [/Baltic Dirty Tanker Index/, /Baltic Dirty Tanker/, /BDTI/],
+    parsers: [['parseInvestingQuote', (html) => parseInvestingQuote(html, {
+      name: 'Baltic Dirty Tanker', ticker: 'BAID', plausible: [100, 5000], source: 'BDTI'
+    })]]
   }
 };
-
-/**
- * Newest monthly gas-price PDF PPAC has posted. They appear under two paths and
- * the filenames are prefixed with a unix timestamp, so the largest prefix wins.
- * Uses a plain GET - the listing pages are reachable without a key.
- */
-export async function discoverLatestApmPdf() {
-  const pages = ['https://ppac.gov.in/natural-gas/gas-price', 'https://ppac.gov.in/'];
-  const found = new Map();
-  for (const page of pages) {
-    let html;
-    try { html = await getText(page, { timeoutMs: 30_000, retries: 1 }); } catch { continue; }
-    const re = /https:\/\/ppac\.gov\.in\/download\.php\?file=(?:gasprice|whatsnew|importantnews)\/(\d+)_([^"'\s]+?\.pdf)/gi;
-    let m;
-    while ((m = re.exec(html)) !== null) {
-      if (!/gas/i.test(m[2])) continue;                 // gas-price documents only
-      found.set(m[0], Number(m[1]));
-    }
-  }
-  if (!found.size) return [];
-  return [...found.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2).map(([url]) => url);
-}
 
 const RULE = '-'.repeat(72);
 
@@ -149,29 +134,34 @@ export async function probeScrapeTarget(id, { env = process.env } = {}) {
       console.log(`  [${w.keyword}] @${w.at}: ...${w.context.replace(/\s+/g, ' ')}...`);
     }
 
-    console.log('\n  -- what the current extractors make of it --');
+    console.log('\n  -- what the extractors make of it --');
+    /* The real parser first: this is the one the fetcher runs, so its verdict is
+       the one that decides whether the tile goes live. */
+    for (const [name, fn] of target.parsers || []) {
+      try {
+        console.log(`  ${name} -> ${JSON.stringify(fn(res.html))}`);
+        success = true;
+      } catch (e) {
+        console.log(`  ${name} -> ${e.name}: ${e.message.slice(0, 220)}`);
+      }
+    }
+    /* The generic label scan, kept as a sanity check: it finds a number without
+       understanding it, so a disagreement between the two is worth seeing. */
     try {
       const v = extractLabelledNumber(res.html, {
         labels: target.labels, plausible: target.plausible, source: id
       });
-      console.log(`  extractLabelledNumber -> ${v}`);
-      success = true;
+      console.log(`  extractLabelledNumber (generic) -> ${v}`);
     } catch (e) {
-      console.log(`  extractLabelledNumber -> ${e.name}: ${e.message.slice(0, 220)}`);
-    }
-    try {
-      const q = parseTradingEconomicsQuote(res.html, { plausible: target.plausible, source: id });
-      console.log(`  parseTradingEconomicsQuote -> ${JSON.stringify(q)}`);
-      success = true;
-    } catch (e) {
-      console.log(`  parseTradingEconomicsQuote -> ${e.name}: ${e.message.slice(0, 220)}`);
+      console.log(`  extractLabelledNumber (generic) -> ${e.name}: ${e.message.slice(0, 220)}`);
     }
   }
 
   console.log(`\n${RULE}`);
   console.log(success
-    ? `PROBE ${id}: at least one extractor produced a plausible value.`
-    : `PROBE ${id}: no extractor produced a value. The keyword context above is what to anchor on.`);
+    ? `PROBE ${id}: the fetcher's own parser read this page - the tile would go live.`
+    : `PROBE ${id}: the fetcher's parser could not read any candidate. The keyword ` +
+      'context above is what to re-anchor on.');
   console.log(RULE);
   return success;
 }
