@@ -50,6 +50,7 @@ pipeline/
 .github/workflows/
   refresh-macro.yml            daily + manual; commits data back to main
   refresh-full.yml             the whole ordered pipeline (steps 2-5 land in prompts 5-7)
+  probe-macro.yml              manual diagnostic for the two unverified scrapers
 .env.example                   every credential the pipeline reads
 ```
 
@@ -299,9 +300,14 @@ fill in what you have. It is gitignored and loaded automatically via Node's buil
 `process.loadEnvFile` — no dependency, and values already in the environment win over
 the file. In CI there is no `.env` and the secrets come from the job's `env:` block.
 
-`--probe <lineId>` is the tool for the two unverified scrapers: it runs a single
-fetcher with your key and prints the parsed result, or the failure plus a sample of
-the page text. That output is what turns a guess into a working selector.
+`--probe <id>` is the tool for the two unverified scrapers. For `apm` and
+`baltic-dirty` it runs a full diagnostic rather than just the fetcher: which
+scraper answered, how many bytes came back, the text around every keyword worth
+anchoring on, and what each extractor makes of it. It always exits 0 — proving a
+source is unreachable is a result, and a red job would bury the log.
+
+**You do not need a local key for this.** The `Probe macro scrapers` workflow runs
+it in Actions where the secrets already are — see below.
 
 `package.json` lives under `pipeline/`, not at the repo root, and needs to stay
 there: Cloudflare Workers Builds treats a root `package.json` as "this is a Node
@@ -332,6 +338,10 @@ Names must match `.env.example` exactly. Both workflows map every secret in a
 to a process automatically, and a step without the mapping reads `undefined`. Keys
 are read from `process.env` at run time and never written into `data/*.json` or
 served to the browser.
+
+**2a. Probing the two unfinished scrapers.** Actions tab → **Probe macro scrapers**
+→ *Run workflow* → target `both`. Read-only, commits nothing, and prints the full
+page context for APM and BDTI. Paste the log back to finish those fetchers.
 
 **3. Run it by hand once.** Actions tab → **Refresh macro data** → *Run workflow* →
 branch `main` → *Run workflow*. Takes well under a minute. If anything changed it

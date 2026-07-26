@@ -29,9 +29,12 @@ async function viaFirecrawl(url, { apiKey, timeoutMs, formats }) {
   const data = json?.data ?? {};
   const out = data.html ?? data.rawHtml ?? data.markdown;
   if (typeof out !== 'string' || !out.length) {
-    throw new HttpError('Firecrawl returned an empty document', { url, status: res.status });
+    throw new HttpError(
+      `Firecrawl returned no document (keys: ${Object.keys(data).join(', ') || 'none'})`,
+      { url, status: res.status, body: JSON.stringify(json).slice(0, 400) }
+    );
   }
-  return { html: out, via: 'firecrawl' };
+  return { html: out, via: 'firecrawl', bytes: out.length, format: data.html ? 'html' : (data.rawHtml ? 'rawHtml' : 'markdown') };
 }
 
 async function viaScrapeDo(url, { apiKey, timeoutMs, render }) {
@@ -39,7 +42,7 @@ async function viaScrapeDo(url, { apiKey, timeoutMs, render }) {
   const res = await request(`https://api.scrape.do/?${qs}`, { timeoutMs, retries: 2 });
   const html = await res.text();
   if (!html.length) throw new HttpError('Scrape.do returned an empty document', { url, status: res.status });
-  return { html, via: 'scrapedo' };
+  return { html, via: 'scrapedo', bytes: html.length, format: 'html' };
 }
 
 /**
@@ -70,5 +73,7 @@ export async function scrapePage(url, opts = {}) {
   }
 
   if (!attempts.length) throw new MissingCredentialError(['FIRECRAWL_API_KEY', 'SCRAPEDO_API_KEY']);
-  throw new HttpError(`Every scraper failed for ${url} (${attempts.join('; ')})`, { url });
+  const err = new HttpError(`Every scraper failed for ${url} (${attempts.join('; ')})`, { url });
+  err.attempts = attempts;
+  throw err;
 }

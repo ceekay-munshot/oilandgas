@@ -1,0 +1,68 @@
+name: Probe macro scrapers
+
+# Manual only. Runs the two fetchers that have never completed a real request -
+# APM (the administered gas ceiling) and BDTI (Baltic Dirty Tanker) - and prints
+# everything they see: which scraper answered, how big the document was, the text
+# around every keyword worth anchoring on, and what the current extractors make
+# of it.
+#
+# It exists because those two were written from documentation. This is the first
+# time lib/scrape.mjs makes a real call, so the log is the deliverable: paste it
+# back and the selectors get written from evidence.
+#
+# Commits nothing and touches no data file. Safe to run repeatedly, though each
+# run spends a few Firecrawl credits.
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Which to probe'
+        type: choice
+        options: [both, apm, baltic-dirty]
+        default: both
+
+permissions:
+  contents: read              # read-only: a probe must never write data
+
+concurrency:
+  group: probe-macro
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    # Job-level so every step sees them.
+    env:
+      FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+      SCRAPEDO_API_KEY:  ${{ secrets.SCRAPEDO_API_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Which keys are visible
+        run: |
+          echo "FIRECRAWL_API_KEY: ${FIRECRAWL_API_KEY:+set}${FIRECRAWL_API_KEY:-MISSING}"
+          echo "SCRAPEDO_API_KEY:  ${SCRAPEDO_API_KEY:+set}${SCRAPEDO_API_KEY:-MISSING}"
+          echo "(values are never printed - only whether GitHub handed them to the job)"
+
+      - name: Probe APM
+        if: ${{ inputs.target == 'both' || inputs.target == 'apm' }}
+        run: node pipeline/fetch-macro.mjs --probe apm
+
+      - name: Probe Baltic Dirty Tanker
+        if: ${{ inputs.target == 'both' || inputs.target == 'baltic-dirty' }}
+        run: node pipeline/fetch-macro.mjs --probe baltic-dirty
+
+      - name: What to do with this log
+        if: always()
+        run: |
+          echo "Copy this whole log back into the conversation."
+          echo "A probe that proves a source is unreachable is a useful result:"
+          echo "the tile stays 'awaiting' with that reason instead of guessing."
