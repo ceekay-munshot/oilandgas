@@ -63,8 +63,11 @@ jobs:
             exit 0
           fi
 
+          # No [skip ci]: no GitHub workflow triggers on push, so the only thing
+          # that watches main is Cloudflare's deploy - and that is exactly what
+          # has to run, or the freshly-committed data never reaches the live site.
           git add data/
-          git commit -m "chore(data): refresh macro series [skip ci]"
+          git commit -m "chore(data): refresh macro series"
 
           # Another run (or a human) may have pushed while we were fetching.
           for attempt in 1 2 3 4 5; do

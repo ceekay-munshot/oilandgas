@@ -104,8 +104,11 @@ jobs:
             exit 0
           fi
 
+          # No [skip ci]: nothing on GitHub triggers on push, so this token would
+          # only tell Cloudflare to skip the deploy - and the deploy is what puts
+          # the refreshed data on the live dashboard.
           git add data/
-          git commit -m "chore(data): full pipeline refresh [skip ci]"
+          git commit -m "chore(data): full pipeline refresh"
 
           for attempt in 1 2 3 4 5; do
             if git push origin HEAD:main; then
