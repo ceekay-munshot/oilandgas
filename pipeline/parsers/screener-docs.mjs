@@ -87,12 +87,15 @@ export function parseConcalls(html) {
     const label = ($li.text().match(MONTH_RE) || [])[0] || null;
 
     const links = { transcript: null, ppt: null, summary: null };
-    $li.find('a').each((__, a) => {
-      const kind = linkKind($(a).text());
+    // Transcript/PPT/REC are <a href>; the AI Summary is a <button> that opens a
+    // modal, carrying its endpoint in data-url (e.g. /concalls/summary/23052054/).
+    $li.find('a, button').each((__, el) => {
+      const $el = $(el);
+      const kind = linkKind($el.text());
       if (!kind || kind === 'rec') return;
-      // A greyed-out button (no PPT that quarter) is an <a> with no usable href;
-      // absoluteUrl returns null and it is simply not captured.
-      if (!links[kind]) links[kind] = absoluteUrl($(a).attr('href'));
+      // A greyed-out PPT is an <a> with no href; absoluteUrl returns null and it
+      // is simply not captured.
+      if (!links[kind]) links[kind] = absoluteUrl($el.attr('href') || $el.attr('data-url'));
     });
 
     if (label && (links.transcript || links.ppt || links.summary)) {
