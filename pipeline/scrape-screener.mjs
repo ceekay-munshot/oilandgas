@@ -29,7 +29,7 @@ import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import { loadEnv } from './lib/env.mjs';
+import { loadEnv, screenerCredentials } from './lib/env.mjs';
 import { openScreener, resolveSlug, getCompanyPage, downloadDoc, maskEmail } from './sources/screener-session.mjs';
 import { parseAllFinancials } from './parsers/screener-financials.mjs';
 import { parseConcalls, selectDocuments, looksLikeDoc } from './parsers/screener-docs.mjs';
@@ -196,12 +196,14 @@ async function main() {
   const opts = parseArgs(process.argv);
   loadEnv();
 
-  const email = process.env.SCREENER_EMAIL;
-  const password = process.env.SCREENER_PASSWORD;
+  // The paid login wins when present - only a subscribed account can read the
+  // concall AI Summaries, which are the extractor's best source.
+  const { email, password, tier } = screenerCredentials();
   if (!email || !password) {
     throw new MissingCredentialError(
-      ['SCREENER_EMAIL', 'SCREENER_PASSWORD'],
-      'Screener needs an account login - set SCREENER_EMAIL and SCREENER_PASSWORD as secrets'
+      ['SCREENER_PAID_EMAIL/SCREENER_PAID_PASSWORD', 'SCREENER_EMAIL/SCREENER_PASSWORD'],
+      'Screener needs an account login - set SCREENER_PAID_EMAIL and SCREENER_PAID_PASSWORD ' +
+      '(or the free SCREENER_EMAIL and SCREENER_PASSWORD) as secrets'
     );
   }
 
@@ -231,7 +233,8 @@ async function main() {
   const manifest = { ...freshManifest(), companies: (await readJson(manifestPath, {})).companies || {} };
 
   const session = await openScreener({ email, password, headless: !opts.headful });
-  console.log(`logged in as ${maskEmail(email)}\n`);
+  console.log(`logged in as ${maskEmail(email)} (${tier} account)` +
+    (tier === 'free' ? ' - AI summaries will be premium-gated' : '') + '\n');
 
   let ok = 0, failed = 0, docsCached = 0, docsOcr = 0, docsRecovered = 0, docsGated = 0;
 

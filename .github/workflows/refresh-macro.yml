@@ -29,6 +29,10 @@ jobs:
     env:
       FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
       SCRAPEDO_API_KEY:  ${{ secrets.SCRAPEDO_API_KEY }}
+      # Paid pair wins when set (only a subscribed account reads AI summaries);
+      # the free pair stays as the fallback.
+      SCREENER_PAID_EMAIL:    ${{ secrets.SCREENER_PAID_EMAIL }}
+      SCREENER_PAID_PASSWORD: ${{ secrets.SCREENER_PAID_PASSWORD }}
       SCREENER_EMAIL:    ${{ secrets.SCREENER_EMAIL }}
       SCREENER_PASSWORD: ${{ secrets.SCREENER_PASSWORD }}
       OPENAI_API_KEY:    ${{ secrets.OPENAI_API_KEY }}

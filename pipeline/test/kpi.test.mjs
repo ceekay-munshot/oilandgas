@@ -248,3 +248,38 @@ test('windowFor falls back to the spec window when nothing was cached', () => {
 test('windowFor copes with fewer than four cached quarters', () => {
   assert.deepEqual(windowFor(mapOf(['Q4 FY26', 'Q3 FY26']), []), ['Q3 FY26', 'Q4 FY26']);
 });
+
+/* ------------------------------------------------ screener credentials ------ */
+
+import { screenerCredentials } from '../lib/env.mjs';
+
+test('screenerCredentials prefers the paid pair - only it can read AI summaries', () => {
+  const c = screenerCredentials({
+    SCREENER_PAID_EMAIL: 'paid@x.com', SCREENER_PAID_PASSWORD: 'p2',
+    SCREENER_EMAIL: 'free@x.com', SCREENER_PASSWORD: 'p1'
+  });
+  assert.equal(c.email, 'paid@x.com');
+  assert.equal(c.tier, 'paid');
+});
+
+test('screenerCredentials falls back to the free pair', () => {
+  const c = screenerCredentials({ SCREENER_EMAIL: 'free@x.com', SCREENER_PASSWORD: 'p1' });
+  assert.equal(c.email, 'free@x.com');
+  assert.equal(c.tier, 'free');
+});
+
+test('a half-set paid pair does not shadow a complete free pair', () => {
+  // An empty secret in CI reads as '' - it must not win and strand the login.
+  const c = screenerCredentials({
+    SCREENER_PAID_EMAIL: 'paid@x.com', SCREENER_PAID_PASSWORD: '',
+    SCREENER_EMAIL: 'free@x.com', SCREENER_PASSWORD: 'p1'
+  });
+  assert.equal(c.email, 'free@x.com');
+  assert.equal(c.tier, 'free');
+});
+
+test('screenerCredentials reports none when nothing is set', () => {
+  const c = screenerCredentials({});
+  assert.equal(c.email, null);
+  assert.equal(c.tier, 'none');
+});
