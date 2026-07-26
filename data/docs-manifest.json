@@ -2,14 +2,15 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-07-26T12:55:18.267Z",
+  "generatedAt": "2026-07-26T13:39:54.459Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
+    "summary (Screener's per-quarter \"AI Summary\" - dense, one document per quarter)",
     "ppt (investor presentation)",
-    "transcript (full concall - the primary text source)"
+    "transcript (full concall - fallback when the summary is missing or gated)"
   ],
-  "note": "Per company: Screener's Pros/Cons capsule (in financials.json), the latest investor PPT, and the full concall transcripts. Screener's \"AI Summary\" is a Premium feature (free tier: 10 reads / 30 days) and is not fetched - aiSummary/summariesAvailable record that it exists. status ok = text extracted; ocr_needed = a scanned PDF with no text layer (not a failure); not_pdf/http_* = the link did not return a usable document. via names who fetched it (browser or a scraper). The extracted text is cached under cacheDir, which is gitignored.",
+  "note": "Per company: Screener's Pros/Cons capsule (in financials.json), its per-quarter \"AI Summary\" of each concall, the latest investor PPT, and the full transcripts. status ok = text extracted; gated = the summary endpoint returned the Premium paywall notice, which is never cached as content; ocr_needed = a scanned PDF with no text layer; shell = the app frame rather than the fragment; not_pdf/http_* = the link did not return a usable document. via names who fetched it. The extracted text is cached under cacheDir, which is gitignored.",
   "companies": {
     "ongc": {
       "name": "ONGC",
@@ -104,9 +105,94 @@
         "pros": 2,
         "cons": 2
       },
-      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
       "summariesAvailable": 19,
       "transcriptsFound": 18,
+      "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.screener.in/concalls/summary/23185220/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 9698,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/DEEPINDS/summary-2026-05.txt",
+          "sample": "Deep Industries (Q4 & FY26) Concall Summary — Key Takeaways for Investors 1) Sector + Policy Backdrop: Why management is constructive on FY27+ Management framed"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.screener.in/concalls/summary/23103567/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 7780,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/DEEPINDS/summary-2026-02.txt",
+          "sample": "Financial performance (Q3 FY26 and 9M FY26) Q3 FY26 revenue: INR 221.5 cr ( +43.1% YoY ). Q3 FY26 EBITDA: INR 110.1 cr ( +46.3% YoY ) with EBITDA margin 47.6% ."
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.screener.in/concalls/summary/23052054/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 7070,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/DEEPINDS/summary-2025-11.txt",
+          "sample": "Deep Industries Ltd. – Q2 & H1 FY26 Earnings Call (Nov 10, 2025): Investor-Focused Summary 1) What materially changed this quarter (operational + strategic) Man"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.screener.in/concalls/summary/23026935/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 7867,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/DEEPINDS/summary-2025-08.txt",
+          "sample": "Q1 FY26 Performance Snapshot (Deep Industries Ltd.) Revenue: ₹199.5 cr (+61.6% YoY) EBITDA: ₹95.0 cr (+54.7% YoY) ; EBITDA margin 44.6% (management reiterated a"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.screener.in/concalls/summary/23026935/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 7867,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/DEEPINDS/summary-2025-08.txt",
+          "sample": "Q1 FY26 Performance Snapshot (Deep Industries Ltd.) Revenue: ₹199.5 cr (+61.6% YoY) EBITDA: ₹95.0 cr (+54.7% YoY) ; EBITDA margin 44.6% (management reiterated a"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "May 2025",
+          "periodIso": "2025-05",
+          "url": "https://www.screener.in/concalls/summary/22996776/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 8450,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/DEEPINDS/summary-2025-05.txt",
+          "sample": "Deep Industries Ltd. (Q4 & FY25) Earnings Call — Investor Summary (Transcript-based) 1) Sector/Policy Context Framing (Management’s positioning) Management anch"
+        }
+      ],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -172,6 +258,32 @@
           "pages": 19,
           "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/transcript-2025-08.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5a0fd0bf-4d5b-45ce-8d07-d7ddb54c36bb.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 46014,
+          "pages": 19,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2025-08.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2025",
+          "periodIso": "2025-05",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=19280978-5bbd-4d17-ac38-0ae2fc6834c9.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 116074,
+          "pages": 20,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2025-05.txt"
         }
       ]
     },
@@ -184,9 +296,94 @@
         "pros": 3,
         "cons": 2
       },
-      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
       "summariesAvailable": 27,
       "transcriptsFound": 27,
+      "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.screener.in/concalls/summary/23201915/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 8718,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2026-05.txt",
+          "sample": "Engineers India Ltd (EIL) — Q4/FY26 Post-Earnings Call Summary (22 May 2026) FY26 Financial Performance (Standalone) — Record Year Revenue (turnover) reached an"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.screener.in/concalls/summary/23115755/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 8809,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2026-02.txt",
+          "sample": "Engineers India Ltd (EIL) – Q3 & 9M FY26 Concall Summary (13 Feb 2026) 1) Order Book: Record High; Mix Skewed to Consultancy Unexecuted order book (31 Dec 2025)"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.screener.in/concalls/summary/23056847/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 8810,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2025-11.txt",
+          "sample": "Financial performance (Q2 FY26 and H1 FY26) Scale-up in execution: Q2 FY26 turnover INR 900 cr vs INR 676 cr in Q2 FY25. Segment split: Consultancy & Engineerin"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.screener.in/concalls/summary/23035590/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 8587,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2025-08.txt",
+          "sample": "Q1 FY26 Performance Snapshot (Standalone unless stated) Order book at all-time high: ₹12,145 cr as of 30 Jun’25 vs ₹11,717 cr as of 31 Mar’25 . Q1 order inflow:"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Jun 2025",
+          "periodIso": "2025-06",
+          "url": "https://www.screener.in/concalls/summary/23013466/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 6761,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2025-06.txt",
+          "sample": "FY25 performance snapshot (Standalone + Consolidated) Order book hit an all‑time high: INR 11,700 cr as of 31 Mar 2025 vs INR 7,823 cr (31 Mar 2024). Order infl"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Feb 2025",
+          "periodIso": "2025-02",
+          "url": "https://www.screener.in/concalls/summary/22983812/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 8141,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ENGINERSIN/summary-2025-02.txt",
+          "sample": "Engineers India Ltd (EIL) – Q3 FY25 Earnings Call Summary (Conference Call Date: 10 Feb 2025) 1. Financial Performance – Q3 FY25 Standalone Revenue : Q3 FY25 tu"
+        }
+      ],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -252,6 +449,32 @@
           "pages": 19,
           "via": "browser",
           "cache": "pipeline/cache/docs/ENGINERSIN/transcript-2025-08.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jun 2025",
+          "periodIso": "2025-06",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c0fb283d-76cc-4dcd-803c-03823cccd22b.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 50543,
+          "pages": 18,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ENGINERSIN/transcript-2025-06.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2025",
+          "periodIso": "2025-02",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=8bfb0596-d277-4791-b4ba-ea9ff57d2184.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 32950,
+          "pages": 13,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ENGINERSIN/transcript-2025-02.txt"
         }
       ]
     },
@@ -264,9 +487,94 @@
         "pros": 1,
         "cons": 1
       },
-      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
       "summariesAvailable": 18,
       "transcriptsFound": 18,
+      "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.screener.in/concalls/summary/23163826/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 7519,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/PETRONET/summary-2026-05.txt",
+          "sample": "FY26 & Q4 FY26: Record profitability despite Gulf disruption Management highlighted a “ strong financial and operational performance… despite the challenging ex"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.screener.in/concalls/summary/23126426/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 7964,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/PETRONET/summary-2026-02.txt",
+          "sample": "Operating performance: throughput, utilization, mix Q3 FY26 LNG processed: 233 TBTU , +2% QoQ and +2% YoY (vs 228 TBTU in both periods cited). Management attrib"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.screener.in/concalls/summary/23051938/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 9588,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/PETRONET/summary-2025-11.txt",
+          "sample": "Financial performance & shareholder returns (Q2 FY26) PAT: INR 805.75 crore , down 5% YoY , attributed by management to “lower LNG volumes.” Revenue from operat"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Aug 2025",
+          "periodIso": "2025-08",
+          "url": "https://www.screener.in/concalls/summary/23023691/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 8852,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/PETRONET/summary-2025-08.txt",
+          "sample": "Q1 FY26: Financial & Operating Performance (Sequential recovery, YoY softer) Profitability moderated vs prior periods: PBT: INR 1,136 cr (vs INR 1,446 cr in Q4 "
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "May 2025",
+          "periodIso": "2025-05",
+          "url": "https://www.screener.in/concalls/summary/23006437/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 11049,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/PETRONET/summary-2025-05.txt",
+          "sample": "Petronet LNG – Q4 & FY25 Earnings Call Summary (20 May 2025) 1. Performance Highlights FY25 (Year Ended March 2025) Management described FY25 as “an excellent y"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Feb 2025",
+          "periodIso": "2025-02",
+          "url": "https://www.screener.in/concalls/summary/22977108/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 10114,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/PETRONET/summary-2025-02.txt",
+          "sample": "Petronet LNG Q3 FY25 Earnings Call – Investor Summary Financial Performance Management highlighted that “throughput has been less but we have been able to get h"
+        }
+      ],
       "ppt": null,
       "transcripts": [
         {
@@ -320,6 +628,32 @@
           "pages": 13,
           "via": "browser",
           "cache": "pipeline/cache/docs/PETRONET/transcript-2025-08.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2025",
+          "periodIso": "2025-05",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=cd93ab45-db74-40e3-8091-c1ed7b601b80.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 38504,
+          "pages": 14,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/PETRONET/transcript-2025-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Feb 2025",
+          "periodIso": "2025-02",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5bd14378-f0f0-4cac-81e5-84a43030078f.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 49079,
+          "pages": 10,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/PETRONET/transcript-2025-02.txt"
         }
       ]
     },
@@ -1132,9 +1466,94 @@
         "pros": 2,
         "cons": 1
       },
-      "aiSummary": "premium-gated (Screener Premium; free tier caps at 10/30 days)",
       "summariesAvailable": 14,
       "transcriptsFound": 13,
+      "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.screener.in/concalls/summary/23204946/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 7551,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/summary-2026-05.txt",
+          "sample": "FY26 snapshot: volumes up, profitability resilient despite sourcing shock Average sales volume (FY26): 9.39 MMSCMD vs 8.99 MMSCMD in FY25. Management highlighte"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.screener.in/concalls/summary/23133725/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 9212,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/summary-2026-02.txt",
+          "sample": "Q3 FY26: Core takeaways (what changed, why it matters) IGL reported modest volume growth but sharp profitability improvement , driven by regulatory tailwinds (t"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.screener.in/concalls/summary/23060364/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 8686,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/summary-2025-11.txt",
+          "sample": "Q2 FY26 snapshot: volumes up modestly; margins compressed by gas mix and FX Total volumes: 857 MMSCM vs 830 MMSCM YoY ( +3% ); 9.31 MMSCMD vs 9.03 MMSCMD . Mana"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Jul 2025",
+          "periodIso": "2025-07",
+          "url": "https://www.screener.in/concalls/summary/23033632/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 8084,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/summary-2025-07.txt",
+          "sample": "Q1 FY26 performance snapshot (IGL standalone unless stated) Volumes: 831 MMSCM in Q1 ( +6% YoY ), 9.13 MMSCMD avg vs 8.64 MMSCMD last year. Segmentally, managem"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Apr 2025",
+          "periodIso": "2025-04",
+          "url": "https://www.screener.in/concalls/summary/22995867/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 10589,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/summary-2025-04.txt",
+          "sample": "Indraprastha Gas Ltd (IGL) – Q4 FY25 & FY25 Earnings Call Summary 1. Operating & Financial Performance FY25 vs FY24 Volumes & Mix Total average daily volume: 8."
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Jan 2025",
+          "periodIso": "2025-01",
+          "url": "https://www.screener.in/concalls/summary/22983763/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 9949,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/summary-2025-01.txt",
+          "sample": "Indraprastha Gas Limited – Q3 FY25 Earnings Call Summary (Jan 28, 2025) 1. Operating Performance & Volume Outlook Q3 FY25 volumes: Total sales: 9.11 MMSCMD (7% "
+        }
+      ],
       "ppt": {
         "type": "ppt",
         "role": "ppt",
@@ -1200,6 +1619,32 @@
           "pages": 18,
           "via": "browser",
           "cache": "pipeline/cache/docs/IGL/transcript-2025-04.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jan 2025",
+          "periodIso": "2025-01",
+          "url": "https://www.iglonline.net/uploads/announcement/Transcript_of_concall_Q3_FY25_January_28,_2025.pdf",
+          "source": "iglonline.net",
+          "status": "ok",
+          "chars": 47389,
+          "pages": 18,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/transcript-2025-01.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Oct 2024",
+          "periodIso": "2024-10",
+          "url": "https://www.iglonline.net/uploads/announcement/PhillipCap-Indraprastha-Oct29-2024.pdf",
+          "source": "iglonline.net",
+          "status": "ok",
+          "chars": 45524,
+          "pages": 16,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/transcript-2024-10.txt"
         }
       ]
     },
