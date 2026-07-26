@@ -283,3 +283,43 @@ test('screenerCredentials reports none when nothing is set', () => {
   assert.equal(c.email, null);
   assert.equal(c.tier, 'none');
 });
+
+/* -------------------------------------------- per-source budget allocation -- */
+
+test('preFilter called per bucket gives every quarter a share of the context', () => {
+  // The bug this pins: pooling one budget across quarters let the earliest
+  // quarters consume all of it, so later ones never reached the model and every
+  // KPI came back with a single value and no flag.
+  //
+  // A real transcript mentions the keyword dozens of times, so its merged windows
+  // run to many thousands of characters - that is what exhausts a shared pool. A
+  // fixture with one hit per document would only contribute ~600 chars and would
+  // not reproduce the starvation at all.
+  const chatty = (q) => ({
+    label: `TRANSCRIPT reports ${q}`,
+    text: Array.from({ length: 60 }, () => 'order book was discussed. ' + 'x'.repeat(400)).join(' ')
+  });
+  const quarters = ['Q1 FY26', 'Q2 FY26', 'Q3 FY26', 'Q4 FY26'];
+  const qOf = (b) => (b.label.match(/Q\d FY\d\d/) || [null])[0];
+
+  // Pooled (the old behaviour): one call over everything, spent in order.
+  const pooled = preFilter(quarters.map(chatty), ['order book'], { maxChars: 24000 });
+  const pooledQuarters = new Set(pooled.map(qOf));
+
+  // Per-bucket (the fix): one call per quarter, each with its own budget.
+  const perBucket = quarters.flatMap((q) => preFilter([chatty(q)], ['order book'], { maxChars: 6000 }));
+  const perBucketQuarters = new Set(perBucket.map(qOf));
+
+  assert.ok(pooledQuarters.size < 4,
+    `pooled starves later quarters, got ${pooledQuarters.size}/4`);
+  assert.equal(perBucketQuarters.size, 4, 'per-bucket: all four quarters are represented');
+});
+
+test('a thin quarter does not surrender its slice to a greedier one', () => {
+  const thin = { label: 'SUMMARY reports Q1 FY26', text: 'order book Rs 900 cr' };
+  const fat = { label: 'TRANSCRIPT reports Q2 FY26', text: 'order book ' + 'y'.repeat(60000) };
+  const out = [thin, fat].flatMap((d) => preFilter([d], ['order book'], { maxChars: 6000 }));
+  assert.equal(out.length, 2);
+  assert.match(out[0].text, /Rs 900 cr/);          // the thin quarter survives intact
+  assert.ok(out[1].text.length <= 6200);           // the fat one is capped, not unbounded
+});
