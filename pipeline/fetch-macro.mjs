@@ -21,6 +21,7 @@ import { fileURLToPath } from 'node:url';
 
 import { todayIso } from './lib/dates.mjs';
 import { loadEnv, credentialReport } from './lib/env.mjs';
+import { probeScrapeTarget, SCRAPE_TARGETS } from './sources/probe.mjs';
 import {
   fetchBrent, fetchWti, fetchUsdInr, fetchIndianBasket,
   fetchCrackSpread, fetchApmGas, fetchJkm, fetchBalticDirty
@@ -134,10 +135,26 @@ async function main() {
      unverified scrape can be fixed against a real response instead of a guess. */
   if (probeIdx > -1) {
     const wanted = args[probeIdx + 1];
+
+    /* Scraper-backed lines get the full diagnostic: which provider answered,
+       how big the document was, context around every keyword worth anchoring
+       on, and what the current extractors make of it. That output is the whole
+       point - it is what turns a guessed selector into a written one. */
+    if (SCRAPE_TARGETS[wanted]) {
+      const ok = await probeScrapeTarget(wanted, { env: process.env });
+      /* Always exit 0: a probe that proves a source is unreachable has done its
+         job, and a red job would hide the log behind a failure badge. */
+      console.log(ok ? '\nresult: usable value found' : '\nresult: no usable value (see context above)');
+      return;
+    }
+
     const all = TILES.flatMap((t) => t.lines.map((l) => ({ tile: t, line: l })));
     const hit = all.find((x) => x.line.id === wanted);
     if (!hit) {
-      console.error(`unknown line "${wanted}". Try one of: ${all.map((x) => x.line.id).join(', ')}`);
+      console.error(
+        `unknown line "${wanted}". Scrape targets: ${Object.keys(SCRAPE_TARGETS).join(', ')}. ` +
+        `Lines: ${all.map((x) => x.line.id).join(', ')}`
+      );
       process.exit(1);
     }
     console.log(`  probing ${hit.tile.id}/${hit.line.id} ...`);
