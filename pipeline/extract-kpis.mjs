@@ -21,7 +21,7 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { loadEnv } from './lib/env.mjs';
-import { callLLM, availableProviders } from './lib/llm.mjs';
+import { callLLM, availableProviders, resolvedModel } from './lib/llm.mjs';
 import { reportedQuarter, quarterIndex, quarterLabel } from './lib/fiscal.mjs';
 import { insightsToText } from './parsers/screener-insights.mjs';
 import {
@@ -221,7 +221,7 @@ async function main() {
 
   const providers = opts.provider ? [opts.provider] : availableProviders();
   console.log(`extract-kpis: ${opts.scope}${opts.only.length ? ' (--only)' : ''} -> ${ids.length} companies`);
-  console.log(`providers available: ${providers.join(', ') || 'NONE'}`);
+  console.log(`providers available: ${providers.map((p) => `${p} (${resolvedModel(p)})`).join(', ') || 'NONE'}`);
   if (!opts.dryRun && !providers.length) {
     throw new Error('no LLM provider key set (OPENAI_API_KEY or MISTRAL_API_KEY)');
   }
@@ -280,7 +280,7 @@ async function main() {
     const cov = coverageOf(kpiObjects);
     out.companies[id] = {
       name, slug, quarters, asOf: asOfFrom(kpiObjects, quarters),
-      provider: usedProvider, ctxChars,
+      provider: usedProvider, model: usedProvider ? resolvedModel(usedProvider) : null, ctxChars,
       ...(note ? { note } : {}),
       kpis: kpiObjects
     };

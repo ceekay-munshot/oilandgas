@@ -48,6 +48,9 @@ jobs:
       SCREENER_PASSWORD: ${{ secrets.SCREENER_PASSWORD }}
       OPENAI_API_KEY:    ${{ secrets.OPENAI_API_KEY }}
       MISTRAL_API_KEY:   ${{ secrets.MISTRAL_API_KEY }}
+      # Optional: override the extraction model without a code change.
+      OPENAI_MODEL:      ${{ vars.OPENAI_MODEL }}
+      MISTRAL_MODEL:     ${{ vars.MISTRAL_MODEL }}
 
     steps:
       - uses: actions/checkout@v4
