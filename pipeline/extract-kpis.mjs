@@ -22,7 +22,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { loadEnv } from './lib/env.mjs';
 import { callLLM, availableProviders } from './lib/llm.mjs';
-import { reportedQuarter, quarterIndex } from './lib/fiscal.mjs';
+import { reportedQuarter, quarterIndex, quarterLabel } from './lib/fiscal.mjs';
+import { insightsToText } from './parsers/screener-insights.mjs';
 import {
   preFilter, financialsToText, buildMessages, normalizeResult, coverageOf, KPI_SCHEMA
 } from './parsers/kpi-prompt.mjs';
@@ -35,6 +36,7 @@ const SMOKE = ['deep-industries', 'petronet-lng', 'igl', 'engineers-india'];
 const PER_QUARTER_CHARS = 6000;   // x4 quarters
 const PPT_CHARS = 6000;
 const FIN_CHARS = 4000;
+const INSIGHTS_CHARS = 5000;
 
 function parseArgs(argv) {
   const args = argv.slice(2);
@@ -129,9 +131,24 @@ function windowFor(perQuarter, fallback) {
  * four thin quarters beat one exhaustive one, because three points is what a
  * trajectory needs and one is worth nothing.
  */
-async function buildBlocks(perQuarter, quarters, man, fin, keywords) {
+async function buildBlocks(perQuarter, quarters, man, fin, keywords, ins) {
   const blocks = [];
   let sourceCount = 0;
+
+  /* Insights first, and never keyword-filtered. It is Screener's own structured
+     grid - one row per operational KPI, one column per period, units printed -
+     so it is both the most reliable thing in the context and small enough to pass
+     whole. For the KPIs it covers the model is just reading a table. */
+  const insText = insightsToText(ins, quarterLabel);
+  if (insText) {
+    sourceCount++;
+    blocks.push({
+      label: 'SCREENER INSIGHTS [company filing] - structured operational metrics, ' +
+             'one row per metric, each column labelled with the quarter it closes. ' +
+             'PREFER THIS over anything said on a call when both give the same metric.',
+      text: insText.slice(0, INSIGHTS_CHARS)
+    });
+  }
 
   for (const q of [...quarters].reverse()) {            // newest first
     const bucket = perQuarter.get(q);
@@ -185,6 +202,7 @@ async function main() {
   if (!spec) throw new Error('data/kpi-spec.json not found');
   const financials = await readJson(resolve(ROOT, 'data/financials.json'), { companies: {} });
   const manifest = await readJson(resolve(ROOT, 'data/docs-manifest.json'), { companies: {} });
+  const insightsDoc = await readJson(resolve(ROOT, 'data/insights.json'), { companies: {} });
   const companiesDoc = await readJson(resolve(ROOT, 'data/companies.json'), null);
 
   const nameById = {};
@@ -227,7 +245,8 @@ async function main() {
     const perQuarter = await gatherByQuarter(man);
     const quarters = windowFor(perQuarter, fallbackQuarters);
     const { blocks, sourceCount } = await buildBlocks(
-      perQuarter, quarters, man, fin, kpis.flatMap((k) => k.keywords));
+      perQuarter, quarters, man, fin, kpis.flatMap((k) => k.keywords),
+      insightsDoc.companies && insightsDoc.companies[id]);
     const ctxChars = blocks.reduce((n, b) => n + b.text.length, 0);
 
     if (opts.dryRun) {
