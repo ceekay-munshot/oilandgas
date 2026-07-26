@@ -34,8 +34,10 @@ import { openScreener, resolveSlug, getCompanyPage, downloadDoc, maskEmail } fro
 import { parseAllFinancials } from './parsers/screener-financials.mjs';
 import { parseConcalls, selectDocuments, looksLikeDoc } from './parsers/screener-docs.mjs';
 import { parseProsCons } from './parsers/screener-summary.mjs';
-import { insightsFromPage } from './sources/screener-insights.mjs';
-import { parseInsightsTable, parseInsightsMatrix } from './parsers/screener-insights.mjs';
+import {
+  insightsFromPage, insightsTableIndex, insightsMatrix, toggleQuarterlyInCard
+} from './sources/screener-insights.mjs';
+import { parseInsightsTable, parseInsightsMatrix, viewFromPeriods } from './parsers/screener-insights.mjs';
 import { extractPdfText, isPdf, classifyHtml } from './lib/pdf.mjs';
 import { scrapePage } from './lib/scrape.mjs';
 import { toText } from './parsers/quote.mjs';
@@ -290,17 +292,37 @@ async function main() {
         /* The browser's text matrix is preferred - it has already resolved the
            <br> between a row's name and its unit, which the markup route could
            not see (it produced "Order BookRs Crore" and all-null values). The
-           HTML parse stays as a fallback. */
-        let insTable = null;
-        try { insTable = parseInsightsMatrix(ins.matrix); } catch { insTable = null; }
-        if (!insTable && ins.html) {
-          try { insTable = parseInsightsTable(ins.html); } catch { insTable = null; }
+           HTML parse stays as a fallback.
+
+           Which path won is RECORDED. The first version swallowed it, so a run
+           where the matrix silently returned nothing looked identical to one
+           where it worked - and the committed output said "quarterly" over
+           annual columns with every value null, with nothing to say why. */
+        let insTable = null, insVia = null, insWhy = null;
+        try {
+          insTable = parseInsightsMatrix(ins.matrix);
+          if (insTable) insVia = 'matrix';
+          else insWhy = ins.matrix ? 'matrix had no usable rows' : 'no text matrix returned';
+        } catch (e) {
+          insWhy = `matrix parse failed: ${(e && e.message) || e}`.slice(0, 120);
         }
+        if (!insTable && ins.html) {
+          try {
+            insTable = parseInsightsTable(ins.html);
+            if (insTable) insVia = 'html';
+          } catch (e) {
+            insWhy = `${insWhy || ''}; html parse failed: ${(e && e.message) || e}`.slice(0, 160);
+          }
+        }
+        // The view comes off the period headers, never off what got clicked.
+        const insView = insTable ? viewFromPeriods(insTable.periods) : 'unknown';
         insights.companies[co.id] = insTable
-          ? { name: co.name, slug, view: ins.view, url: ins.url,
+          ? { name: co.name, slug, view: insView, url: ins.url,
+              via: insVia, toggled: ins.toggled || null, note: insWhy,
               periods: insTable.periods, periodsIso: insTable.periodsIso, rows: insTable.rows }
-          : { name: co.name, slug, view: ins.view, url: ins.url,
-              periods: [], rows: [], note: ins.note || 'no Insights table found' };
+          : { name: co.name, slug, view: 'unknown', url: ins.url,
+              via: null, toggled: ins.toggled || null,
+              periods: [], rows: [], note: insWhy || ins.note || 'no Insights table found' };
         insights.generatedAt = new Date().toISOString();
         await writeJson(insightsPath, insights);
 
@@ -458,32 +480,156 @@ async function dumpConcalls(all, opts, { email, password }) {
     console.log(`\n===== all data-url values (${urls.length}) =====`);
     [...new Set(urls)].slice(0, 40).forEach((u) => console.log('  ' + u));
 
-    /* And what the browser actually requests when the Investors tab is opened -
-       the definitive answer if the table is loaded on demand. */
-    console.log('\n===== network calls when the Investors tab is clicked =====');
-    const page = await session.context.newPage();
-    const seen = [];
-    page.on('request', (r) => {
-      const u = r.url();
-      if (/screener\.in/.test(u) && !/\.(css|js|woff2?|png|jpg|svg|ico)(\?|$)/.test(u)) seen.push(`${r.method()} ${u}`);
-    });
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
-    for (const sel of ['a[href*="investors" i]', 'text=Investors']) {
-      try { await page.click(sel, { timeout: 4000 }); break; } catch { /* try the next */ }
+    // The Insights probe, on this company and on one from the smoke set - the
+    // committed output for the smoke set is what showed the table was broken.
+    await dumpInsights(session.context, slug, co.name);
+    const other = all.find((c) => c.ref.id === 'deep-industries');
+    if (other && other.ref.screenerSlug && other.ref.screenerSlug !== slug) {
+      await dumpInsights(session.context, other.ref.screenerSlug, other.ref.name);
     }
-    await page.waitForTimeout(2500);
-    // Then the Quarterly toggle, which is the view we need.
-    try { await page.click('text=Quarterly', { timeout: 4000 }); await page.waitForTimeout(2500); }
-    catch { console.log('  (no Quarterly control found to click)'); }
-    [...new Set(seen)].slice(0, 40).forEach((s) => console.log('  ' + s));
-
-    const after = await page.content();
-    const j = after.search(/Proved Reserves|Wells Drilled|Extracted by Screener/i);
-    console.log(`\n===== rendered Insights after clicking (marker @${j}) =====`);
-    console.log(j < 0 ? '(still not present - it may need a different route)' : after.slice(j - 2500 < 0 ? 0 : j - 2500, j + 3500));
-    await page.close().catch(() => {});
   } finally {
     await session.close().catch(() => {});
+  }
+}
+
+/**
+ * Why the Insights table came back all-null - answered with evidence, not by
+ * reading markup and guessing again.
+ *
+ * The first two attempts at this table were written from assumptions about the
+ * markup and both were wrong: a child walk could not see the <br> between a row's
+ * name and its unit, and the page-wide "Quarterly" click turned out to belong to
+ * the Shareholding card. So this dump runs the ACTUAL functions the scraper uses -
+ * insightsTableIndex, insightsMatrix, parseInsightsMatrix, parseInsightsTable -
+ * and prints what each one really returned, alongside the raw row markup and the
+ * innerText/textContent pair for one label cell. Whatever is broken has to show
+ * up in one of those.
+ */
+async function dumpInsights(context, slug, name) {
+  console.log(`\n\n########## INSIGHTS PROBE: ${name} [${slug}] ##########`);
+  const page = await context.newPage();
+  const xhr = [];
+  page.on('request', (r) => {
+    const u = r.url();
+    if (/screener\.in/.test(u) && !/\.(css|js|woff2?|png|jpe?g|svg|ico)(\?|$)/.test(u)) xhr.push(`${r.method()} ${u}`);
+  });
+  try {
+    await page.goto(`https://www.screener.in/company/${slug}/consolidated/`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+    await page.waitForTimeout(1500);
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight)).catch(() => {});
+    await page.waitForTimeout(1500);
+
+    // --- 1. every table on the page, and every Quarterly/Yearly control -----
+    const survey = await page.evaluate(() => {
+      const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
+      const all = Array.from(document.querySelectorAll('table'));
+      const tables = all.map((t, i) => ({
+        i,
+        rendered: t.offsetParent !== null,
+        bodyRows: t.querySelectorAll('tbody tr').length,
+        heads: Array.from(t.querySelectorAll('thead th, thead td')).map((h) => clean(h.textContent)).slice(0, 8),
+        labels: Array.from(t.querySelectorAll('tbody tr')).slice(0, 3)
+          .map((tr) => clean((tr.querySelector('td, th') || {}).textContent).slice(0, 46))
+      }));
+      const toggles = Array.from(document.querySelectorAll('button, a, label, input'))
+        .map((el) => ({ el, text: clean(el.innerText || el.textContent || el.value) }))
+        .filter((x) => /^(quarterly|yearly)$/i.test(x.text))
+        .map(({ el, text }) => {
+          // Which table, if any, sits in the same card as this control?
+          let idx = null;
+          for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+            const t = p.querySelector('table');
+            if (t) { idx = all.indexOf(t); break; }
+          }
+          return {
+            text,
+            tag: el.tagName.toLowerCase(),
+            cls: String(el.className || '').slice(0, 50),
+            onclick: String(el.getAttribute('onclick') || '').slice(0, 70),
+            href: el.getAttribute('href') || null,
+            dataUrl: el.getAttribute('data-url') || null,
+            cardTable: idx
+          };
+        });
+      const anchors = Array.from(document.querySelectorAll('a[href^="#"]'))
+        .map((a) => `${clean(a.textContent).slice(0, 24)} -> ${a.getAttribute('href')}`);
+      return { tables, toggles, anchors: [...new Set(anchors)] };
+    });
+
+    console.log(`\n--- tables on the page (${survey.tables.length}) ---`);
+    for (const t of survey.tables) {
+      console.log(`  [${t.i}] rendered=${t.rendered} rows=${t.bodyRows} heads: ${t.heads.join(' | ')}`);
+      console.log(`       labels: ${t.labels.join(' ; ')}`);
+    }
+    console.log(`\n--- Quarterly/Yearly controls (${survey.toggles.length}) - cardTable is the table in the same card ---`);
+    survey.toggles.forEach((t) => console.log('  ' + JSON.stringify(t)));
+    console.log(`\n--- section anchors ---\n  ${survey.anchors.join('\n  ')}`);
+
+    // --- 2. the real locator, then the real toggle, then the real reader -----
+    let idx = await insightsTableIndex(page);
+    console.log(`\n--- insightsTableIndex() = ${idx} ---`);
+    if (idx == null) { console.log('  (nothing to read; stopping here)'); return; }
+
+    const toggle = await toggleQuarterlyInCard(page, idx);
+    console.log(`--- toggleQuarterlyInCard() = ${JSON.stringify(toggle)} ---`);
+    if (toggle.clicked) {
+      await page.waitForTimeout(2000);
+      const again = await insightsTableIndex(page);
+      console.log(`    re-located index after the click = ${again}`);
+      if (again != null) idx = again;
+    }
+
+    // --- 3. the raw markup of the row that keeps coming back null -----------
+    const raw = await page.evaluate((i) => {
+      const t = document.querySelectorAll('table')[i];
+      if (!t) return null;
+      const tr = t.querySelector('tbody tr');
+      const td = tr && tr.querySelector('td, th');
+      const cs = getComputedStyle(t);
+      return {
+        display: cs.display, visibility: cs.visibility, rendered: t.offsetParent !== null,
+        theadHtml: (t.querySelector('thead') || { outerHTML: '(no thead)' }).outerHTML.slice(0, 1200),
+        rowHtml: tr ? tr.outerHTML.slice(0, 1600) : '(no tbody rows)',
+        labelInnerText: td ? td.innerText : null,
+        labelTextContent: td ? td.textContent : null,
+        valueCells: tr ? Array.from(tr.querySelectorAll('td, th')).slice(1, 5)
+          .map((c) => ({ innerText: c.innerText, textContent: c.textContent })) : []
+      };
+    }, idx);
+    console.log('\n--- the located table, as the DOM actually has it ---');
+    console.log(`  display=${raw.display} visibility=${raw.visibility} rendered=${raw.rendered}`);
+    console.log(`  THEAD: ${raw.theadHtml}`);
+    console.log(`  FIRST ROW: ${raw.rowHtml}`);
+    console.log(`  label cell  innerText=${JSON.stringify(raw.labelInnerText)}`);
+    console.log(`  label cell textContent=${JSON.stringify(raw.labelTextContent)}`);
+    console.log(`  value cells: ${JSON.stringify(raw.valueCells)}`);
+
+    // --- 4. what each parser makes of it ------------------------------------
+    const matrix = await insightsMatrix(page, idx);
+    console.log('\n--- insightsMatrix() ---');
+    console.log('  ' + JSON.stringify(matrix, null, 1).slice(0, 1800));
+
+    let viaMatrix = null, matrixErr = null;
+    try { viaMatrix = parseInsightsMatrix(matrix); } catch (e) { matrixErr = String(e && e.message || e); }
+    console.log(`\n--- parseInsightsMatrix() ${matrixErr ? 'THREW: ' + matrixErr : ''} ---`);
+    console.log('  ' + JSON.stringify(viaMatrix, null, 1).slice(0, 1400));
+    if (viaMatrix) console.log(`  view from periods: ${viewFromPeriods(viaMatrix.periods)}`);
+
+    const html = await page.evaluate((i) => {
+      const t = document.querySelectorAll('table')[i];
+      return t ? t.outerHTML : null;
+    }, idx);
+    let viaHtml = null;
+    try { viaHtml = parseInsightsTable(html); } catch (e) { viaHtml = { error: String(e && e.message || e) }; }
+    console.log('\n--- parseInsightsTable() on the same table (the fallback) ---');
+    console.log('  ' + JSON.stringify(viaHtml, null, 1).slice(0, 1000));
+
+    console.log(`\n--- screener.in requests seen during this probe (${xhr.length}) ---`);
+    [...new Set(xhr)].slice(0, 25).forEach((u) => console.log('  ' + u));
+  } catch (e) {
+    console.log(`  probe failed: ${(e && e.message) || e}`);
+  } finally {
+    await page.close().catch(() => {});
   }
 }
 
@@ -497,8 +643,15 @@ function reportCompany(co, fin, man, ins) {
   console.log(`     financials: ${fin.sectionsFound.join(', ') || 'none'} | quarters ${qLine}${sampleRows ? ' | latest ' + sampleRows : ''}`);
   console.log(`     pros/cons: ${fin.analysis.pros.length} pros, ${fin.analysis.cons.length} cons`);
   if (ins) {
-    console.log(`     INSIGHTS (${ins.view}): ${ins.rows.length} rows x ${ins.periods.length} periods` +
+    const filled = ins.rows.reduce((n, r) => n + r.values.filter((v) => v != null).length, 0);
+    const cells = ins.rows.length * ins.periods.length;
+    console.log(`     INSIGHTS (${ins.view}${ins.via ? ' via ' + ins.via : ''}): ` +
+      `${ins.rows.length} rows x ${ins.periods.length} periods, ${filled}/${cells} values` +
+      (ins.toggled ? ` | toggled ${ins.toggled}` : ' | NO toggle clicked') +
       (ins.note ? ` - ${ins.note}` : ''));
+    // A yearly table is usable but it is NOT the quarterly trend the client asked
+    // for, so say so rather than let it pass as one.
+    if (ins.view === 'yearly') console.log('        ^ ANNUAL columns, not quarterly');
     ins.rows.slice(0, 5).forEach(function (r) {
       console.log(`        ${r.label} [${r.unit || '?'}]: ` +
         r.values.map(function (v) { return v == null ? '.' : v; }).join(' | '));

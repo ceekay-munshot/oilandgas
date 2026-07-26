@@ -11,7 +11,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
-  parseInsightsTable, insightsToText, parseCell, periodToIso, looksLikePeriod
+  parseInsightsTable, insightsToText, parseCell, periodToIso, looksLikePeriod, viewFromPeriods
 } from '../parsers/screener-insights.mjs';
 import { quarterLabel } from '../lib/fiscal.mjs';
 
@@ -96,6 +96,46 @@ test('insightsToText labels each period with the quarter it closes', () => {
   assert.match(txt, /Mar 2026 \(Q4 FY26\)/);
   assert.match(txt, /Wells Drilled \(Total\) \[Number\]: 578 \| 544 \| 461/);
   assert.match(txt, /Reserve Replacement Ratio \(RRR\) \[Ratio\]: - \| 1.19 \| 1.35/);
+});
+
+/* The live run recorded view "quarterly" on four companies whose columns were
+   Mar 2016..Mar 2026 - annual data, because the Quarterly control that got clicked
+   belonged to another card. The click is not evidence; the months are. */
+test('viewFromPeriods calls a repeated year-end month yearly', () => {
+  assert.equal(viewFromPeriods(['Mar 2024', 'Mar 2025', 'Mar 2026']), 'yearly');
+  assert.equal(viewFromPeriods(['Mar 2016', 'Mar 2017', 'Mar 2018', 'Mar 2019']), 'yearly');
+  // A December year-end is just as annual.
+  assert.equal(viewFromPeriods(['Dec 2023', 'Dec 2024', 'Dec 2025']), 'yearly');
+});
+
+test('viewFromPeriods calls cycling months quarterly', () => {
+  assert.equal(viewFromPeriods(['Jun 2025', 'Sep 2025', 'Dec 2025', 'Mar 2026']), 'quarterly');
+  assert.equal(viewFromPeriods(['Sep 2025', 'Dec 2025']), 'quarterly');
+});
+
+test('viewFromPeriods says unknown rather than guess from too little', () => {
+  assert.equal(viewFromPeriods(['Mar 2026']), 'unknown');
+  assert.equal(viewFromPeriods([]), 'unknown');
+  assert.equal(viewFromPeriods(['TTM', 'Q4 FY26']), 'unknown');
+});
+
+test('an annual table is labelled FULL YEAR, never as a quarter', () => {
+  // Mar 2026 closes Q4 FY26, so the quarter label would be literally true and
+  // completely misleading: the value is twelve months, not three.
+  const yearly = parseInsightsTable(INSIGHTS_HTML.replace(
+    '<th>Sep 2025</th><th>Dec 2025</th><th>Mar 2026</th>',
+    '<th>Mar 2024</th><th>Mar 2025</th><th>Mar 2026</th>'
+  ));
+  const txt = insightsToText(yearly, quarterLabel);
+  assert.match(txt, /FULL YEARS, not quarters/);
+  assert.match(txt, /Mar 2026 \(FY26, FULL YEAR\)/);
+  assert.doesNotMatch(txt, /Q4 FY26/);
+});
+
+test('a quarterly table keeps its quarter labels and gains no annual warning', () => {
+  const txt = insightsToText(parseInsightsTable(INSIGHTS_HTML), quarterLabel);
+  assert.match(txt, /Mar 2026 \(Q4 FY26\)/);
+  assert.doesNotMatch(txt, /FULL YEAR/);
 });
 
 test('parseCell tolerates grouping, dashes and percent, and refuses junk', () => {

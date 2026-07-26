@@ -127,25 +127,62 @@ export function parseInsightsTable(html) {
 }
 
 /**
+ * Quarterly or yearly view, read off the period headers rather than off whatever
+ * we clicked.
+ *
+ * Both views label columns the same way ("Mar 2025"), so the click cannot be
+ * trusted and the first run proved it: every company recorded view "quarterly"
+ * while the columns were Mar 2016..Mar 2026 - annual data, because the Quarterly
+ * toggle that got clicked belonged to a different card. The tell is the months: a
+ * quarterly run cycles through them, a yearly one repeats the same year-end month.
+ *
+ * @returns {'quarterly'|'yearly'|'unknown'}
+ */
+export function viewFromPeriods(periods) {
+  const months = (periods || [])
+    .map(periodToIso)
+    .filter(Boolean)
+    .map((iso) => iso.slice(5, 7));
+  if (months.length < 2) return 'unknown';
+  return new Set(months).size > 1 ? 'quarterly' : 'yearly';
+}
+
+/**
  * Flatten the table into the compact text the KPI extractor puts in front of the
  * model - one line per row, each period labelled with the fiscal quarter it
  * closes so a value can be filed without the model working out India's
  * April-March year for itself.
+ *
+ * A YEARLY table is labelled as annual instead. "Mar 2026" closes Q4 FY26 either
+ * way, so annotating an annual column with a quarter would invite the model to
+ * file a full-year order inflow as a single quarter - which is exactly the error
+ * that makes a trend line look like a step change.
  *
  * @param {object} table  output of parseInsightsTable
  * @param {(y:number,m:number)=>string|null} quarterLabel from lib/fiscal.mjs
  */
 export function insightsToText(table, quarterLabel) {
   if (!table || !table.rows.length) return '';
+  const annual = viewFromPeriods(table.periods) === 'yearly';
   const heads = table.periods.map((p, i) => {
     const iso = table.periodsIso[i];
-    const fq = iso && quarterLabel
-      ? quarterLabel(Number(iso.slice(0, 4)), Number(iso.slice(5, 7)))
-      : null;
+    if (!iso) return p;
+    const year = Number(iso.slice(0, 4));
+    const month = Number(iso.slice(5, 7));
+    if (annual) {
+      // Mar year-end -> FY label; any other year-end is named by its month only.
+      return month === 3 ? `${p} (FY${String(year).slice(2)}, FULL YEAR)` : `${p} (FULL YEAR)`;
+    }
+    const fq = quarterLabel ? quarterLabel(year, month) : null;
     return fq ? `${p} (${fq})` : p;
   });
 
-  const lines = [`periods: ${heads.join(' | ')}`];
+  const lines = [];
+  if (annual) {
+    lines.push('NOTE: these columns are FULL YEARS, not quarters. Do not file an ' +
+               'annual figure into a quarter slot; use these only as context.');
+  }
+  lines.push(`periods: ${heads.join(' | ')}`);
   for (const r of table.rows) {
     lines.push(
       `${r.label}${r.unit ? ` [${r.unit}]` : ''}: ` +
