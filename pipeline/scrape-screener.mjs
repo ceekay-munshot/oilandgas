@@ -183,6 +183,11 @@ async function main() {
   if (!companiesDoc) throw new Error('data/companies.json not found or unreadable');
 
   const all = collectCompanies(companiesDoc);
+
+  // Recon: the "AI Summary" button never parsed as a link, so dump the raw
+  // concall markup for one company to see how Screener actually renders it.
+  if (opts.scope === 'dump') { await dumpConcalls(all, opts, { email, password }); return; }
+
   let work = all;
   if (opts.only.length) work = all.filter((c) => opts.only.includes(c.ref.id));
   else if (opts.scope === 'smoke') work = all.filter((c) => SMOKE.includes(c.ref.id));
@@ -303,6 +308,37 @@ async function main() {
   console.log(`wrote ${relCache(financialsPath)} and ${relCache(manifestPath)}`);
   if (opts.scope !== 'all' && !opts.only.length) {
     console.log('\nsmoke run only. Scale up with:  node pipeline/scrape-screener.mjs --scope all');
+  }
+}
+
+/**
+ * Print the raw markup around the concalls list for one company, so the actual
+ * "AI Summary" element (button? link? data-attribute?) can be read from evidence
+ * instead of guessed. Writes nothing.
+ */
+async function dumpConcalls(all, opts, { email, password }) {
+  const id = opts.only[0] || 'deep-industries';
+  const entry = all.find((c) => c.ref.id === id);
+  if (!entry) { console.log(`no company "${id}" in companies.json`); return; }
+  const co = entry.ref;
+
+  const session = await openScreener({ email, password, headless: true });
+  try {
+    const slug = co.screenerSlug || (await resolveSlug(session.context, co.name)).slug;
+    const { html, url, view } = await getCompanyPage(session.context, slug);
+    console.log(`DUMP ${co.name} [${slug}] - ${url} (${view}), ${html.length} bytes\n`);
+
+    const window = (label, re, pad) => {
+      const i = html.search(re);
+      console.log(`===== ${label} @${i} =====`);
+      console.log(i < 0 ? '(marker not found)\n' : html.slice(i, i + pad) + '\n');
+    };
+    // The concall list, a summary button, and the pros/cons block.
+    window('CONCALLS LIST', /Concalls/i, 4000);
+    window('AI SUMMARY', /AI\s*Summary/i, 1400);
+    window('PROS BLOCK', /class="[^"]*\bpros\b/i, 900);
+  } finally {
+    await session.close().catch(() => {});
   }
 }
 

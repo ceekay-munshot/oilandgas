@@ -15,9 +15,9 @@ on:
   workflow_dispatch:
     inputs:
       scope:
-        description: 'How many companies'
+        description: 'How many companies (dump = recon one company, writes nothing)'
         type: choice
-        options: [smoke, all]
+        options: [smoke, all, dump]
         default: smoke
   schedule:
     - cron: '30 5 * * 1'      # 05:30 UTC Mondays, before refresh-full at 06:40
