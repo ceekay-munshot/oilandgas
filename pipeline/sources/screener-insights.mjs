@@ -1,12 +1,14 @@
 /**
  * Reach Screener Premium's Investors -> Insights table and hand back its markup.
  *
- * Deliberately done in the browser rather than by reverse-engineering an
- * endpoint. We already hold a logged-in Playwright context, so opening the tab
- * and clicking "Quarterly" is both simpler and more durable than guessing at a
- * URL - and guessing is exactly what cost two rounds on the AI Summary. The only
- * thing this file decides is HOW TO GET THERE; reading the table is the pure
- * parser's job (parsers/screener-insights.mjs).
+ * The table is LOCATED in the browser - we hold a logged-in context, and finding
+ * the right card among a dozen tables is a job for the live DOM. The quarterly
+ * view is then FETCHED from the endpoint the tab uses, which is not the same
+ * choice: clicking swaps the panel asynchronously, so a run once clicked
+ * correctly, re-located the table, and still read the annual one. The endpoint
+ * was not guessed - the dump printed the button's data-url.
+ *
+ * Reading the table is the pure parser's job (parsers/screener-insights.mjs).
  *
  * Quarterly is preferred and Yearly is the fallback: some rows (reserves, RRR)
  * are only ever published annually, and an annual value labelled as annual is
@@ -123,23 +125,11 @@ export async function insightsTableIndex(page) {
 }
 
 /**
- * Click the Quarterly control that belongs to the INSIGHTS CARD.
- *
- * Not "the first Quarterly on the page" - that was the bug. Screener's
- * Shareholding Pattern card carries its own Quarterly/Yearly pair, the page-wide
- * click found that one first, and every company came back recording view
- * "quarterly" while the Insights table sat on Mar 2016..Mar 2026. Annual numbers
- * quietly filed as quarters is the worst failure available here, so the control
- * is located by walking UP from the Insights table itself: whatever card holds the
- * table holds the toggle that redraws it.
- *
- * Clicked in-page rather than through a Playwright locator because the anchor is
- * an element we already have a handle on, not a selector we can name.
- *
- * @returns {Promise<{clicked:boolean, what:string|null}>}
- */
-/**
  * The URL the Quarterly tab calls, read off the button inside the Insights card.
+ *
+ * Scoped to that card, not to the page. Screener's Shareholding Pattern card
+ * carries its own Quarterly/Yearly pair; a page-wide search found that one first
+ * and left every company recording "quarterly" over Mar 2016..Mar 2026.
  *
  * The dump showed the control is
  *   <button onclick="Company.setInsightsTab(event)"
@@ -173,20 +163,38 @@ export async function quarterlyInsightsUrl(page, tableIdx) {
  */
 export async function fetchInsightsFragment(page, url) {
   const abs = url.startsWith('http') ? url : `${BASE}${url}`;
-  const res = await page.context().request.post(abs, {
-    headers: {
-      'X-Requested-With': 'XMLHttpRequest',
-      referer: page.url(),
-      accept: 'text/html, */*; q=0.01'
-    },
-    timeout: 30_000,
-    failOnStatusCode: false
-  });
-  if (!res.ok()) return { html: null, note: `insights tab HTTP ${res.status()}` };
-  const html = await res.text();
+  const ctx = page.context();
+
+  /* Screener is Django, so an unauthenticated-looking POST is rejected with 403
+     regardless of the session cookie - which is exactly what the first attempt
+     got. Django checks X-CSRFToken against the csrftoken cookie, and the browser
+     context is already holding one. */
+  const cookies = await ctx.cookies(BASE).catch(() => []);
+  const csrf = (cookies.find((c) => c.name === 'csrftoken') || {}).value || null;
+  const headers = {
+    'X-Requested-With': 'XMLHttpRequest',
+    referer: page.url(),
+    origin: BASE,
+    accept: 'text/html, */*; q=0.01'
+  };
+  if (csrf) headers['X-CSRFToken'] = csrf;
+
+  const attempt = async (method) => {
+    const res = await ctx.request[method](abs, { headers, timeout: 30_000, failOnStatusCode: false });
+    return { status: res.status(), ok: res.ok(), body: res.ok() ? await res.text() : null };
+  };
+
+  // POST is what the button does; GET is tried once in case the view accepts it,
+  // so a CSRF policy change does not cost us the quarterly view outright.
+  let r = await attempt('post');
+  if (!r.ok && (r.status === 403 || r.status === 405)) r = await attempt('get');
+
+  if (!r.ok) {
+    return { html: null, note: `insights tab HTTP ${r.status}${csrf ? '' : ' (no csrftoken cookie)'}` };
+  }
   // An app shell instead of a fragment means the XHR header was not honoured.
-  if (/<html/i.test(html)) return { html: null, note: 'insights tab returned the app shell, not a fragment' };
-  return { html, note: null };
+  if (/<html/i.test(r.body)) return { html: null, note: 'insights tab returned the app shell, not a fragment' };
+  return { html: r.body, note: null };
 }
 
 export async function toggleQuarterlyInCard(page, tableIdx, want = 'Quarterly') {
@@ -318,20 +326,26 @@ export async function insightsFromPage(page) {
        only ever published annually. */
     const tabUrl = await quarterlyInsightsUrl(page, idx);
     if (!tabUrl) {
-      return { ...before, view: 'unknown', url: page.url(), toggled: null,
+      return { ...before, htmlKind: 'annual-page', view: 'unknown', url: page.url(), toggled: null,
         note: 'no Quarterly tab endpoint inside the Insights card - this is the default view' };
     }
 
     const frag = await fetchInsightsFragment(page, tabUrl);
     if (!frag.html) {
-      return { ...before, view: 'unknown', url: page.url(), toggled: tabUrl,
+      /* htmlKind is what the caller labels the parse with. Without it the
+         orchestrator called this annual table "quarterly-fragment" simply because
+         a fragment had been ATTEMPTED - a label describing intent rather than
+         what was actually read, which is the kind of thing this pipeline is
+         supposed to make impossible. */
+      return { ...before, htmlKind: 'annual-page', view: 'unknown', url: page.url(), toggled: tabUrl,
         note: `${frag.note}; kept the annual view` };
     }
 
     // The fragment is markup, so it goes through the HTML parser. That path now
     // reads the unit off the `.sub` span, so it no longer needs a rendered table.
     return {
-      html: frag.html, matrix: null, view: 'unknown', url: page.url(),
+      html: frag.html, htmlKind: 'quarterly-fragment', matrix: null,
+      view: 'unknown', url: page.url(),
       toggled: tabUrl, fallbackHtml: before.html, note: null
     };
   } catch (e) {
