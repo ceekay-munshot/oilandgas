@@ -68,8 +68,19 @@ export async function insightsMatrix(page, tableIndexHint) {
     for (const tr of Array.from(t.querySelectorAll('tbody tr'))) {
       const cells = Array.from(tr.querySelectorAll('td, th'));
       if (cells.length < 2) continue;
+
+      /* Prefer the `.sub` span over innerText for the name/unit split. innerText
+         only resolves the <br> when the browser has LAID THE TABLE OUT, and this
+         table sits in an inactive Yearly/Quarterly tab panel - offsetParent is
+         null, so innerText silently degrades to textContent and the name fuses
+         into the unit ("Order BookRs Crore"). The span is there either way. */
+      const sub = cells[0].querySelector('.sub');
+      const whole = String((cells[0].innerText || cells[0].textContent) || '').replace(/\s+/g, ' ').trim();
+      const unit = sub ? String(sub.textContent || '').replace(/\s+/g, ' ').trim() : '';
+      const named = unit && whole.endsWith(unit) ? whole.slice(0, whole.length - unit.length).trim() : '';
+
       rows.push({
-        lines: lines(cells[0]),
+        lines: named ? [named, unit] : lines(cells[0]),
         cells: cells.slice(1).map((c) =>
           String((c.innerText || c.textContent) || '').replace(/\s+/g, ' ').trim())
       });
@@ -127,6 +138,57 @@ export async function insightsTableIndex(page) {
  *
  * @returns {Promise<{clicked:boolean, what:string|null}>}
  */
+/**
+ * The URL the Quarterly tab calls, read off the button inside the Insights card.
+ *
+ * The dump showed the control is
+ *   <button onclick="Company.setInsightsTab(event)"
+ *           data-url="/insights/company/1274867/quarter/?is_consolidated=1">
+ * and clicking it POSTs that URL and swaps the panel. Clicking is the fragile
+ * half: the panel is replaced asynchronously, so the table index moves under us
+ * and a re-locate can still find the old Yearly panel - which is exactly what the
+ * last run recorded. Calling the endpoint ourselves removes the race, and it is
+ * the same shape that already works for the concall AI summaries.
+ */
+export async function quarterlyInsightsUrl(page, tableIdx) {
+  return page.evaluate((idx) => {
+    const table = document.querySelectorAll('table')[idx];
+    if (!table) return null;
+    for (let card = table.parentElement; card && card !== document.body; card = card.parentElement) {
+      if (card.querySelectorAll('table').length > 1) break;      // left the card
+      for (const el of card.querySelectorAll('[data-url]')) {
+        const t = (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim();
+        if (/^quarterly$/i.test(t)) return el.getAttribute('data-url');
+      }
+    }
+    return null;
+  }, tableIdx);
+}
+
+/**
+ * POST the Insights tab endpoint and return its HTML fragment.
+ *
+ * X-Requested-With is required: without it Screener answers with the whole app
+ * shell instead of the fragment, which is how two rounds went on the AI summary.
+ */
+export async function fetchInsightsFragment(page, url) {
+  const abs = url.startsWith('http') ? url : `${BASE}${url}`;
+  const res = await page.context().request.post(abs, {
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest',
+      referer: page.url(),
+      accept: 'text/html, */*; q=0.01'
+    },
+    timeout: 30_000,
+    failOnStatusCode: false
+  });
+  if (!res.ok()) return { html: null, note: `insights tab HTTP ${res.status()}` };
+  const html = await res.text();
+  // An app shell instead of a fragment means the XHR header was not honoured.
+  if (/<html/i.test(html)) return { html: null, note: 'insights tab returned the app shell, not a fragment' };
+  return { html, note: null };
+}
+
 export async function toggleQuarterlyInCard(page, tableIdx, want = 'Quarterly') {
   return page.evaluate(({ idx, want }) => {
     const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
@@ -249,36 +311,29 @@ export async function insightsFromPage(page) {
       html: await insightsTableHtml(page)
     };
 
-    // Quarterly is what the KPI window needs. Yearly stays as the fallback: some
-    // rows (reserves, RRR) are only ever published annually, and an annual value
-    // labelled as annual beats four empty quarters.
-    const toggle = await toggleQuarterlyInCard(page, idx);
-    if (!toggle.clicked) {
+    /* Quarterly is what the KPI window needs; the page loads on Yearly. Ask the
+       endpoint the tab uses rather than clicking it - the click swaps the panel
+       asynchronously and the last run re-located the OLD panel and recorded it as
+       quarterly. Yearly stays as the fallback either way: reserves and RRR are
+       only ever published annually. */
+    const tabUrl = await quarterlyInsightsUrl(page, idx);
+    if (!tabUrl) {
       return { ...before, view: 'unknown', url: page.url(), toggled: null,
-        note: 'no Quarterly control inside the Insights card - this is the default view' };
+        note: 'no Quarterly tab endpoint inside the Insights card - this is the default view' };
     }
 
-    await page.waitForTimeout(1800);
-    let after = await insightsTableIndex(page);
-    if (after == null) {                       // mid-swap? give it one more beat
-      await page.waitForTimeout(1500);
-      after = await insightsTableIndex(page);
-    }
-    if (after == null) {
-      return { ...before, view: 'unknown', url: page.url(), toggled: toggle.what,
-        note: 'Quarterly click left no locatable Insights table; kept the pre-click view' };
+    const frag = await fetchInsightsFragment(page, tabUrl);
+    if (!frag.html) {
+      return { ...before, view: 'unknown', url: page.url(), toggled: tabUrl,
+        note: `${frag.note}; kept the annual view` };
     }
 
-    const matrix = await insightsMatrix(page, after);
-    const html = await insightsTableHtml(page);
-    if (!matrix) {
-      return { ...before, view: 'unknown', url: page.url(), toggled: toggle.what,
-        note: 'post-toggle table could not be read; kept the pre-click view' };
-    }
-
-    // `view` is deliberately NOT set from the click - the caller derives it from
-    // the period headers, which is the only trustworthy signal.
-    return { html, matrix, view: 'unknown', url: page.url(), toggled: toggle.what, note: null };
+    // The fragment is markup, so it goes through the HTML parser. That path now
+    // reads the unit off the `.sub` span, so it no longer needs a rendered table.
+    return {
+      html: frag.html, matrix: null, view: 'unknown', url: page.url(),
+      toggled: tabUrl, fallbackHtml: before.html, note: null
+    };
   } catch (e) {
     return {
       html: null, matrix: null, view: 'unknown', toggled: null, url: page.url(),

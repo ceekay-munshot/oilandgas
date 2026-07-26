@@ -11,7 +11,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
-  parseInsightsTable, insightsToText, parseCell, periodToIso, looksLikePeriod, viewFromPeriods
+  parseInsightsTable, insightsToText, parseCell, periodToIso, looksLikePeriod, viewFromPeriods,
+  parseCitation
 } from '../parsers/screener-insights.mjs';
 import { quarterLabel } from '../lib/fiscal.mjs';
 
@@ -169,6 +170,90 @@ test('a quarterly table keeps its quarter labels and gains no annual warning', (
   const txt = insightsToText(parseInsightsTable(INSIGHTS_HTML), quarterLabel);
   assert.match(txt, /Mar 2026 \(Q4 FY26\)/);
   assert.doesNotMatch(txt, /FULL YEAR/);
+});
+
+/* The exact markup the live dump returned. Every value in the first three runs
+   came back null against this, for two reasons visible right here: the unit is in
+   a `.sub` span behind a <br>, and each value cell carries Screener's citation
+   inline after the number. */
+const LIVE_ROW_HTML = `
+<table>
+  <thead><tr>
+    <th class="text"></th>
+    <th data-date-key="2022-03-31">Mar 2022</th>
+    <th data-date-key="2023-03-31">Mar 2023</th>
+    <th data-date-key="2024-03-31">Mar 2024</th>
+  </tr></thead>
+  <tbody>
+    <tr class="stripe">
+      <td class="text">
+        Onshore Rigs (Drilling + Workover)<br><span class="font-weight-500 font-size-12 sub">Number</span>
+      </td>
+      <td class=""><span class="inline-flex flex-align-center gap-2"><span>11</span>
+        <span class="has-tooltip opacity-45"><span class="icon-info smaller"></span>
+        <span class="tooltip"><span class="font-weight-500">Presentation - 07 May 2022</span><br>
+        <span class="ink-700">&ldquo;Owns &amp; Operates 8 Workover Rigs with capacity ranging from 30T to 100T, 3 Drilling Rigs with capacity of 1000Hp.&rdquo;</span><br>
+        <span class="ink-600">Page 24 &middot; <a href="#">Source</a></span></span></span></span></td>
+      <td class=""><span><span>14</span></span></td>
+      <td class=""></td>
+    </tr>
+    <tr>
+      <td class="text">Order Book<br><span class="sub">Rs Crore &#12539; Standalone data</span></td>
+      <td>3,051 Presentation - 14 May 2026 &ldquo;Order book of Rs 3,051 crore&rdquo; Page 6 &middot; Source</td>
+      <td>2,967</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>`;
+
+test('the live markup parses - unit off the .sub span, value before the citation', () => {
+  const t = parseInsightsTable(LIVE_ROW_HTML);
+  assert.deepEqual(t.periods, ['Mar 2022', 'Mar 2023', 'Mar 2024']);
+  assert.equal(t.rows[0].label, 'Onshore Rigs (Drilling + Workover)');
+  assert.equal(t.rows[0].unit, 'Number');
+  // 11 - not null, and not 8 from "8 Workover Rigs" inside the quote.
+  assert.deepEqual(t.rows[0].values, [11, 14, null]);
+});
+
+test('the katakana scope note still splits off the unit', () => {
+  const t = parseInsightsTable(LIVE_ROW_HTML);
+  assert.equal(t.rows[1].label, 'Order Book');
+  assert.equal(t.rows[1].unit, 'Rs Crore');
+  assert.equal(t.rows[1].scope, 'Standalone data');
+  assert.deepEqual(t.rows[1].values, [3051, 2967, null]);
+});
+
+test('the citation Screener attaches to a value is kept', () => {
+  const t = parseInsightsTable(LIVE_ROW_HTML);
+  const c = t.rows[0].citations[0];
+  assert.equal(c.doc, 'Presentation - 07 May 2022');
+  assert.equal(c.page, 24);
+  assert.match(c.quote, /Owns & Operates 8 Workover Rigs/);
+  // No value means nothing to attribute.
+  assert.equal(t.rows[0].citations[2], null);
+});
+
+test('parseCitation pulls document, page and quote out of one cell', () => {
+  const c = parseCitation('3,051 Presentation - 14 May 2026 “Order book of Rs 3,051 crore” Page 6 · Source');
+  assert.equal(c.doc, 'Presentation - 14 May 2026');
+  assert.equal(c.quote, 'Order book of Rs 3,051 crore');
+  assert.equal(c.page, 6);
+  assert.equal(parseCitation('3051'), null);       // a bare number cites nothing
+  assert.equal(parseCitation(''), null);
+});
+
+test('insightsToText passes the citation through to the model', () => {
+  const txt = insightsToText(parseInsightsTable(LIVE_ROW_HTML), quarterLabel);
+  assert.match(txt, /Onshore Rigs \(Drilling \+ Workover\) \[Number\]: 11 \| 14 \| -/);
+  assert.match(txt, /source: Presentation - 07 May 2022, page 24 \(Screener citation\)/);
+});
+
+test('parseCell takes the leading number and ignores the citation after it', () => {
+  assert.equal(parseCell('11 Presentation - 07 May 2022 “Owns & Operates 8 Workover Rigs” Page 24 · Source'), 11);
+  assert.equal(parseCell('3,051 Presentation “Order book of Rs 3,051 crore” Page 6'), 3051);
+  assert.equal(parseCell('94.5% Annual Report'), 94.5);
+  // Text first means the number is not this column's value.
+  assert.equal(parseCell('Presentation - 07 May 2022 Page 24'), null);
 });
 
 test('parseCell tolerates grouping, dashes and percent, and refuses junk', () => {

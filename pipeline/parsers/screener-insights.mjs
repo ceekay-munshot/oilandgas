@@ -48,11 +48,50 @@ export function looksLikePeriod(label) {
 export function parseCell(raw) {
   const s = clean(raw)
     .replace(/[\u24D8\u2139\u24BE]/g, '')      // info glyphs the cell may carry
-    .replace(/,/g, '')
-    .replace(/%$/, '')
     .trim();
   if (!s || s === '-' || s === '–' || s === '—' || /^n\/?a$/i.test(s)) return null;
-  return /^-?\d+(?:\.\d+)?$/.test(s) ? Number(s) : null;
+  /* The cell is NOT just a number. Screener ships the citation inside it:
+       "11 Presentation - 07 May 2022 “Owns & Operates 8 Workover Rigs...” Page 24 · Source"
+     Demanding the whole cell be numeric is why every Insights value came back
+     null for three runs - the table was found, the rows were right, and each
+     value was thrown away for having its source attached.
+
+     Anchored at the start on purpose: a number further along belongs to the
+     quoted sentence ("8 Workover Rigs"), not to this column. */
+  const m = s.match(/^(-?\d[\d,]*(?:\.\d+)?)\s*%?(?=$|\s)/);
+  return m ? Number(m[1].replace(/,/g, '')) : null;
+}
+
+/**
+ * The provenance Screener attaches to a value: which document said it, the
+ * sentence it came from, and the page it is on.
+ *
+ * Worth keeping rather than discarding with the rest of the cell text - a named
+ * filing and a page number is stronger evidence than anything this pipeline can
+ * derive on its own, and stronger than a model's guess at a source tag.
+ *
+ * @returns {{doc:string|null, quote:string|null, page:number|null}|null}
+ */
+export function parseCitation(raw) {
+  const s = clean(raw).replace(/[ⓘℹⒾ]/g, '').trim();
+  if (!s) return null;
+  // Everything after the leading number, minus the trailing "· Source" link.
+  const after = clean(s.replace(/^-?\d[\d,]*(?:\.\d+)?\s*%?/, ''))
+    .replace(/[·・|]\s*Source\s*$/i, '').trim();
+  if (!after) return null;
+
+  const quoted = after.match(/[“"]([^”"]+)[”"]/);
+  const paged = after.match(/\bPage\s+(\d+)/i);
+  let doc = after;
+  if (quoted) doc = after.slice(0, after.indexOf(quoted[0]));
+  else if (paged) doc = after.slice(0, after.indexOf(paged[0]));
+  doc = clean(doc).replace(/[·・|]\s*$/, '').trim();
+
+  return {
+    doc: doc || null,
+    quote: quoted ? clean(quoted[1]) : null,
+    page: paged ? Number(paged[1]) : null
+  };
 }
 
 /**
@@ -63,12 +102,28 @@ export function parseCell(raw) {
  * @param {import('cheerio').CheerioAPI} $
  */
 function splitLabelCell($, td) {
-  // The name is the cell's first link or its first block child; the unit line
-  // follows it. Falling back to line-splitting the text keeps this working if the
-  // markup flattens.
+  /* The unit is in its own `.sub` span, after a <br>:
+       Onshore Rigs (Drilling + Workover)<br><span class="... sub">Number</span>
+     Reading that span directly is what makes this work whether the table is
+     rendered or hidden. The previous route inferred the split from the cell's
+     text and produced "Order BookRs Crore" whenever the browser had not laid the
+     table out - and a hidden table is exactly what the Yearly/Quarterly tabs
+     leave behind. */
+  const all = clean($(td).text());
+  const sub = clean($(td).find('.sub').first().text());
+  if (sub && all.endsWith(sub)) {
+    const label = clean(all.slice(0, all.length - sub.length));
+    const [unitPart, ...noteParts] = sub.split(/[·・|]/);
+    return {
+      label: label || all,
+      unit: clean(unitPart) || null,
+      scope: noteParts.length ? clean(noteParts.join(' ')) : null
+    };
+  }
+
+  // No `.sub`: fall back to the first link or block child, then to line-splitting.
   const name = clean($(td).find('a').first().text()) ||
                clean($(td).children().first().text());
-  const all = clean($(td).text());
 
   let rest = all;
   if (name && all.startsWith(name)) rest = clean(all.slice(name.length));
@@ -115,11 +170,21 @@ export function parseInsightsTable(html) {
     const { label, unit, scope } = splitLabelCell($, cells.get(0));
     if (!label) return;
 
-    const values = [];
-    cells.slice(1).each((__, td) => values.push(parseCell($(td).text())));
-    while (values.length < periods.length) values.push(null);
+    const values = [], cites = [];
+    cells.slice(1).each((__, td) => {
+      const raw = $(td).text();
+      const v = parseCell(raw);
+      values.push(v);
+      // Provenance only where there is a value to attribute.
+      cites.push(v == null ? null : parseCitation(raw));
+    });
+    while (values.length < periods.length) { values.push(null); cites.push(null); }
 
-    rows.push({ label, unit, scope, values: values.slice(0, periods.length) });
+    rows.push({
+      label, unit, scope,
+      values: values.slice(0, periods.length),
+      citations: cites.slice(0, periods.length)
+    });
   });
 
   if (!rows.length) return null;
@@ -206,6 +271,13 @@ export function insightsToText(table, quarterLabel) {
       `${r.label}${r.unit ? ` [${r.unit}]` : ''}: ` +
       r.values.map((v) => (v == null ? '-' : v)).join(' | ')
     );
+    /* Screener cites each value to a document and a page. Passing that through
+       means a value taken from here can be tagged company-filing on evidence
+       rather than on the model's impression of where it came from. */
+    const cite = (r.citations || []).find(Boolean);
+    if (cite && cite.doc) {
+      lines.push(`   source: ${cite.doc}${cite.page ? `, page ${cite.page}` : ''} (Screener citation)`);
+    }
   }
   return lines.join('\n');
 }
@@ -245,13 +317,15 @@ export function parseInsightsMatrix(matrix) {
     const unit = clean(unitPart) || null;
 
     const values = (r.cells || []).map(parseCell);
-    while (values.length < periods.length) values.push(null);
+    const cites = (r.cells || []).map((c, i) => (values[i] == null ? null : parseCitation(c)));
+    while (values.length < periods.length) { values.push(null); cites.push(null); }
 
     rows.push({
       label,
       unit,
       scope: noteParts.length ? clean(noteParts.join(' ')) : null,
-      values: values.slice(0, periods.length)
+      values: values.slice(0, periods.length),
+      citations: cites.slice(0, periods.length)
     });
   }
 

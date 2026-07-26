@@ -299,26 +299,25 @@ async function main() {
            where it worked - and the committed output said "quarterly" over
            annual columns with every value null, with nothing to say why. */
         let insTable = null, insVia = null, insWhy = null;
-        try {
-          insTable = parseInsightsMatrix(ins.matrix);
-          if (insTable) insVia = 'matrix';
-          // The SOURCE's reason wins over a generic parse note. "premium-gated"
-          // and "the selector found nothing" are different problems, and a blanket
-          // "no text matrix returned" over the top of the first one is how a
-          // diagnostic run stops being able to tell them apart.
-          else if (!ins.matrix) insWhy = ins.note || 'no text matrix returned';
-          else insWhy = 'matrix had no usable rows';
-        } catch (e) {
-          insWhy = `matrix parse failed: ${(e && e.message) || e}`.slice(0, 120);
-        }
-        if (!insTable && ins.html) {
+        const tryParse = (fn, arg, via) => {
+          if (insTable || arg == null) return;
           try {
-            insTable = parseInsightsTable(ins.html);
-            if (insTable) insVia = 'html';
+            const t = fn(arg);
+            if (t) { insTable = t; insVia = via; }
           } catch (e) {
-            insWhy = `${insWhy || ''}; html parse failed: ${(e && e.message) || e}`.slice(0, 160);
+            insWhy = [insWhy, `${via} parse failed: ${(e && e.message) || e}`].filter(Boolean).join('; ').slice(0, 180);
           }
-        }
+        };
+        // The quarterly fragment first (markup), then the browser text matrix,
+        // then the annual table the page loaded with - so a quarterly view that
+        // fails to parse falls back to annual data rather than to nothing.
+        tryParse(parseInsightsTable, ins.html, 'quarterly-fragment');
+        tryParse(parseInsightsMatrix, ins.matrix, 'matrix');
+        tryParse(parseInsightsTable, ins.fallbackHtml, 'annual-fallback');
+        // The SOURCE's reason wins over a generic one: "premium-gated" and "the
+        // selector found nothing" are different problems, and a blanket note over
+        // the top of the first is how a diagnostic stops telling them apart.
+        if (!insTable) insWhy = ins.note || insWhy || 'no Insights table could be parsed';
         // Keep both notes when both say something - a table can parse fine AND
         // carry a real caveat, e.g. "kept the pre-click view".
         const insNote = [insWhy, ins.note].filter(Boolean)
