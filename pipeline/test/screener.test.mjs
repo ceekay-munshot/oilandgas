@@ -96,23 +96,24 @@ test('periodToIso maps month-year, rejects TTM', () => {
 
 /* ------------------------------------------------------------- documents --- */
 
-// Mirrors the real Screener concall row: Transcript | AI Summary | PPT | REC,
-// with PPT greyed out (no href) on the older quarters.
+// Mirrors the real Screener concall row: Transcript and PPT are <a href>; the AI
+// Summary is a <button> carrying its endpoint in data-url; PPT is greyed out (no
+// href) on the older quarters.
 const DOC_HTML = `
 <section id="documents"><div class="documents concalls"><h3>Concalls</h3>
   <ul class="list-links">
     <li><div class="ink-600">Aug 2025</div>
       <a href="https://www.bseindia.com/x/aug-transcript.pdf">Transcript</a>
-      <a href="/company/x/concall/summary/aug/">AI Summary</a>
+      <button class="concall-link" type="button" data-url="/concalls/summary/23052054/" onclick="Modal.openInModal(event)">AI Summary</button>
       <a href="https://www.bseindia.com/x/aug-ppt.pdf">PPT</a>
       <a href="https://rec.example/audio">REC</a></li>
     <li><div class="ink-600">May 2025</div>
       <a href="https://site.example/may-transcript.pdf">Transcript</a>
-      <a href="/company/x/concall/summary/may/">AI Summary</a>
+      <button class="concall-link" type="button" data-url="/concalls/summary/23052055/">AI Summary</button>
       <a>PPT</a></li>
     <li><div class="ink-600">Feb 2025</div>
       <a href="//cdn.example/feb-transcript.pdf">Transcript</a>
-      <a href="/company/x/concall/summary/feb/">AI Summary</a>
+      <button class="concall-link" type="button" data-url="/concalls/summary/23052056/">AI Summary</button>
       <a href="https://site.example/feb-ppt.pdf">PPT</a></li>
   </ul>
 </div></section>`;
@@ -124,13 +125,13 @@ test('parseConcalls returns rows newest-first with classified links', () => {
   assert.equal(c[0].periodIso, '2025-08');
   assert.equal(c[0].transcript, 'https://www.bseindia.com/x/aug-transcript.pdf');
   assert.equal(c[0].ppt, 'https://www.bseindia.com/x/aug-ppt.pdf');
-  assert.equal(c[0].summary, 'https://www.screener.in/company/x/concall/summary/aug/');
+  assert.equal(c[0].summary, 'https://www.screener.in/concalls/summary/23052054/');
 });
 
-test('parseConcalls maps the "AI Summary" button to summary, and a greyed PPT to null', () => {
+test('parseConcalls reads the AI Summary from the button data-url, and a greyed PPT is null', () => {
   const c = parseConcalls(DOC_HTML);
   assert.equal(c[1].period, 'May 2025');
-  assert.equal(c[1].summary, 'https://www.screener.in/company/x/concall/summary/may/');
+  assert.equal(c[1].summary, 'https://www.screener.in/concalls/summary/23052055/');
   assert.equal(c[1].ppt, null);                        // <a>PPT</a> with no href
 });
 
@@ -156,7 +157,7 @@ test('selectDocuments takes AI summaries and PPT as primary, transcripts as fall
   assert.equal(picked.ppt.role, 'ppt');
   assert.equal(picked.summaries.length, 3);            // every quarter has an AI Summary
   assert.equal(picked.summaries[0].role, 'summary');
-  assert.equal(picked.summaries[0].url, 'https://www.screener.in/company/x/concall/summary/aug/');
+  assert.equal(picked.summaries[0].url, 'https://www.screener.in/concalls/summary/23052054/');
 });
 
 test('selectDocuments caps transcripts at the requested count', () => {
