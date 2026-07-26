@@ -135,6 +135,13 @@ export async function toggleQuarterlyInCard(page, tableIdx, want = 'Quarterly') 
 
     const wanted = new RegExp(`^${want}$`, 'i');
     for (let card = table.parentElement; card && card !== document.body; card = card.parentElement) {
+      /* Stop at the card boundary. Without this the walk keeps climbing into
+         page-level wrappers and finds Shareholding's Quarterly control - the very
+         bug this function exists to fix, recurring on exactly the cards that have
+         no toggle of their own. A second table in the ancestor means we have left
+         our card, so anything found from here belongs to someone else. */
+      if (card.querySelectorAll('table').length > 1) break;
+
       const controls = Array.from(card.querySelectorAll('button, a, label, input[type="radio"]'))
         .filter((el) => wanted.test(clean(el.innerText || el.textContent || el.value)));
       if (!controls.length) continue;
@@ -231,29 +238,47 @@ export async function insightsFromPage(page) {
       };
     }
 
+    /* Read the table BEFORE touching the toggle.
+       The index is a position in document.querySelectorAll('table'), not an
+       element handle, so any click that adds or removes a table invalidates it.
+       Reading first means a toggle that fails, or that swaps in a table we cannot
+       re-locate, costs us nothing: we still have the annual view, which is worth
+       having. Never end up with less than we started with. */
+    const before = {
+      matrix: await insightsMatrix(page, idx),
+      html: await insightsTableHtml(page)
+    };
+
     // Quarterly is what the KPI window needs. Yearly stays as the fallback: some
     // rows (reserves, RRR) are only ever published annually, and an annual value
     // labelled as annual beats four empty quarters.
     const toggle = await toggleQuarterlyInCard(page, idx);
-    if (toggle.clicked) {
-      await page.waitForTimeout(1800);
-      // The toggle may swap the table out, so re-locate rather than reuse idx.
-      const again = await insightsTableIndex(page);
-      if (again != null) idx = again;
+    if (!toggle.clicked) {
+      return { ...before, view: 'unknown', url: page.url(), toggled: null,
+        note: 'no Quarterly control inside the Insights card - this is the default view' };
     }
 
-    // The text matrix is what gets parsed; the HTML is kept only as a sample so a
-    // future shape change can be diagnosed from the committed output.
-    const matrix = await insightsMatrix(page, idx);
+    await page.waitForTimeout(1800);
+    let after = await insightsTableIndex(page);
+    if (after == null) {                       // mid-swap? give it one more beat
+      await page.waitForTimeout(1500);
+      after = await insightsTableIndex(page);
+    }
+    if (after == null) {
+      return { ...before, view: 'unknown', url: page.url(), toggled: toggle.what,
+        note: 'Quarterly click left no locatable Insights table; kept the pre-click view' };
+    }
+
+    const matrix = await insightsMatrix(page, after);
     const html = await insightsTableHtml(page);
+    if (!matrix) {
+      return { ...before, view: 'unknown', url: page.url(), toggled: toggle.what,
+        note: 'post-toggle table could not be read; kept the pre-click view' };
+    }
 
     // `view` is deliberately NOT set from the click - the caller derives it from
     // the period headers, which is the only trustworthy signal.
-    return {
-      html, matrix, view: 'unknown', url: page.url(),
-      toggled: toggle.clicked ? toggle.what : null,
-      note: toggle.clicked ? null : 'no Quarterly control inside the Insights card'
-    };
+    return { html, matrix, view: 'unknown', url: page.url(), toggled: toggle.what, note: null };
   } catch (e) {
     return {
       html: null, matrix: null, view: 'unknown', toggled: null, url: page.url(),

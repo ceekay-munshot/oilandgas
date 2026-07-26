@@ -302,7 +302,12 @@ async function main() {
         try {
           insTable = parseInsightsMatrix(ins.matrix);
           if (insTable) insVia = 'matrix';
-          else insWhy = ins.matrix ? 'matrix had no usable rows' : 'no text matrix returned';
+          // The SOURCE's reason wins over a generic parse note. "premium-gated"
+          // and "the selector found nothing" are different problems, and a blanket
+          // "no text matrix returned" over the top of the first one is how a
+          // diagnostic run stops being able to tell them apart.
+          else if (!ins.matrix) insWhy = ins.note || 'no text matrix returned';
+          else insWhy = 'matrix had no usable rows';
         } catch (e) {
           insWhy = `matrix parse failed: ${(e && e.message) || e}`.slice(0, 120);
         }
@@ -314,15 +319,19 @@ async function main() {
             insWhy = `${insWhy || ''}; html parse failed: ${(e && e.message) || e}`.slice(0, 160);
           }
         }
+        // Keep both notes when both say something - a table can parse fine AND
+        // carry a real caveat, e.g. "kept the pre-click view".
+        const insNote = [insWhy, ins.note].filter(Boolean)
+          .filter((v, i, a) => a.indexOf(v) === i).join('; ') || null;
         // The view comes off the period headers, never off what got clicked.
         const insView = insTable ? viewFromPeriods(insTable.periods) : 'unknown';
         insights.companies[co.id] = insTable
           ? { name: co.name, slug, view: insView, url: ins.url,
-              via: insVia, toggled: ins.toggled || null, note: insWhy,
+              via: insVia, toggled: ins.toggled || null, note: insNote,
               periods: insTable.periods, periodsIso: insTable.periodsIso, rows: insTable.rows }
           : { name: co.name, slug, view: 'unknown', url: ins.url,
               via: null, toggled: ins.toggled || null,
-              periods: [], rows: [], note: insWhy || ins.note || 'no Insights table found' };
+              periods: [], rows: [], note: insNote || 'no Insights table found' };
         insights.generatedAt = new Date().toISOString();
         await writeJson(insightsPath, insights);
 
@@ -516,6 +525,18 @@ async function dumpInsights(context, slug, name) {
   try {
     await page.goto(`https://www.screener.in/company/${slug}/consolidated/`, { waitUntil: 'domcontentloaded', timeout: 45_000 });
     await page.waitForTimeout(1500);
+
+    /* Take the SAME route production takes before surveying anything. If the
+       Insights card is only created when Investors is activated, a probe that
+       merely loads and scrolls would report "no table" while the real scraper
+       finds one - a diagnostic that contradicts the thing it is diagnosing. */
+    for (const sel of ['a[href$="#investors"]', 'a[href*="investors" i]', 'text=/^\\s*Investors\\s*$/']) {
+      try {
+        const el = page.locator(sel).first();
+        if (await el.count()) { await el.click({ timeout: 3500 }); console.log(`  (clicked Investors via ${sel})`); break; }
+      } catch { /* try the next candidate */ }
+    }
+    await page.waitForTimeout(1200);
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight)).catch(() => {});
     await page.waitForTimeout(1500);
 

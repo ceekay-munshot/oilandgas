@@ -129,7 +129,40 @@ test('an annual table is labelled FULL YEAR, never as a quarter', () => {
   const txt = insightsToText(yearly, quarterLabel);
   assert.match(txt, /FULL YEARS, not quarters/);
   assert.match(txt, /Mar 2026 \(FY26, FULL YEAR\)/);
-  assert.doesNotMatch(txt, /Q4 FY26/);
+  // Assert on the header line, not the whole text: the guidance above it names
+  // Q4 FY26 on purpose, to say the stock rows ARE usable for that quarter.
+  assert.doesNotMatch(periodLine(txt), /Q[1-4] FY/);
+});
+
+/** The `periods:` line - the only place a column is actually labelled. */
+const periodLine = (txt) => txt.split('\n').find((l) => l.startsWith('periods:')) || '';
+
+test('an annual table still offers its stock rows - only flows are held back', () => {
+  const yearly = parseInsightsTable(INSIGHTS_HTML.replace(
+    '<th>Sep 2025</th><th>Dec 2025</th><th>Mar 2026</th>',
+    '<th>Mar 2024</th><th>Mar 2025</th><th>Mar 2026</th>'
+  ));
+  const txt = insightsToText(yearly, quarterLabel);
+  // Reserves are a position as of the column date, so the annual view carries a
+  // usable Q4 number. Banning the whole table would throw that away.
+  assert.match(txt, /STOCK measure/);
+  assert.match(txt, /position AS OF the column date/);
+  assert.match(txt, /FLOW measure/);
+  assert.match(txt, /1P Proved Reserves \(Group\) \[MMTOE\]: 775.42/);
+});
+
+test('an undetermined cadence gets no quarter label at all', () => {
+  // "Mar 2026 | TTM" leaves one parseable month, so the cadence is unknown - and
+  // an unknown cadence must not inherit the quarterly reading.
+  const t = parseInsightsTable(INSIGHTS_HTML.replace(
+    '<th>Sep 2025</th><th>Dec 2025</th><th>Mar 2026</th>',
+    '<th>Mar 2026</th><th>TTM</th>'
+  ));
+  assert.equal(viewFromPeriods(t.periods), 'unknown');
+  const txt = insightsToText(t, quarterLabel);
+  assert.match(txt, /cadence of these columns could not be determined/);
+  // Bare period headers - neither reading is asserted, because neither is known.
+  assert.equal(periodLine(txt), 'periods: Mar 2026 | TTM');
 });
 
 test('a quarterly table keeps its quarter labels and gains no annual warning', () => {

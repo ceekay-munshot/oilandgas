@@ -163,24 +163,42 @@ export function viewFromPeriods(periods) {
  */
 export function insightsToText(table, quarterLabel) {
   if (!table || !table.rows.length) return '';
-  const annual = viewFromPeriods(table.periods) === 'yearly';
+  const cadence = viewFromPeriods(table.periods);
   const heads = table.periods.map((p, i) => {
     const iso = table.periodsIso[i];
     if (!iso) return p;
     const year = Number(iso.slice(0, 4));
     const month = Number(iso.slice(5, 7));
-    if (annual) {
+    if (cadence === 'yearly') {
       // Mar year-end -> FY label; any other year-end is named by its month only.
       return month === 3 ? `${p} (FY${String(year).slice(2)}, FULL YEAR)` : `${p} (FULL YEAR)`;
     }
+    // An undetermined cadence gets NO fiscal annotation. Falling through to the
+    // quarter label would put the riskiest reading on the one case the classifier
+    // refused to decide - e.g. headers "Mar 2026 | TTM", where a twelve-month
+    // total would be annotated "(Q4 FY26)" and filed as three months.
+    if (cadence !== 'quarterly') return p;
     const fq = quarterLabel ? quarterLabel(year, month) : null;
     return fq ? `${p} (${fq})` : p;
   });
 
   const lines = [];
-  if (annual) {
-    lines.push('NOTE: these columns are FULL YEARS, not quarters. Do not file an ' +
-               'annual figure into a quarter slot; use these only as context.');
+  if (cadence === 'yearly') {
+    // Annual columns are still worth having, and the distinction is what makes
+    // them safe: a stock measure is a position AS OF the column date, so Mar 2026
+    // genuinely gives the Q4 FY26 order book. Only a flow measure is a total that
+    // must not be filed as one quarter.
+    lines.push('NOTE: these columns are FULL YEARS, not quarters. A STOCK measure ' +
+               '(order book, capacity, connections, reserves, utilisation %) is the ' +
+               'position AS OF the column date, so the Mar 2026 column gives the ' +
+               'Q4 FY26 value and you may use it. A FLOW measure (order inflow, ' +
+               'revenue, volume, capex) is a twelve-month total - do not file it ' +
+               'into a quarter slot.');
+  } else if (cadence !== 'quarterly') {
+    lines.push('NOTE: the reporting cadence of these columns could not be ' +
+               'determined - they may be quarters or full years. Use a value only ' +
+               'if another excerpt makes its period explicit; otherwise treat this ' +
+               'table as background context.');
   }
   lines.push(`periods: ${heads.join(' | ')}`);
   for (const r of table.rows) {

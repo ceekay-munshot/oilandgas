@@ -95,12 +95,17 @@ jobs:
 
           # companies.json carries the resolved slugs; the rest is the gathered
           # material and the extracted KPIs. The document cache is gitignored.
-          if git diff --quiet -- data/financials.json data/docs-manifest.json data/companies.json data/kpis.json data/insights.json; then
+          #
+          # kpi-store.json MUST be committed: it is the durable record of every
+          # value ever extracted, and it is what lets the next run skip work
+          # already paid for. Drop it and every run starts from nothing again.
+          FILES="data/financials.json data/docs-manifest.json data/companies.json data/kpis.json data/insights.json data/kpi-store.json"
+          if git diff --quiet -- $FILES; then
             echo "No company-data change - nothing to commit."
             exit 0
           fi
 
-          git add data/financials.json data/docs-manifest.json data/companies.json data/kpis.json data/insights.json
+          git add $FILES
           # No [skip ci]: the deploy has to run so the dashboard sees new data.
           git commit -m "chore(data): refresh company financials, docs & KPIs"
 

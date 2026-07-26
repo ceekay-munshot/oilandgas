@@ -102,6 +102,20 @@ export function financialsToText(fin) {
 }
 
 /**
+ * Bump this whenever a change here could change the right answer for a cell the
+ * store already recorded as empty.
+ *
+ * The store will not re-ask a settled cell, which is the point - but "settled"
+ * has to mean "settled given this prompt". Without a version, an improved prompt
+ * would keep being served the old null as though it were established fact.
+ *
+ *   1  first extractor
+ *   2  quarter-aligned excerpt headings (lib/fiscal.mjs)
+ *   3  flow measures must be single-quarter, not year-to-date
+ */
+export const PROMPT_VERSION = 3;
+
+/**
  * Build the system + user messages for one company.
  * @returns {{system:string, user:string}}
  */
