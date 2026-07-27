@@ -39,6 +39,7 @@ import {
   freshStore, fingerprintFor, docsSignature, planCompany, mergeIntoStore,
   renderWindow, storeTotals, seedFromWindow, cellsOf
 } from './lib/kpi-store.mjs';
+import { fillFromInsights, fillTotals } from './lib/insights-fill.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SMOKE = ['deep-industries', 'petronet-lng', 'igl', 'engineers-india'];
@@ -268,6 +269,7 @@ async function main() {
 
   let usedProvider = null;
   let calls = 0, skippedCalls = 0, totalGained = 0, totalKept = 0;
+  let insFilledCells = 0, insCorrected = 0;
   for (const id of ids) {
     const kpis = spec.companies[id];
     const name = nameById[id] || id;
@@ -295,6 +297,27 @@ async function main() {
     const fingerprint = fingerprintFor({
       promptVersion: PROMPT_VERSION, docs: docsSignature(blocks), kpiSpec: kpis
     });
+
+    /* Deterministic first. Screener's Insights table already holds most of what
+       the client asked for, quarterly and cited to a document and page, so those
+       cells are transcribed rather than re-derived - and they outrank anything
+       the model inferred, which is what corrects a value read off the wrong
+       terminal or the wrong segment. Whatever this fills, the model is not asked
+       about, so it is also the cheapest coverage available. */
+    const insCo = insightsDoc.companies && insightsDoc.companies[id];
+    const filled = opts.dryRun ? [] : fillFromInsights({ insights: insCo, kpis, quarters, quarterLabel });
+    let insMerged = { gained: 0, corrected: 0 };
+    if (filled.length) {
+      insMerged = mergeIntoStore({
+        store, companyId: id, kpiObjects: filled, quarters, fingerprint,
+        origin: 'insights', at: new Date().toISOString()
+      });
+      const t = fillTotals(filled);
+      insFilledCells += insMerged.gained; insCorrected += insMerged.corrected;
+      process.stdout.write(`insights ${t.cells} cells/${t.kpis} KPIs` +
+        (insMerged.corrected ? ` (${insMerged.corrected} corrected)` : '') + ' · ');
+    }
+
     const plan = opts.refresh
       ? { ask: kpis, skip: [], settledCells: 0, openCells: kpis.length * quarters.length }
       : planCompany({ store, companyId: id, kpis, quarters, fingerprint });
@@ -383,6 +406,10 @@ async function main() {
     console.log(
       `store: ${t.real}/${t.cells} cells held across ${t.companies} companies and ` +
       `every quarter seen so far -> data/kpi-store.json`
+    );
+    console.log(
+      `insights: ${insFilledCells} cells filled deterministically from Screener's table` +
+      (insCorrected ? `, ${insCorrected} model values corrected` : '') + '.'
     );
     console.log(
       `spend: ${calls} model call${calls === 1 ? '' : 's'} made, ${skippedCalls} skipped ` +
