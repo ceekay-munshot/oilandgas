@@ -40,6 +40,7 @@ import {
   renderWindow, storeTotals, seedFromWindow, cellsOf
 } from './lib/kpi-store.mjs';
 import { fillFromInsights, fillTotals } from './lib/insights-fill.mjs';
+import { fillDerived, deriveTotals } from './lib/derive.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SMOKE = ['deep-industries', 'petronet-lng', 'igl', 'engineers-india'];
@@ -269,7 +270,7 @@ async function main() {
 
   let usedProvider = null;
   let calls = 0, skippedCalls = 0, totalGained = 0, totalKept = 0;
-  let insFilledCells = 0, insCorrected = 0;
+  let insFilledCells = 0, insCorrected = 0, derivedCells = 0;
   for (const id of ids) {
     const kpis = spec.companies[id];
     const name = nameById[id] || id;
@@ -372,6 +373,25 @@ async function main() {
     }
     totalGained += merged.gained; totalKept += plan.settledCells;
 
+    /* Deterministic, last: fill cells that no source states but that are one
+       division away from figures already held - EBITDA/scm, volume growth. Runs
+       after the model so it only touches blanks the model left, and only after
+       reproducing the model's own reading (see lib/derive.mjs). Fills gaps a
+       "complete" company still has, so it runs whether or not a call was made. */
+    const derived = fillDerived({
+      store, companyId: id, kpis, quarters,
+      fin, insights: insCo, quarterLabel
+    });
+    if (derived.length) {
+      const dm = mergeIntoStore({
+        store, companyId: id, kpiObjects: derived, quarters, fingerprint,
+        origin: 'derived', at: new Date().toISOString()
+      });
+      derivedCells += dm.gained;
+      const t = deriveTotals(derived);
+      console.log(`      derived ${t.cells} cell${t.cells === 1 ? '' : 's'} across ${t.kpis} KPI${t.kpis === 1 ? '' : 's'} from held figures`);
+    }
+
     // The window view the dashboard reads, rendered from the store - so it shows
     // everything we have ever learned, not only what this run happened to return.
     const kpiObjects = renderWindow({ store, companyId: id, kpis, quarters, flagFor, flatBandPct });
@@ -410,6 +430,10 @@ async function main() {
     console.log(
       `insights: ${insFilledCells} cells filled deterministically from Screener's table` +
       (insCorrected ? `, ${insCorrected} model values corrected` : '') + '.'
+    );
+    console.log(
+      `derived: ${derivedCells} cell${derivedCells === 1 ? '' : 's'} computed from figures already held ` +
+      '(formula in each cell\'s note).'
     );
     console.log(
       `spend: ${calls} model call${calls === 1 ? '' : 's'} made, ${skippedCalls} skipped ` +

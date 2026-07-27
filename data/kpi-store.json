@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Extracted KPI values, kept across runs",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-27T11:09:33.718Z",
+  "generatedAt": "2026-07-27T11:41:08.924Z",
   "note": "One entry per company/KPI/quarter, for every quarter ever extracted - not just the current window. A run only asks the model about cells it does not already have, and a null never overwrites a real value. Delete a cell (or run with --refresh) to force re-extraction.",
   "companies": {
     "deep-industries": {
@@ -529,16 +529,18 @@
           "at": "2026-07-26T16:23:53.938Z"
         },
         "ebitda-per-scm|Q2 FY26": {
-          "value": null,
+          "value": 5.15,
           "unit": "₹/scm",
-          "sourceTag": null,
-          "note": "Q1 FY26: EBITDA/SCM stated as ₹6.16. Q2 FY26: No specific EBITDA/SCM figure provided. Q3 FY26: EBITDA/SCM mentioned as ~₹5.4. Q4 FY26: EBITDA/SCM stated as ₹4.85.",
-          "fingerprint": "04dfed672def",
-          "attempts": 3,
-          "at": "2026-07-27T09:09:41.970Z"
+          "sourceTag": "derived",
+          "note": "Derived: EBITDA (Screener quarterly Operating Profit, ₹ cr) ÷ quarterly gas volume (Insights \"Total Sales Volume\" MMSCMD × days in quarter), in ₹/scm.",
+          "origin": "derived",
+          "fingerprint": "seeded",
+          "attempts": 4,
+          "model": null,
+          "at": "2026-07-27T11:41:08.924Z"
         }
       },
-      "updatedAt": "2026-07-27T09:09:41.970Z"
+      "updatedAt": "2026-07-27T11:41:08.924Z"
     },
     "ongc": {
       "cells": {
@@ -1977,31 +1979,37 @@
           "at": "2026-07-27T09:09:47.998Z"
         },
         "ebitda-per-scm|Q1 FY26": {
-          "value": null,
-          "unit": "INR/scm",
-          "sourceTag": null,
-          "note": "EBITDA per scm was only provided for Q4 FY26.",
+          "value": 12.35,
+          "unit": "₹/scm",
+          "sourceTag": "derived",
+          "note": "Derived: EBITDA (Screener quarterly Operating Profit, ₹ cr) ÷ quarterly gas volume (Insights \"Total Sales Volume\" MMSCMD × days in quarter), in ₹/scm.",
+          "origin": "derived",
           "fingerprint": "d7a8c093d1e3",
-          "attempts": 1,
-          "at": "2026-07-27T09:09:47.998Z"
+          "attempts": 2,
+          "model": null,
+          "at": "2026-07-27T11:41:08.924Z"
         },
         "ebitda-per-scm|Q2 FY26": {
-          "value": null,
-          "unit": "INR/scm",
-          "sourceTag": null,
-          "note": "EBITDA per scm was only provided for Q4 FY26.",
+          "value": 7.96,
+          "unit": "₹/scm",
+          "sourceTag": "derived",
+          "note": "Derived: EBITDA (Screener quarterly Operating Profit, ₹ cr) ÷ quarterly gas volume (Insights \"Total Sales Volume\" MMSCMD × days in quarter), in ₹/scm.",
+          "origin": "derived",
           "fingerprint": "d7a8c093d1e3",
-          "attempts": 1,
-          "at": "2026-07-27T09:09:47.998Z"
+          "attempts": 2,
+          "model": null,
+          "at": "2026-07-27T11:41:08.924Z"
         },
         "ebitda-per-scm|Q3 FY26": {
-          "value": null,
-          "unit": "INR/scm",
-          "sourceTag": null,
-          "note": "EBITDA per scm was only provided for Q4 FY26.",
+          "value": 8.26,
+          "unit": "₹/scm",
+          "sourceTag": "derived",
+          "note": "Derived: EBITDA (Screener quarterly Operating Profit, ₹ cr) ÷ quarterly gas volume (Insights \"Total Sales Volume\" MMSCMD × days in quarter), in ₹/scm.",
+          "origin": "derived",
           "fingerprint": "d7a8c093d1e3",
-          "attempts": 1,
-          "at": "2026-07-27T09:09:47.998Z"
+          "attempts": 2,
+          "model": null,
+          "at": "2026-07-27T11:41:08.924Z"
         },
         "ebitda-per-scm|Q4 FY26": {
           "value": 6.19,
@@ -2014,7 +2022,7 @@
           "at": "2026-07-27T09:09:47.998Z"
         }
       },
-      "updatedAt": "2026-07-27T09:09:47.998Z"
+      "updatedAt": "2026-07-27T11:41:08.924Z"
     },
     "gujarat-gas": {
       "cells": {

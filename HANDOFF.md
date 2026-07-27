@@ -3,7 +3,9 @@
 Read this first if you are picking the project up in a new session. It is the
 state of play, the rules that are not negotiable, and what to do next.
 
-Last updated at commit `13b4f7a` (PR #32 merged).
+Last updated for the derived-KPIs change (branch
+`claude/company-data-derived-kpis-uwm535`); baseline was commit `13b4f7a`
+(PR #32 merged).
 
 ---
 
@@ -50,15 +52,16 @@ than shipping nothing.
 
 | | |
 |---|---|
-| KPI coverage | **97 / 224 cells**, 23 of 58 KPIs have a trajectory flag |
+| KPI coverage | **117 / 224 cells**, 30 of 58 KPIs have a trajectory flag |
 | Companies | 27, all with financials, docs and an Insights table |
 | Insights table | 26 of 27 on the **quarterly** view, **1,150 values** parsed |
-| Deterministic mapping | 27 of 58 KPIs mapped → **71 cells** fill with no model call |
-| Store | `data/kpi-store.json`, 27 companies, accumulates forever |
+| Deterministic mapping | 27 of 58 KPIs mapped → filled from Screener's table, no model call |
+| Derived | **4 cells** computed from held figures (EBITDA/scm), formula in the note |
+| Store | `data/kpi-store.json`, 27 companies, **121 cells held**, accumulates forever |
 
-> The 97 figure predates the deterministic fill — it is from the last full run.
-> **The next `scope: all` run is the first to include the mapping**, so expect it
-> to move well past 97.
+> How coverage got to 117: the deterministic Insights fill took it **97 → 113**
+> (its first `scope: all` run), and the derived step took it **113 → 117**. It can
+> only go up — a null never displaces a number.
 
 ### Data files (all committed)
 
@@ -85,8 +88,10 @@ scrape-screener.mjs          extract-kpis.mjs
   financials + Pros/Cons       3. planCompany()       <- what is still missing
   Insights grid (quarterly)    4. one LLM call for the gaps only
   AI summaries x6              5. mergeIntoStore()    <- rank rules
-  PPT + transcripts x6         6. renderWindow()      -> data/kpis.json
-     -> pipeline/cache/           (unit guard applies here)
+  PPT + transcripts x6         6. fillDerived()       <- arithmetic on held figures
+     -> pipeline/cache/        7. mergeIntoStore()    <- gaps only, tagged derived
+                               8. renderWindow()      -> data/kpis.json
+                                  (unit guard applies here)
 ```
 
 ### The store (`pipeline/lib/kpi-store.mjs`)
@@ -100,8 +105,10 @@ The single most important piece. Rules, in force:
   documents in the window, the KPI spec, or `PROMPT_VERSION` in
   `parsers/kpi-prompt.mjs`. Bump that version when a prompt change should change
   existing answers.
-- **Rank**: `insights: 3` beats `model: 1` / `seeded: 1`. A cited Insights value
-  corrects a model-inferred one in place. Within a rank the first answer stands.
+- **Rank**: `insights: 3` beats `derived: 2` beats `model: 1` / `seeded: 1`. A
+  cited Insights value corrects a model-inferred one in place; a `derived` value
+  (arithmetic on held figures) outranks the model but stays below Insights, and in
+  practice only ever fills empty cells. Within a rank the first answer stands.
 - What a correction replaced is kept on the cell (`replaced`), so it is auditable.
 - **One unit per row.** The strongest-evidenced unit wins; a cell in another unit
   is withheld with the reason. Never rescaled.
@@ -149,13 +156,26 @@ the Insights table by not doing this.
 
 ## What to do next
 
-### 1. Run `scope: all` and read the result
+### 1. `scope: all` result — read ✓ (done)
 
-First run that includes the deterministic mapping. Check:
-- how far past 97/224 coverage moves
-- how many stored values the citations **corrected** (Petronet's `27` should be)
-- that **L&T** comes back as Larsen & Toubro, not L&T Finance (slug was `LTF`,
-  now `LT` — its KPIs had been retail loan book and MFI collection efficiency)
+The first `scope: all` run with the deterministic mapping, and the steady-state
+run after it, are both in. What they showed:
+
+- **Coverage 97 → 113 / 224** from the Insights fill, then **113 → 117** from the
+  derived step. Store holds **121 / 226**.
+- **17 stored values corrected** by cited Insights figures (each keeps a
+  `replaced` audit trail). The bulk were scale fixes — Engineers India's order
+  inflow/book were 10× too small (`1430 → 14292`, `12145 → 121443`), Jindal's
+  charter day-rate (`88859 → 48324`), Oil India's production, GE/SCI freight.
+- **Petronet's `27` was NOT corrected** — worth knowing. The Insights table
+  carries Dahej regas for Q3/Q4 FY26 (94, 90.1) but no Q2 FY26 figure, and a
+  correction needs a cited value for that exact cell. So the model's Kochi-terminal
+  misread (27%) still stands for Q2 alone. A gap in the table, not a rule failure.
+- **L&T is Larsen & Toubro** ✓ — slug `LT`, KPIs are Hydrocarbon order
+  inflow/book (₹6–7 lakh cr order book), not the old L&T Finance retail loan book.
+  One residue: `data/companies.json` still had `screenerName: "L&T Finance Ltd"`
+  (the scraper only re-resolves the name when the slug is *absent*, and the slug
+  was hand-fixed). Corrected to `Larsen & Toubro Ltd`; data was already right.
 
 ### 2. The remaining gaps, and what each is worth
 
@@ -163,10 +183,31 @@ First run that includes the deterministic mapping. Check:
 |---|---|---|
 | **Not disclosed anywhere** | Deep's day-rate, EIL's bid pipeline | Won't fill. Commercially sensitive — discussed qualitatively, never quantified. Show as an honest gap. |
 | **Market spreads, not company data** | base-oil spread, styrene–polystyrene | Belong in the **macro** pipeline, not company extraction. Different source entirely. |
-| **Computable but not stated** | EBITDA/scm, O2C EBITDA/tonne, CNG+PNG volume *growth* | Derivable from figures already held — volume ÷ EBITDA, or yoy from the quarterly volume row. **Biggest remaining win.** Tag `derived`, put the formula in the note. |
+| **Computable but not stated** | EBITDA/scm, O2C EBITDA/tonne, CNG+PNG volume *growth* | **Done — `lib/derive.mjs`.** See below for what filled and what honestly did not. |
 | **Annual cadence** | reserves, RRR, wells drilled | Real data, but yearly. Currently skipped because the window is quarterly — surface with the cadence labelled rather than as four blanks. |
 
-The third row is honest arithmetic, not inference. Do it next.
+#### The derived KPIs — what filled, and what stayed a gap
+
+`lib/derive.mjs` computes a cell only when every input is held for that exact
+quarter, **and** the formula reproduces the values the store already holds for
+that KPI (or it refuses). Gaps only — a held value is never overwritten. Each
+derived cell carries `origin: derived`, `sourceTag: derived`, and the formula in
+its note. Outcome on the current data:
+
+- **EBITDA/scm → +4 cells.** IGL Q2 FY26 (5.15) and Mahanagar Q1–Q3 FY26
+  (12.35 / 7.96 / 8.26). Formula: EBITDA (Screener Operating Profit) ÷ (Total
+  Sales Volume MMSCMD × days in quarter). It reproduces the quarters the model
+  already had to **<1%**, which is what earns it the blanks between them. Both
+  rows are now a full four-quarter series with a trajectory flag.
+- **CNG+PNG volume growth → 0 cells, correctly.** IGL/Mahanagar already have all
+  four quarters (model), so there is nothing to fill; and Mahanagar's *Total*
+  Sales Volume yoy does **not** match its reported CNG+PNG growth (total carries
+  industrial & commercial gas), so the reproduce-or-refuse gate rejects it rather
+  than write a wrong-basis number. Gujarat Gas holds no quarterly volume.
+- **O2C EBITDA/tonne → stays a gap.** We hold O2C *throughput* but not the O2C
+  *segment's* EBITDA — only Reliance's consolidated operating profit (Jio, Retail
+  and E&P as well as O2C). Dividing that by refinery tonnes would be a fabricated
+  number, so it is deliberately not derived. This is the note-4 trap below.
 
 ### 3. Known smaller issues
 

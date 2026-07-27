@@ -14,10 +14,10 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 224,
-    "realCells": 113,
-    "nullCells": 111,
+    "realCells": 117,
+    "nullCells": 107,
     "kpis": 58,
-    "kpisWithTrend": 29
+    "kpisWithTrend": 30
   },
   "companies": {
     "deep-industries": {
@@ -433,19 +433,19 @@
           "flagBasis": "level",
           "values": [
             6.16,
-            null,
+            5.15,
             5.4,
             4.85
           ],
           "sourceTags": [
             "mgmt-claim",
-            null,
+            "derived",
             "mgmt-claim",
             "company-filing"
           ],
           "origins": [
             "model",
-            null,
+            "derived",
             "model",
             "model"
           ],
@@ -455,8 +455,8 @@
             null,
             null
           ],
-          "flag": "decelerating",
-          "notes": "Q1 FY26: EBITDA/SCM stated as ₹6.16. Q2 FY26: No specific EBITDA/SCM figure provided. Q3 FY26: EBITDA/SCM mentioned as ~₹5.4. Q4 FY26: EBITDA/SCM stated as ₹4.85."
+          "flag": "inflecting-down",
+          "notes": "Derived: EBITDA (Screener quarterly Operating Profit, ₹ cr) ÷ quarterly gas volume (Insights \"Total Sales Volume\" MMSCMD × days in quarter), in ₹/scm."
         }
       ]
     },
@@ -1700,24 +1700,24 @@
         {
           "id": "ebitda-per-scm",
           "label": "EBITDA / scm",
-          "unit": "INR/scm",
+          "unit": "₹/scm",
           "flagBasis": "level",
           "values": [
-            null,
-            null,
-            null,
+            12.35,
+            7.96,
+            8.26,
             6.19
           ],
           "sourceTags": [
-            null,
-            null,
-            null,
+            "derived",
+            "derived",
+            "derived",
             "company-filing"
           ],
           "origins": [
-            null,
-            null,
-            null,
+            "derived",
+            "derived",
+            "derived",
             "model"
           ],
           "citations": [
@@ -1726,8 +1726,8 @@
             null,
             null
           ],
-          "flag": null,
-          "notes": "EBITDA per scm was only provided for Q4 FY26."
+          "flag": "inflecting-down",
+          "notes": "Derived: EBITDA (Screener quarterly Operating Profit, ₹ cr) ÷ quarterly gas volume (Insights \"Total Sales Volume\" MMSCMD × days in quarter), in ₹/scm."
         }
       ]
     },
