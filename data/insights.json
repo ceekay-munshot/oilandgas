@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-07-27T09:08:52.744Z",
+  "generatedAt": "2026-07-27T10:42:20.587Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -2707,333 +2707,240 @@
     },
     "lt": {
       "name": "L&T",
-      "slug": "LTF",
+      "slug": "LT",
       "view": "quarterly",
-      "url": "https://www.screener.in/company/LTF/consolidated/",
+      "url": "https://www.screener.in/company/LT/consolidated/",
       "via": "quarterly-fragment",
-      "toggled": "/insights/company/1850/quarter/?is_consolidated=1",
+      "toggled": "/insights/company/1870/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
+        "Mar 2018",
+        "Mar 2019",
+        "Mar 2021",
+        "Mar 2022",
+        "Jun 2023",
+        "Mar 2024",
         "Jun 2024",
         "Sep 2024",
-        "Dec 2024",
         "Mar 2025",
         "Jun 2025",
         "Sep 2025",
-        "Dec 2025",
-        "Mar 2026",
-        "Jun 2026",
-        "Sep 2026 (P)",
-        "Dec 2026 (P)",
-        "Mar 2027 (P)"
+        "Mar 2026"
       ],
       "periodsIso": [
+        "2018-03",
+        "2019-03",
+        "2021-03",
+        "2022-03",
+        "2023-06",
+        "2024-03",
         "2024-06",
         "2024-09",
-        "2024-12",
         "2025-03",
         "2025-06",
         "2025-09",
-        "2025-12",
-        "2026-03",
-        "2026-06",
-        null,
-        null,
-        null
+        "2026-03"
       ],
       "rows": [
         {
-          "label": "Retail Book",
-          "unit": "₹ Cr",
-          "scope": null,
-          "values": [
-            64274,
-            69417,
-            74759,
-            80037,
-            84444,
-            88975,
-            92224,
-            95180,
-            99816,
-            104607,
-            111990,
-            119508
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Retail Book (₹ Cr) ... Q1 FY24: 64,274",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q2 FY24: 69,417",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q3 FY24: 74,759",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q4 FY24: 80,037",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q1 FY25: 84,444",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q2 FY25: 88,975",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q3 FY25: 92,224",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q4 FY25: 95,180",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q1 FY26: 99,816",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q2 FY26: 1,04,607",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q3 FY26: 1,11,990",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q4 FY26: 1,19,508",
-              "page": 66
-            }
-          ]
-        },
-        {
-          "label": "Collection Efficiency (0 DPD) - Rural Group Loans & MFI",
-          "unit": "%",
-          "scope": null,
-          "values": [
-            99.4,
-            99.5,
-            99.3,
-            null,
-            99.4,
-            99.5,
-            99.4,
-            null,
-            99.4,
-            99.5,
-            99.7,
-            null
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 25 Apr 2025",
-              "quote": "Jun'23 0 DPD CE 99.4%",
-              "page": 36
-            },
-            {
-              "doc": "Presentation - 25 Apr 2025",
-              "quote": "Sep'23 0 DPD CE 99.5%",
-              "page": 36
-            },
-            {
-              "doc": "Presentation - 25 Apr 2025",
-              "quote": "Dec'23 0 DPD CE 99.3%",
-              "page": 36
-            },
-            null,
-            {
-              "doc": "Presentation - 25 Apr 2025",
-              "quote": "Jun'24 0 DPD CE 99.4%",
-              "page": 36
-            },
-            {
-              "doc": "Presentation - 25 Apr 2025",
-              "quote": "Sep'24 0 DPD CE 99.5%",
-              "page": 36
-            },
-            {
-              "doc": "Presentation - 25 Apr 2025",
-              "quote": "Dec'24 0 DPD CE 99.4%",
-              "page": 36
-            },
-            null,
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Jun'25 0 DPD CE 99.4%",
-              "page": 50
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Sep'25 0 DPD CE 99.5%",
-              "page": 50
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Dec'25 0 DPD CE 99.7%",
-              "page": 50
-            },
-            null
-          ]
-        },
-        {
-          "label": "Retailisation",
-          "unit": "%",
-          "scope": null,
-          "values": [
-            82,
-            88,
-            91,
-            null,
-            95,
-            96,
-            97,
-            null,
-            98,
-            98,
-            98,
-            null
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q1 FY24: 82%",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q2 FY24: 88%",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q3 FY24: 91%",
-              "page": 66
-            },
-            null,
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q1 FY25: 95%",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q2 FY25: 96%",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q3 FY25: 97%",
-              "page": 66
-            },
-            null,
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q1 FY26: 98%",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q2 FY26: 98%",
-              "page": 66
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q3 FY26: 98%",
-              "page": 66
-            },
-            null
-          ]
-        },
-        {
-          "label": "Total Retail Disbursements",
-          "unit": "₹ Cr",
+          "label": "Order Inflow",
+          "unit": "INR crore",
           "scope": null,
           "values": [
             null,
             null,
             null,
             null,
-            null,
-            null,
-            15210,
-            14899,
-            17522,
-            18883,
-            22701,
-            24107
+            65520,
+            72150,
+            70936,
+            80045,
+            89613,
+            94453,
+            115784,
+            89772
           ],
           "citations": [
             null,
             null,
             null,
             null,
-            null,
-            null,
             {
-              "doc": "Presentation - 16 Jan 2026",
-              "quote": "Q3FY25 ... 15,210",
-              "page": 53
+              "doc": "Presentation - 24 Jul 2024",
+              "quote": "Total 65520",
+              "page": 27
             },
             {
-              "doc": "Presentation - 25 Apr 2025",
-              "quote": "Q4FY25 ... 14,899",
-              "page": 55
+              "doc": "Presentation - 08 May 2025",
+              "quote": "Total 72150 35%",
+              "page": 37
             },
             {
-              "doc": "Credit Rating - 03 Sep 2025",
-              "quote": "Quarterly disbursement towards this segment were Rs 17,522 crore (Q1FY26)",
-              "page": 1
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "Total 70936 46%",
+              "page": 31
             },
             {
-              "doc": "Presentation - 15 Oct 2025",
-              "quote": "Q2FY26 ... 18,883",
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "Total 80045 63%",
               "page": 33
             },
             {
-              "doc": "Presentation - 16 Jan 2026",
-              "quote": "Q3FY26 ... 22,701",
-              "page": 53
+              "doc": "Presentation - 05 May 2026",
+              "quote": "89613 70%",
+              "page": 45
             },
             {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Q4FY26 ... 24,107",
-              "page": 67
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "Total 94453 51%",
+              "page": 31
+            },
+            {
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "Total 115784 65%",
+              "page": 33
+            },
+            {
+              "doc": "Presentation - 05 May 2026",
+              "quote": "89772 67%",
+              "page": 45
             }
           ]
         },
         {
-          "label": "Personal Loans Book",
-          "unit": "₹ Cr",
+          "label": "International share of Order Book",
+          "unit": "%",
+          "scope": null,
+          "values": [
+            23.8,
+            22,
+            21,
+            27,
+            null,
+            38,
+            null,
+            null,
+            46,
+            null,
+            null,
+            52
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 29 Jan 2016",
+              "quote": "International Order Book Percentage: 23.8%",
+              "page": null
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "International order book declined to 22% as at March 31, 2019",
+              "page": 286
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2020-21: 21%",
+              "page": 32
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2021-22: 27%",
+              "page": 32
+            },
+            null,
+            {
+              "doc": "Presentation - 08 May 2025",
+              "quote": "International: 38%",
+              "page": 37
+            },
+            null,
+            null,
+            {
+              "doc": "Presentation - 05 May 2026",
+              "quote": "579137 46%",
+              "page": 45
+            },
+            null,
+            null,
+            {
+              "doc": "Presentation - 05 May 2026",
+              "quote": "740327 52%",
+              "page": 45
+            }
+          ]
+        },
+        {
+          "label": "Order Book",
+          "unit": "INR crore",
           "scope": null,
           "values": [
             null,
             null,
             null,
             null,
+            412600,
             null,
-            7178,
-            7820,
+            490900,
+            510400,
             null,
-            9383,
-            10878,
-            12810,
+            612800,
+            667000,
+            740300
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 24 Jul 2024",
+              "quote": "4126 Order Book",
+              "page": 8
+            },
+            null,
+            {
+              "doc": "Presentation - 24 Jul 2024",
+              "quote": "4909 Order Book",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "5104 Order Book",
+              "page": 8
+            },
+            null,
+            {
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "6128 Order Book",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "6670 Order Book",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 05 May 2026",
+              "quote": "ORDER BOOK ₹ 7403 bn 28% YoY Growth",
+              "page": 5
+            }
+          ]
+        },
+        {
+          "label": "L&T Finance Loan Book",
+          "unit": "INR crore",
+          "scope": "Standalone data",
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            85560,
+            null,
+            88720,
+            93020,
+            null,
+            102310,
+            107100,
             null
           ],
           "citations": [
@@ -3041,32 +2948,32 @@
             null,
             null,
             null,
-            null,
             {
-              "doc": "Presentation - 15 Oct 2025",
-              "quote": "Q2FY25 Personal Loans: 7,178",
-              "page": 55
-            },
-            {
-              "doc": "Presentation - 16 Jan 2026",
-              "quote": "Q3FY25 Personal Loans: 7,820",
-              "page": 54
+              "doc": "Presentation - 24 Jul 2024",
+              "quote": "Book 855.6",
+              "page": 20
             },
             null,
             {
-              "doc": "Presentation - 15 Oct 2025",
-              "quote": "Q1FY26 Personal Loans: 9,383",
-              "page": 55
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "Book 887.2 15%",
+              "page": 20
             },
             {
-              "doc": "Presentation - 15 Oct 2025",
-              "quote": "Q2FY26 Personal Loans: 10,878",
-              "page": 55
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "Book 930.2 15%",
+              "page": 20
+            },
+            null,
+            {
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "Book 1023.1 15%",
+              "page": 20
             },
             {
-              "doc": "Presentation - 16 Jan 2026",
-              "quote": "Q3FY26 Personal Loans: 12,810",
-              "page": 54
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "Book 1071.0 15%",
+              "page": 20
             },
             null
           ]
