@@ -21,6 +21,11 @@ on:
         default: smoke
   schedule:
     - cron: '30 5 * * 1'      # 05:30 UTC Mondays, before refresh-full at 06:40
+    # TEMPORARY - Q1 FY27 earnings week. Also run Tue/Wed/Thu so a concall filed
+    # mid-week is on the dashboard within a day instead of waiting for next
+    # Monday. A run on unchanged data is a ~14-min no-op (it commits nothing), so
+    # the only cost is Actions minutes. REMOVE these lines after 2026-07-30.
+    - cron: '30 5 * * 2,3,4'  # 05:30 UTC Tue-Thu
 
 permissions:
   contents: write

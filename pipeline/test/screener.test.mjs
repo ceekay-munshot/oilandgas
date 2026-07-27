@@ -203,6 +203,25 @@ test('parseCompanySlug takes the best match and reads its slug', () => {
   assert.equal(r.matchedName, 'Reliance Industries Ltd');
 });
 
+test('parseCompanySlug skips a merged shell and prefers the active listing', () => {
+  // A merged/defunct entity often matches the plain name and comes back first;
+  // taking result[0] is how a company resolves to a dead ticker.
+  const json = [
+    { id: 1234, name: 'Gujarat Gas Company Ltd(Merged)', url: '/company/GUJRATGAS/consolidated/' },
+    { id: 9, name: 'Gujarat Gas Ltd', url: '/company/GUJGAS/consolidated/' }
+  ];
+  const r = parseCompanySlug(json, { query: 'Gujarat Gas' });
+  assert.equal(r.slug, 'GUJGAS');
+  assert.equal(r.matchedName, 'Gujarat Gas Ltd');
+});
+
+test('parseCompanySlug falls back to the merged shell when no active listing exists', () => {
+  // The entity really was amalgamated away - better to resolve to the known
+  // shell than to throw and fail the company outright.
+  const json = [{ id: 1234, name: 'Gujarat Gas Company Ltd(Merged)', url: '/company/GUJRATGAS/consolidated/' }];
+  assert.equal(parseCompanySlug(json, { query: 'Gujarat Gas' }).slug, 'GUJRATGAS');
+});
+
 test('slugFromUrl pulls the slug out of either url shape', () => {
   assert.equal(slugFromUrl('/company/ONGC/consolidated/'), 'ONGC');
   assert.equal(slugFromUrl('/company/DEEPINDS/'), 'DEEPINDS');
