@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-26T16:23:44.122Z",
+  "generatedAt": "2026-07-27T09:09:05.393Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -12,12 +12,12 @@
   "flatBandPct": 1.5,
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
-    "companies": 4,
-    "kpiCells": 40,
-    "realCells": 28,
-    "nullCells": 12,
-    "kpis": 10,
-    "kpisWithTrend": 7
+    "companies": 27,
+    "kpiCells": 224,
+    "realCells": 97,
+    "nullCells": 127,
+    "kpis": 58,
+    "kpisWithTrend": 23
   },
   "companies": {
     "deep-industries": {
@@ -32,7 +32,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34175,
+      "ctxChars": 33997,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -43,16 +43,16 @@
             100,
             null,
             null,
-            null
+            100
           ],
           "sourceTags": [
             "mgmt-claim",
             null,
             null,
-            null
+            "company-filing"
           ],
           "flag": null,
-          "notes": "Q1 FY26 utilisation was stated as 100% for workover and normal rigs. No other quarters had utilisation figures."
+          "notes": "Q2 and Q3 FY26 asset utilisation % not stated."
         },
         {
           "id": "day-rate",
@@ -72,7 +72,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q1 FY26 day rate for Dolphin contract was $30,000/day. No other quarters had day-rate figures."
+          "notes": "Day-rate not stated in any quarter."
         },
         {
           "id": "order-book",
@@ -108,7 +108,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34367,
+      "ctxChars": 34068,
       "kpis": [
         {
           "id": "order-inflow",
@@ -184,7 +184,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 28498,
+      "ctxChars": 27823,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -204,7 +204,7 @@
             "mgmt-claim"
           ],
           "flag": "inflecting-down",
-          "notes": "Q1 FY26 regas utilisation % not stated. Q2 FY26 Kochi utilisation was 27% (mgmt-claim). Q3 FY26 Kochi utilisation was 29% (mgmt-claim). Q4 FY26 Dahej utilisation was 90.1% (mgmt-claim)."
+          "notes": "Q1 FY26 regas utilisation % not stated. Q2 FY26 Kochi utilisation 27% from management claim. Q3 FY26 Kochi utilisation 29% from management claim. Q4 FY26 Dahej utilisation 90.1% from company filing."
         },
         {
           "id": "volume",
@@ -240,7 +240,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 28269,
+      "ctxChars": 27698,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -280,7 +280,1313 @@
             "company-filing"
           ],
           "flag": "decelerating",
-          "notes": "Q2 FY26 value not explicitly stated."
+          "notes": "Q1 FY26: EBITDA/SCM stated as ₹6.16. Q2 FY26: No specific EBITDA/SCM figure provided. Q3 FY26: EBITDA/SCM mentioned as ~₹5.4. Q4 FY26: EBITDA/SCM stated as ₹4.85."
+        }
+      ]
+    },
+    "ongc": {
+      "name": "ONGC",
+      "slug": "ONGC",
+      "quarters": [
+        "Q3 FY25",
+        "Q4 FY25",
+        "Q2 FY26"
+      ],
+      "asOf": "Q2 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 21419,
+      "kpis": [
+        {
+          "id": "capex-vs-budget",
+          "label": "Capex spend vs budget",
+          "unit": "₹ cr",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Capex spend vs budget not explicitly stated in any excerpt."
+        },
+        {
+          "id": "production-volume",
+          "label": "Production volume",
+          "unit": "MMT / bcm",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            4.63
+          ],
+          "sourceTags": [
+            null,
+            null,
+            "mgmt-claim"
+          ],
+          "flag": null,
+          "notes": "Q3 FY25 and Q4 FY25 production volumes not explicitly stated. Q2 FY26 crude oil production volume is 4.63 MMT."
+        },
+        {
+          "id": "new-well-count",
+          "label": "New well count",
+          "unit": "wells",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "New well count not explicitly stated in any excerpt."
+        }
+      ]
+    },
+    "oil-india": {
+      "name": "Oil India",
+      "slug": "OIL",
+      "quarters": [
+        "Q1 FY26",
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": "Q4 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 33643,
+      "kpis": [
+        {
+          "id": "capex-vs-budget",
+          "label": "Capex spend vs budget",
+          "unit": "₹ cr",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Capex spend vs budget not explicitly stated for any quarter."
+        },
+        {
+          "id": "production-volume",
+          "label": "Production volume",
+          "unit": "MMT / bcm",
+          "flagBasis": "level",
+          "values": [
+            1.68,
+            1.652,
+            1.659,
+            6.64
+          ],
+          "sourceTags": [
+            "mgmt-claim",
+            "mgmt-claim",
+            "mgmt-claim",
+            "mgmt-claim"
+          ],
+          "flag": "accelerating",
+          "notes": null
+        }
+      ]
+    },
+    "jindal-drilling": {
+      "name": "Jindal Drilling",
+      "slug": "JINDRILL",
+      "quarters": [
+        "Q4 FY25",
+        "Q1 FY26",
+        "Q2 FY26",
+        "Q3 FY26"
+      ],
+      "asOf": "Q3 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 32255,
+      "kpis": [
+        {
+          "id": "rig-utilisation",
+          "label": "Offshore rig utilisation %",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Rig utilisation % not provided in any excerpt."
+        },
+        {
+          "id": "charter-day-rate",
+          "label": "Charter day-rate",
+          "unit": "$/day",
+          "flagBasis": "level",
+          "values": [
+            null,
+            88859,
+            88859,
+            88859
+          ],
+          "sourceTags": [
+            null,
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "flag": "steady",
+          "notes": "Charter day-rate for Jindal Supreme provided for Q1, Q2, and Q3 FY26."
+        },
+        {
+          "id": "order-book",
+          "label": "Order book",
+          "unit": "₹ cr",
+          "flagBasis": "qoq",
+          "values": [
+            1791,
+            1538,
+            1369,
+            1183
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "flag": "decelerating",
+          "notes": null
+        }
+      ]
+    },
+    "lt": {
+      "name": "L&T",
+      "slug": "LTF",
+      "quarters": [
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26",
+        "Q1 FY27"
+      ],
+      "asOf": null,
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 10122,
+      "kpis": [
+        {
+          "id": "hydrocarbon-order-inflow",
+          "label": "Hydrocarbon order inflow",
+          "unit": "₹ cr",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Hydrocarbon order inflow data not provided in any excerpt."
+        },
+        {
+          "id": "hydrocarbon-order-book",
+          "label": "Hydrocarbon order book",
+          "unit": "₹ cr",
+          "flagBasis": "qoq",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Hydrocarbon order book data not provided in any excerpt."
+        }
+      ]
+    },
+    "ratnamani": {
+      "name": "Ratnamani Metals",
+      "slug": "RATNAMANI",
+      "quarters": [
+        "Q2 FY25",
+        "Q4 FY25",
+        "Q2 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": "Q4 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 33027,
+      "kpis": [
+        {
+          "id": "order-book",
+          "label": "Order book",
+          "unit": "₹ cr",
+          "flagBasis": "qoq",
+          "values": [
+            null,
+            2100,
+            2050,
+            2162
+          ],
+          "sourceTags": [
+            null,
+            "mgmt-claim",
+            "mgmt-claim",
+            "mgmt-claim"
+          ],
+          "flag": "inflecting-up",
+          "notes": "Q2 FY25 order book not stated; Q4 FY25 order book from concall; Q2 FY26 order book from concall; Q4 FY26 order book from concall."
+        },
+        {
+          "id": "pipe-order-inflow",
+          "label": "Pipe order inflow",
+          "unit": "₹ cr",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            750,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            "mgmt-claim",
+            null
+          ],
+          "flag": null,
+          "notes": "Q2 FY25 and Q4 FY25 pipe order inflow not stated; Q2 FY26 pipe order inflow from concall; Q4 FY26 pipe order inflow not stated."
+        }
+      ]
+    },
+    "welspun-corp": {
+      "name": "Welspun Corp",
+      "slug": "WELCORP",
+      "quarters": [
+        "Q1 FY26",
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": "Q4 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 34052,
+      "kpis": [
+        {
+          "id": "order-book",
+          "label": "Order book",
+          "unit": "₹ cr",
+          "flagBasis": "qoq",
+          "values": [
+            19000,
+            23500,
+            23600,
+            25350
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "flag": "accelerating",
+          "notes": null
+        },
+        {
+          "id": "line-pipe-order-inflow",
+          "label": "Line-pipe order inflow",
+          "unit": "₹ cr",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Line-pipe order inflow not explicitly stated for any quarter."
+        }
+      ]
+    },
+    "reliance": {
+      "name": "Reliance",
+      "slug": "RELIANCE",
+      "quarters": [
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26",
+        "Q1 FY27"
+      ],
+      "asOf": null,
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 34309,
+      "kpis": [
+        {
+          "id": "o2c-ebitda-per-tonne",
+          "label": "O2C EBITDA per tonne",
+          "unit": "$/t",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "O2C EBITDA per tonne not explicitly stated in any excerpt."
+        },
+        {
+          "id": "petchem-margin",
+          "label": "Petchem margin",
+          "unit": "$/t",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Petchem margin not explicitly stated in any excerpt."
+        },
+        {
+          "id": "retail-fuel-margin",
+          "label": "Retail fuel margin",
+          "unit": "₹/l",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Retail fuel margin not explicitly stated in any excerpt."
+        }
+      ]
+    },
+    "iocl": {
+      "name": "IOCL",
+      "slug": "IOC",
+      "quarters": [
+        "Q4 FY25",
+        "Q1 FY26",
+        "Q2 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": "Q4 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 31943,
+      "kpis": [
+        {
+          "id": "grm",
+          "label": "GRM",
+          "unit": "$/bbl",
+          "flagBasis": "level",
+          "values": [
+            7.85,
+            2.15,
+            10.66,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "mgmt-claim",
+            null
+          ],
+          "flag": "inflecting-up",
+          "notes": "Q4 FY26 GRM not disclosed; management paused GRM disclosure."
+        },
+        {
+          "id": "marketing-margin",
+          "label": "Marketing margin",
+          "unit": "₹/l",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Marketing margin not explicitly stated in any quarter."
+        },
+        {
+          "id": "throughput",
+          "label": "Throughput",
+          "unit": "MMT",
+          "flagBasis": "level",
+          "values": [
+            18.5,
+            18.7,
+            17.6,
+            19.7
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "mgmt-claim",
+            "company-filing"
+          ],
+          "flag": "inflecting-up",
+          "notes": null
+        }
+      ]
+    },
+    "bpcl": {
+      "name": "BPCL",
+      "slug": "BPCL",
+      "quarters": [
+        "Q3 FY25",
+        "Q4 FY25",
+        "Q1 FY26",
+        "Q1 FY27"
+      ],
+      "asOf": "Q1 FY27",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 32696,
+      "kpis": [
+        {
+          "id": "grm",
+          "label": "GRM",
+          "unit": "$/bbl",
+          "flagBasis": "level",
+          "values": [
+            5.95,
+            9.2,
+            4.88,
+            41.41
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "mgmt-claim"
+          ],
+          "flag": "inflecting-up",
+          "notes": null
+        },
+        {
+          "id": "marketing-margin",
+          "label": "Marketing margin",
+          "unit": "₹/l",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Marketing margin figures not explicitly stated for any quarter."
+        },
+        {
+          "id": "throughput",
+          "label": "Throughput",
+          "unit": "MMT",
+          "flagBasis": "level",
+          "values": [
+            9.54,
+            10.58,
+            10.42,
+            10.15
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "mgmt-claim"
+          ],
+          "flag": "decelerating",
+          "notes": null
+        }
+      ]
+    },
+    "hpcl": {
+      "name": "HPCL",
+      "slug": "HINDPETRO",
+      "quarters": [
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26",
+        "Q1 FY27"
+      ],
+      "asOf": "Q4 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 30042,
+      "kpis": [
+        {
+          "id": "grm",
+          "label": "GRM",
+          "unit": "$/bbl",
+          "flagBasis": "level",
+          "values": [
+            8.8,
+            8.85,
+            17,
+            null
+          ],
+          "sourceTags": [
+            "mgmt-claim",
+            "mgmt-claim",
+            "mgmt-claim",
+            null
+          ],
+          "flag": "accelerating",
+          "notes": null
+        },
+        {
+          "id": "marketing-margin",
+          "label": "Marketing margin",
+          "unit": "₹/l",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Marketing margin not explicitly stated in any excerpt."
+        },
+        {
+          "id": "throughput",
+          "label": "Throughput",
+          "unit": "MMT",
+          "flagBasis": "level",
+          "values": [
+            6.57,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            "mgmt-claim",
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Throughput for Q3 FY26 and Q4 FY26 not explicitly stated."
+        }
+      ]
+    },
+    "gail": {
+      "name": "GAIL",
+      "slug": "GAIL",
+      "quarters": [
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26",
+        "Q1 FY27"
+      ],
+      "asOf": "Q3 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 9338,
+      "kpis": [
+        {
+          "id": "gas-transmission-volume",
+          "label": "Gas transmission volume",
+          "unit": "mmscmd",
+          "flagBasis": "level",
+          "values": [
+            123.59,
+            125.45,
+            null,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": null
+        },
+        {
+          "id": "petchem-margin",
+          "label": "Petchem margin",
+          "unit": "$/t",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Petchem margin not stated in the excerpts."
+        }
+      ]
+    },
+    "mahanagar-gas": {
+      "name": "Mahanagar Gas",
+      "slug": "MGL",
+      "quarters": [
+        "Q1 FY26",
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": "Q4 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 34030,
+      "kpis": [
+        {
+          "id": "cng-png-volume-growth",
+          "label": "CNG+PNG volume growth",
+          "unit": "percent",
+          "flagBasis": "yoy",
+          "values": [
+            9.61,
+            9.22,
+            7.19,
+            6.15
+          ],
+          "sourceTags": [
+            "mgmt-claim",
+            "mgmt-claim",
+            "mgmt-claim",
+            "mgmt-claim"
+          ],
+          "flag": "decelerating",
+          "notes": null
+        },
+        {
+          "id": "ebitda-per-scm",
+          "label": "EBITDA / scm",
+          "unit": "INR/scm",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            6.19
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            "company-filing"
+          ],
+          "flag": null,
+          "notes": "EBITDA per scm was only provided for Q4 FY26."
+        }
+      ]
+    },
+    "gujarat-gas": {
+      "name": "Gujarat Gas",
+      "slug": "GUJRATGAS",
+      "quarters": [
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26",
+        "Q1 FY27"
+      ],
+      "asOf": null,
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 3378,
+      "kpis": [
+        {
+          "id": "cng-png-volume-growth",
+          "label": "CNG+PNG volume growth",
+          "unit": "%",
+          "flagBasis": "yoy",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "CNG+PNG volume growth not stated in any quarter."
+        },
+        {
+          "id": "ebitda-per-scm",
+          "label": "EBITDA / scm",
+          "unit": "₹/scm",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "EBITDA / scm not stated in any quarter."
+        }
+      ]
+    },
+    "aegis-logistics": {
+      "name": "Aegis Logistics",
+      "slug": "AEGISLOG",
+      "quarters": [
+        "Q1 FY26",
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": "Q4 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 34004,
+      "kpis": [
+        {
+          "id": "lpg-throughput",
+          "label": "LPG throughput",
+          "unit": "000 MT",
+          "flagBasis": "yoy",
+          "values": [
+            1161,
+            1407,
+            1361,
+            1223
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "flag": "decelerating",
+          "notes": null
+        },
+        {
+          "id": "terminal-utilisation",
+          "label": "Terminal utilisation %",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Terminal utilisation % not explicitly stated in any excerpt."
+        }
+      ]
+    },
+    "aegis-vopak": {
+      "name": "Aegis Vopak",
+      "slug": "AEGISVOPAK",
+      "quarters": [
+        "Q1 FY26",
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": "Q3 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 33034,
+      "kpis": [
+        {
+          "id": "lpg-throughput",
+          "label": "LPG throughput",
+          "unit": "million MT",
+          "flagBasis": "yoy",
+          "values": [
+            0.52,
+            0.68,
+            0.67,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "flag": "inflecting-down",
+          "notes": "Q4 FY26 LPG throughput not stated."
+        },
+        {
+          "id": "terminal-utilisation",
+          "label": "Terminal utilisation %",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Terminal utilisation % not stated in any quarter."
+        }
+      ]
+    },
+    "supreme-petrochem": {
+      "name": "Supreme Petrochem",
+      "slug": "SPLPETRO",
+      "quarters": [
+        "Q1 FY26",
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": "Q4 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 32698,
+      "kpis": [
+        {
+          "id": "sps-spread",
+          "label": "Styrene-polystyrene spread",
+          "unit": "$/t",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Styrene-polystyrene spread not explicitly stated in any excerpt."
+        },
+        {
+          "id": "volume",
+          "label": "Volume",
+          "unit": "MT",
+          "flagBasis": "level",
+          "values": [
+            93853,
+            76962,
+            91265,
+            100664
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "flag": "decelerating",
+          "notes": null
+        }
+      ]
+    },
+    "castrol-india": {
+      "name": "Castrol India",
+      "slug": "CASTROLIND",
+      "quarters": [
+        "Q1 FY26",
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": null,
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 31578,
+      "kpis": [
+        {
+          "id": "lubricant-volume",
+          "label": "Lubricant volume",
+          "unit": "million liters",
+          "flagBasis": "yoy",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "No quarterly lubricant volume data for FY26 was provided in the excerpts."
+        },
+        {
+          "id": "base-oil-spread",
+          "label": "Base-oil spread",
+          "unit": "$/t",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "No base-oil spread data was provided in the excerpts."
+        }
+      ]
+    },
+    "gandhar-oil": {
+      "name": "Gandhar Oil",
+      "slug": "GANDHAR",
+      "quarters": [
+        "Q4 FY25",
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": "Q4 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 33118,
+      "kpis": [
+        {
+          "id": "base-oil-spread",
+          "label": "Base-oil spread",
+          "unit": "$/t",
+          "flagBasis": "level",
+          "values": [
+            null,
+            8662,
+            7271,
+            9351
+          ],
+          "sourceTags": [
+            null,
+            "mgmt-claim",
+            "mgmt-claim",
+            "mgmt-claim"
+          ],
+          "flag": "inflecting-up",
+          "notes": "Q4 FY25 value missing; Q2 FY26 and Q3 FY26 values from management call; Q4 FY26 value from management call."
+        },
+        {
+          "id": "white-oil-volume",
+          "label": "White-oil volume",
+          "unit": "MT",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "White-oil volume not explicitly stated in any excerpt."
+        }
+      ]
+    },
+    "linde-india": {
+      "name": "Linde India",
+      "slug": "LINDEINDIA",
+      "quarters": [
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26",
+        "Q1 FY27"
+      ],
+      "asOf": null,
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 9450,
+      "kpis": [
+        {
+          "id": "industrial-gas-volume",
+          "label": "Industrial gas volume",
+          "unit": "volume index",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "Industrial gas volume data not provided in the excerpts."
+        }
+      ]
+    },
+    "adani-ports": {
+      "name": "Adani Ports",
+      "slug": "ADANIPORTS",
+      "quarters": [
+        "Q4 FY25",
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": null,
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 32760,
+      "kpis": [
+        {
+          "id": "pol-lpg-lng-throughput",
+          "label": "POL/LPG/LNG cargo throughput",
+          "unit": "% yoy",
+          "flagBasis": "yoy",
+          "values": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "POL/LPG/LNG cargo throughput % yoy not explicitly stated in any excerpt."
+        }
+      ]
+    },
+    "ge-shipping": {
+      "name": "GE Shipping",
+      "slug": "GESHIP",
+      "quarters": [
+        "Q1 FY26",
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": "Q4 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 34375,
+      "kpis": [
+        {
+          "id": "tanker-freight-rate",
+          "label": "Realised tanker freight rate",
+          "unit": "USD/day",
+          "flagBasis": "level",
+          "values": [
+            46352,
+            28492,
+            47281,
+            61424
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "flag": "decelerating",
+          "notes": null
+        },
+        {
+          "id": "fleet-deployment",
+          "label": "Fleet deployment",
+          "unit": "vessels",
+          "flagBasis": "level",
+          "values": [
+            null,
+            null,
+            null,
+            39
+          ],
+          "sourceTags": [
+            null,
+            null,
+            null,
+            "company-filing"
+          ],
+          "flag": null,
+          "notes": "Fleet count was only provided for Q4 FY26."
+        }
+      ]
+    },
+    "shipping-corp": {
+      "name": "Shipping Corp of India",
+      "slug": "SCI",
+      "quarters": [
+        "Q2 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": "Q4 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 21382,
+      "kpis": [
+        {
+          "id": "freight-rate",
+          "label": "Realised freight rate",
+          "unit": "USD/day",
+          "flagBasis": "level",
+          "values": [
+            32709,
+            80914
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing"
+          ],
+          "flag": null,
+          "notes": null
+        }
+      ]
+    },
+    "thermax": {
+      "name": "Thermax",
+      "slug": "THERMAX",
+      "quarters": [
+        "Q4 FY26"
+      ],
+      "asOf": "Q4 FY26",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "ctxChars": 15138,
+      "kpis": [
+        {
+          "id": "order-book",
+          "label": "Order book",
+          "unit": "₹ cr",
+          "flagBasis": "qoq",
+          "values": [
+            13604
+          ],
+          "sourceTags": [
+            "company-filing"
+          ],
+          "flag": null,
+          "notes": null
         }
       ]
     }
