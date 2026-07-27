@@ -94,9 +94,11 @@ jobs:
         run: node pipeline/extract-kpis.mjs --scope all
 
       # --- 4. commentary --------------------------------------------------
-      # added in prompt 6 - earnings-call tone via pipeline/lib/llm.mjs
-      # - name: 'Step 4/5 - commentary'
-      #   run: node pipeline/fetch-commentary.mjs
+      # Classifies each company's management tone per quarter from the same cached
+      # concalls -> data/commentary.json (the Commentary tab). Accumulates in
+      # data/commentary-store.json, like the KPI store.
+      - name: 'Step 4/5 - commentary'
+        run: node pipeline/extract-commentary.mjs --scope all
 
       # --- 5. rescore -----------------------------------------------------
       # added in prompt 7 - replaces the SEED scores on the Cockpit
