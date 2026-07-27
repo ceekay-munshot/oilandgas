@@ -624,6 +624,17 @@ table.kpi td.co[rowspan]{vertical-align:top;}
   display:grid; place-items:center;
   font-size:9.5px; color:var(--ink-4); font-weight:600;
 }
+/* a read quarter is a solid colour block; the legend beside it decodes the hue,
+   and the hover carries the quote the tone rests on */
+.heat__cell--on{border:1px solid rgba(15,20,36,.10); color:transparent;}
+.toneshift{flex:1 1 auto; min-height:0; overflow:auto; display:flex; flex-direction:column; gap:5px; padding:8px 12px 10px;}
+.toneshift__row{display:grid; grid-template-columns:minmax(0,1fr) 18px 10px 18px auto; align-items:center; gap:6px; font-size:11px;}
+.toneshift__co{display:flex; align-items:center; gap:6px; min-width:0; font-weight:620; color:var(--ink-1);}
+.toneshift__co i{width:6px; height:6px; border-radius:50%; background:var(--c); flex:0 0 auto;}
+.toneshift__co span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.toneshift__sw{width:18px; height:12px; border-radius:4px; flex:0 0 auto;}
+.toneshift__arrow{color:var(--ink-3); text-align:center;}
+.toneshift__dir{font-size:10px; font-weight:700; letter-spacing:.02em; white-space:nowrap;}
 .legendbox{
   flex:1 1 auto; min-height:0; overflow:auto;
   display:flex; flex-direction:column; justify-content:space-evenly; gap:4px;
@@ -842,7 +853,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           <div class="card__head">
             <div class="card__headL"><span class="card__title">Tone over 4 quarters</span>
               <span class="card__sub" id="toneHeatSub">Heat strip</span></div>
-            <span class="chip chip--ghost">No data yet</span>
+            <span class="chip chip--ghost" id="toneHeatChip">No data yet</span>
           </div>
           <div class="card__body"><div class="heat" id="toneHeat"></div></div>
         </div>
@@ -853,9 +864,9 @@ table.kpi td.co[rowspan]{vertical-align:top;}
         <div class="card">
           <div class="card__head">
             <div class="card__headL"><span class="card__title">What changed this quarter</span></div>
-            <span class="chip chip--ghost">No data yet</span>
+            <span class="chip chip--ghost" id="toneShiftChip">No data yet</span>
           </div>
-          <div class="card__body"><div class="ghost" data-ghost="bars"></div></div>
+          <div class="card__body"><div class="toneshift" id="toneShift"><div class="ghost" data-ghost="bars"></div></div></div>
         </div>
       </div>
     </section>
@@ -1002,12 +1013,19 @@ table.kpi td.co[rowspan]{vertical-align:top;}
          rather than let it reject the batch and block the whole dashboard */
       fetch('data/kpis.json', { cache: 'no-cache' })
         .then(function (res) { return res.ok ? res.json() : null; })
+        .catch(function () { return null; }),
+      /* commentary.json is written by extract-commentary on the same schedule and
+         is likewise optional - absent until the first run, and the Commentary tab
+         degrades to "No data yet" without it. */
+      fetch('data/commentary.json', { cache: 'no-cache' })
+        .then(function (res) { return res.ok ? res.json() : null; })
         .catch(function () { return null; })
     ]).then(function (r) {
       DATA.companies = r[0];
       DATA.framework = r[1];
       DATA.macro = r[2];
       DATA.kpis = r[3];
+      DATA.commentary = r[4];
       DATA.companies.groups.forEach(function (g) {
         groupById[g.id] = g;
         g.companies.forEach(function (c) { byId[c.id] = c; });
@@ -2006,34 +2024,123 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 
   /* ---------------------------------------------------------- 4. commentary */
   function renderCommentary() {
-    var qs = DATA.companies.quarterLabels;
-    /* every tracked company gets a row - this is the shape the real heat strip
-       will take, so the skeleton matches what lands here later */
+    var com = DATA.commentary;
+    var toneById = {};
+    DATA.framework.toneScale.steps.forEach(function (s) { toneById[s.id] = s; });
+
+    /* Column headers: the window most companies share once tones exist, else the
+       backbone labels so the empty skeleton still reads. */
+    var qs = (com && com.quarters && com.quarters.length) ? com.quarters : DATA.companies.quarterLabels;
+
+    /* every tracked company gets a row, grouped and colour-coded, whether or not a
+       call has been read yet - an absent company is honest dashes, not a dropped row */
     var rows = [];
     DATA.companies.groups.forEach(function (g) {
-      g.companies.forEach(function (c) { rows.push({ name: c.name, what: c.what, color: g.color }); });
+      g.companies.forEach(function (c) {
+        rows.push({ id: c.id, name: c.name, what: c.what, color: g.color,
+          entry: (com && com.companies) ? com.companies[c.id] : null });
+      });
     });
+    var tonedCos = rows.filter(function (r) {
+      return r.entry && r.entry.tones && r.entry.tones.some(function (t) { return t.toneId; });
+    }).length;
+
     /* counts come from the data file, never hardcoded */
-    el('toneHeatSub').textContent =
-      'Heat strip · all ' + rows.length + ' companies, colour-coded by group';
+    el('toneHeatSub').textContent = com
+      ? 'Heat strip · ' + tonedCos + ' of ' + rows.length + ' companies have a call read'
+      : 'Heat strip · all ' + rows.length + ' companies, colour-coded by group';
+
+    var chip = el('toneHeatChip');
+    if (chip) {
+      if (com && tonedCos) {
+        chip.className = 'chip'; chip.style.setProperty('--c', '#3B82F6');
+        chip.innerHTML = '<span class="chip__sw"></span>' + tonedCos + ' read';
+      } else { chip.className = 'chip chip--ghost'; chip.textContent = 'No data yet'; }
+    }
+
     el('toneHeat').innerHTML =
       '<div class="heat__grid">' +
         '<div></div>' + qs.map(function (q) { return '<div class="heat__colhead">' + esc(q) + '</div>'; }).join('') +
         rows.map(function (r) {
-          return '<div class="heat__row" style="--c:' + r.color + '" title="' + esc(r.what) + '">' +
-              '<i></i><span>' + esc(r.name) + '</span></div>' +
-            qs.map(function () { return '<div class="heat__cell">&ndash;</div>'; }).join('');
+          var head = '<div class="heat__row" style="--c:' + r.color + '" title="' + esc(r.what) + '">' +
+            '<i></i><span>' + esc(r.name) + '</span></div>';
+          /* the company's own four quarters, newest at the right. Each cell names
+             the quarter it is, because the column heading is only the common window. */
+          var tones = (r.entry && r.entry.tones) ? r.entry.tones.slice(-4) : [];
+          var pad = 4 - tones.length;
+          var cells = '';
+          for (var i = 0; i < 4; i++) {
+            var t = (i < pad) ? null : tones[i - pad];
+            if (!t || !t.toneId) {
+              var lab = t ? t.quarter : '';
+              cells += '<div class="heat__cell" title="' +
+                esc((lab ? lab + ' · ' : '') + 'no call read' + (t && t.rationale ? ' · ' + t.rationale : '')) +
+                '">&ndash;</div>';
+            } else {
+              var s = toneById[t.toneId] || { color: '#AEB4C0', plainLabel: t.toneId, label: t.toneId };
+              var title = t.quarter + ' · ' + s.plainLabel + ' (' + s.label + ')' +
+                (t.quote ? ' · “' + t.quote + '”' : '') +
+                (t.rationale ? ' · ' + t.rationale : '') +
+                (t.doc ? ' · ' + t.doc : '');
+              cells += '<div class="heat__cell heat__cell--on" style="background:' + s.color +
+                '" title="' + esc(title) + '"></div>';
+            }
+          }
+          return head + cells;
         }).join('') +
       '</div>';
 
-    var t = DATA.framework.toneScale;
-    el('toneLegend').innerHTML = t.steps.map(function (s) {
+    el('toneLegend').innerHTML = DATA.framework.toneScale.steps.map(function (s) {
       return '<div class="legendrow" style="--c:' + s.color + '" title="' + esc(s.meaning) + '">' +
         '<span class="legendrow__sw"></span>' +
         '<span class="legendrow__txt">' +
           '<span class="legendrow__lab">' + esc(s.plainLabel) + '<span>' + esc(s.label) + '</span></span>' +
           '<span class="legendrow__plain">' + esc(s.meaning) + '</span>' +
         '</span>' +
+      '</div>';
+    }).join('');
+
+    renderToneShift(rows, toneById);
+  }
+
+  /* "What changed this quarter": companies whose tone moved between their two most
+     recent read quarters, biggest move first. Read from the timeline, so it says
+     nothing until a company has two quarters to compare. */
+  function renderToneShift(rows, toneById) {
+    var host = el('toneShift'), chip = el('toneShiftChip');
+    if (!host) return;
+    var moves = [];
+    rows.forEach(function (r) {
+      var tones = (r.entry && r.entry.tones) ? r.entry.tones.filter(function (t) { return t.toneId; }) : [];
+      if (tones.length < 2) return;
+      var to = tones[tones.length - 1], from = tones[tones.length - 2];
+      var delta = to.score - from.score;
+      if (!delta) return;
+      moves.push({ name: r.name, color: r.color, from: from, to: to, delta: delta, quarter: to.quarter });
+    });
+    moves.sort(function (a, b) { return Math.abs(b.delta) - Math.abs(a.delta); });
+
+    if (!moves.length) {
+      host.innerHTML = '<div class="ghost" data-ghost="bars"></div>';
+      if (chip) { chip.className = 'chip chip--ghost'; chip.textContent = DATA.commentary ? 'No moves yet' : 'No data yet'; }
+      return;
+    }
+    if (chip) {
+      chip.className = 'chip'; chip.style.setProperty('--c', '#3B82F6');
+      chip.innerHTML = '<span class="chip__sw"></span>' + moves.length + ' moved';
+    }
+    host.innerHTML = moves.slice(0, 8).map(function (m) {
+      var up = m.delta > 0;
+      var fromT = toneById[m.from.toneId] || {}, toT = toneById[m.to.toneId] || {};
+      var dir = (up ? '▲ ' : '▼ ') + (up ? 'more upbeat' : 'more cautious');
+      var title = m.quarter + ' · ' + (fromT.plainLabel || m.from.toneId) + ' → ' + (toT.plainLabel || m.to.toneId) +
+        (m.to.quote ? ' · “' + m.to.quote + '”' : '');
+      return '<div class="toneshift__row" title="' + esc(title) + '">' +
+        '<span class="toneshift__co" style="--c:' + m.color + '"><i></i><span>' + esc(m.name) + '</span></span>' +
+        '<span class="toneshift__sw" style="background:' + (fromT.color || '#AEB4C0') + '"></span>' +
+        '<span class="toneshift__arrow">→</span>' +
+        '<span class="toneshift__sw" style="background:' + (toT.color || '#AEB4C0') + '"></span>' +
+        '<b class="toneshift__dir" style="color:' + (up ? '#0F7A3A' : '#C42433') + '">' + esc(dir) + '</b>' +
       '</div>';
     }).join('');
   }

@@ -92,6 +92,13 @@ jobs:
         if: ${{ github.event.inputs.scope != 'dump' }}
         run: node pipeline/extract-kpis.mjs --scope ${{ github.event.inputs.scope || 'all' }}
 
+      # Step 4: classify how management SOUNDED each quarter from the same cached
+      # concalls -> data/commentary.json (the Commentary tab). Same job so it reads
+      # this run's cache; accumulates in data/commentary-store.json like the KPIs.
+      - name: Extract commentary
+        if: ${{ github.event.inputs.scope != 'dump' }}
+        run: node pipeline/extract-commentary.mjs --scope ${{ github.event.inputs.scope || 'all' }}
+
       - name: Commit if anything changed
         run: |
           set -euo pipefail
@@ -101,10 +108,10 @@ jobs:
           # companies.json carries the resolved slugs; the rest is the gathered
           # material and the extracted KPIs. The document cache is gitignored.
           #
-          # kpi-store.json MUST be committed: it is the durable record of every
-          # value ever extracted, and it is what lets the next run skip work
-          # already paid for. Drop it and every run starts from nothing again.
-          FILES="data/financials.json data/docs-manifest.json data/companies.json data/kpis.json data/insights.json data/kpi-store.json"
+          # kpi-store.json (and commentary-store.json) MUST be committed: they are
+          # the durable record of every value/tone ever extracted, and what lets the
+          # next run skip work already paid for. Drop them and every run starts over.
+          FILES="data/financials.json data/docs-manifest.json data/companies.json data/kpis.json data/insights.json data/kpi-store.json data/commentary.json data/commentary-store.json"
           if git diff --quiet -- $FILES; then
             echo "No company-data change - nothing to commit."
             exit 0

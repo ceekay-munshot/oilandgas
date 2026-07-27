@@ -136,12 +136,47 @@ citation inline:
 
 ---
 
+## The Commentary tab (management tone)
+
+Tab 4. Built to the same honesty bar as the KPIs, and deliberately a **twin** of
+the KPI pipeline rather than a new idea:
+
+```
+extract-commentary.mjs
+  gather each quarter's own concall (AI summary preferred, transcript fills)
+  window = 4 most recent quarters with text
+  fingerprint (docs + prompt version)   -> commentary-store.mjs (durable)
+  plan: ask the model ONLY about unsettled quarters
+  one LLM call: tone per quarter on the 5-step scale + a verbatim quote + why
+  merge (null never overwrites a real tone) -> render -> data/commentary.json
+```
+
+- **Files.** `parsers/commentary-prompt.mjs` (prompt, `TONE_SCHEMA`, `normalizeResult`,
+  `COMMENTARY_PROMPT_VERSION`), `lib/commentary-store.mjs` (accumulate/plan/merge/render,
+  reuses `fingerprintFor`/`docsSignature` from `kpi-store`), `extract-commentary.mjs`
+  (orchestrator). Durable record: `data/commentary-store.json`; the view the tab reads:
+  `data/commentary.json`. 18 tests in `test/commentary.test.mjs` (suite now **201**).
+- **The five tones** mirror `framework.json` `toneScale` (confident 5 … defensive 1).
+  An unrecognised label is dropped to null, never coerced; a quarter with no concall
+  is null, never a guess; each real tone carries the quote it rests on.
+- **Render.** `renderCommentary()` colours the heat strip from the tones and computes
+  "What changed this quarter" (biggest quarter-on-quarter move per company) in the
+  browser. `index.html` loads `data/commentary.json` optionally, so the tab degrades
+  to "No data yet" until the pipeline writes it.
+- **Rollout.** Wired into `refresh-company.yml` and `refresh-full.yml` after the KPI
+  step (same job, same cache). Like the KPIs, real tone fills on the **next scheduled
+  run** - the paid scrape/LLM can't run locally. A steady-state run classifies nothing
+  and spends nothing.
+- **Still SEED:** the Cockpit (tab 1) scores and the Insight & Action (tab 5) slots.
+
+---
+
 ## Workflows
 
 | Workflow | Trigger | Scope |
 |---|---|---|
 | `refresh-company.yml` | manual + **Mon 05:30 UTC** (+ **TEMP Tue–Thu**, remove after 2026-07-30) | `smoke` (4 cos) / `all` (27) / `dump` (recon) |
-| `refresh-full.yml` | manual + Mon 06:40 UTC | macro → screener → kpis |
+| `refresh-full.yml` | manual + Mon 06:40 UTC | macro → screener → kpis → **commentary** |
 | `refresh-macro.yml` | manual + daily | 6 macro tiles |
 | `probe-macro.yml` | manual | source recon |
 
