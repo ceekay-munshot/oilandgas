@@ -3,9 +3,9 @@
 Read this first if you are picking the project up in a new session. It is the
 state of play, the rules that are not negotiable, and what to do next.
 
-Last updated for the derived-KPIs change (branch
-`claude/company-data-derived-kpis-uwm535`); baseline was commit `13b4f7a`
-(PR #32 merged).
+Last updated for the derived-KPIs change plus the Gujarat Gas repoint and mid-week
+cron (branch `claude/company-data-derived-kpis-uwm535`); baseline was commit
+`13b4f7a` (PR #32 merged).
 
 ---
 
@@ -140,7 +140,7 @@ citation inline:
 
 | Workflow | Trigger | Scope |
 |---|---|---|
-| `refresh-company.yml` | manual + **Mon 05:30 UTC** | `smoke` (4 cos) / `all` (27) / `dump` (recon) |
+| `refresh-company.yml` | manual + **Mon 05:30 UTC** (+ **TEMP Tue–Thu**, remove after 2026-07-30) | `smoke` (4 cos) / `all` (27) / `dump` (recon) |
 | `refresh-full.yml` | manual + Mon 06:40 UTC | macro → screener → kpis |
 | `refresh-macro.yml` | manual + daily | 6 macro tiles |
 | `probe-macro.yml` | manual | source recon |
@@ -184,7 +184,7 @@ run after it, are both in. What they showed:
 | **Not disclosed anywhere** | Deep's day-rate, EIL's bid pipeline | Won't fill. Commercially sensitive — discussed qualitatively, never quantified. Show as an honest gap. |
 | **Market spreads, not company data** | base-oil spread, styrene–polystyrene | Belong in the **macro** pipeline, not company extraction. Different source entirely. |
 | **Computable but not stated** | EBITDA/scm, O2C EBITDA/tonne, CNG+PNG volume *growth* | **Done — `lib/derive.mjs`.** See below for what filled and what honestly did not. |
-| **Annual cadence** | reserves, RRR, wells drilled | Real data, but yearly. Currently skipped because the window is quarterly — surface with the cadence labelled rather than as four blanks. |
+| **Annual cadence** | ONGC's `New well count`, producers' reserves | Real data, but yearly. **Assessed (see §3a):** our *held* Insights evidence carries none of it — the producers' grids hold only quarterly production rows — so there is nothing to surface from what we hold today. The pipeline already withholds any annual figure that lands in a quarterly cell (Oil India's 6.64 case). Surfacing a labelled annual observation is a real feature but needs annual-report sourcing **and** render support, so it is left scoped, not built. |
 
 #### The derived KPIs — what filled, and what stayed a gap
 
@@ -203,7 +203,9 @@ its note. Outcome on the current data:
   four quarters (model), so there is nothing to fill; and Mahanagar's *Total*
   Sales Volume yoy does **not** match its reported CNG+PNG growth (total carries
   industrial & commercial gas), so the reproduce-or-refuse gate rejects it rather
-  than write a wrong-basis number. Gujarat Gas holds no quarterly volume.
+  than write a wrong-basis number. Gujarat Gas held no quarterly volume **on the
+  dead shell it was pointed at**; after the `GUJGASLTD` repoint (§3) it should,
+  so both EBITDA/scm and CNG+PNG growth become derivable for it on the next run.
 - **O2C EBITDA/tonne → stays a gap.** We hold O2C *throughput* but not the O2C
   *segment's* EBITDA — only Reliance's consolidated operating profit (Jio, Retail
   and E&P as well as O2C). Dividing that by refinery tonnes would be a fabricated
@@ -215,13 +217,56 @@ its note. Outcome on the current data:
   one quarter, ONGC has `Q3 FY25, Q4 FY25, Q2 FY26`. The window is the 4 most
   recent quarters that yielded documents, so a company with thin coverage gets a
   thin window. Worth deciding whether to pad or to state the gap.
-- **Six companies returned 0 cells**: Reliance, L&T, Gujarat Gas, Castrol, Linde,
-  Adani Ports. L&T was the wrong slug; the others need checking individually.
-- **Gujarat Gas** is the one company still on the yearly Insights view (no
-  Quarterly endpoint on its card).
+- **Gujarat Gas — repointed to the live listing (was a dead shell).**
+  `companies.json` pointed at slug `GUJRATGAS` = "Gujarat Gas Company Ltd(Merged)",
+  whose data freezes at 2015 (Mar 2015 on the quarterly view; 2021-03 in our
+  cached financials). The live city-gas company is **Gujarat Gas Ltd, slug
+  `GUJGASLTD`** (mkt cap ~₹25k cr, FY25 revenue ~₹15.4k cr) — now repointed. This
+  also **corrects a backwards claim in commit `f1d7bdd`'s message**, which said the
+  survivor was GSPL, "a transmission company". It is the reverse: the 2024 composite
+  scheme merges GSPC, **GSPL** and GEL *into* Gujarat Gas Ltd (GGL is the surviving,
+  CGD-authorised entity), then demerges the transmission business out into a new
+  "GSPL Transmission Ltd". So GGL is the correct entity for the city-gas KPIs, not
+  a wrong-basis substitute. Real quarterly data — and a proper **quarterly** Insights
+  grid (the dead shell's yearly-only view was a symptom of it being dead, not a
+  missing-endpoint rule) — fills on the next scrape against the new slug. The store
+  holds only nulls for `gujarat-gas`, so nothing stale blocks it, and the changed
+  document window re-triggers the empty cells via the fingerprint. *(Data still
+  fills on the next Actions run; the paid scrape can't run locally.)*
+  - **Watch — a rename in flight.** RoC approved renaming Gujarat Gas Ltd →
+    **Gujarat Energy Ltd** (effective 14 May 2026); a separate `GUJENERGY` slug also
+    exists on Screener. `GUJGASLTD` is the live, data-carrying page *today*; if a
+    future scrape 404s it, repoint to `GUJENERGY`.
+- **Companies that returned 0 cells** (from the last `scope: all` run): Reliance,
+  L&T, Castrol, Linde, Adani Ports. L&T and Gujarat Gas were both wrong slugs and
+  are now fixed; the rest need checking individually.
 - **`castrol-india`** returned 0 financial tables — likely standalone-only.
 - **Cockpit scores are still `SEED`** — prompts 8+ cover commentary tone and
   rescoring.
+
+### 3a. Annual-cadence data — the assessment (task done)
+
+The question was whether any KPI arrives yearly and is being shown as four
+quarterly blanks we could instead fill from **held** evidence. Checked against the
+data we actually hold:
+
+- **The producers' Insights grids hold only quarterly rows.** ONGC's grid is
+  `Crude Oil Production` and `Natural Gas Production` — both quarterly, no well
+  count, no reserves. So the one genuinely annual KPI in the spec, ONGC's
+  **New well count**, has no held figure at *any* cadence; it would come from the
+  annual report / a PPT, which the model read and returned null for. Nothing to
+  surface from held evidence.
+- **The dangerous case is already handled.** Where a yearly/cumulative figure
+  *does* slip into a quarterly slot, the store's one-unit-per-row guard withholds
+  it rather than display it: Oil India's `6.64 MMT / bcm` (an annual-basis number)
+  is withheld against the quarterly `MMT` row of `0.85, 0.85, 0.86`. So we never
+  show a wrong-cadence number — the honesty machinery covers this without new code.
+- **Conclusion.** There is no quick win hiding in held data. Truly surfacing an
+  annual observation (e.g. "N wells in FY25", labelled *annual*, in one cell of the
+  quarterly grid) is a real feature that needs (a) annual-report sourcing the
+  extractor doesn't do yet and (b) a render path that draws a single labelled cell
+  instead of four blanks. Left scoped for a later prompt, not built blind — it
+  can't be tested here without the paid scrape.
 
 ### 4. Deliberately unmapped (do not "fix" these)
 
@@ -276,6 +321,6 @@ Optional repo **variables**: `OPENAI_MODEL`, `MISTRAL_MODEL` — change the
 extraction model with no code change. Defaults are `gpt-4o` and
 `mistral-large-latest`.
 
-Tests: `cd pipeline && npm test` — **167 passing**. Parsers are pure and tested
+Tests: `cd pipeline && npm test` — **183 passing**. Parsers are pure and tested
 against fixtures taken from real responses; network and browser code is kept
 separate and is not unit-tested.
