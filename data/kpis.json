@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-27T10:42:33.741Z",
+  "generatedAt": "2026-07-27T11:09:27.085Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -1075,7 +1075,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33579,
+      "ctxChars": 33395,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -1575,7 +1575,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 9361,
+      "ctxChars": 9510,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -1647,7 +1647,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin not stated in any excerpt."
+          "notes": "Petchem margin not mentioned in any excerpt."
         }
       ]
     },
@@ -2327,12 +2327,12 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32760,
+      "ctxChars": 33746,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
           "label": "POL/LPG/LNG cargo throughput",
-          "unit": "% yoy",
+          "unit": "percent",
           "flagBasis": "yoy",
           "values": [
             null,
