@@ -4,7 +4,12 @@
   "note": "The exact KPIs the client tracks for each company, verbatim from the client doc - not invented by the pipeline. flagBasis says how the series is read: 'level' is the value itself, 'qoq' a quarter-on-quarter stock like an order book, 'yoy' a figure that is already year-on-year. keywords are only used to pre-filter the source text before the LLM reads it. unit is a hint; the extractor records whatever unit the source actually states.",
   "updated": "2026-07-26",
   "quartersNote": "Only a fallback for a company with no cached documents. Each company's real window is the four most recent quarters its own concalls report, derived per run by the extractor, so it rolls forward by itself as new calls appear on Screener.",
-  "quarters": ["Q2 FY26", "Q3 FY26", "Q4 FY26", "Q1 FY27"],
+  "quarters": [
+    "Q2 FY26",
+    "Q3 FY26",
+    "Q4 FY26",
+    "Q1 FY27"
+  ],
   "flatBandPct": 1.5,
   "sourceTagGuide": {
     "company-filing": "Number printed in the company's own results/PPT (a reported fact).",
@@ -15,116 +20,911 @@
   },
   "companies": {
     "ongc": [
-      { "id": "capex-vs-budget", "label": "Capex spend vs budget", "unit": "₹ cr", "flagBasis": "level", "keywords": ["capex", "capital expenditure", "capital outlay", "budget", "guidance", "investment"] },
-      { "id": "production-volume", "label": "Production volume", "unit": "MMT / bcm", "flagBasis": "level", "keywords": ["production", "volume", "output", "crude", "gas production", "MMT", "mmscmd", "bcm"] },
-      { "id": "new-well-count", "label": "New well count", "unit": "wells", "flagBasis": "level", "keywords": ["well", "wells", "drilled", "drilling", "exploration", "development wells"] }
+      {
+        "id": "capex-vs-budget",
+        "label": "Capex spend vs budget",
+        "unit": "₹ cr",
+        "flagBasis": "level",
+        "keywords": [
+          "capex",
+          "capital expenditure",
+          "capital outlay",
+          "budget",
+          "guidance",
+          "investment"
+        ]
+      },
+      {
+        "id": "production-volume",
+        "label": "Production volume",
+        "unit": "MMT / bcm",
+        "flagBasis": "level",
+        "keywords": [
+          "production",
+          "volume",
+          "output",
+          "crude",
+          "gas production",
+          "MMT",
+          "mmscmd",
+          "bcm"
+        ],
+        "insightsRows": [
+          "Crude Oil Production (Standalone)"
+        ]
+      },
+      {
+        "id": "new-well-count",
+        "label": "New well count",
+        "unit": "wells",
+        "flagBasis": "level",
+        "keywords": [
+          "well",
+          "wells",
+          "drilled",
+          "drilling",
+          "exploration",
+          "development wells"
+        ],
+        "insightsRows": [
+          "Wells Drilled (Total)"
+        ]
+      }
     ],
     "oil-india": [
-      { "id": "capex-vs-budget", "label": "Capex spend vs budget", "unit": "₹ cr", "flagBasis": "level", "keywords": ["capex", "capital expenditure", "budget", "guidance", "investment"] },
-      { "id": "production-volume", "label": "Production volume", "unit": "MMT / bcm", "flagBasis": "level", "keywords": ["production", "volume", "output", "crude", "gas production", "MMT", "mmscmd"] }
+      {
+        "id": "capex-vs-budget",
+        "label": "Capex spend vs budget",
+        "unit": "₹ cr",
+        "flagBasis": "level",
+        "keywords": [
+          "capex",
+          "capital expenditure",
+          "budget",
+          "guidance",
+          "investment"
+        ]
+      },
+      {
+        "id": "production-volume",
+        "label": "Production volume",
+        "unit": "MMT / bcm",
+        "flagBasis": "level",
+        "keywords": [
+          "production",
+          "volume",
+          "output",
+          "crude",
+          "gas production",
+          "MMT",
+          "mmscmd"
+        ],
+        "insightsRows": [
+          "Crude Oil Production"
+        ]
+      }
     ],
     "deep-industries": [
-      { "id": "asset-utilisation", "label": "Rig / asset utilisation %", "unit": "%", "flagBasis": "level", "keywords": ["utilisation", "utilization", "utilised", "asset", "rig", "fleet", "deployed"] },
-      { "id": "day-rate", "label": "Day-rate", "unit": "$/day or ₹/day", "flagBasis": "level", "keywords": ["day rate", "day-rate", "dayrate", "charter rate", "hire rate", "per day", "rate"] },
-      { "id": "order-book", "label": "Order book", "unit": "₹ cr", "flagBasis": "qoq", "keywords": ["order book", "orderbook", "order backlog", "outstanding order", "unexecuted"] }
+      {
+        "id": "asset-utilisation",
+        "label": "Rig / asset utilisation %",
+        "unit": "%",
+        "flagBasis": "level",
+        "keywords": [
+          "utilisation",
+          "utilization",
+          "utilised",
+          "asset",
+          "rig",
+          "fleet",
+          "deployed"
+        ],
+        "insightsRows": [
+          "Capacity Utilization - Workover & Drilling Rigs"
+        ]
+      },
+      {
+        "id": "day-rate",
+        "label": "Day-rate",
+        "unit": "$/day or ₹/day",
+        "flagBasis": "level",
+        "keywords": [
+          "day rate",
+          "day-rate",
+          "dayrate",
+          "charter rate",
+          "hire rate",
+          "per day",
+          "rate"
+        ]
+      },
+      {
+        "id": "order-book",
+        "label": "Order book",
+        "unit": "₹ cr",
+        "flagBasis": "qoq",
+        "keywords": [
+          "order book",
+          "orderbook",
+          "order backlog",
+          "outstanding order",
+          "unexecuted"
+        ],
+        "insightsRows": [
+          "Order Book"
+        ]
+      }
     ],
     "jindal-drilling": [
-      { "id": "rig-utilisation", "label": "Offshore rig utilisation %", "unit": "%", "flagBasis": "level", "keywords": ["utilisation", "utilization", "rig", "offshore", "jack-up", "deployed"] },
-      { "id": "charter-day-rate", "label": "Charter day-rate", "unit": "$/day", "flagBasis": "level", "keywords": ["charter", "day rate", "dayrate", "hire rate", "per day", "rate"] },
-      { "id": "order-book", "label": "Order book", "unit": "₹ cr", "flagBasis": "qoq", "keywords": ["order book", "orderbook", "order backlog", "outstanding order"] }
+      {
+        "id": "rig-utilisation",
+        "label": "Offshore rig utilisation %",
+        "unit": "%",
+        "flagBasis": "level",
+        "keywords": [
+          "utilisation",
+          "utilization",
+          "rig",
+          "offshore",
+          "jack-up",
+          "deployed"
+        ]
+      },
+      {
+        "id": "charter-day-rate",
+        "label": "Charter day-rate",
+        "unit": "$/day",
+        "flagBasis": "level",
+        "keywords": [
+          "charter",
+          "day rate",
+          "dayrate",
+          "hire rate",
+          "per day",
+          "rate"
+        ],
+        "insightsRows": [
+          "Day rate - Discovery-I (USD per operating day)"
+        ]
+      },
+      {
+        "id": "order-book",
+        "label": "Order book",
+        "unit": "₹ cr",
+        "flagBasis": "qoq",
+        "keywords": [
+          "order book",
+          "orderbook",
+          "order backlog",
+          "outstanding order"
+        ],
+        "insightsRows": [
+          "Rig order book"
+        ]
+      }
     ],
     "engineers-india": [
-      { "id": "order-inflow", "label": "Order inflow", "unit": "₹ cr", "flagBasis": "level", "keywords": ["order inflow", "order intake", "new orders", "order booking", "orders secured", "order win"] },
-      { "id": "order-book", "label": "Order book", "unit": "₹ cr", "flagBasis": "qoq", "keywords": ["order book", "orderbook", "order backlog", "outstanding order"] },
-      { "id": "bid-pipeline", "label": "Bid pipeline", "unit": "₹ cr", "flagBasis": "level", "keywords": ["bid", "pipeline", "tender", "L1", "prospective", "opportunities", "bidding"] }
+      {
+        "id": "order-inflow",
+        "label": "Order inflow",
+        "unit": "₹ cr",
+        "flagBasis": "level",
+        "keywords": [
+          "order inflow",
+          "order intake",
+          "new orders",
+          "order booking",
+          "orders secured",
+          "order win"
+        ],
+        "insightsRows": [
+          "Order Inflow / Business Secured Total"
+        ]
+      },
+      {
+        "id": "order-book",
+        "label": "Order book",
+        "unit": "₹ cr",
+        "flagBasis": "qoq",
+        "keywords": [
+          "order book",
+          "orderbook",
+          "order backlog",
+          "outstanding order"
+        ],
+        "insightsRows": [
+          "Total Order Book"
+        ]
+      },
+      {
+        "id": "bid-pipeline",
+        "label": "Bid pipeline",
+        "unit": "₹ cr",
+        "flagBasis": "level",
+        "keywords": [
+          "bid",
+          "pipeline",
+          "tender",
+          "L1",
+          "prospective",
+          "opportunities",
+          "bidding"
+        ]
+      }
     ],
     "lt": [
-      { "id": "hydrocarbon-order-inflow", "label": "Hydrocarbon order inflow", "unit": "₹ cr", "flagBasis": "level", "keywords": ["hydrocarbon", "order inflow", "order intake", "new orders", "energy"] },
-      { "id": "hydrocarbon-order-book", "label": "Hydrocarbon order book", "unit": "₹ cr", "flagBasis": "qoq", "keywords": ["hydrocarbon", "order book", "orderbook", "backlog"] }
+      {
+        "id": "hydrocarbon-order-inflow",
+        "label": "Hydrocarbon order inflow",
+        "unit": "₹ cr",
+        "flagBasis": "level",
+        "keywords": [
+          "hydrocarbon",
+          "order inflow",
+          "order intake",
+          "new orders",
+          "energy"
+        ]
+      },
+      {
+        "id": "hydrocarbon-order-book",
+        "label": "Hydrocarbon order book",
+        "unit": "₹ cr",
+        "flagBasis": "qoq",
+        "keywords": [
+          "hydrocarbon",
+          "order book",
+          "orderbook",
+          "backlog"
+        ]
+      }
     ],
     "ratnamani": [
-      { "id": "order-book", "label": "Order book", "unit": "₹ cr", "flagBasis": "qoq", "keywords": ["order book", "orderbook", "order backlog", "outstanding order"] },
-      { "id": "pipe-order-inflow", "label": "Pipe order inflow", "unit": "₹ cr", "flagBasis": "level", "keywords": ["order inflow", "order intake", "new orders", "pipe", "tube", "order booking"] }
+      {
+        "id": "order-book",
+        "label": "Order book",
+        "unit": "₹ cr",
+        "flagBasis": "qoq",
+        "keywords": [
+          "order book",
+          "orderbook",
+          "order backlog",
+          "outstanding order"
+        ],
+        "insightsRows": [
+          "Order Book (Standalone)"
+        ]
+      },
+      {
+        "id": "pipe-order-inflow",
+        "label": "Pipe order inflow",
+        "unit": "₹ cr",
+        "flagBasis": "level",
+        "keywords": [
+          "order inflow",
+          "order intake",
+          "new orders",
+          "pipe",
+          "tube",
+          "order booking"
+        ]
+      }
     ],
     "welspun-corp": [
-      { "id": "order-book", "label": "Order book", "unit": "₹ cr / MT", "flagBasis": "qoq", "keywords": ["order book", "orderbook", "order backlog", "outstanding order"] },
-      { "id": "line-pipe-order-inflow", "label": "Line-pipe order inflow", "unit": "₹ cr / MT", "flagBasis": "level", "keywords": ["line pipe", "linepipe", "order inflow", "order intake", "new orders", "pipe"] }
+      {
+        "id": "order-book",
+        "label": "Order book",
+        "unit": "₹ cr / MT",
+        "flagBasis": "qoq",
+        "keywords": [
+          "order book",
+          "orderbook",
+          "order backlog",
+          "outstanding order"
+        ],
+        "insightsRows": [
+          "Total Order Book Value"
+        ]
+      },
+      {
+        "id": "line-pipe-order-inflow",
+        "label": "Line-pipe order inflow",
+        "unit": "₹ cr / MT",
+        "flagBasis": "level",
+        "keywords": [
+          "line pipe",
+          "linepipe",
+          "order inflow",
+          "order intake",
+          "new orders",
+          "pipe"
+        ]
+      }
     ],
     "reliance": [
-      { "id": "o2c-ebitda-per-tonne", "label": "O2C EBITDA per tonne", "unit": "$/t", "flagBasis": "level", "keywords": ["O2C", "oil to chemicals", "EBITDA", "per tonne", "per ton"] },
-      { "id": "petchem-margin", "label": "Petchem margin", "unit": "$/t", "flagBasis": "level", "keywords": ["petchem", "petrochemical", "polymer", "polyester", "margin", "delta", "spread"] },
-      { "id": "retail-fuel-margin", "label": "Retail fuel margin", "unit": "₹/l", "flagBasis": "level", "keywords": ["retail", "fuel", "marketing margin", "petrol", "diesel", "jio-bp"] }
+      {
+        "id": "o2c-ebitda-per-tonne",
+        "label": "O2C EBITDA per tonne",
+        "unit": "$/t",
+        "flagBasis": "level",
+        "keywords": [
+          "O2C",
+          "oil to chemicals",
+          "EBITDA",
+          "per tonne",
+          "per ton"
+        ]
+      },
+      {
+        "id": "petchem-margin",
+        "label": "Petchem margin",
+        "unit": "$/t",
+        "flagBasis": "level",
+        "keywords": [
+          "petchem",
+          "petrochemical",
+          "polymer",
+          "polyester",
+          "margin",
+          "delta",
+          "spread"
+        ]
+      },
+      {
+        "id": "retail-fuel-margin",
+        "label": "Retail fuel margin",
+        "unit": "₹/l",
+        "flagBasis": "level",
+        "keywords": [
+          "retail",
+          "fuel",
+          "marketing margin",
+          "petrol",
+          "diesel",
+          "jio-bp"
+        ]
+      }
     ],
     "iocl": [
-      { "id": "grm", "label": "GRM", "unit": "$/bbl", "flagBasis": "level", "keywords": ["GRM", "gross refining margin", "refining margin", "refinery margin"] },
-      { "id": "marketing-margin", "label": "Marketing margin", "unit": "₹/l", "flagBasis": "level", "keywords": ["marketing margin", "retail margin", "fuel margin"] },
-      { "id": "throughput", "label": "Throughput", "unit": "MMT", "flagBasis": "level", "keywords": ["throughput", "crude processed", "refinery throughput", "capacity utilisation", "MMT"] }
+      {
+        "id": "grm",
+        "label": "GRM",
+        "unit": "$/bbl",
+        "flagBasis": "level",
+        "keywords": [
+          "GRM",
+          "gross refining margin",
+          "refining margin",
+          "refinery margin"
+        ]
+      },
+      {
+        "id": "marketing-margin",
+        "label": "Marketing margin",
+        "unit": "₹/l",
+        "flagBasis": "level",
+        "keywords": [
+          "marketing margin",
+          "retail margin",
+          "fuel margin"
+        ]
+      },
+      {
+        "id": "throughput",
+        "label": "Throughput",
+        "unit": "MMT",
+        "flagBasis": "level",
+        "keywords": [
+          "throughput",
+          "crude processed",
+          "refinery throughput",
+          "capacity utilisation",
+          "MMT"
+        ],
+        "insightsRows": [
+          "Refinery Throughput"
+        ]
+      }
     ],
     "bpcl": [
-      { "id": "grm", "label": "GRM", "unit": "$/bbl", "flagBasis": "level", "keywords": ["GRM", "gross refining margin", "refining margin", "refinery margin"] },
-      { "id": "marketing-margin", "label": "Marketing margin", "unit": "₹/l", "flagBasis": "level", "keywords": ["marketing margin", "retail margin", "fuel margin"] },
-      { "id": "throughput", "label": "Throughput", "unit": "MMT", "flagBasis": "level", "keywords": ["throughput", "crude processed", "refinery throughput", "capacity utilisation", "MMT"] }
+      {
+        "id": "grm",
+        "label": "GRM",
+        "unit": "$/bbl",
+        "flagBasis": "level",
+        "keywords": [
+          "GRM",
+          "gross refining margin",
+          "refining margin",
+          "refinery margin"
+        ],
+        "insightsRows": [
+          "Gross Refining Margin (GRM)"
+        ]
+      },
+      {
+        "id": "marketing-margin",
+        "label": "Marketing margin",
+        "unit": "₹/l",
+        "flagBasis": "level",
+        "keywords": [
+          "marketing margin",
+          "retail margin",
+          "fuel margin"
+        ]
+      },
+      {
+        "id": "throughput",
+        "label": "Throughput",
+        "unit": "MMT",
+        "flagBasis": "level",
+        "keywords": [
+          "throughput",
+          "crude processed",
+          "refinery throughput",
+          "capacity utilisation",
+          "MMT"
+        ],
+        "insightsRows": [
+          "Refinery Crude Throughput"
+        ]
+      }
     ],
     "hpcl": [
-      { "id": "grm", "label": "GRM", "unit": "$/bbl", "flagBasis": "level", "keywords": ["GRM", "gross refining margin", "refining margin", "refinery margin"] },
-      { "id": "marketing-margin", "label": "Marketing margin", "unit": "₹/l", "flagBasis": "level", "keywords": ["marketing margin", "retail margin", "fuel margin"] },
-      { "id": "throughput", "label": "Throughput", "unit": "MMT", "flagBasis": "level", "keywords": ["throughput", "crude processed", "refinery throughput", "capacity utilisation", "MMT"] }
+      {
+        "id": "grm",
+        "label": "GRM",
+        "unit": "$/bbl",
+        "flagBasis": "level",
+        "keywords": [
+          "GRM",
+          "gross refining margin",
+          "refining margin",
+          "refinery margin"
+        ]
+      },
+      {
+        "id": "marketing-margin",
+        "label": "Marketing margin",
+        "unit": "₹/l",
+        "flagBasis": "level",
+        "keywords": [
+          "marketing margin",
+          "retail margin",
+          "fuel margin"
+        ]
+      },
+      {
+        "id": "throughput",
+        "label": "Throughput",
+        "unit": "MMT",
+        "flagBasis": "level",
+        "keywords": [
+          "throughput",
+          "crude processed",
+          "refinery throughput",
+          "capacity utilisation",
+          "MMT"
+        ],
+        "insightsRows": [
+          "Refining Throughput (HPCL Standalone)"
+        ]
+      }
     ],
     "gail": [
-      { "id": "gas-transmission-volume", "label": "Gas transmission volume", "unit": "mmscmd", "flagBasis": "level", "keywords": ["transmission", "gas transmission", "volume", "mmscmd", "pipeline"] },
-      { "id": "petchem-margin", "label": "Petchem margin", "unit": "$/t", "flagBasis": "level", "keywords": ["petchem", "petrochemical", "polymer", "margin", "spread"] }
+      {
+        "id": "gas-transmission-volume",
+        "label": "Gas transmission volume",
+        "unit": "mmscmd",
+        "flagBasis": "level",
+        "keywords": [
+          "transmission",
+          "gas transmission",
+          "volume",
+          "mmscmd",
+          "pipeline"
+        ],
+        "insightsRows": [
+          "Natural Gas Transmission Volume"
+        ]
+      },
+      {
+        "id": "petchem-margin",
+        "label": "Petchem margin",
+        "unit": "$/t",
+        "flagBasis": "level",
+        "keywords": [
+          "petchem",
+          "petrochemical",
+          "polymer",
+          "margin",
+          "spread"
+        ]
+      }
     ],
     "petronet-lng": [
-      { "id": "regas-utilisation", "label": "Regas utilisation %", "unit": "%", "flagBasis": "level", "keywords": ["regas", "regasification", "utilisation", "utilization", "capacity", "Dahej"] },
-      { "id": "volume", "label": "Volume", "unit": "tmt / mmbtu", "flagBasis": "level", "keywords": ["volume", "throughput", "tmt", "mmbtu", "cargoes", "processed"] }
+      {
+        "id": "regas-utilisation",
+        "label": "Regas utilisation %",
+        "unit": "%",
+        "flagBasis": "level",
+        "keywords": [
+          "regas",
+          "regasification",
+          "utilisation",
+          "utilization",
+          "capacity",
+          "Dahej"
+        ],
+        "insightsRows": [
+          "Dahej Terminal Capacity Utilization"
+        ]
+      },
+      {
+        "id": "volume",
+        "label": "Volume",
+        "unit": "tmt / mmbtu",
+        "flagBasis": "level",
+        "keywords": [
+          "volume",
+          "throughput",
+          "tmt",
+          "mmbtu",
+          "cargoes",
+          "processed"
+        ],
+        "insightsRows": [
+          "Total LNG Throughput"
+        ]
+      }
     ],
     "igl": [
-      { "id": "cng-png-volume-growth", "label": "CNG+PNG volume growth", "unit": "% yoy", "flagBasis": "yoy", "keywords": ["CNG", "PNG", "volume", "growth", "scm", "sales volume"] },
-      { "id": "ebitda-per-scm", "label": "EBITDA / scm", "unit": "₹/scm", "flagBasis": "level", "keywords": ["EBITDA", "scm", "per scm", "unit margin", "margin"] }
+      {
+        "id": "cng-png-volume-growth",
+        "label": "CNG+PNG volume growth",
+        "unit": "% yoy",
+        "flagBasis": "yoy",
+        "keywords": [
+          "CNG",
+          "PNG",
+          "volume",
+          "growth",
+          "scm",
+          "sales volume"
+        ]
+      },
+      {
+        "id": "ebitda-per-scm",
+        "label": "EBITDA / scm",
+        "unit": "₹/scm",
+        "flagBasis": "level",
+        "keywords": [
+          "EBITDA",
+          "scm",
+          "per scm",
+          "unit margin",
+          "margin"
+        ]
+      }
     ],
     "mahanagar-gas": [
-      { "id": "cng-png-volume-growth", "label": "CNG+PNG volume growth", "unit": "% yoy", "flagBasis": "yoy", "keywords": ["CNG", "PNG", "volume", "growth", "scm", "sales volume"] },
-      { "id": "ebitda-per-scm", "label": "EBITDA / scm", "unit": "₹/scm", "flagBasis": "level", "keywords": ["EBITDA", "scm", "per scm", "unit margin", "margin"] }
+      {
+        "id": "cng-png-volume-growth",
+        "label": "CNG+PNG volume growth",
+        "unit": "% yoy",
+        "flagBasis": "yoy",
+        "keywords": [
+          "CNG",
+          "PNG",
+          "volume",
+          "growth",
+          "scm",
+          "sales volume"
+        ]
+      },
+      {
+        "id": "ebitda-per-scm",
+        "label": "EBITDA / scm",
+        "unit": "₹/scm",
+        "flagBasis": "level",
+        "keywords": [
+          "EBITDA",
+          "scm",
+          "per scm",
+          "unit margin",
+          "margin"
+        ]
+      }
     ],
     "gujarat-gas": [
-      { "id": "cng-png-volume-growth", "label": "CNG+PNG volume growth", "unit": "% yoy", "flagBasis": "yoy", "keywords": ["CNG", "PNG", "volume", "growth", "scm", "sales volume"] },
-      { "id": "ebitda-per-scm", "label": "EBITDA / scm", "unit": "₹/scm", "flagBasis": "level", "keywords": ["EBITDA", "scm", "per scm", "unit margin", "margin"] }
+      {
+        "id": "cng-png-volume-growth",
+        "label": "CNG+PNG volume growth",
+        "unit": "% yoy",
+        "flagBasis": "yoy",
+        "keywords": [
+          "CNG",
+          "PNG",
+          "volume",
+          "growth",
+          "scm",
+          "sales volume"
+        ]
+      },
+      {
+        "id": "ebitda-per-scm",
+        "label": "EBITDA / scm",
+        "unit": "₹/scm",
+        "flagBasis": "level",
+        "keywords": [
+          "EBITDA",
+          "scm",
+          "per scm",
+          "unit margin",
+          "margin"
+        ]
+      }
     ],
     "aegis-logistics": [
-      { "id": "lpg-throughput", "label": "LPG throughput", "unit": "% yoy", "flagBasis": "yoy", "keywords": ["LPG", "throughput", "volume", "tonne", "growth"] },
-      { "id": "terminal-utilisation", "label": "Terminal utilisation %", "unit": "%", "flagBasis": "level", "keywords": ["terminal", "utilisation", "utilization", "capacity", "storage"] }
+      {
+        "id": "lpg-throughput",
+        "label": "LPG throughput",
+        "unit": "% yoy",
+        "flagBasis": "yoy",
+        "keywords": [
+          "LPG",
+          "throughput",
+          "volume",
+          "tonne",
+          "growth"
+        ],
+        "insightsRows": [
+          "LPG Terminal Throughput Volume (Logistics)"
+        ]
+      },
+      {
+        "id": "terminal-utilisation",
+        "label": "Terminal utilisation %",
+        "unit": "%",
+        "flagBasis": "level",
+        "keywords": [
+          "terminal",
+          "utilisation",
+          "utilization",
+          "capacity",
+          "storage"
+        ]
+      }
     ],
     "aegis-vopak": [
-      { "id": "lpg-throughput", "label": "LPG throughput", "unit": "% yoy", "flagBasis": "yoy", "keywords": ["LPG", "throughput", "volume", "tonne", "growth"] },
-      { "id": "terminal-utilisation", "label": "Terminal utilisation %", "unit": "%", "flagBasis": "level", "keywords": ["terminal", "utilisation", "utilization", "capacity", "storage"] }
+      {
+        "id": "lpg-throughput",
+        "label": "LPG throughput",
+        "unit": "% yoy",
+        "flagBasis": "yoy",
+        "keywords": [
+          "LPG",
+          "throughput",
+          "volume",
+          "tonne",
+          "growth"
+        ],
+        "insightsRows": [
+          "LPG/Gas Throughput"
+        ]
+      },
+      {
+        "id": "terminal-utilisation",
+        "label": "Terminal utilisation %",
+        "unit": "%",
+        "flagBasis": "level",
+        "keywords": [
+          "terminal",
+          "utilisation",
+          "utilization",
+          "capacity",
+          "storage"
+        ]
+      }
     ],
     "supreme-petrochem": [
-      { "id": "sps-spread", "label": "Styrene-polystyrene spread", "unit": "$/t", "flagBasis": "level", "keywords": ["styrene", "polystyrene", "spread", "margin", "delta"] },
-      { "id": "volume", "label": "Volume", "unit": "MT", "flagBasis": "level", "keywords": ["volume", "sales volume", "tonnage", "MT", "throughput"] }
+      {
+        "id": "sps-spread",
+        "label": "Styrene-polystyrene spread",
+        "unit": "$/t",
+        "flagBasis": "level",
+        "keywords": [
+          "styrene",
+          "polystyrene",
+          "spread",
+          "margin",
+          "delta"
+        ]
+      },
+      {
+        "id": "volume",
+        "label": "Volume",
+        "unit": "MT",
+        "flagBasis": "level",
+        "keywords": [
+          "volume",
+          "sales volume",
+          "tonnage",
+          "MT",
+          "throughput"
+        ],
+        "insightsRows": [
+          "Sales Volume (Manufactured Products)"
+        ]
+      }
     ],
     "castrol-india": [
-      { "id": "lubricant-volume", "label": "Lubricant volume", "unit": "% yoy", "flagBasis": "yoy", "keywords": ["lubricant", "volume", "litre", "kilolitre", "sales volume", "growth"] },
-      { "id": "base-oil-spread", "label": "Base-oil spread", "unit": "$/t", "flagBasis": "level", "keywords": ["base oil", "base-oil", "spread", "margin"] }
+      {
+        "id": "lubricant-volume",
+        "label": "Lubricant volume",
+        "unit": "% yoy",
+        "flagBasis": "yoy",
+        "keywords": [
+          "lubricant",
+          "volume",
+          "litre",
+          "kilolitre",
+          "sales volume",
+          "growth"
+        ],
+        "insightsRows": [
+          "Lubricant Volume"
+        ]
+      },
+      {
+        "id": "base-oil-spread",
+        "label": "Base-oil spread",
+        "unit": "$/t",
+        "flagBasis": "level",
+        "keywords": [
+          "base oil",
+          "base-oil",
+          "spread",
+          "margin"
+        ]
+      }
     ],
     "gandhar-oil": [
-      { "id": "base-oil-spread", "label": "Base-oil spread", "unit": "$/t", "flagBasis": "level", "keywords": ["base oil", "base-oil", "spread", "margin"] },
-      { "id": "white-oil-volume", "label": "White-oil volume", "unit": "MT", "flagBasis": "level", "keywords": ["white oil", "white-oil", "volume", "speciality", "sales volume"] }
+      {
+        "id": "base-oil-spread",
+        "label": "Base-oil spread",
+        "unit": "$/t",
+        "flagBasis": "level",
+        "keywords": [
+          "base oil",
+          "base-oil",
+          "spread",
+          "margin"
+        ]
+      },
+      {
+        "id": "white-oil-volume",
+        "label": "White-oil volume",
+        "unit": "MT",
+        "flagBasis": "level",
+        "keywords": [
+          "white oil",
+          "white-oil",
+          "volume",
+          "speciality",
+          "sales volume"
+        ],
+        "insightsRows": [
+          "PHPO Sales Volume"
+        ]
+      }
     ],
     "linde-india": [
-      { "id": "industrial-gas-volume", "label": "Industrial gas volume", "unit": "volume index", "flagBasis": "level", "keywords": ["industrial gas", "volume", "oxygen", "nitrogen", "gas volume", "merchant"] }
+      {
+        "id": "industrial-gas-volume",
+        "label": "Industrial gas volume",
+        "unit": "volume index",
+        "flagBasis": "level",
+        "keywords": [
+          "industrial gas",
+          "volume",
+          "oxygen",
+          "nitrogen",
+          "gas volume",
+          "merchant"
+        ]
+      }
     ],
     "adani-ports": [
-      { "id": "pol-lpg-lng-throughput", "label": "POL/LPG/LNG cargo throughput", "unit": "% yoy", "flagBasis": "yoy", "keywords": ["POL", "LPG", "LNG", "cargo", "throughput", "volume", "MMT", "liquid"] }
+      {
+        "id": "pol-lpg-lng-throughput",
+        "label": "POL/LPG/LNG cargo throughput",
+        "unit": "% yoy",
+        "flagBasis": "yoy",
+        "keywords": [
+          "POL",
+          "LPG",
+          "LNG",
+          "cargo",
+          "throughput",
+          "volume",
+          "MMT",
+          "liquid"
+        ]
+      }
     ],
     "ge-shipping": [
-      { "id": "tanker-freight-rate", "label": "Realised tanker freight rate", "unit": "$/day (TCE)", "flagBasis": "level", "keywords": ["freight rate", "tanker", "TCE", "time charter", "realised", "spot rate"] },
-      { "id": "fleet-deployment", "label": "Fleet deployment", "unit": "vessels / %", "flagBasis": "level", "keywords": ["fleet", "deployment", "deployed", "vessels", "ships", "days"] }
+      {
+        "id": "tanker-freight-rate",
+        "label": "Realised tanker freight rate",
+        "unit": "$/day (TCE)",
+        "flagBasis": "level",
+        "keywords": [
+          "freight rate",
+          "tanker",
+          "TCE",
+          "time charter",
+          "realised",
+          "spot rate"
+        ],
+        "insightsRows": [
+          "Average TCY - Crude Carriers"
+        ]
+      },
+      {
+        "id": "fleet-deployment",
+        "label": "Fleet deployment",
+        "unit": "vessels / %",
+        "flagBasis": "level",
+        "keywords": [
+          "fleet",
+          "deployment",
+          "deployed",
+          "vessels",
+          "ships",
+          "days"
+        ],
+        "insightsRows": [
+          "Revenue Days - Shipping (Total)"
+        ]
+      }
     ],
     "shipping-corp": [
-      { "id": "freight-rate", "label": "Realised freight rate", "unit": "$/day (TCE)", "flagBasis": "level", "keywords": ["freight rate", "realised", "TCE", "charter", "spot rate"] }
+      {
+        "id": "freight-rate",
+        "label": "Realised freight rate",
+        "unit": "$/day (TCE)",
+        "flagBasis": "level",
+        "keywords": [
+          "freight rate",
+          "realised",
+          "TCE",
+          "charter",
+          "spot rate"
+        ],
+        "insightsRows": [
+          "VLCC TD3C (MEG-China) average TCE rate"
+        ]
+      }
     ],
     "thermax": [
-      { "id": "order-book", "label": "Order book", "unit": "₹ cr", "flagBasis": "qoq", "keywords": ["order book", "orderbook", "order backlog", "outstanding order", "unexecuted"] }
+      {
+        "id": "order-book",
+        "label": "Order book",
+        "unit": "₹ cr",
+        "flagBasis": "qoq",
+        "keywords": [
+          "order book",
+          "orderbook",
+          "order backlog",
+          "outstanding order",
+          "unexecuted"
+        ],
+        "insightsRows": [
+          "Consolidated Order Balance (Backlog)"
+        ]
+      }
     ]
-  }
+  },
+  "insightsNote": "insightsRows names the Screener Investors -> Insights row(s) that ARE this KPI. The extractor fills those cells deterministically from data/insights.json - no model, exact units, and Screener's own document+page citation. A row that is merely RELATED is deliberately left unmapped: a wrong number carrying a citation is worse than a gap."
 }

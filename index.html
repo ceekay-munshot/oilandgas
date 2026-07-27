@@ -543,6 +543,11 @@ table.kpi td.co i{
 }
 table.kpi td.what{color:var(--ink-3); font-weight:450; max-width:230px; overflow:hidden; text-overflow:ellipsis;}
 table.kpi td.empty{color:var(--ink-4); font-weight:500;}
+/* A value carrying Screener's own document+page citation. The underline is the
+   only thing on this table that says "you can go and check this one", so it is
+   deliberately quiet - a hint, not a badge. */
+table.kpi td.cited{text-decoration:underline; text-decoration-style:dotted;
+  text-decoration-color:var(--ink-4); text-underline-offset:3px;}
 /* ---- KPI real-data cells ---------------------------------------------------
    the company name uses rowspan, so on continuation rows the KPI label becomes
    the DOM first-child and nth-child alignment flips - pin the numbers back and
@@ -1937,19 +1942,30 @@ table.kpi td.co[rowspan]{vertical-align:top;}
            names the quarter it belongs to, because the column heading cannot:
            without it a number under "Latest" is unattributable. Nulls stay a dash,
            titled with the quarter and the note that says why it is blank. */
-        var vals = [], tags = [];
+        var vals = [], tags = [], cites = [];
         for (var q = 0; q < KPI_COLS.length; q++) {
           vals.push(kpiAt(k.values, ax, q));
           tags.push(kpiAt(k.sourceTags, ax, q));
+          cites.push(k.citations ? kpiAt(k.citations, ax, q) : null);
         }
         for (var i = 0; i < KPI_COLS.length; i++) {
           var v = vals[i], qlab = kpiQLab(ax, i);
           if (v == null || v === '' || !isFinite(Number(v))) {
+            /* An empty cell says the company did not state it - not that we
+               failed to look. The note carries whatever the extractor could say
+               about why, so hovering answers "is this missing or unreported?". */
             cells += '<td class="empty num" title="' +
-              esc(qlab + ' · not stated' + (k.notes ? ' · ' + k.notes : '')) + '">&ndash;</td>';
+              esc(qlab + ' · not disclosed for this quarter' +
+                  (k.notes ? ' · ' + k.notes : '')) + '">&ndash;</td>';
           } else {
             var tag = kpiTagText(tags[i]);
-            cells += '<td class="num" title="' + esc(qlab + (tag ? ' · ' + tag : '')) + '">' +
+            /* A cell taken from Screener's Insights grid carries that table's own
+               document and page. Showing it turns "trust the pipeline" into
+               "here is the page the number is printed on". */
+            var c = cites[i];
+            var src = c && c.doc ? c.doc + (c.page ? ', page ' + c.page : '') : '';
+            cells += '<td class="num' + (src ? ' cited' : '') + '" title="' +
+              esc(qlab + (tag ? ' · ' + tag : '') + (src ? ' · ' + src : '')) + '">' +
               kpiTagDot(tags[i]) + esc(kpiNum(v)) + '</td>';
           }
         }
