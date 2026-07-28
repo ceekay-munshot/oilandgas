@@ -15,7 +15,7 @@ import { scrapePage } from '../lib/scrape.mjs';
 import { toText, extractLabelledNumber } from '../parsers/quote.mjs';
 import { parsePpacGasNotification } from '../parsers/ppac-notification.mjs';
 import { parseInvestingQuote } from '../parsers/investing.mjs';
-import { findGasNotifications } from './ppac-docs.mjs';
+import { findGasNotifications, findFlashReports } from './ppac-docs.mjs';
 
 /**
  * The scraper-backed targets. `candidates` are the URLs worth trying in order;
@@ -37,6 +37,55 @@ export const SCRAPE_TARGETS = {
     keywords: ['APM', 'administered', 'MMBTU', 'MMBtu', 'ceiling', 'US$', 'GCV', 'Dated'],
     labels: [/APM[^0-9]{0,40}/, /administered price[^0-9]{0,40}/, /ceiling[^0-9]{0,40}/],
     parsers: [['parsePpacGasNotification', (html) => parsePpacGasNotification(html)]]
+  },
+  'ppac-flash': {
+    label: 'PPAC monthly flash report / oil & gas snapshot (refinery-wise throughput)',
+    unit: 'TMT / MMT',
+    plausible: [0, 100000],
+    /* The only free publication carrying company-level refinery throughput for
+       IOCL, BPCL, HPCL and the private refiners. Confirmed 2026-07-28: the PDF
+       downloads with a plain GET but yields 559 characters of text layer from
+       539 KB, i.e. it is scanned. So the number is behind OCR, and this probe
+       is the test of whether Firecrawl can read the tables out of it.
+
+       No parser yet, deliberately. The point of the first run is to see what
+       the OCR actually returns before a single selector is written - the same
+       discipline the Insights table cost three rounds to learn. */
+    discover: findFlashReports,
+    candidates: ['https://ppac.gov.in/prices/price-build-up'],
+    keywords: [
+      'IOCL', 'BPCL', 'HPCL', 'Indian Oil', 'Bharat Petroleum', 'Hindustan Petroleum',
+      'Reliance', 'Refinery', 'Refineries', 'Crude Oil Processed', 'Throughput',
+      'Capacity Utilisation', 'Price Build', 'Dealer', 'Excise', 'TMT'
+    ],
+    labels: [/Crude Oil Processed[^0-9]{0,60}/, /Refiner(?:y|ies)[^0-9]{0,60}/],
+    parsers: []
+  },
+  'pngrb-cgd': {
+    label: 'PNGRB data bank - natural gas sales (CNG+PNG) by CGD company',
+    unit: 'MMSCM',
+    plausible: [0, 100000],
+    /* Entity-level CNG and PNG volumes for IGL, Mahanagar Gas and Gujarat Gas -
+       the numbers behind three volume-growth KPIs that currently depend on a
+       management remark on a call.
+
+       Confirmed 2026-07-28: the data-bank page returns 200 to a plain GET and
+       DOES name the datasets ("Monthly CGD MIS", "Natural Gas Sales (CNG+PNG)
+       by CGD Companies"), but the file rows are loaded by script - the static
+       HTML has the table headers and no links. Rendering it needs a real
+       browser, which is what the scraper provides and this sandbox could not
+       reach. That is the whole question this probe answers. */
+    candidates: [
+      'https://pngrb.gov.in/eng-web/data-bank.html',
+      'https://pngrb.gov.in/OurRegulation/cgd-data.html'
+    ],
+    keywords: [
+      'CGD MIS', 'Natural Gas Sales', 'CNG', 'PNG', 'MMSCM', 'SCM',
+      'Indraprastha', 'Mahanagar', 'Gujarat Gas', 'Adani Total', 'Torrent',
+      '.xls', '.pdf', 'Data Sheet'
+    ],
+    labels: [/CNG[^0-9]{0,40}/, /PNG[^0-9]{0,40}/],
+    parsers: []
   },
   'baltic-dirty': {
     label: 'BDTI - Baltic Dirty Tanker Index',
