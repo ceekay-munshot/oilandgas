@@ -352,3 +352,98 @@ test('buildScores survives absent macro and commentary', () => {
   assert.equal(out.toneDrift.length, 0);
   assert.equal(out.macro.macroBias, null);
 });
+
+/* --------------------------------------------- summary / actions / changelog */
+
+import { summaryLines, actionsFor, snapshotOf, changesSince } from '../lib/cycle-score.mjs';
+
+const FW5 = Object.assign({}, FRAMEWORK, {
+  stageActions: { byStage: {
+    'early-upcycle': [{ id: 'a1', action: 'Track order inflow', why: 'inflow turns first', focus: ['eil'] }],
+    'trough': [{ id: 't1', action: 'Check enquiries', why: 'enquiries move first', focus: [] }]
+  } }
+});
+
+test('the summary always leads with where we are, in a fixed order', () => {
+  const lines = summaryLines({
+    scores: { leading: G(80, 60), coincident: G(40, 50), lagging: G(30, 30) },
+    stage: { stageId: 'early-upcycle', because: ['Leading 80, coincident 40.'] },
+    divergence: { value: 40, signsDiffer: true },
+    macro: { macroBias: 'up', scoreBias: 'up', agree: true, conflict: false, supporting: 3, opposing: 1 },
+    drift: [{ name: 'ONGC', from: 'confident', to: 'cautious', direction: 'down', steps: -3 }]
+  }, FW5);
+  assert.deepEqual(lines.map((l) => l.id), ['where', 'scores', 'divergence', 'macro', 'tone']);
+  /* the fixture's stages carry no words, so this also proves the id is the
+     last resort rather than the string "undefined" */
+  assert.ok(lines[0].text.startsWith('early-upcycle'));
+  assert.ok(!/undefined/.test(lines.map((l) => l.text).join(' ')));
+  assert.ok(lines[2].text.includes('opposite sides'));      /* the split is called out */
+});
+
+test('the summary says so plainly when there is no call', () => {
+  const lines = summaryLines({
+    scores: { leading: G(null, null), coincident: G(null, null) },
+    stage: { stageId: null, because: [] }, divergence: { value: null }, macro: {}, drift: []
+  }, FW5);
+  assert.equal(lines[0].id, 'where');
+  assert.ok(/no group has a scored KPI/i.test(lines[0].text));
+});
+
+test('actions come from the called stage and carry that stage', () => {
+  const a = actionsFor('early-upcycle', FW5);
+  assert.equal(a.length, 1);
+  assert.equal(a[0].stageId, 'early-upcycle');
+  assert.ok(a[0].stageLabel);
+  /* a different call returns a different list - the panel repopulates */
+  assert.notDeepEqual(actionsFor('trough', FW5).map((x) => x.id), a.map((x) => x.id));
+  assert.deepEqual(actionsFor('mid-upcycle', FW5), []);      /* no row, no invention */
+});
+
+test('the first run says it is the first run rather than inventing changes', () => {
+  const changes = changesSince(null, { scores: {}, alerts: [] }, FW5);
+  assert.equal(changes.length, 1);
+  assert.equal(changes[0].kind, 'first-run');
+});
+
+test('the change log reports a stage move, a score move and only NEW alerts', () => {
+  const prev = snapshotOf({
+    generatedAt: 't0', asOf: 'Q3 FY26',
+    stage: { stageId: 'trough' },
+    scores: { leading: { score: 40 }, coincident: { score: 50 } },
+    alerts: [{ id: 'old-one' }]
+  });
+  const now = {
+    stage: { stageId: 'early-upcycle' },
+    scores: { leading: { score: 60 }, coincident: { score: 50 } },
+    alerts: [{ id: 'old-one', text: 'repeat' }, { id: 'new-one', text: 'something new' }]
+  };
+  const changes = changesSince(prev, now, FW5);
+  const kinds = changes.map((c) => c.kind);
+  assert.ok(kinds.includes('stage-call'));
+  assert.ok(kinds.includes('score'));
+  assert.equal(changes.filter((c) => c.kind === 'alert').length, 1);   /* not the repeat */
+  assert.ok(changes.find((c) => c.kind === 'alert').text.includes('something new'));
+  /* coincident did not move, so it earns no row */
+  assert.ok(!changes.some((c) => c.kind === 'score' && /Moving now/.test(c.text)));
+});
+
+test('a quiet quarter says nothing moved rather than showing an empty panel', () => {
+  const prev = snapshotOf({ stage: { stageId: 'trough' }, scores: { leading: { score: 40 } }, alerts: [] });
+  const changes = changesSince(prev, { stage: { stageId: 'trough' }, scores: { leading: { score: 40 } }, alerts: [] }, FW5);
+  assert.equal(changes.length, 1);
+  assert.equal(changes[0].kind, 'none');
+});
+
+test('the snapshot stays flat, so the file cannot grow every run', () => {
+  const snap = snapshotOf({ stage: { stageId: 'trough' }, scores: { leading: { score: 1 } }, alerts: [], previous: { deep: true } });
+  assert.equal(snap.previous, undefined);
+  assert.deepEqual(Object.keys(snap).sort(), ['alertIds', 'asOf', 'generatedAt', 'scores', 'stageId']);
+});
+
+test('buildScores carries summary, actions and changes for Section 5', () => {
+  const kpis = kpisWith({ a: [RISING] });
+  const out = buildScores({ kpis, companies: groupsOf({ leading: ['a'] }), framework: FW5, macro: null, commentary: null });
+  assert.ok(Array.isArray(out.summary) && out.summary.length);
+  assert.ok(Array.isArray(out.actions));
+  assert.ok(Array.isArray(out.changes));
+});

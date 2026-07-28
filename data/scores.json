@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-07-28T16:09:37.756Z",
+  "generatedAt": "2026-07-28T16:21:42.682Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "momentumMap": {
@@ -335,5 +335,111 @@
       "kind": "tone-drift",
       "text": "Shipping Corp of India moved 2 tone steps up (neutral → confident) in Q4 FY26."
     }
-  ]
+  ],
+  "summary": [
+    {
+      "id": "where",
+      "label": "Where we are",
+      "text": "Just turning up (Early Upcycle). Leading 50 (neutral, rising), coincident 33 (weak, falling). Leading strong or rising, coincident not yet following."
+    },
+    {
+      "id": "scores",
+      "label": "The three groups",
+      "text": "Moves first 50 (up 25); Moving now 33 (down 17); Moves last 13 (down 25)."
+    },
+    {
+      "id": "divergence",
+      "label": "The split",
+      "text": "Moves first sits above Moving now by 17 points, but both are on the same side of neutral, so this is a matter of degree rather than a turn."
+    },
+    {
+      "id": "macro",
+      "label": "The backdrop",
+      "text": "The market backdrop points down on 1 of 4 readings that have a direction, which agrees with the scores."
+    },
+    {
+      "id": "tone",
+      "label": "What management said",
+      "text": "12 companies have moved two tone steps or more, 10 of them downward — the largest is ONGC (confident → cautious)."
+    }
+  ],
+  "actions": [
+    {
+      "id": "early-order-inflow",
+      "action": "Track order inflow and book-to-bill at the early movers",
+      "why": "This is the stage where inflow turns before revenue does; the gap is the opportunity.",
+      "focus": [
+        "engineers-india",
+        "l-t",
+        "welspun-corp",
+        "ratnamani-metals"
+      ],
+      "stageId": "early-upcycle",
+      "stageLabel": "Just turning up"
+    },
+    {
+      "id": "early-utilisation",
+      "action": "Check rig and asset utilisation, and day-rate direction",
+      "why": "Utilisation tightening ahead of pricing is the classic early-upcycle tell.",
+      "focus": [
+        "deep-industries",
+        "jindal-drilling"
+      ],
+      "stageId": "early-upcycle",
+      "stageLabel": "Just turning up"
+    },
+    {
+      "id": "early-laggard-check",
+      "action": "Confirm the refiners and shippers have NOT yet turned",
+      "why": "If the back of the chain has already moved, the call is later than early upcycle.",
+      "focus": [
+        "iocl",
+        "bpcl",
+        "hpcl",
+        "ge-shipping",
+        "shipping-corp"
+      ],
+      "stageId": "early-upcycle",
+      "stageLabel": "Just turning up"
+    },
+    {
+      "id": "early-capacity",
+      "action": "Ask who is adding capacity, and at what cost",
+      "why": "Capacity added early earns the whole cycle; added late it defines the next downturn.",
+      "focus": [],
+      "stageId": "early-upcycle",
+      "stageLabel": "Just turning up"
+    }
+  ],
+  "changes": [
+    {
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
+    }
+  ],
+  "previous": {
+    "generatedAt": "2026-07-28T16:09:37.756Z",
+    "asOf": "Q4 FY26",
+    "stageId": "early-upcycle",
+    "scores": {
+      "leading": 50,
+      "coincident": 33,
+      "lagging": 13
+    },
+    "alertIds": [
+      "coverage-lagging",
+      "tone-bpcl",
+      "tone-castrol-india",
+      "tone-gail",
+      "tone-gandhar-oil",
+      "tone-igl",
+      "tone-lt",
+      "tone-mahanagar-gas",
+      "tone-ongc",
+      "tone-petronet-lng",
+      "tone-ratnamani",
+      "tone-shipping-corp",
+      "tone-supreme-petrochem"
+    ]
+  }
 }

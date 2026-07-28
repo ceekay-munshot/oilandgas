@@ -442,10 +442,166 @@ export function buildAlerts({ macro, scores, coverage, drift, divergence }) {
 }
 
 /**
+ * The summary read, assembled in a fixed structure so it says the same KINDS of
+ * thing every quarter and only the facts move. Returned as labelled lines
+ * rather than one blob, so the tab can lay them out and a test can check them.
+ *
+ * It states only what the scores already say. There is no sentence here that
+ * needs a judgement the pipeline has not made.
+ */
+export function summaryLines({ scores, stage, divergence, macro, drift }, framework) {
+  const stageOf = (id) => ((framework && framework.cycleStages) || []).find((s) => s.id === id);
+  const nameOf = (id) => {
+    const g = ((framework && framework.groupMeta) || []).find((m) => m.id === id);
+    return (g && (g.plainLabel || g.label)) || id;
+  };
+  const s = scores || {};
+  const lines = [];
+
+  const st = stage && stage.stageId ? stageOf(stage.stageId) : null;
+  /* fall back through the label chain to the id: a stage missing its words
+     should read awkwardly, never as the word "undefined" */
+  const stageWords = st
+    ? (st.plainLabel && st.label && st.plainLabel !== st.label)
+        ? `${st.plainLabel} (${st.label})`
+        : (st.plainLabel || st.label || st.id)
+    : null;
+  lines.push({
+    id: 'where',
+    label: 'Where we are',
+    text: st
+      ? `${stageWords}. ${(stage.because || []).join(' ')}`.trim()
+      : 'No cycle stage has been called: no group has a scored KPI yet.'
+  });
+
+  const parts = ['leading', 'coincident', 'lagging'].map((id) => {
+    const g = s[id];
+    if (!g || !isNum(g.score)) return `${nameOf(id)} has no score yet`;
+    const move = isNum(g.delta) ? (g.delta > 0 ? `up ${g.delta}` : g.delta < 0 ? `down ${Math.abs(g.delta)}` : 'unchanged') : 'no prior quarter';
+    return `${nameOf(id)} ${g.score} (${move})`;
+  });
+  lines.push({ id: 'scores', label: 'The three groups', text: parts.join('; ') + '.' });
+
+  if (divergence && isNum(divergence.value)) {
+    lines.push({
+      id: 'divergence',
+      label: 'The split',
+      text: divergence.signsDiffer
+        ? `${nameOf('leading')} and ${nameOf('coincident')} are on opposite sides of neutral, ${Math.abs(divergence.value)} points apart. That is the reading worth acting on: the front of the chain has moved and the middle has not followed.`
+        : `${nameOf('leading')} sits ${divergence.value > 0 ? 'above' : 'below'} ${nameOf('coincident')} by ${Math.abs(divergence.value)} points, but both are on the same side of neutral, so this is a matter of degree rather than a turn.`
+    });
+  }
+
+  if (macro && macro.macroBias) {
+    lines.push({
+      id: 'macro',
+      label: 'The backdrop',
+      text: macro.conflict
+        ? `Flagged for review: the market backdrop points ${macro.macroBias} while the scores are moving ${macro.scoreBias}. ${macro.supporting} of ${macro.supporting + macro.opposing} readings back the cycle.`
+        : `The market backdrop points ${macro.macroBias} on ${macro.supporting} of ${macro.supporting + macro.opposing} readings that have a direction${macro.agree === true ? ', which agrees with the scores' : ''}.`
+    });
+  }
+
+  const d = drift || [];
+  if (d.length) {
+    const down = d.filter((x) => x.direction === 'down').length;
+    lines.push({
+      id: 'tone',
+      label: 'What management said',
+      text: `${d.length} ${d.length === 1 ? 'company has' : 'companies have'} moved two tone steps or more, ` +
+            `${down} of them downward` +
+            (d[0] ? ` — the largest is ${d[0].name} (${d[0].from} → ${d[0].to}).` : '.')
+    });
+  }
+
+  return lines;
+}
+
+/**
+ * The research shortlist for the called stage - the client's stage-5b table,
+ * read from framework.json so the wording is theirs to change. Every row
+ * carries the stage it came from, because the panel has to show that.
+ */
+export function actionsFor(stageId, framework) {
+  const table = (framework && framework.stageActions && framework.stageActions.byStage) || {};
+  const stage = ((framework && framework.cycleStages) || []).find((s) => s.id === stageId);
+  return (table[stageId] || []).map((row) => ({
+    ...row,
+    stageId,
+    stageLabel: (stage && stage.plainLabel) || stageId
+  }));
+}
+
+/**
+ * A compact snapshot of a reading, small enough to keep inside the next one so
+ * the change log has something real to diff against.
+ */
+export function snapshotOf(payload) {
+  if (!payload) return null;
+  const scores = {};
+  Object.keys(payload.scores || {}).forEach((k) => { scores[k] = payload.scores[k] ? payload.scores[k].score : null; });
+  return {
+    generatedAt: payload.generatedAt || null,
+    asOf: payload.asOf || null,
+    stageId: (payload.stage && payload.stage.stageId) || null,
+    scores,
+    /* the alert identities, so a repeat of the same alert is not "new" */
+    alertIds: (payload.alerts || []).map((a) => a.id).sort()
+  };
+}
+
+/**
+ * What moved since the previous run. The client asks a returning reader to be
+ * able to read the delta rather than the whole board.
+ *
+ * The first run has nothing to compare against and says so - it does not
+ * manufacture a change list out of its own starting state.
+ */
+export function changesSince(prev, payload, framework) {
+  if (!prev) {
+    return [{ kind: 'first-run', text: 'First reading on record - nothing to compare against yet.' }];
+  }
+  const out = [];
+  const stageOf = (id) => ((framework && framework.cycleStages) || []).find((s) => s.id === id);
+  const nameOf = (id) => {
+    const g = ((framework && framework.groupMeta) || []).find((m) => m.id === id);
+    return (g && (g.plainLabel || g.label)) || id;
+  };
+
+  const nowStage = (payload.stage && payload.stage.stageId) || null;
+  if (prev.stageId !== nowStage) {
+    const a = prev.stageId ? (stageOf(prev.stageId) || {}).plainLabel || prev.stageId : 'no call';
+    const b = nowStage ? (stageOf(nowStage) || {}).plainLabel || nowStage : 'no call';
+    out.push({ kind: 'stage-call', text: `The cycle call moved from ${a} to ${b}.` });
+  }
+
+  Object.keys(payload.scores || {}).forEach((id) => {
+    const before = prev.scores ? prev.scores[id] : null;
+    const after = payload.scores[id] ? payload.scores[id].score : null;
+    if (!isNum(before) || !isNum(after)) {
+      if (!isNum(before) && isNum(after)) out.push({ kind: 'score', text: `${nameOf(id)} has a score for the first time (${after}).` });
+      return;
+    }
+    const move = after - before;
+    if (Math.abs(move) >= DELTA_BAND) {
+      out.push({ kind: 'score', text: `${nameOf(id)} moved ${move > 0 ? 'up' : 'down'} ${Math.abs(move)} points to ${after}.` });
+    }
+  });
+
+  const seen = new Set(prev.alertIds || []);
+  (payload.alerts || []).forEach((a) => {
+    if (!seen.has(a.id)) out.push({ kind: 'alert', text: 'New alert: ' + a.text });
+  });
+
+  if (!out.length) out.push({ kind: 'none', text: 'Nothing material moved since the last refresh.' });
+  return out;
+}
+
+/**
  * Assemble the whole scores payload - what data/scores.json holds and what the
  * Cockpit, the macro consistency panel and the Insight tab all read.
  */
-export function buildScores({ kpis, companies, framework, macro, commentary, generatedAt }) {
+export function buildScores({ kpis, companies, framework, macro, commentary, generatedAt, previous }) {
   const scores = bucketScores(kpis, companies);
   const divergence = divergenceOf(scores);
   const stage = stageCall(scores, framework && framework.cycleStages);
@@ -464,7 +620,7 @@ export function buildScores({ kpis, companies, framework, macro, commentary, gen
     return (isNum(L) && isNum(C)) ? L - C : null;
   });
 
-  return {
+  const payload = {
     schemaVersion: 1,
     title: 'Cycle scores',
     generatedBy: 'pipeline/rescore.mjs',
@@ -486,4 +642,15 @@ export function buildScores({ kpis, companies, framework, macro, commentary, gen
     coverageWarnings: coverage,
     alerts
   };
+
+  /* Section 5 reads these three off the same payload, so the summary, the
+     shortlist and the change log can never describe a different reading from
+     the one the Cockpit is showing. */
+  payload.summary = summaryLines(
+    { scores, stage, divergence, macro: macroVerdict, drift }, framework);
+  payload.actions = actionsFor(stage.stageId, framework);
+  payload.changes = changesSince(previous, payload, framework);
+  payload.previous = previous || null;
+
+  return payload;
 }

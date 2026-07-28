@@ -21,7 +21,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { buildScores } from './lib/cycle-score.mjs';
+import { buildScores, snapshotOf } from './lib/cycle-score.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DATA = resolve(ROOT, 'data');
@@ -50,8 +50,15 @@ async function main() {
     readJson('commentary.json', { optional: true })
   ]);
 
+  /* The reading this run replaces. Kept as a compact snapshot inside the new
+     file so the change log diffs against something real rather than against
+     assumptions about what last week looked like. `previous.previous` is never
+     nested - only the snapshot is carried, so the file cannot grow each run. */
+  const prior = await readJson('scores.json', { optional: true });
+  const previous = snapshotOf(prior);
+
   const payload = buildScores({
-    kpis, companies, framework, macro, commentary,
+    kpis, companies, framework, macro, commentary, previous,
     generatedAt: new Date().toISOString()
   });
 
@@ -79,6 +86,9 @@ async function main() {
   }
   console.log(`  alerts: ${payload.alerts.length}`);
   payload.alerts.forEach((a) => console.log(`    - [${a.severity}] ${a.text}`));
+  console.log(`  actions for this stage: ${payload.actions.length}`);
+  console.log('  changed since last run:');
+  payload.changes.forEach((c) => console.log(`    - ${c.text}`));
 
   if (DRY) {
     console.log('\n--dry-run: nothing written.');
