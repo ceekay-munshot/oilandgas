@@ -64,3 +64,28 @@ export function reportedQuarter(iso) {
 export function quarterIndex(label, quarters) {
   return (quarters || []).indexOf(label);
 }
+
+/**
+ * "Q3 FY26" -> a sortable number, so two quarter labels can be COMPARED rather
+ * than merely matched.
+ *
+ * Needed wherever "older than" is the question. Comparing the labels as strings
+ * puts Q1 FY27 before Q4 FY26, which is backwards by a quarter and would mark
+ * the company that reported earliest as the stale one.
+ *
+ * @param {string} label e.g. "Q3 FY26"
+ * @returns {number|null} null when the label is not a quarter
+ */
+export function quarterOrdinal(label) {
+  const m = /^Q([1-4])\s*FY\s*(\d{2,4})$/i.exec(String(label || '').trim());
+  if (!m) return null;
+  let year = Number(m[2]);
+  if (year < 100) year += 2000;
+  return year * 4 + Number(m[1]);
+}
+
+/** true when `label` names a quarter strictly older than `latest`. */
+export function isOlderQuarter(label, latest) {
+  const a = quarterOrdinal(label), b = quarterOrdinal(latest);
+  return a !== null && b !== null && a < b;
+}

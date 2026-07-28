@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-28T08:12:27.123Z",
+  "generatedAt": "2026-07-28T16:57:23.823Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -17,7 +17,7 @@
     "realCells": 119,
     "nullCells": 105,
     "kpis": 58,
-    "kpisWithTrend": 31
+    "kpisWithTrend": 30
   },
   "companies": {
     "deep-industries": {
@@ -32,7 +32,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33997,
+      "ctxChars": 3998,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -67,6 +67,12 @@
               "page": 12
             }
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "From Screener Insights row \"Capacity Utilization - Workover & Drilling Rigs\"; latest value cited to Concall Transcript - 21 May 2026, page 12."
         },
@@ -94,6 +100,12 @@
             null
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -135,7 +147,13 @@
               "page": 20
             }
           ],
-          "flag": "steady",
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
           "notes": null
         }
       ]
@@ -152,7 +170,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34068,
+      "ctxChars": 4070,
       "kpis": [
         {
           "id": "order-inflow",
@@ -193,6 +211,12 @@
               "quote": "Total Business secured 42,668 5,027 23,349 14,292 23,791 27,577 18,784 11,989",
               "page": 15
             },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
             null
           ],
           "flag": "inflecting-down",
@@ -243,6 +267,12 @@
               "page": 28
             }
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "inflecting-up",
           "notes": null
         },
@@ -275,6 +305,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "Bid pipeline not mentioned in any excerpt."
         }
@@ -292,7 +328,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 27823,
+      "ctxChars": 3823,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -330,6 +366,12 @@
               "quote": "capacity utilization at 90.1% during the current quarter",
               "page": 3
             }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
           ],
           "flag": "inflecting-down",
           "notes": "From Screener Insights row \"Dahej Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
@@ -375,6 +417,12 @@
               "page": 3
             }
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "inflecting-down",
           "notes": null
         }
@@ -392,7 +440,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 27698,
+      "ctxChars": 3699,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -418,6 +466,12 @@
             null
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -455,6 +509,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "inflecting-down",
           "notes": "Derived: EBITDA (Screener quarterly Operating Profit, ₹ cr) ÷ quarterly gas volume (Insights \"Total Sales Volume\" MMSCMD × days in quarter), in ₹/scm."
         }
@@ -471,7 +531,7 @@
       "asOf": "Q2 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21419,
+      "ctxChars": 3420,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -494,6 +554,11 @@
             null
           ],
           "citations": [
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null
@@ -538,6 +603,11 @@
               "page": 2
             }
           ],
+          "oneOffs": [
+            null,
+            null,
+            null
+          ],
           "flag": "decelerating",
           "notes": null
         },
@@ -566,6 +636,11 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "New well count not explicitly stated for any specific quarter."
         }
@@ -583,7 +658,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33643,
+      "ctxChars": 3643,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -609,6 +684,12 @@
             "model"
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -658,6 +739,12 @@
             },
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "steady",
           "notes": "6.64 MMT / bcm (model) withheld: does not match this row's unit MMT"
         }
@@ -675,7 +762,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32257,
+      "ctxChars": 3716,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -701,6 +788,12 @@
             null
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -754,6 +847,12 @@
               "page": 6
             }
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "steady",
           "notes": null
         },
@@ -802,6 +901,12 @@
               "page": 6
             }
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "decelerating",
           "notes": null
         }
@@ -819,7 +924,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33717,
+      "ctxChars": 3721,
       "kpis": [
         {
           "id": "hydrocarbon-order-inflow",
@@ -845,6 +950,12 @@
             "model"
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -882,7 +993,13 @@
             null,
             null
           ],
-          "flag": "accelerating",
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
           "notes": "Q3 FY26 order book not stated."
         }
       ]
@@ -899,7 +1016,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33027,
+      "ctxChars": 3027,
       "kpis": [
         {
           "id": "order-book",
@@ -925,6 +1042,12 @@
             "model"
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -962,6 +1085,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "Q2 FY25, Q4 FY25, and Q4 FY26 pipe order inflow not stated. Q2 FY26 pipe order inflow from concall."
         }
@@ -979,7 +1108,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34052,
+      "ctxChars": 4054,
       "kpis": [
         {
           "id": "order-book",
@@ -1026,7 +1155,13 @@
               "page": 2
             }
           ],
-          "flag": "accelerating",
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-up",
           "notes": null
         },
         {
@@ -1058,6 +1193,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "Line-pipe order inflow figures were not provided in any of the excerpts."
         }
@@ -1075,7 +1216,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33395,
+      "ctxChars": 3396,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -1101,6 +1242,12 @@
             null
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -1138,6 +1285,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "Petchem margin not explicitly stated in any excerpt."
         },
@@ -1170,6 +1323,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "Retail fuel margin not explicitly stated in any excerpt."
         }
@@ -1187,7 +1346,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 31945,
+      "ctxChars": 3953,
       "kpis": [
         {
           "id": "grm",
@@ -1213,6 +1372,12 @@
             null
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -1245,6 +1410,12 @@
             null
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -1298,6 +1469,12 @@
               "page": 5
             }
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "inflecting-up",
           "notes": null
         }
@@ -1315,7 +1492,7 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32700,
+      "ctxChars": 3889,
       "kpis": [
         {
           "id": "grm",
@@ -1358,6 +1535,12 @@
             },
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "inflecting-down",
           "notes": "41.41 $/bbl (model) withheld: does not match this row's unit $/barrel"
         },
@@ -1385,6 +1568,12 @@
             null
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -1434,6 +1623,12 @@
             },
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "decelerating",
           "notes": null
         }
@@ -1451,7 +1646,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 30611,
+      "ctxChars": 4138,
       "kpis": [
         {
           "id": "grm",
@@ -1477,6 +1672,12 @@
             null
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -1509,6 +1710,12 @@
             null
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -1558,6 +1765,12 @@
             },
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "steady",
           "notes": "From Screener Insights row \"Refining Throughput (HPCL Standalone)\" (Standalone data); latest value cited to Concall Transcript - 31 Oct 2025, page 3."
         }
@@ -1575,7 +1788,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33242,
+      "ctxChars": 3246,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -1622,6 +1835,12 @@
               "page": 4
             }
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "decelerating",
           "notes": null
         },
@@ -1654,6 +1873,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "Petchem margin not stated in any excerpt."
         }
@@ -1671,7 +1896,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34030,
+      "ctxChars": 4031,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -1697,6 +1922,12 @@
             "model"
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -1729,6 +1960,12 @@
             "model"
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -1782,6 +2019,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "CNG+PNG volume growth not stated in any quarter."
         },
@@ -1814,6 +2057,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "EBITDA / scm not stated in any quarter."
         }
@@ -1831,7 +2080,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34004,
+      "ctxChars": 4005,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -1878,6 +2127,12 @@
               "page": 11
             }
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "decelerating",
           "notes": null
         },
@@ -1910,6 +2165,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "Terminal utilisation % was not explicitly stated in any of the provided excerpts."
         }
@@ -1927,7 +2188,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33034,
+      "ctxChars": 3037,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -1970,6 +2231,12 @@
             },
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "inflecting-down",
           "notes": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 13 Aug 2025, page 9."
         },
@@ -2002,6 +2269,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "Terminal utilisation % was not explicitly stated in any of the provided excerpts."
         }
@@ -2019,7 +2292,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32914,
+      "ctxChars": 2916,
       "kpis": [
         {
           "id": "sps-spread",
@@ -2045,6 +2318,12 @@
             null
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -2098,6 +2377,12 @@
               "page": 16
             }
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "decelerating",
           "notes": null
         }
@@ -2115,7 +2400,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 31578,
+      "ctxChars": 1581,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -2141,6 +2426,12 @@
             null
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -2178,6 +2469,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "No base-oil spread data was provided."
         }
@@ -2195,7 +2492,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33126,
+      "ctxChars": 3128,
       "kpis": [
         {
           "id": "base-oil-spread",
@@ -2221,6 +2518,12 @@
             "model"
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
             null,
             null,
             null,
@@ -2270,6 +2573,12 @@
               "page": 24
             }
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "inflecting-down",
           "notes": "From Screener Insights row \"PHPO Sales Volume\"; latest value cited to Presentation - 12 Nov 2025, page 23."
         }
@@ -2287,7 +2596,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 9450,
+      "ctxChars": 3450,
       "kpis": [
         {
           "id": "industrial-gas-volume",
@@ -2318,6 +2627,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "Industrial gas volume data not provided in the excerpts."
         }
@@ -2335,7 +2650,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33175,
+      "ctxChars": 3175,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -2366,6 +2681,12 @@
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": null,
           "notes": "POL/LPG/LNG cargo throughput % yoy was not explicitly stated in any of the excerpts."
         }
@@ -2383,7 +2704,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34375,
+      "ctxChars": 4377,
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -2429,6 +2750,12 @@
               "quote": "Crude Carriers: Q4 FY26 61,424",
               "page": 26
             }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
           ],
           "flag": "decelerating",
           "notes": null
@@ -2478,6 +2805,12 @@
               "page": 25
             }
           ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
           "flag": "inflecting-down",
           "notes": null
         }
@@ -2493,7 +2826,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21382,
+      "ctxChars": 3382,
       "kpis": [
         {
           "id": "freight-rate",
@@ -2524,6 +2857,10 @@
               "page": 17
             }
           ],
+          "oneOffs": [
+            null,
+            null
+          ],
           "flag": null,
           "notes": null
         }
@@ -2538,7 +2875,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15968,
+      "ctxChars": 3968,
       "kpis": [
         {
           "id": "order-book",
@@ -2555,6 +2892,9 @@
             "model"
           ],
           "citations": [
+            null
+          ],
+          "oneOffs": [
             null
           ],
           "flag": null,

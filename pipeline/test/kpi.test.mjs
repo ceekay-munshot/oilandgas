@@ -37,10 +37,10 @@ test('the flatBandPct dead-band swallows a tiny wobble', () => {
   assert.equal(trajectoryFlag([100, 100.5, 101], 1.5), 'steady');
 });
 
-test('flagBasis is a reading hint - the flag is computed on the values', () => {
-  // A steadily shrinking order book must not read as steady just because it is
-  // "qoq"; it is flagged on the level like everything else.
-  assert.deepEqual(flagBasisSeries([1300, 1200, 1100, 1000], 'qoq'), [1300, 1200, 1100, 1000]);
+test('flagBasis routes a stock variable onto its change row, per the brief', () => {
+  // The levels stay the display; the flag is computed on the QoQ change row.
+  assert.deepEqual(flagBasisSeries([1300, 1200, 1100, 1000], 'qoq'), [-100, -100, -100]);
+  // A steadily shrinking book is still the cautionary read, as before.
   assert.equal(flagFor([1300, 1200, 1100, 1000], 'qoq'), 'decelerating');
   assert.equal(flagFor([1000, 1100, 1250, 1450], 'qoq'), 'accelerating'); // growth speeding up
 });
@@ -155,7 +155,7 @@ test('coverageOf counts filled versus empty cells', () => {
 test('KPI_SCHEMA is strict-schema shaped (all props required, no extras)', () => {
   assert.equal(KPI_SCHEMA.additionalProperties, false);
   const item = KPI_SCHEMA.properties.kpis.items;
-  assert.deepEqual(item.required.sort(), ['id', 'notes', 'sourceTags', 'unit', 'values']);
+  assert.deepEqual(item.required.sort(), ['id', 'notes', 'oneOffs', 'sourceTags', 'unit', 'values']);
   assert.equal(item.additionalProperties, false);
 });
 
@@ -342,4 +342,91 @@ test('a genuine turn up is still flagged as one', () => {
 
 test('Petronet\'s real volume series still flags inflecting-down', () => {
   assert.equal(trajectoryFlag([220, 211, 233, 219], 1.5), 'inflecting-down');
+});
+
+/* ---------------------------------------- the brief's series-handling rules */
+
+import { changeSeriesFlag } from '../lib/kpi-flag.mjs';
+
+test('a stock variable is flagged on its change row, not its level', () => {
+  /* the levels stay the display; the flag reads the differences */
+  assert.deepEqual(flagBasisSeries([100, 120, 140, 140], 'qoq'), [20, 20, 0]);
+  /* a flow or seasonal series is trended directly */
+  assert.deepEqual(flagBasisSeries([1, 2, 3], 'level'), [1, 2, 3]);
+  assert.deepEqual(flagBasisSeries([1, 2, 3], 'yoy'), [1, 2, 3]);
+});
+
+test('a gap breaks the change it belongs to rather than reading as no move', () => {
+  assert.deepEqual(flagBasisSeries([100, null, 140], 'qoq'), [null, null]);
+});
+
+test('the brief\'s case: an order book that has STOPPED growing is decelerating', () => {
+  /* "a large order book that has stopped growing is a decelerating signal,
+      not a positive one" - the level is at its highest, and that is the point */
+  assert.equal(flagFor([100, 120, 140, 140], 'qoq'), 'decelerating');
+});
+
+test('a steadily shrinking order book is decelerating, not steady', () => {
+  /* this is what reading a change series the level way got wrong: the change
+     was a constant -10, so the change-of-change was zero and it read "steady" */
+  assert.equal(flagFor([100, 90, 80, 70], 'qoq'), 'decelerating');
+});
+
+test('a change series reports the turn in both directions', () => {
+  assert.equal(changeSeriesFlag([-10, -5, 8]), 'inflecting-up');
+  assert.equal(changeSeriesFlag([10, 5, -8]), 'inflecting-down');
+  assert.equal(changeSeriesFlag([5, 10, 20]), 'accelerating');
+  assert.equal(changeSeriesFlag([20, 20, 20]), 'steady');
+  assert.equal(changeSeriesFlag([5]), null);        /* one change cannot be compared */
+});
+
+test('the same numbers read differently depending on the variable type', () => {
+  const series = [100, 120, 140, 140];
+  /* as a flow it is a level that stopped rising; as a stock it is growth
+     that stopped. The brief wants the second reading for order books. */
+  assert.equal(flagFor(series, 'level'), 'steady');
+  assert.equal(flagFor(series, 'qoq'), 'decelerating');
+});
+
+test('the dead band on a stock is a fraction of the BOOK, not of its changes', () => {
+  // Deep Industries' real series. The last move is +40 on a ~3,000 book: 1.3%,
+  // which the client's dead band calls noise. Judged against the other changes
+  // it would look like a turn and land in the "just turned up" list - the one
+  // list meant to be acted on, where a false positive is expensive.
+  const deep = [3051, 3050, 2967, 3007];
+  assert.notEqual(flagFor(deep, 'qoq'), 'inflecting-up');
+  // sized off the changes alone, the same numbers do read as a turn
+  assert.equal(changeSeriesFlag(flagBasisSeries(deep, 'qoq'), 1.5), 'inflecting-up');
+  // a move that is genuinely large for the book still registers
+  assert.equal(flagFor([1000, 900, 800, 1400], 'qoq'), 'inflecting-up');
+});
+
+/* ------------------------------------------------- one-off filter (Step 2) */
+
+import { excludeOneOffs } from '../lib/kpi-flag.mjs';
+
+test('a one-off quarter is blanked, keeping the other quarters in position', () => {
+  assert.deepEqual(excludeOneOffs([10, 20, 30, 40], [null, 'inventory gain', null, null]),
+    [10, null, 30, 40]);
+  /* no reasons at all leaves the series untouched */
+  assert.deepEqual(excludeOneOffs([10, 20], null), [10, 20]);
+});
+
+test('a one-off can never register as an inflection', () => {
+  // A spike that would read as a turn upward...
+  assert.equal(flagFor([100, 90, 80, 260], 'level'), 'inflecting-up');
+  // ...is not a turn once the source says that quarter carried a one-time gain.
+  const reasons = [null, null, null, 'one-time writeback'];
+  assert.notEqual(flagFor(excludeOneOffs([100, 90, 80, 260], reasons), 'level'), 'inflecting-up');
+});
+
+test('normalizeResult drops a one-off reason attached to an empty quarter', () => {
+  const kpis = [{ id: 'k', label: 'K', unit: null, flagBasis: 'level', keywords: [] }];
+  const out = normalizeResult(
+    { kpis: [{ id: 'k', unit: null, values: [null, 5, 6, 7], sourceTags: [null, 'official', 'official', 'official'],
+               oneOffs: ['shutdown', null, null, null], notes: null }] },
+    kpis, ['Q1', 'Q2', 'Q3', 'Q4']);
+  /* a reason on a quarter with no value would grey out a cell that is simply
+     not disclosed, which says something different */
+  assert.equal(out[0].oneOffs[0], null);
 });

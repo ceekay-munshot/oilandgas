@@ -22,7 +22,10 @@ on:
         type: boolean
         default: false
   schedule:
-    - cron: '40 6 * * 1'      # 06:40 UTC Mondays - weekly, once KPIs exist
+    # Same cadence as refresh-company, an hour later so the ordered full run
+    # never overlaps it: daily through the earnings months, weekly otherwise.
+    - cron: '40 6 * 1,2,4,5,7,8,10,11 *'   # daily, earnings months
+    - cron: '40 6 * 3,6,9,12 1'            # Mondays only, the quiet months
 
 permissions:
   contents: write
@@ -101,9 +104,12 @@ jobs:
         run: node pipeline/extract-commentary.mjs --scope all
 
       # --- 5. rescore -----------------------------------------------------
-      # added in prompt 7 - replaces the SEED scores on the Cockpit
-      # - name: 'Step 5/5 - rescore'
-      #   run: node pipeline/rescore.mjs
+      # Turns the KPI trajectories, the macro backdrop and the tones the steps
+      # above wrote into the cycle reading -> data/scores.json (the Cockpit, the
+      # macro consistency panel, the Insight tab). No network, no model call:
+      # arithmetic over the files already in data/, so it is safe to re-run.
+      - name: 'Step 5/5 - rescore'
+        run: node pipeline/rescore.mjs
 
       # --- 6. commit ------------------------------------------------------
       - name: Commit if anything changed

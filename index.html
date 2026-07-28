@@ -216,6 +216,25 @@ h1,h2,h3,p{margin:0;}
   background:var(--surface-2); border:1px dashed var(--axis);
   color:var(--ink-4); font-weight:600;
 }
+/* the one chip allowed to raise its voice: the divergence split, which the
+   brief calls the dashboard's single most important alert */
+.chip.is-loud{
+  background:color-mix(in srgb, var(--c) 16%, #fff);
+  border-color:color-mix(in srgb, var(--c) 46%, #fff);
+  font-weight:760;
+}
+
+/* --- provenance stamp ---------------------------------------------------
+   The written half of "every value carries its source and a date". The chip
+   beside it carries the source tag; this carries when it was last true.
+   A stamp older than the latest reported quarter dims itself, which is the
+   brief's stale rule - the value stays readable, it just stops looking current. */
+.stamp{
+  font-size:10px; font-weight:640; letter-spacing:.02em;
+  color:var(--ink-4); white-space:nowrap;
+}
+.stamp.is-stale{ opacity:.55; font-style:italic; }
+.is-stale-value{ opacity:.5; }
 
 /* --- card --------------------------------------------------------------- */
 .card{
@@ -340,6 +359,8 @@ h1,h2,h3,p{margin:0;}
 .verdict__word{font-size:clamp(17px, 1.72vw, 24px); font-weight:770; letter-spacing:-.032em; line-height:1.1; text-wrap:balance;}
 .verdict__tech{margin-top:3px; font-size:10.5px; color:var(--ink-3); font-weight:600; letter-spacing:.01em;}
 .verdict__say{margin-top:7px; font-size:11.5px; color:var(--ink-2); font-weight:500; line-height:1.35; text-wrap:pretty;}
+.verdict__meta{margin-top:8px; display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap;}
+.alert--more .alert__msg{color:var(--ink-4); font-weight:600;}
 
 /* the dial's legend = the five stages, in order. Takes the slack the arc cannot
    use (the arc is width-limited) so the card has no dead band at its foot. */
@@ -378,7 +399,13 @@ h1,h2,h3,p{margin:0;}
 .gfoot{
   flex:0 0 auto;
   display:flex; align-items:center; justify-content:center; gap:7px;
-  padding:0 10px 11px;
+  padding:0 10px 7px;
+}
+/* what the gauge above it was computed from: source tag + how many KPIs */
+.gbasis{
+  flex:0 0 auto;
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  padding:0 10px 10px; flex-wrap:wrap;
 }
 .gfoot__arrow{
   display:grid; place-items:center;
@@ -648,6 +675,123 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 .legendrow__plain{font-size:10.5px; color:var(--ink-3); font-weight:450; line-height:1.3; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
 
 /* ============================ SIX CARDS ================================= */
+/* --- 4.2 the company card ------------------------------------------------ */
+.heat__row{cursor:pointer; border-radius:6px;}
+.heat__row:hover{background:color-mix(in srgb, var(--c) 8%, transparent);}
+.heat__row:focus-visible{outline:2px solid var(--c); outline-offset:-2px;}
+.heat__row.is-picked{background:color-mix(in srgb, var(--c) 13%, transparent); font-weight:700;}
+.readcard{flex:1 1 auto; min-height:0; overflow:auto; padding:9px 13px 13px; display:flex; flex-direction:column; gap:8px;}
+.cardline{display:grid; grid-template-columns:96px minmax(0,1fr); gap:9px; align-items:baseline;}
+.cardline__lab{
+  font-size:9.5px; font-weight:720; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--ink-4); text-align:right;
+}
+.cardline__txt{font-size:11.5px; line-height:1.45; color:var(--ink-1); font-weight:520; text-wrap:pretty;}
+.cardline__on{color:var(--ink-3); font-weight:500;}
+/* a field the current data cannot fill yet says why, rather than sitting blank */
+.cardline__await{color:var(--ink-4); font-style:italic; font-weight:500;}
+.cardquote{color:var(--ink-2); font-style:italic;}
+.drift{
+  display:inline-block; padding:1px 6px; border-radius:var(--r-chip);
+  background:color-mix(in srgb, var(--c) 14%, #fff);
+  color:color-mix(in srgb, var(--c) 84%, var(--ink-1));
+  font-size:10px; font-weight:680;
+}
+.drift.is-none{background:var(--surface-2); color:var(--ink-4);}
+.driftarrow{color:var(--ink-4); font-size:10px; margin:0 3px;}
+
+/* --- 4.3 the seven themes ------------------------------------------------ */
+.themelist{flex:1 1 auto; min-height:0; overflow:auto; padding:8px 12px 12px; display:flex; flex-direction:column; gap:7px;}
+.theme{--c:var(--ink-3); border-left:3px solid var(--c); padding:3px 0 3px 8px;}
+.theme__hd{display:flex; align-items:center; gap:6px;}
+.theme__dot{width:6px; height:6px; border-radius:50%; background:var(--c); flex:0 0 auto;}
+.theme__nm{font-size:11px; font-weight:700; color:var(--ink-1);}
+.theme__b{
+  font-size:9px; font-weight:660; letter-spacing:.03em; text-transform:uppercase;
+  color:var(--ink-4); margin-left:auto;
+}
+.theme__state{font-size:10.5px; color:var(--ink-2); line-height:1.4; margin-top:2px; text-wrap:pretty;}
+.theme__who{display:flex; gap:4px; flex-wrap:wrap; margin-top:3px;}
+.theme__co{
+  font-size:9.5px; font-weight:640; color:color-mix(in srgb, var(--c) 82%, var(--ink-1));
+  background:color-mix(in srgb, var(--c) 10%, #fff); padding:1px 6px; border-radius:var(--r-chip);
+}
+
+/* --- 3.1 the drill-down: the standard TTM table -------------------------- */
+tr.kpirow{cursor:pointer;}
+tr.kpirow:hover > td{background:color-mix(in srgb, var(--ink-4) 6%, transparent);}
+tr.kpirow:focus-visible{outline:2px solid var(--ink-3); outline-offset:-2px;}
+tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparent);}
+/* a quarter excluded from the trend keeps its number and stops looking current */
+.num.is-oneoff{opacity:.45; text-decoration:line-through; text-decoration-thickness:1px;}
+.kpidetail > td{padding:0 0 10px 0; background:var(--surface-2);}
+.ttm{width:100%; border-collapse:collapse; font-size:11px; margin:2px 0 0;}
+.ttm th, .ttm td{padding:5px 9px; text-align:right; border-bottom:1px solid var(--grid);}
+.ttm tr:first-child th{
+  font-size:10px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--ink-4); border-bottom:1px solid var(--axis);
+}
+.ttm__rh{text-align:left !important; font-weight:660; color:var(--ink-2); white-space:nowrap;}
+.ttm__basis{
+  text-align:left !important; font-size:10px; font-weight:600;
+  color:var(--ink-4); white-space:nowrap; font-style:italic;
+}
+.ttm .is-unavailable td, .ttm .is-unavailable .ttm__rh{opacity:.5;}
+.ttm__off{color:#B45309; font-size:10px; font-weight:660; text-align:center !important;}
+.ttm__note{padding:6px 9px 0; font-size:10.5px; color:var(--ink-3); line-height:1.4;}
+
+/* --- 3.3 the one-off ledger ---------------------------------------------- */
+.offledger{padding:9px 13px 12px; display:flex; flex-direction:column; gap:5px; max-height:110px; overflow:auto;}
+.offrow{
+  display:grid; grid-template-columns:74px 132px minmax(0,1fr) minmax(0,1.2fr);
+  gap:9px; align-items:baseline; font-size:11px;
+}
+.offrow__q{font-weight:700; color:var(--ink-3);}
+.offrow__co{font-weight:660; color:var(--ink-1);}
+.offrow__k{color:var(--ink-2);}
+.offrow__why{color:#B45309; font-weight:600;}
+.offempty{font-size:11px; color:var(--ink-4); line-height:1.45;}
+
+/* --- 5.1 the read ------------------------------------------------------- */
+.readbox{flex:1 1 auto; min-height:0; overflow:auto; padding:10px 13px 13px; display:flex; flex-direction:column; gap:9px;}
+.readline{display:grid; grid-template-columns:104px minmax(0,1fr); gap:10px; align-items:baseline;}
+.readline__lab{
+  font-size:10.5px; font-weight:720; letter-spacing:.03em; text-transform:uppercase;
+  color:var(--ink-4); text-align:right;
+}
+.readline__txt{font-size:12px; line-height:1.45; color:var(--ink-1); font-weight:520; text-wrap:pretty;}
+
+/* --- 5.2 the shortlist -------------------------------------------------- */
+.actionlist{flex:1 1 auto; min-height:0; overflow:auto; padding:10px 13px 13px; display:flex; flex-direction:column; gap:10px;}
+.action__lead{font-size:11.5px; line-height:1.45; color:var(--ink-2); font-weight:530; text-wrap:pretty;}
+.researchrow{display:flex; flex-wrap:wrap; gap:7px;}
+.research{
+  --c:var(--ink-3);
+  display:inline-flex; align-items:center; gap:7px;
+  padding:5px 10px 5px 5px; border-radius:var(--r-chip);
+  background:color-mix(in srgb, var(--c) 7%, #fff);
+  border:1px solid color-mix(in srgb, var(--c) 22%, #fff);
+  font-size:11.5px; font-weight:640; color:var(--ink-1);
+}
+.research__n{
+  display:grid; place-items:center; width:18px; height:18px; border-radius:5px;
+  background:color-mix(in srgb, var(--c) 16%, #fff);
+  color:color-mix(in srgb, var(--c) 82%, var(--ink-1));
+  font-size:10px; font-weight:800; line-height:1;
+}
+/* a name the dashboard holds no series for reads as a note, not as coverage */
+.research.is-off{border-style:dashed; background:var(--surface-2);}
+.research__off{font-size:9.5px; font-weight:640; color:var(--ink-4); letter-spacing:.02em;}
+
+/* --- 5.4 the change log -------------------------------------------------- */
+.changelog{
+  flex:0 0 auto; padding:10px 13px 13px;
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:7px;
+}
+.chg{--c:var(--ink-3); display:flex; gap:7px; align-items:baseline; font-size:11.5px; line-height:1.4;}
+.chg__dot{width:7px; height:7px; border-radius:50%; background:var(--c); flex:0 0 auto; translate:0 -1px;}
+.chg__txt{color:var(--ink-1); font-weight:540;}
+
 .six{flex:0 0 auto; display:grid; gap:10px; grid-template-columns:repeat(6, minmax(0,1fr)); padding:11px 13px 13px;}
 .sixcard{
   display:flex; flex-direction:column; gap:3px; justify-content:flex-start;
@@ -758,10 +902,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
     </div>
     <div class="topbar__right">
       <span class="pill" id="stagePill"><span class="pill__dot"></span><b>&mdash;</b></span>
-      <span class="pill pill--seed" id="seedPill"
-            title="The cycle stage and the three group scores are placeholders. Market data on the Macro tab is live.">
-        <span class="pill__dot"></span>SEED SCORES
-      </span>
+      <span class="pill" id="seedPill" hidden><span class="pill__dot"></span></span>
     </div>
   </header>
 
@@ -784,7 +925,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
             <div class="card__headL">
               <span class="card__title">Where are we in the cycle?</span>
             </div>
-            <span class="chip" style="--c:var(--seed)" title="Placeholder - real scores arrive with the KPI pipeline."><span class="chip__sw"></span>SEED &middot; not yet live</span>
+            <span id="dialChip"></span>
           </div>
           <div class="card__body">
             <div class="chart-wrap">
@@ -801,9 +942,9 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           <div class="card__head">
             <div class="card__headL">
               <span class="card__title">How far ahead the early movers are</span>
-              <span class="card__sub">Moves&nbsp;first score minus moves&nbsp;last score, in points</span>
+              <span class="card__sub">Moves&nbsp;first score minus moving&nbsp;now score, in points</span>
             </div>
-            <span class="chip" style="--c:var(--seed)" title="Placeholder - real scores arrive with the KPI pipeline."><span class="chip__sw"></span>SEED &middot; not yet live</span>
+            <span id="divChip"></span>
           </div>
           <div class="card__body">
             <div class="chart-wrap"><div class="chart" id="ch-div"></div></div>
@@ -840,6 +981,16 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           </div>
         </div>
       </div>
+      <div class="card" style="flex:0 0 auto;">
+        <div class="card__head">
+          <div class="card__headL">
+            <span class="card__title">Quarters held out of the trend</span>
+            <span class="card__sub">One-offs are excluded from the trajectory, and listed here so the exclusion is auditable</span>
+          </div>
+          <span class="chip chip--ghost" id="oneOffChip">None flagged</span>
+        </div>
+        <div class="card__body"><div class="offledger" id="oneOffLedger"></div></div>
+      </div>
     </section>
 
     <!-- ======================= 4. COMMENTARY =========================== -->
@@ -848,18 +999,34 @@ table.kpi td.co[rowspan]{vertical-align:top;}
         <h2>What management said</h2>
         <p>How upbeat or worried each company sounded, over the last four quarters.</p>
       </div>
-      <div class="tiles" style="grid-template-columns:minmax(0,1.55fr) minmax(240px,.85fr);grid-template-rows:minmax(0,1fr) minmax(0,.62fr);">
+      <div class="tiles" style="grid-template-columns:minmax(0,1.15fr) minmax(0,1.05fr) minmax(230px,.8fr);grid-template-rows:minmax(0,1fr) minmax(0,.6fr);">
         <div class="card" style="grid-row:1 / span 2;">
           <div class="card__head">
             <div class="card__headL"><span class="card__title">Tone over 4 quarters</span>
-              <span class="card__sub" id="toneHeatSub">Heat strip</span></div>
+              <span class="card__sub" id="toneHeatSub">Heat strip &middot; click a company</span></div>
             <span class="chip chip--ghost" id="toneHeatChip">No data yet</span>
           </div>
           <div class="card__body"><div class="heat" id="toneHeat"></div></div>
         </div>
+
+        <!-- 4.2 the fixed-template read for whichever company is selected -->
+        <div class="card" style="grid-row:1 / span 2;">
+          <div class="card__head">
+            <div class="card__headL"><span class="card__title" id="cardTitle">The read</span>
+              <span class="card__sub" id="cardSub">Pick a company on the left</span></div>
+            <span id="cardChip"></span>
+          </div>
+          <div class="card__body"><div class="readcard" id="companyCard"></div></div>
+        </div>
+
+        <!-- 4.3 the seven listening themes -->
         <div class="card">
-          <div class="card__head"><div class="card__headL"><span class="card__title">How we score tone</span></div></div>
-          <div class="card__body"><div class="legendbox" id="toneLegend"></div></div>
+          <div class="card__head">
+            <div class="card__headL"><span class="card__title">Themes</span>
+              <span class="card__sub">What we listen for</span></div>
+            <span class="chip chip--ghost" id="themeChip">No data yet</span>
+          </div>
+          <div class="card__body"><div class="themelist" id="themeList"></div></div>
         </div>
         <div class="card">
           <div class="card__head">
@@ -869,6 +1036,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           <div class="card__body"><div class="toneshift" id="toneShift"><div class="ghost" data-ghost="bars"></div></div></div>
         </div>
       </div>
+      <div class="sr" id="toneLegend"></div>
     </section>
 
     <!-- ======================= 5. INSIGHT & ACTION ====================== -->
@@ -882,23 +1050,31 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           <div class="card__head">
             <div class="card__headL"><span class="card__title">The read</span>
               <span class="card__sub">Where the cycle is, in a few lines</span></div>
-            <span class="chip chip--ghost">No data yet</span>
+            <span id="readChip"></span>
           </div>
-          <div class="card__body"><div class="ghost" data-ghost="text"></div></div>
+          <div class="card__body"><div class="readbox" id="theRead"></div></div>
         </div>
         <div class="card">
           <div class="card__head">
             <div class="card__headL"><span class="card__title">What to research now</span>
-              <span class="card__sub">The shortlist, most useful first</span></div>
-            <span class="chip chip--ghost">No data yet</span>
+              <span class="card__sub">The shortlist for the stage we are in</span></div>
+            <span id="actionChip"></span>
           </div>
-          <div class="card__body"><div class="ghost" data-ghost="list"></div></div>
+          <div class="card__body"><div class="actionlist" id="actionList"></div></div>
+        </div>
+        <div class="card" style="grid-column:1 / -1;">
+          <div class="card__head">
+            <div class="card__headL"><span class="card__title">What changed since the last refresh</span>
+              <span class="card__sub">Read the delta, not the whole board</span></div>
+            <span id="changeChip"></span>
+          </div>
+          <div class="card__body"><div class="changelog" id="changeLog"></div></div>
         </div>
         <div class="card" style="grid-column:1 / -1;">
           <div class="card__head">
             <div class="card__headL"><span class="card__title">The six we always check</span>
-              <span class="card__sub">Read every quarter, no exceptions</span></div>
-            <span class="chip chip--ghost">Verdicts land in a later step</span>
+              <span class="card__sub">Read every quarter, no exceptions &mdash; whatever the stage</span></div>
+            <span id="sixChip"></span>
           </div>
           <div class="card__body"><div class="six" id="sixGrid"></div></div>
         </div>
@@ -920,9 +1096,11 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
 <script>
 /* ==========================================================================
-   Oil & Gas Cycle Dashboard - foundation
-   Prompt 1 of ~12: shell, design system, navigation, and one real screen.
-   Every number in SEED below is a placeholder. Nothing here computes a score.
+   Oil & Gas Cycle Dashboard
+   Shell, design system, navigation and the five sections of the brief.
+   Every number on screen is read from data/*.json, which the pipeline writes.
+   Nothing here invents a value: where a file has no answer the interface says
+   so instead of showing a plausible one.
    ========================================================================== */
 (function () {
   'use strict';
@@ -941,32 +1119,33 @@ table.kpi td.co[rowspan]{vertical-align:top;}
   };
 
   /* =====================================================================
-     SEED VALUES - placeholders only. Prompt 2+ replaces this whole object
-     with a fetch of a real scores file. Shape is deliberately final.
+     THE CYCLE READING - all of it from data/scores.json, which rescore.mjs
+     computes from the KPI trajectories, the macro tiles and the tones. There
+     is no seeded fallback on purpose: when the file is absent every reader
+     below returns null and the Cockpit says so, because a placeholder cycle
+     position is exactly the confident-looking guess this dashboard exists
+     not to make.
      ===================================================================== */
-  var SEED = {
-    /* 0-100 position along the five cycle stages; the stage name is derived
-       from framework.json ranges, so only this number has to change. */
-    cyclePosition: 52,
 
-    /* one score per group, plus the previous quarter to get the arrow */
-    scores: {
-      leading:    { score: 72, prev: 66 },
-      coincident: { score: 58, prev: 56 },
-      lagging:    { score: 41, prev: 44 }
-    },
-
-    /* leading score minus lagging score, oldest to newest */
-    divergence: [18, 22, 27, 31],
-
-    alerts: [
-      { tone: 'good',    glyph: '↑', msg: 'Early movers have led for 4 quarters running', source: 'derived' },
-      { tone: 'warn',    glyph: '!',      msg: 'Refiners and shippers still lag by a wide margin', source: 'derived' },
-      { tone: 'neutral', glyph: '●', msg: 'Next big read: the coming results season', source: 'estimate' }
-    ]
-  };
+  /** the three bucket scores, or null before the first rescore */
+  function scoresOf()     { return (DATA.scores && DATA.scores.scores) || null; }
+  /** one group's { score, prev, delta, level, direction, kpisScored, kpisTotal } */
+  function scoreFor(id)   { var s = scoresOf(); return (s && s[id]) || null; }
+  /** the stage call: { stageId, position, ruleId, ruleLabel, confidence, because } */
+  function stageOf()      { return (DATA.scores && DATA.scores.stage) || null; }
+  /** how the cycle reading is tagged and when it was taken */
+  function scoreTagId()   { return (DATA.scores && DATA.scores.sourceTag) || 'derived'; }
+  function scoreAsOf()    { return (DATA.scores && DATA.scores.asOf) || null; }
 
   var ALERT_TONE = { good: '#0F7A3A', warn: '#E9A526', bad: '#C42433', neutral: '#2563EB' };
+
+  /* the alert severities rescore.mjs emits, mapped onto that palette + a glyph */
+  var ALERT_SEVERITY = {
+    high:   { tone: 'bad',     glyph: '!' },
+    review: { tone: 'warn',    glyph: '⚑' },
+    warn:   { tone: 'warn',    glyph: '↓' },
+    info:   { tone: 'neutral', glyph: '●' }
+  };
 
   /* ------------------------------------------------------------- utilities */
   function el(id) { return document.getElementById(id); }
@@ -1019,6 +1198,12 @@ table.kpi td.co[rowspan]{vertical-align:top;}
          degrades to "No data yet" without it. */
       fetch('data/commentary.json', { cache: 'no-cache' })
         .then(function (res) { return res.ok ? res.json() : null; })
+        .catch(function () { return null; }),
+      /* scores.json is written by rescore.mjs from the files above. Optional for
+         the same reason: absent until the first run, and the Cockpit says "no
+         call yet" rather than falling back to a seeded cycle position. */
+      fetch('data/scores.json', { cache: 'no-cache' })
+        .then(function (res) { return res.ok ? res.json() : null; })
         .catch(function () { return null; })
     ]).then(function (r) {
       DATA.companies = r[0];
@@ -1026,6 +1211,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       DATA.macro = r[2];
       DATA.kpis = r[3];
       DATA.commentary = r[4];
+      DATA.scores = r[5];
       DATA.companies.groups.forEach(function (g) {
         groupById[g.id] = g;
         g.companies.forEach(function (c) { byId[c.id] = c; });
@@ -1062,56 +1248,159 @@ table.kpi td.co[rowspan]{vertical-align:top;}
     }).join('');
   }
 
+  /* The stage the pipeline called, or null when there is no call to show.
+     The position on the dial comes from the same object, so the words, the
+     colour and the marker can never drift apart. */
   function currentStage() {
-    var p = SEED.cyclePosition, st = DATA.framework.cycleStages;
-    for (var i = 0; i < st.length; i++) {
-      if (p >= st[i].range[0] && p < st[i].range[1]) return st[i];
-    }
-    return st[st.length - 1];
+    var st = stageOf();
+    if (!st || !st.stageId) return null;
+    return stageById[st.stageId] || null;
+  }
+
+  /* ------------------------------------------------------- provenance chips
+     The client's global rule: every displayed value carries its source tag as
+     a small chip and a last-updated stamp, and anything sourced older than the
+     latest reported quarter renders dimmed. These three helpers are how every
+     section satisfies it, so the rule lives in one place.                    */
+
+  /** a source-tag chip from framework.json, by tag id */
+  function sourceChip(tagId, extraTitle) {
+    var t = tagById[tagId] || tagById.unknown;
+    if (!t) return '';
+    return '<span class="chip" style="--c:' + t.color + '" title="' +
+      esc(t.meaning + (extraTitle ? ' - ' + extraTitle : '')) + '">' +
+      '<span class="chip__sw"></span>' + esc(t.label) + '</span>';
+  }
+
+  /* "Q3 FY26" -> a sortable number, so quarters can be compared rather than
+     merely matched. Comparing them as strings would make Q1 FY27 look older
+     than Q4 FY26, which is backwards by a quarter. */
+  function quarterOrdinal(q) {
+    var m = /^Q([1-4])\s*FY\s*(\d{2,4})$/i.exec(String(q || '').trim());
+    if (!m) return null;
+    var y = Number(m[2]);
+    if (y < 100) y += 2000;
+    return y * 4 + Number(m[1]);
+  }
+
+  /* The quarter staleness is measured against: the end of the dashboard's own
+     reporting window - NOT the newest quarter any single company has filed.
+     One early filer would otherwise mark every other company stale (a single
+     Q1 FY27 filer greys 21 of 27 rows), which inverts what the word means. A
+     company that has not yet reported the quarter AFTER the current one is on
+     time, not out of date. */
+  function latestReportedQuarter() {
+    var qs = (DATA.kpis && DATA.kpis.quarters) || DATA.companies.quarterLabels || [];
+    return qs.length ? qs[qs.length - 1] : null;
+  }
+
+  /** a small "as of <quarter>" stamp, dimmed when it trails the latest quarter */
+  function asOfStamp(quarter) {
+    if (!quarter) return '';
+    var latest = latestReportedQuarter();
+    var a = quarterOrdinal(quarter), b = quarterOrdinal(latest);
+    var stale = a !== null && b !== null && a < b;
+    return '<span class="stamp' + (stale ? ' is-stale' : '') + '" title="' +
+      esc(stale ? 'Sourced from ' + quarter + ', older than the latest reported quarter (' + latest + ')'
+                : 'Current as of ' + quarter) + '">as of ' + esc(quarter) + '</span>';
+  }
+
+  /* The badge beside the stage pill. It only appears when there is genuinely no
+     reading yet, so the header states a caveat only while one applies. */
+  function renderScorePill() {
+    var pill = el('seedPill');
+    if (!pill) return;
+    if (scoresOf()) { pill.hidden = true; return; }
+    pill.hidden = false;
+    pill.className = 'pill pill--seed';
+    pill.title = 'The cycle scores have not been computed yet. Market data on the Macro tab is live.';
+    pill.innerHTML = '<span class="pill__dot"></span>NO SCORES YET';
   }
 
   function renderStagePill() {
     var s = currentStage();
     var pill = el('stagePill');
+    if (!s) {
+      pill.style.setProperty('--c', '#7C8496');
+      pill.innerHTML = '<span class="pill__dot"></span><b>No call yet</b>';
+      pill.title = 'No cycle stage has been called: no group has a scored KPI yet.';
+      return;
+    }
     pill.style.setProperty('--c', s.color);
     pill.innerHTML = '<span class="pill__dot"></span><b>' + esc(s.plainLabel) + '</b>';
     pill.title = s.label + ' - ' + s.meaning;
   }
 
+  /* The alert strip, in the order rescore.mjs ranked it: the divergence split
+     first, then anything flagged for review, then thin coverage, then the
+     companies whose tone moved two steps or more. */
   function renderAlerts() {
-    var tags = {};
-    DATA.framework.sourceTags.forEach(function (t) { tags[t.id] = t; });
-    el('alerts').innerHTML = SEED.alerts.map(function (a) {
-      var t = tags[a.source] || tags.unknown;
-      return '<div class="alert" style="--c:' + ALERT_TONE[a.tone] + '">' +
-        '<span class="alert__ico" aria-hidden="true">' + a.glyph + '</span>' +
+    var sc = DATA.scores;
+    var list = (sc && sc.alerts) || [];
+    if (!list.length) {
+      el('alerts').innerHTML =
+        '<div class="alert" style="--c:#7C8496">' +
+          '<span class="alert__ico" aria-hidden="true">●</span>' +
+          '<div class="alert__txt"><div class="alert__msg">' +
+            (sc ? 'Nothing flagged this quarter.' : 'No cycle reading yet - the alert strip fills on the next pipeline run.') +
+          '</div></div></div>';
+      return;
+    }
+    /* The strip is a glance, not a list: show the ranked few and say how many
+       more there are rather than silently dropping them. */
+    var CAP = 6;
+    var shown = list.slice(0, CAP), rest = list.length - shown.length;
+    el('alerts').innerHTML = shown.map(function (a) {
+      var sev = ALERT_SEVERITY[a.severity] || ALERT_SEVERITY.info;
+      return '<div class="alert" style="--c:' + ALERT_TONE[sev.tone] + '">' +
+        '<span class="alert__ico" aria-hidden="true">' + sev.glyph + '</span>' +
         '<div class="alert__txt">' +
-          '<div class="alert__msg">' + esc(a.msg) + '</div>' +
+          '<div class="alert__msg">' + esc(a.text) + '</div>' +
           '<div class="alert__meta">' +
-            '<span class="chip" style="--c:' + t.color + '" title="' + esc(t.meaning) + '">' +
-              '<span class="chip__sw"></span>' + esc(t.label) + '</span>' +
-            '<span class="chip" style="--c:#B45309" title="Placeholder - not yet live. Real scores arrive with the KPI pipeline.">' +
-            '<span class="chip__sw"></span>SEED</span>' +
+            sourceChip(scoreTagId(), 'computed by the pipeline from the KPI, macro and tone data') +
+            asOfStamp(scoreAsOf()) +
           '</div>' +
         '</div></div>';
-    }).join('');
+    }).join('') + (rest > 0
+      ? '<div class="alert alert--more" style="--c:#7C8496">' +
+          '<span class="alert__ico" aria-hidden="true">+</span>' +
+          '<div class="alert__txt"><div class="alert__msg">' + rest +
+          ' more flagged - see Insight &amp; Action</div></div></div>'
+      : '');
   }
 
   function renderVerdict() {
-    var s = currentStage();
-    var v = el('verdict');
+    var s = currentStage(), st = stageOf(), v = el('verdict');
+    if (!s) {
+      v.style.setProperty('--c', '#7C8496');
+      v.innerHTML =
+        '<div class="verdict__dot"></div>' +
+        '<div class="verdict__word">No call yet</div>' +
+        '<div class="verdict__tech">Awaiting scored KPIs</div>' +
+        '<div class="verdict__say">' +
+          esc((st && st.because && st.because[0]) || 'The cycle stage is called from the group scores; none is computed yet.') +
+        '</div>';
+      return;
+    }
     v.style.setProperty('--c', s.color);
+    /* 1.1 asks for the call, the date it was made and a [Derived] tag. The
+       rule that produced it rides in the tooltip so the call is arguable. */
     v.innerHTML =
       '<div class="verdict__dot"></div>' +
       '<div class="verdict__word">' + esc(s.plainLabel) + '</div>' +
       '<div class="verdict__tech">' + esc(s.label) + '</div>' +
-      '<div class="verdict__say">' + esc(s.meaning) + '</div>';
+      '<div class="verdict__say">' + esc(s.meaning) + '</div>' +
+      '<div class="verdict__meta" title="' + esc((st.because || []).join(' ')) + '">' +
+        sourceChip(scoreTagId(), st.ruleLabel || '') +
+        asOfStamp(st && scoreAsOf()) +
+        (st.confidence === 'low' ? '<span class="stamp is-stale">low confidence</span>' : '') +
+      '</div>';
   }
 
   function renderStageList() {
     var cur = currentStage();
     el('stagelist').innerHTML = DATA.framework.cycleStages.map(function (s) {
-      var on = s.id === cur.id ? '1' : '0';
+      var on = (cur && s.id === cur.id) ? '1' : '0';
       return '<div class="stagelist__row" data-on="' + on + '" style="--c:' + s.color + '" title="' + esc(s.meaning) + '">' +
         '<span class="stagelist__bar"></span>' +
         '<span class="stagelist__txt">' +
@@ -1123,14 +1412,33 @@ table.kpi td.co[rowspan]{vertical-align:top;}
     }).join('');
   }
 
-  /* three score gauges: one per group, each with an arrow and the change */
+  /* three score gauges: one per group, each with the quarter-on-quarter arrow.
+     The change is a real second measurement (the same flags recomputed on a
+     series one quarter shorter), so the arrow means what it says. */
   function renderGauges() {
     var html = DATA.framework.groupMeta.map(function (g) {
-      var s = SEED.scores[g.id];
-      var d = s.score - s.prev;
+      var s = scoreFor(g.id);
+      var has = s && typeof s.score === 'number';
+      var d = (has && typeof s.delta === 'number') ? s.delta : null;
       var up = d > 0, flat = d === 0;
-      var c = flat ? '#7C8496' : (up ? '#0F7A3A' : '#C42433');
-      var glyph = flat ? '→' : (up ? '↑' : '↓');
+      var c = d === null ? '#7C8496' : (flat ? '#7C8496' : (up ? '#0F7A3A' : '#C42433'));
+      var glyph = d === null ? '·' : (flat ? '→' : (up ? '↑' : '↓'));
+      var foot = d === null
+        ? '<span class="gfoot__txt">no prior quarter to compare</span>'
+        : '<span class="gfoot__txt"><b>' + (up ? '+' : '') + d + '</b> vs last quarter</span>';
+      /* What the score rests on, so a gauge built on two KPIs cannot look like
+         one built on twenty. It sits under the gauge rather than in the header:
+         the group's own name has to win that row. */
+      var basis = has
+        ? '<div class="gbasis">' +
+            sourceChip(scoreTagId(), 'mean momentum of this group\'s flagged KPIs') +
+            '<span class="stamp" title="' +
+              esc('The score is the mean momentum of every KPI in this group with enough quarters to flag. ' +
+                  (s.kpisTotal - s.kpisScored) + ' of ' + s.kpisTotal + ' are not yet flaggable.') + '">' +
+              s.kpisScored + '/' + s.kpisTotal + ' KPIs &middot; ' + esc(scoreAsOf() || '') +
+            '</span>' +
+          '</div>'
+        : '';
       return '' +
         '<div class="card">' +
           '<div class="card__head">' +
@@ -1139,15 +1447,14 @@ table.kpi td.co[rowspan]{vertical-align:top;}
               '<span class="card__title">' + esc(g.plainLabel) + '</span>' +
               '<span class="card__sub">' + esc(g.name) + '</span>' +
             '</div>' +
-            '<span class="chip" style="--c:#B45309" title="Placeholder - not yet live. Real scores arrive with the KPI pipeline.">' +
-            '<span class="chip__sw"></span>SEED</span>' +
+            (has ? '' : '<span class="chip chip--ghost">No score yet</span>') +
           '</div>' +
           '<div class="card__body">' +
             '<div class="chart-wrap"><div class="chart" id="ch-g-' + g.id + '"></div></div>' +
             '<div class="gfoot" style="--c:' + c + '">' +
-              '<span class="gfoot__arrow" aria-hidden="true">' + glyph + '</span>' +
-              '<span class="gfoot__txt"><b>' + (up ? '+' : '') + d + '</b> vs last quarter</span>' +
+              '<span class="gfoot__arrow" aria-hidden="true">' + glyph + '</span>' + foot +
             '</div>' +
+            basis +
           '</div>' +
         '</div>';
     }).join('');
@@ -1177,9 +1484,11 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       animationEasing: 'cubicOut',
       tooltip: Object.assign({}, TOOLTIP, {
         formatter: function () {
-          var s = currentStage();
+          var s = currentStage(), st = stageOf();
+          if (!s) return '<b>No call yet</b>';
           return '<b>' + esc(s.plainLabel) + '</b><br>' +
-                 '<span style="color:#7C8496">' + esc(s.label) + '</span>';
+                 '<span style="color:#7C8496">' + esc(s.label) + '</span>' +
+                 (st && st.ruleLabel ? '<br><span style="color:#7C8496">' + esc(st.ruleLabel) + '</span>' : '');
         }
       }),
       series: [{
@@ -1207,31 +1516,46 @@ table.kpi td.co[rowspan]{vertical-align:top;}
         progress: { show: false },
         detail: { show: false },
         title: { show: false },
-        data: [{ value: SEED.cyclePosition }]
+        /* no call means no marker on the arc - the bands still show the scale,
+           but nothing claims a position on it */
+        data: [{ value: (stageOf() && stageOf().position !== null) ? stageOf().position : null }]
       }]
     };
   }
 
   function gaugeOption(group) {
-    var s = SEED.scores[group.id];
+    var s = scoreFor(group.id) || { score: null, prev: null };
     return {
       animationDuration: 900,
       animationEasing: 'cubicOut',
       tooltip: Object.assign({}, TOOLTIP, {
         formatter: function () {
+          if (typeof s.score !== 'number') {
+            return '<b>' + esc(group.plainLabel) + '</b><br>' +
+              '<span style="color:#7C8496">No KPI in this group has enough quarters to flag yet.</span>';
+          }
           return '<b>' + esc(group.plainLabel) + '</b><br>' +
             'Score <b>' + s.score + '</b> out of 100<br>' +
-            '<span style="color:#7C8496">Last quarter ' + s.prev + '</span>';
+            '<span style="color:#7C8496">' +
+              (typeof s.prev === 'number' ? 'Last quarter ' + s.prev : 'No prior quarter') +
+              ' &middot; ' + s.kpisScored + ' of ' + s.kpisTotal + ' KPIs scored</span>';
         }
       }),
       series: [{
         type: 'gauge',
-        min: 0, max: 100,
+        /* The brief's scores are signed: a bucket is Negative, flat, or Positive.
+           The axis runs -100..+100 so the fill reads from the zero point and a
+           negative bucket is visibly negative rather than just a short bar. */
+        min: -100, max: 100,
         startAngle: 222, endAngle: -42,
         center: ['50%', '54%'], radius: '94%',
         /* unfilled track = a lighter step of the same hue */
         axisLine: { lineStyle: { width: 11, color: [[1, mix(group.color, WHITE, 0.8)]] } },
-        progress: { show: true, width: 11, roundCap: true, itemStyle: { color: group.color } },
+        progress: {
+          show: true, width: 11, roundCap: true,
+          /* a negative bucket fills in the warning red, not the group hue */
+          itemStyle: { color: (typeof s.score === 'number' && s.score < 0) ? '#C42433' : group.color }
+        },
         pointer: { show: false },
         axisTick: { show: false },
         splitLine: { show: false },
@@ -1241,18 +1565,21 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           valueAnimation: true,
           offsetCenter: [0, '4%'],
           fontSize: 30, fontWeight: 700, fontFamily: FONT,
-          color: INK1,
-          formatter: '{value}'
+          color: typeof s.score === 'number' ? INK1 : '#AEB4C0',
+          /* an unscored group shows a dash, never a 0 - they mean opposite things */
+          formatter: function (v) { return typeof s.score === 'number' ? String(v) : '–'; }
         },
-        data: [{ value: s.score }]
+        data: [{ value: typeof s.score === 'number' ? s.score : -100 }]
       }]
     };
   }
 
   function divergenceOption() {
-    var labels = DATA.companies.quarterLabels;
-    var vals = SEED.divergence;
-    var lead = groupById.leading.color, lag = groupById.lagging.color;
+    /* the quarters the scores were computed on, not the fixed company axis */
+    var labels = (DATA.scores && DATA.scores.quarters && DATA.scores.quarters.length)
+      ? DATA.scores.quarters : DATA.companies.quarterLabels;
+    var vals = (DATA.scores && DATA.scores.divergenceSeries) || [];
+    var lead = groupById.leading.color, coin = groupById.coincident.color;
     return {
       animationDuration: 800,
       animationEasing: 'cubicOut',
@@ -1260,9 +1587,13 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       tooltip: Object.assign({}, TOOLTIP, {
         trigger: 'item',
         formatter: function (p) {
+          if (p.value === null || p.value === undefined) {
+            return '<b>' + esc(p.name) + '</b><br>' +
+              '<span style="color:#7C8496">Too few quarters to score back this far</span>';
+          }
           var ahead = p.value >= 0 ? 'ahead of' : 'behind';
           return '<b>' + esc(p.name) + '</b><br>Moves first is <b>' + Math.abs(p.value) +
-                 '</b> points ' + ahead + ' moves last';
+                 '</b> points ' + ahead + ' moving now';
         }
       }),
       xAxis: {
@@ -1282,7 +1613,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
         data: vals,
         barWidth: 22,
         itemStyle: {
-          color: function (p) { return p.value >= 0 ? lead : lag; },
+          color: function (p) { return p.value >= 0 ? lead : coin; },
           /* 4px rounded data-end, square at the baseline */
           borderRadius: function (p) { return p.value >= 0 ? [4, 4, 0, 0] : [0, 0, 4, 4]; }
         },
@@ -1291,6 +1622,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           show: true, position: 'top',
           color: INK1, fontSize: 12, fontWeight: 700, fontFamily: FONT,
           formatter: function (p) {
+            if (p.value === null || p.value === undefined) return '';
             return p.dataIndex === vals.length - 1 ? (p.value >= 0 ? '+' : '') + p.value : '';
           }
         },
@@ -1304,7 +1636,40 @@ table.kpi td.co[rowspan]{vertical-align:top;}
     };
   }
 
+  /* The divergence chip is 1.3's alert: the reading is only news when the two
+     groups sit on OPPOSITE sides of neutral. A wide gap on the same side is the
+     same story told twice; a small gap across neutral means the front of the
+     chain has turned and the middle has not followed. */
+  function renderDivergenceChip() {
+    var node = el('divChip');
+    if (!node) return;
+    var d = DATA.scores && DATA.scores.divergence;
+    if (!d || d.value === null) {
+      node.outerHTML = '<span class="chip chip--ghost" id="divChip">No reading yet</span>';
+      return;
+    }
+    node.outerHTML = d.signsDiffer
+      ? '<span class="chip is-loud" id="divChip" style="--c:#C42433" title="' +
+          esc('Moves first and moving now are on opposite sides of neutral - the front of the chain has turned and the middle has not followed. This is the reading worth acting on.') +
+        '"><span class="chip__sw"></span>⚠ Split &middot; ' + (d.value > 0 ? '+' : '') + d.value + '</span>'
+      : '<span class="chip" id="divChip" style="--c:#7C8496" title="' +
+          esc('Both groups sit on the same side of neutral, so the gap is a matter of degree rather than a turn.') +
+        '"><span class="chip__sw"></span>In step &middot; ' + (d.value > 0 ? '+' : '') + d.value + '</span>';
+  }
+
+  /* the dial's own provenance chip: [Derived], the quarter, and the rule row */
+  function renderDialChip() {
+    var node = el('dialChip');
+    if (!node) return;
+    var st = stageOf();
+    node.innerHTML = (st && st.stageId)
+      ? sourceChip(scoreTagId(), st.ruleLabel || '') + asOfStamp(scoreAsOf())
+      : '<span class="chip chip--ghost">No call yet</span>';
+  }
+
   function drawCockpit() {
+    renderDialChip();
+    renderDivergenceChip();
     mount('ch-dial', dialOption());
     DATA.framework.groupMeta.forEach(function (g) { mount('ch-g-' + g.id, gaugeOption(g)); });
     mount('ch-div', divergenceOption());
@@ -1657,8 +2022,10 @@ table.kpi td.co[rowspan]{vertical-align:top;}
   }
 
   /* Does the market backdrop agree with where the scores are heading?
-     Placeholder logic against SEED.scores until real scoring lands. Each tile
-     declares in macro.json which direction supports a stronger capex cycle. */
+     Each tile declares in macro.json which direction supports a stronger capex
+     cycle; the score side is the real reading from data/scores.json. When the
+     two disagree the panel says "flagged for review", which is the same
+     conflict rescore.mjs puts on the Cockpit alert strip. */
   var AGREE_THRESHOLD = 4;   /* of six readings, how many must back the scores */
 
   function renderMacroScore() {
@@ -1672,10 +2039,13 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       (dir === row.tile.supports ? helps : hurts).push(row);
     });
 
-    var up = 0, down = 0;
-    Object.keys(SEED.scores).forEach(function (k) {
-      var s = SEED.scores[k];
-      if (s.score > s.prev) up++; else if (s.score < s.prev) down++;
+    /* the score side of the verdict, now from the real reading. A group with no
+       prior quarter cannot vote - it is neither improving nor easing. */
+    var up = 0, down = 0, scores = scoresOf() || {};
+    Object.keys(scores).forEach(function (k) {
+      var s = scores[k];
+      if (!s || typeof s.delta !== 'number') return;
+      if (s.delta > 0) up++; else if (s.delta < 0) down++;
     });
     /* three states, not two: scores that tie are not easing, and there is
        nothing for the backdrop to agree or disagree with */
@@ -1688,7 +2058,11 @@ table.kpi td.co[rowspan]{vertical-align:top;}
     var backing = trend === 'improving' ? helps : (trend === 'easing' ? hurts : []);
 
     var c, ico, head, say;
-    if (!n) {
+    if (!scoresOf()) {
+      c = '#7C8496'; ico = '=';
+      head = 'No cycle scores yet';
+      say = 'The scores are computed by the pipeline from the KPI trajectories; until they exist there is nothing for the market backdrop to agree or disagree with.';
+    } else if (!n) {
       c = '#7C8496'; ico = '=';
       head = 'No live market readings yet';
       say = 'Every market series is still awaiting a live source, so there is nothing to check the scores against.';
@@ -1734,7 +2108,9 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           '</span>' +
         '</span>' +
         '<span class="mscore__tally">' + tally +
-          '<span class="chip" style="--c:var(--seed)"><span class="chip__sw"></span>SEED scores</span>' +
+          (scoresOf() ? sourceChip(scoreTagId(), 'the three group scores this verdict is checked against') +
+                        asOfStamp(scoreAsOf())
+                      : '<span class="chip chip--ghost">No scores yet</span>') +
         '</span>' +
       '</div>';
   }
@@ -1846,12 +2222,119 @@ table.kpi td.co[rowspan]{vertical-align:top;}
     if (!first) return '';
     var range = first === last ? first : first + ' → ' + last;
     var asOf = (entry && entry.asOf) ? String(entry.asOf) : '';
+    var stale = isStaleEntry(entry);
     var t = 'The 4 most recent quarters this company has reported: ' + range +
-      (asOf ? '. Latest reported quarter: ' + asOf + '.' : '.');
+      (asOf ? '. Latest reported quarter: ' + asOf + '.' : '.') +
+      (stale ? ' This company has not reported ' + latestReportedQuarter() +
+               ' yet, so its whole row is older than the rest of the grid.' : '');
     return '<span class="kpiwin" title="' + esc(t) + '">' + esc(range) +
-      (asOf && asOf !== last ? ' <span class="kpiasof">as of ' + esc(asOf) + '</span>' : '') +
+      (asOf && (asOf !== last || stale)
+        ? ' <span class="kpiasof' + (stale ? ' is-stale' : '') + '">as of ' + esc(asOf) + '</span>'
+        : '') +
       '</span>';
   }
+
+  /* The brief's stale test, in one place: a source older than the latest
+     quarter anyone has reported. A company that simply reports later than its
+     peers is not wrong, but its numbers are not current either, and the grid
+     has to say which is which. */
+  function isStaleEntry(entry) {
+    var a = quarterOrdinal(entry && entry.asOf);
+    var b = quarterOrdinal(latestReportedQuarter());
+    /* strictly OLDER. A company that has already reported the next quarter is
+       ahead of the pack, not behind it, and dimming it would hide the freshest
+       data on the board. */
+    return a !== null && b !== null && a < b;
+  }
+  /* ------------------------------------------- 3.1 the standard TTM table
+     The brief's drill-down: columns are the four quarters, rows are the level
+     and its derived views, and the flag says which row it was computed on.
+     Nothing is collapsed into a single number.
+
+     Which rows appear follows the variable type, exactly as specified:
+       flow     Level + YoY,        flagged on Level
+       stock    Level + QoQ change, flagged on QoQ change
+       seasonal Level + YoY,        flagged on YoY
+     A row we cannot compute from four quarters says so rather than showing
+     blanks that look like "not disclosed". YoY needs the same quarter a year
+     earlier, and a four-quarter window does not contain it unless the KPI is
+     itself already a growth figure - which is what the yoy basis means.       */
+  var KPI_BASIS_WORD = {
+    level: { kind: 'flow', flaggedOn: 'Level' },
+    qoq:   { kind: 'stock', flaggedOn: 'QoQ change' },
+    yoy:   { kind: 'seasonal', flaggedOn: 'YoY growth' }
+  };
+
+  function kpiTtmTable(k, vals, tags, cites, oneOffs, ax) {
+    var basis = KPI_BASIS_WORD[k.flagBasis] || KPI_BASIS_WORD.level;
+    var n = KPI_COLS.length;
+    var head = '<tr><th class="ttm__rh">' + esc(k.label) +
+      (k.unit ? ' <span class="kpiunit">' + esc(k.unit) + '</span>' : '') + '</th>';
+    for (var i = 0; i < n; i++) head += '<th>' + esc(kpiQLab(ax, i)) + '</th>';
+    head += '<th class="ttm__basis">Flag basis</th></tr>';
+
+    function row(label, cellsFn, basisNote, cls) {
+      var out = '<tr' + (cls ? ' class="' + cls + '"' : '') + '><th class="ttm__rh">' + esc(label) + '</th>';
+      for (var i = 0; i < n; i++) out += cellsFn(i);
+      out += '<td class="ttm__basis">' + esc(basisNote) + '</td></tr>';
+      return out;
+    }
+
+    /* Level - always shown, always the display row */
+    var body = row('Level', function (i) {
+      var v = vals[i];
+      return '<td class="num' + (oneOffs[i] ? ' is-oneoff' : '') + '">' +
+        (v == null ? '&ndash;' : esc(kpiNum(v))) + '</td>';
+    }, basis.kind === 'flow' ? 'flag computed here' : 'display only');
+
+    /* QoQ change - the flag row for a stock variable */
+    if (basis.kind === 'stock') {
+      body += row('QoQ change', function (i) {
+        var a = vals[i], b = i > 0 ? vals[i - 1] : null;
+        if (a == null || b == null) return '<td class="num empty">&ndash;</td>';
+        var d = a - b;
+        return '<td class="num" style="color:' + (d >= 0 ? '#0F7A3A' : '#C42433') + '">' +
+          (d > 0 ? '+' : '') + esc(kpiNum(d)) + '</td>';
+      }, 'flag computed here (stock variable)');
+    }
+
+    /* YoY growth - the flag row for a seasonal series, and shown for flows.
+       Only a KPI that already holds growth figures can fill it from a
+       four-quarter window; anything else says why it is empty instead. */
+    if (basis.kind === 'yoy') {
+      body += row('YoY growth %', function (i) {
+        var v = vals[i];
+        return '<td class="num">' + (v == null ? '&ndash;' : esc(kpiNum(v))) + '</td>';
+      }, 'flag computed here (this KPI is itself a YoY figure)');
+    } else {
+      body += row('YoY growth %', function () {
+        return '<td class="num empty">&ndash;</td>';
+      }, 'needs the same quarter a year earlier', 'is-unavailable');
+    }
+
+    /* One-off flag - the auditable exclusion */
+    body += row('One-off flag', function (i) {
+      return oneOffs[i]
+        ? '<td class="ttm__off" title="' + esc(oneOffs[i]) + '">' + esc(oneOffs[i]) + '</td>'
+        : '<td class="num empty">&mdash;</td>';
+    }, 'excluded quarter greyed out');
+
+    /* Source tag - per quarter-cell, "since the same KPI can come from a
+       presentation one quarter and an audited filing the next" */
+    body += row('Source', function (i) {
+      var t = tags[i] ? tagById[tags[i]] : null;
+      var cite = cites[i];
+      var src = cite && cite.doc ? cite.doc + (cite.page ? ', page ' + cite.page : '') : '';
+      if (!t) return '<td class="num empty">&ndash;</td>';
+      return '<td><span class="chip" style="--c:' + t.color + '" title="' +
+        esc(t.meaning + (src ? ' — ' + src : '')) + '"><span class="chip__sw"></span>' +
+        esc(t.label) + '</span></td>';
+    }, 'per quarter, not per KPI');
+
+    return '<table class="ttm"><tbody>' + head + body + '</tbody></table>' +
+      (k.notes ? '<div class="ttm__note">' + esc(k.notes) + '</div>' : '');
+  }
+
   /* four CSS bars scaled to this KPI's own min..max; nulls become empty slots,
      the newest quarter reads full-strength so the eye lands on "now" */
   function kpiSpark(values, color, ax) {
@@ -1930,6 +2413,9 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       var entry = kdata ? kdata[c.id] : null;
       var kpis = (entry && entry.kpis) ? entry.kpis : [];
       if (kpiJustTurned) kpis = kpis.filter(kpiIsTurned);
+      /* the brief's global rule: a value sourced older than the latest reported
+         quarter renders dimmed. It stays readable and stops looking current. */
+      var staleRow = isStaleEntry(entry) ? ' is-stale-value' : '';
 
       /* nothing to show for this company: awaiting extraction (never while filtering) */
       if (!kpis.length) {
@@ -1949,7 +2435,13 @@ table.kpi td.co[rowspan]{vertical-align:top;}
         /* company name once, spanning this company's KPI rows, with the window
            it reports on underneath - the header cannot state it any more */
         if (j === 0) {
-          cells += '<td class="co" rowspan="' + kpis.length + '" style="--c:' + g.color + '">' +
+          /* The span counts VISIBLE rows only. Each KPI emits a summary row and
+             a drill-down row, but the drill-down starts hidden, and a hidden row
+             is removed from table layout - so counting it here would make the
+             company cell reach down into the next company's rows. The span grows
+             by one each time a drill-down opens (see toggleRow). */
+          cells += '<td class="co" data-span-for="' + esc(c.id) + '" rowspan="' + kpis.length +
+            '" style="--c:' + g.color + '">' +
             '<i></i>' + esc(c.name) + kpiWindowLine(entry, ax) + '</td>';
         }
         /* KPI label + unit, titled with how the trajectory was judged */
@@ -1972,7 +2464,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
             /* An empty cell says the company did not state it - not that we
                failed to look. The note carries whatever the extractor could say
                about why, so hovering answers "is this missing or unreported?". */
-            cells += '<td class="empty num" title="' +
+            cells += '<td class="empty num' + staleRow + '" title="' +
               esc(qlab + ' · not disclosed for this quarter' +
                   (k.notes ? ' · ' + k.notes : '')) + '">&ndash;</td>';
           } else {
@@ -1982,19 +2474,40 @@ table.kpi td.co[rowspan]{vertical-align:top;}
                "here is the page the number is printed on". */
             var cite = cites[i];
             var src = cite && cite.doc ? cite.doc + (cite.page ? ', page ' + cite.page : '') : '';
-            cells += '<td class="num' + (src ? ' cited' : '') + '" title="' +
-              esc(qlab + (tag ? ' · ' + tag : '') + (src ? ' · ' + src : '')) + '">' +
+            /* A one-off quarter keeps its number and is greyed with the reason:
+               the value is real, it just cannot speak for the trend. */
+            var off = k.oneOffs ? kpiAt(k.oneOffs, ax, i) : null;
+            cells += '<td class="num' + (src ? ' cited' : '') + (off ? ' is-oneoff' : '') + staleRow + '" title="' +
+              esc(qlab + (tag ? ' · ' + tag : '') + (src ? ' · ' + src : '') +
+                  (off ? ' · EXCLUDED from the trend: ' + off : '')) + '">' +
               kpiTagDot(tags[i]) + esc(kpiNum(v)) + '</td>';
           }
         }
         /* trend: the 4-bar spark beside the trajectory chip (or a muted dash) */
+        var oneOffAt = [];
+        for (var q2 = 0; q2 < KPI_COLS.length; q2++) {
+          oneOffAt.push(k.oneOffs ? kpiAt(k.oneOffs, ax, q2) : null);
+        }
         var flag = k.flag ? flagById[k.flag] : null;
         var trend = flag
           ? '<span class="chip" style="--c:' + flag.color + '" title="' + esc(flag.meaning) + '">' +
               '<span class="chip__sw"></span>' + flag.glyph + ' ' + esc(flag.plainLabel) + '</span>'
           : '<span class="kpimuted">&ndash;</span>';
         cells += '<td><span class="kpitrend">' + kpiSpark(vals, g.color, ax) + trend + '</span></td>';
-        return '<tr>' + cells + '</tr>';
+        /* 3.1: the row opens into the full standard TTM table, so the trend is
+           inspectable rather than just summarised. */
+        var rid = c.id + '::' + k.id;
+        return '<tr class="kpirow" data-row="' + esc(rid) + '" tabindex="0" ' +
+                 'title="Click to open the full quarter-by-quarter working">' +
+                 cells + '</tr>' +
+               /* The company cell is spanned from the block's first row, so this
+                  row has only KPI + the quarters + Trend to fill. Spanning the
+                  company column too would push every later row one cell right. */
+               '<tr class="kpidetail" data-detail="' + esc(rid) + '" hidden>' +
+                 '<td colspan="' + (KPI_COLS.length + 2) + '">' +
+                   kpiTtmTable(k, vals, tags, cites, oneOffAt, ax) +
+                 '</td>' +
+               '</tr>';
       }).join('');
     }).join('');
 
@@ -2020,6 +2533,82 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           ? 'Awaiting extraction'
           : (kpiJustTurned ? 'No KPIs just turned this quarter' : 'No KPIs to show for this group yet'))
       : '';
+
+    /* 3.1: open a row into its full working. Delegated from the table so the
+       handler survives every re-render, and keyboard-reachable because the row
+       is the only way to the numbers underneath it. */
+    var tbl = el('kpiTable');
+    function toggleRow(tr) {
+      var id = tr.getAttribute('data-row');
+      var det = tbl.querySelector('.kpidetail[data-detail="' + (window.CSS && CSS.escape ? CSS.escape(id) : id) + '"]');
+      if (!det) return;
+      var open = !det.hidden;
+      det.hidden = open;
+      tr.setAttribute('aria-expanded', open ? 'false' : 'true');
+      tr.classList.toggle('is-open', !open);
+      /* The company cell spans visible rows, so opening a drill-down adds one
+         to its span and closing takes it back. Without this the cell stops
+         short and every later row in the block shifts a column left. */
+      var companyId = id.split('::')[0];
+      var co = tbl.querySelector('.co[data-span-for="' +
+        (window.CSS && CSS.escape ? CSS.escape(companyId) : companyId) + '"]');
+      if (co) co.rowSpan = Math.max(1, co.rowSpan + (open ? -1 : 1));
+    }
+    tbl.addEventListener('click', function (e) {
+      var tr = e.target.closest ? e.target.closest('tr.kpirow') : null;
+      if (tr && tbl.contains(tr)) toggleRow(tr);
+    });
+    tbl.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var tr = e.target.closest ? e.target.closest('tr.kpirow') : null;
+      if (tr && tbl.contains(tr)) { e.preventDefault(); toggleRow(tr); }
+    });
+
+    renderOneOffLedger(g);
+  }
+
+  /* ---- 3.3 the one-off ledger ------------------------------------------
+     "Greyed-out quarters listed with reasons, so exclusions are auditable
+     rather than silent." A quarter held out of the trend is a decision the
+     dashboard made; this is where it shows its working.                    */
+  function renderOneOffLedger(g) {
+    var node = el('oneOffLedger'), chip = el('oneOffChip');
+    if (!node) return;
+    var kdata = (DATA.kpis && DATA.kpis.companies) || {};
+    var rows = [];
+    (g.companies || []).forEach(function (c) {
+      var entry = kdata[c.id];
+      ((entry && entry.kpis) || []).forEach(function (k) {
+        (k.oneOffs || []).forEach(function (reason, i) {
+          if (!reason) return;
+          rows.push({
+            company: c.name, kpi: k.label,
+            quarter: (entry.quarters && entry.quarters[i]) || ('Q' + (i + 1)),
+            value: k.values ? k.values[i] : null, reason: reason
+          });
+        });
+      });
+    });
+
+    if (chip) {
+      chip.className = rows.length ? 'chip' : 'chip chip--ghost';
+      if (rows.length) chip.style.setProperty('--c', '#E9A526');
+      chip.innerHTML = rows.length
+        ? '<span class="chip__sw"></span>' + rows.length + ' excluded'
+        : 'None flagged';
+    }
+    node.innerHTML = rows.length
+      ? rows.map(function (r) {
+          return '<div class="offrow">' +
+            '<span class="offrow__q">' + esc(r.quarter) + '</span>' +
+            '<span class="offrow__co">' + esc(r.company) + '</span>' +
+            '<span class="offrow__k">' + esc(r.kpi) +
+              (r.value == null ? '' : ' <b>' + esc(kpiNum(r.value)) + '</b>') + '</span>' +
+            '<span class="offrow__why">' + esc(r.reason) + '</span>' +
+          '</div>';
+        }).join('')
+      : '<div class="offempty">No quarter in this group is flagged as distorted by a ' +
+        'one-off, so nothing has been held out of a trend here.</div>';
   }
 
   /* ---------------------------------------------------------- 4. commentary */
@@ -2062,8 +2651,17 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       '<div class="heat__grid">' +
         '<div></div>' + qs.map(function (q) { return '<div class="heat__colhead">' + esc(q) + '</div>'; }).join('') +
         rows.map(function (r) {
-          var head = '<div class="heat__row" style="--c:' + r.color + '" title="' + esc(r.what) + '">' +
-            '<i></i><span>' + esc(r.name) + '</span></div>';
+          /* the same stale rule as the KPI grid: a company whose latest read
+             quarter trails the rest dims, so an old tone stops looking current */
+          var rStale = isStaleEntry(r.entry);
+          var head = '<div class="heat__row" data-company="' + esc(r.id) + '" tabindex="0" ' +
+            'style="--c:' + r.color + '" title="' +
+            esc(r.what + ' — click to open the read' +
+                (rStale ? '. Latest read quarter is ' + r.entry.asOf + ', older than ' + latestReportedQuarter() + '.' : '')) +
+            '">' +
+            '<i></i><span>' + esc(r.name) + '</span>' +
+            (rStale ? '<span class="stamp is-stale">' + esc(r.entry.asOf) + '</span>' : '') +
+            '</div>';
           /* the company's own four quarters, newest at the right. Each cell names
              the quarter it is, because the column heading is only the common window. */
           var tones = (r.entry && r.entry.tones) ? r.entry.tones.slice(-4) : [];
@@ -2082,7 +2680,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
                 (t.quote ? ' · “' + t.quote + '”' : '') +
                 (t.rationale ? ' · ' + t.rationale : '') +
                 (t.doc ? ' · ' + t.doc : '');
-              cells += '<div class="heat__cell heat__cell--on" style="background:' + s.color +
+              cells += '<div class="heat__cell heat__cell--on' + (rStale ? ' is-stale-value' : '') + '" style="background:' + s.color +
                 '" title="' + esc(title) + '"></div>';
             }
           }
@@ -2101,6 +2699,162 @@ table.kpi td.co[rowspan]{vertical-align:top;}
     }).join('');
 
     renderToneShift(rows, toneById);
+    renderThemes();
+
+    /* 4.2: the heat strip is the index into the company cards. Clicking a row
+       opens that company's fixed-template read beside it. */
+    var heat = el('toneHeat');
+    heat.addEventListener('click', function (e) {
+      var row = e.target.closest ? e.target.closest('[data-company]') : null;
+      if (row && heat.contains(row)) selectCompanyCard(row.getAttribute('data-company'));
+    });
+    heat.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var row = e.target.closest ? e.target.closest('[data-company]') : null;
+      if (row && heat.contains(row)) { e.preventDefault(); selectCompanyCard(row.getAttribute('data-company')); }
+    });
+    /* open the company with the loudest move, so the panel is never empty */
+    var first = (DATA.scores && DATA.scores.toneDrift && DATA.scores.toneDrift[0])
+      ? DATA.scores.toneDrift[0].companyId
+      : (rows[0] && rows[0].id);
+    if (first) selectCompanyCard(first);
+  }
+
+  /* ---- 4.2 the company card: the fixed template, per the brief -----------
+     Direction on the main driver, the synthesized signal, any guided numbers
+     as [Mgmt Claim] chips, the four-quarter drift, and the cycle implication -
+     plus a link to the document the read was made from, for audit.          */
+  var cardCompany = null;
+
+  function selectCompanyCard(companyId) {
+    cardCompany = companyId;
+    var heat = el('toneHeat');
+    if (heat) {
+      [].forEach.call(heat.querySelectorAll('[data-company]'), function (n) {
+        n.classList.toggle('is-picked', n.getAttribute('data-company') === companyId);
+      });
+    }
+    renderCompanyCard(companyId);
+  }
+
+  function renderCompanyCard(companyId) {
+    var node = el('companyCard'); if (!node) return;
+    var c = DATA.commentary && DATA.commentary.companies && DATA.commentary.companies[companyId];
+    var co = byId[companyId];
+    el('cardTitle').textContent = (co && co.name) || (c && c.name) || 'The read';
+    if (!c) {
+      el('cardSub').textContent = 'Pick a company on the left';
+      el('cardChip').innerHTML = '<span class="chip chip--ghost">No data yet</span>';
+      node.innerHTML = '<div class="ghost" data-ghost="text"></div>';
+      return;
+    }
+    var toned = (c.tones || []).filter(function (t) { return t && t.toneId; });
+    var latest = toned.length ? toned[toned.length - 1] : null;
+    el('cardSub').textContent = latest ? latest.quarter : 'no classified quarter yet';
+    /* The synthesized read is the analyst layer's own words, so it is tagged
+       [Inference] - never [Official]. That boundary is the point of the tag. */
+    el('cardChip').innerHTML = latest
+      ? sourceChip('inference', 'the analyst layer\'s own distillation of the call')
+      : '<span class="chip chip--ghost">No tone yet</span>';
+
+    if (!latest) {
+      node.innerHTML = '<div class="cardline"><div class="cardline__lab">No read</div>' +
+        '<div class="cardline__txt">' +
+        esc((c.tones && c.tones.length && c.tones[c.tones.length - 1].rationale) ||
+            'No concall text has been classified for this company yet.') +
+        '</div></div>';
+      return;
+    }
+
+    var DIR = {
+      positive: { c: '#0F7A3A', w: 'Positive' },
+      neutral:  { c: '#7C8496', w: 'Neutral' },
+      negative: { c: '#C42433', w: 'Negative' }
+    };
+    var d = latest.direction ? DIR[latest.direction] : null;
+    var toneMeta = toneStepById(latest.toneId) || {};
+
+    function line(lab, html) {
+      return '<div class="cardline"><div class="cardline__lab">' + esc(lab) + '</div>' +
+             '<div class="cardline__txt">' + html + '</div></div>';
+    }
+
+    var html = '';
+    /* Direction: Positive / Neutral / Negative on [main driver] */
+    html += line('Direction', d
+      ? '<span class="chip" style="--c:' + d.c + '"><span class="chip__sw"></span>' + d.w + '</span>' +
+        (latest.driver ? ' <span class="cardline__on">on ' + esc(latest.driver) + '</span>' : '')
+      : '<span class="cardline__await">Not yet read &mdash; this quarter was classified before the ' +
+        'full template existed, and fills on the next commentary run.</span>');
+
+    /* Signal: one synthesized sentence */
+    html += line('Signal', latest.signal
+      ? esc(latest.signal)
+      : '<span class="cardline__await">Awaiting the next commentary run.</span>');
+
+    /* Mgmt data points: guided numbers, chipped as claims */
+    html += line('Mgmt data points', (latest.mgmtDataPoints && latest.mgmtDataPoints.length)
+      ? latest.mgmtDataPoints.map(function (p) {
+          return '<span class="chip" style="--c:' + ((tagById['mgmt-claim'] || {}).color || '#7C3AED') + '" ' +
+            'title="Management said this. It is a claim, not an audited fact, and never becomes one by being repeated.">' +
+            '<span class="chip__sw"></span>' + esc(p) + '</span>';
+        }).join(' ')
+      : '<span class="cardline__await">None guided this quarter.</span>');
+
+    /* Tone drift (4Q) */
+    html += line('Tone drift', (c.tones || []).map(function (t) {
+      var m = t && t.toneId ? toneStepById(t.toneId) : null;
+      return '<span class="drift' + (m ? '' : ' is-none') + '" style="--c:' + (m ? m.color : '#AEB4C0') + '" ' +
+        'title="' + esc((t && t.quarter ? t.quarter + ': ' : '') + (m ? m.label : 'not classified')) + '">' +
+        esc(m ? m.plainLabel : '–') + '</span>';
+    }).join('<span class="driftarrow">→</span>'));
+
+    /* Cycle implication */
+    html += line('Implication', latest.implication
+      ? esc(latest.implication)
+      : '<span class="cardline__await">Awaiting the next commentary run.</span>');
+
+    /* the evidence: the quote it rests on, and the document it came from */
+    if (latest.quote) {
+      html += line('Rests on', '<span class="cardquote">&ldquo;' + esc(latest.quote) + '&rdquo;</span>');
+    }
+    html += line('Source', esc(latest.doc || 'concall text (document not named)') +
+      (latest.rationale ? ' <span class="cardline__on">' + esc(latest.rationale) + '</span>' : ''));
+
+    node.innerHTML = html;
+  }
+
+  /* ---- 4.3 the seven listening themes ---------------------------------- */
+  function renderThemes() {
+    var node = el('themeList'), chip = el('themeChip');
+    if (!node) return;
+    var themes = (DATA.scores && DATA.scores.themes) || [];
+    if (chip) {
+      chip.className = themes.length ? 'chip' : 'chip chip--ghost';
+      if (themes.length) chip.style.setProperty('--c', '#7C3AED');
+      chip.innerHTML = themes.length
+        ? '<span class="chip__sw"></span>' + themes.length + ' themes'
+        : 'No data yet';
+    }
+    var MOOD = { positive: '#0F7A3A', negative: '#C42433', mixed: '#E9A526' };
+    node.innerHTML = themes.length
+      ? themes.map(function (t) {
+          var col = MOOD[t.mood] || '#7C8496';
+          return '<div class="theme" style="--c:' + col + '" title="' + esc(t.listenFor || '') + '">' +
+            '<div class="theme__hd">' +
+              '<span class="theme__dot"></span>' +
+              '<span class="theme__nm">' + esc(t.label) + '</span>' +
+              '<span class="theme__b">' + esc(t.bucket) + '</span>' +
+            '</div>' +
+            '<div class="theme__state">' + esc(t.state) + '</div>' +
+            (t.drivers && t.drivers.length
+              ? '<div class="theme__who">' + t.drivers.map(function (m) {
+                  return '<span class="theme__co">' + esc(m.name) + '</span>';
+                }).join('') + '</div>'
+              : '') +
+          '</div>';
+        }).join('')
+      : '<div class="ghost" data-ghost="list"></div>';
   }
 
   /* "What changed this quarter": companies whose tone moved between their two most
@@ -2146,18 +2900,115 @@ table.kpi td.co[rowspan]{vertical-align:top;}
   }
 
   /* ------------------------------------------------------------- 5. insight */
+  /* one tone step from the five-point scale, by id */
+  function toneStepById(id) {
+    var steps = (DATA.framework.toneScale && DATA.framework.toneScale.steps) || [];
+    for (var i = 0; i < steps.length; i++) if (steps[i].id === id) return steps[i];
+    return null;
+  }
+
+  /* the latest classified tone for a company, or null */
+  function latestTone(companyId) {
+    var c = DATA.commentary && DATA.commentary.companies && DATA.commentary.companies[companyId];
+    var toned = ((c && c.tones) || []).filter(function (t) { return t && t.toneId; });
+    return toned.length ? toned[toned.length - 1] : null;
+  }
+  /* the trajectory flags a company's KPIs currently carry, most telling first */
+  function companyTrend(companyId) {
+    var e = DATA.kpis && DATA.kpis.companies && DATA.kpis.companies[companyId];
+    var flags = ((e && e.kpis) || []).map(function (k) { return k.flag; }).filter(Boolean);
+    if (!flags.length) return null;
+    var rank = ['inflecting-up', 'inflecting-down', 'accelerating', 'decelerating', 'steady'];
+    flags.sort(function (a, b) { return rank.indexOf(a) - rank.indexOf(b); });
+    return { flag: flagById[flags[0]], n: flags.length };
+  }
+
   function renderInsight() {
+    var sc = DATA.scores;
+
+    /* ---- 5.1 the read: the pipeline's fixed-structure summary ------------ */
+    el('readChip').innerHTML = sc
+      ? sourceChip(scoreTagId(), 'assembled from the scores in a fixed structure') + asOfStamp(scoreAsOf())
+      : '<span class="chip chip--ghost">No data yet</span>';
+    el('theRead').innerHTML = (sc && sc.summary && sc.summary.length)
+      ? sc.summary.map(function (l) {
+          return '<div class="readline">' +
+            '<div class="readline__lab">' + esc(l.label) + '</div>' +
+            '<div class="readline__txt">' + esc(l.text) + '</div>' +
+          '</div>';
+        }).join('')
+      : '<div class="ghost" data-ghost="text"></div>';
+
+    /* ---- 5.2 the shortlist, mapped to the stage we are actually in ------- */
+    var stage = currentStage();
+    var act = sc && sc.actions;
+    var sCol = stage ? stage.color : '#7C8496';
+    el('actionChip').innerHTML = act
+      ? '<span class="chip" style="--c:' + sCol + '" title="' +
+          esc('The Step 5b row for this stage. Call a different stage and the panel repopulates.') +
+        '"><span class="chip__sw"></span>from ' + esc(act.stageLabel) + '</span>'
+      : '<span class="chip chip--ghost">No stage called</span>';
+    el('actionList').innerHTML = act
+      ? /* why these, at this stage - the client's own reasoning for the row */
+        '<div class="action__lead">' + esc(act.why) + '</div>' +
+        '<div class="researchrow">' + act.research.map(function (r, i) {
+          var c = r.companyId ? byId[r.companyId] : null;
+          var col = c ? (findGroupColor(c) || sCol) : '#7C8496';
+          /* a name outside the 27-company backbone is shown, and marked: the
+             dashboard holds no KPI series for it, and pretending otherwise
+             would make an empty row look like a covered one */
+          return '<span class="research' + (c ? '' : ' is-off') + '" style="--c:' + col + '" title="' +
+            esc(c ? (c.name + ' - ' + (c.what || ''))
+                  : r.label + ' is a research target outside the 27-company backbone, so this dashboard holds no KPI series for it.') + '">' +
+            '<span class="research__n">' + (i + 1) + '</span>' +
+            '<span class="research__nm">' + esc(r.label) + '</span>' +
+            (c ? '' : '<span class="research__off">no series</span>') +
+          '</span>';
+        }).join('') + '</div>'
+      : '<div class="ghost" data-ghost="list"></div>';
+
+    /* ---- 5.4 what moved since last time --------------------------------- */
+    var changes = (sc && sc.changes) || [];
+    var quiet = changes.length === 1 && (changes[0].kind === 'none' || changes[0].kind === 'first-run');
+    el('changeChip').innerHTML = sc
+      ? (quiet ? '<span class="chip chip--ghost">' + (changes[0].kind === 'first-run' ? 'First reading' : 'Quiet quarter') + '</span>'
+               : '<span class="chip" style="--c:#0E9FC0"><span class="chip__sw"></span>' + changes.length + ' changes</span>')
+      : '<span class="chip chip--ghost">No data yet</span>';
+    var CHANGE_TONE = { 'stage-call': '#6155DE', score: '#0E9FC0', alert: '#E9A526', none: '#7C8496', 'first-run': '#7C8496' };
+    el('changeLog').innerHTML = changes.length
+      ? changes.map(function (c) {
+          return '<div class="chg" style="--c:' + (CHANGE_TONE[c.kind] || '#7C8496') + '">' +
+            '<span class="chg__dot"></span><span class="chg__txt">' + esc(c.text) + '</span></div>';
+        }).join('')
+      : '<div class="ghost" data-ghost="list"></div>';
+
+    /* ---- 5.3 the standing six: always rendered, whatever the stage ------- */
+    el('sixChip').innerHTML = '<span class="chip" style="--c:#7C8496" title="' +
+      esc('Rendered every quarter regardless of the cycle stage, by design.') +
+      '"><span class="chip__sw"></span>Always shown</span>';
     el('sixGrid').innerHTML = DATA.framework.standingSix.slots.map(function (s) {
       var c = (s.companyIds || []).map(function (id) { return byId[id]; }).filter(Boolean);
       var col = (c[0] && findGroupColor(c[0])) || '#7C3AED';
+      /* the slots now carry the real read: how they sounded, and which way the
+         numbers are going. A slot with no evidence still says so. */
+      var tone = null, trend = null;
+      (s.companyIds || []).some(function (id) { tone = latestTone(id); return !!tone; });
+      (s.companyIds || []).some(function (id) { trend = companyTrend(id); return !!trend; });
+      var toneMeta = tone && toneStepById(tone.toneId);
       return '<div class="sixcard" style="border-left-color:' + col + '">' +
         '<div class="sixcard__t">' + esc(s.label) + '</div>' +
         '<div class="sixcard__w">' + esc(s.why) + '</div>' +
-        /* the slots the real read will fill: how they sounded, which way it is going */
         '<div class="sixcard__slots">' +
-          '<span class="chip chip--ghost">Tone &ndash;</span>' +
-          '<span class="chip chip--ghost">Trend &ndash;</span>' +
-          '<span class="chip chip--ghost">What to check &ndash;</span>' +
+          (toneMeta
+            ? '<span class="chip" style="--c:' + toneMeta.color + '" title="' +
+                esc((tone.quote ? '“' + tone.quote + '”' : '') + ' — ' + (tone.quarter || '')) + '">' +
+                '<span class="chip__sw"></span>' + esc(toneMeta.plainLabel) + '</span>'
+            : '<span class="chip chip--ghost">Tone &ndash;</span>') +
+          (trend && trend.flag
+            ? '<span class="chip" style="--c:' + trend.flag.color + '" title="' +
+                esc(trend.flag.meaning + ' — across ' + trend.n + ' flagged KPI' + (trend.n === 1 ? '' : 's')) + '">' +
+                '<span class="chip__sw"></span>' + trend.flag.glyph + ' ' + esc(trend.flag.plainLabel) + '</span>'
+            : '<span class="chip chip--ghost">Trend &ndash;</span>') +
         '</div>' +
       '</div>';
     }).join('');
@@ -2266,6 +3117,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 
   load().then(function () {
     renderBrand();
+    renderScorePill();
     renderStagePill();
     renderAlerts();
     renderVerdict();

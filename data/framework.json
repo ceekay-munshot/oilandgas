@@ -3,63 +3,532 @@
   "title": "Fixed vocabulary",
   "note": "The only words and colours the dashboard is allowed to use for direction, tone, cycle stage and where a fact came from. Every colour here was checked with a colour-blindness and contrast validator against a white background. Every item carries a plainLabel so no visitor has to know finance words.",
   "updated": "2026-07-25",
-
   "trajectoryFlags": [
-    { "id": "accelerating",     "label": "Accelerating",     "plainLabel": "Speeding up",       "glyph": "⇑", "color": "#0F7A3A", "meaning": "Growing, and growing faster than last quarter." },
-    { "id": "steady",           "label": "Steady",           "plainLabel": "Holding steady",    "glyph": "→", "color": "#2563EB", "meaning": "Moving along at about the same pace." },
-    { "id": "decelerating",     "label": "Decelerating",     "plainLabel": "Slowing down",      "glyph": "⇓", "color": "#E07C05", "meaning": "Still growing, but slower than last quarter." },
-    { "id": "inflecting-up",    "label": "Inflecting Up",    "plainLabel": "Just turned up",    "glyph": "↗", "color": "#0E9FC0", "meaning": "Was falling, has just started to rise." },
-    { "id": "inflecting-down",  "label": "Inflecting Down",  "plainLabel": "Just turned down",  "glyph": "↘", "color": "#C42433", "meaning": "Was rising, has just started to fall." }
+    {
+      "id": "accelerating",
+      "label": "Accelerating",
+      "plainLabel": "Speeding up",
+      "glyph": "⇑",
+      "color": "#0F7A3A",
+      "meaning": "Growing, and growing faster than last quarter."
+    },
+    {
+      "id": "steady",
+      "label": "Steady",
+      "plainLabel": "Holding steady",
+      "glyph": "→",
+      "color": "#2563EB",
+      "meaning": "Moving along at about the same pace."
+    },
+    {
+      "id": "decelerating",
+      "label": "Decelerating",
+      "plainLabel": "Slowing down",
+      "glyph": "⇓",
+      "color": "#E07C05",
+      "meaning": "Still growing, but slower than last quarter."
+    },
+    {
+      "id": "inflecting-up",
+      "label": "Inflecting Up",
+      "plainLabel": "Just turned up",
+      "glyph": "↗",
+      "color": "#0E9FC0",
+      "meaning": "Was falling, has just started to rise."
+    },
+    {
+      "id": "inflecting-down",
+      "label": "Inflecting Down",
+      "plainLabel": "Just turned down",
+      "glyph": "↘",
+      "color": "#C42433",
+      "meaning": "Was rising, has just started to fall."
+    }
   ],
-
   "toneScale": {
     "type": "diverging",
     "plainName": "How management sounded",
     "neutralId": "neutral",
     "steps": [
-      { "id": "confident",    "label": "Confident",    "plainLabel": "Very upbeat", "score": 5, "color": "#0F7A3A", "meaning": "Sure of themselves. Talks about growth and new spending." },
-      { "id": "constructive", "label": "Constructive", "plainLabel": "Positive",    "score": 4, "color": "#59B061", "meaning": "Hopeful. Sees things improving." },
-      { "id": "neutral",      "label": "Neutral",      "plainLabel": "Flat",        "score": 3, "color": "#AEB4C0", "meaning": "Neither good nor bad. Wait and see." },
-      { "id": "cautious",     "label": "Cautious",     "plainLabel": "Careful",     "score": 2, "color": "#E9A526", "meaning": "Holding back. Talks about risks and delays." },
-      { "id": "defensive",    "label": "Defensive",    "plainLabel": "Worried",     "score": 1, "color": "#C42433", "meaning": "Protecting the business. Talks about cutting costs." }
+      {
+        "id": "confident",
+        "label": "Confident",
+        "plainLabel": "Very upbeat",
+        "score": 5,
+        "color": "#0F7A3A",
+        "meaning": "Sure of themselves. Talks about growth and new spending."
+      },
+      {
+        "id": "constructive",
+        "label": "Constructive",
+        "plainLabel": "Positive",
+        "score": 4,
+        "color": "#59B061",
+        "meaning": "Hopeful. Sees things improving."
+      },
+      {
+        "id": "neutral",
+        "label": "Neutral",
+        "plainLabel": "Flat",
+        "score": 3,
+        "color": "#AEB4C0",
+        "meaning": "Neither good nor bad. Wait and see."
+      },
+      {
+        "id": "cautious",
+        "label": "Cautious",
+        "plainLabel": "Careful",
+        "score": 2,
+        "color": "#E9A526",
+        "meaning": "Holding back. Talks about risks and delays."
+      },
+      {
+        "id": "defensive",
+        "label": "Defensive",
+        "plainLabel": "Worried",
+        "score": 1,
+        "color": "#C42433",
+        "meaning": "Protecting the business. Talks about cutting costs."
+      }
     ]
   },
-
   "cycleStages": [
-    { "id": "trough",         "label": "Trough",             "plainLabel": "Bottom",             "order": 1, "color": "#6155DE", "range": [0, 20],   "meaning": "Spending is at its lowest. Nothing is being ordered." },
-    { "id": "early-upcycle",  "label": "Early Upcycle",      "plainLabel": "Just turning up",    "order": 2, "color": "#0E9FC0", "range": [20, 40],  "meaning": "First new orders are landing. Only the early movers feel it." },
-    { "id": "mid-upcycle",    "label": "Mid Upcycle",        "plainLabel": "Picking up speed",   "order": 3, "color": "#0F7A3A", "range": [40, 60],  "meaning": "Orders are broad. Most of the sector is busy." },
-    { "id": "late-upcycle",   "label": "Late Upcycle/Peak",  "plainLabel": "Running hot",        "order": 4, "color": "#E9A526", "range": [60, 80],  "meaning": "Everyone is at full stretch. Costs are climbing." },
-    { "id": "early-downcycle","label": "Early Downcycle",    "plainLabel": "Starting to cool",   "order": 5, "color": "#D02F3C", "range": [80, 100], "meaning": "New orders are thinning out. The early movers slow first." }
+    {
+      "id": "trough",
+      "label": "Trough",
+      "plainLabel": "Bottom",
+      "order": 1,
+      "color": "#6155DE",
+      "range": [
+        0,
+        20
+      ],
+      "meaning": "Spending is at its lowest. Nothing is being ordered."
+    },
+    {
+      "id": "early-upcycle",
+      "label": "Early Upcycle",
+      "plainLabel": "Just turning up",
+      "order": 2,
+      "color": "#0E9FC0",
+      "range": [
+        20,
+        40
+      ],
+      "meaning": "First new orders are landing. Only the early movers feel it."
+    },
+    {
+      "id": "mid-upcycle",
+      "label": "Mid Upcycle",
+      "plainLabel": "Picking up speed",
+      "order": 3,
+      "color": "#0F7A3A",
+      "range": [
+        40,
+        60
+      ],
+      "meaning": "Orders are broad. Most of the sector is busy."
+    },
+    {
+      "id": "late-upcycle",
+      "label": "Late Upcycle/Peak",
+      "plainLabel": "Running hot",
+      "order": 4,
+      "color": "#E9A526",
+      "range": [
+        60,
+        80
+      ],
+      "meaning": "Everyone is at full stretch. Costs are climbing."
+    },
+    {
+      "id": "early-downcycle",
+      "label": "Early Downcycle",
+      "plainLabel": "Starting to cool",
+      "order": 5,
+      "color": "#D02F3C",
+      "range": [
+        80,
+        100
+      ],
+      "meaning": "New orders are thinning out. The early movers slow first."
+    }
   ],
-
   "sourceTags": [
-    { "id": "official",       "label": "Official",       "plainLabel": "Government data",            "color": "#1D4ED8", "trust": 1, "meaning": "Published by a government body or regulator." },
-    { "id": "company-filing", "label": "Company Filing",  "plainLabel": "From company report",        "color": "#0B7A5C", "trust": 2, "meaning": "Taken straight from a company's own filed results." },
-    { "id": "mgmt-claim",     "label": "Mgmt Claim",      "plainLabel": "Company said it",            "color": "#9333EA", "trust": 3, "meaning": "Something management stated but nobody has checked." },
-    { "id": "external",       "label": "External",        "plainLabel": "Outside source",            "color": "#0891B2", "trust": 4, "meaning": "From a news report, broker note or industry body." },
-    { "id": "estimate",       "label": "Estimate",        "plainLabel": "Best estimate",             "color": "#B45309", "trust": 5, "meaning": "A forward guess, not a reported number." },
-    { "id": "inference",      "label": "Inference",       "plainLabel": "Read between the lines",    "color": "#DB2777", "trust": 6, "meaning": "A conclusion drawn from what was said, not stated outright." },
-    { "id": "derived",        "label": "Derived",         "plainLabel": "Worked out from other numbers", "color": "#4D7C0F", "trust": 7, "meaning": "Calculated by this dashboard from other data on this page." },
-    { "id": "unknown",        "label": "Unknown",         "plainLabel": "Source not known",          "color": "#6B7280", "trust": 8, "meaning": "We do not know where this came from. Treat with care." }
+    {
+      "id": "official",
+      "label": "Official",
+      "plainLabel": "Government data",
+      "color": "#1D4ED8",
+      "trust": 1,
+      "meaning": "Published by a government body or regulator."
+    },
+    {
+      "id": "company-filing",
+      "label": "Company Filing",
+      "plainLabel": "From company report",
+      "color": "#0B7A5C",
+      "trust": 2,
+      "meaning": "Taken straight from a company's own filed results."
+    },
+    {
+      "id": "mgmt-claim",
+      "label": "Mgmt Claim",
+      "plainLabel": "Company said it",
+      "color": "#9333EA",
+      "trust": 3,
+      "meaning": "Something management stated but nobody has checked."
+    },
+    {
+      "id": "external",
+      "label": "External",
+      "plainLabel": "Outside source",
+      "color": "#0891B2",
+      "trust": 4,
+      "meaning": "From a news report, broker note or industry body."
+    },
+    {
+      "id": "estimate",
+      "label": "Estimate",
+      "plainLabel": "Best estimate",
+      "color": "#B45309",
+      "trust": 5,
+      "meaning": "A forward guess, not a reported number."
+    },
+    {
+      "id": "inference",
+      "label": "Inference",
+      "plainLabel": "Read between the lines",
+      "color": "#DB2777",
+      "trust": 6,
+      "meaning": "A conclusion drawn from what was said, not stated outright."
+    },
+    {
+      "id": "derived",
+      "label": "Derived",
+      "plainLabel": "Worked out from other numbers",
+      "color": "#4D7C0F",
+      "trust": 7,
+      "meaning": "Calculated by this dashboard from other data on this page."
+    },
+    {
+      "id": "unknown",
+      "label": "Unknown",
+      "plainLabel": "Source not known",
+      "color": "#6B7280",
+      "trust": 8,
+      "meaning": "We do not know where this came from. Treat with care."
+    }
   ],
-
   "standingSix": {
     "plainName": "The six we always check",
     "plainDescription": "Six slots that get read every quarter no matter what, because between them they cover the whole chain from drilling to fuel pumps.",
     "slots": [
-      { "id": "ss-ongc",     "label": "ONGC",                            "companyIds": ["ongc"],                             "why": "The biggest spender. If it stops ordering, the cycle stops." },
-      { "id": "ss-drillers", "label": "Deep Industries / Jindal Drilling", "companyIds": ["deep-industries", "jindal-drilling"], "why": "The rigs get hired first. The earliest hard signal there is." },
-      { "id": "ss-reliance", "label": "Reliance",                        "companyIds": ["reliance"],                         "why": "Sets the tone for refining and petrochemicals." },
-      { "id": "ss-eil",      "label": "Engineers India",                 "companyIds": ["engineers-india"],                  "why": "Its order book is a preview of the next few years of projects." },
-      { "id": "ss-plng",     "label": "Petronet LNG",                    "companyIds": ["petronet-lng"],                     "why": "Shows how much imported gas the country is actually using." },
-      { "id": "ss-omcs",     "label": "IOCL / BPCL",                     "companyIds": ["iocl", "bpcl"],                     "why": "Fuel demand at the pump, plus the biggest refinery spending plans." }
+      {
+        "id": "ss-ongc",
+        "label": "ONGC",
+        "companyIds": [
+          "ongc"
+        ],
+        "why": "The biggest spender. If it stops ordering, the cycle stops."
+      },
+      {
+        "id": "ss-drillers",
+        "label": "Deep Industries / Jindal Drilling",
+        "companyIds": [
+          "deep-industries",
+          "jindal-drilling"
+        ],
+        "why": "The rigs get hired first. The earliest hard signal there is."
+      },
+      {
+        "id": "ss-reliance",
+        "label": "Reliance",
+        "companyIds": [
+          "reliance"
+        ],
+        "why": "Sets the tone for refining and petrochemicals."
+      },
+      {
+        "id": "ss-eil",
+        "label": "Engineers India",
+        "companyIds": [
+          "engineers-india"
+        ],
+        "why": "Its order book is a preview of the next few years of projects."
+      },
+      {
+        "id": "ss-plng",
+        "label": "Petronet LNG",
+        "companyIds": [
+          "petronet-lng"
+        ],
+        "why": "Shows how much imported gas the country is actually using."
+      },
+      {
+        "id": "ss-omcs",
+        "label": "IOCL / BPCL",
+        "companyIds": [
+          "iocl",
+          "bpcl"
+        ],
+        "why": "Fuel demand at the pump, plus the biggest refinery spending plans."
+      }
     ]
   },
-
   "groupMeta": [
-    { "id": "leading",    "name": "Leading",    "plainLabel": "Moves first", "color": "#7C3AED" },
-    { "id": "coincident", "name": "Coincident", "plainLabel": "Moving now",  "color": "#0D9488" },
-    { "id": "lagging",    "name": "Lagging",    "plainLabel": "Moves last",  "color": "#E07C05" }
-  ]
+    {
+      "id": "leading",
+      "name": "Leading",
+      "plainLabel": "Moves first",
+      "color": "#7C3AED"
+    },
+    {
+      "id": "coincident",
+      "name": "Coincident",
+      "plainLabel": "Moving now",
+      "color": "#0D9488"
+    },
+    {
+      "id": "lagging",
+      "name": "Lagging",
+      "plainLabel": "Moves last",
+      "color": "#E07C05"
+    }
+  ],
+  "stageActions": {
+    "plainName": "What to research now",
+    "plainDescription": "The research-priority set for the stage Step 4 called. Not fixed: whichever row the stage call selects becomes the quarter's actionable list. These are research priorities, not buy/sell recommendations.",
+    "note": "Verbatim from the client brief, Step 5b. A name with no companyId is a research target outside the 27-company backbone, so the dashboard holds no KPI series for it.",
+    "byStage": {
+      "trough": {
+        "why": "Leading-bucket names are where the turn will show first; establish baselines and watch for the first order-inflow / utilization uptick",
+        "research": [
+          {
+            "label": "ONGC",
+            "companyId": "ongc"
+          },
+          {
+            "label": "Oil India",
+            "companyId": "oil-india"
+          },
+          {
+            "label": "Deep Industries",
+            "companyId": "deep-industries"
+          },
+          {
+            "label": "Jindal Drilling",
+            "companyId": "jindal-drilling"
+          },
+          {
+            "label": "Engineers India",
+            "companyId": "engineers-india"
+          }
+        ]
+      },
+      "early-upcycle": {
+        "why": "Oilfield services and first-line capex enablers have the most operating leverage to a capex turn; order books inflect here first and hardest",
+        "research": [
+          {
+            "label": "Deep Industries",
+            "companyId": "deep-industries"
+          },
+          {
+            "label": "Jindal Drilling",
+            "companyId": "jindal-drilling"
+          },
+          {
+            "label": "Engineers India",
+            "companyId": "engineers-india"
+          },
+          {
+            "label": "Ratnamani",
+            "companyId": "ratnamani"
+          },
+          {
+            "label": "Welspun",
+            "companyId": "welspun-corp"
+          },
+          {
+            "label": "Man Industries",
+            "companyId": null
+          }
+        ]
+      },
+      "mid-upcycle": {
+        "why": "The capex wave broadens from early movers to the wider process-equipment ecosystem; second-line enablers catch up",
+        "research": [
+          {
+            "label": "L&T (hydrocarbon)",
+            "companyId": "lt"
+          },
+          {
+            "label": "ISGEC",
+            "companyId": null
+          },
+          {
+            "label": "Anup Engineering",
+            "companyId": null
+          },
+          {
+            "label": "JNK",
+            "companyId": null
+          },
+          {
+            "label": "DEE Development",
+            "companyId": null
+          },
+          {
+            "label": "Inox India",
+            "companyId": null
+          }
+        ]
+      },
+      "late-upcycle": {
+        "why": "Rotate research toward volume / regulated-return businesses least exposed to a capex or margin rollover; scrutinize peak margins in refiners/petchem for durability",
+        "research": [
+          {
+            "label": "Petronet LNG",
+            "companyId": "petronet-lng"
+          },
+          {
+            "label": "GAIL",
+            "companyId": "gail"
+          },
+          {
+            "label": "IGL",
+            "companyId": "igl"
+          },
+          {
+            "label": "Mahanagar Gas",
+            "companyId": "mahanagar-gas"
+          },
+          {
+            "label": "Gujarat Gas",
+            "companyId": "gujarat-gas"
+          },
+          {
+            "label": "Aegis Logistics",
+            "companyId": "aegis-logistics"
+          }
+        ]
+      },
+      "early-downcycle": {
+        "why": "Margin-compression math matters most: which businesses hold margins, which don't; spread businesses reset fastest and reveal cost discipline",
+        "research": [
+          {
+            "label": "Reliance",
+            "companyId": "reliance"
+          },
+          {
+            "label": "IOCL",
+            "companyId": "iocl"
+          },
+          {
+            "label": "BPCL",
+            "companyId": "bpcl"
+          },
+          {
+            "label": "HPCL",
+            "companyId": "hpcl"
+          },
+          {
+            "label": "Castrol",
+            "companyId": "castrol-india"
+          },
+          {
+            "label": "Gandhar Oil",
+            "companyId": "gandhar-oil"
+          }
+        ]
+      }
+    }
+  },
+  "themes": {
+    "plainName": "What we listen for",
+    "plainDescription": "The seven themes the commentary read is organised around. Each names the companies that drive it and the bucket its tone feeds in the scoring.",
+    "items": [
+      {
+        "id": "upstream-capex",
+        "label": "Upstream capex intent",
+        "bucket": "leading",
+        "listenFor": "Capex/drilling guidance up, flat or down; new block awards; rig additions or deferrals; tendering activity from ONGC/OIL",
+        "companyIds": [
+          "ongc",
+          "oil-india",
+          "deep-industries",
+          "jindal-drilling"
+        ]
+      },
+      {
+        "id": "capex-pipeline",
+        "label": "Refining/petchem capex pipeline",
+        "bucket": "leading",
+        "listenFor": "Tone on bid pipeline and tendering - healthy / muted / delayed awards; specific large projects named (refinery expansion, new pipeline, LNG terminal)",
+        "companyIds": [
+          "engineers-india",
+          "lt",
+          "ratnamani",
+          "welspun-corp"
+        ]
+      },
+      {
+        "id": "refining-margin",
+        "label": "Refining margin outlook",
+        "bucket": "coincident",
+        "listenFor": "Management's own GRM outlook vs. benchmark; planned shutdowns/turnarounds (temporary distortion); new capacity coming online (structural cap)",
+        "companyIds": [
+          "reliance",
+          "iocl",
+          "bpcl",
+          "hpcl"
+        ]
+      },
+      {
+        "id": "marketing-margin",
+        "label": "Marketing margin normalization",
+        "bucket": "coincident",
+        "listenFor": "Retail fuel pricing signals, under-recovery risk - politically driven, moves independent of GRM",
+        "companyIds": [
+          "iocl",
+          "bpcl",
+          "hpcl"
+        ]
+      },
+      {
+        "id": "gas-demand",
+        "label": "Gas demand trajectory",
+        "bucket": "coincident",
+        "listenFor": "Volume growth guidance, new geographic-area rollout pace, industrial vs. domestic PNG mix shift, spot vs. term LNG contracting stance",
+        "companyIds": [
+          "gail",
+          "petronet-lng",
+          "igl",
+          "mahanagar-gas",
+          "gujarat-gas"
+        ]
+      },
+      {
+        "id": "freight-shipping",
+        "label": "Freight / shipping outlook",
+        "bucket": "lagging",
+        "listenFor": "Fleet redeployment plans, charter rate outlook, global vessel-supply tightness commentary",
+        "companyIds": [
+          "ge-shipping",
+          "shipping-corp"
+        ]
+      },
+      {
+        "id": "spread-demand",
+        "label": "Spread / demand commentary",
+        "bucket": "coincident",
+        "listenFor": "Auto/industrial offtake trend - tracks broad economic activity, not just crude",
+        "companyIds": [
+          "supreme-petrochem",
+          "castrol-india",
+          "gandhar-oil"
+        ]
+      }
+    ]
+  }
 }

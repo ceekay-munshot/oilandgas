@@ -3,15 +3,16 @@
 An instrument that shows where India's oil & gas capex cycle is right now, and
 which companies benefit.
 
-**Steps 1–5 of ~13 are in.** The shell, navigation and design system are done, the
-**Cockpit** and **Macro** tabs are built, and the dashboard now has **its own data
-pipeline** — it fetches its own market data and commits it back on a schedule, with
-no dependency on any other repository.
+**The client's specification is built end to end** — Part A's five-step pipeline,
+Part B's five dashboard sections, Part C's refresh architecture and Part D's
+source-tagging rules. The dashboard has **its own data pipeline**: it fetches its
+own market data, scrapes the company filings, reads the concalls, scores the
+cycle and commits the results back on a schedule, with no dependency on any other
+repository.
 
-**All six** market tiles now have a working source. Four need no key at all; the
-other two go through a scraper and are wired to parsers written from real
-responses, not from documentation. Every score on the Cockpit is still honestly
-marked as not-yet-live rather than filled with plausible-looking numbers.
+**Nothing on screen is a placeholder.** The `SEED` object that used to fill the
+Cockpit is gone; every number is read from `data/*.json`, and where the pipeline
+has no answer the interface says so instead of showing a plausible one.
 
 ---
 
@@ -98,27 +99,17 @@ Five tabs, and three subtabs under KPIs:
   and its plain-English label
 - The standing six, and which companies each slot points at
 
-**Placeholder (`SEED`)** — the Cockpit's cycle stage and three group scores, tagged
-*SEED · not yet live* on screen. They arrive for real with the KPI pipeline in
-prompts 5–7. They live in one `SEED` object
-near the top of the `<script>` in `index.html`, and they are marked `SEED` in the
-header and on every card that uses them:
+**Computed (`data/scores.json`)** — the cycle stage, the three bucket scores, the
+divergence reading and the alert strip, written by `pipeline/rescore.mjs` from the
+KPI trajectories, the macro tiles and the commentary tones. No network call and no
+model call: it is arithmetic on tagged inputs, which is why it carries `[Derived]`.
 
-```js
-var SEED = {
-  cyclePosition: 52,                    // 0-100 along the five stages
-  scores: { leading:    { score: 72, prev: 66 },
-            coincident: { score: 58, prev: 56 },
-            lagging:    { score: 41, prev: 44 } },
-  divergence: [18, 22, 27, 31],         // leading minus lagging, oldest first
-  alerts: [ … ]
-};
-```
-
-The stage name shown on the dial is **derived** from `cyclePosition` against the
-ranges in `framework.json` — set the number and the words, the colour and the
-"you are here" marker all follow. Replacing this object with a fetch of a real
-scores file is the natural next step.
+- A bucket with nothing scoreable is `null`, and the gauge shows a dash — never a
+  zero, because those mean opposite things.
+- A board with nothing far enough from zero calls **no stage at all** rather than
+  defaulting to mid-cycle.
+- `data/scores-history.json` keeps one reading per quarter, so the dashboard's own
+  past calls can be checked against what actually happened.
 
 **Live (`data/macro.json`)** — written by the pipeline, never by hand. A tile with
 no source carries an empty series, an `Unknown` chip and *"Awaiting live source"*
