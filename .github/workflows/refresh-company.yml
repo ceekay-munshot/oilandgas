@@ -19,6 +19,10 @@ on:
         type: choice
         options: [smoke, all, dump]
         default: smoke
+      refreshCommentary:
+        description: 'Re-read every concall (only after a commentary prompt change - costs one model call per company)'
+        type: boolean
+        default: false
   schedule:
     # The brief's auto-trigger cadence: stages 2-6 run DAILY during earnings
     # months and WEEKLY the rest of the year. Indian results land in Jan-Feb,
@@ -100,9 +104,17 @@ jobs:
       # Step 4: classify how management SOUNDED each quarter from the same cached
       # concalls -> data/commentary.json (the Commentary tab). Same job so it reads
       # this run's cache; accumulates in data/commentary-store.json like the KPIs.
+      #
+      # A quarter that already carries a tone is never re-asked, whatever the
+      # prompt version - "the first real reading stands". The fingerprint only
+      # re-opens quarters that came back empty. So after a change that asks the
+      # model for MORE about each quarter (a new template field), the stored
+      # quarters keep their old shape until someone re-asks on purpose. That is
+      # what refreshCommentary is for: one model call per company, deliberately
+      # opt-in, because it spends the key on work already paid for once.
       - name: Extract commentary
         if: ${{ github.event.inputs.scope != 'dump' }}
-        run: node pipeline/extract-commentary.mjs --scope ${{ github.event.inputs.scope || 'all' }}
+        run: node pipeline/extract-commentary.mjs --scope ${{ github.event.inputs.scope || 'all' }}${{ github.event.inputs.refreshCommentary == 'true' && ' --refresh' || '' }}
 
       # Step 5: the KPIs and tones above are what the cycle reading is computed
       # from, so rescore in the same job -> data/scores.json. No network, no model
