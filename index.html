@@ -1980,8 +1980,8 @@ table.kpi td.co[rowspan]{vertical-align:top;}
             /* A cell taken from Screener's Insights grid carries that table's own
                document and page. Showing it turns "trust the pipeline" into
                "here is the page the number is printed on". */
-            var c = cites[i];
-            var src = c && c.doc ? c.doc + (c.page ? ', page ' + c.page : '') : '';
+            var cite = cites[i];
+            var src = cite && cite.doc ? cite.doc + (cite.page ? ', page ' + cite.page : '') : '';
             cells += '<td class="num' + (src ? ' cited' : '') + '" title="' +
               esc(qlab + (tag ? ' · ' + tag : '') + (src ? ' · ' + src : '')) + '">' +
               kpiTagDot(tags[i]) + esc(kpiNum(v)) + '</td>';
