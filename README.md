@@ -117,8 +117,7 @@ instead of a chart. Nothing is estimated, interpolated or carried forward.
 
 | Tile | Status | Source |
 |---|---|---|
-| Crude Oil — Brent & WTI | **live** | FRED / U.S. EIA daily spot, averaged by month |
-| Crude Oil — Indian Basket | **live** | PPAC, Ministry of Petroleum & Natural Gas |
+| Crude Oil — Brent, Indian Basket, WTI | **live** | FRED / U.S. EIA daily spot (Brent, WTI) + PPAC (Indian basket), averaged by month |
 | Rupee vs US Dollar | **live** | Frankfurter / ECB reference rates |
 | Refining Margin — crack spread | **live** | derived 3-2-1 crack from FRED — **a stand-in**, see below |
 | Gas Price — APM and JKM | **live** | JKM spot from Trading Economics; APM from PPAC's monthly notification |
@@ -203,10 +202,12 @@ Each always carries a written label.
 
 Two deliberate choices on the Macro tab:
 
-- **The two crude tiles share one hue** (`#E8590C` / `#9A3412`). Brent and the
-  Indian basket are the same measure priced differently, so a common hue family
-  says so. It also gets the tab down to five distinct hues, which is what actually
-  validates — no six-colour set clears the all-pairs gate.
+- **The crude tile overlays Brent, the Indian basket and WTI** on one axis, as
+  Section 2.1 asks. Brent and the Indian basket share a hue family
+  (`#E8590C` / `#9A3412`) because they are the same measure priced differently;
+  showing them together is the point, since the gap between them is what India's
+  refiners actually pay over the world price. Brent stays the primary line, so it
+  drives the flag, the percentile and the cycle's crude backdrop check.
 - **Direction flags are blue/grey/orange, not green/red.** Green and amber already
   mean *agree* and *conflict* in the strip beneath the tiles; reusing them for
   up/down would put two meanings of green on one screen. Rising isn't good or bad

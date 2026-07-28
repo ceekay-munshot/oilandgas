@@ -37,20 +37,20 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
    -------------------------------------------------------------------------- */
 const TILES = [
   {
-    id: 'brent', label: 'Crude Oil - Brent & WTI', shortLabel: 'Brent',
-    plainSub: 'What a barrel of oil costs', unit: '$/bbl', decimals: 1,
+    /* Section 2.1 asks for "crude (Brent + Indian basket overlaid)". They were
+       two tiles, which showed both numbers and hid the thing worth seeing: the
+       gap between the world price and what India's refiners actually pay. On
+       one axis that gap is the chart. Brent stays primary, so it drives the
+       flag and the percentile - including 4b's crude backdrop check, which
+       reads this tile by id. WTI rides along because Step 1 pairs it with
+       Brent as one metric. */
+    id: 'brent', label: 'Crude Oil', shortLabel: 'Crude',
+    plainSub: 'Brent, what India pays, and WTI', unit: '$/bbl', decimals: 1,
     supports: 'up', supportsWhy: 'Dearer crude pays for more drilling and new projects.',
     lines: [
       { id: 'brent', label: 'Brent', shortLabel: 'Brent', color: '#E8590C', primary: true, fetch: fetchBrent },
+      { id: 'indian-basket', label: 'Indian Basket', shortLabel: 'Indian', color: '#9A3412', primary: false, fetch: fetchIndianBasket },
       { id: 'wti', label: 'WTI', shortLabel: 'WTI', color: '#0891B2', primary: false, fetch: fetchWti }
-    ]
-  },
-  {
-    id: 'indian-basket', label: 'Crude Oil - Indian Basket', shortLabel: 'Indian Basket',
-    plainSub: 'What India actually pays per barrel', unit: '$/bbl', decimals: 1,
-    supports: 'up', supportsWhy: 'Same signal as Brent, priced for the mix India really buys.',
-    lines: [
-      { id: 'indian-basket', label: 'Indian Basket', color: '#9A3412', primary: true, fetch: fetchIndianBasket }
     ]
   },
   {
