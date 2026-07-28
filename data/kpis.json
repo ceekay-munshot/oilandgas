@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-28T17:59:08.632Z",
+  "generatedAt": "2026-07-28T18:19:00.627Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -916,12 +916,12 @@
       "name": "L&T",
       "slug": "LT",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
       "ctxChars": 33720,
@@ -932,16 +932,16 @@
           "unit": "₹ cr",
           "flagBasis": "level",
           "values": [
-            94453,
             115784,
             135600,
-            89772
+            89772,
+            31000
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing",
             "mgmt-claim",
-            "company-filing"
+            "company-filing",
+            "mgmt-claim"
           ],
           "origins": [
             "model",
@@ -959,7 +959,7 @@
             null,
             null,
             null,
-            null
+            "High base + deferred awards"
           ],
           "flag": "inflecting-down",
           "notes": null
@@ -970,16 +970,16 @@
           "unit": "₹ cr",
           "flagBasis": "qoq",
           "values": [
-            612800,
             667000,
             1830000,
-            740300
+            740300,
+            222000
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            "mgmt-claim"
           ],
           "origins": [
             "model",
@@ -999,7 +999,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": "decelerating",
           "notes": null
         }
       ]
@@ -1212,7 +1212,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33579,
+      "ctxChars": 33430,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -1642,7 +1642,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 30611,
+      "ctxChars": 30359,
       "kpis": [
         {
           "id": "grm",
@@ -1680,7 +1680,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": null
+          "notes": "Q2 FY26 GRM $8.8/bbl; Q3 FY26 GRM $8.85/bbl; Q1 FY27 inventory markdown."
         },
         {
           "id": "marketing-margin",
@@ -1718,7 +1718,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin not explicitly stated in any excerpt."
+          "notes": "Marketing margin not explicitly stated for any quarter."
         },
         {
           "id": "throughput",
@@ -1784,7 +1784,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34072,
+      "ctxChars": 33219,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -2646,7 +2646,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32949,
+      "ctxChars": 32760,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -2684,7 +2684,7 @@
             null
           ],
           "flag": null,
-          "notes": "POL/LPG/LNG cargo throughput % yoy was not explicitly stated in any of the excerpts."
+          "notes": "POL/LPG/LNG throughput not stated in any excerpt."
         }
       ]
     },
@@ -2692,7 +2692,7 @@
       "name": "GE Shipping",
       "slug": "GESHIP",
       "quarters": [
-        "Q1 FY26",
+        "Q4 FY25",
         "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26"
@@ -2700,7 +2700,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34375,
+      "ctxChars": 34374,
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -2708,7 +2708,7 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            46352,
+            53182,
             28492,
             47281,
             61424
@@ -2727,9 +2727,9 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Crude Carriers: Q1 FY25 46,352",
-              "page": 14
+              "doc": "Presentation - 09 May 2025",
+              "quote": "Crude Carriers: Q4 FY24 53,182",
+              "page": 13
             },
             {
               "doc": "Presentation - 11 Dec 2025",
@@ -2762,7 +2762,7 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3507,
+            3546,
             3678,
             3765,
             3525
@@ -2781,8 +2781,8 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Total Revenue Days: 3,507",
+              "doc": "Presentation - 09 May 2025",
+              "quote": "Total Revenue Days: 3,546",
               "page": 12
             },
             {
@@ -2871,7 +2871,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15968,
+      "ctxChars": 15460,
       "kpis": [
         {
           "id": "order-book",

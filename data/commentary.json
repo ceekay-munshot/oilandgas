@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-07-28T17:59:22.268Z",
+  "generatedAt": "2026-07-28T18:19:09.223Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
@@ -30,24 +30,36 @@
           "score": 5,
           "quote": "ONGC should not see any kind of a decline in next decade kind of a time period.",
           "rationale": "Management is optimistic about reversing production declines and future growth.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "driver": "production volumes",
+          "direction": "positive",
+          "signal": "Management is confident about increasing production volumes with new wells and partnerships, expecting no decline for a decade.",
+          "mgmtDataPoints": [
+            "9M FY25 production: 29.38 MMtoe",
+            "FY27 crude oil: 21.96 MMT",
+            "FY27 gas: 22.63 BCM",
+            "APM gas price Apr 2025: $6.75/MMBtu",
+            "APM gas price Apr 2026: $7/MMBtu"
+          ],
+          "implication": "Production volumes are expected to increase, supporting revenue growth in the coming quarters.",
           "doc": "Concall AI summary (Q3 FY25)"
         },
         {
           "quarter": "Q4 FY25",
-          "toneId": "confident",
-          "score": 5,
+          "toneId": "constructive",
+          "score": 4,
           "quote": "Management exuded confidence on production growth and cost control.",
-          "rationale": "The management is positive about production growth and strategic investments.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management is positive about production growth and cost management despite challenges.",
+          "driver": "production growth",
+          "direction": "positive",
+          "signal": "Management is optimistic about production growth and cost control, with significant progress in renewables and strategic investments.",
+          "mgmtDataPoints": [
+            "Standalone PAT FY25: INR 35,610 crore",
+            "Standalone crude oil FY25: 18.558 MMT",
+            "Natural gas FY26 target: 21 BCM",
+            "Natural gas FY27 target: 22 BCM",
+            "Well drilling FY25: 578 wells"
+          ],
+          "implication": "Continued focus on production growth and cost control should support financial performance in the near term.",
           "doc": "Concall AI summary (Q4 FY25)"
         },
         {
@@ -55,12 +67,16 @@
           "toneId": "cautious",
           "score": 2,
           "quote": "FY26 guidance likely to be modestly missed due to deferrals.",
-          "rationale": "Management acknowledges potential shortfalls in meeting production guidance.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management is cautious due to delays impacting production targets.",
+          "driver": "production guidance",
+          "direction": "negative",
+          "signal": "Management is cautious about meeting production targets due to delays, but expects recovery in the next fiscal year.",
+          "mgmtDataPoints": [
+            "Standalone crude oil FY26 guidance: ~20 MMT",
+            "Gas FY26 guidance: slightly less than 21.5 BCM",
+            "H1 FY26 NWG revenue: INR 3,352 crore"
+          ],
+          "implication": "Production delays may impact short-term results, but recovery is expected in the following quarters.",
           "doc": "Concall AI summary (Q2 FY26)"
         }
       ]
@@ -80,54 +96,76 @@
       "tones": [
         {
           "quarter": "Q1 FY26",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "hydrocarbon discovery in Namrup-Borhat OALP block",
-          "rationale": "Management highlighted new discoveries and infrastructure expansions, indicating a positive outlook.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "lower revenue and small increase in our operating expenses for providing provisions against our well assets",
+          "rationale": "Management highlighted risks and constraints affecting production and financials.",
+          "driver": "crude realization",
+          "direction": "negative",
+          "signal": "Management is cautious about crude price impacts but is investing in infrastructure to support future growth.",
+          "mgmtDataPoints": [
+            "FY26 oil target: 3.70 MMT",
+            "FY26 gas target: 3.65 bcm",
+            "FY27 oil target: 3.95 MMT",
+            "FY27 gas target: 4.31 bcm",
+            "FY26 capex: INR 6,995 cr",
+            "FY27 capex: INR 7,585 cr"
+          ],
+          "implication": "Expect cautious spending and focus on overcoming production constraints in the near term.",
           "doc": "Concall AI summary (Q1 FY26)"
         },
         {
           "quarter": "Q2 FY26",
           "toneId": "cautious",
           "score": 2,
-          "quote": "FY26 output guidance has been trimmed",
-          "rationale": "Management revised production guidance downwards due to disruptions, showing a careful approach.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "temporary production slowdown owing to the external factors in the Northeast",
+          "rationale": "Management discussed disruptions and revised guidance due to external factors.",
+          "driver": "upstream volumes",
+          "direction": "negative",
+          "signal": "Management is cautious due to external disruptions affecting production, but sees normalization ahead.",
+          "mgmtDataPoints": [
+            "FY26 oil target: 3.55 MMT",
+            "FY27 oil target: 3.75 MMT",
+            "FY28 oil target: 4 MMT",
+            "FY26 gas target: 3.6 bcm",
+            "FY27 gas target: 3.8 bcm",
+            "FY28 gas target: 4.6 bcm"
+          ],
+          "implication": "Expect gradual recovery in production as disruptions are resolved.",
           "doc": "Concall AI summary (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
           "toneId": "constructive",
           "score": 4,
-          "quote": "accelerating development and near-field opportunities",
-          "rationale": "Management focused on growth strategies and operational improvements, indicating optimism.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "accelerating development and near-field opportunities to shorten discovery-to-production",
+          "rationale": "Management is optimistic about growth through strategic initiatives and operational improvements.",
+          "driver": "upstream strategy",
+          "direction": "positive",
+          "signal": "Management is focusing on strategic growth through upstream development and operational efficiencies.",
+          "mgmtDataPoints": [
+            "FY26 wells target: 75-plus",
+            "Daily crude target: 10,000 t/day"
+          ],
+          "implication": "Expect increased drilling activity and strategic focus on upstream growth.",
           "doc": "Concall AI summary (Q3 FY26)"
         },
         {
           "quarter": "Q4 FY26",
           "toneId": "confident",
           "score": 5,
-          "quote": "4 MMT is an achievable target",
-          "rationale": "Management expressed strong confidence in achieving production targets and highlighted growth investments.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "we intend to drill 100 wells, 100 wells, 100 wells",
+          "rationale": "Management is very upbeat about future growth and drilling plans.",
+          "driver": "drilling activity",
+          "direction": "positive",
+          "signal": "Management is confident in achieving ambitious drilling targets and expanding offshore operations.",
+          "mgmtDataPoints": [
+            "FY26 capex: ₹13,025 crore",
+            "FY26 oil production: 3.45 MMT",
+            "FY26 gas production: 3.15 BCM",
+            "Reserve Replacement Ratio: 1.20"
+          ],
+          "implication": "Expect aggressive drilling and exploration efforts to drive growth in the coming quarters.",
           "doc": "Concall AI summary (Q4 FY26)"
         }
       ]
@@ -149,26 +187,35 @@
           "quarter": "Q1 FY26",
           "toneId": "confident",
           "score": 5,
-          "quote": "maximize asset utilization and safety across our drilling and workover fleet",
-          "rationale": "Management is focused on growth and expansion into new areas, indicating confidence.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "national energy security is catalyzing unprecedented upstream activity",
+          "rationale": "Management is optimistic about demand and plans to expand services and asset utilization.",
+          "driver": "order book",
+          "direction": "positive",
+          "signal": "Management plans to maximize asset utilization and expand into new areas, indicating strong capex intent.",
+          "mgmtDataPoints": [
+            "Order book: ₹3,051 cr",
+            "Capex: ~₹160 cr for PEC",
+            "Dolphin capex: ₹350–400 cr"
+          ],
+          "implication": "The company is likely to see continued growth in demand and revenue as new projects and expansions come online.",
           "doc": "Concall AI summary (Q1 FY26)"
         },
         {
           "quarter": "Q2 FY26",
           "toneId": "constructive",
           "score": 4,
-          "quote": "we are expecting our EBITDA margins to grow upwards beyond 45% in coming quarters",
-          "rationale": "Management is hopeful about improving margins and sees a positive industry backdrop.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "Value-added service for us has become a margin-assertive opportunity",
+          "rationale": "Management is positive about margin improvements and strategic positioning in a growing market.",
+          "driver": "EBITDA margin",
+          "direction": "positive",
+          "signal": "Management expects EBITDA margins to improve beyond 45% due to higher contributions from new contracts.",
+          "mgmtDataPoints": [
+            "Order book: ~₹3,050 cr",
+            "PEC revenue H2 FY26: >₹40–45 cr",
+            "PEC full FY26 revenue: ~₹60 cr",
+            "Dolphin FY26 revenue: ~₹100 cr"
+          ],
+          "implication": "Expect margin improvements and revenue growth as new contracts ramp up and strategic initiatives take effect.",
           "doc": "Concall AI summary (Q2 FY26)"
         },
         {
@@ -176,12 +223,16 @@
           "toneId": "neutral",
           "score": 3,
           "quote": "not on chasing activity, but on disciplined execution, asset reliability and capital efficiency",
-          "rationale": "Management focuses on execution and reliability, indicating a balanced outlook.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management focuses on execution and efficiency, with no major new growth initiatives announced.",
+          "driver": "order book",
+          "direction": "neutral",
+          "signal": "Management is focused on disciplined execution and maintaining asset reliability, with no immediate capex expansion plans.",
+          "mgmtDataPoints": [
+            "Order book: INR 2,967 cr",
+            "PEC revenue Q3: ~INR 20 cr",
+            "PEC annual run-rate: ~INR 150 cr"
+          ],
+          "implication": "The company will likely maintain stable operations with a focus on execution, but growth may be limited without new orders.",
           "doc": "Concall AI summary (Q3 FY26)"
         },
         {
@@ -189,12 +240,16 @@
           "toneId": "constructive",
           "score": 4,
           "quote": "a supportive multi-year service demand cycle across drilling, workover, gas processing",
-          "rationale": "Management is optimistic about future demand and policy support, indicating a positive outlook.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management is optimistic about future demand due to policy changes and strategic positioning.",
+          "driver": "growth outlook",
+          "direction": "positive",
+          "signal": "Management expects 25%-30% YoY growth for FY27 and FY28, driven by policy tailwinds and new orders.",
+          "mgmtDataPoints": [
+            "Order book: >INR 3,000 cr",
+            "FY27 execution: >INR 800 cr",
+            "FY27-28 growth: 25%-30% YoY"
+          ],
+          "implication": "The company is poised for significant growth in the coming years, supported by favorable policy changes and strategic initiatives.",
           "doc": "Concall AI summary (Q4 FY26)"
         }
       ]
@@ -217,51 +272,60 @@
           "toneId": "confident",
           "score": 5,
           "quote": "Most likely, the revenue will be higher than this… we will cross that figure and positively surprise shareholders.",
-          "rationale": "Management is optimistic about future revenue and expects to exceed conservative estimates, indicating confidence.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management expressed strong confidence in exceeding revenue expectations and positively surprising shareholders.",
+          "driver": "order book",
+          "direction": "positive",
+          "signal": "Management is optimistic about revenue growth and expects to exceed conservative guidance, driven by a strong order book and new contracts.",
+          "mgmtDataPoints": [
+            "Revenue guidance FY26: INR 898 cr",
+            "Blended margin guidance: 35%",
+            "Debt reduction: INR 139 cr"
+          ],
+          "implication": "The company is likely to see strong revenue growth and improved margins in the coming quarters, supported by a robust order book.",
           "doc": "Concall AI summary (Q4 FY25)"
         },
         {
           "quarter": "Q1 FY26",
           "toneId": "constructive",
           "score": 4,
-          "quote": "we expect the rates to be much higher, but they prefer not to overstate projections.",
-          "rationale": "Management is hopeful about future rate improvements and has a backup plan for redeployment, showing a positive outlook.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "We do have a backup plan.",
+          "rationale": "Management is hopeful about redeployment options and has contingency plans in place, indicating a positive outlook despite challenges.",
+          "driver": "profitability",
+          "direction": "positive",
+          "signal": "Management expects profitability to improve with strategic redeployment plans and anticipates higher day rates in future tenders.",
+          "mgmtDataPoints": [
+            "Revenue guidance FY26: >INR 925cr",
+            "EBITDA guidance FY26: INR 360–380cr"
+          ],
+          "implication": "Profitability is expected to improve as management navigates redeployment challenges and anticipates better day rates.",
           "doc": "Concall AI summary (Q1 FY26)"
         },
         {
           "quarter": "Q2 FY26",
-          "toneId": "cautious",
-          "score": 2,
-          "quote": "we will aim at higher prices because the Explorer rates are very low.",
-          "rationale": "Management is careful about pricing strategies and acknowledges competitive pressures, indicating caution.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "Operating revenue and EBITDA were broadly constant…",
+          "rationale": "Management described the quarter as stable with no significant operational changes, despite one-off income effects.",
+          "driver": "operating revenue",
+          "direction": "neutral",
+          "signal": "Management sees stable operations with no major changes, but acknowledges the impact of one-off legal income on reported results.",
+          "mgmtDataPoints": [
+            "EBITDA margin guidance: 35%"
+          ],
+          "implication": "Operational stability is expected to continue, but future results may be influenced by tender outcomes and day rate adjustments.",
           "doc": "Concall AI summary (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
           "toneId": "neutral",
           "score": 3,
-          "quote": "There has been no change in the operational performance… but the bottom line looks… much affected only on account of Other Income.",
-          "rationale": "Management describes steady operations despite accounting adjustments, reflecting a neutral stance.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
+          "quote": "There has been no change in the operational performance…",
+          "rationale": "Management emphasized steady operations despite accounting adjustments affecting reported profitability.",
+          "driver": "operational performance",
+          "direction": "neutral",
+          "signal": "Management maintains that operational performance is steady, with no significant changes expected in the near term.",
           "mgmtDataPoints": [],
-          "implication": null,
+          "implication": "Operational stability is likely to persist, but financial results may fluctuate due to accounting adjustments and tender outcomes.",
           "doc": "Concall AI summary (Q3 FY26)"
         }
       ]
@@ -281,54 +345,75 @@
       "tones": [
         {
           "quarter": "Q1 FY26",
-          "toneId": "confident",
-          "score": 5,
-          "quote": "Order book at all-time high: ₹12,145 cr as of 30 Jun’25",
-          "rationale": "Management is optimistic about growth with a record order book and strong revenue guidance.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "Management provided a base-case revenue growth outlook of ~15% (15–20%) for FY26, with upside if change orders materialize faster.",
+          "rationale": "Management expressed optimism about growth potential, contingent on change orders, indicating a positive outlook.",
+          "driver": "order book",
+          "direction": "positive",
+          "signal": "Management is optimistic about revenue growth, expecting 15-20% growth with potential upside if change orders are approved.",
+          "mgmtDataPoints": [
+            "Order book: ₹12,145 cr",
+            "Revenue growth: 15-20%",
+            "Consultancy margin: 20-25%",
+            "Turnkey margin: 6-7%",
+            "FY28 turnover target: ₹5,000 cr"
+          ],
+          "implication": "The company is likely to see steady growth in the next quarters, driven by a strong order book and potential change orders.",
           "doc": "Concall AI summary (Q1 FY26)"
         },
         {
           "quarter": "Q2 FY26",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "upgraded growth stance vs earlier perception",
-          "rationale": "Management is positive about growth prospects, raising revenue guidance and highlighting international momentum.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Upgraded growth stance vs earlier perception: When asked about earlier ~20%+ growth commentary, management guided “turnover… 25% plus” for FY26 (standalone).",
+          "rationale": "Management's guidance of over 25% turnover growth reflects a strong confidence in their business outlook.",
+          "driver": "turnover growth",
+          "direction": "positive",
+          "signal": "Management is confident in achieving over 25% turnover growth for FY26, driven by strong order inflows and execution.",
+          "mgmtDataPoints": [
+            "Order book: ₹13,131 cr",
+            "Turnover growth: 25%+",
+            "Consultancy margin: ~25%",
+            "LSTK margin: 6-7%"
+          ],
+          "implication": "The company is expected to continue its strong growth trajectory, with robust order inflows supporting higher turnover.",
           "doc": "Concall AI summary (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
           "toneId": "confident",
           "score": 5,
-          "quote": "highest order book position in the history of EIL",
-          "rationale": "Management is very upbeat about record order book levels and strong financial performance.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "Current order book (post-Jan): ~INR 15,670 cr — management: “highest order book position in the history of EIL.”",
+          "rationale": "Management's emphasis on the record-high order book and strong financial performance indicates high confidence.",
+          "driver": "order book",
+          "direction": "positive",
+          "signal": "Management is confident about future growth with a record-high order book and expects to exceed INR 4,000 crores in revenue for FY26.",
+          "mgmtDataPoints": [
+            "Order book: ~INR 15,670 cr",
+            "FY26 revenue target: >INR 4,000 cr",
+            "Consultancy margin: 20-25%",
+            "Turnkey margin: 6-7%"
+          ],
+          "implication": "The company is poised for continued growth with a strong order book and clear revenue targets for the coming quarters.",
           "doc": "Concall AI summary (Q3 FY26)"
         },
         {
           "quarter": "Q4 FY26",
           "toneId": "constructive",
           "score": 4,
-          "quote": "target to sustain ~₹8,000 cr annual order inflow",
-          "rationale": "Management is hopeful about maintaining order inflow and sees potential growth despite some regional slowdowns.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "Management indicated “minimum 10% to 15% increase in the revenue” for the current year.",
+          "rationale": "Management's guidance for revenue growth and sustained order inflow reflects a positive outlook.",
+          "driver": "revenue growth",
+          "direction": "positive",
+          "signal": "Management expects a 10-15% revenue increase in the coming year, supported by a strong order book and ongoing project execution.",
+          "mgmtDataPoints": [
+            "Order book: ₹15,109 cr",
+            "Revenue growth: 10-15%",
+            "Consultancy margin: 20-25%",
+            "Turnkey margin: 5-7%"
+          ],
+          "implication": "The company is likely to maintain its growth momentum with a strong order book and expected revenue increase.",
           "doc": "Concall AI summary (Q4 FY26)"
         }
       ]
@@ -337,66 +422,79 @@
       "name": "L&T",
       "slug": "LT",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
       "tones": [
         {
-          "quarter": "Q1 FY26",
+          "quarter": "Q2 FY26",
           "toneId": "confident",
           "score": 5,
-          "quote": "order book in the Projects and Manufacturing business portfolio has crossed the significant milestone of Rs.6 trillion",
-          "rationale": "Management highlights significant achievements and strategic moves, indicating confidence in growth.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
-          "doc": "Concall transcript (Q1 FY26)"
-        },
-        {
-          "quarter": "Q2 FY26",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "India's economic outlook continues to remain optimistic",
-          "rationale": "Management expresses optimism about economic conditions and strategic partnerships.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
-          "doc": "Concall transcript (Q2 FY26)"
+          "quote": "Order inflow: ₹1,158 bn (+45% YoY) ; P&M ₹968 bn (+54%)",
+          "rationale": "Management highlighted strong order inflow and strategic wins, indicating confidence in growth.",
+          "driver": "order inflow",
+          "direction": "positive",
+          "signal": "Management is optimistic about growth with significant order wins and plans for strategic projects in renewables and hydrocarbons.",
+          "mgmtDataPoints": [
+            "Order inflow: ₹1,158 bn",
+            "Order book: ₹6.67 tn",
+            "Prospects pipeline: ₹10.4 tn"
+          ],
+          "implication": "Strong order inflow suggests robust revenue growth potential in the coming quarters.",
+          "doc": "Concall AI summary (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
           "toneId": "constructive",
           "score": 4,
-          "quote": "The Indian economy continues to demonstrate resilience",
-          "rationale": "Management is positive about economic resilience and growth prospects.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
-          "doc": "Concall transcript (Q3 FY26)"
+          "quote": "Order inflow (record quarter): Highest-ever quarterly inflows ₹1,356 bn (+17% YoY)",
+          "rationale": "Management is positive about the record order inflow and sees continued demand strength.",
+          "driver": "order inflow",
+          "direction": "positive",
+          "signal": "Management is hopeful about continued growth with record order inflows and strong demand in key sectors.",
+          "mgmtDataPoints": [
+            "Order inflow: ₹1,356 bn",
+            "Order book: ₹7.33 tn"
+          ],
+          "implication": "Record order inflows indicate sustained growth momentum in the near term.",
+          "doc": "Concall AI summary (Q3 FY26)"
         },
         {
           "quarter": "Q4 FY26",
           "toneId": "cautious",
           "score": 2,
-          "quote": "Growth conditions, however, remain subject to external headwinds",
-          "rationale": "Management acknowledges growth but highlights external risks and uncertainties.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
-          "doc": "Concall transcript (Q4 FY26)"
+          "quote": "FY27 guided to a “softer first half” due to supply chain constraints",
+          "rationale": "Management is cautious about near-term challenges due to supply chain issues and geopolitical risks.",
+          "driver": "supply chain constraints",
+          "direction": "negative",
+          "signal": "Management expects a challenging first half of FY27 due to supply chain issues but anticipates recovery in the second half.",
+          "mgmtDataPoints": [
+            "Order book: ₹7.40 tn",
+            "Q4 order inflow: ₹898 bn"
+          ],
+          "implication": "Supply chain constraints may impact execution and revenue growth in the next two quarters.",
+          "doc": "Concall AI summary (Q4 FY26)"
+        },
+        {
+          "quarter": "Q1 FY27",
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "growth “ remains resilient ” on domestic demand",
+          "rationale": "Management maintains a balanced view, acknowledging both growth and risks.",
+          "driver": "domestic demand",
+          "direction": "neutral",
+          "signal": "Management sees stable domestic demand but is cautious about geopolitical and logistical challenges.",
+          "mgmtDataPoints": [
+            "Group order inflow: ₹1,080 bn",
+            "Order book: ₹7.79 tn"
+          ],
+          "implication": "Stable domestic demand may support growth, but external risks could temper performance.",
+          "doc": "Concall AI summary (Q1 FY27)"
         }
       ]
     },
@@ -418,25 +516,35 @@
           "toneId": "cautious",
           "score": 2,
           "quote": "Some dip may be witnessed… because of the soft metal prices and delay in some projects",
-          "rationale": "Management expects revenue softness due to external factors like metal prices and project delays.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management expressed concerns about revenue softness due to external factors.",
+          "driver": "revenue guidance",
+          "direction": "neutral",
+          "signal": "Management expects to maintain EBITDA margins but anticipates near-term revenue softness due to project delays and soft metal prices.",
+          "mgmtDataPoints": [
+            "Revenue guidance: Rs. 5,000–5,200 crore",
+            "EBITDA margin guidance: 16%–18%",
+            "Spooling FY25 revenue target: ~Rs. 150 crore",
+            "Spooling FY26 revenue target: Rs. 400–500 crore"
+          ],
+          "implication": "Expect stable margins but potential revenue volatility due to external demand and pricing pressures.",
           "doc": "Concall AI summary (Q2 FY25)"
         },
         {
           "quarter": "Q4 FY25",
-          "toneId": "constructive",
-          "score": 4,
+          "toneId": "confident",
+          "score": 5,
           "quote": "highest ever sales during the quarter as well as for the entire fiscal year",
-          "rationale": "Management highlights record sales and improved profitability, indicating a positive outlook.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management highlighted record sales and profitability improvements.",
+          "driver": "sales growth",
+          "direction": "positive",
+          "signal": "Management is optimistic about continued growth driven by high value-added products and strong cash generation.",
+          "mgmtDataPoints": [
+            "FY26 volume/revenue growth guidance: 5%–10%",
+            "RFSS FY26 revenue: Rs. 350+ crore",
+            "RFSS EBITDA margin: ~20%",
+            "Odisha Phase II capex: Rs. 40–50 crore"
+          ],
+          "implication": "Expect continued growth momentum with focus on high value-added products and strategic expansions.",
           "doc": "Concall AI summary (Q4 FY25)"
         },
         {
@@ -444,12 +552,15 @@
           "toneId": "neutral",
           "score": 3,
           "quote": "revenue growth was modest due to softer input prices and product mix",
-          "rationale": "Management describes modest growth and stable margins, indicating a wait-and-see approach.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management noted modest revenue growth despite improved volumes, indicating a balanced outlook.",
+          "driver": "revenue growth",
+          "direction": "neutral",
+          "signal": "Management anticipates stable margins despite modest revenue growth due to operational efficiencies and cost control.",
+          "mgmtDataPoints": [
+            "Standalone order book: INR 2,000–2,050 crore",
+            "RFSS full-year revenue guidance: INR 300 crore+"
+          ],
+          "implication": "Expect stable margins but modest revenue growth due to subdued domestic demand and pricing pressures.",
           "doc": "Concall AI summary (Q2 FY26)"
         },
         {
@@ -457,12 +568,15 @@
           "toneId": "defensive",
           "score": 1,
           "quote": "a challenging business environment with continued muted demand conditions",
-          "rationale": "Management focuses on challenges and constraints, indicating a protective stance.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management focused on challenges and constraints impacting performance.",
+          "driver": "demand conditions",
+          "direction": "negative",
+          "signal": "Management is concerned about demand challenges and geopolitical impacts, affecting order booking and execution.",
+          "mgmtDataPoints": [
+            "Standalone order book: INR 2,162 crore",
+            "Standalone revenue target: INR 4,800–5,000 crore"
+          ],
+          "implication": "Expect potential challenges in demand recovery and execution due to geopolitical and logistical issues.",
           "doc": "Concall AI summary (Q4 FY26)"
         }
       ]
@@ -482,59 +596,70 @@
       "tones": [
         {
           "quarter": "Q2 FY26",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "Management indicated confidence to “deliver and achieve, if not exceed”",
-          "rationale": "Management is positive and hopeful about meeting or exceeding guidance, despite not revising it due to execution constraints.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "toneId": "confident",
+          "score": 5,
+          "quote": "consistent growth over the last six quarters with improved margins",
+          "rationale": "Management emphasized record profitability, high order book, and strategic expansion plans.",
+          "driver": "order book",
+          "direction": "positive",
+          "signal": "Management is confident about achieving or exceeding EBITDA guidance despite execution constraints.",
+          "mgmtDataPoints": [
+            "EBITDA guidance: ₹2,200 cr",
+            "Order book: ₹23,500 cr",
+            "Capex H1: ₹950 cr"
+          ],
+          "implication": "Strong order book and strategic US expansion suggest robust growth in the coming quarters.",
           "doc": "Concall AI summary (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
           "toneId": "constructive",
           "score": 4,
-          "quote": "Management described the US as “absolutely continues to be into a bullish mode”",
-          "rationale": "Management is optimistic about the US market and expects strong demand, indicating a positive outlook.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "absolutely continues to be into a bullish mode",
+          "rationale": "Management highlighted strong demand in the US and strategic positioning in Saudi Arabia.",
+          "driver": "US demand",
+          "direction": "positive",
+          "signal": "Management sees a bullish US market driven by LNG and data center demand, with strong visibility for years.",
+          "mgmtDataPoints": [
+            "EBITDA guidance: ₹2,200 cr",
+            "Order book: ₹23,600 cr",
+            "Capex 9M: ₹1,700 cr"
+          ],
+          "implication": "Continued strong demand in the US and strategic expansion in Saudi Arabia bode well for future growth.",
           "doc": "Concall AI summary (Q3 FY26)"
         },
         {
           "quarter": "Q4 FY26",
           "toneId": "confident",
           "score": 5,
-          "quote": "Management described a “paradigm shift” and “fundamental restructuring” in U.S. midstream demand",
-          "rationale": "Management is very upbeat about long-term demand drivers and their strategic positioning, indicating strong confidence in future growth.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "at Welspun, we will never let go very profitable opportunity",
+          "rationale": "Management emphasized high-quality order book and strategic capacity management for premium opportunities.",
+          "driver": "order book quality",
+          "direction": "positive",
+          "signal": "Management is confident in multi-year visibility and strategic capacity management to capture premium opportunities.",
+          "mgmtDataPoints": [
+            "EBITDA: ₹2,371 cr",
+            "Order book: >₹25,000 cr",
+            "ROCE: ~22.3%"
+          ],
+          "implication": "High-quality order book and strategic capacity management suggest sustained profitability and growth.",
           "doc": "Concall AI summary (Q4 FY26)"
         },
         {
           "quarter": "Q1 FY27",
-          "toneId": "confident",
-          "score": 5,
-          "quote": "demand remains very, very buoyant… booked well through FY28… already seeing clarity emerging on FY29 as well.",
-          "rationale": "Management expressed strong confidence in future demand and growth prospects, particularly in the US and Middle East markets.",
-          "driver": "order book",
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "demand remains very, very buoyant",
+          "rationale": "Management highlighted record profitability and strong demand visibility, especially in the US and Middle East.",
+          "driver": "US demand",
           "direction": "positive",
-          "signal": "Management is optimistic about demand growth, particularly in the US and Middle East, and plans to continue capex to support this.",
+          "signal": "Management sees robust growth visibility with strong US demand and strategic shifts towards data centers.",
           "mgmtDataPoints": [
-            "EBITDA: 756 cr",
-            "RoCE: >20%",
-            "Net cash: 2,336 cr",
-            "Order book: 25,750 cr"
+            "EBITDA: ₹756 cr",
+            "Order book: ₹25,750 cr",
+            "Net cash: ₹2,336 cr"
           ],
-          "implication": "The company is likely to continue its growth trajectory with strong demand and a robust order book supporting future quarters.",
+          "implication": "Strong US demand and strategic focus on data centers suggest continued growth and profitability.",
           "doc": "Concall AI summary (Q1 FY27)"
         }
       ]
@@ -557,12 +682,19 @@
           "toneId": "confident",
           "score": 5,
           "quote": "strong performance across businesses",
-          "rationale": "Management highlighted broad-based earnings strength and improving quality of numbers, indicating confidence in their operations.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management highlighted broad-based earnings strength and improving quality of numbers.",
+          "driver": "broad-based earnings",
+          "direction": "positive",
+          "signal": "Management is optimistic about growth across all business segments, with significant investments in technology and infrastructure.",
+          "mgmtDataPoints": [
+            "Revenue YoY: +10%",
+            "EBITDA: ₹50,000+ crore",
+            "PAT: ₹22,100 crore",
+            "Capex: ~₹40,000 crore",
+            "Subscribers: 506.4m",
+            "5G users: 234m"
+          ],
+          "implication": "Expect continued growth and investment in technology and infrastructure, supporting future earnings.",
           "doc": "Concall AI summary (Q2 FY26)"
         },
         {
@@ -570,12 +702,19 @@
           "toneId": "constructive",
           "score": 4,
           "quote": "strong growth with Revenue +10% YoY",
-          "rationale": "Management emphasized strong growth and cash generation exceeding capex, indicating a positive outlook.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management emphasized strong growth and cash generation exceeding capex.",
+          "driver": "cash generation",
+          "direction": "positive",
+          "signal": "Management is optimistic about cash flow exceeding capex, supporting future investments and growth.",
+          "mgmtDataPoints": [
+            "Revenue YoY: +10%",
+            "EBITDA: +6%",
+            "PAT: ₹22,290 crore",
+            "Capex: ~₹34,000 crore",
+            "Subscribers: 515.3m",
+            "5G subs: 253m+"
+          ],
+          "implication": "Expect continued strong cash flow and strategic investments, supporting growth across segments.",
           "doc": "Concall AI summary (Q3 FY26)"
         },
         {
@@ -583,25 +722,36 @@
           "toneId": "cautious",
           "score": 2,
           "quote": "March saw an acute energy shock",
-          "rationale": "Management highlighted macro headwinds and energy shocks, indicating a cautious approach to the business environment.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management highlighted macro headwinds and energy price shocks impacting performance.",
+          "driver": "energy price shock",
+          "direction": "negative",
+          "signal": "Management is cautious due to macroeconomic challenges and energy price volatility impacting margins.",
+          "mgmtDataPoints": [
+            "Revenue YoY: +10%",
+            "EBITDA: +13.5%",
+            "Subscribers: 524m",
+            "5G users: 268m"
+          ],
+          "implication": "Expect potential margin pressures and cautious outlook due to ongoing macroeconomic challenges.",
           "doc": "Concall AI summary (Q4 FY26)"
         },
         {
           "quarter": "Q1 FY27",
-          "toneId": "cautious",
-          "score": 2,
-          "quote": "macro volatility… energy market shock",
-          "rationale": "Management described the quarter as extraordinary due to macro volatility and energy shocks, indicating a cautious stance.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "extraordinary due to macro volatility",
+          "rationale": "Management framed the quarter as extraordinary but highlighted agile response and growth.",
+          "driver": "macro volatility",
+          "direction": "neutral",
+          "signal": "Management is optimistic about navigating macro challenges with agility and maintaining growth momentum.",
+          "mgmtDataPoints": [
+            "Revenue YoY: +25%",
+            "EBITDA: >₹54,000 crore",
+            "PAT: ~₹23,200 crore",
+            "Net debt: ~₹1.23 lakh crore",
+            "Capex: ~₹39,000 crore"
+          ],
+          "implication": "Expect continued focus on agility and strategic responses to macro challenges, supporting growth.",
           "doc": "Concall AI summary (Q1 FY27)"
         }
       ]
@@ -624,12 +774,15 @@
           "toneId": "constructive",
           "score": 4,
           "quote": "we expect refining margins to be pretty good for us going forward in this year.",
-          "rationale": "Despite challenges, management is hopeful about future refining margins and expansion plans.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management expressed optimism about future refining margins despite current challenges.",
+          "driver": "refining margins",
+          "direction": "positive",
+          "signal": "Management expects refining margins to improve, indicating a positive outlook for profitability.",
+          "mgmtDataPoints": [
+            "ROs plan: 3,000-4,000",
+            "Petchem intensity target: 15% by 2030"
+          ],
+          "implication": "The company is likely to see improved profitability from refining operations in the coming quarters.",
           "doc": "Concall AI summary (Q4 FY25)"
         },
         {
@@ -637,12 +790,16 @@
           "toneId": "neutral",
           "score": 3,
           "quote": "all normal inventory",
-          "rationale": "Management describes inventory losses as normal, indicating a wait-and-see approach without strong positive or negative sentiment.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management described the inventory losses as part of normal operations, without strong positive or negative sentiment.",
+          "driver": "inventory impact",
+          "direction": "negative",
+          "signal": "Management highlighted significant inventory losses impacting profitability but did not indicate major strategic shifts.",
+          "mgmtDataPoints": [
+            "GRM: $2.15/bbl",
+            "Normalized GRM: $6.91/bbl",
+            "ROs plan: >4,000"
+          ],
+          "implication": "The company may face continued pressure on margins if inventory losses persist.",
           "doc": "Concall AI summary (Q1 FY26)"
         },
         {
@@ -650,12 +807,16 @@
           "toneId": "cautious",
           "score": 2,
           "quote": "above-normal rainfall… impacted the sales volume for the quarter.",
-          "rationale": "Management highlights external factors affecting sales, showing a careful approach to current challenges.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management noted external factors affecting sales and expressed caution about ongoing challenges.",
+          "driver": "sales volume",
+          "direction": "negative",
+          "signal": "Management is cautious about sales volumes due to external factors like weather impacting demand.",
+          "mgmtDataPoints": [
+            "IOC LPG share: ₹14,486 cr",
+            "GRM: $10.66/bbl",
+            "Normalized GRM: $8.91/bbl"
+          ],
+          "implication": "Sales volumes may remain under pressure, but refining margins could support profitability.",
           "doc": "Concall AI summary (Q2 FY26)"
         },
         {
@@ -663,12 +824,17 @@
           "toneId": "cautious",
           "score": 2,
           "quote": "significant uncertainties across the global hydrocarbon supply chain.",
-          "rationale": "Management is focused on geopolitical risks and their impact, indicating a careful stance.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management highlighted geopolitical risks and supply chain disruptions, indicating caution.",
+          "driver": "supply chain disruption",
+          "direction": "negative",
+          "signal": "Management is cautious about the impact of geopolitical tensions on supply chain stability and costs.",
+          "mgmtDataPoints": [
+            "Q4 PAT: ₹11,378 cr",
+            "FY26 PAT: ₹36,802 cr",
+            "LPG loss: ₹2,405 cr in Q4",
+            "LPG buffer: ₹23,102 cr"
+          ],
+          "implication": "Geopolitical tensions may lead to increased costs and supply chain challenges in the near term.",
           "doc": "Concall AI summary (Q4 FY26)"
         }
       ]
@@ -690,13 +856,17 @@
           "quarter": "Q3 FY25",
           "toneId": "cautious",
           "score": 2,
-          "quote": "Rupee weakness (to INR 86.71/USD ) seen as a potential inflation risk.",
-          "rationale": "Management highlighted risks like rupee weakness and supply disruptions, indicating caution.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "Major impact is on account of shutdowns where our energy consumption is on a higher side, the throughput is on the lower side.",
+          "rationale": "Management highlighted risks from shutdowns and lower throughput, indicating a cautious tone.",
+          "driver": "refining margin",
+          "direction": "negative",
+          "signal": "Management is cautious about refining margins due to shutdowns and lower Russian crude availability.",
+          "mgmtDataPoints": [
+            "capex: INR 16,400 crore",
+            "9M capex spent: INR 11,899 crore",
+            "Russian crude share: 31%"
+          ],
+          "implication": "Refining margins may remain under pressure due to operational disruptions and geopolitical factors.",
           "doc": "Concall AI summary (Q3 FY25)"
         },
         {
@@ -704,12 +874,16 @@
           "toneId": "constructive",
           "score": 4,
           "quote": "we are positive of getting sufficient cargoes… expecting… maybe 30% to 32% Russian crude",
-          "rationale": "Management expressed optimism about crude supply and financial comfort, showing a constructive outlook.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management expressed optimism about securing crude supplies and maintaining strong GRMs.",
+          "driver": "GRM",
+          "direction": "positive",
+          "signal": "Management expects strong GRMs to continue, supported by Russian crude and refining margins.",
+          "mgmtDataPoints": [
+            "FY26 capex guidance: INR 20,000 crore",
+            "Russian crude share Q4: 24%",
+            "Russian crude share Q1 FY26: 30-32%"
+          ],
+          "implication": "Expect continued strong refining margins and stable crude supply in the near term.",
           "doc": "Concall AI summary (Q4 FY25)"
         },
         {
@@ -717,25 +891,28 @@
           "toneId": "neutral",
           "score": 3,
           "quote": "no discussion at all on price cuts due to persistent geopolitical uncertainty.",
-          "rationale": "Management's tone was balanced, acknowledging both positive demand and geopolitical uncertainties.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management's neutral stance on pricing reflects uncertainty and a wait-and-see approach.",
+          "driver": "refining margin",
+          "direction": "neutral",
+          "signal": "Management is maintaining a neutral outlook on margins due to geopolitical uncertainties and inventory impacts.",
+          "mgmtDataPoints": [
+            "Russian crude share: 30-35%",
+            "LPG compensation expected: ₹7,500-8,000 crore"
+          ],
+          "implication": "Margins may remain stable but are subject to geopolitical and inventory-related fluctuations.",
           "doc": "Concall AI summary (Q1 FY26)"
         },
         {
           "quarter": "Q1 FY27",
           "toneId": "defensive",
           "score": 1,
-          "quote": "calibrated retail price revision of approximately ₹7.5/litre across MS and HSD",
-          "rationale": "Management focused on mitigating losses and managing costs, indicating a defensive stance.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
+          "quote": "now no one is offering any discount for Russian crude",
+          "rationale": "Management's focus on cost pressures and lack of discounts indicates a defensive stance.",
+          "driver": "crude sourcing",
+          "direction": "negative",
+          "signal": "Management is defensive about crude sourcing costs due to lack of discounts and geopolitical risks.",
           "mgmtDataPoints": [],
-          "implication": null,
+          "implication": "Expect continued pressure on margins due to high crude costs and geopolitical disruptions.",
           "doc": "Concall AI summary (Q1 FY27)"
         }
       ]
@@ -758,12 +935,15 @@
           "toneId": "confident",
           "score": 5,
           "quote": "obviously, we gave a very solid performance. Our H1 profit at INR8,201 crores is 731% up from last year.",
-          "rationale": "Management highlights strong profit growth and consistent performance, indicating confidence.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management highlighted strong profit growth and consistent performance, indicating confidence in their results.",
+          "driver": "profit growth",
+          "direction": "positive",
+          "signal": "Management is optimistic about future performance, focusing on consistent profit growth and strategic planning.",
+          "mgmtDataPoints": [
+            "H1 profit: INR8,201 crores",
+            "Quarterly profits: >INR3,000 crores"
+          ],
+          "implication": "The company is likely to continue focusing on maintaining strong profit growth in the coming quarters.",
           "doc": "Concall transcript (Q2 FY26)"
         },
         {
@@ -771,12 +951,17 @@
           "toneId": "cautious",
           "score": 2,
           "quote": "quarter one, we expect it to be very tough… as of where we stand, there would be losses in the first quarter",
-          "rationale": "Management anticipates a challenging next quarter with expected losses, showing caution.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management expressed concerns about future losses and volatility, indicating a cautious outlook.",
+          "driver": "future outlook",
+          "direction": "negative",
+          "signal": "Management is preparing for a challenging Q1 FY27 with expected losses due to market volatility.",
+          "mgmtDataPoints": [
+            "Q4 revenue: ~₹1.23 lakh crore",
+            "Q4 PAT: ₹4,901 crore",
+            "FY26 PAT: ₹17,175 crore",
+            "Debt/equity: ~0.8"
+          ],
+          "implication": "The company may face financial challenges in the next quarter, focusing on managing volatility and potential losses.",
           "doc": "Concall AI summary (Q3 FY26)"
         },
         {
@@ -784,12 +969,16 @@
           "toneId": "cautious",
           "score": 2,
           "quote": "Quarter 1, we expect it to be very tough… there would be losses in the first quarter",
-          "rationale": "Management warns of a tough upcoming quarter with expected losses, indicating caution.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management anticipates a difficult upcoming quarter with expected losses, showing caution.",
+          "driver": "near-term outlook",
+          "direction": "negative",
+          "signal": "Management is bracing for a tough Q1 FY27 with anticipated losses due to market conditions.",
+          "mgmtDataPoints": [
+            "Q4 PAT: INR 4,901 cr",
+            "FY26 PAT: INR 17,175 cr",
+            "Debt/equity: 0.8"
+          ],
+          "implication": "The company is likely to focus on mitigating losses and managing financial stress in the next quarter.",
           "doc": "Concall AI summary (Q4 FY26)"
         },
         {
@@ -797,12 +986,16 @@
           "toneId": "defensive",
           "score": 1,
           "quote": "mission has delivered under the crisis, kept the assets running",
-          "rationale": "Focus on crisis management and asset protection suggests a defensive stance.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management is focused on crisis management and asset protection, indicating a defensive stance.",
+          "driver": "crisis management",
+          "direction": "neutral",
+          "signal": "Management is prioritizing asset protection and operational continuity amid challenging conditions.",
+          "mgmtDataPoints": [
+            "Inventory loss: >₹10,000 crore",
+            "Marketing under recovery: >₹26,000 crore",
+            "LPG under-recovery: ₹510 per cylinder"
+          ],
+          "implication": "The company will likely continue defensive strategies to manage ongoing volatility and financial pressures.",
           "doc": "Concall AI summary (Q1 FY27)"
         }
       ]
@@ -825,12 +1018,12 @@
           "toneId": "confident",
           "score": 5,
           "quote": "our company had a landmark year, reaching unprecedented financial milestones",
-          "rationale": "Management highlights record financial achievements and growth despite challenges.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
+          "rationale": "Management highlighted record financial achievements and growth despite challenges.",
+          "driver": "financial milestones",
+          "direction": "positive",
+          "signal": "Management is optimistic about continued growth and operational improvements.",
           "mgmtDataPoints": [],
-          "implication": null,
+          "implication": "The company is likely to continue its growth trajectory in the coming quarters.",
           "doc": "Concall transcript (Q4 FY25)"
         },
         {
@@ -838,38 +1031,47 @@
           "toneId": "neutral",
           "score": 3,
           "quote": "Gas marketing volume during the quarter stood at 105.45 MMSCMD as against 106.53 MMSCMD",
-          "rationale": "The discussion focuses on flat performance and minor changes in financials.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management reported flat volumes and minor financial declines, indicating a wait-and-see approach.",
+          "driver": "gas marketing volume",
+          "direction": "neutral",
+          "signal": "Management sees stable demand with no significant changes in volumes or financials.",
+          "mgmtDataPoints": [
+            "Capex: INR 5,000 crore",
+            "Pipeline capacity: 6.5 MMTPA"
+          ],
+          "implication": "Expect stable performance with no major shifts in demand or financials next quarter.",
           "doc": "Concall transcript (Q1 FY26)"
         },
         {
           "quarter": "Q2 FY26",
           "toneId": "constructive",
           "score": 4,
-          "quote": "GAIL's Srikakulam-Angul Pipeline...has been dedicated to the nation",
-          "rationale": "Management discusses new projects and revenue growth, indicating optimism.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "GAIL’s turnover in this quarter, that is Q2, is almost flat",
+          "rationale": "Management noted flat turnover but highlighted progress in pipeline projects and revenue potential.",
+          "driver": "pipeline projects",
+          "direction": "positive",
+          "signal": "Management is hopeful about future revenue growth from new pipeline projects.",
+          "mgmtDataPoints": [
+            "Pipeline capacity: 3 MMSCMD",
+            "Capex: Rs. 450 crores"
+          ],
+          "implication": "New projects may boost revenue and profitability in upcoming quarters.",
           "doc": "Concall transcript (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
-          "toneId": "cautious",
-          "score": 2,
-          "quote": "continuous volatility in global energy markets due to uncertain weather conditions",
-          "rationale": "Management notes external risks and focuses on maintaining business stability.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "GAIL's Natural Gas Transmission volume has shown a recovery",
+          "rationale": "Management highlighted recovery in transmission volumes and new customer tie-ups.",
+          "driver": "natural gas transmission volume",
+          "direction": "positive",
+          "signal": "Management is optimistic about increased volumes and customer base expansion.",
+          "mgmtDataPoints": [
+            "Tariff increase: 12.1%",
+            "New tie-ups: 2 MMSCMD"
+          ],
+          "implication": "Expect improved transmission volumes and financial performance in the next quarters.",
           "doc": "Concall transcript (Q3 FY26)"
         }
       ]
@@ -889,15 +1091,20 @@
       "tones": [
         {
           "quarter": "Q1 FY26",
-          "toneId": "cautious",
-          "score": 2,
+          "toneId": "neutral",
+          "score": 3,
           "quote": "we don't see any risk or any challenge from the geopolitical side",
-          "rationale": "Management acknowledges stable conditions but highlights demand softness and structural issues.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management's commentary was balanced, acknowledging both stable operations and demand softness.",
+          "driver": "throughput",
+          "direction": "neutral",
+          "signal": "Management expects LNG supply to improve from CY26, but current demand is soft due to sectoral weakness.",
+          "mgmtDataPoints": [
+            "net worth: INR 20,233 cr",
+            "Dahej throughput: 207 TBTU",
+            "total throughput: 220 TBTU",
+            "Gorgon supply: 1.2 MMTPA"
+          ],
+          "implication": "Throughput may remain stable but not grow significantly until demand conditions improve.",
           "doc": "Concall AI summary (Q1 FY26)"
         },
         {
@@ -905,12 +1112,19 @@
           "toneId": "cautious",
           "score": 2,
           "quote": "there has been some delay",
-          "rationale": "Management discusses delays and constraints affecting operations and expansion.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management acknowledged delays and constraints affecting operations and expansion.",
+          "driver": "Kochi utilization",
+          "direction": "positive",
+          "signal": "Kochi utilization improved but remains constrained by pipeline connectivity, expected to resolve by FY end.",
+          "mgmtDataPoints": [
+            "PAT: INR 805.75 cr",
+            "revenue: INR 11,009 cr",
+            "EBITDA: INR 1,117 cr",
+            "Dahej throughput: 211 TBTU",
+            "Kochi utilization: 27%",
+            "Dahej expansion capex: INR 450 cr"
+          ],
+          "implication": "Kochi's utilization may improve further once pipeline connectivity is achieved, boosting overall throughput.",
           "doc": "Concall AI summary (Q2 FY26)"
         },
         {
@@ -918,12 +1132,18 @@
           "toneId": "constructive",
           "score": 4,
           "quote": "improved capacity utilization and operational efficiencies",
-          "rationale": "Management highlights improvements and strategic advantages, indicating optimism.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management highlighted operational improvements and positive utilization trends.",
+          "driver": "Dahej expansion",
+          "direction": "positive",
+          "signal": "Dahej expansion is on track for completion by March, with strong customer interest in new capacity.",
+          "mgmtDataPoints": [
+            "LNG processed: 233 TBTU",
+            "Dahej throughput: 214 TBTU",
+            "Kochi utilization: 29%",
+            "PBT: INR 1,144 cr",
+            "PAT: INR 848 cr"
+          ],
+          "implication": "Dahej's expansion will likely enhance capacity and utilization, supporting future growth.",
           "doc": "Concall AI summary (Q3 FY26)"
         },
         {
@@ -931,12 +1151,18 @@
           "toneId": "defensive",
           "score": 1,
           "quote": "despite the challenging external environment",
-          "rationale": "Management focuses on overcoming disruptions and maintaining performance.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management focused on maintaining performance amid external disruptions and supply issues.",
+          "driver": "Qatar supply disruption",
+          "direction": "negative",
+          "signal": "Supply disruptions from Qatar impacted utilization, but alternative sourcing is being explored.",
+          "mgmtDataPoints": [
+            "Q4 PBT: INR 1,795 cr",
+            "Q4 PAT: INR 1,338 cr",
+            "Q4 throughput: 219 TBTU",
+            "Dahej utilization: 90.1%",
+            "Kochi FY26 throughput: 68 TBTU"
+          ],
+          "implication": "Continued supply challenges may affect utilization and profitability in the near term.",
           "doc": "Concall AI summary (Q4 FY26)"
         }
       ]
@@ -958,52 +1184,73 @@
           "quarter": "Q1 FY26",
           "toneId": "constructive",
           "score": 4,
-          "quote": "Company is “augmenting stations… very aggressively”",
-          "rationale": "Management is hopeful about growth, focusing on expansion and customer base increase.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "augmenting stations… very aggressively",
+          "rationale": "Management is hopeful about growth through aggressive expansion and customer base expansion.",
+          "driver": "CNG volume growth",
+          "direction": "positive",
+          "signal": "Management is aggressively expanding CNG stations and expects continued growth in CNG vehicle additions.",
+          "mgmtDataPoints": [
+            "Volumes: 831 MMSCM",
+            "Revenue: ₹4,317 cr",
+            "EBITDA: ₹512 cr",
+            "PAT: ₹356 cr",
+            "CNG vehicle additions: ~18,500/month"
+          ],
+          "implication": "The company is likely to see continued growth in CNG volumes and customer base expansion in the coming quarters.",
           "doc": "Concall AI summary (Q1 FY26)"
         },
         {
           "quarter": "Q2 FY26",
           "toneId": "cautious",
           "score": 2,
-          "quote": "higher average gas procurement costs , driven by cost indices + adverse sourcing mix",
-          "rationale": "Management is careful due to cost pressures and sourcing challenges affecting margins.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "higher average gas procurement costs",
+          "rationale": "Management is careful about margin pressures due to increased procurement costs and adverse sourcing mix.",
+          "driver": "gas procurement costs",
+          "direction": "negative",
+          "signal": "Management is facing margin pressures due to higher gas procurement costs and adverse sourcing mix, impacting profitability.",
+          "mgmtDataPoints": [
+            "Volumes: 857 MMSCM",
+            "Revenue: ₹4,432 cr",
+            "EBITDA: ₹443 cr",
+            "PAT: ₹373 cr"
+          ],
+          "implication": "Margins may remain under pressure due to high procurement costs, but demand remains strong, especially in private CNG segments.",
           "doc": "Concall AI summary (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
           "toneId": "constructive",
           "score": 4,
-          "quote": "sharp profitability improvement , driven by regulatory tailwinds",
-          "rationale": "Management is positive about profitability improvements due to favorable regulatory changes.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "sharp profitability improvement",
+          "rationale": "Management is optimistic about profitability improvements due to regulatory tailwinds and tax changes.",
+          "driver": "profitability improvement",
+          "direction": "positive",
+          "signal": "Management expects profitability to improve due to regulatory changes and tax benefits, despite some cost pressures.",
+          "mgmtDataPoints": [
+            "Volumes: 867 MMSCM",
+            "Revenue: ₹4,465 cr",
+            "EBITDA: ₹473 cr",
+            "PAT: ₹358 cr"
+          ],
+          "implication": "Profitability is expected to improve further as regulatory benefits fully materialize, supporting future growth.",
           "doc": "Concall AI summary (Q3 FY26)"
         },
         {
           "quarter": "Q4 FY26",
-          "toneId": "cautious",
-          "score": 2,
+          "toneId": "neutral",
+          "score": 3,
           "quote": "Despite the increasing gas price… we are able to maintain EBITA",
-          "rationale": "Management is careful, focusing on maintaining profitability amid rising costs and sourcing challenges.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management is maintaining a balanced view, focusing on resilience despite cost pressures.",
+          "driver": "profitability resilience",
+          "direction": "neutral",
+          "signal": "Management is maintaining profitability despite cost pressures, with a focus on balancing growth and margins.",
+          "mgmtDataPoints": [
+            "Volumes: 9.39 MMSCMD",
+            "Gross turnover: ₹17,785 cr",
+            "EBITDA: ₹1,850 cr",
+            "PAT: ₹1,364 cr"
+          ],
+          "implication": "The company is likely to maintain stable profitability, balancing cost pressures with strategic pricing and growth initiatives.",
           "doc": "Concall AI summary (Q4 FY26)"
         }
       ]
@@ -1026,12 +1273,17 @@
           "toneId": "confident",
           "score": 5,
           "quote": "MGL continues to create CGD infrastructure across its business segments",
-          "rationale": "The management highlights significant expansion and connectivity achievements, indicating a confident outlook.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management is focused on growth and expansion, indicating confidence.",
+          "driver": "CGD infrastructure expansion",
+          "direction": "positive",
+          "signal": "Management is actively expanding infrastructure, indicating strong capex intent and growth outlook.",
+          "mgmtDataPoints": [
+            "domestic households connected: 16,348",
+            "pipeline length: 7,538.63 km",
+            "CNG stations: 385",
+            "CNG vehicles added: 20,332"
+          ],
+          "implication": "Continued infrastructure expansion suggests robust growth in customer base and service capacity.",
           "doc": "Concall transcript (Q1 FY26)"
         },
         {
@@ -1039,12 +1291,16 @@
           "toneId": "confident",
           "score": 5,
           "quote": "MGL continues to create infrastructure across its business segments",
-          "rationale": "The management discusses ongoing infrastructure development and expansion, reflecting a confident tone.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "The focus on infrastructure expansion and customer growth reflects confidence.",
+          "driver": "infrastructure expansion",
+          "direction": "positive",
+          "signal": "Management is aggressively expanding infrastructure, indicating strong growth plans.",
+          "mgmtDataPoints": [
+            "domestic households connected: 53,566",
+            "pipeline length: 8,061.62 km",
+            "CNG stations: 485"
+          ],
+          "implication": "Ongoing expansion efforts are likely to drive further growth in customer base and service reach.",
           "doc": "Concall transcript (Q2 FY26)"
         },
         {
@@ -1052,12 +1308,17 @@
           "toneId": "confident",
           "score": 5,
           "quote": "MGL continues to create CGD infrastructure across its business segment",
-          "rationale": "The focus on infrastructure expansion and increased connectivity suggests a confident approach.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "The emphasis on infrastructure development and customer acquisition shows confidence.",
+          "driver": "CGD infrastructure development",
+          "direction": "positive",
+          "signal": "Management is focused on expanding infrastructure, indicating strong growth and capex plans.",
+          "mgmtDataPoints": [
+            "domestic households connected: 124,908",
+            "pipeline length: 8,182 km",
+            "CNG stations: 491",
+            "CNG vehicles added: 32,315"
+          ],
+          "implication": "Continued infrastructure growth suggests a positive outlook for customer acquisition and service expansion.",
           "doc": "Concall transcript (Q3 FY26)"
         },
         {
@@ -1065,12 +1326,17 @@
           "toneId": "cautious",
           "score": 2,
           "quote": "Gas supplies to industrial and commercial customers is partly curtailed",
-          "rationale": "The mention of supply disruptions and potential price impacts due to geopolitical issues indicates a cautious tone.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Supply disruptions and potential price impacts indicate a cautious stance.",
+          "driver": "gas supply and pricing",
+          "direction": "negative",
+          "signal": "Management is cautious due to supply disruptions and potential price volatility affecting operations.",
+          "mgmtDataPoints": [
+            "domestic households connected: 143,997",
+            "pipeline length: 8,320.43 km",
+            "CNG stations: 518",
+            "CNG vehicles added: 34,854"
+          ],
+          "implication": "Supply challenges may impact short-term operations, but infrastructure growth continues.",
           "doc": "Concall transcript (Q4 FY26)"
         }
       ]
@@ -1160,52 +1426,70 @@
           "quarter": "Q1 FY26",
           "toneId": "confident",
           "score": 5,
-          "quote": "we also have an upcoming liquid capacity of 125,000 kiloliters, 50% of which is expected to be operational in the ensuing quarter",
-          "rationale": "Management discusses new projects and expansions, indicating confidence in growth.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "We are pleased to share that our subsidiary AVTL was successfully listed in June, 2025.",
+          "rationale": "Management highlighted successful listing and ongoing projects, indicating confidence in growth.",
+          "driver": "subsidiary listing",
+          "direction": "positive",
+          "signal": "Management is optimistic about growth with new projects underway and successful subsidiary listing.",
+          "mgmtDataPoints": [
+            "Mumbai liquid capacity: 275,000 KL",
+            "LPG static capacity: 21,000 MT",
+            "Upcoming liquid capacity: 125,000 KL",
+            "JNPT CAPEX: INR 1,675 crores"
+          ],
+          "implication": "Expect continued investment and expansion efforts to drive growth in the coming quarters.",
           "doc": "Concall transcript (Q1 FY26)"
         },
         {
           "quarter": "Q2 FY26",
           "toneId": "confident",
           "score": 5,
-          "quote": "Aegis Logistics continues its strong growth momentum, driven by both volume expansion and operational efficiencies",
-          "rationale": "The focus on strong growth momentum and expansion reflects a confident outlook.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "Aegis Logistics continues its strong growth momentum, driven by both volume expansion and operational efficiencies.",
+          "rationale": "Management emphasized strong growth and operational efficiencies, reflecting confidence.",
+          "driver": "volume expansion",
+          "direction": "positive",
+          "signal": "Management is focused on leveraging operational efficiencies and expanding volumes to sustain growth.",
+          "mgmtDataPoints": [
+            "Revenue growth: 31% YoY",
+            "EBITDA growth: 46% YoY",
+            "Mumbai liquid capacity: 334,000 KL",
+            "JNPT CAPEX: INR 1,675 crores"
+          ],
+          "implication": "Expect sustained growth momentum with ongoing capacity expansions and operational improvements.",
           "doc": "Concall transcript (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
           "toneId": "confident",
           "score": 5,
-          "quote": "the company continues to maintain its strong growth trajectory, which is underpinned by expanding volumes",
-          "rationale": "Management highlights strong growth and expansion, showing confidence.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "We have once again delivered a record performance, achieving all-time high revenue and EBITDA.",
+          "rationale": "Management reported record performance and high growth, indicating strong confidence.",
+          "driver": "record performance",
+          "direction": "positive",
+          "signal": "Management is achieving record results and optimizing costs to maintain growth trajectory.",
+          "mgmtDataPoints": [
+            "9M revenue: INR 5,739 crores",
+            "9M EBITDA: INR 929 crores",
+            "Mumbai utilization: high"
+          ],
+          "implication": "Expect continued strong performance with focus on cost optimization and high utilization.",
           "doc": "Concall transcript (Q3 FY26)"
         },
         {
           "quarter": "Q4 FY26",
           "toneId": "confident",
           "score": 5,
-          "quote": "It was an outstanding year, a breakout year for us. So, the revenues grew 23% year-on-year",
-          "rationale": "The description of the year as 'outstanding' and 'breakout' indicates a confident tone.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "It was an outstanding year, a breakout year for us.",
+          "rationale": "Management highlighted exceptional annual performance, showing strong confidence.",
+          "driver": "annual performance",
+          "direction": "positive",
+          "signal": "Management is executing well on diversified operations, leading to strong financial results.",
+          "mgmtDataPoints": [
+            "FY26 revenue: INR 8,333 crores",
+            "FY26 EBITDA: INR 1,599 crores",
+            "Cash and investments: INR 6,000 crores"
+          ],
+          "implication": "Expect continued strong financial performance and shareholder returns in the near term.",
           "doc": "Concall transcript (Q4 FY26)"
         }
       ]
@@ -1228,38 +1512,38 @@
           "toneId": "confident",
           "score": 5,
           "quote": "committed to achieving significant growth in the years ahead",
-          "rationale": "Management expressed strong confidence in growth and expansion plans.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
+          "rationale": "Management expressed strong commitment to growth and expansion plans.",
+          "driver": "IPO reception",
+          "direction": "positive",
+          "signal": "Management is optimistic about growth prospects following a successful IPO and plans to expand operations.",
           "mgmtDataPoints": [],
-          "implication": null,
+          "implication": "The company is likely to focus on executing its expansion strategy and leveraging IPO proceeds for growth.",
           "doc": "Concall transcript (Q1 FY26)"
         },
         {
           "quarter": "Q2 FY26",
-          "toneId": "confident",
-          "score": 5,
-          "quote": "continue to make excellent progress in executing our long-term strategy",
-          "rationale": "Management highlighted successful execution of strategic plans and expansion.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "excellent progress in executing our long-term strategy",
+          "rationale": "Management highlighted progress and new operational contributions.",
+          "driver": "LPG terminal operations",
+          "direction": "positive",
+          "signal": "New LPG terminals are operational and contributing to revenue, indicating a positive outlook for growth.",
           "mgmtDataPoints": [],
-          "implication": null,
+          "implication": "The company is expected to see increased revenue from new terminal operations, supporting growth.",
           "doc": "Concall transcript (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
-          "toneId": "confident",
-          "score": 5,
+          "toneId": "constructive",
+          "score": 4,
           "quote": "making excellent progress on our long-term growth strategy",
-          "rationale": "Management emphasized progress and strategic growth initiatives.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
+          "rationale": "Management emphasized ongoing progress and strategic execution.",
+          "driver": "Project GATI",
+          "direction": "positive",
+          "signal": "The company is expanding its storage footprint and improving efficiency, supporting future growth.",
           "mgmtDataPoints": [],
-          "implication": null,
+          "implication": "Continued focus on strategic projects is likely to enhance market position and drive growth.",
           "doc": "Concall transcript (Q3 FY26)"
         },
         {
@@ -1267,12 +1551,12 @@
           "toneId": "confident",
           "score": 5,
           "quote": "investing to stay ahead of that demand through Project GATI",
-          "rationale": "Management focused on proactive investment and growth to meet demand.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
+          "rationale": "Management is actively investing to meet growing demand, showing confidence in future growth.",
+          "driver": "Project GATI",
+          "direction": "positive",
+          "signal": "The company is scaling operations to meet increasing energy demand, indicating strong growth potential.",
           "mgmtDataPoints": [],
-          "implication": null,
+          "implication": "Ongoing investments in capacity expansion are expected to support robust growth in the near term.",
           "doc": "Concall transcript (Q4 FY26)"
         }
       ]
@@ -1295,12 +1579,16 @@
           "toneId": "cautious",
           "score": 2,
           "quote": "declined by 12% on year-on-year mainly on account of lower SM prices",
-          "rationale": "Management highlighted a decline in income and EBITDA due to lower prices, indicating caution.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management highlighted a decline in income and margins due to lower prices, indicating caution.",
+          "driver": "SM prices",
+          "direction": "negative",
+          "signal": "Management is cautious due to declining SM prices impacting revenue and margins.",
+          "mgmtDataPoints": [
+            "Operating income: Rs 1,386 crores",
+            "EBITDA: Rs 115 crores",
+            "EBITDA margin: 9.36%"
+          ],
+          "implication": "Expect continued caution as lower SM prices may persist, affecting revenue and margins.",
           "doc": "Concall transcript (Q1 FY26)"
         },
         {
@@ -1308,38 +1596,49 @@
           "toneId": "cautious",
           "score": 2,
           "quote": "Reduction in the top line is mainly due to lower raw material prices",
-          "rationale": "The focus on reduced income due to lower raw material prices suggests a cautious outlook.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management focused on reduced income due to lower raw material prices, showing caution.",
+          "driver": "raw material prices",
+          "direction": "negative",
+          "signal": "Management remains cautious as lower raw material prices continue to impact revenue.",
+          "mgmtDataPoints": [
+            "Operating income: Rs 1,100 crores",
+            "EBITDA: Rs 86 crores",
+            "Net profit: Rs 48 crores"
+          ],
+          "implication": "Expect cautious outlook as raw material prices remain a concern, affecting financial performance.",
           "doc": "Concall transcript (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
           "toneId": "cautious",
           "score": 2,
-          "quote": "operating income for the 3rd Quarter was Rs. 1,265 crores. It was lower by 10% year-on-year",
-          "rationale": "Management noted a decrease in income due to falling prices, indicating caution.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "lower by 10% year-on-year, mainly on account of fall in SM prices",
+          "rationale": "Management noted a decline in income due to falling SM prices, indicating caution.",
+          "driver": "SM prices",
+          "direction": "negative",
+          "signal": "Management is cautious as falling SM prices continue to pressure revenue and margins.",
+          "mgmtDataPoints": [
+            "Operating income: Rs 1,265 crores",
+            "Operating EBITDA: Rs 69 crores",
+            "Net profit: Rs 30 crores"
+          ],
+          "implication": "Expect continued caution as SM price declines may further impact financial results.",
           "doc": "Concall transcript (Q3 FY26)"
         },
         {
           "quarter": "Q4 FY26",
           "toneId": "constructive",
           "score": 4,
-          "quote": "revenue from the operations for the 4th Quarter stood at INR 1,587 crores, reflecting a growth of 3% year-on-year",
-          "rationale": "Management highlighted growth in revenue and better performance, suggesting a constructive tone.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "revenue from the operations for the 4th Quarter stood at INR 1,587 crores, reflecting a growth of 3%",
+          "rationale": "Management highlighted revenue growth and better spreads, indicating a constructive outlook.",
+          "driver": "revenue growth",
+          "direction": "positive",
+          "signal": "Management is constructive as higher volumes and better spreads drive revenue growth.",
+          "mgmtDataPoints": [
+            "Revenue: INR 1,587 crores",
+            "Operating EBITDA: INR 253 crores"
+          ],
+          "implication": "Expect a more positive outlook with potential for continued growth in revenue and margins.",
           "doc": "Concall transcript (Q4 FY26)"
         }
       ]
@@ -1363,11 +1662,14 @@
           "score": 5,
           "quote": "continued our momentum from the beginning of the year into the second quarter with healthy performance",
           "rationale": "Management expressed confidence in their growth and resilience despite challenges.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "driver": "volume growth",
+          "direction": "positive",
+          "signal": "Management is optimistic about continued growth through innovation and distribution expansion.",
+          "mgmtDataPoints": [
+            "Revenue growth: 7%",
+            "Revenue: INR1,497 crores"
+          ],
+          "implication": "Expect continued volume growth and potential market share gains in the coming quarters.",
           "doc": "Concall transcript (Q1 FY26)"
         },
         {
@@ -1375,12 +1677,18 @@
           "toneId": "constructive",
           "score": 4,
           "quote": "delivered another quarter of steady, consistent growth backed by a strong focus on profitability",
-          "rationale": "Management was positive about growth and profitability despite external pressures.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management is positive about growth and profitability despite external pressures.",
+          "driver": "profitability",
+          "direction": "positive",
+          "signal": "Management is focused on maintaining profitability through cost discipline and operational efficiencies.",
+          "mgmtDataPoints": [
+            "Revenue growth: 6%",
+            "Revenue: INR1,363 crores",
+            "Volume growth: 7%",
+            "EBITDA: INR323 crores",
+            "Profit after tax: INR228 crores"
+          ],
+          "implication": "Expect stable profitability with continued focus on cost management and operational efficiency.",
           "doc": "Concall transcript (Q2 FY26)"
         },
         {
@@ -1388,12 +1696,15 @@
           "toneId": "confident",
           "score": 5,
           "quote": "eighth straight quarter of volume-led growth, closed the year with the highest ever revenue",
-          "rationale": "Management highlighted strong growth and market share gains, indicating confidence.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management is very upbeat about their consistent growth and market share gains.",
+          "driver": "volume-led growth",
+          "direction": "positive",
+          "signal": "Management is confident in sustaining growth through market expansion and innovation.",
+          "mgmtDataPoints": [
+            "Volume growth: 8%",
+            "Revenue growth: 6%"
+          ],
+          "implication": "Expect continued strong performance with potential for further market share gains.",
           "doc": "Concall transcript (Q3 FY26)"
         },
         {
@@ -1401,12 +1712,12 @@
           "toneId": "cautious",
           "score": 2,
           "quote": "continued macro uncertainty...early signs of external headwinds driven by the conflict in the Middle East",
-          "rationale": "Management acknowledged external risks and uncertainties affecting the business.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
+          "rationale": "Management is careful due to macro uncertainties and external headwinds.",
+          "driver": "macro uncertainty",
+          "direction": "negative",
+          "signal": "Management is focused on executing strategy amidst external challenges to drive profitable growth.",
           "mgmtDataPoints": [],
-          "implication": null,
+          "implication": "Expect cautious approach with potential impact from external macroeconomic factors.",
           "doc": "Concall transcript (Q4 FY26)"
         }
       ]
@@ -1428,39 +1739,39 @@
           "quarter": "Q2 FY26",
           "toneId": "constructive",
           "score": 4,
-          "quote": "growth is driven by rising demand from pharmaceuticals, personal care, polymer industries",
-          "rationale": "Management discussed positive industry trends and alignment with strategic focus.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
+          "quote": "These dynamics align well with Gandhar's strategic focus on PHPO",
+          "rationale": "Management is optimistic about aligning with industry growth trends.",
+          "driver": "white oil market",
+          "direction": "positive",
+          "signal": "Management is optimistic about growth in the white oil market, particularly in Asia Pacific, and plans to focus on PHPO products.",
           "mgmtDataPoints": [],
-          "implication": null,
+          "implication": "The company is likely to see growth in revenues from PHPO products in the coming quarters.",
           "doc": "Concall transcript (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "global white oil market continues to exhibit steady structural driven growth",
-          "rationale": "Management noted steady growth in the market and strategic alignment.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "The global white oil market continues to exhibit steady structural driven growth.",
+          "rationale": "Management describes steady growth without strong positive or negative sentiment.",
+          "driver": "white oil market",
+          "direction": "neutral",
+          "signal": "Management sees steady growth in the white oil market but does not indicate any major changes in strategy or outlook.",
           "mgmtDataPoints": [],
-          "implication": null,
+          "implication": "The company is expected to maintain its current performance levels without significant changes in the next quarters.",
           "doc": "Concall transcript (Q3 FY26)"
         },
         {
           "quarter": "Q4 FY26",
           "toneId": "cautious",
           "score": 2,
-          "quote": "geopolitical developments have been a key area of focus",
-          "rationale": "Management focused on geopolitical risks and their impact on the market.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
+          "quote": "Escalating tensions involving Iran...added uncertainty to the global energy market.",
+          "rationale": "Management highlights geopolitical risks affecting the market.",
+          "driver": "geopolitical tensions",
+          "direction": "negative",
+          "signal": "Management is concerned about geopolitical tensions affecting oil supply and pricing, which could impact costs and margins.",
           "mgmtDataPoints": [],
-          "implication": null,
+          "implication": "Potential volatility in costs and margins could affect financial performance in the near term.",
           "doc": "Concall transcript (Q4 FY26)"
         },
         {
@@ -1468,12 +1779,12 @@
           "toneId": "confident",
           "score": 5,
           "quote": "delivering highest quarterly profit in the company's history",
-          "rationale": "Management highlighted record profitability and strong financial performance, indicating confidence.",
+          "rationale": "Management is very positive about record profitability and growth.",
           "driver": "profitability",
           "direction": "positive",
-          "signal": "Management is optimistic about maintaining strong margins and revenue growth despite market challenges.",
+          "signal": "Management is confident about strong financial performance due to agile sourcing and a favorable product mix.",
           "mgmtDataPoints": [],
-          "implication": "Expect continued strong financial performance in the next quarters due to effective market navigation.",
+          "implication": "The company is likely to continue strong financial performance in the upcoming quarters.",
           "doc": "Concall transcript (Q1 FY27)"
         }
       ]
@@ -1564,12 +1875,18 @@
           "toneId": "confident",
           "score": 5,
           "quote": "APSEZ delivered stellar performance across all parameters.",
-          "rationale": "Management highlighted strong growth in revenue, EBITDA, and net profit, and discussed expansion and acquisitions.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management highlighted strong growth and expansion, indicating confidence.",
+          "driver": "revenue growth",
+          "direction": "positive",
+          "signal": "Management is optimistic about continued growth and expansion in domestic and international markets.",
+          "mgmtDataPoints": [
+            "revenue growth: 16%",
+            "EBITDA growth: 20%",
+            "net profit growth: 37%",
+            "leverage: 1.9x",
+            "marine revenue target: INR 3300 crore by FY27"
+          ],
+          "implication": "Expect continued strong performance and potential further expansion in the next quarters.",
           "doc": "Concall transcript (Q4 FY25)"
         },
         {
@@ -1577,38 +1894,56 @@
           "toneId": "confident",
           "score": 5,
           "quote": "APSEZ has delivered a record quarter, where all parameters demonstrated significant growth.",
-          "rationale": "The management emphasized record growth and improvements across financial and operational metrics.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management emphasized record achievements and strategic success, showing confidence.",
+          "driver": "financial and operating metrics",
+          "direction": "positive",
+          "signal": "Management is confident in the strategic improvements and expects continued strong performance.",
+          "mgmtDataPoints": [
+            "Q2 revenue: INR 9,167 crores",
+            "EBITDA: INR 5,550 crores",
+            "net profit: INR 3,120 crores",
+            "ROCE: 16%",
+            "free cash: INR 3,000 crores"
+          ],
+          "implication": "Expect sustained growth and strong financial performance in upcoming quarters.",
           "doc": "Concall transcript (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
           "toneId": "confident",
           "score": 5,
-          "quote": "we have exceeded the guidance. APSEZ outperformed the upper end of revenue, EBITDA and capex.",
-          "rationale": "Management discussed exceeding guidance and achieving strong growth despite challenges.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "Once again, we have exceeded the guidance.",
+          "rationale": "Management highlighted exceeding targets and strong growth, indicating confidence.",
+          "driver": "revenue and EBITDA growth",
+          "direction": "positive",
+          "signal": "Management is confident in their ability to exceed targets and maintain strong growth.",
+          "mgmtDataPoints": [
+            "FY '26 revenue growth: 25%",
+            "EBITDA growth: 20%",
+            "PAT growth: 16%",
+            "net debt to EBITDA: 1.9x",
+            "ROCE: 16%"
+          ],
+          "implication": "Expect continued strong performance and potential for further exceeding targets in the next quarters.",
           "doc": "Concall transcript (Q3 FY26)"
         },
         {
           "quarter": "Q4 FY26",
           "toneId": "confident",
           "score": 5,
-          "quote": "we have exceeded the guidance. APSEZ outperformed the upper end of revenue, EBITDA and capex.",
-          "rationale": "Management reiterated exceeding guidance and achieving strong growth despite challenges.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "Once again, we have exceeded the guidance.",
+          "rationale": "Management emphasized exceeding guidance and strong growth, showing confidence.",
+          "driver": "revenue and EBITDA growth",
+          "direction": "positive",
+          "signal": "Management is confident in their ability to maintain strong growth and exceed targets.",
+          "mgmtDataPoints": [
+            "FY '26 revenue growth: 25%",
+            "EBITDA growth: 20%",
+            "PAT growth: 16%",
+            "net debt to EBITDA: 1.9x",
+            "ROCE: 16%"
+          ],
+          "implication": "Expect continued strong performance and potential for further exceeding targets in the next quarters.",
           "doc": "Concall transcript (Q4 FY26)"
         }
       ]
@@ -1617,7 +1952,7 @@
       "name": "GE Shipping",
       "slug": "GESHIP",
       "quarters": [
-        "Q1 FY26",
+        "Q4 FY25",
         "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26"
@@ -1627,55 +1962,69 @@
       "model": "gpt-4o",
       "tones": [
         {
-          "quarter": "Q1 FY26",
+          "quarter": "Q4 FY25",
           "toneId": "cautious",
           "score": 2,
-          "quote": "Standalone net asset value, of course, has been going up, though since March last year it's now been stagnant.",
-          "rationale": "Management highlights stagnant asset values and reduced earnings, indicating a cautious outlook.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
-          "doc": "Concall transcript (Q1 FY26)"
+          "quote": "We are not forecasting the markets necessarily, we are just giving our views on how we think it may play out.",
+          "rationale": "Management highlighted uncertainties and a drop in profits, indicating a cautious tone.",
+          "driver": "tanker earnings",
+          "direction": "negative",
+          "signal": "Management is cautious about market recovery due to weak tanker earnings and asset impairments.",
+          "mgmtDataPoints": [
+            "impairment: INR 70 crores",
+            "dividend: INR 5.40 per share"
+          ],
+          "implication": "Expect continued caution and potential challenges in tanker earnings in the near term.",
+          "doc": "Concall transcript (Q4 FY25)"
         },
         {
           "quarter": "Q2 FY26",
           "toneId": "neutral",
           "score": 3,
-          "quote": "We are more or less at the same level as we were a year ago.",
-          "rationale": "The statement reflects a neutral tone, indicating stability without significant improvement or decline.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "Our profit is more or less the same on a standalone basis as what it was in the previous quarter.",
+          "rationale": "Management reported stable profits and asset values, indicating a neutral stance.",
+          "driver": "profit stability",
+          "direction": "neutral",
+          "signal": "Management sees stable profits with no significant changes in asset values or market conditions.",
+          "mgmtDataPoints": [
+            "net profit: Rs.581 crores",
+            "interim dividend: Rs.7.20 paisa",
+            "debt: $186 million"
+          ],
+          "implication": "Expect stable financial performance with no major shifts in strategy or market conditions.",
           "doc": "Concall transcript (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
           "toneId": "constructive",
           "score": 4,
-          "quote": "NAV has gone up again, and this has mainly gone up because of the operating earnings.",
-          "rationale": "Management notes improvement in net asset value due to operating earnings, showing a positive outlook.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "The net asset value has gone up again, and this has mainly gone up because of the operating earnings.",
+          "rationale": "Management highlighted positive developments in operating earnings and asset values.",
+          "driver": "operating earnings",
+          "direction": "positive",
+          "signal": "Management is optimistic about improved operating earnings and asset value growth.",
+          "mgmtDataPoints": [
+            "net profit: INR 813 crores",
+            "standalone profit: INR 650 crores"
+          ],
+          "implication": "Expect continued positive momentum in earnings and asset values in the coming quarters.",
           "doc": "Concall transcript (Q3 FY26)"
         },
         {
           "quarter": "Q4 FY26",
           "toneId": "confident",
           "score": 5,
-          "quote": "this is our best ever quarter in terms of profits.",
-          "rationale": "Management expresses confidence with record profits and increased dividends, indicating a strong performance.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "This is our best ever quarter in terms of profits.",
+          "rationale": "Management expressed strong confidence with record profits and asset value growth.",
+          "driver": "profit growth",
+          "direction": "positive",
+          "signal": "Management is very confident due to record profits and strong market conditions.",
+          "mgmtDataPoints": [
+            "net profit: INR 1,000 crores",
+            "dividend: INR 11.70 per share",
+            "NAV increase: INR 200"
+          ],
+          "implication": "Expect strong performance to continue with potential for further profit and asset value growth.",
           "doc": "Concall transcript (Q4 FY26)"
         }
       ]
@@ -1695,13 +2044,16 @@
           "quarter": "Q2 FY26",
           "toneId": "neutral",
           "score": 3,
-          "quote": "we have delivered a steady and resilient performance this quarter",
-          "rationale": "The management describes the performance as steady and resilient, indicating a neutral tone.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "quote": "steady and resilient performance this quarter, despite global market volatility",
+          "rationale": "Management described the performance as steady and resilient, indicating a neutral stance amidst challenges.",
+          "driver": "financial performance",
+          "direction": "neutral",
+          "signal": "Management is maintaining a steady course despite market volatility, with no major changes in capex or demand outlook.",
+          "mgmtDataPoints": [
+            "standalone net profit: INR 176 crores",
+            "consolidated net profit: INR 189 crores"
+          ],
+          "implication": "Expect stable performance with no significant shifts in strategy or market conditions.",
           "doc": "Concall transcript (Q2 FY26)"
         },
         {
@@ -1709,12 +2061,19 @@
           "toneId": "confident",
           "score": 5,
           "quote": "we have delivered a momentous performance this year",
-          "rationale": "The management highlights a momentous performance and new investments, indicating confidence.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management expressed strong satisfaction with the year's performance, indicating confidence.",
+          "driver": "annual financial performance",
+          "direction": "positive",
+          "signal": "Management is optimistic about growth, with new vessel inductions and strong financial metrics supporting expansion.",
+          "mgmtDataPoints": [
+            "standalone net profit: INR 1,326 crores",
+            "consolidated net profit: INR 1,353 crores",
+            "operating revenue: INR 5,778 crores",
+            "EBITDA: INR 2,633 crores",
+            "net worth: INR 8,489 crores",
+            "cash and liquid investment: INR 2,676 crores"
+          ],
+          "implication": "Expect continued growth and investment in fleet expansion, with strong financial backing.",
           "doc": "Concall transcript (Q4 FY26)"
         }
       ]
@@ -1734,12 +2093,14 @@
           "toneId": "cautious",
           "score": 2,
           "quote": "the impact of war prolonging and any other further impact that could be having across various industries",
-          "rationale": "Management acknowledges a robust order book but expresses concern about potential impacts from prolonged geopolitical issues.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
+          "rationale": "Management expressed concern about potential impacts from external geopolitical factors, indicating a cautious outlook.",
+          "driver": "order book",
+          "direction": "positive",
+          "signal": "Management is confident about the current order pipeline but remains cautious about geopolitical risks affecting future quarters.",
+          "mgmtDataPoints": [
+            "supercritical job: INR 1,600 crores"
+          ],
+          "implication": "The company may face challenges in maintaining order momentum if geopolitical tensions escalate.",
           "doc": "Concall transcript (Q4 FY26)"
         }
       ]
