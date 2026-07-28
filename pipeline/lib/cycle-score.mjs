@@ -21,6 +21,7 @@
  */
 
 import { flagFor } from './kpi-flag.mjs';
+import { isOlderQuarter, quarterOrdinal } from './fiscal.mjs';
 
 /**
  * Step 4a scoring, to the brief.
@@ -109,6 +110,30 @@ export const isPositive = (s) => isNum(s) && s >= LEVEL_BAND;
 /** true when the score is on the negative side of the dead band */
 export const isNegative = (s) => isNum(s) && s <= -LEVEL_BAND;
 
+/**
+ * The quarter staleness is measured against: the end of the dashboard's own
+ * reporting window.
+ *
+ * NOT the newest quarter any single company has filed. One company reporting
+ * early would then mark every other company stale - on today's data a single
+ * Q1 FY27 filer turns 21 of 27 rows grey - which inverts what the word means.
+ * A company that has not yet reported the quarter after the current one is not
+ * out of date; it is on time. The window's end is the reporting period the
+ * grid is currently showing, and trailing THAT is what "stale" describes.
+ */
+export function latestReportedOf(kpisJson) {
+  const qs = (kpisJson && kpisJson.quarters) || [];
+  if (qs.length) return qs[qs.length - 1];
+  /* no window: fall back to the newest asOf any company states */
+  const cs = (kpisJson && kpisJson.companies) || {};
+  let best = null, bestN = -Infinity;
+  Object.keys(cs).forEach((id) => {
+    const n = quarterOrdinal(cs[id] && cs[id].asOf);
+    if (n !== null && n > bestN) { bestN = n; best = cs[id].asOf; }
+  });
+  return best;
+}
+
 /** 'rising' | 'falling' | 'flat' — which way a score moved since last quarter. */
 export function directionOf(delta) {
   if (!isNum(delta)) return null;
@@ -145,9 +170,11 @@ export function scoreGroup(kpisJson, group, drop = 0, opts = {}) {
   (group.companies || []).forEach((c) => {
     const entry = byId[c.id];
     if (!entry || !Array.isArray(entry.kpis)) return;
-    /* The brief's staleness test: a source older than the latest reported
-       quarter. A company reporting behind the pack makes its whole row stale. */
-    const isStale = !!(latestQuarter && entry.asOf && entry.asOf !== latestQuarter);
+    /* The brief's staleness test: a source strictly OLDER than the latest
+       reported quarter. A company reporting behind the pack makes its whole row
+       stale; one that has already filed the next quarter is ahead, not behind,
+       and counting it as stale would penalise the freshest data on the board. */
+    const isStale = isOlderQuarter(entry.asOf, latestQuarter);
 
     entry.kpis.forEach((k) => {
       total++;
@@ -241,7 +268,7 @@ export function toneInputsByBucket(commentaryJson, framework) {
  */
 export function bucketScores(kpisJson, companiesJson, opts = {}) {
   const out = {};
-  const latestQuarter = (kpisJson && kpisJson.quarters && kpisJson.quarters[kpisJson.quarters.length - 1]) || null;
+  const latestQuarter = latestReportedOf(kpisJson);
   const tone = opts.toneInputs || {};
   ((companiesJson && companiesJson.groups) || []).forEach((g) => {
     const now = scoreGroup(kpisJson, g, 0, { latestQuarter, toneInputs: tone[g.id] || [] });

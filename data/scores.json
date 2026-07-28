@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-07-28T17:08:21.879Z",
+  "generatedAt": "2026-07-28T17:14:03.038Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -121,7 +121,7 @@
       "kpisTotal": 34,
       "tonesScored": 14,
       "companiesScored": 11,
-      "staleKpis": 7,
+      "staleKpis": 4,
       "oneOffKpis": 0,
       "lowCoverage": false,
       "signals": [
@@ -1093,7 +1093,7 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-07-28T17:03:59.237Z",
+    "generatedAt": "2026-07-28T17:12:36.621Z",
     "asOf": "Q4 FY26",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
@@ -1103,6 +1103,9 @@
       "lagging": 0
     },
     "alertIds": [
+      "coverage-coincident",
+      "coverage-lagging",
+      "coverage-leading",
       "tone-bpcl",
       "tone-castrol-india",
       "tone-gail",

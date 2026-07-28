@@ -1272,7 +1272,23 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
       '<span class="chip__sw"></span>' + esc(t.label) + '</span>';
   }
 
-  /** the newest quarter any company has reported - what "stale" is measured against */
+  /* "Q3 FY26" -> a sortable number, so quarters can be compared rather than
+     merely matched. Comparing them as strings would make Q1 FY27 look older
+     than Q4 FY26, which is backwards by a quarter. */
+  function quarterOrdinal(q) {
+    var m = /^Q([1-4])\s*FY\s*(\d{2,4})$/i.exec(String(q || '').trim());
+    if (!m) return null;
+    var y = Number(m[2]);
+    if (y < 100) y += 2000;
+    return y * 4 + Number(m[1]);
+  }
+
+  /* The quarter staleness is measured against: the end of the dashboard's own
+     reporting window - NOT the newest quarter any single company has filed.
+     One early filer would otherwise mark every other company stale (a single
+     Q1 FY27 filer greys 21 of 27 rows), which inverts what the word means. A
+     company that has not yet reported the quarter AFTER the current one is on
+     time, not out of date. */
   function latestReportedQuarter() {
     var qs = (DATA.kpis && DATA.kpis.quarters) || DATA.companies.quarterLabels || [];
     return qs.length ? qs[qs.length - 1] : null;
@@ -1282,7 +1298,8 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
   function asOfStamp(quarter) {
     if (!quarter) return '';
     var latest = latestReportedQuarter();
-    var stale = latest && quarter !== latest;
+    var a = quarterOrdinal(quarter), b = quarterOrdinal(latest);
+    var stale = a !== null && b !== null && a < b;
     return '<span class="stamp' + (stale ? ' is-stale' : '') + '" title="' +
       esc(stale ? 'Sourced from ' + quarter + ', older than the latest reported quarter (' + latest + ')'
                 : 'Current as of ' + quarter) + '">as of ' + esc(quarter) + '</span>';
@@ -2205,11 +2222,29 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     if (!first) return '';
     var range = first === last ? first : first + ' → ' + last;
     var asOf = (entry && entry.asOf) ? String(entry.asOf) : '';
+    var stale = isStaleEntry(entry);
     var t = 'The 4 most recent quarters this company has reported: ' + range +
-      (asOf ? '. Latest reported quarter: ' + asOf + '.' : '.');
+      (asOf ? '. Latest reported quarter: ' + asOf + '.' : '.') +
+      (stale ? ' This company has not reported ' + latestReportedQuarter() +
+               ' yet, so its whole row is older than the rest of the grid.' : '');
     return '<span class="kpiwin" title="' + esc(t) + '">' + esc(range) +
-      (asOf && asOf !== last ? ' <span class="kpiasof">as of ' + esc(asOf) + '</span>' : '') +
+      (asOf && (asOf !== last || stale)
+        ? ' <span class="kpiasof' + (stale ? ' is-stale' : '') + '">as of ' + esc(asOf) + '</span>'
+        : '') +
       '</span>';
+  }
+
+  /* The brief's stale test, in one place: a source older than the latest
+     quarter anyone has reported. A company that simply reports later than its
+     peers is not wrong, but its numbers are not current either, and the grid
+     has to say which is which. */
+  function isStaleEntry(entry) {
+    var a = quarterOrdinal(entry && entry.asOf);
+    var b = quarterOrdinal(latestReportedQuarter());
+    /* strictly OLDER. A company that has already reported the next quarter is
+       ahead of the pack, not behind it, and dimming it would hide the freshest
+       data on the board. */
+    return a !== null && b !== null && a < b;
   }
   /* ------------------------------------------- 3.1 the standard TTM table
      The brief's drill-down: columns are the four quarters, rows are the level
@@ -2378,6 +2413,9 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
       var entry = kdata ? kdata[c.id] : null;
       var kpis = (entry && entry.kpis) ? entry.kpis : [];
       if (kpiJustTurned) kpis = kpis.filter(kpiIsTurned);
+      /* the brief's global rule: a value sourced older than the latest reported
+         quarter renders dimmed. It stays readable and stops looking current. */
+      var staleRow = isStaleEntry(entry) ? ' is-stale-value' : '';
 
       /* nothing to show for this company: awaiting extraction (never while filtering) */
       if (!kpis.length) {
@@ -2397,10 +2435,13 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
         /* company name once, spanning this company's KPI rows, with the window
            it reports on underneath - the header cannot state it any more */
         if (j === 0) {
-          /* Every KPI now emits two rows - the summary row and its hidden
-             drill-down - so the company cell has to span both, or the block
-             runs out halfway and the later KPIs escape their company. */
-          cells += '<td class="co" rowspan="' + (kpis.length * 2) + '" style="--c:' + g.color + '">' +
+          /* The span counts VISIBLE rows only. Each KPI emits a summary row and
+             a drill-down row, but the drill-down starts hidden, and a hidden row
+             is removed from table layout - so counting it here would make the
+             company cell reach down into the next company's rows. The span grows
+             by one each time a drill-down opens (see toggleRow). */
+          cells += '<td class="co" data-span-for="' + esc(c.id) + '" rowspan="' + kpis.length +
+            '" style="--c:' + g.color + '">' +
             '<i></i>' + esc(c.name) + kpiWindowLine(entry, ax) + '</td>';
         }
         /* KPI label + unit, titled with how the trajectory was judged */
@@ -2423,7 +2464,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
             /* An empty cell says the company did not state it - not that we
                failed to look. The note carries whatever the extractor could say
                about why, so hovering answers "is this missing or unreported?". */
-            cells += '<td class="empty num" title="' +
+            cells += '<td class="empty num' + staleRow + '" title="' +
               esc(qlab + ' · not disclosed for this quarter' +
                   (k.notes ? ' · ' + k.notes : '')) + '">&ndash;</td>';
           } else {
@@ -2436,7 +2477,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
             /* A one-off quarter keeps its number and is greyed with the reason:
                the value is real, it just cannot speak for the trend. */
             var off = k.oneOffs ? kpiAt(k.oneOffs, ax, i) : null;
-            cells += '<td class="num' + (src ? ' cited' : '') + (off ? ' is-oneoff' : '') + '" title="' +
+            cells += '<td class="num' + (src ? ' cited' : '') + (off ? ' is-oneoff' : '') + staleRow + '" title="' +
               esc(qlab + (tag ? ' · ' + tag : '') + (src ? ' · ' + src : '') +
                   (off ? ' · EXCLUDED from the trend: ' + off : '')) + '">' +
               kpiTagDot(tags[i]) + esc(kpiNum(v)) + '</td>';
@@ -2459,8 +2500,11 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
         return '<tr class="kpirow" data-row="' + esc(rid) + '" tabindex="0" ' +
                  'title="Click to open the full quarter-by-quarter working">' +
                  cells + '</tr>' +
+               /* The company cell is spanned from the block's first row, so this
+                  row has only KPI + the quarters + Trend to fill. Spanning the
+                  company column too would push every later row one cell right. */
                '<tr class="kpidetail" data-detail="' + esc(rid) + '" hidden>' +
-                 '<td colspan="' + (KPI_COLS.length + 3) + '">' +
+                 '<td colspan="' + (KPI_COLS.length + 2) + '">' +
                    kpiTtmTable(k, vals, tags, cites, oneOffAt, ax) +
                  '</td>' +
                '</tr>';
@@ -2502,6 +2546,13 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
       det.hidden = open;
       tr.setAttribute('aria-expanded', open ? 'false' : 'true');
       tr.classList.toggle('is-open', !open);
+      /* The company cell spans visible rows, so opening a drill-down adds one
+         to its span and closing takes it back. Without this the cell stops
+         short and every later row in the block shifts a column left. */
+      var companyId = id.split('::')[0];
+      var co = tbl.querySelector('.co[data-span-for="' +
+        (window.CSS && CSS.escape ? CSS.escape(companyId) : companyId) + '"]');
+      if (co) co.rowSpan = Math.max(1, co.rowSpan + (open ? -1 : 1));
     }
     tbl.addEventListener('click', function (e) {
       var tr = e.target.closest ? e.target.closest('tr.kpirow') : null;
@@ -2600,9 +2651,17 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
       '<div class="heat__grid">' +
         '<div></div>' + qs.map(function (q) { return '<div class="heat__colhead">' + esc(q) + '</div>'; }).join('') +
         rows.map(function (r) {
+          /* the same stale rule as the KPI grid: a company whose latest read
+             quarter trails the rest dims, so an old tone stops looking current */
+          var rStale = isStaleEntry(r.entry);
           var head = '<div class="heat__row" data-company="' + esc(r.id) + '" tabindex="0" ' +
-            'style="--c:' + r.color + '" title="' + esc(r.what + ' — click to open the read') + '">' +
-            '<i></i><span>' + esc(r.name) + '</span></div>';
+            'style="--c:' + r.color + '" title="' +
+            esc(r.what + ' — click to open the read' +
+                (rStale ? '. Latest read quarter is ' + r.entry.asOf + ', older than ' + latestReportedQuarter() + '.' : '')) +
+            '">' +
+            '<i></i><span>' + esc(r.name) + '</span>' +
+            (rStale ? '<span class="stamp is-stale">' + esc(r.entry.asOf) + '</span>' : '') +
+            '</div>';
           /* the company's own four quarters, newest at the right. Each cell names
              the quarter it is, because the column heading is only the common window. */
           var tones = (r.entry && r.entry.tones) ? r.entry.tones.slice(-4) : [];
@@ -2621,7 +2680,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
                 (t.quote ? ' · “' + t.quote + '”' : '') +
                 (t.rationale ? ' · ' + t.rationale : '') +
                 (t.doc ? ' · ' + t.doc : '');
-              cells += '<div class="heat__cell heat__cell--on" style="background:' + s.color +
+              cells += '<div class="heat__cell heat__cell--on' + (rStale ? ' is-stale-value' : '') + '" style="background:' + s.color +
                 '" title="' + esc(title) + '"></div>';
             }
           }

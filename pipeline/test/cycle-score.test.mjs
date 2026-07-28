@@ -613,3 +613,44 @@ test('history is capped so the file cannot grow without bound', () => {
   assert.equal(h.readings.length, 5);
   assert.equal(h.readings[4].asOf, 'Q11');       /* the newest are the ones kept */
 });
+
+/* --------------------------------------- staleness: strictly OLDER, not "different" */
+
+import { latestReportedOf } from '../lib/cycle-score.mjs';
+import { quarterOrdinal, isOlderQuarter } from '../lib/fiscal.mjs';
+
+test('quarters compare as quarters, not as strings', () => {
+  /* the trap: "Q1 FY27" sorts before "Q4 FY26" alphabetically, and is a quarter later */
+  assert.ok(quarterOrdinal('Q1 FY27') > quarterOrdinal('Q4 FY26'));
+  assert.ok(quarterOrdinal('Q2 FY26') < quarterOrdinal('Q4 FY26'));
+  assert.equal(quarterOrdinal('not a quarter'), null);
+});
+
+test('a company that has already filed the NEXT quarter is not stale', () => {
+  assert.equal(isOlderQuarter('Q2 FY26', 'Q4 FY26'), true);    /* behind  */
+  assert.equal(isOlderQuarter('Q1 FY27', 'Q4 FY26'), false);   /* ahead   */
+  assert.equal(isOlderQuarter('Q4 FY26', 'Q4 FY26'), false);   /* current */
+});
+
+test('the frontier is the reporting window, not whoever filed earliest', () => {
+  const kpis = { quarters: ['Q1 FY26', 'Q4 FY26'], companies: {
+    a: { asOf: 'Q4 FY26', kpis: [] },
+    b: { asOf: 'Q1 FY27', kpis: [] },      /* filed early - must NOT drag the frontier */
+    c: { asOf: 'Q2 FY26', kpis: [] }
+  } };
+  assert.equal(latestReportedOf(kpis), 'Q4 FY26');
+  /* otherwise one early filer would mark every other company stale */
+  assert.equal(isOlderQuarter('Q4 FY26', latestReportedOf(kpis)), false);
+});
+
+test('the coverage guard counts only companies genuinely behind the frontier', () => {
+  const mk = (asOf) => ({ asOf, kpis: [{ id: 'k', flagBasis: 'level', values: [1, 2, 3, 4] }] });
+  const kpis = { flatBandPct: 1.5, quarters: ['Q1 FY26', 'Q4 FY26'], companies: {
+    ahead: mk('Q1 FY27'), current: mk('Q4 FY26'), behind: mk('Q2 FY26')
+  } };
+  const g = { id: 'leading', companies: [{ id: 'ahead' }, { id: 'current' }, { id: 'behind' }] };
+  const out = scoreGroup(kpis, g, 0, { latestQuarter: latestReportedOf(kpis) });
+  /* only the company genuinely behind the window counts: not the early filer,
+     and not the one exactly on it */
+  assert.equal(out.staleKpis, 1);
+});
