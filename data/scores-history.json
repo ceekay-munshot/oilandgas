@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "title": "Cycle reading history",
+  "note": "One entry per reported quarter, oldest first. Re-running inside a quarter replaces that quarter's entry rather than adding another: a quarter has one reading, not one per refresh. scoringVersion says which entries are comparable with which.",
+  "readings": [
+    {
+      "asOf": "Q4 FY26",
+      "generatedAt": "2026-07-28T17:08:21.879Z",
+      "scoringVersion": 2,
+      "stageId": "early-upcycle",
+      "stageRuleId": "early-upcycle",
+      "position": 32,
+      "scores": {
+        "leading": -12,
+        "coincident": -61,
+        "lagging": 0
+      },
+      "divergence": 49,
+      "signsDiffer": false,
+      "macroConflict": false,
+      "alertCount": 12
+    }
+  ]
+}

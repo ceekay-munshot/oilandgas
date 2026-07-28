@@ -21,7 +21,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { buildScores, snapshotOf } from './lib/cycle-score.mjs';
+import { buildScores, snapshotOf, appendHistory } from './lib/cycle-score.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DATA = resolve(ROOT, 'data');
@@ -97,7 +97,14 @@ async function main() {
     return;
   }
   await writeFile(resolve(DATA, 'scores.json'), JSON.stringify(payload, null, 2) + '\n');
-  console.log('\nWrote data/scores.json');
+
+  /* Never overwrite history: the reading joins the run log so the dashboard's
+     own call history can be audited against what actually happened. */
+  const history = appendHistory(await readJson('scores-history.json', { optional: true }), payload);
+  await writeFile(resolve(DATA, 'scores-history.json'), JSON.stringify(history, null, 2) + '\n');
+
+  console.log(`\nWrote data/scores.json and data/scores-history.json ` +
+    `(${history.readings.length} reading${history.readings.length === 1 ? '' : 's'} on record)`);
 }
 
 main().catch((err) => {

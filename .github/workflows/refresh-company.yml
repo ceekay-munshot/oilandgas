@@ -20,12 +20,17 @@ on:
         options: [smoke, all, dump]
         default: smoke
   schedule:
-    - cron: '30 5 * * 1'      # 05:30 UTC Mondays, before refresh-full at 06:40
-    # TEMPORARY - Q1 FY27 earnings week. Also run Tue/Wed/Thu so a concall filed
-    # mid-week is on the dashboard within a day instead of waiting for next
-    # Monday. A run on unchanged data is a ~14-min no-op (it commits nothing), so
-    # the only cost is Actions minutes. REMOVE these lines after 2026-07-30.
-    - cron: '30 5 * * 2,3,4'  # 05:30 UTC Tue-Thu
+    # The brief's auto-trigger cadence: stages 2-6 run DAILY during earnings
+    # months and WEEKLY the rest of the year. Indian results land in Jan-Feb,
+    # Apr-May, Jul-Aug and Oct-Nov, so outside those four windows a daily run
+    # would re-check documents that cannot have changed.
+    # (Stage 1, the macro pull, runs daily all year in refresh-macro.yml.)
+    #
+    # A run on unchanged data is a no-op: it finds no new filing, asks the model
+    # nothing and commits nothing, so the cost of the daily window is Actions
+    # minutes rather than model spend.
+    - cron: '30 5 * 1,2,4,5,7,8,10,11 *'   # daily, earnings months
+    - cron: '30 5 * 3,6,9,12 1'            # Mondays only, the quiet months
 
 permissions:
   contents: write
@@ -118,7 +123,7 @@ jobs:
           # kpi-store.json (and commentary-store.json) MUST be committed: they are
           # the durable record of every value/tone ever extracted, and what lets the
           # next run skip work already paid for. Drop them and every run starts over.
-          FILES="data/financials.json data/docs-manifest.json data/companies.json data/kpis.json data/insights.json data/kpi-store.json data/commentary.json data/commentary-store.json data/scores.json"
+          FILES="data/financials.json data/docs-manifest.json data/companies.json data/kpis.json data/insights.json data/kpi-store.json data/commentary.json data/commentary-store.json data/scores.json data/scores-history.json"
           if git diff --quiet -- $FILES; then
             echo "No company-data change - nothing to commit."
             exit 0

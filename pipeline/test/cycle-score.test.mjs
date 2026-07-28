@@ -574,3 +574,42 @@ test('every theme carries the bucket it scores into and what to listen for', () 
   assert.ok(ids.includes('upstream-capex') && ids.includes('freight-shipping'));
   assert.equal(out.find((t) => t.id === 'freight-shipping').bucket, 'lagging');
 });
+
+/* ------------------------------------------------- Part C: run history */
+
+import { appendHistory } from '../lib/cycle-score.mjs';
+
+const reading = (asOf, stageId, leading) => ({
+  asOf, generatedAt: asOf + 'T00:00:00Z', scoringVersion: 2,
+  stage: { stageId, ruleId: stageId, position: 30 },
+  scores: { leading: { score: leading } },
+  divergence: { value: 10, signsDiffer: false }, macro: { conflict: false }, alerts: []
+});
+
+test('each refresh is retained, oldest first', () => {
+  let h = appendHistory(null, reading('Q3 FY26', 'trough', -40));
+  h = appendHistory(h, reading('Q4 FY26', 'early-upcycle', 10));
+  assert.equal(h.readings.length, 2);
+  assert.deepEqual(h.readings.map((r) => r.asOf), ['Q3 FY26', 'Q4 FY26']);
+  assert.equal(h.readings[0].stageId, 'trough');
+  assert.equal(h.readings[1].scores.leading, 10);
+});
+
+test('re-running inside a quarter replaces that quarter, it does not stack', () => {
+  let h = appendHistory(null, reading('Q4 FY26', 'trough', -40));
+  h = appendHistory(h, reading('Q4 FY26', 'early-upcycle', 12));
+  assert.equal(h.readings.length, 1);           /* one quarter, one reading */
+  assert.equal(h.readings[0].stageId, 'early-upcycle');
+});
+
+test('history carries the scoring version so entries are comparable knowingly', () => {
+  const h = appendHistory(null, reading('Q4 FY26', 'trough', -40));
+  assert.equal(h.readings[0].scoringVersion, 2);
+});
+
+test('history is capped so the file cannot grow without bound', () => {
+  let h = null;
+  for (let i = 0; i < 12; i++) h = appendHistory(h, reading('Q' + i, 'trough', i), 5);
+  assert.equal(h.readings.length, 5);
+  assert.equal(h.readings[4].asOf, 'Q11');       /* the newest are the ones kept */
+});

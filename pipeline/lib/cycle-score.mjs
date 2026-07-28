@@ -802,6 +802,55 @@ export function actionsFor(stageId, framework) {
 }
 
 /**
+ * Append this reading to the run history, so the instrument can be checked
+ * against itself.
+ *
+ * The brief: "Never overwrite history: each refresh is versioned. Prior stage
+ * calls, scores and reads are retained so the dashboard's own call history can
+ * be audited against what actually happened - the instrument should be
+ * back-testable against itself."
+ *
+ * Only the reading is kept, not the whole payload: the point is to be able to
+ * ask "what did this dashboard say in Q2, and was it right?", which needs the
+ * call, the scores and the divergence - not a second copy of every alert.
+ *
+ * A re-run inside the same quarter REPLACES that quarter's entry rather than
+ * appending a second one, because a quarter has one reading, not one per time
+ * somebody pressed refresh. The scoring version rides along so a later reader
+ * can tell which entries are comparable with which.
+ */
+export function appendHistory(history, payload, limit = 80) {
+  const prior = (history && Array.isArray(history.readings)) ? history.readings.slice() : [];
+  const entry = {
+    asOf: payload.asOf || null,
+    generatedAt: payload.generatedAt || null,
+    scoringVersion: payload.scoringVersion || null,
+    stageId: (payload.stage && payload.stage.stageId) || null,
+    stageRuleId: (payload.stage && payload.stage.ruleId) || null,
+    position: (payload.stage && payload.stage.position) ?? null,
+    scores: Object.fromEntries(Object.keys(payload.scores || {}).map(
+      (k) => [k, payload.scores[k] ? payload.scores[k].score : null])),
+    divergence: (payload.divergence && payload.divergence.value) ?? null,
+    signsDiffer: !!(payload.divergence && payload.divergence.signsDiffer),
+    macroConflict: !!(payload.macro && payload.macro.conflict),
+    alertCount: (payload.alerts || []).length
+  };
+
+  const at = entry.asOf ? prior.findIndex((r) => r.asOf === entry.asOf) : -1;
+  if (at > -1) prior[at] = entry; else prior.push(entry);
+
+  return {
+    schemaVersion: 1,
+    title: 'Cycle reading history',
+    note: 'One entry per reported quarter, oldest first. Re-running inside a ' +
+          'quarter replaces that quarter\'s entry rather than adding another: a ' +
+          'quarter has one reading, not one per refresh. scoringVersion says ' +
+          'which entries are comparable with which.',
+    readings: prior.slice(-limit)
+  };
+}
+
+/**
  * A compact snapshot of a reading, small enough to keep inside the next one so
  * the change log has something real to diff against.
  */
