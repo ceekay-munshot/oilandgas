@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Extracted KPI values, kept across runs",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-27T11:41:08.924Z",
+  "generatedAt": "2026-07-28T08:12:44.930Z",
   "note": "One entry per company/KPI/quarter, for every quarter ever extracted - not just the current window. A run only asks the model about cells it does not already have, and a null never overwrites a real value. Delete a cell (or run with --refresh) to force re-extraction.",
   "companies": {
     "deep-industries": {
@@ -74,8 +74,8 @@
           "note": "From Screener Insights row \"Capacity Utilization - Workover & Drilling Rigs\"; latest value cited to Concall Transcript - 21 May 2026, page 12.",
           "origin": "insights",
           "fingerprint": "0a2858e4030a",
-          "attempts": 5,
-          "at": "2026-07-27T11:09:27.112Z"
+          "attempts": 6,
+          "at": "2026-07-28T08:12:27.154Z"
         },
         "asset-utilisation|Q3 FY26": {
           "value": null,
@@ -84,8 +84,8 @@
           "note": "From Screener Insights row \"Capacity Utilization - Workover & Drilling Rigs\"; latest value cited to Concall Transcript - 21 May 2026, page 12.",
           "origin": "insights",
           "fingerprint": "0a2858e4030a",
-          "attempts": 5,
-          "at": "2026-07-27T11:09:27.112Z"
+          "attempts": 6,
+          "at": "2026-07-28T08:12:27.154Z"
         },
         "asset-utilisation|Q4 FY26": {
           "value": 100,
@@ -144,7 +144,7 @@
           "at": "2026-07-27T10:42:39.366Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:27.112Z"
+      "updatedAt": "2026-07-28T08:12:27.154Z"
     },
     "engineers-india": {
       "cells": {
@@ -339,7 +339,7 @@
           "at": "2026-07-27T10:42:43.009Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:27.131Z"
+      "updatedAt": "2026-07-28T08:12:30.732Z"
     },
     "petronet-lng": {
       "cells": {
@@ -430,8 +430,8 @@
           "note": "From Screener Insights row \"Dahej Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3.",
           "origin": "insights",
           "fingerprint": "89b36c3e4c78",
-          "attempts": 5,
-          "at": "2026-07-27T11:09:31.338Z"
+          "attempts": 6,
+          "at": "2026-07-28T08:12:38.377Z"
         },
         "regas-utilisation|Q2 FY26": {
           "value": 27,
@@ -454,7 +454,7 @@
           "at": "2026-07-26T16:23:51.343Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:31.338Z"
+      "updatedAt": "2026-07-28T08:12:38.377Z"
     },
     "igl": {
       "cells": {
@@ -653,7 +653,7 @@
           "at": "2026-07-27T10:42:35.906Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:27.091Z"
+      "updatedAt": "2026-07-28T08:12:27.131Z"
     },
     "oil-india": {
       "cells": {
@@ -770,7 +770,7 @@
           "at": "2026-07-27T09:09:11.217Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:27.104Z"
+      "updatedAt": "2026-07-28T08:12:27.143Z"
     },
     "jindal-drilling": {
       "cells": {
@@ -780,9 +780,9 @@
           "sourceTag": null,
           "note": "Rig utilisation % not explicitly stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "6131f3159f02",
-          "attempts": 2,
-          "at": "2026-07-27T10:42:41.102Z"
+          "fingerprint": "01eeb52975c4",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:30.721Z"
         },
         "rig-utilisation|Q1 FY26": {
           "value": null,
@@ -790,9 +790,9 @@
           "sourceTag": null,
           "note": "Rig utilisation % not explicitly stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "6131f3159f02",
-          "attempts": 2,
-          "at": "2026-07-27T10:42:41.102Z"
+          "fingerprint": "01eeb52975c4",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:30.721Z"
         },
         "rig-utilisation|Q2 FY26": {
           "value": null,
@@ -800,9 +800,9 @@
           "sourceTag": null,
           "note": "Rig utilisation % not explicitly stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "6131f3159f02",
-          "attempts": 2,
-          "at": "2026-07-27T10:42:41.102Z"
+          "fingerprint": "01eeb52975c4",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:30.721Z"
         },
         "rig-utilisation|Q3 FY26": {
           "value": null,
@@ -810,9 +810,9 @@
           "sourceTag": null,
           "note": "Rig utilisation % not explicitly stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "6131f3159f02",
-          "attempts": 2,
-          "at": "2026-07-27T10:42:41.102Z"
+          "fingerprint": "01eeb52975c4",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:30.721Z"
         },
         "charter-day-rate|Q4 FY25": {
           "value": 48324,
@@ -955,7 +955,7 @@
           "at": "2026-07-27T10:42:39.374Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:27.120Z"
+      "updatedAt": "2026-07-28T08:12:30.721Z"
     },
     "lt": {
       "cells": {
@@ -1259,7 +1259,7 @@
           "at": "2026-07-27T10:42:55.810Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:27.156Z"
+      "updatedAt": "2026-07-28T08:12:30.758Z"
     },
     "reliance": {
       "cells": {
@@ -1424,49 +1424,49 @@
           "sourceTag": null,
           "note": "Q4 FY26 GRM not disclosed; policy paused due to volatility.",
           "origin": "model",
-          "fingerprint": "f54dfc7b38d9",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:03.584Z"
+          "fingerprint": "8d99162a8bef",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:32.972Z"
         },
         "marketing-margin|Q4 FY25": {
           "value": null,
           "unit": "₹/l",
           "sourceTag": null,
-          "note": "Marketing margin not disclosed in any quarter.",
+          "note": "Marketing margin not explicitly stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "f54dfc7b38d9",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:03.584Z"
+          "fingerprint": "8d99162a8bef",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:32.972Z"
         },
         "marketing-margin|Q1 FY26": {
           "value": null,
           "unit": "₹/l",
           "sourceTag": null,
-          "note": "Marketing margin not disclosed in any quarter.",
+          "note": "Marketing margin not explicitly stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "f54dfc7b38d9",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:03.584Z"
+          "fingerprint": "8d99162a8bef",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:32.972Z"
         },
         "marketing-margin|Q2 FY26": {
           "value": null,
           "unit": "₹/l",
           "sourceTag": null,
-          "note": "Marketing margin not disclosed in any quarter.",
+          "note": "Marketing margin not explicitly stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "f54dfc7b38d9",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:03.584Z"
+          "fingerprint": "8d99162a8bef",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:32.972Z"
         },
         "marketing-margin|Q4 FY26": {
           "value": null,
           "unit": "₹/l",
           "sourceTag": null,
-          "note": "Marketing margin not disclosed in any quarter.",
+          "note": "Marketing margin not explicitly stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "f54dfc7b38d9",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:03.584Z"
+          "fingerprint": "8d99162a8bef",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:32.972Z"
         },
         "throughput|Q4 FY25": {
           "value": 18.5,
@@ -1533,7 +1533,7 @@
           "at": "2026-07-27T10:43:00.470Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:30.038Z"
+      "updatedAt": "2026-07-28T08:12:32.972Z"
     },
     "bpcl": {
       "cells": {
@@ -1601,9 +1601,9 @@
           "sourceTag": null,
           "note": "Marketing margin figures were not explicitly stated for any quarter.",
           "origin": "model",
-          "fingerprint": "193b86b26068",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:05.082Z"
+          "fingerprint": "247ca33a437b",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:34.826Z"
         },
         "marketing-margin|Q4 FY25": {
           "value": null,
@@ -1611,9 +1611,9 @@
           "sourceTag": null,
           "note": "Marketing margin figures were not explicitly stated for any quarter.",
           "origin": "model",
-          "fingerprint": "193b86b26068",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:05.082Z"
+          "fingerprint": "247ca33a437b",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:34.826Z"
         },
         "marketing-margin|Q1 FY26": {
           "value": null,
@@ -1621,9 +1621,9 @@
           "sourceTag": null,
           "note": "Marketing margin figures were not explicitly stated for any quarter.",
           "origin": "model",
-          "fingerprint": "193b86b26068",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:05.082Z"
+          "fingerprint": "247ca33a437b",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:34.826Z"
         },
         "marketing-margin|Q1 FY27": {
           "value": null,
@@ -1631,9 +1631,9 @@
           "sourceTag": null,
           "note": "Marketing margin figures were not explicitly stated for any quarter.",
           "origin": "model",
-          "fingerprint": "193b86b26068",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:05.082Z"
+          "fingerprint": "247ca33a437b",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:34.826Z"
         },
         "throughput|Q3 FY25": {
           "value": 9.54,
@@ -1694,7 +1694,7 @@
           "at": "2026-07-27T09:09:33.746Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:30.043Z"
+      "updatedAt": "2026-07-28T08:12:34.826Z"
     },
     "hpcl": {
       "cells": {
@@ -1734,9 +1734,9 @@
           "sourceTag": null,
           "note": null,
           "origin": "model",
-          "fingerprint": "67b2ce913566",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:07.131Z"
+          "fingerprint": "38971b21e2a2",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:36.768Z"
         },
         "marketing-margin|Q2 FY26": {
           "value": null,
@@ -1744,9 +1744,9 @@
           "sourceTag": null,
           "note": "Marketing margin not explicitly stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "67b2ce913566",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:07.131Z"
+          "fingerprint": "38971b21e2a2",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:36.768Z"
         },
         "marketing-margin|Q3 FY26": {
           "value": null,
@@ -1754,9 +1754,9 @@
           "sourceTag": null,
           "note": "Marketing margin not explicitly stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "67b2ce913566",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:07.131Z"
+          "fingerprint": "38971b21e2a2",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:36.768Z"
         },
         "marketing-margin|Q4 FY26": {
           "value": null,
@@ -1764,9 +1764,9 @@
           "sourceTag": null,
           "note": "Marketing margin not explicitly stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "67b2ce913566",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:07.131Z"
+          "fingerprint": "38971b21e2a2",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:36.768Z"
         },
         "marketing-margin|Q1 FY27": {
           "value": null,
@@ -1774,9 +1774,9 @@
           "sourceTag": null,
           "note": "Marketing margin not explicitly stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "67b2ce913566",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:07.131Z"
+          "fingerprint": "38971b21e2a2",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:36.768Z"
         },
         "throughput|Q2 FY26": {
           "value": 6.57,
@@ -1832,12 +1832,12 @@
           "sourceTag": null,
           "note": "From Screener Insights row \"Refining Throughput (HPCL Standalone)\" (Standalone data); latest value cited to Concall Transcript - 31 Oct 2025, page 3.",
           "origin": "insights",
-          "fingerprint": "67b2ce913566",
-          "attempts": 3,
-          "at": "2026-07-27T11:09:30.053Z"
+          "fingerprint": "38971b21e2a2",
+          "attempts": 4,
+          "at": "2026-07-28T08:12:34.834Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:30.053Z"
+      "updatedAt": "2026-07-28T08:12:36.768Z"
     },
     "gail": {
       "cells": {
@@ -1897,21 +1897,21 @@
           "value": null,
           "unit": "$/t",
           "sourceTag": null,
-          "note": "Petchem margin not mentioned in any excerpt.",
+          "note": "Petchem margin not stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "5b52319682b9",
-          "attempts": 3,
-          "at": "2026-07-27T11:09:31.332Z"
+          "fingerprint": "156f81a84687",
+          "attempts": 4,
+          "at": "2026-07-28T08:12:38.371Z"
         },
         "petchem-margin|Q3 FY26": {
           "value": null,
           "unit": "$/t",
           "sourceTag": null,
-          "note": "Petchem margin not mentioned in any excerpt.",
+          "note": "Petchem margin not stated in any excerpt.",
           "origin": "model",
-          "fingerprint": "5b52319682b9",
-          "attempts": 3,
-          "at": "2026-07-27T11:09:31.332Z"
+          "fingerprint": "156f81a84687",
+          "attempts": 4,
+          "at": "2026-07-28T08:12:38.371Z"
         },
         "petchem-margin|Q4 FY26": {
           "value": null,
@@ -1932,9 +1932,61 @@
           "fingerprint": "5b52319682b9",
           "attempts": 3,
           "at": "2026-07-27T11:09:31.332Z"
+        },
+        "gas-transmission-volume|Q4 FY25": {
+          "value": 123.65,
+          "unit": "MMSCMD",
+          "sourceTag": "company-filing",
+          "note": "From Screener Insights row \"Natural Gas Transmission Volume\" (Standalone data); latest value cited to Concall Transcript - 17 May 2024, page 3.",
+          "origin": "insights",
+          "citation": {
+            "doc": "Concall Transcript - 17 May 2024",
+            "quote": "Natural gas transmission volume stood at 123.65 MMSCMD in quarter four",
+            "page": 3
+          },
+          "fingerprint": "156f81a84687",
+          "attempts": 1,
+          "model": null,
+          "at": "2026-07-28T08:12:36.776Z"
+        },
+        "gas-transmission-volume|Q1 FY26": {
+          "value": 120.62,
+          "unit": "MMSCMD",
+          "sourceTag": "company-filing",
+          "note": "From Screener Insights row \"Natural Gas Transmission Volume\" (Standalone data); latest value cited to Concall Transcript - 17 May 2024, page 3.",
+          "origin": "insights",
+          "citation": {
+            "doc": "Concall Transcript - 31 Jul 2025",
+            "quote": "the natural gas transmission volume was 120.62 MMSCMD in Q1",
+            "page": 2
+          },
+          "fingerprint": "156f81a84687",
+          "attempts": 1,
+          "model": null,
+          "at": "2026-07-28T08:12:36.776Z"
+        },
+        "petchem-margin|Q4 FY25": {
+          "value": null,
+          "unit": "$/t",
+          "sourceTag": null,
+          "note": "Petchem margin not stated in any excerpt.",
+          "origin": "model",
+          "fingerprint": "156f81a84687",
+          "attempts": 1,
+          "at": "2026-07-28T08:12:38.371Z"
+        },
+        "petchem-margin|Q1 FY26": {
+          "value": null,
+          "unit": "$/t",
+          "sourceTag": null,
+          "note": "Petchem margin not stated in any excerpt.",
+          "origin": "model",
+          "fingerprint": "156f81a84687",
+          "attempts": 1,
+          "at": "2026-07-28T08:12:38.371Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:31.332Z"
+      "updatedAt": "2026-07-28T08:12:38.371Z"
     },
     "mahanagar-gas": {
       "cells": {
@@ -2208,7 +2260,7 @@
           "at": "2026-07-27T10:43:11.127Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:31.355Z"
+      "updatedAt": "2026-07-28T08:12:38.399Z"
     },
     "aegis-vopak": {
       "cells": {
@@ -2267,8 +2319,8 @@
           "note": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 13 Aug 2025, page 9.",
           "origin": "insights",
           "fingerprint": "5bb8b375ff60",
-          "attempts": 3,
-          "at": "2026-07-27T11:09:31.360Z"
+          "attempts": 4,
+          "at": "2026-07-28T08:12:38.405Z"
         },
         "terminal-utilisation|Q1 FY26": {
           "value": null,
@@ -2311,7 +2363,7 @@
           "at": "2026-07-27T10:43:12.455Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:31.360Z"
+      "updatedAt": "2026-07-28T08:12:38.405Z"
     },
     "supreme-petrochem": {
       "cells": {
@@ -2319,41 +2371,41 @@
           "value": null,
           "unit": "$/t",
           "sourceTag": null,
-          "note": "Styrene-polystyrene spread not explicitly stated in any excerpt.",
+          "note": "Styrene-polystyrene spread not mentioned in any excerpt.",
           "origin": "model",
-          "fingerprint": "0c5154127d37",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:15.731Z"
+          "fingerprint": "453ca0191a9c",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:39.989Z"
         },
         "sps-spread|Q2 FY26": {
           "value": null,
           "unit": "$/t",
           "sourceTag": null,
-          "note": "Styrene-polystyrene spread not explicitly stated in any excerpt.",
+          "note": "Styrene-polystyrene spread not mentioned in any excerpt.",
           "origin": "model",
-          "fingerprint": "0c5154127d37",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:15.731Z"
+          "fingerprint": "453ca0191a9c",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:39.989Z"
         },
         "sps-spread|Q3 FY26": {
           "value": null,
           "unit": "$/t",
           "sourceTag": null,
-          "note": "Styrene-polystyrene spread not explicitly stated in any excerpt.",
+          "note": "Styrene-polystyrene spread not mentioned in any excerpt.",
           "origin": "model",
-          "fingerprint": "0c5154127d37",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:15.731Z"
+          "fingerprint": "453ca0191a9c",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:39.989Z"
         },
         "sps-spread|Q4 FY26": {
           "value": null,
           "unit": "$/t",
           "sourceTag": null,
-          "note": "Styrene-polystyrene spread not explicitly stated in any excerpt.",
+          "note": "Styrene-polystyrene spread not mentioned in any excerpt.",
           "origin": "model",
-          "fingerprint": "0c5154127d37",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:15.731Z"
+          "fingerprint": "453ca0191a9c",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:39.989Z"
         },
         "volume|Q1 FY26": {
           "value": 93853,
@@ -2420,7 +2472,7 @@
           "at": "2026-07-27T10:43:12.461Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:31.365Z"
+      "updatedAt": "2026-07-28T08:12:39.989Z"
     },
     "castrol-india": {
       "cells": {
@@ -2515,9 +2567,9 @@
           "sourceTag": null,
           "note": "Base-oil spread not explicitly mentioned in any of the provided excerpts.",
           "origin": "model",
-          "fingerprint": "504e4e72ce87",
-          "attempts": 2,
-          "at": "2026-07-27T10:43:18.266Z"
+          "fingerprint": "663498c87544",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:41.830Z"
         },
         "base-oil-spread|Q2 FY26": {
           "value": 8662,
@@ -2555,9 +2607,9 @@
           "sourceTag": null,
           "note": "From Screener Insights row \"PHPO Sales Volume\"; latest value cited to Presentation - 12 Nov 2025, page 23.",
           "origin": "insights",
-          "fingerprint": "504e4e72ce87",
-          "attempts": 3,
-          "at": "2026-07-27T11:09:31.385Z"
+          "fingerprint": "663498c87544",
+          "attempts": 4,
+          "at": "2026-07-28T08:12:39.999Z"
         },
         "white-oil-volume|Q2 FY26": {
           "value": 72404,
@@ -2608,7 +2660,7 @@
           "at": "2026-07-27T10:43:17.112Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:31.385Z"
+      "updatedAt": "2026-07-28T08:12:41.830Z"
     },
     "linde-india": {
       "cells": {
@@ -2657,44 +2709,44 @@
           "value": null,
           "unit": "percent",
           "sourceTag": null,
-          "note": "POL/LPG/LNG cargo throughput % yoy not explicitly stated in any excerpt.",
+          "note": "POL/LPG/LNG cargo throughput % yoy was not explicitly stated in any of the excerpts.",
           "origin": "model",
-          "fingerprint": "d8fc4ca2dc03",
-          "attempts": 2,
-          "at": "2026-07-27T11:09:33.704Z"
+          "fingerprint": "4cbfb5a38681",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:44.915Z"
         },
         "pol-lpg-lng-throughput|Q2 FY26": {
           "value": null,
           "unit": "percent",
           "sourceTag": null,
-          "note": "POL/LPG/LNG cargo throughput % yoy not explicitly stated in any excerpt.",
+          "note": "POL/LPG/LNG cargo throughput % yoy was not explicitly stated in any of the excerpts.",
           "origin": "model",
-          "fingerprint": "d8fc4ca2dc03",
-          "attempts": 2,
-          "at": "2026-07-27T11:09:33.704Z"
+          "fingerprint": "4cbfb5a38681",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:44.915Z"
         },
         "pol-lpg-lng-throughput|Q3 FY26": {
           "value": null,
           "unit": "percent",
           "sourceTag": null,
-          "note": "POL/LPG/LNG cargo throughput % yoy not explicitly stated in any excerpt.",
+          "note": "POL/LPG/LNG cargo throughput % yoy was not explicitly stated in any of the excerpts.",
           "origin": "model",
-          "fingerprint": "d8fc4ca2dc03",
-          "attempts": 2,
-          "at": "2026-07-27T11:09:33.704Z"
+          "fingerprint": "4cbfb5a38681",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:44.915Z"
         },
         "pol-lpg-lng-throughput|Q4 FY26": {
           "value": null,
           "unit": "percent",
           "sourceTag": null,
-          "note": "POL/LPG/LNG cargo throughput % yoy not explicitly stated in any excerpt.",
+          "note": "POL/LPG/LNG cargo throughput % yoy was not explicitly stated in any of the excerpts.",
           "origin": "model",
-          "fingerprint": "d8fc4ca2dc03",
-          "attempts": 2,
-          "at": "2026-07-27T11:09:33.704Z"
+          "fingerprint": "4cbfb5a38681",
+          "attempts": 3,
+          "at": "2026-07-28T08:12:44.915Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:33.704Z"
+      "updatedAt": "2026-07-28T08:12:44.915Z"
     },
     "ge-shipping": {
       "cells": {
@@ -2831,7 +2883,7 @@
           "at": "2026-07-27T10:43:18.282Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:33.711Z"
+      "updatedAt": "2026-07-28T08:12:44.923Z"
     },
     "shipping-corp": {
       "cells": {
@@ -2876,7 +2928,7 @@
           "at": "2026-07-27T10:43:18.287Z"
         }
       },
-      "updatedAt": "2026-07-27T11:09:33.715Z"
+      "updatedAt": "2026-07-28T08:12:44.928Z"
     },
     "thermax": {
       "cells": {

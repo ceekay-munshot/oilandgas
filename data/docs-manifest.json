@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-07-27T11:09:26.469Z",
+  "generatedAt": "2026-07-28T08:12:26.481Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -1543,9 +1543,23 @@
         "pros": 1,
         "cons": 1
       },
-      "summariesAvailable": 23,
+      "summariesAvailable": 24,
       "transcriptsFound": 22,
       "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Jul 2026",
+          "periodIso": "2026-07",
+          "url": "https://www.screener.in/concalls/summary/23255611/",
+          "source": "screener.in",
+          "status": "gated",
+          "chars": 88,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/WELCORP/summary-2026-07.txt",
+          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+        },
         {
           "type": "summary",
           "role": "summary",
@@ -1615,20 +1629,6 @@
           "via": "browser",
           "cache": "pipeline/cache/docs/WELCORP/summary-2025-05.txt",
           "sample": "Welspun Corp Ltd Q4 FY25 Concall: Detailed Note Management Participants Vipul Mathur – Managing Director & CEO, Welspun Corp Percy Birdy – CFO, Welspun Corp Ash"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Feb 2025",
-          "periodIso": "2025-02",
-          "url": "https://www.screener.in/concalls/summary/22984581/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 10308,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/WELCORP/summary-2025-02.txt",
-          "sample": "Welspun Corp Q3 FY25 Earnings – Investor Summary 1. Headline Message & Guidance Management characterizes Q3 as a “very resilient performance with improved profi"
         }
       ],
       "ppt": {
@@ -1856,9 +1856,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 95882,
+          "pages": 31,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -2607,12 +2607,11 @@
           "periodIso": "2026-02",
           "url": "https://www.gailonline.com/pdf/InvestorsZone/GAIL_Earnings_Call_Q3_FY_26.pdf",
           "source": "gailonline.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 54866,
+          "pages": 22,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2026-02.txt",
-          "error": "apiRequestContext.get: Hostname/IP does not match certificate's altnames: Host: www.gailonline.com. is not in the cert's altnames: DNS:*.apptrana.com, DNS:apptr"
+          "cache": "pipeline/cache/docs/GAIL/transcript-2026-02.txt"
         },
         {
           "type": "transcript",
@@ -2621,12 +2620,11 @@
           "periodIso": "2025-10",
           "url": "https://www.gailonline.com/pdf/InvestorsZone/GAIL_Earnings_Call_Q2_FY26_updated_041125.pdf",
           "source": "gailonline.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 50658,
+          "pages": 20,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2025-10.txt",
-          "error": "apiRequestContext.get: Hostname/IP does not match certificate's altnames: Host: www.gailonline.com. is not in the cert's altnames: DNS:*.apptrana.com, DNS:apptr"
+          "cache": "pipeline/cache/docs/GAIL/transcript-2025-10.txt"
         },
         {
           "type": "transcript",
@@ -2635,12 +2633,11 @@
           "periodIso": "2025-07",
           "url": "https://www.gailonline.com/pdf/InvestorsZone/GAIL%20Q1FY26%20Earnings%20Call%20Transcript.pdf",
           "source": "gailonline.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 37823,
+          "pages": 11,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2025-07.txt",
-          "error": "apiRequestContext.get: Hostname/IP does not match certificate's altnames: Host: www.gailonline.com. is not in the cert's altnames: DNS:*.apptrana.com, DNS:apptr"
+          "cache": "pipeline/cache/docs/GAIL/transcript-2025-07.txt"
         },
         {
           "type": "transcript",
@@ -2649,12 +2646,11 @@
           "periodIso": "2025-05",
           "url": "https://www.gailonline.com/pdf/InvestorsZone/GAIL%20Analysts%20Meet%20Q4%20FY25%2014.05.2025.pdf",
           "source": "gailonline.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 55001,
+          "pages": 20,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2025-05.txt",
-          "error": "apiRequestContext.get: Hostname/IP does not match certificate's altnames: Host: www.gailonline.com. is not in the cert's altnames: DNS:*.apptrana.com, DNS:apptr"
+          "cache": "pipeline/cache/docs/GAIL/transcript-2025-05.txt"
         },
         {
           "type": "transcript",
@@ -2663,12 +2659,11 @@
           "periodIso": "2025-01",
           "url": "https://www.gailonline.com/pdf/InvestorsZone/GAIL_Earnings_Call_Q3_FY25.pdf",
           "source": "gailonline.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 51464,
+          "pages": 22,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2025-01.txt",
-          "error": "apiRequestContext.get: Hostname/IP does not match certificate's altnames: Host: www.gailonline.com. is not in the cert's altnames: DNS:*.apptrana.com, DNS:apptr"
+          "cache": "pipeline/cache/docs/GAIL/transcript-2025-01.txt"
         },
         {
           "type": "transcript",
@@ -2677,12 +2672,11 @@
           "periodIso": "2024-11",
           "url": "https://gailonline.com/pdf/InvestorsZone/GAIL_Earnings_Call_Q2_FY25_11112024.pdf",
           "source": "gailonline.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 44375,
+          "pages": 17,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2024-11.txt",
-          "error": "apiRequestContext.get: Hostname/IP does not match certificate's altnames: Host: www.gailonline.com. is not in the cert's altnames: DNS:*.apptrana.com, DNS:apptr"
+          "cache": "pipeline/cache/docs/GAIL/transcript-2024-11.txt"
         }
       ]
     },
@@ -3081,7 +3075,8 @@
       "transcriptsFound": 0,
       "summaries": [],
       "ppt": null,
-      "transcripts": []
+      "transcripts": [],
+      "error": "Screener company page HTTP 404 for GUJGASLTD"
     },
     "aegis-logistics": {
       "name": "Aegis Logistics",
@@ -3511,15 +3506,15 @@
       "ppt": {
         "type": "ppt",
         "role": "ppt",
-        "period": "Apr 2026",
-        "periodIso": "2026-04",
-        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=785105c1-8aa6-430e-9d00-1808b95f96b4.pdf",
+        "period": "Jul 2026",
+        "periodIso": "2026-07",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=66f93399-f4e6-498a-aa43-89e913d557b7.pdf",
         "source": "bseindia.com",
         "status": "ok",
-        "chars": 23244,
+        "chars": 20956,
         "pages": 24,
         "via": "browser",
-        "cache": "pipeline/cache/docs/SPLPETRO/ppt-2026-04.txt"
+        "cache": "pipeline/cache/docs/SPLPETRO/ppt-2026-07.txt"
       },
       "transcripts": [
         {

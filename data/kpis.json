@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-27T11:09:27.085Z",
+  "generatedAt": "2026-07-28T08:12:27.123Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -14,10 +14,10 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 224,
-    "realCells": 117,
-    "nullCells": 107,
+    "realCells": 119,
+    "nullCells": 105,
     "kpis": 58,
-    "kpisWithTrend": 30
+    "kpisWithTrend": 31
   },
   "companies": {
     "deep-industries": {
@@ -675,7 +675,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32255,
+      "ctxChars": 32257,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -1187,7 +1187,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 31943,
+      "ctxChars": 31945,
       "kpis": [
         {
           "id": "grm",
@@ -1251,7 +1251,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin not disclosed in any quarter."
+          "notes": "Marketing margin not explicitly stated in any excerpt."
         },
         {
           "id": "throughput",
@@ -1315,7 +1315,7 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32696,
+      "ctxChars": 32700,
       "kpis": [
         {
           "id": "grm",
@@ -1451,7 +1451,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 30603,
+      "ctxChars": 30611,
       "kpis": [
         {
           "id": "grm",
@@ -1567,15 +1567,15 @@
       "name": "GAIL",
       "slug": "GAIL",
       "quarters": [
+        "Q4 FY25",
+        "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26",
-        "Q4 FY26",
-        "Q1 FY27"
+        "Q3 FY26"
       ],
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 9510,
+      "ctxChars": 33242,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -1583,24 +1583,34 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
+            123.65,
+            120.62,
             123.59,
-            125.45,
-            null,
-            null
+            125.45
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
-            null,
-            null
+            "company-filing",
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
-            null,
-            null
+            "insights",
+            "insights"
           ],
           "citations": [
+            {
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "Natural gas transmission volume stood at 123.65 MMSCMD in quarter four",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "the natural gas transmission volume was 120.62 MMSCMD in Q1",
+              "page": 2
+            },
             {
               "doc": "Concall Transcript - 31 Oct 2025",
               "quote": "The natural gas transmission volume was 123.59 MMSCMD in Q2 Financial Year '26",
@@ -1610,12 +1620,10 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "Natural gas transmission volume improved to 125.45 MMSCMD in Q3 FY26",
               "page": 4
-            },
-            null,
-            null
+            }
           ],
-          "flag": null,
-          "notes": "From Screener Insights row \"Natural Gas Transmission Volume\" (Standalone data); latest value cited to Concall Transcript - 31 Oct 2025, page 3."
+          "flag": "decelerating",
+          "notes": null
         },
         {
           "id": "petchem-margin",
@@ -1647,7 +1655,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin not mentioned in any excerpt."
+          "notes": "Petchem margin not stated in any excerpt."
         }
       ]
     },
@@ -2011,7 +2019,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32698,
+      "ctxChars": 32914,
       "kpis": [
         {
           "id": "sps-spread",
@@ -2043,7 +2051,7 @@
             null
           ],
           "flag": null,
-          "notes": "Styrene-polystyrene spread not explicitly stated in any excerpt."
+          "notes": "Styrene-polystyrene spread not mentioned in any excerpt."
         },
         {
           "id": "volume",
@@ -2187,7 +2195,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33118,
+      "ctxChars": 33126,
       "kpis": [
         {
           "id": "base-oil-spread",
@@ -2327,7 +2335,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33746,
+      "ctxChars": 33175,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -2359,7 +2367,7 @@
             null
           ],
           "flag": null,
-          "notes": "POL/LPG/LNG cargo throughput % yoy not explicitly stated in any excerpt."
+          "notes": "POL/LPG/LNG cargo throughput % yoy was not explicitly stated in any of the excerpts."
         }
       ]
     },

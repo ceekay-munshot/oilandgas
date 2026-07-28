@@ -1,0 +1,1258 @@
+{
+  "schemaVersion": 1,
+  "title": "Management tone per company/quarter, kept across runs",
+  "generatedBy": "pipeline/extract-commentary.mjs",
+  "generatedAt": "2026-07-28T08:14:39.086Z",
+  "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
+  "companies": {
+    "ongc": {
+      "cells": {
+        "Q3 FY25": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "ONGC should not see any kind of a decline in next decade kind of a time period.",
+          "rationale": "Management is optimistic about reversing production declines and future growth.",
+          "doc": "Concall AI summary (Q3 FY25)",
+          "fingerprint": "143a637ee4d4",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:44.997Z"
+        },
+        "Q4 FY25": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Management exuded confidence on production growth and cost control.",
+          "rationale": "The management is positive about production growth and strategic investments.",
+          "doc": "Concall AI summary (Q4 FY25)",
+          "fingerprint": "143a637ee4d4",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:44.997Z"
+        },
+        "Q2 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "FY26 guidance likely to be modestly missed due to deferrals.",
+          "rationale": "Management acknowledges potential shortfalls in meeting production guidance.",
+          "doc": "Concall AI summary (Q2 FY26)",
+          "fingerprint": "143a637ee4d4",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:44.997Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:12:44.997Z"
+    },
+    "oil-india": {
+      "cells": {
+        "Q1 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "hydrocarbon discovery in Namrup-Borhat OALP block",
+          "rationale": "Management highlighted new discoveries and infrastructure expansions, indicating a positive outlook.",
+          "doc": "Concall AI summary (Q1 FY26)",
+          "fingerprint": "9b9c5c9eb5b8",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:48.784Z"
+        },
+        "Q2 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "FY26 output guidance has been trimmed",
+          "rationale": "Management revised production guidance downwards due to disruptions, showing a careful approach.",
+          "doc": "Concall AI summary (Q2 FY26)",
+          "fingerprint": "9b9c5c9eb5b8",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:48.784Z"
+        },
+        "Q3 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "accelerating development and near-field opportunities",
+          "rationale": "Management focused on growth strategies and operational improvements, indicating optimism.",
+          "doc": "Concall AI summary (Q3 FY26)",
+          "fingerprint": "9b9c5c9eb5b8",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:48.784Z"
+        },
+        "Q4 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "4 MMT is an achievable target",
+          "rationale": "Management expressed strong confidence in achieving production targets and highlighted growth investments.",
+          "doc": "Concall AI summary (Q4 FY26)",
+          "fingerprint": "9b9c5c9eb5b8",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:48.784Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:12:48.784Z"
+    },
+    "deep-industries": {
+      "cells": {
+        "Q1 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "maximize asset utilization and safety across our drilling and workover fleet",
+          "rationale": "Management is focused on growth and expansion into new areas, indicating confidence.",
+          "doc": "Concall AI summary (Q1 FY26)",
+          "fingerprint": "4f93b8ddaa72",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:52.944Z"
+        },
+        "Q2 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "we are expecting our EBITDA margins to grow upwards beyond 45% in coming quarters",
+          "rationale": "Management is hopeful about improving margins and sees a positive industry backdrop.",
+          "doc": "Concall AI summary (Q2 FY26)",
+          "fingerprint": "4f93b8ddaa72",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:52.944Z"
+        },
+        "Q3 FY26": {
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "not on chasing activity, but on disciplined execution, asset reliability and capital efficiency",
+          "rationale": "Management focuses on execution and reliability, indicating a balanced outlook.",
+          "doc": "Concall AI summary (Q3 FY26)",
+          "fingerprint": "4f93b8ddaa72",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:52.944Z"
+        },
+        "Q4 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "a supportive multi-year service demand cycle across drilling, workover, gas processing",
+          "rationale": "Management is optimistic about future demand and policy support, indicating a positive outlook.",
+          "doc": "Concall AI summary (Q4 FY26)",
+          "fingerprint": "4f93b8ddaa72",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:52.944Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:12:52.944Z"
+    },
+    "jindal-drilling": {
+      "cells": {
+        "Q4 FY25": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Most likely, the revenue will be higher than this… we will cross that figure and positively surprise shareholders.",
+          "rationale": "Management is optimistic about future revenue and expects to exceed conservative estimates, indicating confidence.",
+          "doc": "Concall AI summary (Q4 FY25)",
+          "fingerprint": "a789055457a9",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:59.889Z"
+        },
+        "Q1 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "we expect the rates to be much higher, but they prefer not to overstate projections.",
+          "rationale": "Management is hopeful about future rate improvements and has a backup plan for redeployment, showing a positive outlook.",
+          "doc": "Concall AI summary (Q1 FY26)",
+          "fingerprint": "a789055457a9",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:59.889Z"
+        },
+        "Q2 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "we will aim at higher prices because the Explorer rates are very low.",
+          "rationale": "Management is careful about pricing strategies and acknowledges competitive pressures, indicating caution.",
+          "doc": "Concall AI summary (Q2 FY26)",
+          "fingerprint": "a789055457a9",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:59.889Z"
+        },
+        "Q3 FY26": {
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "There has been no change in the operational performance… but the bottom line looks… much affected only on account of Other Income.",
+          "rationale": "Management describes steady operations despite accounting adjustments, reflecting a neutral stance.",
+          "doc": "Concall AI summary (Q3 FY26)",
+          "fingerprint": "a789055457a9",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:12:59.889Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:12:59.889Z"
+    },
+    "engineers-india": {
+      "cells": {
+        "Q1 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Order book at all-time high: ₹12,145 cr as of 30 Jun’25",
+          "rationale": "Management is optimistic about growth with a record order book and strong revenue guidance.",
+          "doc": "Concall AI summary (Q1 FY26)",
+          "fingerprint": "40acdeb6af1d",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:04.757Z"
+        },
+        "Q2 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "upgraded growth stance vs earlier perception",
+          "rationale": "Management is positive about growth prospects, raising revenue guidance and highlighting international momentum.",
+          "doc": "Concall AI summary (Q2 FY26)",
+          "fingerprint": "40acdeb6af1d",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:04.757Z"
+        },
+        "Q3 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "highest order book position in the history of EIL",
+          "rationale": "Management is very upbeat about record order book levels and strong financial performance.",
+          "doc": "Concall AI summary (Q3 FY26)",
+          "fingerprint": "40acdeb6af1d",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:04.757Z"
+        },
+        "Q4 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "target to sustain ~₹8,000 cr annual order inflow",
+          "rationale": "Management is hopeful about maintaining order inflow and sees potential growth despite some regional slowdowns.",
+          "doc": "Concall AI summary (Q4 FY26)",
+          "fingerprint": "40acdeb6af1d",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:04.757Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:13:04.757Z"
+    },
+    "lt": {
+      "cells": {
+        "Q1 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "order book in the Projects and Manufacturing business portfolio has crossed the significant milestone of Rs.6 trillion",
+          "rationale": "Management highlights significant achievements and strategic moves, indicating confidence in growth.",
+          "doc": "Concall transcript (Q1 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:09.729Z"
+        },
+        "Q2 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "India's economic outlook continues to remain optimistic",
+          "rationale": "Management expresses optimism about economic conditions and strategic partnerships.",
+          "doc": "Concall transcript (Q2 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:09.729Z"
+        },
+        "Q3 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "The Indian economy continues to demonstrate resilience",
+          "rationale": "Management is positive about economic resilience and growth prospects.",
+          "doc": "Concall transcript (Q3 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:09.729Z"
+        },
+        "Q4 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "Growth conditions, however, remain subject to external headwinds",
+          "rationale": "Management acknowledges growth but highlights external risks and uncertainties.",
+          "doc": "Concall transcript (Q4 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:09.729Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:13:09.729Z"
+    },
+    "ratnamani": {
+      "cells": {
+        "Q2 FY25": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "Some dip may be witnessed… because of the soft metal prices and delay in some projects",
+          "rationale": "Management expects revenue softness due to external factors like metal prices and project delays.",
+          "doc": "Concall AI summary (Q2 FY25)",
+          "fingerprint": "3f1786e64c6d",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:17.134Z"
+        },
+        "Q4 FY25": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "highest ever sales during the quarter as well as for the entire fiscal year",
+          "rationale": "Management highlights record sales and improved profitability, indicating a positive outlook.",
+          "doc": "Concall AI summary (Q4 FY25)",
+          "fingerprint": "3f1786e64c6d",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:17.134Z"
+        },
+        "Q2 FY26": {
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "revenue growth was modest due to softer input prices and product mix",
+          "rationale": "Management describes modest growth and stable margins, indicating a wait-and-see approach.",
+          "doc": "Concall AI summary (Q2 FY26)",
+          "fingerprint": "3f1786e64c6d",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:17.134Z"
+        },
+        "Q4 FY26": {
+          "toneId": "defensive",
+          "score": 1,
+          "quote": "a challenging business environment with continued muted demand conditions",
+          "rationale": "Management focuses on challenges and constraints, indicating a protective stance.",
+          "doc": "Concall AI summary (Q4 FY26)",
+          "fingerprint": "3f1786e64c6d",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:17.134Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:13:17.134Z"
+    },
+    "welspun-corp": {
+      "cells": {
+        "Q1 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Welspun positions itself as “one of the top 1 or 2 global companies” capable of supplying pipes for such critical applications",
+          "rationale": "Management is very upbeat about their global positioning and growth prospects, highlighting strong demand and strategic advantages.",
+          "doc": "Concall AI summary (Q1 FY26)",
+          "fingerprint": "9b9c5c9eb5b8",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:21.344Z"
+        },
+        "Q2 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "Management indicated confidence to “deliver and achieve, if not exceed”",
+          "rationale": "Management is positive and hopeful about meeting or exceeding guidance, despite not revising it due to execution constraints.",
+          "doc": "Concall AI summary (Q2 FY26)",
+          "fingerprint": "9b9c5c9eb5b8",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:21.344Z"
+        },
+        "Q3 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "Management described the US as “absolutely continues to be into a bullish mode”",
+          "rationale": "Management is optimistic about the US market and expects strong demand, indicating a positive outlook.",
+          "doc": "Concall AI summary (Q3 FY26)",
+          "fingerprint": "9b9c5c9eb5b8",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:21.344Z"
+        },
+        "Q4 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Management described a “paradigm shift” and “fundamental restructuring” in U.S. midstream demand",
+          "rationale": "Management is very upbeat about long-term demand drivers and their strategic positioning, indicating strong confidence in future growth.",
+          "doc": "Concall AI summary (Q4 FY26)",
+          "fingerprint": "9b9c5c9eb5b8",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:21.344Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:13:21.344Z"
+    },
+    "reliance": {
+      "cells": {
+        "Q2 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "strong performance across businesses",
+          "rationale": "Management highlighted broad-based earnings strength and improving quality of numbers, indicating confidence in their operations.",
+          "doc": "Concall AI summary (Q2 FY26)",
+          "fingerprint": "cbd75a22a1f5",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:26.759Z"
+        },
+        "Q3 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "strong growth with Revenue +10% YoY",
+          "rationale": "Management emphasized strong growth and cash generation exceeding capex, indicating a positive outlook.",
+          "doc": "Concall AI summary (Q3 FY26)",
+          "fingerprint": "cbd75a22a1f5",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:26.759Z"
+        },
+        "Q4 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "March saw an acute energy shock",
+          "rationale": "Management highlighted macro headwinds and energy shocks, indicating a cautious approach to the business environment.",
+          "doc": "Concall AI summary (Q4 FY26)",
+          "fingerprint": "cbd75a22a1f5",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:26.759Z"
+        },
+        "Q1 FY27": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "macro volatility… energy market shock",
+          "rationale": "Management described the quarter as extraordinary due to macro volatility and energy shocks, indicating a cautious stance.",
+          "doc": "Concall AI summary (Q1 FY27)",
+          "fingerprint": "cbd75a22a1f5",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:26.759Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:13:26.759Z"
+    },
+    "iocl": {
+      "cells": {
+        "Q4 FY25": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "we expect refining margins to be pretty good for us going forward in this year.",
+          "rationale": "Despite challenges, management is hopeful about future refining margins and expansion plans.",
+          "doc": "Concall AI summary (Q4 FY25)",
+          "fingerprint": "2f46a88ae127",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:30.673Z"
+        },
+        "Q1 FY26": {
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "all normal inventory",
+          "rationale": "Management describes inventory losses as normal, indicating a wait-and-see approach without strong positive or negative sentiment.",
+          "doc": "Concall AI summary (Q1 FY26)",
+          "fingerprint": "2f46a88ae127",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:30.673Z"
+        },
+        "Q2 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "above-normal rainfall… impacted the sales volume for the quarter.",
+          "rationale": "Management highlights external factors affecting sales, showing a careful approach to current challenges.",
+          "doc": "Concall AI summary (Q2 FY26)",
+          "fingerprint": "2f46a88ae127",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:30.673Z"
+        },
+        "Q4 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "significant uncertainties across the global hydrocarbon supply chain.",
+          "rationale": "Management is focused on geopolitical risks and their impact, indicating a careful stance.",
+          "doc": "Concall AI summary (Q4 FY26)",
+          "fingerprint": "2f46a88ae127",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:30.673Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:13:30.673Z"
+    },
+    "bpcl": {
+      "cells": {
+        "Q3 FY25": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "Rupee weakness (to INR 86.71/USD ) seen as a potential inflation risk.",
+          "rationale": "Management highlighted risks like rupee weakness and supply disruptions, indicating caution.",
+          "doc": "Concall AI summary (Q3 FY25)",
+          "fingerprint": "b7bf1e099e4a",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:37.393Z"
+        },
+        "Q4 FY25": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "we are positive of getting sufficient cargoes… expecting… maybe 30% to 32% Russian crude",
+          "rationale": "Management expressed optimism about crude supply and financial comfort, showing a constructive outlook.",
+          "doc": "Concall AI summary (Q4 FY25)",
+          "fingerprint": "b7bf1e099e4a",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:37.393Z"
+        },
+        "Q1 FY26": {
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "no discussion at all on price cuts due to persistent geopolitical uncertainty.",
+          "rationale": "Management's tone was balanced, acknowledging both positive demand and geopolitical uncertainties.",
+          "doc": "Concall AI summary (Q1 FY26)",
+          "fingerprint": "b7bf1e099e4a",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:37.393Z"
+        },
+        "Q1 FY27": {
+          "toneId": "defensive",
+          "score": 1,
+          "quote": "calibrated retail price revision of approximately ₹7.5/litre across MS and HSD",
+          "rationale": "Management focused on mitigating losses and managing costs, indicating a defensive stance.",
+          "doc": "Concall AI summary (Q1 FY27)",
+          "fingerprint": "b7bf1e099e4a",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:37.393Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:13:37.393Z"
+    },
+    "hpcl": {
+      "cells": {
+        "Q2 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "obviously, we gave a very solid performance. Our H1 profit at INR8,201 crores is 731% up from last year.",
+          "rationale": "Management highlights strong profit growth and consistent performance, indicating confidence.",
+          "doc": "Concall transcript (Q2 FY26)",
+          "fingerprint": "d1d042c58fc5",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:42.508Z"
+        },
+        "Q3 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "quarter one, we expect it to be very tough… as of where we stand, there would be losses in the first quarter",
+          "rationale": "Management anticipates a challenging next quarter with expected losses, showing caution.",
+          "doc": "Concall AI summary (Q3 FY26)",
+          "fingerprint": "d1d042c58fc5",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:42.508Z"
+        },
+        "Q4 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "Quarter 1, we expect it to be very tough… there would be losses in the first quarter",
+          "rationale": "Management warns of a tough upcoming quarter with expected losses, indicating caution.",
+          "doc": "Concall AI summary (Q4 FY26)",
+          "fingerprint": "d1d042c58fc5",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:42.508Z"
+        },
+        "Q1 FY27": {
+          "toneId": "defensive",
+          "score": 1,
+          "quote": "mission has delivered under the crisis, kept the assets running",
+          "rationale": "Focus on crisis management and asset protection suggests a defensive stance.",
+          "doc": "Concall AI summary (Q1 FY27)",
+          "fingerprint": "d1d042c58fc5",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:42.508Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:13:42.508Z"
+    },
+    "gail": {
+      "cells": {
+        "Q4 FY25": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "our company had a landmark year, reaching unprecedented financial milestones",
+          "rationale": "Management highlights record financial achievements and growth despite challenges.",
+          "doc": "Concall transcript (Q4 FY25)",
+          "fingerprint": "71acb0310254",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:46.425Z"
+        },
+        "Q1 FY26": {
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "Gas marketing volume during the quarter stood at 105.45 MMSCMD as against 106.53 MMSCMD",
+          "rationale": "The discussion focuses on flat performance and minor changes in financials.",
+          "doc": "Concall transcript (Q1 FY26)",
+          "fingerprint": "71acb0310254",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:46.425Z"
+        },
+        "Q2 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "GAIL's Srikakulam-Angul Pipeline...has been dedicated to the nation",
+          "rationale": "Management discusses new projects and revenue growth, indicating optimism.",
+          "doc": "Concall transcript (Q2 FY26)",
+          "fingerprint": "71acb0310254",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:46.425Z"
+        },
+        "Q3 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "continuous volatility in global energy markets due to uncertain weather conditions",
+          "rationale": "Management notes external risks and focuses on maintaining business stability.",
+          "doc": "Concall transcript (Q3 FY26)",
+          "fingerprint": "71acb0310254",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:46.425Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:13:46.425Z"
+    },
+    "petronet-lng": {
+      "cells": {
+        "Q1 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "we don't see any risk or any challenge from the geopolitical side",
+          "rationale": "Management acknowledges stable conditions but highlights demand softness and structural issues.",
+          "doc": "Concall AI summary (Q1 FY26)",
+          "fingerprint": "b824467f0c97",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:54.316Z"
+        },
+        "Q2 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "there has been some delay",
+          "rationale": "Management discusses delays and constraints affecting operations and expansion.",
+          "doc": "Concall AI summary (Q2 FY26)",
+          "fingerprint": "b824467f0c97",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:54.316Z"
+        },
+        "Q3 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "improved capacity utilization and operational efficiencies",
+          "rationale": "Management highlights improvements and strategic advantages, indicating optimism.",
+          "doc": "Concall AI summary (Q3 FY26)",
+          "fingerprint": "b824467f0c97",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:54.316Z"
+        },
+        "Q4 FY26": {
+          "toneId": "defensive",
+          "score": 1,
+          "quote": "despite the challenging external environment",
+          "rationale": "Management focuses on overcoming disruptions and maintaining performance.",
+          "doc": "Concall AI summary (Q4 FY26)",
+          "fingerprint": "b824467f0c97",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:54.316Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:13:54.316Z"
+    },
+    "igl": {
+      "cells": {
+        "Q1 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "Company is “augmenting stations… very aggressively”",
+          "rationale": "Management is hopeful about growth, focusing on expansion and customer base increase.",
+          "doc": "Concall AI summary (Q1 FY26)",
+          "fingerprint": "574a07f3daf1",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:58.220Z"
+        },
+        "Q2 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "higher average gas procurement costs , driven by cost indices + adverse sourcing mix",
+          "rationale": "Management is careful due to cost pressures and sourcing challenges affecting margins.",
+          "doc": "Concall AI summary (Q2 FY26)",
+          "fingerprint": "574a07f3daf1",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:58.220Z"
+        },
+        "Q3 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "sharp profitability improvement , driven by regulatory tailwinds",
+          "rationale": "Management is positive about profitability improvements due to favorable regulatory changes.",
+          "doc": "Concall AI summary (Q3 FY26)",
+          "fingerprint": "574a07f3daf1",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:58.220Z"
+        },
+        "Q4 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "Despite the increasing gas price… we are able to maintain EBITA",
+          "rationale": "Management is careful, focusing on maintaining profitability amid rising costs and sourcing challenges.",
+          "doc": "Concall AI summary (Q4 FY26)",
+          "fingerprint": "574a07f3daf1",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:13:58.220Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:13:58.220Z"
+    },
+    "mahanagar-gas": {
+      "cells": {
+        "Q1 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "MGL continues to create CGD infrastructure across its business segments",
+          "rationale": "The management highlights significant expansion and connectivity achievements, indicating a confident outlook.",
+          "doc": "Concall transcript (Q1 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:01.379Z"
+        },
+        "Q2 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "MGL continues to create infrastructure across its business segments",
+          "rationale": "The management discusses ongoing infrastructure development and expansion, reflecting a confident tone.",
+          "doc": "Concall transcript (Q2 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:01.379Z"
+        },
+        "Q3 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "MGL continues to create CGD infrastructure across its business segment",
+          "rationale": "The focus on infrastructure expansion and increased connectivity suggests a confident approach.",
+          "doc": "Concall transcript (Q3 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:01.379Z"
+        },
+        "Q4 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "Gas supplies to industrial and commercial customers is partly curtailed",
+          "rationale": "The mention of supply disruptions and potential price impacts due to geopolitical issues indicates a cautious tone.",
+          "doc": "Concall transcript (Q4 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:01.379Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:14:01.379Z"
+    },
+    "gujarat-gas": {
+      "cells": {
+        "Q2 FY26": {
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": "no concall document cached for this quarter",
+          "doc": null,
+          "fingerprint": "a1b963e7c647",
+          "attempts": 1,
+          "at": "2026-07-28T08:14:05.475Z"
+        },
+        "Q3 FY26": {
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": "no concall document cached for this quarter",
+          "doc": null,
+          "fingerprint": "a1b963e7c647",
+          "attempts": 1,
+          "at": "2026-07-28T08:14:05.475Z"
+        },
+        "Q4 FY26": {
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": "no concall document cached for this quarter",
+          "doc": null,
+          "fingerprint": "a1b963e7c647",
+          "attempts": 1,
+          "at": "2026-07-28T08:14:05.475Z"
+        },
+        "Q1 FY27": {
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": "no concall document cached for this quarter",
+          "doc": null,
+          "fingerprint": "a1b963e7c647",
+          "attempts": 1,
+          "at": "2026-07-28T08:14:05.475Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:14:05.475Z"
+    },
+    "aegis-logistics": {
+      "cells": {
+        "Q1 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "we also have an upcoming liquid capacity of 125,000 kiloliters, 50% of which is expected to be operational in the ensuing quarter",
+          "rationale": "Management discusses new projects and expansions, indicating confidence in growth.",
+          "doc": "Concall transcript (Q1 FY26)",
+          "fingerprint": "3b73fa22e5ae",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:05.478Z"
+        },
+        "Q2 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Aegis Logistics continues its strong growth momentum, driven by both volume expansion and operational efficiencies",
+          "rationale": "The focus on strong growth momentum and expansion reflects a confident outlook.",
+          "doc": "Concall transcript (Q2 FY26)",
+          "fingerprint": "3b73fa22e5ae",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:05.478Z"
+        },
+        "Q3 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "the company continues to maintain its strong growth trajectory, which is underpinned by expanding volumes",
+          "rationale": "Management highlights strong growth and expansion, showing confidence.",
+          "doc": "Concall transcript (Q3 FY26)",
+          "fingerprint": "3b73fa22e5ae",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:05.478Z"
+        },
+        "Q4 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "It was an outstanding year, a breakout year for us. So, the revenues grew 23% year-on-year",
+          "rationale": "The description of the year as 'outstanding' and 'breakout' indicates a confident tone.",
+          "doc": "Concall transcript (Q4 FY26)",
+          "fingerprint": "3b73fa22e5ae",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:05.478Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:14:05.478Z"
+    },
+    "aegis-vopak": {
+      "cells": {
+        "Q1 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "committed to achieving significant growth in the years ahead",
+          "rationale": "Management expressed strong confidence in growth and expansion plans.",
+          "doc": "Concall transcript (Q1 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:10.568Z"
+        },
+        "Q2 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "continue to make excellent progress in executing our long-term strategy",
+          "rationale": "Management highlighted successful execution of strategic plans and expansion.",
+          "doc": "Concall transcript (Q2 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:10.568Z"
+        },
+        "Q3 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "making excellent progress on our long-term growth strategy",
+          "rationale": "Management emphasized progress and strategic growth initiatives.",
+          "doc": "Concall transcript (Q3 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:10.568Z"
+        },
+        "Q4 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "investing to stay ahead of that demand through Project GATI",
+          "rationale": "Management focused on proactive investment and growth to meet demand.",
+          "doc": "Concall transcript (Q4 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:10.568Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:14:10.568Z"
+    },
+    "supreme-petrochem": {
+      "cells": {
+        "Q1 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "declined by 12% on year-on-year mainly on account of lower SM prices",
+          "rationale": "Management highlighted a decline in income and EBITDA due to lower prices, indicating caution.",
+          "doc": "Concall transcript (Q1 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:13.974Z"
+        },
+        "Q2 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "Reduction in the top line is mainly due to lower raw material prices",
+          "rationale": "The focus on reduced income due to lower raw material prices suggests a cautious outlook.",
+          "doc": "Concall transcript (Q2 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:13.974Z"
+        },
+        "Q3 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "operating income for the 3rd Quarter was Rs. 1,265 crores. It was lower by 10% year-on-year",
+          "rationale": "Management noted a decrease in income due to falling prices, indicating caution.",
+          "doc": "Concall transcript (Q3 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:13.974Z"
+        },
+        "Q4 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "revenue from the operations for the 4th Quarter stood at INR 1,587 crores, reflecting a growth of 3% year-on-year",
+          "rationale": "Management highlighted growth in revenue and better performance, suggesting a constructive tone.",
+          "doc": "Concall transcript (Q4 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:13.974Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:14:13.974Z"
+    },
+    "castrol-india": {
+      "cells": {
+        "Q1 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "continued our momentum from the beginning of the year into the second quarter with healthy performance",
+          "rationale": "Management expressed confidence in their growth and resilience despite challenges.",
+          "doc": "Concall transcript (Q1 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:19.576Z"
+        },
+        "Q2 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "delivered another quarter of steady, consistent growth backed by a strong focus on profitability",
+          "rationale": "Management was positive about growth and profitability despite external pressures.",
+          "doc": "Concall transcript (Q2 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:19.576Z"
+        },
+        "Q3 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "eighth straight quarter of volume-led growth, closed the year with the highest ever revenue",
+          "rationale": "Management highlighted strong growth and market share gains, indicating confidence.",
+          "doc": "Concall transcript (Q3 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:19.576Z"
+        },
+        "Q4 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "continued macro uncertainty...early signs of external headwinds driven by the conflict in the Middle East",
+          "rationale": "Management acknowledged external risks and uncertainties affecting the business.",
+          "doc": "Concall transcript (Q4 FY26)",
+          "fingerprint": "f505fac6c718",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:19.576Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:14:19.576Z"
+    },
+    "gandhar-oil": {
+      "cells": {
+        "Q4 FY25": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "revenues from operations were affected primarily due to a reduction in average realization",
+          "rationale": "Management highlighted reduced demand and geopolitical challenges affecting revenues.",
+          "doc": "Concall transcript (Q4 FY25)",
+          "fingerprint": "a91ed3cacfbd",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:24.187Z"
+        },
+        "Q2 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "growth is driven by rising demand from pharmaceuticals, personal care, polymer industries",
+          "rationale": "Management discussed positive industry trends and alignment with strategic focus.",
+          "doc": "Concall transcript (Q2 FY26)",
+          "fingerprint": "a91ed3cacfbd",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:24.187Z"
+        },
+        "Q3 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "global white oil market continues to exhibit steady structural driven growth",
+          "rationale": "Management noted steady growth in the market and strategic alignment.",
+          "doc": "Concall transcript (Q3 FY26)",
+          "fingerprint": "a91ed3cacfbd",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:24.187Z"
+        },
+        "Q4 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "geopolitical developments have been a key area of focus",
+          "rationale": "Management focused on geopolitical risks and their impact on the market.",
+          "doc": "Concall transcript (Q4 FY26)",
+          "fingerprint": "a91ed3cacfbd",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:24.187Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:14:24.187Z"
+    },
+    "linde-india": {
+      "cells": {
+        "Q2 FY26": {
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": "no concall document cached for this quarter",
+          "doc": null,
+          "fingerprint": "a1b963e7c647",
+          "attempts": 1,
+          "at": "2026-07-28T08:14:28.554Z"
+        },
+        "Q3 FY26": {
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": "no concall document cached for this quarter",
+          "doc": null,
+          "fingerprint": "a1b963e7c647",
+          "attempts": 1,
+          "at": "2026-07-28T08:14:28.554Z"
+        },
+        "Q4 FY26": {
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": "no concall document cached for this quarter",
+          "doc": null,
+          "fingerprint": "a1b963e7c647",
+          "attempts": 1,
+          "at": "2026-07-28T08:14:28.554Z"
+        },
+        "Q1 FY27": {
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": "no concall document cached for this quarter",
+          "doc": null,
+          "fingerprint": "a1b963e7c647",
+          "attempts": 1,
+          "at": "2026-07-28T08:14:28.554Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:14:28.554Z"
+    },
+    "adani-ports": {
+      "cells": {
+        "Q4 FY25": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "APSEZ delivered stellar performance across all parameters.",
+          "rationale": "Management highlighted strong growth in revenue, EBITDA, and net profit, and discussed expansion and acquisitions.",
+          "doc": "Concall transcript (Q4 FY25)",
+          "fingerprint": "a620887d31f6",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:28.557Z"
+        },
+        "Q2 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "APSEZ has delivered a record quarter, where all parameters demonstrated significant growth.",
+          "rationale": "The management emphasized record growth and improvements across financial and operational metrics.",
+          "doc": "Concall transcript (Q2 FY26)",
+          "fingerprint": "a620887d31f6",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:28.557Z"
+        },
+        "Q3 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "we have exceeded the guidance. APSEZ outperformed the upper end of revenue, EBITDA and capex.",
+          "rationale": "Management discussed exceeding guidance and achieving strong growth despite challenges.",
+          "doc": "Concall transcript (Q3 FY26)",
+          "fingerprint": "a620887d31f6",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:28.557Z"
+        },
+        "Q4 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "we have exceeded the guidance. APSEZ outperformed the upper end of revenue, EBITDA and capex.",
+          "rationale": "Management reiterated exceeding guidance and achieving strong growth despite challenges.",
+          "doc": "Concall transcript (Q4 FY26)",
+          "fingerprint": "a620887d31f6",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:28.557Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:14:28.557Z"
+    },
+    "ge-shipping": {
+      "cells": {
+        "Q1 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "Standalone net asset value, of course, has been going up, though since March last year it's now been stagnant.",
+          "rationale": "Management highlights stagnant asset values and reduced earnings, indicating a cautious outlook.",
+          "doc": "Concall transcript (Q1 FY26)",
+          "fingerprint": "7acc055ea001",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:32.405Z"
+        },
+        "Q2 FY26": {
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "We are more or less at the same level as we were a year ago.",
+          "rationale": "The statement reflects a neutral tone, indicating stability without significant improvement or decline.",
+          "doc": "Concall transcript (Q2 FY26)",
+          "fingerprint": "7acc055ea001",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:32.405Z"
+        },
+        "Q3 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "NAV has gone up again, and this has mainly gone up because of the operating earnings.",
+          "rationale": "Management notes improvement in net asset value due to operating earnings, showing a positive outlook.",
+          "doc": "Concall transcript (Q3 FY26)",
+          "fingerprint": "7acc055ea001",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:32.405Z"
+        },
+        "Q4 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "this is our best ever quarter in terms of profits.",
+          "rationale": "Management expresses confidence with record profits and increased dividends, indicating a strong performance.",
+          "doc": "Concall transcript (Q4 FY26)",
+          "fingerprint": "7acc055ea001",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:32.405Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:14:32.405Z"
+    },
+    "shipping-corp": {
+      "cells": {
+        "Q2 FY26": {
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "we have delivered a steady and resilient performance this quarter",
+          "rationale": "The management describes the performance as steady and resilient, indicating a neutral tone.",
+          "doc": "Concall transcript (Q2 FY26)",
+          "fingerprint": "c8575be1cb5b",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:36.435Z"
+        },
+        "Q4 FY26": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "we have delivered a momentous performance this year",
+          "rationale": "The management highlights a momentous performance and new investments, indicating confidence.",
+          "doc": "Concall transcript (Q4 FY26)",
+          "fingerprint": "c8575be1cb5b",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:36.435Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:14:36.435Z"
+    },
+    "thermax": {
+      "cells": {
+        "Q4 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "the impact of war prolonging and any other further impact that could be having across various industries",
+          "rationale": "Management acknowledges a robust order book but expresses concern about potential impacts from prolonged geopolitical issues.",
+          "doc": "Concall transcript (Q4 FY26)",
+          "fingerprint": "c272ae1e086b",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T08:14:39.086Z"
+        }
+      },
+      "updatedAt": "2026-07-28T08:14:39.086Z"
+    }
+  }
+}
