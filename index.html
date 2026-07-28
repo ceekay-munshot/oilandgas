@@ -216,6 +216,25 @@ h1,h2,h3,p{margin:0;}
   background:var(--surface-2); border:1px dashed var(--axis);
   color:var(--ink-4); font-weight:600;
 }
+/* the one chip allowed to raise its voice: the divergence split, which the
+   brief calls the dashboard's single most important alert */
+.chip.is-loud{
+  background:color-mix(in srgb, var(--c) 16%, #fff);
+  border-color:color-mix(in srgb, var(--c) 46%, #fff);
+  font-weight:760;
+}
+
+/* --- provenance stamp ---------------------------------------------------
+   The written half of "every value carries its source and a date". The chip
+   beside it carries the source tag; this carries when it was last true.
+   A stamp older than the latest reported quarter dims itself, which is the
+   brief's stale rule - the value stays readable, it just stops looking current. */
+.stamp{
+  font-size:10px; font-weight:640; letter-spacing:.02em;
+  color:var(--ink-4); white-space:nowrap;
+}
+.stamp.is-stale{ opacity:.55; font-style:italic; }
+.is-stale-value{ opacity:.5; }
 
 /* --- card --------------------------------------------------------------- */
 .card{
@@ -340,6 +359,8 @@ h1,h2,h3,p{margin:0;}
 .verdict__word{font-size:clamp(17px, 1.72vw, 24px); font-weight:770; letter-spacing:-.032em; line-height:1.1; text-wrap:balance;}
 .verdict__tech{margin-top:3px; font-size:10.5px; color:var(--ink-3); font-weight:600; letter-spacing:.01em;}
 .verdict__say{margin-top:7px; font-size:11.5px; color:var(--ink-2); font-weight:500; line-height:1.35; text-wrap:pretty;}
+.verdict__meta{margin-top:8px; display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap;}
+.alert--more .alert__msg{color:var(--ink-4); font-weight:600;}
 
 /* the dial's legend = the five stages, in order. Takes the slack the arc cannot
    use (the arc is width-limited) so the card has no dead band at its foot. */
@@ -378,7 +399,13 @@ h1,h2,h3,p{margin:0;}
 .gfoot{
   flex:0 0 auto;
   display:flex; align-items:center; justify-content:center; gap:7px;
-  padding:0 10px 11px;
+  padding:0 10px 7px;
+}
+/* what the gauge above it was computed from: source tag + how many KPIs */
+.gbasis{
+  flex:0 0 auto;
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  padding:0 10px 10px; flex-wrap:wrap;
 }
 .gfoot__arrow{
   display:grid; place-items:center;
@@ -758,10 +785,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
     </div>
     <div class="topbar__right">
       <span class="pill" id="stagePill"><span class="pill__dot"></span><b>&mdash;</b></span>
-      <span class="pill pill--seed" id="seedPill"
-            title="The cycle stage and the three group scores are placeholders. Market data on the Macro tab is live.">
-        <span class="pill__dot"></span>SEED SCORES
-      </span>
+      <span class="pill" id="seedPill" hidden><span class="pill__dot"></span></span>
     </div>
   </header>
 
@@ -784,7 +808,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
             <div class="card__headL">
               <span class="card__title">Where are we in the cycle?</span>
             </div>
-            <span class="chip" style="--c:var(--seed)" title="Placeholder - real scores arrive with the KPI pipeline."><span class="chip__sw"></span>SEED &middot; not yet live</span>
+            <span id="dialChip"></span>
           </div>
           <div class="card__body">
             <div class="chart-wrap">
@@ -801,9 +825,9 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           <div class="card__head">
             <div class="card__headL">
               <span class="card__title">How far ahead the early movers are</span>
-              <span class="card__sub">Moves&nbsp;first score minus moves&nbsp;last score, in points</span>
+              <span class="card__sub">Moves&nbsp;first score minus moving&nbsp;now score, in points</span>
             </div>
-            <span class="chip" style="--c:var(--seed)" title="Placeholder - real scores arrive with the KPI pipeline."><span class="chip__sw"></span>SEED &middot; not yet live</span>
+            <span id="divChip"></span>
           </div>
           <div class="card__body">
             <div class="chart-wrap"><div class="chart" id="ch-div"></div></div>
@@ -920,9 +944,11 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
 <script>
 /* ==========================================================================
-   Oil & Gas Cycle Dashboard - foundation
-   Prompt 1 of ~12: shell, design system, navigation, and one real screen.
-   Every number in SEED below is a placeholder. Nothing here computes a score.
+   Oil & Gas Cycle Dashboard
+   Shell, design system, navigation and the five sections of the brief.
+   Every number on screen is read from data/*.json, which the pipeline writes.
+   Nothing here invents a value: where a file has no answer the interface says
+   so instead of showing a plausible one.
    ========================================================================== */
 (function () {
   'use strict';
@@ -941,32 +967,33 @@ table.kpi td.co[rowspan]{vertical-align:top;}
   };
 
   /* =====================================================================
-     SEED VALUES - placeholders only. Prompt 2+ replaces this whole object
-     with a fetch of a real scores file. Shape is deliberately final.
+     THE CYCLE READING - all of it from data/scores.json, which rescore.mjs
+     computes from the KPI trajectories, the macro tiles and the tones. There
+     is no seeded fallback on purpose: when the file is absent every reader
+     below returns null and the Cockpit says so, because a placeholder cycle
+     position is exactly the confident-looking guess this dashboard exists
+     not to make.
      ===================================================================== */
-  var SEED = {
-    /* 0-100 position along the five cycle stages; the stage name is derived
-       from framework.json ranges, so only this number has to change. */
-    cyclePosition: 52,
 
-    /* one score per group, plus the previous quarter to get the arrow */
-    scores: {
-      leading:    { score: 72, prev: 66 },
-      coincident: { score: 58, prev: 56 },
-      lagging:    { score: 41, prev: 44 }
-    },
-
-    /* leading score minus lagging score, oldest to newest */
-    divergence: [18, 22, 27, 31],
-
-    alerts: [
-      { tone: 'good',    glyph: '↑', msg: 'Early movers have led for 4 quarters running', source: 'derived' },
-      { tone: 'warn',    glyph: '!',      msg: 'Refiners and shippers still lag by a wide margin', source: 'derived' },
-      { tone: 'neutral', glyph: '●', msg: 'Next big read: the coming results season', source: 'estimate' }
-    ]
-  };
+  /** the three bucket scores, or null before the first rescore */
+  function scoresOf()     { return (DATA.scores && DATA.scores.scores) || null; }
+  /** one group's { score, prev, delta, level, direction, kpisScored, kpisTotal } */
+  function scoreFor(id)   { var s = scoresOf(); return (s && s[id]) || null; }
+  /** the stage call: { stageId, position, ruleId, ruleLabel, confidence, because } */
+  function stageOf()      { return (DATA.scores && DATA.scores.stage) || null; }
+  /** how the cycle reading is tagged and when it was taken */
+  function scoreTagId()   { return (DATA.scores && DATA.scores.sourceTag) || 'derived'; }
+  function scoreAsOf()    { return (DATA.scores && DATA.scores.asOf) || null; }
 
   var ALERT_TONE = { good: '#0F7A3A', warn: '#E9A526', bad: '#C42433', neutral: '#2563EB' };
+
+  /* the alert severities rescore.mjs emits, mapped onto that palette + a glyph */
+  var ALERT_SEVERITY = {
+    high:   { tone: 'bad',     glyph: '!' },
+    review: { tone: 'warn',    glyph: '⚑' },
+    warn:   { tone: 'warn',    glyph: '↓' },
+    info:   { tone: 'neutral', glyph: '●' }
+  };
 
   /* ------------------------------------------------------------- utilities */
   function el(id) { return document.getElementById(id); }
@@ -1019,6 +1046,12 @@ table.kpi td.co[rowspan]{vertical-align:top;}
          degrades to "No data yet" without it. */
       fetch('data/commentary.json', { cache: 'no-cache' })
         .then(function (res) { return res.ok ? res.json() : null; })
+        .catch(function () { return null; }),
+      /* scores.json is written by rescore.mjs from the files above. Optional for
+         the same reason: absent until the first run, and the Cockpit says "no
+         call yet" rather than falling back to a seeded cycle position. */
+      fetch('data/scores.json', { cache: 'no-cache' })
+        .then(function (res) { return res.ok ? res.json() : null; })
         .catch(function () { return null; })
     ]).then(function (r) {
       DATA.companies = r[0];
@@ -1026,6 +1059,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       DATA.macro = r[2];
       DATA.kpis = r[3];
       DATA.commentary = r[4];
+      DATA.scores = r[5];
       DATA.companies.groups.forEach(function (g) {
         groupById[g.id] = g;
         g.companies.forEach(function (c) { byId[c.id] = c; });
@@ -1062,56 +1096,142 @@ table.kpi td.co[rowspan]{vertical-align:top;}
     }).join('');
   }
 
+  /* The stage the pipeline called, or null when there is no call to show.
+     The position on the dial comes from the same object, so the words, the
+     colour and the marker can never drift apart. */
   function currentStage() {
-    var p = SEED.cyclePosition, st = DATA.framework.cycleStages;
-    for (var i = 0; i < st.length; i++) {
-      if (p >= st[i].range[0] && p < st[i].range[1]) return st[i];
-    }
-    return st[st.length - 1];
+    var st = stageOf();
+    if (!st || !st.stageId) return null;
+    return stageById[st.stageId] || null;
+  }
+
+  /* ------------------------------------------------------- provenance chips
+     The client's global rule: every displayed value carries its source tag as
+     a small chip and a last-updated stamp, and anything sourced older than the
+     latest reported quarter renders dimmed. These three helpers are how every
+     section satisfies it, so the rule lives in one place.                    */
+
+  /** a source-tag chip from framework.json, by tag id */
+  function sourceChip(tagId, extraTitle) {
+    var t = tagById[tagId] || tagById.unknown;
+    if (!t) return '';
+    return '<span class="chip" style="--c:' + t.color + '" title="' +
+      esc(t.meaning + (extraTitle ? ' - ' + extraTitle : '')) + '">' +
+      '<span class="chip__sw"></span>' + esc(t.label) + '</span>';
+  }
+
+  /** the newest quarter any company has reported - what "stale" is measured against */
+  function latestReportedQuarter() {
+    var qs = (DATA.kpis && DATA.kpis.quarters) || DATA.companies.quarterLabels || [];
+    return qs.length ? qs[qs.length - 1] : null;
+  }
+
+  /** a small "as of <quarter>" stamp, dimmed when it trails the latest quarter */
+  function asOfStamp(quarter) {
+    if (!quarter) return '';
+    var latest = latestReportedQuarter();
+    var stale = latest && quarter !== latest;
+    return '<span class="stamp' + (stale ? ' is-stale' : '') + '" title="' +
+      esc(stale ? 'Sourced from ' + quarter + ', older than the latest reported quarter (' + latest + ')'
+                : 'Current as of ' + quarter) + '">as of ' + esc(quarter) + '</span>';
+  }
+
+  /* The badge beside the stage pill. It only appears when there is genuinely no
+     reading yet, so the header states a caveat only while one applies. */
+  function renderScorePill() {
+    var pill = el('seedPill');
+    if (!pill) return;
+    if (scoresOf()) { pill.hidden = true; return; }
+    pill.hidden = false;
+    pill.className = 'pill pill--seed';
+    pill.title = 'The cycle scores have not been computed yet. Market data on the Macro tab is live.';
+    pill.innerHTML = '<span class="pill__dot"></span>NO SCORES YET';
   }
 
   function renderStagePill() {
     var s = currentStage();
     var pill = el('stagePill');
+    if (!s) {
+      pill.style.setProperty('--c', '#7C8496');
+      pill.innerHTML = '<span class="pill__dot"></span><b>No call yet</b>';
+      pill.title = 'No cycle stage has been called: no group has a scored KPI yet.';
+      return;
+    }
     pill.style.setProperty('--c', s.color);
     pill.innerHTML = '<span class="pill__dot"></span><b>' + esc(s.plainLabel) + '</b>';
     pill.title = s.label + ' - ' + s.meaning;
   }
 
+  /* The alert strip, in the order rescore.mjs ranked it: the divergence split
+     first, then anything flagged for review, then thin coverage, then the
+     companies whose tone moved two steps or more. */
   function renderAlerts() {
-    var tags = {};
-    DATA.framework.sourceTags.forEach(function (t) { tags[t.id] = t; });
-    el('alerts').innerHTML = SEED.alerts.map(function (a) {
-      var t = tags[a.source] || tags.unknown;
-      return '<div class="alert" style="--c:' + ALERT_TONE[a.tone] + '">' +
-        '<span class="alert__ico" aria-hidden="true">' + a.glyph + '</span>' +
+    var sc = DATA.scores;
+    var list = (sc && sc.alerts) || [];
+    if (!list.length) {
+      el('alerts').innerHTML =
+        '<div class="alert" style="--c:#7C8496">' +
+          '<span class="alert__ico" aria-hidden="true">●</span>' +
+          '<div class="alert__txt"><div class="alert__msg">' +
+            (sc ? 'Nothing flagged this quarter.' : 'No cycle reading yet - the alert strip fills on the next pipeline run.') +
+          '</div></div></div>';
+      return;
+    }
+    /* The strip is a glance, not a list: show the ranked few and say how many
+       more there are rather than silently dropping them. */
+    var CAP = 6;
+    var shown = list.slice(0, CAP), rest = list.length - shown.length;
+    el('alerts').innerHTML = shown.map(function (a) {
+      var sev = ALERT_SEVERITY[a.severity] || ALERT_SEVERITY.info;
+      return '<div class="alert" style="--c:' + ALERT_TONE[sev.tone] + '">' +
+        '<span class="alert__ico" aria-hidden="true">' + sev.glyph + '</span>' +
         '<div class="alert__txt">' +
-          '<div class="alert__msg">' + esc(a.msg) + '</div>' +
+          '<div class="alert__msg">' + esc(a.text) + '</div>' +
           '<div class="alert__meta">' +
-            '<span class="chip" style="--c:' + t.color + '" title="' + esc(t.meaning) + '">' +
-              '<span class="chip__sw"></span>' + esc(t.label) + '</span>' +
-            '<span class="chip" style="--c:#B45309" title="Placeholder - not yet live. Real scores arrive with the KPI pipeline.">' +
-            '<span class="chip__sw"></span>SEED</span>' +
+            sourceChip(scoreTagId(), 'computed by the pipeline from the KPI, macro and tone data') +
+            asOfStamp(scoreAsOf()) +
           '</div>' +
         '</div></div>';
-    }).join('');
+    }).join('') + (rest > 0
+      ? '<div class="alert alert--more" style="--c:#7C8496">' +
+          '<span class="alert__ico" aria-hidden="true">+</span>' +
+          '<div class="alert__txt"><div class="alert__msg">' + rest +
+          ' more flagged - see Insight &amp; Action</div></div></div>'
+      : '');
   }
 
   function renderVerdict() {
-    var s = currentStage();
-    var v = el('verdict');
+    var s = currentStage(), st = stageOf(), v = el('verdict');
+    if (!s) {
+      v.style.setProperty('--c', '#7C8496');
+      v.innerHTML =
+        '<div class="verdict__dot"></div>' +
+        '<div class="verdict__word">No call yet</div>' +
+        '<div class="verdict__tech">Awaiting scored KPIs</div>' +
+        '<div class="verdict__say">' +
+          esc((st && st.because && st.because[0]) || 'The cycle stage is called from the group scores; none is computed yet.') +
+        '</div>';
+      return;
+    }
     v.style.setProperty('--c', s.color);
+    /* 1.1 asks for the call, the date it was made and a [Derived] tag. The
+       rule that produced it rides in the tooltip so the call is arguable. */
     v.innerHTML =
       '<div class="verdict__dot"></div>' +
       '<div class="verdict__word">' + esc(s.plainLabel) + '</div>' +
       '<div class="verdict__tech">' + esc(s.label) + '</div>' +
-      '<div class="verdict__say">' + esc(s.meaning) + '</div>';
+      '<div class="verdict__say">' + esc(s.meaning) + '</div>' +
+      '<div class="verdict__meta" title="' + esc((st.because || []).join(' ')) + '">' +
+        sourceChip(scoreTagId(), st.ruleLabel || '') +
+        asOfStamp(st && scoreAsOf()) +
+        (st.confidence === 'low' ? '<span class="stamp is-stale">low confidence</span>' : '') +
+      '</div>';
   }
 
   function renderStageList() {
     var cur = currentStage();
     el('stagelist').innerHTML = DATA.framework.cycleStages.map(function (s) {
-      var on = s.id === cur.id ? '1' : '0';
+      var on = (cur && s.id === cur.id) ? '1' : '0';
       return '<div class="stagelist__row" data-on="' + on + '" style="--c:' + s.color + '" title="' + esc(s.meaning) + '">' +
         '<span class="stagelist__bar"></span>' +
         '<span class="stagelist__txt">' +
@@ -1123,14 +1243,33 @@ table.kpi td.co[rowspan]{vertical-align:top;}
     }).join('');
   }
 
-  /* three score gauges: one per group, each with an arrow and the change */
+  /* three score gauges: one per group, each with the quarter-on-quarter arrow.
+     The change is a real second measurement (the same flags recomputed on a
+     series one quarter shorter), so the arrow means what it says. */
   function renderGauges() {
     var html = DATA.framework.groupMeta.map(function (g) {
-      var s = SEED.scores[g.id];
-      var d = s.score - s.prev;
+      var s = scoreFor(g.id);
+      var has = s && typeof s.score === 'number';
+      var d = (has && typeof s.delta === 'number') ? s.delta : null;
       var up = d > 0, flat = d === 0;
-      var c = flat ? '#7C8496' : (up ? '#0F7A3A' : '#C42433');
-      var glyph = flat ? '→' : (up ? '↑' : '↓');
+      var c = d === null ? '#7C8496' : (flat ? '#7C8496' : (up ? '#0F7A3A' : '#C42433'));
+      var glyph = d === null ? '·' : (flat ? '→' : (up ? '↑' : '↓'));
+      var foot = d === null
+        ? '<span class="gfoot__txt">no prior quarter to compare</span>'
+        : '<span class="gfoot__txt"><b>' + (up ? '+' : '') + d + '</b> vs last quarter</span>';
+      /* What the score rests on, so a gauge built on two KPIs cannot look like
+         one built on twenty. It sits under the gauge rather than in the header:
+         the group's own name has to win that row. */
+      var basis = has
+        ? '<div class="gbasis">' +
+            sourceChip(scoreTagId(), 'mean momentum of this group\'s flagged KPIs') +
+            '<span class="stamp" title="' +
+              esc('The score is the mean momentum of every KPI in this group with enough quarters to flag. ' +
+                  (s.kpisTotal - s.kpisScored) + ' of ' + s.kpisTotal + ' are not yet flaggable.') + '">' +
+              s.kpisScored + '/' + s.kpisTotal + ' KPIs &middot; ' + esc(scoreAsOf() || '') +
+            '</span>' +
+          '</div>'
+        : '';
       return '' +
         '<div class="card">' +
           '<div class="card__head">' +
@@ -1139,15 +1278,14 @@ table.kpi td.co[rowspan]{vertical-align:top;}
               '<span class="card__title">' + esc(g.plainLabel) + '</span>' +
               '<span class="card__sub">' + esc(g.name) + '</span>' +
             '</div>' +
-            '<span class="chip" style="--c:#B45309" title="Placeholder - not yet live. Real scores arrive with the KPI pipeline.">' +
-            '<span class="chip__sw"></span>SEED</span>' +
+            (has ? '' : '<span class="chip chip--ghost">No score yet</span>') +
           '</div>' +
           '<div class="card__body">' +
             '<div class="chart-wrap"><div class="chart" id="ch-g-' + g.id + '"></div></div>' +
             '<div class="gfoot" style="--c:' + c + '">' +
-              '<span class="gfoot__arrow" aria-hidden="true">' + glyph + '</span>' +
-              '<span class="gfoot__txt"><b>' + (up ? '+' : '') + d + '</b> vs last quarter</span>' +
+              '<span class="gfoot__arrow" aria-hidden="true">' + glyph + '</span>' + foot +
             '</div>' +
+            basis +
           '</div>' +
         '</div>';
     }).join('');
@@ -1177,9 +1315,11 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       animationEasing: 'cubicOut',
       tooltip: Object.assign({}, TOOLTIP, {
         formatter: function () {
-          var s = currentStage();
+          var s = currentStage(), st = stageOf();
+          if (!s) return '<b>No call yet</b>';
           return '<b>' + esc(s.plainLabel) + '</b><br>' +
-                 '<span style="color:#7C8496">' + esc(s.label) + '</span>';
+                 '<span style="color:#7C8496">' + esc(s.label) + '</span>' +
+                 (st && st.ruleLabel ? '<br><span style="color:#7C8496">' + esc(st.ruleLabel) + '</span>' : '');
         }
       }),
       series: [{
@@ -1207,21 +1347,29 @@ table.kpi td.co[rowspan]{vertical-align:top;}
         progress: { show: false },
         detail: { show: false },
         title: { show: false },
-        data: [{ value: SEED.cyclePosition }]
+        /* no call means no marker on the arc - the bands still show the scale,
+           but nothing claims a position on it */
+        data: [{ value: (stageOf() && stageOf().position !== null) ? stageOf().position : null }]
       }]
     };
   }
 
   function gaugeOption(group) {
-    var s = SEED.scores[group.id];
+    var s = scoreFor(group.id) || { score: null, prev: null };
     return {
       animationDuration: 900,
       animationEasing: 'cubicOut',
       tooltip: Object.assign({}, TOOLTIP, {
         formatter: function () {
+          if (typeof s.score !== 'number') {
+            return '<b>' + esc(group.plainLabel) + '</b><br>' +
+              '<span style="color:#7C8496">No KPI in this group has enough quarters to flag yet.</span>';
+          }
           return '<b>' + esc(group.plainLabel) + '</b><br>' +
             'Score <b>' + s.score + '</b> out of 100<br>' +
-            '<span style="color:#7C8496">Last quarter ' + s.prev + '</span>';
+            '<span style="color:#7C8496">' +
+              (typeof s.prev === 'number' ? 'Last quarter ' + s.prev : 'No prior quarter') +
+              ' &middot; ' + s.kpisScored + ' of ' + s.kpisTotal + ' KPIs scored</span>';
         }
       }),
       series: [{
@@ -1241,18 +1389,21 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           valueAnimation: true,
           offsetCenter: [0, '4%'],
           fontSize: 30, fontWeight: 700, fontFamily: FONT,
-          color: INK1,
-          formatter: '{value}'
+          color: typeof s.score === 'number' ? INK1 : '#AEB4C0',
+          /* an unscored group shows a dash, never a 0 - they mean opposite things */
+          formatter: function (v) { return typeof s.score === 'number' ? String(v) : '–'; }
         },
-        data: [{ value: s.score }]
+        data: [{ value: typeof s.score === 'number' ? s.score : 0 }]
       }]
     };
   }
 
   function divergenceOption() {
-    var labels = DATA.companies.quarterLabels;
-    var vals = SEED.divergence;
-    var lead = groupById.leading.color, lag = groupById.lagging.color;
+    /* the quarters the scores were computed on, not the fixed company axis */
+    var labels = (DATA.scores && DATA.scores.quarters && DATA.scores.quarters.length)
+      ? DATA.scores.quarters : DATA.companies.quarterLabels;
+    var vals = (DATA.scores && DATA.scores.divergenceSeries) || [];
+    var lead = groupById.leading.color, coin = groupById.coincident.color;
     return {
       animationDuration: 800,
       animationEasing: 'cubicOut',
@@ -1260,9 +1411,13 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       tooltip: Object.assign({}, TOOLTIP, {
         trigger: 'item',
         formatter: function (p) {
+          if (p.value === null || p.value === undefined) {
+            return '<b>' + esc(p.name) + '</b><br>' +
+              '<span style="color:#7C8496">Too few quarters to score back this far</span>';
+          }
           var ahead = p.value >= 0 ? 'ahead of' : 'behind';
           return '<b>' + esc(p.name) + '</b><br>Moves first is <b>' + Math.abs(p.value) +
-                 '</b> points ' + ahead + ' moves last';
+                 '</b> points ' + ahead + ' moving now';
         }
       }),
       xAxis: {
@@ -1282,7 +1437,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
         data: vals,
         barWidth: 22,
         itemStyle: {
-          color: function (p) { return p.value >= 0 ? lead : lag; },
+          color: function (p) { return p.value >= 0 ? lead : coin; },
           /* 4px rounded data-end, square at the baseline */
           borderRadius: function (p) { return p.value >= 0 ? [4, 4, 0, 0] : [0, 0, 4, 4]; }
         },
@@ -1291,6 +1446,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           show: true, position: 'top',
           color: INK1, fontSize: 12, fontWeight: 700, fontFamily: FONT,
           formatter: function (p) {
+            if (p.value === null || p.value === undefined) return '';
             return p.dataIndex === vals.length - 1 ? (p.value >= 0 ? '+' : '') + p.value : '';
           }
         },
@@ -1304,7 +1460,40 @@ table.kpi td.co[rowspan]{vertical-align:top;}
     };
   }
 
+  /* The divergence chip is 1.3's alert: the reading is only news when the two
+     groups sit on OPPOSITE sides of neutral. A wide gap on the same side is the
+     same story told twice; a small gap across neutral means the front of the
+     chain has turned and the middle has not followed. */
+  function renderDivergenceChip() {
+    var node = el('divChip');
+    if (!node) return;
+    var d = DATA.scores && DATA.scores.divergence;
+    if (!d || d.value === null) {
+      node.outerHTML = '<span class="chip chip--ghost" id="divChip">No reading yet</span>';
+      return;
+    }
+    node.outerHTML = d.signsDiffer
+      ? '<span class="chip is-loud" id="divChip" style="--c:#C42433" title="' +
+          esc('Moves first and moving now are on opposite sides of neutral - the front of the chain has turned and the middle has not followed. This is the reading worth acting on.') +
+        '"><span class="chip__sw"></span>⚠ Split &middot; ' + (d.value > 0 ? '+' : '') + d.value + '</span>'
+      : '<span class="chip" id="divChip" style="--c:#7C8496" title="' +
+          esc('Both groups sit on the same side of neutral, so the gap is a matter of degree rather than a turn.') +
+        '"><span class="chip__sw"></span>In step &middot; ' + (d.value > 0 ? '+' : '') + d.value + '</span>';
+  }
+
+  /* the dial's own provenance chip: [Derived], the quarter, and the rule row */
+  function renderDialChip() {
+    var node = el('dialChip');
+    if (!node) return;
+    var st = stageOf();
+    node.innerHTML = (st && st.stageId)
+      ? sourceChip(scoreTagId(), st.ruleLabel || '') + asOfStamp(scoreAsOf())
+      : '<span class="chip chip--ghost">No call yet</span>';
+  }
+
   function drawCockpit() {
+    renderDialChip();
+    renderDivergenceChip();
     mount('ch-dial', dialOption());
     DATA.framework.groupMeta.forEach(function (g) { mount('ch-g-' + g.id, gaugeOption(g)); });
     mount('ch-div', divergenceOption());
@@ -1657,8 +1846,10 @@ table.kpi td.co[rowspan]{vertical-align:top;}
   }
 
   /* Does the market backdrop agree with where the scores are heading?
-     Placeholder logic against SEED.scores until real scoring lands. Each tile
-     declares in macro.json which direction supports a stronger capex cycle. */
+     Each tile declares in macro.json which direction supports a stronger capex
+     cycle; the score side is the real reading from data/scores.json. When the
+     two disagree the panel says "flagged for review", which is the same
+     conflict rescore.mjs puts on the Cockpit alert strip. */
   var AGREE_THRESHOLD = 4;   /* of six readings, how many must back the scores */
 
   function renderMacroScore() {
@@ -1672,10 +1863,13 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       (dir === row.tile.supports ? helps : hurts).push(row);
     });
 
-    var up = 0, down = 0;
-    Object.keys(SEED.scores).forEach(function (k) {
-      var s = SEED.scores[k];
-      if (s.score > s.prev) up++; else if (s.score < s.prev) down++;
+    /* the score side of the verdict, now from the real reading. A group with no
+       prior quarter cannot vote - it is neither improving nor easing. */
+    var up = 0, down = 0, scores = scoresOf() || {};
+    Object.keys(scores).forEach(function (k) {
+      var s = scores[k];
+      if (!s || typeof s.delta !== 'number') return;
+      if (s.delta > 0) up++; else if (s.delta < 0) down++;
     });
     /* three states, not two: scores that tie are not easing, and there is
        nothing for the backdrop to agree or disagree with */
@@ -1688,7 +1882,11 @@ table.kpi td.co[rowspan]{vertical-align:top;}
     var backing = trend === 'improving' ? helps : (trend === 'easing' ? hurts : []);
 
     var c, ico, head, say;
-    if (!n) {
+    if (!scoresOf()) {
+      c = '#7C8496'; ico = '=';
+      head = 'No cycle scores yet';
+      say = 'The scores are computed by the pipeline from the KPI trajectories; until they exist there is nothing for the market backdrop to agree or disagree with.';
+    } else if (!n) {
       c = '#7C8496'; ico = '=';
       head = 'No live market readings yet';
       say = 'Every market series is still awaiting a live source, so there is nothing to check the scores against.';
@@ -1734,7 +1932,9 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           '</span>' +
         '</span>' +
         '<span class="mscore__tally">' + tally +
-          '<span class="chip" style="--c:var(--seed)"><span class="chip__sw"></span>SEED scores</span>' +
+          (scoresOf() ? sourceChip(scoreTagId(), 'the three group scores this verdict is checked against') +
+                        asOfStamp(scoreAsOf())
+                      : '<span class="chip chip--ghost">No scores yet</span>') +
         '</span>' +
       '</div>';
   }
@@ -2266,6 +2466,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 
   load().then(function () {
     renderBrand();
+    renderScorePill();
     renderStagePill();
     renderAlerts();
     renderVerdict();
