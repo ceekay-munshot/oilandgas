@@ -60,3 +60,53 @@ export async function findGasNotifications({ limit = 2 } = {}) {
     .slice(0, limit)
     .map(([url]) => url);
 }
+
+/* --------------------------------------------------------------------------
+   The monthly Flash Report / snapshot.
+
+   PPAC's own statistics bulletin, and the only free place company-level
+   refinery throughput is published. It is linked from several PPAC pages under
+   download.php with a cache-busting numeric prefix, so the URL cannot be
+   constructed - it has to be discovered.
+
+   Confirmed on 2026-07-28: the June-26 report downloads fine with a plain GET
+   (539 KB) and yields 559 characters of text layer - i.e. it is a scanned
+   document, exactly like the gas notification. Reading it needs the scraper's
+   OCR, which is what the probe exists to test.
+   -------------------------------------------------------------------------- */
+const FLASH_PAGES = [
+  'https://ppac.gov.in/prices/price-build-up',
+  'https://ppac.gov.in/',
+  'https://ppac.gov.in/reports-studies'
+];
+
+/**
+ * Newest-first PDF links that look like the monthly flash report / data snapshot.
+ *
+ * @param {{limit?:number}} [opts]
+ * @returns {Promise<string[]>}
+ */
+export async function findFlashReports({ limit = 3 } = {}) {
+  const seen = new Set();
+  const found = [];
+
+  for (const page of FLASH_PAGES) {
+    let html;
+    try {
+      html = await getText(page, { timeoutMs: 30_000, retries: 1 });
+    } catch {
+      continue;                       // a listing page being down is not fatal
+    }
+    const hrefs = [...html.matchAll(/href="([^"]+\.pdf[^"]*)"/gi)].map((m) => m[1]);
+    for (const href of hrefs) {
+      /* "Flash Report", "Snapshot of India's Oil and Gas Data", "Ready Reckoner" -
+         PPAC has renamed this document more than once, so match the family. */
+      if (!/flash[_%\s-]*report|snapshot.*oil|ready[_%\s-]*reckoner/i.test(href)) continue;
+      const url = href.startsWith('http') ? href : new URL(href, page).toString();
+      if (seen.has(url)) continue;
+      seen.add(url);
+      found.push(url);
+    }
+  }
+  return found.slice(0, limit);
+}

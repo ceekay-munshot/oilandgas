@@ -24,7 +24,7 @@ on:
       target:
         description: 'Which to probe'
         type: choice
-        options: [both, apm, baltic-dirty, full-dry-run]
+        options: [both, apm, baltic-dirty, ppac-flash, pngrb-cgd, kpi-sources, full-dry-run]
         default: both
 
 permissions:
@@ -65,7 +65,26 @@ jobs:
         if: ${{ inputs.target == 'both' || inputs.target == 'baltic-dirty' }}
         run: node pipeline/fetch-macro.mjs --probe baltic-dirty
 
-      # All six tiles, keys and all, writing nothing. The coverage line at the
+      # Reconnaissance for the KPI-coverage gap. Neither of these has a parser
+      # yet, on purpose: the first run is to SEE what the scraper gets back
+      # before a selector is written against it.
+      #
+      # ppac-flash  the only free publication carrying refinery-wise throughput
+      #             for IOCL/BPCL/HPCL. The PDF is scanned - 559 characters of
+      #             text layer from 539 KB - so this tests Firecrawl's OCR.
+      # pngrb-cgd   entity-level CNG+PNG volumes for IGL, Mahanagar and Gujarat
+      #             Gas. The data-bank page names the datasets but loads the
+      #             file rows by script, so this tests whether the scraper
+      #             renders them.
+      - name: Probe PPAC flash report (refinery-wise throughput)
+        if: ${{ inputs.target == 'ppac-flash' || inputs.target == 'kpi-sources' }}
+        run: node pipeline/fetch-macro.mjs --probe ppac-flash
+
+      - name: Probe PNGRB data bank (CGD volumes by company)
+        if: ${{ inputs.target == 'pngrb-cgd' || inputs.target == 'kpi-sources' }}
+        run: node pipeline/fetch-macro.mjs --probe pngrb-cgd
+
+      # All the tiles, keys and all, writing nothing. The coverage line at the
       # end is the answer to "are they actually live?".
       - name: Full dry run (all six tiles, nothing written)
         if: ${{ inputs.target == 'full-dry-run' }}
@@ -77,3 +96,7 @@ jobs:
           echo "Copy this whole log back into the conversation."
           echo "A probe that proves a source is unreachable is a useful result:"
           echo "the tile stays 'awaiting' with that reason instead of guessing."
+          echo ""
+          echo "For ppac-flash and pngrb-cgd the useful part is the KEYWORD CONTEXT"
+          echo "block: it shows whether company names and volume figures survived"
+          echo "the OCR / the render. That is what a parser would be anchored on."
