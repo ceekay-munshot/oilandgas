@@ -11,7 +11,7 @@
  *    excerpts do not state comes back null with a note, never a guess.
  */
 
-import { flagFor } from '../lib/kpi-flag.mjs';
+import { flagFor, excludeOneOffs } from '../lib/kpi-flag.mjs';
 import { quarterLabel } from '../lib/fiscal.mjs';
 
 /** Source tags the dashboard knows (framework.json). Anything else -> unknown. */
@@ -143,8 +143,15 @@ export function buildMessages({ companyName, kpis, quarters, blocks }) {
     `The values array for each KPI has exactly ${quarters.length} slots, in THIS order: ${quarterList}`,
     'Use the quarter named in each excerpt heading to decide which slot a number goes in.',
     '',
-    'Extract these KPIs (one object per id; values and sourceTags each length ' + quarters.length + '):',
+    'Extract these KPIs (one object per id; values, sourceTags and oneOffs each length ' + quarters.length + '):',
     kpiList,
+    '',
+    'oneOffs: for each quarter, a SHORT reason (under 60 characters) when the',
+    'source says that quarter was distorted by a known one-off - an inventory',
+    'gain or loss inside a refining margin, a one-time provision or writeback, a',
+    'planned shutdown or turnaround. Otherwise null. Only flag what the source',
+    'actually states; do not infer a one-off from a number simply looking odd.',
+    'These quarters are excluded from the trend, so a wrong flag hides a real move.',
     '',
     'Source excerpts:',
     context || '(no relevant excerpts were found - return nulls with a note)'
@@ -168,9 +175,14 @@ export const KPI_SCHEMA = {
           unit: { type: ['string', 'null'] },
           values: { type: 'array', items: { type: ['number', 'null'] } },
           sourceTags: { type: 'array', items: { type: ['string', 'null'] } },
+          /* Per quarter: a short reason when that quarter is distorted by a
+             known one-off, else null. The brief excludes these from the
+             trajectory and greys them out with the reason, so a one-off can
+             never register as an inflection. */
+          oneOffs: { type: 'array', items: { type: ['string', 'null'] } },
           notes: { type: ['string', 'null'] }
         },
-        required: ['id', 'unit', 'values', 'sourceTags', 'notes']
+        required: ['id', 'unit', 'values', 'sourceTags', 'oneOffs', 'notes']
       }
     }
   },
@@ -205,6 +217,12 @@ export function normalizeResult(raw, kpis, quarters, { flatBandPct = 1.5 } = {})
     });
     const unit = (typeof got.unit === 'string' && got.unit.trim()) ? got.unit.trim() : (spec.unit || null);
     const notes = (typeof got.notes === 'string' && got.notes.trim()) ? got.notes.trim().slice(0, 240) : null;
+    /* A one-off reason only means anything against a value; a reason on an empty
+       quarter is noise, and would grey out a cell that is simply not disclosed. */
+    const oneOffs = pad4(got.oneOffs).map((r, i) => {
+      if (values[i] == null) return null;
+      return (typeof r === 'string' && r.trim()) ? r.trim().slice(0, 60) : null;
+    });
 
     return {
       id: spec.id,
@@ -213,7 +231,10 @@ export function normalizeResult(raw, kpis, quarters, { flatBandPct = 1.5 } = {})
       flagBasis: spec.flagBasis,
       values,
       sourceTags,
-      flag: flagFor(values, spec.flagBasis, flatBandPct),
+      oneOffs,
+      /* The brief: one-off quarters are excluded from trajectory computation, so
+         a distorted quarter can never register as an inflection. */
+      flag: flagFor(excludeOneOffs(values, oneOffs), spec.flagBasis, flatBandPct),
       notes
     };
   });

@@ -27,6 +27,28 @@
 const isNum = (x) => typeof x === 'number' && Number.isFinite(x);
 
 /**
+ * Blank out the quarters a one-off distorted, before any trend is computed.
+ *
+ * The brief: quarters hit by a known one-off (an inventory gain inside a
+ * refining margin, a one-time provision, a planned shutdown) are "flagged,
+ * excluded from trajectory computation, and shown greyed-out in the grid with
+ * the reason. A one-off must never register as an inflection."
+ *
+ * They become null rather than being dropped, so the remaining quarters keep
+ * their positions - closing the gap would silently compare Q1 against Q4 as
+ * though they were consecutive.
+ *
+ * @param {(number|null)[]} values
+ * @param {(string|null)[]} [oneOffs] a reason per quarter, or null
+ * @returns {(number|null)[]}
+ */
+export function excludeOneOffs(values, oneOffs) {
+  const v = Array.isArray(values) ? values.slice() : [];
+  if (!Array.isArray(oneOffs)) return v;
+  return v.map((x, i) => (oneOffs[i] ? null : x));
+}
+
+/**
  * The series the flag is computed on, per the brief's series-handling rules.
  *
  *   flow   (level) - trend the 4-quarter series directly

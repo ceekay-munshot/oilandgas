@@ -675,6 +675,41 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 .legendrow__plain{font-size:10.5px; color:var(--ink-3); font-weight:450; line-height:1.3; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
 
 /* ============================ SIX CARDS ================================= */
+/* --- 3.1 the drill-down: the standard TTM table -------------------------- */
+tr.kpirow{cursor:pointer;}
+tr.kpirow:hover > td{background:color-mix(in srgb, var(--ink-4) 6%, transparent);}
+tr.kpirow:focus-visible{outline:2px solid var(--ink-3); outline-offset:-2px;}
+tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparent);}
+/* a quarter excluded from the trend keeps its number and stops looking current */
+.num.is-oneoff{opacity:.45; text-decoration:line-through; text-decoration-thickness:1px;}
+.kpidetail > td{padding:0 0 10px 0; background:var(--surface-2);}
+.ttm{width:100%; border-collapse:collapse; font-size:11px; margin:2px 0 0;}
+.ttm th, .ttm td{padding:5px 9px; text-align:right; border-bottom:1px solid var(--grid);}
+.ttm tr:first-child th{
+  font-size:10px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--ink-4); border-bottom:1px solid var(--axis);
+}
+.ttm__rh{text-align:left !important; font-weight:660; color:var(--ink-2); white-space:nowrap;}
+.ttm__basis{
+  text-align:left !important; font-size:10px; font-weight:600;
+  color:var(--ink-4); white-space:nowrap; font-style:italic;
+}
+.ttm .is-unavailable td, .ttm .is-unavailable .ttm__rh{opacity:.5;}
+.ttm__off{color:#B45309; font-size:10px; font-weight:660; text-align:center !important;}
+.ttm__note{padding:6px 9px 0; font-size:10.5px; color:var(--ink-3); line-height:1.4;}
+
+/* --- 3.3 the one-off ledger ---------------------------------------------- */
+.offledger{padding:9px 13px 12px; display:flex; flex-direction:column; gap:5px; max-height:110px; overflow:auto;}
+.offrow{
+  display:grid; grid-template-columns:74px 132px minmax(0,1fr) minmax(0,1.2fr);
+  gap:9px; align-items:baseline; font-size:11px;
+}
+.offrow__q{font-weight:700; color:var(--ink-3);}
+.offrow__co{font-weight:660; color:var(--ink-1);}
+.offrow__k{color:var(--ink-2);}
+.offrow__why{color:#B45309; font-weight:600;}
+.offempty{font-size:11px; color:var(--ink-4); line-height:1.45;}
+
 /* --- 5.1 the read ------------------------------------------------------- */
 .readbox{flex:1 1 auto; min-height:0; overflow:auto; padding:10px 13px 13px; display:flex; flex-direction:column; gap:9px;}
 .readline{display:grid; grid-template-columns:104px minmax(0,1fr); gap:10px; align-items:baseline;}
@@ -903,6 +938,16 @@ table.kpi td.co[rowspan]{vertical-align:top;}
             <div class="ghost" id="kpiEmpty"></div>
           </div>
         </div>
+      </div>
+      <div class="card" style="flex:0 0 auto;">
+        <div class="card__head">
+          <div class="card__headL">
+            <span class="card__title">Quarters held out of the trend</span>
+            <span class="card__sub">One-offs are excluded from the trajectory, and listed here so the exclusion is auditable</span>
+          </div>
+          <span class="chip chip--ghost" id="oneOffChip">None flagged</span>
+        </div>
+        <div class="card__body"><div class="offledger" id="oneOffLedger"></div></div>
       </div>
     </section>
 
@@ -2107,6 +2152,95 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       (asOf && asOf !== last ? ' <span class="kpiasof">as of ' + esc(asOf) + '</span>' : '') +
       '</span>';
   }
+  /* ------------------------------------------- 3.1 the standard TTM table
+     The brief's drill-down: columns are the four quarters, rows are the level
+     and its derived views, and the flag says which row it was computed on.
+     Nothing is collapsed into a single number.
+
+     Which rows appear follows the variable type, exactly as specified:
+       flow     Level + YoY,        flagged on Level
+       stock    Level + QoQ change, flagged on QoQ change
+       seasonal Level + YoY,        flagged on YoY
+     A row we cannot compute from four quarters says so rather than showing
+     blanks that look like "not disclosed". YoY needs the same quarter a year
+     earlier, and a four-quarter window does not contain it unless the KPI is
+     itself already a growth figure - which is what the yoy basis means.       */
+  var KPI_BASIS_WORD = {
+    level: { kind: 'flow', flaggedOn: 'Level' },
+    qoq:   { kind: 'stock', flaggedOn: 'QoQ change' },
+    yoy:   { kind: 'seasonal', flaggedOn: 'YoY growth' }
+  };
+
+  function kpiTtmTable(k, vals, tags, cites, oneOffs, ax) {
+    var basis = KPI_BASIS_WORD[k.flagBasis] || KPI_BASIS_WORD.level;
+    var n = KPI_COLS.length;
+    var head = '<tr><th class="ttm__rh">' + esc(k.label) +
+      (k.unit ? ' <span class="kpiunit">' + esc(k.unit) + '</span>' : '') + '</th>';
+    for (var i = 0; i < n; i++) head += '<th>' + esc(kpiQLab(ax, i)) + '</th>';
+    head += '<th class="ttm__basis">Flag basis</th></tr>';
+
+    function row(label, cellsFn, basisNote, cls) {
+      var out = '<tr' + (cls ? ' class="' + cls + '"' : '') + '><th class="ttm__rh">' + esc(label) + '</th>';
+      for (var i = 0; i < n; i++) out += cellsFn(i);
+      out += '<td class="ttm__basis">' + esc(basisNote) + '</td></tr>';
+      return out;
+    }
+
+    /* Level - always shown, always the display row */
+    var body = row('Level', function (i) {
+      var v = vals[i];
+      return '<td class="num' + (oneOffs[i] ? ' is-oneoff' : '') + '">' +
+        (v == null ? '&ndash;' : esc(kpiNum(v))) + '</td>';
+    }, basis.kind === 'flow' ? 'flag computed here' : 'display only');
+
+    /* QoQ change - the flag row for a stock variable */
+    if (basis.kind === 'stock') {
+      body += row('QoQ change', function (i) {
+        var a = vals[i], b = i > 0 ? vals[i - 1] : null;
+        if (a == null || b == null) return '<td class="num empty">&ndash;</td>';
+        var d = a - b;
+        return '<td class="num" style="color:' + (d >= 0 ? '#0F7A3A' : '#C42433') + '">' +
+          (d > 0 ? '+' : '') + esc(kpiNum(d)) + '</td>';
+      }, 'flag computed here (stock variable)');
+    }
+
+    /* YoY growth - the flag row for a seasonal series, and shown for flows.
+       Only a KPI that already holds growth figures can fill it from a
+       four-quarter window; anything else says why it is empty instead. */
+    if (basis.kind === 'yoy') {
+      body += row('YoY growth %', function (i) {
+        var v = vals[i];
+        return '<td class="num">' + (v == null ? '&ndash;' : esc(kpiNum(v))) + '</td>';
+      }, 'flag computed here (this KPI is itself a YoY figure)');
+    } else {
+      body += row('YoY growth %', function () {
+        return '<td class="num empty">&ndash;</td>';
+      }, 'needs the same quarter a year earlier', 'is-unavailable');
+    }
+
+    /* One-off flag - the auditable exclusion */
+    body += row('One-off flag', function (i) {
+      return oneOffs[i]
+        ? '<td class="ttm__off" title="' + esc(oneOffs[i]) + '">' + esc(oneOffs[i]) + '</td>'
+        : '<td class="num empty">&mdash;</td>';
+    }, 'excluded quarter greyed out');
+
+    /* Source tag - per quarter-cell, "since the same KPI can come from a
+       presentation one quarter and an audited filing the next" */
+    body += row('Source', function (i) {
+      var t = tags[i] ? tagById[tags[i]] : null;
+      var cite = cites[i];
+      var src = cite && cite.doc ? cite.doc + (cite.page ? ', page ' + cite.page : '') : '';
+      if (!t) return '<td class="num empty">&ndash;</td>';
+      return '<td><span class="chip" style="--c:' + t.color + '" title="' +
+        esc(t.meaning + (src ? ' — ' + src : '')) + '"><span class="chip__sw"></span>' +
+        esc(t.label) + '</span></td>';
+    }, 'per quarter, not per KPI');
+
+    return '<table class="ttm"><tbody>' + head + body + '</tbody></table>' +
+      (k.notes ? '<div class="ttm__note">' + esc(k.notes) + '</div>' : '');
+  }
+
   /* four CSS bars scaled to this KPI's own min..max; nulls become empty slots,
      the newest quarter reads full-strength so the eye lands on "now" */
   function kpiSpark(values, color, ax) {
@@ -2204,7 +2338,10 @@ table.kpi td.co[rowspan]{vertical-align:top;}
         /* company name once, spanning this company's KPI rows, with the window
            it reports on underneath - the header cannot state it any more */
         if (j === 0) {
-          cells += '<td class="co" rowspan="' + kpis.length + '" style="--c:' + g.color + '">' +
+          /* Every KPI now emits two rows - the summary row and its hidden
+             drill-down - so the company cell has to span both, or the block
+             runs out halfway and the later KPIs escape their company. */
+          cells += '<td class="co" rowspan="' + (kpis.length * 2) + '" style="--c:' + g.color + '">' +
             '<i></i>' + esc(c.name) + kpiWindowLine(entry, ax) + '</td>';
         }
         /* KPI label + unit, titled with how the trajectory was judged */
@@ -2237,19 +2374,37 @@ table.kpi td.co[rowspan]{vertical-align:top;}
                "here is the page the number is printed on". */
             var cite = cites[i];
             var src = cite && cite.doc ? cite.doc + (cite.page ? ', page ' + cite.page : '') : '';
-            cells += '<td class="num' + (src ? ' cited' : '') + '" title="' +
-              esc(qlab + (tag ? ' · ' + tag : '') + (src ? ' · ' + src : '')) + '">' +
+            /* A one-off quarter keeps its number and is greyed with the reason:
+               the value is real, it just cannot speak for the trend. */
+            var off = k.oneOffs ? kpiAt(k.oneOffs, ax, i) : null;
+            cells += '<td class="num' + (src ? ' cited' : '') + (off ? ' is-oneoff' : '') + '" title="' +
+              esc(qlab + (tag ? ' · ' + tag : '') + (src ? ' · ' + src : '') +
+                  (off ? ' · EXCLUDED from the trend: ' + off : '')) + '">' +
               kpiTagDot(tags[i]) + esc(kpiNum(v)) + '</td>';
           }
         }
         /* trend: the 4-bar spark beside the trajectory chip (or a muted dash) */
+        var oneOffAt = [];
+        for (var q2 = 0; q2 < KPI_COLS.length; q2++) {
+          oneOffAt.push(k.oneOffs ? kpiAt(k.oneOffs, ax, q2) : null);
+        }
         var flag = k.flag ? flagById[k.flag] : null;
         var trend = flag
           ? '<span class="chip" style="--c:' + flag.color + '" title="' + esc(flag.meaning) + '">' +
               '<span class="chip__sw"></span>' + flag.glyph + ' ' + esc(flag.plainLabel) + '</span>'
           : '<span class="kpimuted">&ndash;</span>';
         cells += '<td><span class="kpitrend">' + kpiSpark(vals, g.color, ax) + trend + '</span></td>';
-        return '<tr>' + cells + '</tr>';
+        /* 3.1: the row opens into the full standard TTM table, so the trend is
+           inspectable rather than just summarised. */
+        var rid = c.id + '::' + k.id;
+        return '<tr class="kpirow" data-row="' + esc(rid) + '" tabindex="0" ' +
+                 'title="Click to open the full quarter-by-quarter working">' +
+                 cells + '</tr>' +
+               '<tr class="kpidetail" data-detail="' + esc(rid) + '" hidden>' +
+                 '<td colspan="' + (KPI_COLS.length + 3) + '">' +
+                   kpiTtmTable(k, vals, tags, cites, oneOffAt, ax) +
+                 '</td>' +
+               '</tr>';
       }).join('');
     }).join('');
 
@@ -2275,6 +2430,75 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           ? 'Awaiting extraction'
           : (kpiJustTurned ? 'No KPIs just turned this quarter' : 'No KPIs to show for this group yet'))
       : '';
+
+    /* 3.1: open a row into its full working. Delegated from the table so the
+       handler survives every re-render, and keyboard-reachable because the row
+       is the only way to the numbers underneath it. */
+    var tbl = el('kpiTable');
+    function toggleRow(tr) {
+      var id = tr.getAttribute('data-row');
+      var det = tbl.querySelector('.kpidetail[data-detail="' + (window.CSS && CSS.escape ? CSS.escape(id) : id) + '"]');
+      if (!det) return;
+      var open = !det.hidden;
+      det.hidden = open;
+      tr.setAttribute('aria-expanded', open ? 'false' : 'true');
+      tr.classList.toggle('is-open', !open);
+    }
+    tbl.addEventListener('click', function (e) {
+      var tr = e.target.closest ? e.target.closest('tr.kpirow') : null;
+      if (tr && tbl.contains(tr)) toggleRow(tr);
+    });
+    tbl.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var tr = e.target.closest ? e.target.closest('tr.kpirow') : null;
+      if (tr && tbl.contains(tr)) { e.preventDefault(); toggleRow(tr); }
+    });
+
+    renderOneOffLedger(g);
+  }
+
+  /* ---- 3.3 the one-off ledger ------------------------------------------
+     "Greyed-out quarters listed with reasons, so exclusions are auditable
+     rather than silent." A quarter held out of the trend is a decision the
+     dashboard made; this is where it shows its working.                    */
+  function renderOneOffLedger(g) {
+    var node = el('oneOffLedger'), chip = el('oneOffChip');
+    if (!node) return;
+    var kdata = (DATA.kpis && DATA.kpis.companies) || {};
+    var rows = [];
+    (g.companies || []).forEach(function (c) {
+      var entry = kdata[c.id];
+      ((entry && entry.kpis) || []).forEach(function (k) {
+        (k.oneOffs || []).forEach(function (reason, i) {
+          if (!reason) return;
+          rows.push({
+            company: c.name, kpi: k.label,
+            quarter: (entry.quarters && entry.quarters[i]) || ('Q' + (i + 1)),
+            value: k.values ? k.values[i] : null, reason: reason
+          });
+        });
+      });
+    });
+
+    if (chip) {
+      chip.className = rows.length ? 'chip' : 'chip chip--ghost';
+      if (rows.length) chip.style.setProperty('--c', '#E9A526');
+      chip.innerHTML = rows.length
+        ? '<span class="chip__sw"></span>' + rows.length + ' excluded'
+        : 'None flagged';
+    }
+    node.innerHTML = rows.length
+      ? rows.map(function (r) {
+          return '<div class="offrow">' +
+            '<span class="offrow__q">' + esc(r.quarter) + '</span>' +
+            '<span class="offrow__co">' + esc(r.company) + '</span>' +
+            '<span class="offrow__k">' + esc(r.kpi) +
+              (r.value == null ? '' : ' <b>' + esc(kpiNum(r.value)) + '</b>') + '</span>' +
+            '<span class="offrow__why">' + esc(r.reason) + '</span>' +
+          '</div>';
+        }).join('')
+      : '<div class="offempty">No quarter in this group is flagged as distorted by a ' +
+        'one-off, so nothing has been held out of a trend here.</div>';
   }
 
   /* ---------------------------------------------------------- 4. commentary */

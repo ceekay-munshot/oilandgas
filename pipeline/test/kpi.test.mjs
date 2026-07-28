@@ -155,7 +155,7 @@ test('coverageOf counts filled versus empty cells', () => {
 test('KPI_SCHEMA is strict-schema shaped (all props required, no extras)', () => {
   assert.equal(KPI_SCHEMA.additionalProperties, false);
   const item = KPI_SCHEMA.properties.kpis.items;
-  assert.deepEqual(item.required.sort(), ['id', 'notes', 'sourceTags', 'unit', 'values']);
+  assert.deepEqual(item.required.sort(), ['id', 'notes', 'oneOffs', 'sourceTags', 'unit', 'values']);
   assert.equal(item.additionalProperties, false);
 });
 
@@ -399,4 +399,34 @@ test('the dead band on a stock is a fraction of the BOOK, not of its changes', (
   assert.equal(changeSeriesFlag(flagBasisSeries(deep, 'qoq'), 1.5), 'inflecting-up');
   // a move that is genuinely large for the book still registers
   assert.equal(flagFor([1000, 900, 800, 1400], 'qoq'), 'inflecting-up');
+});
+
+/* ------------------------------------------------- one-off filter (Step 2) */
+
+import { excludeOneOffs } from '../lib/kpi-flag.mjs';
+
+test('a one-off quarter is blanked, keeping the other quarters in position', () => {
+  assert.deepEqual(excludeOneOffs([10, 20, 30, 40], [null, 'inventory gain', null, null]),
+    [10, null, 30, 40]);
+  /* no reasons at all leaves the series untouched */
+  assert.deepEqual(excludeOneOffs([10, 20], null), [10, 20]);
+});
+
+test('a one-off can never register as an inflection', () => {
+  // A spike that would read as a turn upward...
+  assert.equal(flagFor([100, 90, 80, 260], 'level'), 'inflecting-up');
+  // ...is not a turn once the source says that quarter carried a one-time gain.
+  const reasons = [null, null, null, 'one-time writeback'];
+  assert.notEqual(flagFor(excludeOneOffs([100, 90, 80, 260], reasons), 'level'), 'inflecting-up');
+});
+
+test('normalizeResult drops a one-off reason attached to an empty quarter', () => {
+  const kpis = [{ id: 'k', label: 'K', unit: null, flagBasis: 'level', keywords: [] }];
+  const out = normalizeResult(
+    { kpis: [{ id: 'k', unit: null, values: [null, 5, 6, 7], sourceTags: [null, 'official', 'official', 'official'],
+               oneOffs: ['shutdown', null, null, null], notes: null }] },
+    kpis, ['Q1', 'Q2', 'Q3', 'Q4']);
+  /* a reason on a quarter with no value would grey out a cell that is simply
+     not disclosed, which says something different */
+  assert.equal(out[0].oneOffs[0], null);
 });

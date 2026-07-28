@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-07-28T16:54:17.004Z",
+  "generatedAt": "2026-07-28T16:57:24.130Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -647,12 +647,12 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-07-28T16:41:16.962Z",
+    "generatedAt": "2026-07-28T16:54:17.004Z",
     "asOf": "Q4 FY26",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
-      "leading": -8,
+      "leading": -12,
       "coincident": -61,
       "lagging": 0
     },
