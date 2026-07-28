@@ -62,7 +62,11 @@ function parseArgs(argv) {
     dryRun: args.includes('--dry-run'),
     // Re-ask cells the store already answered. Only for after a fix that should
     // change existing answers - it spends the key on work already paid for.
-    refresh: args.includes('--refresh')
+    refresh: args.includes('--refresh'),
+    // Re-render data/kpis.json from the store alone: no scrape, no model call,
+    // no cost. This is what to run after changing how a flag is computed, so
+    // the grid stops showing trajectories the current code would not produce.
+    renderOnly: args.includes('--render-only')
   };
 }
 
@@ -239,7 +243,8 @@ async function main() {
   const providers = opts.provider ? [opts.provider] : availableProviders();
   console.log(`extract-kpis: ${opts.scope}${opts.only.length ? ' (--only)' : ''} -> ${ids.length} companies`);
   console.log(`providers available: ${providers.map((p) => `${p} (${resolvedModel(p)})`).join(', ') || 'NONE'}`);
-  if (!opts.dryRun && !providers.length) {
+  /* --render-only redraws from the store and asks nothing, so it needs no key. */
+  if (!opts.dryRun && !opts.renderOnly && !providers.length) {
     throw new Error('no LLM provider key set (OPENAI_API_KEY or MISTRAL_API_KEY)');
   }
   console.log('');
@@ -285,7 +290,13 @@ async function main() {
 
     process.stdout.write(`  ${id.padEnd(20)} `);
     const perQuarter = await gatherByQuarter(man);
-    const quarters = windowFor(perQuarter, fallbackQuarters);
+    /* --render-only keeps each company's existing window. The window is derived
+       from the cached documents, and that cache is gitignored, so re-deriving it
+       here would silently reset every company to the fallback quarters and throw
+       away the per-company windows the last real run established. */
+    const quarters = (opts.renderOnly && prior && Array.isArray(prior.quarters) && prior.quarters.length)
+      ? prior.quarters
+      : windowFor(perQuarter, fallbackQuarters);
     const { blocks, sourceCount } = await buildBlocks(
       perQuarter, quarters, man, fin, kpis.flatMap((k) => k.keywords),
       insightsDoc.companies && insightsDoc.companies[id]);
@@ -306,7 +317,8 @@ async function main() {
        terminal or the wrong segment. Whatever this fills, the model is not asked
        about, so it is also the cheapest coverage available. */
     const insCo = insightsDoc.companies && insightsDoc.companies[id];
-    const filled = opts.dryRun ? [] : fillFromInsights({ insights: insCo, kpis, quarters, quarterLabel });
+    const filled = (opts.dryRun || opts.renderOnly)
+      ? [] : fillFromInsights({ insights: insCo, kpis, quarters, quarterLabel });
     let insMerged = { gained: 0, corrected: 0 };
     if (filled.length) {
       insMerged = mergeIntoStore({
@@ -319,9 +331,14 @@ async function main() {
         (insMerged.corrected ? ` (${insMerged.corrected} corrected)` : '') + ' · ');
     }
 
-    const plan = opts.refresh
-      ? { ask: kpis, skip: [], settledCells: 0, openCells: kpis.length * quarters.length }
-      : planCompany({ store, companyId: id, kpis, quarters, fingerprint });
+    /* --render-only redraws the window from what the store already holds, so
+       nothing is planned, asked or spent - it falls straight through to the
+       renderWindow call below. */
+    const plan = opts.renderOnly
+      ? { ask: [], skip: kpis, settledCells: 0, openCells: 0 }
+      : opts.refresh
+        ? { ask: kpis, skip: [], settledCells: 0, openCells: kpis.length * quarters.length }
+        : planCompany({ store, companyId: id, kpis, quarters, fingerprint });
 
     if (opts.dryRun) {
       console.log(`window ${quarters.join(' ')} · ${sourceCount} sources · ${ctxChars} chars · ` +

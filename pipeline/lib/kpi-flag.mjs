@@ -27,14 +27,78 @@
 const isNum = (x) => typeof x === 'number' && Number.isFinite(x);
 
 /**
- * The series the flag is computed on. flagBasis is a reading hint; the series is
- * the values themselves in every case (see the module note).
+ * The series the flag is computed on, per the brief's series-handling rules.
+ *
+ *   flow   (level) - trend the 4-quarter series directly
+ *   stock  (qoq)   - "display the full 4-quarter LEVEL history in the table, but
+ *                     compute the trajectory flag on the quarter-over-quarter
+ *                     change row, because a large order book that has stopped
+ *                     growing is a decelerating signal, not a positive one"
+ *   seasonal (yoy) - trend the year-on-year growth. The KPIs carrying this basis
+ *                    already hold growth figures as their values (the spec names
+ *                    them that way: "CNG+PNG volume growth (YoY)"), so the values
+ *                    ARE the YoY series and are trended directly.
+ *
+ * A null inside the window breaks the change it would take part in, rather than
+ * being bridged - a gap is not a zero move.
+ *
  * @param {(number|null)[]} values
- * @param {'level'|'qoq'|'yoy'} _flagBasis
+ * @param {'level'|'qoq'|'yoy'} flagBasis
  * @returns {(number|null)[]}
  */
-export function flagBasisSeries(values, _flagBasis) {
-  return Array.isArray(values) ? values.slice() : [];
+export function flagBasisSeries(values, flagBasis) {
+  const v = Array.isArray(values) ? values.slice() : [];
+  if (flagBasis !== 'qoq') return v;
+  const out = [];
+  for (let i = 1; i < v.length; i++) {
+    out.push(isNum(v[i]) && isNum(v[i - 1]) ? v[i] - v[i - 1] : null);
+  }
+  return out;
+}
+
+/**
+ * The flag for a CHANGE series (a stock variable's quarter-on-quarter row).
+ *
+ * A change series has to be read one order lower than a level series: here the
+ * latest change is itself the signal, so the comparison is change-vs-change, not
+ * change-of-change. Reading it the level way is what made a steadily shrinking
+ * order book come out "steady" - the change was constant, so the second
+ * difference was zero.
+ *
+ * @param {(number|null)[]} changes
+ * @param {number} [flatBandPct=1.5]
+ * @returns {string|null}
+ */
+export function changeSeriesFlag(changes, flatBandPct = 1.5, levelScale = null) {
+  const s = (changes || []).filter(isNum);
+  if (s.length < 2) return null;              /* need two changes to compare */
+
+  /* The dead band asks "is this move big enough to mean anything for this KPI",
+     which is a fraction of the KPI's own SIZE, not of its recent changes. Sizing
+     it off the changes would make every quiet series look volatile: a 40 move on
+     a 3,000 order book is 1.3%, and reads as a turn only if the yardstick is the
+     other 40s rather than the 3,000. The level scale is passed in for that. */
+  const scale = isNum(levelScale) && levelScale
+    ? Math.abs(levelScale)
+    : (s.reduce((a, b) => a + Math.abs(b), 0) / s.length || 1);
+  const band = scale * (flatBandPct / 100);
+  const snap = (x) => (Math.abs(x) < band ? 0 : x);
+
+  const last = snap(s[s.length - 1]);
+  const prev = snap(s[s.length - 2]);
+
+  /* The book turned: growth resumed after shrinking, or growth went negative.
+     Only a genuinely negative change counts as inflecting down - the brief
+     files merely stopping at zero under decelerating, not under a turn. */
+  if (last > 0 && prev <= 0) return 'inflecting-up';
+  if (last < 0 && prev > 0) return 'inflecting-down';
+  /* Stalled or shrinking. "A large order book that has stopped growing is a
+     decelerating signal, not a positive one" - this is that sentence. */
+  if (last <= 0) return 'decelerating';
+  /* still growing: faster, slower, or at the same pace */
+  if (last > prev) return 'accelerating';
+  if (last < prev) return 'decelerating';
+  return 'steady';
 }
 
 /**
@@ -69,7 +133,17 @@ export function trajectoryFlag(series, flatBandPct = 1.5) {
   return 'steady';
 }
 
-/** Convenience: values + basis -> flag id. */
+/**
+ * Convenience: values + basis -> flag id, routed to the right reading.
+ * A stock variable is judged on its change row; everything else on its own.
+ */
 export function flagFor(values, flagBasis, flatBandPct = 1.5) {
-  return trajectoryFlag(flagBasisSeries(values, flagBasis), flatBandPct);
+  const series = flagBasisSeries(values, flagBasis);
+  if (flagBasis !== 'qoq') return trajectoryFlag(series, flatBandPct);
+  /* the stock's own average level is the yardstick its changes are judged against */
+  const levels = (values || []).filter(isNum);
+  const levelScale = levels.length
+    ? levels.reduce((a, b) => a + Math.abs(b), 0) / levels.length
+    : null;
+  return changeSeriesFlag(series, flatBandPct, levelScale);
 }

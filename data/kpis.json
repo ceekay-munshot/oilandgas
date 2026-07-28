@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-28T08:12:27.123Z",
+  "generatedAt": "2026-07-28T16:53:51.018Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -17,7 +17,7 @@
     "realCells": 119,
     "nullCells": 105,
     "kpis": 58,
-    "kpisWithTrend": 31
+    "kpisWithTrend": 30
   },
   "companies": {
     "deep-industries": {
@@ -32,7 +32,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33997,
+      "ctxChars": 3998,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -135,7 +135,7 @@
               "page": 20
             }
           ],
-          "flag": "steady",
+          "flag": "decelerating",
           "notes": null
         }
       ]
@@ -152,7 +152,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34068,
+      "ctxChars": 4070,
       "kpis": [
         {
           "id": "order-inflow",
@@ -292,7 +292,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 27823,
+      "ctxChars": 3823,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -392,7 +392,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 27698,
+      "ctxChars": 3699,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -471,7 +471,7 @@
       "asOf": "Q2 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21419,
+      "ctxChars": 3420,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -583,7 +583,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33643,
+      "ctxChars": 3643,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -675,7 +675,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32257,
+      "ctxChars": 3716,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -819,7 +819,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33717,
+      "ctxChars": 3721,
       "kpis": [
         {
           "id": "hydrocarbon-order-inflow",
@@ -882,7 +882,7 @@
             null,
             null
           ],
-          "flag": "accelerating",
+          "flag": null,
           "notes": "Q3 FY26 order book not stated."
         }
       ]
@@ -899,7 +899,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33027,
+      "ctxChars": 3027,
       "kpis": [
         {
           "id": "order-book",
@@ -979,7 +979,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34052,
+      "ctxChars": 4054,
       "kpis": [
         {
           "id": "order-book",
@@ -1026,7 +1026,7 @@
               "page": 2
             }
           ],
-          "flag": "accelerating",
+          "flag": "inflecting-up",
           "notes": null
         },
         {
@@ -1075,7 +1075,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33395,
+      "ctxChars": 3396,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -1187,7 +1187,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 31945,
+      "ctxChars": 3953,
       "kpis": [
         {
           "id": "grm",
@@ -1315,7 +1315,7 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32700,
+      "ctxChars": 3889,
       "kpis": [
         {
           "id": "grm",
@@ -1451,7 +1451,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 30611,
+      "ctxChars": 4138,
       "kpis": [
         {
           "id": "grm",
@@ -1575,7 +1575,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33242,
+      "ctxChars": 3246,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -1671,7 +1671,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34030,
+      "ctxChars": 4031,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -1831,7 +1831,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34004,
+      "ctxChars": 4005,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -1927,7 +1927,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33034,
+      "ctxChars": 3037,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -2019,7 +2019,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32914,
+      "ctxChars": 2916,
       "kpis": [
         {
           "id": "sps-spread",
@@ -2115,7 +2115,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 31578,
+      "ctxChars": 1581,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -2195,7 +2195,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33126,
+      "ctxChars": 3128,
       "kpis": [
         {
           "id": "base-oil-spread",
@@ -2287,7 +2287,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 9450,
+      "ctxChars": 3450,
       "kpis": [
         {
           "id": "industrial-gas-volume",
@@ -2335,7 +2335,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33175,
+      "ctxChars": 3175,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -2383,7 +2383,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34375,
+      "ctxChars": 4377,
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -2493,7 +2493,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21382,
+      "ctxChars": 3382,
       "kpis": [
         {
           "id": "freight-rate",
@@ -2538,7 +2538,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15968,
+      "ctxChars": 3968,
       "kpis": [
         {
           "id": "order-book",

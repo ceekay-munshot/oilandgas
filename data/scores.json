@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-07-28T16:41:16.962Z",
+  "generatedAt": "2026-07-28T16:54:17.004Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,13 +38,13 @@
   "asOf": "Q4 FY26",
   "scores": {
     "leading": {
-      "score": -8,
-      "prev": -70,
-      "delta": 70,
+      "score": -12,
+      "prev": -80,
+      "delta": 73,
       "deltaBasis": "kpi-only",
-      "level": "flat",
+      "level": "negative",
       "direction": "rising",
-      "kpisScored": 11,
+      "kpisScored": 10,
       "kpisTotal": 20,
       "tonesScored": 8,
       "companiesScored": 8,
@@ -77,6 +77,13 @@
           "kind": "kpi",
           "companyId": "ratnamani",
           "company": "Ratnamani Metals",
+          "label": "Order book",
+          "flag": "inflecting-up"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "welspun-corp",
+          "company": "Welspun Corp",
           "label": "Order book",
           "flag": "inflecting-up"
         },
@@ -286,16 +293,16 @@
     }
   },
   "divergence": {
-    "value": 53,
-    "leadingSign": 0,
+    "value": 49,
+    "leadingSign": -1,
     "coincidentSign": -1,
     "signsDiffer": false
   },
   "divergenceSeries": [
     null,
     null,
-    -82,
-    43
+    -92,
+    36
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -304,7 +311,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading -8 (flat, rising), coincident -61 (strong-negative, falling), lagging 0 (flat).",
+      "Leading -12 (negative, rising), coincident -61 (strong-negative, falling), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -573,7 +580,7 @@
     {
       "id": "leading",
       "label": "Leading indicators",
-      "text": "Leading indicators are flat and rising — driven by Engineers India Order inflow, Engineers India Order book, L&T Hydrocarbon order inflow."
+      "text": "Leading indicators are negative and rising — driven by Engineers India Order inflow, Engineers India Order book, L&T Hydrocarbon order inflow."
     },
     {
       "id": "coincident",
@@ -588,7 +595,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +53. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +49. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -635,14 +642,14 @@
   },
   "changes": [
     {
-      "kind": "method-change",
-      "text": "The scoring method changed since the last refresh, so this quarter's scores are not comparable with the stored ones. The change log resumes next run."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-07-28T16:40:11.953Z",
+    "generatedAt": "2026-07-28T16:41:16.962Z",
     "asOf": "Q4 FY26",
-    "scoringVersion": null,
+    "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": -8,
