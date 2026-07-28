@@ -7,3 +7,9 @@ pipeline/.cache/
 # Cached concall-transcript / PPT text - large, and prompt 7 reads it from the
 # same workflow run. Only data/financials.json + data/docs-manifest.json ship.
 pipeline/cache/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
