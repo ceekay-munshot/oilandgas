@@ -685,23 +685,26 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 .readline__txt{font-size:12px; line-height:1.45; color:var(--ink-1); font-weight:520; text-wrap:pretty;}
 
 /* --- 5.2 the shortlist -------------------------------------------------- */
-.actionlist{flex:1 1 auto; min-height:0; overflow:auto; padding:10px 13px 13px; display:flex; flex-direction:column; gap:8px;}
-.action{
+.actionlist{flex:1 1 auto; min-height:0; overflow:auto; padding:10px 13px 13px; display:flex; flex-direction:column; gap:10px;}
+.action__lead{font-size:11.5px; line-height:1.45; color:var(--ink-2); font-weight:530; text-wrap:pretty;}
+.researchrow{display:flex; flex-wrap:wrap; gap:7px;}
+.research{
   --c:var(--ink-3);
-  display:grid; grid-template-columns:20px minmax(0,1fr); gap:9px; align-items:start;
-  padding:8px 10px; border-radius:var(--r-sm);
-  background:color-mix(in srgb, var(--c) 5%, #fff);
-  border:1px solid color-mix(in srgb, var(--c) 16%, #fff);
+  display:inline-flex; align-items:center; gap:7px;
+  padding:5px 10px 5px 5px; border-radius:var(--r-chip);
+  background:color-mix(in srgb, var(--c) 7%, #fff);
+  border:1px solid color-mix(in srgb, var(--c) 22%, #fff);
+  font-size:11.5px; font-weight:640; color:var(--ink-1);
 }
-.action__n{
-  display:grid; place-items:center; width:20px; height:20px; border-radius:6px;
-  background:color-mix(in srgb, var(--c) 15%, #fff);
+.research__n{
+  display:grid; place-items:center; width:18px; height:18px; border-radius:5px;
+  background:color-mix(in srgb, var(--c) 16%, #fff);
   color:color-mix(in srgb, var(--c) 82%, var(--ink-1));
-  font-size:11px; font-weight:800; line-height:1;
+  font-size:10px; font-weight:800; line-height:1;
 }
-.action__do{font-size:12px; font-weight:660; color:var(--ink-1); line-height:1.35;}
-.action__why{font-size:11px; color:var(--ink-3); margin-top:2px; line-height:1.4; text-wrap:pretty;}
-.action__meta{display:flex; gap:5px; margin-top:5px; flex-wrap:wrap;}
+/* a name the dashboard holds no series for reads as a note, not as coverage */
+.research.is-off{border-style:dashed; background:var(--surface-2);}
+.research__off{font-size:9.5px; font-weight:640; color:var(--ink-4); letter-spacing:.02em;}
 
 /* --- 5.4 the change log -------------------------------------------------- */
 .changelog{
@@ -1419,12 +1422,19 @@ table.kpi td.co[rowspan]{vertical-align:top;}
       }),
       series: [{
         type: 'gauge',
-        min: 0, max: 100,
+        /* The brief's scores are signed: a bucket is Negative, flat, or Positive.
+           The axis runs -100..+100 so the fill reads from the zero point and a
+           negative bucket is visibly negative rather than just a short bar. */
+        min: -100, max: 100,
         startAngle: 222, endAngle: -42,
         center: ['50%', '54%'], radius: '94%',
         /* unfilled track = a lighter step of the same hue */
         axisLine: { lineStyle: { width: 11, color: [[1, mix(group.color, WHITE, 0.8)]] } },
-        progress: { show: true, width: 11, roundCap: true, itemStyle: { color: group.color } },
+        progress: {
+          show: true, width: 11, roundCap: true,
+          /* a negative bucket fills in the warning red, not the group hue */
+          itemStyle: { color: (typeof s.score === 'number' && s.score < 0) ? '#C42433' : group.color }
+        },
         pointer: { show: false },
         axisTick: { show: false },
         splitLine: { show: false },
@@ -1438,7 +1448,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
           /* an unscored group shows a dash, never a 0 - they mean opposite things */
           formatter: function (v) { return typeof s.score === 'number' ? String(v) : '–'; }
         },
-        data: [{ value: typeof s.score === 'number' ? s.score : 0 }]
+        data: [{ value: typeof s.score === 'number' ? s.score : -100 }]
       }]
     };
   }
@@ -2432,32 +2442,30 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 
     /* ---- 5.2 the shortlist, mapped to the stage we are actually in ------- */
     var stage = currentStage();
-    el('actionChip').innerHTML = (sc && sc.actions && sc.actions.length)
-      ? '<span class="chip" style="--c:' + (stage ? stage.color : '#7C8496') + '" title="' +
-          esc('This list is mapped to the cycle stage. Call a different stage and it repopulates.') +
-        '"><span class="chip__sw"></span>' + esc(stage ? stage.plainLabel : 'no stage') + '</span>'
-      : '<span class="chip chip--ghost">No data yet</span>';
-    el('actionList').innerHTML = (sc && sc.actions && sc.actions.length)
-      ? sc.actions.map(function (a, i) {
-          var who = (a.focus || []).map(function (id) { return byId[id]; }).filter(Boolean);
-          return '<div class="action" style="--c:' + (stage ? stage.color : '#7C8496') + '">' +
-            '<span class="action__n">' + (i + 1) + '</span>' +
-            '<div class="action__body">' +
-              '<div class="action__do">' + esc(a.action) + '</div>' +
-              '<div class="action__why">' + esc(a.why) + '</div>' +
-              '<div class="action__meta">' +
-                /* the brief asks the panel to show which stage row generated it */
-                '<span class="chip" style="--c:' + (stage ? stage.color : '#7C8496') + '" title="' +
-                  esc('Generated by the ' + a.stageLabel + ' row of the stage table.') + '">' +
-                  '<span class="chip__sw"></span>from ' + esc(a.stageLabel) + '</span>' +
-                who.map(function (c) {
-                  return '<span class="chip" style="--c:' + (findGroupColor(c) || '#7C8496') + '">' +
-                    '<span class="chip__sw"></span>' + esc(c.name) + '</span>';
-                }).join('') +
-              '</div>' +
-            '</div>' +
-          '</div>';
-        }).join('')
+    var act = sc && sc.actions;
+    var sCol = stage ? stage.color : '#7C8496';
+    el('actionChip').innerHTML = act
+      ? '<span class="chip" style="--c:' + sCol + '" title="' +
+          esc('The Step 5b row for this stage. Call a different stage and the panel repopulates.') +
+        '"><span class="chip__sw"></span>from ' + esc(act.stageLabel) + '</span>'
+      : '<span class="chip chip--ghost">No stage called</span>';
+    el('actionList').innerHTML = act
+      ? /* why these, at this stage - the client's own reasoning for the row */
+        '<div class="action__lead">' + esc(act.why) + '</div>' +
+        '<div class="researchrow">' + act.research.map(function (r, i) {
+          var c = r.companyId ? byId[r.companyId] : null;
+          var col = c ? (findGroupColor(c) || sCol) : '#7C8496';
+          /* a name outside the 27-company backbone is shown, and marked: the
+             dashboard holds no KPI series for it, and pretending otherwise
+             would make an empty row look like a covered one */
+          return '<span class="research' + (c ? '' : ' is-off') + '" style="--c:' + col + '" title="' +
+            esc(c ? (c.name + ' - ' + (c.what || ''))
+                  : r.label + ' is a research target outside the 27-company backbone, so this dashboard holds no KPI series for it.') + '">' +
+            '<span class="research__n">' + (i + 1) + '</span>' +
+            '<span class="research__nm">' + esc(r.label) + '</span>' +
+            (c ? '' : '<span class="research__off">no series</span>') +
+          '</span>';
+        }).join('') + '</div>'
       : '<div class="ghost" data-ghost="list"></div>';
 
     /* ---- 5.4 what moved since last time --------------------------------- */

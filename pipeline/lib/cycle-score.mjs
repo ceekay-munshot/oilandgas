@@ -23,41 +23,91 @@
 import { flagFor } from './kpi-flag.mjs';
 
 /**
- * What each trajectory flag is worth, 0-100, with 50 as "no news".
+ * Step 4a scoring, to the brief.
  *
- * The two inflection flags sit half a step off neutral rather than at the
- * extremes: a series that has *just* turned is a turn, not yet a trend, and the
- * client's own framing treats "just turned up" as the early-warning subset
- * rather than as strength already delivered. Accelerating and decelerating are
- * the poles because they describe momentum that is already in the numbers.
+ * A bucket score is the NET trajectory of its inputs on a signed -100..+100
+ * scale, because the stage table in 4b is written in signed language: a bucket
+ * is Negative, or flat, or Positive, or strongly positive. Zero is "no news".
+ *
+ * Two weighting rules come straight from the brief and are the whole point of
+ * the scoring:
+ *
+ *   "Inflection flags carry double weight - a KPI that just turned matters more
+ *    than one continuing an established trend."
+ *   "A tone-drift deterioration of two steps or more also carries double weight."
+ *
+ * Decelerating scores negative even though the brief describes it as "still
+ * positive vs. history but moderating", because its stated cycle meaning is
+ * "early warning - often precedes an inflection". Reading it as mild strength
+ * would invert the signal this dashboard exists to catch.
  */
-export const FLAG_MOMENTUM = {
-  'accelerating':    100,
-  'inflecting-up':    75,
-  'steady':           50,
-  'inflecting-down':  25,
-  'decelerating':      0
+export const FLAG_SCORE = {
+  'accelerating':     1,
+  'inflecting-up':    1,
+  'steady':           0,
+  'decelerating':    -1,
+  'inflecting-down': -1
 };
 
-/** Neutral midpoint of every 0-100 score in this module. */
-export const NEUTRAL = 50;
+/** The brief's double weight for the two inflection flags. */
+export const FLAG_WEIGHT = {
+  'accelerating':     1,
+  'inflecting-up':    2,
+  'steady':           1,
+  'decelerating':     1,
+  'inflecting-down':  2
+};
 
-/* A score this far off neutral is "strong" / "weak" rather than middling, and a
-   quarter-on-quarter move this big is a real direction rather than noise. Both
-   are dead-bands: without them a 50.4 would read as strength. */
-const LEVEL_BAND = 5;
-const DELTA_BAND = 2;
+/** Latest-quarter tone -> direction flag, per Step 3's Positive/Neutral/Negative. */
+export const TONE_DIRECTION = {
+  'confident':     1,
+  'constructive':  1,
+  'neutral':       0,
+  'cautious':     -1,
+  'defensive':    -1
+};
+
+/** Neutral midpoint of every signed score in this module. */
+export const NEUTRAL = 0;
+
+/* Dead-bands. A score inside LEVEL_BAND of zero is flat rather than directional;
+   a quarter-on-quarter move inside DELTA_BAND is noise. Without them a score of
+   0.4 would read as a positive bucket. */
+const LEVEL_BAND = 10;
+const STRONG_BAND = 40;
+const DELTA_BAND = 5;
+
+/** The brief's coverage guard: more than a third unusable and the score is thin. */
+export const COVERAGE_LIMIT = 1 / 3;
+
+/**
+ * Bump when a change would make today's scores incomparable with a stored one -
+ * a new weighting, a new scale, a new input. The change log refuses to diff
+ * across a bump, because "leading moved down 58 points" would then be describing
+ * the method changing rather than the cycle moving.
+ */
+export const SCORING_VERSION = 2;
 
 const isNum = (x) => typeof x === 'number' && Number.isFinite(x);
 const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
 
-/** 'strong' | 'weak' | 'neutral' — where a 0-100 score sits against midpoint. */
+/**
+ * Where a signed score sits, in the language the 4b stage table uses.
+ * 'strong-positive' | 'positive' | 'flat' | 'negative' | 'strong-negative'
+ */
 export function levelOf(score) {
   if (!isNum(score)) return null;
-  if (score >= NEUTRAL + LEVEL_BAND) return 'strong';
-  if (score <= NEUTRAL - LEVEL_BAND) return 'weak';
-  return 'neutral';
+  if (score >= STRONG_BAND) return 'strong-positive';
+  if (score >= LEVEL_BAND) return 'positive';
+  if (score <= -STRONG_BAND) return 'strong-negative';
+  if (score <= -LEVEL_BAND) return 'negative';
+  return 'flat';
 }
+
+/** true when the score is on the positive side of the dead band */
+export const isPositive = (s) => isNum(s) && s >= LEVEL_BAND;
+/** true when the score is on the negative side of the dead band */
+export const isNegative = (s) => isNum(s) && s <= -LEVEL_BAND;
 
 /** 'rising' | 'falling' | 'flat' — which way a score moved since last quarter. */
 export function directionOf(delta) {
@@ -83,36 +133,102 @@ export function directionOf(delta) {
  * @param {number} [drop=0]     how many quarters to walk back
  * @returns {{score:number|null, kpisScored:number, kpisTotal:number, companiesScored:number}}
  */
-export function scoreGroup(kpisJson, group, drop = 0) {
+export function scoreGroup(kpisJson, group, drop = 0, opts = {}) {
   const band = isNum(kpisJson && kpisJson.flatBandPct) ? kpisJson.flatBandPct : 1.5;
   const byId = (kpisJson && kpisJson.companies) || {};
-  let sum = 0, scored = 0, total = 0;
+  const latestQuarter = opts.latestQuarter || null;
+  let weighted = 0, weight = 0, scored = 0, total = 0, stale = 0, oneOff = 0;
   const companies = new Set();
+  /* the strongest signals, for the summary paragraph's "driven by ..." clause */
+  const signals = [];
 
   (group.companies || []).forEach((c) => {
     const entry = byId[c.id];
     if (!entry || !Array.isArray(entry.kpis)) return;
+    /* The brief's staleness test: a source older than the latest reported
+       quarter. A company reporting behind the pack makes its whole row stale. */
+    const isStale = !!(latestQuarter && entry.asOf && entry.asOf !== latestQuarter);
+
     entry.kpis.forEach((k) => {
       total++;
+      if (isStale) stale++;
+      if (k.oneOff) oneOff++;
       const values = Array.isArray(k.values) ? k.values : [];
       /* Walking back means dropping the newest quarters, not the oldest: the
          window is oldest-first, so slice from the end. */
       const window = drop > 0 ? values.slice(0, values.length - drop) : values;
       const flag = flagFor(window, k.flagBasis, band);
-      const momentum = flag ? FLAG_MOMENTUM[flag] : undefined;
-      if (!isNum(momentum)) return;
-      sum += momentum;
+      if (!flag || !isNum(FLAG_SCORE[flag])) return;
+      const w = FLAG_WEIGHT[flag];
+      weighted += FLAG_SCORE[flag] * w;
+      weight += w;
       scored++;
       companies.add(c.id);
+      if (w > 1) signals.push({ kind: 'kpi', companyId: c.id, company: entry.name || c.id, label: k.label, flag });
     });
   });
 
+  /* Step 3's tone drift enters the bucket score too - the brief scores each
+     bucket on "the KPI flags PLUS tone drift" for the themes that feed it. */
+  const toneInputs = opts.toneInputs || [];
+  let tones = 0;
+  toneInputs.forEach((t) => {
+    weighted += t.value * t.weight;
+    weight += t.weight;
+    tones++;
+    if (t.weight > 1) signals.push({ kind: 'tone', companyId: t.companyId, company: t.company, label: t.theme, flag: t.drift > 0 ? 'tone-up' : 'tone-down' });
+  });
+
+  const usable = total ? (stale + oneOff) / total : 0;
+
   return {
-    score: scored ? Math.round(sum / scored) : null,
+    score: weight ? Math.round((weighted / weight) * 100) : null,
     kpisScored: scored,
     kpisTotal: total,
-    companiesScored: companies.size
+    tonesScored: tones,
+    companiesScored: companies.size,
+    staleKpis: stale,
+    oneOffKpis: oneOff,
+    lowCoverage: total > 0 && usable > COVERAGE_LIMIT,
+    signals
   };
+}
+
+/**
+ * Tone inputs per bucket, mapped through the seven themes.
+ *
+ * The brief routes commentary into the scores by theme, not by company group:
+ * upstream-capex and capex-pipeline feed leading, refining/marketing/gas/spread
+ * feed coincident, freight feeds lagging. A company appearing in two themes is
+ * counted in each, which is intended - it is being listened to about two things.
+ */
+export function toneInputsByBucket(commentaryJson, framework) {
+  const out = { leading: [], coincident: [], lagging: [] };
+  const themes = ((framework && framework.themes && framework.themes.items) || []);
+  const companies = (commentaryJson && commentaryJson.companies) || {};
+
+  themes.forEach((theme) => {
+    if (!out[theme.bucket]) out[theme.bucket] = [];
+    (theme.companyIds || []).forEach((id) => {
+      const c = companies[id];
+      const toned = ((c && c.tones) || []).filter((t) => t && t.toneId && isNum(t.score));
+      if (!toned.length) return;
+      const latest = toned[toned.length - 1];
+      const prior = toned.length > 1 ? toned[toned.length - 2] : null;
+      const drift = prior ? latest.score - prior.score : 0;
+      const value = isNum(TONE_DIRECTION[latest.toneId]) ? TONE_DIRECTION[latest.toneId] : 0;
+      /* the brief's second double-weight rule: a two-step drift either way is
+         the signal, not the level it landed on */
+      const weight = Math.abs(drift) >= 2 ? 2 : 1;
+      out[theme.bucket].push({
+        companyId: id, company: (c && c.name) || id,
+        theme: theme.label, themeId: theme.id,
+        toneId: latest.toneId, quarter: latest.quarter,
+        value, weight, drift
+      });
+    });
+  });
+  return out;
 }
 
 /**
@@ -123,21 +239,33 @@ export function scoreGroup(kpisJson, group, drop = 0) {
  *   level:string|null, direction:string|null, kpisScored:number, kpisTotal:number,
  *   companiesScored:number}>}
  */
-export function bucketScores(kpisJson, companiesJson) {
+export function bucketScores(kpisJson, companiesJson, opts = {}) {
   const out = {};
+  const latestQuarter = (kpisJson && kpisJson.quarters && kpisJson.quarters[kpisJson.quarters.length - 1]) || null;
+  const tone = opts.toneInputs || {};
   ((companiesJson && companiesJson.groups) || []).forEach((g) => {
-    const now = scoreGroup(kpisJson, g, 0);
-    const before = scoreGroup(kpisJson, g, 1);
-    const delta = isNum(now.score) && isNum(before.score) ? now.score - before.score : null;
+    const now = scoreGroup(kpisJson, g, 0, { latestQuarter, toneInputs: tone[g.id] || [] });
+    /* The prior quarter is the same computation on a shorter series. Tone is
+       held out of it: commentary.json keeps only the current drift sequence, so
+       including it would compare a KPI-and-tone score with a KPI-only one. */
+    const before = scoreGroup(kpisJson, g, 1, { latestQuarter });
+    const nowKpiOnly = scoreGroup(kpisJson, g, 0, { latestQuarter });
+    const delta = isNum(nowKpiOnly.score) && isNum(before.score) ? nowKpiOnly.score - before.score : null;
     out[g.id] = {
       score: now.score,
       prev: before.score,
       delta,
+      deltaBasis: 'kpi-only',
       level: levelOf(now.score),
       direction: directionOf(delta),
       kpisScored: now.kpisScored,
       kpisTotal: now.kpisTotal,
-      companiesScored: now.companiesScored
+      tonesScored: now.tonesScored,
+      companiesScored: now.companiesScored,
+      staleKpis: now.staleKpis,
+      oneOffKpis: now.oneOffKpis,
+      lowCoverage: now.lowCoverage,
+      signals: now.signals
     };
   });
   return out;
@@ -158,7 +286,7 @@ export function divergenceOf(scores) {
   if (!isNum(L) || !isNum(C)) {
     return { value: null, signsDiffer: false, leadingSign: null, coincidentSign: null };
   }
-  const sign = (x) => (x > NEUTRAL + LEVEL_BAND ? 1 : x < NEUTRAL - LEVEL_BAND ? -1 : 0);
+  const sign = (x) => (isPositive(x) ? 1 : isNegative(x) ? -1 : 0);
   const ls = sign(L), cs = sign(C);
   return {
     value: L - C,
@@ -183,39 +311,47 @@ export function divergenceOf(scores) {
  */
 export const STAGE_RULES = [
   {
-    id: 'leading-rolls-over',
-    label: 'Leading rolling over while coincident is still hot',
-    stageId: 'late-upcycle',
-    when: (L, C) => L.direction === 'falling' && C.level === 'strong'
-  },
-  {
-    id: 'weakness-spreading',
-    label: 'Leading weak and coincident now falling with it',
+    id: 'early-downcycle',
     stageId: 'early-downcycle',
-    when: (L, C) => L.level === 'weak' && C.direction === 'falling'
+    label: 'Leading turning negative while coincident, still positive, compresses',
+    /* "Turning negative - order inflow slows even as order books still execute;
+        coincident still positive but compressing; lagging still positive (lags)" */
+    when: (L, C) => (isNegative(L.score) || L.direction === 'falling') &&
+                    isPositive(C.score) && C.direction !== 'rising'
   },
   {
-    id: 'broad-strength',
-    label: 'Leading and coincident both strong',
+    id: 'late-upcycle',
+    stageId: 'late-upcycle',
+    label: 'Leading positive but flattening, coincident at peak, lagging extended',
+    /* "Positive but flattening; coincident at peak; lagging strongly positive" */
+    when: (L, C, G) => isPositive(L.score) && L.direction !== 'rising' &&
+                       isPositive(C.score) && (levelOf(G.score) === 'strong-positive' || isPositive(C.score))
+  },
+  {
+    id: 'mid-upcycle',
     stageId: 'mid-upcycle',
-    when: (L, C) => L.level === 'strong' && C.level === 'strong'
+    label: 'Leading strongly positive, coincident positive and accelerating, lagging turning',
+    when: (L, C) => levelOf(L.score) === 'strong-positive' && isPositive(C.score)
   },
   {
-    id: 'leading-turns-first',
-    label: 'Leading strong or rising, coincident not yet following',
+    id: 'early-upcycle',
     stageId: 'early-upcycle',
-    when: (L, C) => (L.level === 'strong' || L.direction === 'rising') && C.level !== 'strong'
+    label: 'Leading turning positive off a low base, coincident not yet following',
+    /* "Turning positive off a low base - inflections concentrated here; coincident
+        still negative or flat, stabilizing; lagging still negative, starting to firm" */
+    when: (L, C) => (isPositive(L.score) || L.direction === 'rising') && !isPositive(C.score)
   },
   {
-    id: 'broad-weakness',
-    label: 'Leading and coincident both weak',
+    id: 'trough',
     stageId: 'trough',
-    when: (L, C) => L.level === 'weak' && C.level === 'weak'
+    label: 'All three buckets negative',
+    when: (L, C, G) => isNegative(L.score) && isNegative(C.score) &&
+                       (G.score === null || isNegative(G.score) || levelOf(G.score) === 'flat')
   },
   {
     id: 'no-clear-signal',
-    label: 'No group far enough from neutral to call a turn',
-    stageId: 'mid-upcycle',
+    stageId: null,
+    label: 'No bucket far enough from zero to place the cycle',
     confidence: 'low',
     when: () => true
   }
@@ -238,15 +374,29 @@ export const STAGE_RULES = [
  */
 export function stageCall(scores, cycleStages) {
   const L = scores && scores.leading, C = scores && scores.coincident;
+  const G = (scores && scores.lagging) || { score: null, direction: null };
   if (!L || !C || !isNum(L.score) || !isNum(C.score)) {
     return {
       stageId: null, position: null, ruleId: null, ruleLabel: null,
       confidence: 'none',
-      because: ['No cycle call: the leading or coincident group has no scored KPI yet.']
+      because: ['No cycle call: the leading or coincident bucket has no scored input yet.']
     };
   }
 
-  const rule = STAGE_RULES.find((r) => r.when(L, C)) || STAGE_RULES[STAGE_RULES.length - 1];
+  const rule = STAGE_RULES.find((r) => r.when(L, C, G)) || STAGE_RULES[STAGE_RULES.length - 1];
+  /* The catch-all row places no stage: "mid upcycle" is a claim, and a board
+     with nothing off zero has not earned one. */
+  if (!rule.stageId) {
+    return {
+      stageId: null, position: null, ruleId: rule.id, ruleLabel: rule.label,
+      confidence: 'low',
+      because: [
+        `Leading ${L.score} (${L.level}), coincident ${C.score} (${C.level})` +
+        (isNum(G.score) ? `, lagging ${G.score} (${G.level})` : '') + '.',
+        rule.label + '.'
+      ]
+    };
+  }
   const stage = (cycleStages || []).find((s) => s.id === rule.stageId);
   const range = (stage && Array.isArray(stage.range)) ? stage.range : [0, 100];
   const [lo, hi] = range;
@@ -260,7 +410,8 @@ export function stageCall(scores, cycleStages) {
 
   const because = [
     `Leading ${L.score} (${L.level}${L.direction ? ', ' + L.direction : ''}), ` +
-    `coincident ${C.score} (${C.level}${C.direction ? ', ' + C.direction : ''}).`,
+    `coincident ${C.score} (${C.level}${C.direction ? ', ' + C.direction : ''})` +
+    (isNum(G.score) ? `, lagging ${G.score} (${G.level})` : '') + '.',
     rule.label + '.'
   ];
 
@@ -292,6 +443,17 @@ export function tileDirection(tile, lookback, bandPct) {
   return pct > bandPct ? 'rising' : (pct < -bandPct ? 'falling' : 'flat');
 }
 
+/** Where the latest point ranks inside its own 12 months, 0-100, or null. */
+export function tilePercentile(tile) {
+  const lines = (tile && tile.lines) || [];
+  const primary = lines.find((l) => l.primary) || lines[0];
+  const values = ((primary && primary.series) || []).map((p) => p && p.value).filter(isNum);
+  if (values.length < 2) return null;
+  const latest = values[values.length - 1];
+  const below = values.filter((v) => v < latest).length;
+  return Math.round((below / (values.length - 1)) * 100);
+}
+
 /**
  * Does the macro backdrop agree with the scores?
  *
@@ -320,7 +482,13 @@ export function macroAgreement(macroJson, scores) {
     if (vote === 'supports') supporting++;
     else if (vote === 'opposes') opposing++;
     else silent++;
-    tiles.push({ id: t.id, label: t.shortLabel || t.label, direction: dir, supports: t.supports, vote });
+    tiles.push({
+      id: t.id, label: t.shortLabel || t.label, direction: dir,
+      /* the brief's Step 1 output is "flag + percentile" - 90th percentile crude
+         reads very differently from 40th even when both are Rising */
+      percentile: tilePercentile(t),
+      supports: t.supports, vote
+    });
   });
 
   const voting = supporting + opposing;
@@ -378,7 +546,7 @@ export function toneDrift(commentaryJson, minSteps = 2) {
  * The client asks for this on the alert strip, and it is the honest counterweight
  * to putting a single number on a gauge.
  */
-export function coverageWarnings(scores, groupMeta, minKpis = 5, minShare = 0.4) {
+export function coverageWarnings(scores, groupMeta) {
   const nameOf = (id) => {
     const g = (groupMeta || []).find((m) => m.id === id);
     return (g && (g.plainLabel || g.label)) || id;
@@ -388,15 +556,19 @@ export function coverageWarnings(scores, groupMeta, minKpis = 5, minShare = 0.4)
     const s = scores[id];
     if (!s) return;
     if (s.score === null) {
-      out.push({ groupId: id, kind: 'no-score', text: `${nameOf(id)}: no KPI has enough quarters to flag yet.` });
+      out.push({ groupId: id, kind: 'no-score', text: `${nameOf(id)}: nothing in this bucket can be scored yet.` });
       return;
     }
-    const share = s.kpisTotal ? s.kpisScored / s.kpisTotal : 0;
-    if (s.kpisScored < minKpis || share < minShare) {
+    /* The brief's guard, exactly: more than a third of the bucket's KPIs stale
+       (source older than the latest reported quarter) or one-off-flagged means
+       the score renders with a low-coverage warning rather than false confidence. */
+    if (s.lowCoverage) {
+      const bad = (s.staleKpis || 0) + (s.oneOffKpis || 0);
       out.push({
         groupId: id,
-        kind: 'thin',
-        text: `${nameOf(id)}: scored on ${s.kpisScored} of ${s.kpisTotal} KPIs.`
+        kind: 'low-coverage',
+        text: `${nameOf(id)}: ${bad} of ${s.kpisTotal} KPIs are stale or one-off-flagged ` +
+              `(over a third), so the score carries a low-coverage warning.`
       });
     }
   });
@@ -451,68 +623,93 @@ export function buildAlerts({ macro, scores, coverage, drift, divergence }) {
  */
 export function summaryLines({ scores, stage, divergence, macro, drift }, framework) {
   const stageOf = (id) => ((framework && framework.cycleStages) || []).find((s) => s.id === id);
-  const nameOf = (id) => {
-    const g = ((framework && framework.groupMeta) || []).find((m) => m.id === id);
-    return (g && (g.plainLabel || g.label)) || id;
-  };
   const s = scores || {};
   const lines = [];
 
   const st = stage && stage.stageId ? stageOf(stage.stageId) : null;
-  /* fall back through the label chain to the id: a stage missing its words
-     should read awkwardly, never as the word "undefined" */
   const stageWords = st
-    ? (st.plainLabel && st.label && st.plainLabel !== st.label)
-        ? `${st.plainLabel} (${st.label})`
-        : (st.plainLabel || st.label || st.id)
-    : null;
-  lines.push({
-    id: 'where',
-    label: 'Where we are',
-    text: st
-      ? `${stageWords}. ${(stage.because || []).join(' ')}`.trim()
-      : 'No cycle stage has been called: no group has a scored KPI yet.'
-  });
+    ? ((st.plainLabel && st.label && st.plainLabel !== st.label)
+        ? `${st.label} (${st.plainLabel})` : (st.label || st.plainLabel || st.id))
+    : 'not called';
 
-  const parts = ['leading', 'coincident', 'lagging'].map((id) => {
+  /* The direction word each bucket gets in the paragraph, in the language of
+     the 4b table rather than a number. */
+  const WORD = {
+    'strong-positive': 'strongly positive', 'positive': 'positive', 'flat': 'flat',
+    'negative': 'negative', 'strong-negative': 'strongly negative'
+  };
+  const dirOf = (id) => {
     const g = s[id];
-    if (!g || !isNum(g.score)) return `${nameOf(id)} has no score yet`;
-    const move = isNum(g.delta) ? (g.delta > 0 ? `up ${g.delta}` : g.delta < 0 ? `down ${Math.abs(g.delta)}` : 'unchanged') : 'no prior quarter';
-    return `${nameOf(id)} ${g.score} (${move})`;
-  });
-  lines.push({ id: 'scores', label: 'The three groups', text: parts.join('; ') + '.' });
+    if (!g || !isNum(g.score)) return 'not yet scoreable';
+    const w = WORD[g.level] || 'flat';
+    return g.direction && g.direction !== 'flat' ? `${w} and ${g.direction}` : w;
+  };
+  /* "driven by [strongest 2-3 signals]" - the double-weighted inputs, which are
+     precisely the ones the brief says matter most. */
+  const signalsOf = (id) => {
+    const g = s[id];
+    const sig = (g && g.signals) || [];
+    if (!sig.length) return null;
+    return sig.slice(0, 3).map((x) => x.kind === 'tone'
+      ? `${x.company} tone on ${x.label}`
+      : `${x.company} ${x.label}`).join(', ');
+  };
 
-  if (divergence && isNum(divergence.value)) {
+  lines.push({ id: 'call', label: 'Cycle call', text: stageWords + '.' });
+
+  const lSig = signalsOf('leading');
+  lines.push({
+    id: 'leading', label: 'Leading indicators',
+    text: `Leading indicators are ${dirOf('leading')}` + (lSig ? ` — driven by ${lSig}.` : '.')
+  });
+
+  const cSig = signalsOf('coincident');
+  lines.push({
+    id: 'coincident', label: 'Coincident indicators',
+    text: `Coincident indicators are ${dirOf('coincident')}` + (cSig ? ` — ${cSig}.` : '.')
+  });
+
+  /* "Macro backdrop: [Step 1 flags + percentiles]" - the tiles themselves, each
+     with its direction and where it sits in its own 12 months. */
+  if (macro && (macro.tiles || []).length) {
+    const named = macro.tiles.filter((t) => t.direction).map((t) =>
+      `${t.label} ${t.direction}${isNum(t.percentile) ? ` (${t.percentile}th pctile)` : ''}`);
     lines.push({
-      id: 'divergence',
-      label: 'The split',
-      text: divergence.signsDiffer
-        ? `${nameOf('leading')} and ${nameOf('coincident')} are on opposite sides of neutral, ${Math.abs(divergence.value)} points apart. That is the reading worth acting on: the front of the chain has moved and the middle has not followed.`
-        : `${nameOf('leading')} sits ${divergence.value > 0 ? 'above' : 'below'} ${nameOf('coincident')} by ${Math.abs(divergence.value)} points, but both are on the same side of neutral, so this is a matter of degree rather than a turn.`
+      id: 'macro', label: 'Macro backdrop',
+      text: (named.length ? named.join('; ') + '.' : 'No market series has a direction yet.') +
+        (macro.conflict ? ' Flagged for manual review: the backdrop and the scores disagree.' : '')
     });
   }
 
-  if (macro && macro.macroBias) {
+  if (divergence && isNum(divergence.value)) {
     lines.push({
-      id: 'macro',
-      label: 'The backdrop',
-      text: macro.conflict
-        ? `Flagged for review: the market backdrop points ${macro.macroBias} while the scores are moving ${macro.scoreBias}. ${macro.supporting} of ${macro.supporting + macro.opposing} readings back the cycle.`
-        : `The market backdrop points ${macro.macroBias} on ${macro.supporting} of ${macro.supporting + macro.opposing} readings that have a direction${macro.agree === true ? ', which agrees with the scores' : ''}.`
+      id: 'divergence', label: 'Divergence',
+      text: `Leading minus coincident is ${divergence.value > 0 ? '+' : ''}${divergence.value}. ` +
+        (divergence.signsDiffer
+          ? (divergence.value > 0
+              ? 'The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal.'
+              : 'The two buckets are on opposite sides of zero with leading behind — leading is rolling over while coincident still looks strong, the highest-value warning this instrument produces.')
+          : 'Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn.')
     });
   }
 
   const d = drift || [];
-  if (d.length) {
-    const down = d.filter((x) => x.direction === 'down').length;
-    lines.push({
-      id: 'tone',
-      label: 'What management said',
-      text: `${d.length} ${d.length === 1 ? 'company has' : 'companies have'} moved two tone steps or more, ` +
-            `${down} of them downward` +
-            (d[0] ? ` — the largest is ${d[0].name} (${d[0].from} → ${d[0].to}).` : '.')
-    });
-  }
+  lines.push({
+    id: 'watchlist', label: 'Tone drift watchlist',
+    text: d.length
+      ? d.slice(0, 6).map((x) => `${x.name} (${x.from} → ${x.to})`).join('; ') +
+        (d.length > 6 ? `; and ${d.length - 6} more` : '') + '.'
+      : 'No company moved two tone steps or more this quarter.'
+  });
+
+  /* "Implication for the next 1-2 quarters: [one sentence]" - taken from the
+     called stage's own meaning, not invented per run. */
+  lines.push({
+    id: 'implication', label: 'Implication for the next 1–2 quarters',
+    text: st
+      ? (st.implication || st.meaning || 'See the stage description.')
+      : 'No stage has been called, so no implication is drawn.'
+  });
 
   return lines;
 }
@@ -524,12 +721,16 @@ export function summaryLines({ scores, stage, divergence, macro, drift }, framew
  */
 export function actionsFor(stageId, framework) {
   const table = (framework && framework.stageActions && framework.stageActions.byStage) || {};
+  const row = table[stageId];
+  if (!row) return null;
   const stage = ((framework && framework.cycleStages) || []).find((s) => s.id === stageId);
-  return (table[stageId] || []).map((row) => ({
-    ...row,
+  return {
     stageId,
-    stageLabel: (stage && stage.plainLabel) || stageId
-  }));
+    stageLabel: (stage && stage.label) || stageId,
+    stagePlainLabel: (stage && stage.plainLabel) || stageId,
+    why: row.why || '',
+    research: (row.research || []).map((r) => ({ ...r }))
+  };
 }
 
 /**
@@ -543,6 +744,7 @@ export function snapshotOf(payload) {
   return {
     generatedAt: payload.generatedAt || null,
     asOf: payload.asOf || null,
+    scoringVersion: payload.scoringVersion || null,
     stageId: (payload.stage && payload.stage.stageId) || null,
     scores,
     /* the alert identities, so a repeat of the same alert is not "new" */
@@ -560,6 +762,15 @@ export function snapshotOf(payload) {
 export function changesSince(prev, payload, framework) {
   if (!prev) {
     return [{ kind: 'first-run', text: 'First reading on record - nothing to compare against yet.' }];
+  }
+  /* A scoring change makes the numbers incomparable. Saying "leading moved down
+     58 points" across a rescale would be describing the method, not the cycle. */
+  if ((prev.scoringVersion || null) !== (payload.scoringVersion || null)) {
+    return [{
+      kind: 'method-change',
+      text: 'The scoring method changed since the last refresh, so this quarter\'s ' +
+            'scores are not comparable with the stored ones. The change log resumes next run.'
+    }];
   }
   const out = [];
   const stageOf = (id) => ((framework && framework.cycleStages) || []).find((s) => s.id === id);
@@ -602,7 +813,8 @@ export function changesSince(prev, payload, framework) {
  * Cockpit, the macro consistency panel and the Insight tab all read.
  */
 export function buildScores({ kpis, companies, framework, macro, commentary, generatedAt, previous }) {
-  const scores = bucketScores(kpis, companies);
+  const toneInputs = toneInputsByBucket(commentary, framework);
+  const scores = bucketScores(kpis, companies, { toneInputs });
   const divergence = divergenceOf(scores);
   const stage = stageCall(scores, framework && framework.cycleStages);
   const macroVerdict = macroAgreement(macro, scores);
@@ -630,7 +842,9 @@ export function buildScores({ kpis, companies, framework, macro, commentary, gen
           'series one quarter shorter, so the change arrow is a measurement, not a memory. ' +
           'A group with nothing flagged scores null.',
     sourceTag: 'derived',
-    momentumMap: FLAG_MOMENTUM,
+    scoringVersion: SCORING_VERSION,
+    /* the weighting published with the numbers, so the score is arguable */
+    scoringMap: { score: FLAG_SCORE, weight: FLAG_WEIGHT, toneDirection: TONE_DIRECTION },
     quarters: (kpis && kpis.quarters) || [],
     asOf: (kpis && kpis.quarters && kpis.quarters[kpis.quarters.length - 1]) || null,
     scores,

@@ -2,15 +2,32 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-07-28T16:21:42.682Z",
+  "generatedAt": "2026-07-28T16:41:16.962Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
-  "momentumMap": {
-    "accelerating": 100,
-    "inflecting-up": 75,
-    "steady": 50,
-    "inflecting-down": 25,
-    "decelerating": 0
+  "scoringVersion": 2,
+  "scoringMap": {
+    "score": {
+      "accelerating": 1,
+      "inflecting-up": 1,
+      "steady": 0,
+      "decelerating": -1,
+      "inflecting-down": -1
+    },
+    "weight": {
+      "accelerating": 1,
+      "inflecting-up": 2,
+      "steady": 1,
+      "decelerating": 1,
+      "inflecting-down": 2
+    },
+    "toneDirection": {
+      "confident": 1,
+      "constructive": 1,
+      "neutral": 0,
+      "cautious": -1,
+      "defensive": -1
+    }
   },
   "quarters": [
     "Q1 FY26",
@@ -21,38 +38,255 @@
   "asOf": "Q4 FY26",
   "scores": {
     "leading": {
-      "score": 50,
-      "prev": 25,
-      "delta": 25,
-      "level": "neutral",
+      "score": -8,
+      "prev": -70,
+      "delta": 70,
+      "deltaBasis": "kpi-only",
+      "level": "flat",
       "direction": "rising",
       "kpisScored": 11,
       "kpisTotal": 20,
-      "companiesScored": 8
+      "tonesScored": 8,
+      "companiesScored": 8,
+      "staleKpis": 6,
+      "oneOffKpis": 0,
+      "lowCoverage": false,
+      "signals": [
+        {
+          "kind": "kpi",
+          "companyId": "engineers-india",
+          "company": "Engineers India",
+          "label": "Order inflow",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "engineers-india",
+          "company": "Engineers India",
+          "label": "Order book",
+          "flag": "inflecting-up"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "lt",
+          "company": "L&T",
+          "label": "Hydrocarbon order inflow",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "ratnamani",
+          "company": "Ratnamani Metals",
+          "label": "Order book",
+          "flag": "inflecting-up"
+        },
+        {
+          "kind": "tone",
+          "companyId": "ongc",
+          "company": "ONGC",
+          "label": "Upstream capex intent",
+          "flag": "tone-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "lt",
+          "company": "L&T",
+          "label": "Refining/petchem capex pipeline",
+          "flag": "tone-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "ratnamani",
+          "company": "Ratnamani Metals",
+          "label": "Refining/petchem capex pipeline",
+          "flag": "tone-down"
+        }
+      ]
     },
     "coincident": {
-      "score": 33,
-      "prev": 50,
-      "delta": -17,
-      "level": "weak",
+      "score": -61,
+      "prev": 12,
+      "delta": -55,
+      "deltaBasis": "kpi-only",
+      "level": "strong-negative",
       "direction": "falling",
       "kpisScored": 18,
       "kpisTotal": 34,
-      "companiesScored": 11
+      "tonesScored": 14,
+      "companiesScored": 11,
+      "staleKpis": 7,
+      "oneOffKpis": 0,
+      "lowCoverage": false,
+      "signals": [
+        {
+          "kind": "kpi",
+          "companyId": "iocl",
+          "company": "IOCL",
+          "label": "GRM",
+          "flag": "inflecting-up"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "iocl",
+          "company": "IOCL",
+          "label": "Throughput",
+          "flag": "inflecting-up"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "bpcl",
+          "company": "BPCL",
+          "label": "GRM",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "petronet-lng",
+          "company": "Petronet LNG",
+          "label": "Regas utilisation %",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "petronet-lng",
+          "company": "Petronet LNG",
+          "label": "Volume",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "igl",
+          "company": "IGL",
+          "label": "EBITDA / scm",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "mahanagar-gas",
+          "company": "Mahanagar Gas",
+          "label": "EBITDA / scm",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "aegis-vopak",
+          "company": "Aegis Vopak",
+          "label": "LPG throughput",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "gandhar-oil",
+          "company": "Gandhar Oil",
+          "label": "Base-oil spread",
+          "flag": "inflecting-up"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "gandhar-oil",
+          "company": "Gandhar Oil",
+          "label": "White-oil volume",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "bpcl",
+          "company": "BPCL",
+          "label": "Refining margin outlook",
+          "flag": "tone-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "bpcl",
+          "company": "BPCL",
+          "label": "Marketing margin normalization",
+          "flag": "tone-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "gail",
+          "company": "GAIL",
+          "label": "Gas demand trajectory",
+          "flag": "tone-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "petronet-lng",
+          "company": "Petronet LNG",
+          "label": "Gas demand trajectory",
+          "flag": "tone-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "igl",
+          "company": "IGL",
+          "label": "Gas demand trajectory",
+          "flag": "tone-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "mahanagar-gas",
+          "company": "Mahanagar Gas",
+          "label": "Gas demand trajectory",
+          "flag": "tone-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "supreme-petrochem",
+          "company": "Supreme Petrochem",
+          "label": "Spread / demand commentary",
+          "flag": "tone-up"
+        },
+        {
+          "kind": "tone",
+          "companyId": "castrol-india",
+          "company": "Castrol India",
+          "label": "Spread / demand commentary",
+          "flag": "tone-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "gandhar-oil",
+          "company": "Gandhar Oil",
+          "label": "Spread / demand commentary",
+          "flag": "tone-down"
+        }
+      ]
     },
     "lagging": {
-      "score": 13,
-      "prev": 38,
-      "delta": -25,
-      "level": "weak",
+      "score": 0,
+      "prev": 33,
+      "delta": -133,
+      "deltaBasis": "kpi-only",
+      "level": "flat",
       "direction": "falling",
       "kpisScored": 2,
       "kpisTotal": 4,
-      "companiesScored": 1
+      "tonesScored": 2,
+      "companiesScored": 1,
+      "staleKpis": 0,
+      "oneOffKpis": 0,
+      "lowCoverage": false,
+      "signals": [
+        {
+          "kind": "kpi",
+          "companyId": "ge-shipping",
+          "company": "GE Shipping",
+          "label": "Fleet deployment",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "shipping-corp",
+          "company": "Shipping Corp of India",
+          "label": "Freight / shipping outlook",
+          "flag": "tone-up"
+        }
+      ]
     }
   },
   "divergence": {
-    "value": 17,
+    "value": 53,
     "leadingSign": 0,
     "coincidentSign": -1,
     "signsDiffer": false
@@ -60,18 +294,18 @@
   "divergenceSeries": [
     null,
     null,
-    -25,
-    17
+    -82,
+    43
   ],
   "stage": {
     "stageId": "early-upcycle",
-    "position": 31,
-    "ruleId": "leading-turns-first",
-    "ruleLabel": "Leading strong or rising, coincident not yet following",
+    "position": 32,
+    "ruleId": "early-upcycle",
+    "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 50 (neutral, rising), coincident 33 (weak, falling).",
-      "Leading strong or rising, coincident not yet following."
+      "Leading -8 (flat, rising), coincident -61 (strong-negative, falling), lagging 0 (flat).",
+      "Leading turning positive off a low base, coincident not yet following."
     ]
   },
   "macro": {
@@ -87,6 +321,7 @@
         "id": "brent",
         "label": "Brent",
         "direction": "falling",
+        "percentile": 64,
         "supports": "up",
         "vote": "opposes"
       },
@@ -94,6 +329,7 @@
         "id": "indian-basket",
         "label": "Indian Basket",
         "direction": "falling",
+        "percentile": 64,
         "supports": "up",
         "vote": "opposes"
       },
@@ -101,6 +337,7 @@
         "id": "crack-spread",
         "label": "Crack spread",
         "direction": "rising",
+        "percentile": 100,
         "supports": "up",
         "vote": "supports"
       },
@@ -108,6 +345,7 @@
         "id": "domestic-gas",
         "label": "Gas (JKM)",
         "direction": null,
+        "percentile": null,
         "supports": "down",
         "vote": "silent"
       },
@@ -115,6 +353,7 @@
         "id": "inr-usd",
         "label": "USD/INR",
         "direction": "rising",
+        "percentile": 100,
         "supports": "down",
         "vote": "opposes"
       },
@@ -122,6 +361,7 @@
         "id": "baltic-dirty",
         "label": "Freight",
         "direction": null,
+        "percentile": null,
         "supports": "up",
         "vote": "silent"
       }
@@ -249,20 +489,8 @@
       "direction": "up"
     }
   ],
-  "coverageWarnings": [
-    {
-      "groupId": "lagging",
-      "kind": "thin",
-      "text": "Moves last: scored on 2 of 4 KPIs."
-    }
-  ],
+  "coverageWarnings": [],
   "alerts": [
-    {
-      "id": "coverage-lagging",
-      "severity": "info",
-      "kind": "low-coverage",
-      "text": "Moves last: scored on 2 of 4 KPIs."
-    },
     {
       "id": "tone-ongc",
       "severity": "warn",
@@ -338,96 +566,90 @@
   ],
   "summary": [
     {
-      "id": "where",
-      "label": "Where we are",
-      "text": "Just turning up (Early Upcycle). Leading 50 (neutral, rising), coincident 33 (weak, falling). Leading strong or rising, coincident not yet following."
+      "id": "call",
+      "label": "Cycle call",
+      "text": "Early Upcycle (Just turning up)."
     },
     {
-      "id": "scores",
-      "label": "The three groups",
-      "text": "Moves first 50 (up 25); Moving now 33 (down 17); Moves last 13 (down 25)."
+      "id": "leading",
+      "label": "Leading indicators",
+      "text": "Leading indicators are flat and rising — driven by Engineers India Order inflow, Engineers India Order book, L&T Hydrocarbon order inflow."
     },
     {
-      "id": "divergence",
-      "label": "The split",
-      "text": "Moves first sits above Moving now by 17 points, but both are on the same side of neutral, so this is a matter of degree rather than a turn."
+      "id": "coincident",
+      "label": "Coincident indicators",
+      "text": "Coincident indicators are strongly negative and falling — IOCL GRM, IOCL Throughput, BPCL GRM."
     },
     {
       "id": "macro",
-      "label": "The backdrop",
-      "text": "The market backdrop points down on 1 of 4 readings that have a direction, which agrees with the scores."
+      "label": "Macro backdrop",
+      "text": "Brent falling (64th pctile); Indian Basket falling (64th pctile); Crack spread rising (100th pctile); USD/INR rising (100th pctile)."
     },
     {
-      "id": "tone",
-      "label": "What management said",
-      "text": "12 companies have moved two tone steps or more, 10 of them downward — the largest is ONGC (confident → cautious)."
+      "id": "divergence",
+      "label": "Divergence",
+      "text": "Leading minus coincident is +53. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+    },
+    {
+      "id": "watchlist",
+      "label": "Tone drift watchlist",
+      "text": "ONGC (confident → cautious); Petronet LNG (constructive → defensive); Mahanagar Gas (confident → cautious); Castrol India (confident → cautious); L&T (constructive → cautious); Ratnamani Metals (neutral → defensive); and 6 more."
+    },
+    {
+      "id": "implication",
+      "label": "Implication for the next 1–2 quarters",
+      "text": "First new orders are landing. Only the early movers feel it."
     }
   ],
-  "actions": [
-    {
-      "id": "early-order-inflow",
-      "action": "Track order inflow and book-to-bill at the early movers",
-      "why": "This is the stage where inflow turns before revenue does; the gap is the opportunity.",
-      "focus": [
-        "engineers-india",
-        "l-t",
-        "welspun-corp",
-        "ratnamani-metals"
-      ],
-      "stageId": "early-upcycle",
-      "stageLabel": "Just turning up"
-    },
-    {
-      "id": "early-utilisation",
-      "action": "Check rig and asset utilisation, and day-rate direction",
-      "why": "Utilisation tightening ahead of pricing is the classic early-upcycle tell.",
-      "focus": [
-        "deep-industries",
-        "jindal-drilling"
-      ],
-      "stageId": "early-upcycle",
-      "stageLabel": "Just turning up"
-    },
-    {
-      "id": "early-laggard-check",
-      "action": "Confirm the refiners and shippers have NOT yet turned",
-      "why": "If the back of the chain has already moved, the call is later than early upcycle.",
-      "focus": [
-        "iocl",
-        "bpcl",
-        "hpcl",
-        "ge-shipping",
-        "shipping-corp"
-      ],
-      "stageId": "early-upcycle",
-      "stageLabel": "Just turning up"
-    },
-    {
-      "id": "early-capacity",
-      "action": "Ask who is adding capacity, and at what cost",
-      "why": "Capacity added early earns the whole cycle; added late it defines the next downturn.",
-      "focus": [],
-      "stageId": "early-upcycle",
-      "stageLabel": "Just turning up"
-    }
-  ],
+  "actions": {
+    "stageId": "early-upcycle",
+    "stageLabel": "Early Upcycle",
+    "stagePlainLabel": "Just turning up",
+    "why": "Oilfield services and first-line capex enablers have the most operating leverage to a capex turn; order books inflect here first and hardest",
+    "research": [
+      {
+        "label": "Deep Industries",
+        "companyId": "deep-industries"
+      },
+      {
+        "label": "Jindal Drilling",
+        "companyId": "jindal-drilling"
+      },
+      {
+        "label": "Engineers India",
+        "companyId": "engineers-india"
+      },
+      {
+        "label": "Ratnamani",
+        "companyId": "ratnamani"
+      },
+      {
+        "label": "Welspun",
+        "companyId": "welspun-corp"
+      },
+      {
+        "label": "Man Industries",
+        "companyId": null
+      }
+    ]
+  },
   "changes": [
     {
-      "kind": "none",
-      "text": "Nothing material moved since the last refresh."
+      "kind": "method-change",
+      "text": "The scoring method changed since the last refresh, so this quarter's scores are not comparable with the stored ones. The change log resumes next run."
     }
   ],
   "previous": {
-    "generatedAt": "2026-07-28T16:09:37.756Z",
+    "generatedAt": "2026-07-28T16:40:11.953Z",
     "asOf": "Q4 FY26",
+    "scoringVersion": null,
     "stageId": "early-upcycle",
     "scores": {
-      "leading": 50,
-      "coincident": 33,
-      "lagging": 13
+      "leading": -8,
+      "coincident": -61,
+      "lagging": 0
     },
     "alertIds": [
-      "coverage-lagging",
       "tone-bpcl",
       "tone-castrol-india",
       "tone-gail",

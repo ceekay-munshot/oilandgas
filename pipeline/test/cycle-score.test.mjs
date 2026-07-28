@@ -2,8 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
-  FLAG_MOMENTUM, NEUTRAL, levelOf, directionOf, scoreGroup, bucketScores,
-  divergenceOf, stageCall, STAGE_RULES, tileDirection, macroAgreement,
+  FLAG_SCORE, FLAG_WEIGHT, TONE_DIRECTION, NEUTRAL, levelOf, directionOf,
+  scoreGroup, bucketScores, toneInputsByBucket, divergenceOf, stageCall,
+  STAGE_RULES, tileDirection, tilePercentile, macroAgreement,
   toneDrift, coverageWarnings, buildAlerts, buildScores
 } from '../lib/cycle-score.mjs';
 
@@ -11,12 +12,16 @@ import {
 
 const FRAMEWORK = {
   cycleStages: [
-    { id: 'trough',          range: [0, 20] },
-    { id: 'early-upcycle',   range: [20, 40] },
-    { id: 'mid-upcycle',     range: [40, 60] },
-    { id: 'late-upcycle',    range: [60, 80] },
-    { id: 'early-downcycle', range: [80, 100] }
+    { id: 'trough',          label: 'Trough',            range: [0, 20] },
+    { id: 'early-upcycle',   label: 'Early Upcycle',     range: [20, 40] },
+    { id: 'mid-upcycle',     label: 'Mid Upcycle',       range: [40, 60] },
+    { id: 'late-upcycle',    label: 'Late Upcycle/Peak', range: [60, 80] },
+    { id: 'early-downcycle', label: 'Early Downcycle',   range: [80, 100] }
   ],
+  themes: { items: [
+    { id: 'upstream-capex', label: 'Upstream capex intent', bucket: 'leading', companyIds: ['a'] },
+    { id: 'freight-shipping', label: 'Freight outlook', bucket: 'lagging', companyIds: ['c'] }
+  ] },
   groupMeta: [
     { id: 'leading', plainLabel: 'Moves first' },
     { id: 'coincident', plainLabel: 'Moving now' },
@@ -42,23 +47,31 @@ const groupsOf = (spec) => ({
 
 /* ------------------------------------------------------------ momentum & bands */
 
-test('every trajectory flag has a momentum value, neutral in the middle', () => {
-  assert.equal(FLAG_MOMENTUM.steady, NEUTRAL);
-  assert.equal(FLAG_MOMENTUM.accelerating, 100);
-  assert.equal(FLAG_MOMENTUM.decelerating, 0);
-  /* inflections are half steps - a turn is not yet a trend */
-  assert.ok(FLAG_MOMENTUM['inflecting-up'] > NEUTRAL && FLAG_MOMENTUM['inflecting-up'] < 100);
-  assert.ok(FLAG_MOMENTUM['inflecting-down'] < NEUTRAL && FLAG_MOMENTUM['inflecting-down'] > 0);
+test('the brief\'s weighting: inflections count DOUBLE, steady is zero', () => {
+  assert.equal(FLAG_SCORE.steady, NEUTRAL);
+  assert.equal(FLAG_SCORE.accelerating, 1);
+  /* "early warning - often precedes an inflection", so it scores negative */
+  assert.equal(FLAG_SCORE.decelerating, -1);
+  assert.equal(FLAG_SCORE['inflecting-up'], 1);
+  assert.equal(FLAG_SCORE['inflecting-down'], -1);
+  /* the rule the whole scoring turns on */
+  assert.equal(FLAG_WEIGHT['inflecting-up'], 2);
+  assert.equal(FLAG_WEIGHT['inflecting-down'], 2);
+  assert.equal(FLAG_WEIGHT.accelerating, 1);
+  assert.equal(FLAG_WEIGHT.steady, 1);
+  assert.equal(FLAG_WEIGHT.decelerating, 1);
 });
 
-test('levelOf and directionOf respect their dead bands', () => {
-  assert.equal(levelOf(70), 'strong');
-  assert.equal(levelOf(30), 'weak');
-  assert.equal(levelOf(52), 'neutral');           /* inside the band */
+test('levelOf speaks the 4b table\'s language on a signed scale', () => {
+  assert.equal(levelOf(70), 'strong-positive');
+  assert.equal(levelOf(20), 'positive');
+  assert.equal(levelOf(0), 'flat');
+  assert.equal(levelOf(-20), 'negative');
+  assert.equal(levelOf(-70), 'strong-negative');
   assert.equal(levelOf(null), null);
-  assert.equal(directionOf(5), 'rising');
-  assert.equal(directionOf(-5), 'falling');
-  assert.equal(directionOf(1), 'flat');           /* inside the band */
+  assert.equal(directionOf(9), 'rising');
+  assert.equal(directionOf(-9), 'falling');
+  assert.equal(directionOf(1), 'flat');
   assert.equal(directionOf(null), null);
 });
 
@@ -70,10 +83,10 @@ test('a group of rising KPIs scores high, falling scores low', () => {
   assert.equal(scoreGroup(kpis, g).score, 100);
 
   const down = kpisWith({ a: [FALLING, FALLING] });
-  assert.equal(scoreGroup(down, g).score, 0);
+  assert.equal(scoreGroup(down, g).score, -100);
 });
 
-test('a group with nothing flaggable scores null, never 50', () => {
+test('a group with nothing flaggable scores null, never zero', () => {
   /* two points is below the three the flag needs */
   const kpis = kpisWith({ a: [[1, 2]] });
   const g = { id: 'leading', companies: [{ id: 'a' }] };
@@ -96,17 +109,17 @@ test('drop walks the calculation back a quarter, dropping newest first', () => {
   const turn = [100, 60, 20, 90];
   const kpis = kpisWith({ a: [turn] });
   const g = { id: 'leading', companies: [{ id: 'a' }] };
-  assert.equal(scoreGroup(kpis, g, 0).score, FLAG_MOMENTUM['inflecting-up']);
-  assert.equal(scoreGroup(kpis, g, 1).score, FLAG_MOMENTUM['decelerating']);
+  assert.equal(scoreGroup(kpis, g, 0).score, 100);    /* inflecting-up  = +1 */
+  assert.equal(scoreGroup(kpis, g, 1).score, -100);   /* decelerating   = -1 */
 });
 
 test('bucketScores reports the delta between now and one quarter back', () => {
   const turn = [100, 60, 20, 90];
   const kpis = kpisWith({ a: [turn] });
   const s = bucketScores(kpis, groupsOf({ leading: ['a'] }));
-  assert.equal(s.leading.score, 75);
-  assert.equal(s.leading.prev, 0);
-  assert.equal(s.leading.delta, 75);
+  assert.equal(s.leading.score, 100);
+  assert.equal(s.leading.prev, -100);
+  assert.equal(s.leading.delta, 200);
   assert.equal(s.leading.direction, 'rising');
 });
 
@@ -118,12 +131,12 @@ test('divergence is leading minus COINCIDENT, per the client definition', () => 
 });
 
 test('the alert fires only when the two sit on opposite sides of neutral', () => {
-  /* wide gap, same side - not a divergence */
-  assert.equal(divergenceOf({ leading: { score: 90 }, coincident: { score: 60 } }).signsDiffer, false);
-  /* smaller gap, opposite sides - this is the one worth waking someone for */
-  assert.equal(divergenceOf({ leading: { score: 60 }, coincident: { score: 40 } }).signsDiffer, true);
-  /* one group inside the dead band is not "the opposite" of anything */
-  assert.equal(divergenceOf({ leading: { score: 70 }, coincident: { score: 50 } }).signsDiffer, false);
+  /* wide gap, both positive - not a divergence */
+  assert.equal(divergenceOf({ leading: { score: 90 }, coincident: { score: 40 } }).signsDiffer, false);
+  /* smaller gap ACROSS zero - this is the one worth waking someone for */
+  assert.equal(divergenceOf({ leading: { score: 20 }, coincident: { score: -20 } }).signsDiffer, true);
+  /* one bucket inside the dead band is not "the opposite" of anything */
+  assert.equal(divergenceOf({ leading: { score: 70 }, coincident: { score: 0 } }).signsDiffer, false);
 });
 
 test('divergence with a missing score is null, not zero', () => {
@@ -142,32 +155,37 @@ const G = (score, prev) => ({
   kpisScored: 8, kpisTotal: 10
 });
 
-test('leading rolling over while coincident is hot calls the peak', () => {
-  const call = stageCall({ leading: G(60, 80), coincident: G(75, 75) }, FRAMEWORK.cycleStages);
-  assert.equal(call.ruleId, 'leading-rolls-over');
-  assert.equal(call.stageId, 'late-upcycle');
-});
-
-test('leading weak with coincident falling calls the downcycle', () => {
-  const call = stageCall({ leading: G(30, 32), coincident: G(40, 60) }, FRAMEWORK.cycleStages);
-  assert.equal(call.ruleId, 'weakness-spreading');
+test('4b: leading turning negative while coincident compresses = Early Downcycle', () => {
+  const call = stageCall({ leading: G(-20, 10), coincident: G(30, 45), lagging: G(40, 40) }, FRAMEWORK.cycleStages);
   assert.equal(call.stageId, 'early-downcycle');
 });
 
-test('both strong is mid upcycle; leading alone is early upcycle', () => {
-  assert.equal(stageCall({ leading: G(80, 80), coincident: G(70, 70) }, FRAMEWORK.cycleStages).stageId, 'mid-upcycle');
-  assert.equal(stageCall({ leading: G(80, 80), coincident: G(45, 45) }, FRAMEWORK.cycleStages).stageId, 'early-upcycle');
+test('4b: leading positive but flattening with coincident at peak = Late Upcycle', () => {
+  const call = stageCall({ leading: G(30, 30), coincident: G(60, 60), lagging: G(70, 70) }, FRAMEWORK.cycleStages);
+  assert.equal(call.stageId, 'late-upcycle');
 });
 
-test('both weak is the trough', () => {
-  const call = stageCall({ leading: G(20, 20), coincident: G(25, 25) }, FRAMEWORK.cycleStages);
-  assert.equal(call.ruleId, 'broad-weakness');
+test('4b: leading strongly positive with coincident positive = Mid Upcycle', () => {
+  const call = stageCall({ leading: G(70, 40), coincident: G(30, 10), lagging: G(15, 0) }, FRAMEWORK.cycleStages);
+  assert.equal(call.stageId, 'mid-upcycle');
+});
+
+test('4b: leading turning up off a low base, coincident not following = Early Upcycle', () => {
+  const call = stageCall({ leading: G(20, -30), coincident: G(-25, -30), lagging: G(-40, -45) }, FRAMEWORK.cycleStages);
+  assert.equal(call.stageId, 'early-upcycle');
+  assert.equal(call.ruleId, 'early-upcycle');
+});
+
+test('4b: all three negative = Trough', () => {
+  const call = stageCall({ leading: G(-40, -40), coincident: G(-50, -50), lagging: G(-60, -60) }, FRAMEWORK.cycleStages);
   assert.equal(call.stageId, 'trough');
 });
 
-test('nothing off neutral falls through to the low-confidence row', () => {
-  const call = stageCall({ leading: G(50, 50), coincident: G(50, 50) }, FRAMEWORK.cycleStages);
+test('nothing off zero calls NO stage rather than defaulting to mid-cycle', () => {
+  const call = stageCall({ leading: G(0, 0), coincident: G(0, 0), lagging: G(0, 0) }, FRAMEWORK.cycleStages);
   assert.equal(call.ruleId, 'no-clear-signal');
+  assert.equal(call.stageId, null);        /* a stage is a claim; this board has not earned one */
+  assert.equal(call.position, null);
   assert.equal(call.confidence, 'low');
 });
 
@@ -184,23 +202,64 @@ test('no scores means no stage call, not a default stage', () => {
 
 test('the position always lands inside the called stage band', () => {
   const cases = [
-    [G(80, 60), G(70, 70)], [G(20, 20), G(25, 25)],
-    [G(60, 80), G(75, 75)], [G(80, 80), G(45, 45)], [G(50, 50), G(50, 50)]
+    [G(-20, 10), G(30, 45), G(40, 40)], [G(30, 30), G(60, 60), G(70, 70)],
+    [G(70, 40), G(30, 10), G(15, 0)],   [G(20, -30), G(-25, -30), G(-40, -45)],
+    [G(-40, -40), G(-50, -50), G(-60, -60)]
   ];
-  cases.forEach(([L, C]) => {
-    const call = stageCall({ leading: L, coincident: C }, FRAMEWORK.cycleStages);
-    const stage = FRAMEWORK.cycleStages.find((s) => s.id === call.stageId);
+  cases.forEach(([L, C, Gg]) => {
+    const call = stageCall({ leading: L, coincident: C, lagging: Gg }, FRAMEWORK.cycleStages);
+    const stage = FRAMEWORK.cycleStages.find((x) => x.id === call.stageId);
+    assert.ok(stage, 'expected a stage for ' + JSON.stringify([L.score, C.score]));
     assert.ok(call.position >= stage.range[0] && call.position <= stage.range[1],
       `${call.stageId} position ${call.position} outside ${stage.range}`);
   });
 });
 
-test('the stage call always names the row that produced it', () => {
-  const call = stageCall({ leading: G(80, 80), coincident: G(45, 45) }, FRAMEWORK.cycleStages);
+test('the stage call always names the row that produced it and cites the lagging bucket', () => {
+  const call = stageCall({ leading: G(70, 40), coincident: G(30, 10), lagging: G(15, 0) }, FRAMEWORK.cycleStages);
   assert.ok(call.ruleLabel && call.because.length >= 2);
+  assert.ok(/lagging/.test(call.because[0]));
+});
+
+/* ------------------------------------------------------------- tone -> scores */
+
+test('tone routes into buckets by THEME, not by company group', () => {
+  const commentary = { companies: {
+    a: { name: 'A', tones: [{ quarter: 'Q3', toneId: 'confident', score: 5 }] },
+    c: { name: 'C', tones: [{ quarter: 'Q3', toneId: 'defensive', score: 1 }] }
+  } };
+  const out = toneInputsByBucket(commentary, FRAMEWORK);
+  assert.equal(out.leading.length, 1);
+  assert.equal(out.leading[0].value, TONE_DIRECTION.confident);
+  assert.equal(out.lagging.length, 1);
+  assert.equal(out.lagging[0].value, TONE_DIRECTION.defensive);
+  assert.equal(out.coincident.length, 0);
+});
+
+test('a two-step tone drift carries double weight, a one-step does not', () => {
+  const two = { companies: { a: { name: 'A', tones: [
+    { quarter: 'Q2', toneId: 'confident', score: 5 }, { quarter: 'Q3', toneId: 'neutral', score: 3 }
+  ] } } };
+  const one = { companies: { a: { name: 'A', tones: [
+    { quarter: 'Q2', toneId: 'confident', score: 5 }, { quarter: 'Q3', toneId: 'constructive', score: 4 }
+  ] } } };
+  assert.equal(toneInputsByBucket(two, FRAMEWORK).leading[0].weight, 2);
+  assert.equal(toneInputsByBucket(one, FRAMEWORK).leading[0].weight, 1);
+});
+
+test('tone actually moves the bucket score', () => {
+  const kpis = kpisWith({ a: [FLAT, FLAT] });            /* steady = 0 contribution */
+  const groups = groupsOf({ leading: ['a'] });
+  const plain = bucketScores(kpis, groups).leading.score;
+  const withTone = bucketScores(kpis, groups, { toneInputs: {
+    leading: [{ companyId: 'a', company: 'A', theme: 'Upstream', value: -1, weight: 2, drift: -2 }]
+  } }).leading.score;
+  assert.equal(plain, 0);
+  assert.ok(withTone < plain, 'a defensive two-step drift must pull the bucket down');
 });
 
 /* -------------------------------------------------------------------- macro */
+
 
 const tile = (id, supports, values) => ({
   id, supports,
@@ -290,17 +349,19 @@ test('drift is sorted with the biggest move first', () => {
 
 /* ------------------------------------------------------------ coverage/alerts */
 
-test('a thin or absent group raises a coverage warning', () => {
+test('the coverage guard fires at the brief\'s one-third of stale or one-off KPIs', () => {
   const w = coverageWarnings({
-    leading: { score: 60, kpisScored: 2, kpisTotal: 20 },
-    coincident: { score: 60, kpisScored: 18, kpisTotal: 20 },
-    lagging: { score: null, kpisScored: 0, kpisTotal: 6 }
+    /* 8 of 20 stale+one-off = 40%, over a third */
+    leading: { score: 60, kpisScored: 12, kpisTotal: 20, staleKpis: 6, oneOffKpis: 2, lowCoverage: true },
+    /* 6 of 20 = 30%, under a third - no warning */
+    coincident: { score: 60, kpisScored: 18, kpisTotal: 20, staleKpis: 6, oneOffKpis: 0, lowCoverage: false },
+    lagging: { score: null, kpisScored: 0, kpisTotal: 6, staleKpis: 0, oneOffKpis: 0, lowCoverage: false }
   }, FRAMEWORK.groupMeta);
   const kinds = Object.fromEntries(w.map((x) => [x.groupId, x.kind]));
-  assert.equal(kinds.leading, 'thin');
+  assert.equal(kinds.leading, 'low-coverage');
   assert.equal(kinds.lagging, 'no-score');
   assert.equal(kinds.coincident, undefined);
-  assert.ok(w[0].text.includes('Moves first'));      /* plain label, not the id */
+  assert.ok(w[0].text.includes('Moves first'));
 });
 
 test('the alert strip leads with divergence, then macro conflict', () => {
@@ -327,21 +388,24 @@ test('buildScores assembles a payload with every section the tabs read', () => {
   const out = buildScores({
     kpis, companies, framework: FRAMEWORK,
     macro: { flagLookbackMonths: 3, flatBandPct: 1.5, tiles: [tile('a', 'up', [10, 11, 12, 20])] },
+    /* company 'a' sits in the upstream-capex theme, which feeds LEADING */
     commentary: { companies: { a: { name: 'A', ...toned(['Q3', 'confident', 5], ['Q4', 'cautious', 2]) } } },
     generatedAt: '2026-07-28T00:00:00.000Z'
   });
-  assert.equal(out.scores.leading.score, 100);
-  assert.equal(out.scores.coincident.score, 0);
+  /* Two accelerating KPIs (+1, weight 1 each) against a three-step tone
+     deterioration (-1 at DOUBLE weight) nets to exactly zero. That is the
+     brief's rule doing its job: commentary is not decoration, it scores. */
+  assert.equal(out.scores.leading.score, 0);
+  assert.equal(out.scores.leading.tonesScored, 1);
+  assert.equal(out.scores.coincident.score, -100);
   assert.equal(out.divergence.value, 100);
-  assert.equal(out.divergence.signsDiffer, true);
-  assert.ok(out.stage.stageId);
+  /* leading is inside the dead band, so this is a gap, not a sign split */
+  assert.equal(out.divergence.signsDiffer, false);
   assert.equal(out.sourceTag, 'derived');
   assert.equal(out.toneDrift.length, 1);
-  assert.ok(out.alerts.some((a) => a.kind === 'divergence'));
   assert.equal(out.divergenceSeries.length, 4);
-  /* the oldest steps have too few quarters to flag, so they are null not carried */
   assert.equal(out.divergenceSeries[0], null);
-  assert.equal(out.divergenceSeries[3], 100);
+  assert.ok(Array.isArray(out.summary) && Array.isArray(out.changes));
 });
 
 test('buildScores survives absent macro and commentary', () => {
@@ -359,25 +423,33 @@ import { summaryLines, actionsFor, snapshotOf, changesSince } from '../lib/cycle
 
 const FW5 = Object.assign({}, FRAMEWORK, {
   stageActions: { byStage: {
-    'early-upcycle': [{ id: 'a1', action: 'Track order inflow', why: 'inflow turns first', focus: ['eil'] }],
-    'trough': [{ id: 't1', action: 'Check enquiries', why: 'enquiries move first', focus: [] }]
+    'early-upcycle': { why: 'order books inflect here first', research: [
+      { label: 'Deep Industries', companyId: 'a' }, { label: 'Man Industries', companyId: null }] },
+    'trough': { why: 'establish baselines', research: [{ label: 'ONGC', companyId: 'a' }] }
   } }
 });
 
-test('the summary always leads with where we are, in a fixed order', () => {
+test('the summary follows the brief\'s 5a structure, in order', () => {
   const lines = summaryLines({
-    scores: { leading: G(80, 60), coincident: G(40, 50), lagging: G(30, 30) },
-    stage: { stageId: 'early-upcycle', because: ['Leading 80, coincident 40.'] },
-    divergence: { value: 40, signsDiffer: true },
-    macro: { macroBias: 'up', scoreBias: 'up', agree: true, conflict: false, supporting: 3, opposing: 1 },
+    scores: {
+      leading: Object.assign(G(80, 60), { signals: [{ kind: 'kpi', company: 'Deep', label: 'Order book', flag: 'inflecting-up' }] }),
+      coincident: Object.assign(G(-40, -50), { signals: [{ kind: 'tone', company: 'IOCL', label: 'Refining margin' }] }),
+      lagging: G(30, 30)
+    },
+    stage: { stageId: 'early-upcycle', because: ['Leading 80, coincident -40.'] },
+    divergence: { value: 120, signsDiffer: true },
+    macro: { macroBias: 'up', scoreBias: 'up', agree: true, conflict: false, supporting: 3, opposing: 1,
+             tiles: [{ label: 'Brent', direction: 'rising', percentile: 72 }] },
     drift: [{ name: 'ONGC', from: 'confident', to: 'cautious', direction: 'down', steps: -3 }]
   }, FW5);
-  assert.deepEqual(lines.map((l) => l.id), ['where', 'scores', 'divergence', 'macro', 'tone']);
-  /* the fixture's stages carry no words, so this also proves the id is the
-     last resort rather than the string "undefined" */
-  assert.ok(lines[0].text.startsWith('early-upcycle'));
+  /* exactly the clauses the brief's fixed paragraph names, in its order */
+  assert.deepEqual(lines.map((l) => l.id),
+    ['call', 'leading', 'coincident', 'macro', 'divergence', 'watchlist', 'implication']);
+  assert.ok(/driven by .*Deep/.test(lines[1].text));      /* strongest signals named */
+  assert.ok(/72th pctile/.test(lines[3].text));           /* flags AND percentiles */
+  assert.ok(/early-upcycle entry signal/.test(lines[4].text));
+  assert.ok(/ONGC/.test(lines[5].text));
   assert.ok(!/undefined/.test(lines.map((l) => l.text).join(' ')));
-  assert.ok(lines[2].text.includes('opposite sides'));      /* the split is called out */
 });
 
 test('the summary says so plainly when there is no call', () => {
@@ -385,18 +457,22 @@ test('the summary says so plainly when there is no call', () => {
     scores: { leading: G(null, null), coincident: G(null, null) },
     stage: { stageId: null, because: [] }, divergence: { value: null }, macro: {}, drift: []
   }, FW5);
-  assert.equal(lines[0].id, 'where');
-  assert.ok(/no group has a scored KPI/i.test(lines[0].text));
+  assert.equal(lines[0].id, 'call');
+  assert.ok(/not called/i.test(lines[0].text));
+  assert.ok(/No company moved two tone steps/i.test(lines.find((l) => l.id === 'watchlist').text));
 });
 
-test('actions come from the called stage and carry that stage', () => {
+test('the actionable list is the stage row, and says which row it is', () => {
   const a = actionsFor('early-upcycle', FW5);
-  assert.equal(a.length, 1);
-  assert.equal(a[0].stageId, 'early-upcycle');
-  assert.ok(a[0].stageLabel);
-  /* a different call returns a different list - the panel repopulates */
-  assert.notDeepEqual(actionsFor('trough', FW5).map((x) => x.id), a.map((x) => x.id));
-  assert.deepEqual(actionsFor('mid-upcycle', FW5), []);      /* no row, no invention */
+  assert.equal(a.stageId, 'early-upcycle');
+  assert.equal(a.stageLabel, 'Early Upcycle');
+  assert.equal(a.research.length, 2);
+  assert.ok(a.why);
+  /* a name outside the 27-company backbone is kept, and marked as having no series */
+  assert.equal(a.research[1].label, 'Man Industries');
+  assert.equal(a.research[1].companyId, null);
+  assert.notDeepEqual(actionsFor('trough', FW5).research, a.research);
+  assert.equal(actionsFor('mid-upcycle', FW5), null);        /* no row, no invention */
 });
 
 test('the first run says it is the first run rather than inventing changes', () => {
@@ -437,13 +513,29 @@ test('a quiet quarter says nothing moved rather than showing an empty panel', ()
 test('the snapshot stays flat, so the file cannot grow every run', () => {
   const snap = snapshotOf({ stage: { stageId: 'trough' }, scores: { leading: { score: 1 } }, alerts: [], previous: { deep: true } });
   assert.equal(snap.previous, undefined);
-  assert.deepEqual(Object.keys(snap).sort(), ['alertIds', 'asOf', 'generatedAt', 'scores', 'stageId']);
+  assert.deepEqual(Object.keys(snap).sort(),
+    ['alertIds', 'asOf', 'generatedAt', 'scores', 'scoringVersion', 'stageId']);
 });
 
 test('buildScores carries summary, actions and changes for Section 5', () => {
   const kpis = kpisWith({ a: [RISING] });
   const out = buildScores({ kpis, companies: groupsOf({ leading: ['a'] }), framework: FW5, macro: null, commentary: null });
   assert.ok(Array.isArray(out.summary) && out.summary.length);
-  assert.ok(Array.isArray(out.actions));
+  assert.ok(out.actions === null || Array.isArray(out.actions.research));
   assert.ok(Array.isArray(out.changes));
+});
+
+test('a scoring-method change refuses to diff rather than reporting a fake move', () => {
+  const prev = snapshotOf({
+    stage: { stageId: 'trough' }, scores: { leading: { score: 50 } },
+    alerts: [], scoringVersion: 1
+  });
+  const changes = changesSince(prev, {
+    stage: { stageId: 'trough' }, scores: { leading: { score: -8 } },
+    alerts: [], scoringVersion: 2
+  }, FW5);
+  assert.equal(changes.length, 1);
+  assert.equal(changes[0].kind, 'method-change');
+  /* the 58-point "move" was the rescale, and must not be reported as one */
+  assert.ok(!/58/.test(changes[0].text));
 });

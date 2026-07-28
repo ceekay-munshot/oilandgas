@@ -86,9 +86,11 @@ async function main() {
   }
   console.log(`  alerts: ${payload.alerts.length}`);
   payload.alerts.forEach((a) => console.log(`    - [${a.severity}] ${a.text}`));
-  console.log(`  actions for this stage: ${payload.actions.length}`);
+  console.log(`  research list: ${payload.actions
+    ? payload.actions.research.length + ' names from the ' + payload.actions.stageLabel + ' row'
+    : 'none - no stage called'}`);
   console.log('  changed since last run:');
-  payload.changes.forEach((c) => console.log(`    - ${c.text}`));
+  (payload.changes || []).forEach((c) => console.log(`    - ${c.text}`));
 
   if (DRY) {
     console.log('\n--dry-run: nothing written.');

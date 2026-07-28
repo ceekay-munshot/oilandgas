@@ -298,151 +298,237 @@
   ],
   "stageActions": {
     "plainName": "What to research now",
-    "plainDescription": "The research shortlist, mapped to the cycle stage. When the stage call changes this list changes with it, and every row says which stage it came from.",
-    "note": "AUTHORED IN-REPO, NOT EXTRACTED. These rows are editorial guidance, not data about any company: no number here is claimed to come from a filing. Replace the text with the client's own stage-5b wording and the panel picks it up with no code change.",
+    "plainDescription": "The research-priority set for the stage Step 4 called. Not fixed: whichever row the stage call selects becomes the quarter's actionable list. These are research priorities, not buy/sell recommendations.",
+    "note": "Verbatim from the client brief, Step 5b. A name with no companyId is a research target outside the 27-company backbone, so the dashboard holds no KPI series for it.",
     "byStage": {
-      "trough": [
-        {
-          "id": "trough-order-enquiry",
-          "action": "Check enquiry and tendering volumes at the drillers and EPC names",
-          "why": "Enquiries move before order inflow does, so they are the first hard evidence a bottom is real.",
-          "focus": [
-            "deep-industries",
-            "jindal-drilling",
-            "engineers-india"
-          ]
-        },
-        {
-          "id": "trough-balance-sheet",
-          "action": "Screen the leveraged names for covenant and refinancing risk",
-          "why": "A trough is where balance sheets decide who is still there for the recovery.",
-          "focus": []
-        },
-        {
-          "id": "trough-capex-guidance",
-          "action": "Read ONGC and Oil India capex guidance for the coming year",
-          "why": "Upstream capex is the budget every service order is eventually paid from.",
-          "focus": [
-            "ongc",
-            "oil-india"
-          ]
-        }
-      ],
-      "early-upcycle": [
-        {
-          "id": "early-order-inflow",
-          "action": "Track order inflow and book-to-bill at the early movers",
-          "why": "This is the stage where inflow turns before revenue does; the gap is the opportunity.",
-          "focus": [
-            "engineers-india",
-            "l-t",
-            "welspun-corp",
-            "ratnamani-metals"
-          ]
-        },
-        {
-          "id": "early-utilisation",
-          "action": "Check rig and asset utilisation, and day-rate direction",
-          "why": "Utilisation tightening ahead of pricing is the classic early-upcycle tell.",
-          "focus": [
-            "deep-industries",
-            "jindal-drilling"
-          ]
-        },
-        {
-          "id": "early-laggard-check",
-          "action": "Confirm the refiners and shippers have NOT yet turned",
-          "why": "If the back of the chain has already moved, the call is later than early upcycle.",
-          "focus": [
-            "iocl",
-            "bpcl",
-            "hpcl",
-            "ge-shipping",
-            "shipping-corp"
-          ]
-        },
-        {
-          "id": "early-capacity",
-          "action": "Ask who is adding capacity, and at what cost",
-          "why": "Capacity added early earns the whole cycle; added late it defines the next downturn.",
-          "focus": []
-        }
-      ],
-      "mid-upcycle": [
-        {
-          "id": "mid-margin",
-          "action": "Watch margins, not just volumes, across the coincident names",
-          "why": "Mid-cycle is where pricing power shows up or fails to.",
-          "focus": []
-        },
-        {
-          "id": "mid-execution",
-          "action": "Check execution and order-book conversion against guidance",
-          "why": "A book that stops converting is the first crack in a broad upcycle.",
-          "focus": [
-            "engineers-india",
-            "l-t"
-          ]
-        },
-        {
-          "id": "mid-cost",
-          "action": "Track input costs and pass-through at the pipe and equipment makers",
-          "why": "Steel and freight decide whether a strong order book earns anything.",
-          "focus": [
-            "welspun-corp",
-            "ratnamani-metals"
-          ]
-        }
-      ],
-      "late-upcycle": [
-        {
-          "id": "late-leading-rollover",
-          "action": "Read the leading group for the first signs of rolling over",
-          "why": "The front of the chain turns down first, and it is the only free warning available.",
-          "focus": []
-        },
-        {
-          "id": "late-capacity-adds",
-          "action": "Count the capacity being commissioned across the sector",
-          "why": "Supply added at the peak is what makes the next downcycle long.",
-          "focus": []
-        },
-        {
-          "id": "late-contract-cover",
-          "action": "Check how far forward contracts and day-rates are locked",
-          "why": "Contract cover is what separates a soft landing from a sharp one.",
-          "focus": [
-            "deep-industries",
-            "jindal-drilling",
-            "ge-shipping"
-          ]
-        }
-      ],
-      "early-downcycle": [
-        {
-          "id": "down-cash",
-          "action": "Move to cash generation and net debt at every name held",
-          "why": "In a downcycle the question stops being growth and becomes survival and optionality.",
-          "focus": []
-        },
-        {
-          "id": "down-defensives",
-          "action": "Check the regulated and volume-linked names for relative shelter",
-          "why": "City gas and transmission volumes decay far more slowly than capex does.",
-          "focus": [
-            "igl",
-            "mahanagar-gas",
-            "gujarat-gas",
-            "gail"
-          ]
-        },
-        {
-          "id": "down-order-cancel",
-          "action": "Watch for order deferrals, cancellations and slipping delivery dates",
-          "why": "Cancellations show up in commentary a quarter before they show up in the numbers.",
-          "focus": []
-        }
-      ]
+      "trough": {
+        "why": "Leading-bucket names are where the turn will show first; establish baselines and watch for the first order-inflow / utilization uptick",
+        "research": [
+          {
+            "label": "ONGC",
+            "companyId": "ongc"
+          },
+          {
+            "label": "Oil India",
+            "companyId": "oil-india"
+          },
+          {
+            "label": "Deep Industries",
+            "companyId": "deep-industries"
+          },
+          {
+            "label": "Jindal Drilling",
+            "companyId": "jindal-drilling"
+          },
+          {
+            "label": "Engineers India",
+            "companyId": "engineers-india"
+          }
+        ]
+      },
+      "early-upcycle": {
+        "why": "Oilfield services and first-line capex enablers have the most operating leverage to a capex turn; order books inflect here first and hardest",
+        "research": [
+          {
+            "label": "Deep Industries",
+            "companyId": "deep-industries"
+          },
+          {
+            "label": "Jindal Drilling",
+            "companyId": "jindal-drilling"
+          },
+          {
+            "label": "Engineers India",
+            "companyId": "engineers-india"
+          },
+          {
+            "label": "Ratnamani",
+            "companyId": "ratnamani"
+          },
+          {
+            "label": "Welspun",
+            "companyId": "welspun-corp"
+          },
+          {
+            "label": "Man Industries",
+            "companyId": null
+          }
+        ]
+      },
+      "mid-upcycle": {
+        "why": "The capex wave broadens from early movers to the wider process-equipment ecosystem; second-line enablers catch up",
+        "research": [
+          {
+            "label": "L&T (hydrocarbon)",
+            "companyId": "lt"
+          },
+          {
+            "label": "ISGEC",
+            "companyId": null
+          },
+          {
+            "label": "Anup Engineering",
+            "companyId": null
+          },
+          {
+            "label": "JNK",
+            "companyId": null
+          },
+          {
+            "label": "DEE Development",
+            "companyId": null
+          },
+          {
+            "label": "Inox India",
+            "companyId": null
+          }
+        ]
+      },
+      "late-upcycle": {
+        "why": "Rotate research toward volume / regulated-return businesses least exposed to a capex or margin rollover; scrutinize peak margins in refiners/petchem for durability",
+        "research": [
+          {
+            "label": "Petronet LNG",
+            "companyId": "petronet-lng"
+          },
+          {
+            "label": "GAIL",
+            "companyId": "gail"
+          },
+          {
+            "label": "IGL",
+            "companyId": "igl"
+          },
+          {
+            "label": "Mahanagar Gas",
+            "companyId": "mahanagar-gas"
+          },
+          {
+            "label": "Gujarat Gas",
+            "companyId": "gujarat-gas"
+          },
+          {
+            "label": "Aegis Logistics",
+            "companyId": "aegis-logistics"
+          }
+        ]
+      },
+      "early-downcycle": {
+        "why": "Margin-compression math matters most: which businesses hold margins, which don't; spread businesses reset fastest and reveal cost discipline",
+        "research": [
+          {
+            "label": "Reliance",
+            "companyId": "reliance"
+          },
+          {
+            "label": "IOCL",
+            "companyId": "iocl"
+          },
+          {
+            "label": "BPCL",
+            "companyId": "bpcl"
+          },
+          {
+            "label": "HPCL",
+            "companyId": "hpcl"
+          },
+          {
+            "label": "Castrol",
+            "companyId": "castrol-india"
+          },
+          {
+            "label": "Gandhar Oil",
+            "companyId": "gandhar-oil"
+          }
+        ]
+      }
     }
+  },
+  "themes": {
+    "plainName": "What we listen for",
+    "plainDescription": "The seven themes the commentary read is organised around. Each names the companies that drive it and the bucket its tone feeds in the scoring.",
+    "items": [
+      {
+        "id": "upstream-capex",
+        "label": "Upstream capex intent",
+        "bucket": "leading",
+        "listenFor": "Capex/drilling guidance up, flat or down; new block awards; rig additions or deferrals; tendering activity from ONGC/OIL",
+        "companyIds": [
+          "ongc",
+          "oil-india",
+          "deep-industries",
+          "jindal-drilling"
+        ]
+      },
+      {
+        "id": "capex-pipeline",
+        "label": "Refining/petchem capex pipeline",
+        "bucket": "leading",
+        "listenFor": "Tone on bid pipeline and tendering - healthy / muted / delayed awards; specific large projects named (refinery expansion, new pipeline, LNG terminal)",
+        "companyIds": [
+          "engineers-india",
+          "lt",
+          "ratnamani",
+          "welspun-corp"
+        ]
+      },
+      {
+        "id": "refining-margin",
+        "label": "Refining margin outlook",
+        "bucket": "coincident",
+        "listenFor": "Management's own GRM outlook vs. benchmark; planned shutdowns/turnarounds (temporary distortion); new capacity coming online (structural cap)",
+        "companyIds": [
+          "reliance",
+          "iocl",
+          "bpcl",
+          "hpcl"
+        ]
+      },
+      {
+        "id": "marketing-margin",
+        "label": "Marketing margin normalization",
+        "bucket": "coincident",
+        "listenFor": "Retail fuel pricing signals, under-recovery risk - politically driven, moves independent of GRM",
+        "companyIds": [
+          "iocl",
+          "bpcl",
+          "hpcl"
+        ]
+      },
+      {
+        "id": "gas-demand",
+        "label": "Gas demand trajectory",
+        "bucket": "coincident",
+        "listenFor": "Volume growth guidance, new geographic-area rollout pace, industrial vs. domestic PNG mix shift, spot vs. term LNG contracting stance",
+        "companyIds": [
+          "gail",
+          "petronet-lng",
+          "igl",
+          "mahanagar-gas",
+          "gujarat-gas"
+        ]
+      },
+      {
+        "id": "freight-shipping",
+        "label": "Freight / shipping outlook",
+        "bucket": "lagging",
+        "listenFor": "Fleet redeployment plans, charter rate outlook, global vessel-supply tightness commentary",
+        "companyIds": [
+          "ge-shipping",
+          "shipping-corp"
+        ]
+      },
+      {
+        "id": "spread-demand",
+        "label": "Spread / demand commentary",
+        "bucket": "coincident",
+        "listenFor": "Auto/industrial offtake trend - tracks broad economic activity, not just crude",
+        "companyIds": [
+          "supreme-petrochem",
+          "castrol-india",
+          "gandhar-oil"
+        ]
+      }
+    ]
   }
 }
