@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-07-28T18:21:11.486Z",
+  "generatedAt": "2026-07-28T19:01:31.578Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,9 +38,9 @@
   "asOf": "Q4 FY26",
   "scores": {
     "leading": {
-      "score": -4,
+      "score": -8,
       "prev": -57,
-      "delta": 50,
+      "delta": 45,
       "deltaBasis": "kpi-only",
       "level": "flat",
       "direction": "rising",
@@ -49,8 +49,11 @@
       "tonesScored": 8,
       "companiesScored": 8,
       "staleKpis": 6,
-      "oneOffKpis": 0,
-      "lowCoverage": false,
+      "oneOffKpis": 1,
+      "unknownKpis": 0,
+      "lowCoverage": true,
+      "weakestTag": "mgmt-claim",
+      "reducedConfidence": false,
       "signals": [
         {
           "kind": "kpi",
@@ -65,6 +68,13 @@
           "company": "Engineers India",
           "label": "Order book",
           "flag": "inflecting-up"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "lt",
+          "company": "L&T",
+          "label": "Hydrocarbon order inflow",
+          "flag": "inflecting-down"
         },
         {
           "kind": "kpi",
@@ -109,7 +119,10 @@
       "companiesScored": 11,
       "staleKpis": 4,
       "oneOffKpis": 0,
+      "unknownKpis": 0,
       "lowCoverage": false,
+      "weakestTag": "derived",
+      "reducedConfidence": true,
       "signals": [
         {
           "kind": "kpi",
@@ -252,7 +265,10 @@
       "companiesScored": 1,
       "staleKpis": 0,
       "oneOffKpis": 0,
+      "unknownKpis": 0,
       "lowCoverage": false,
+      "weakestTag": "company-filing",
+      "reducedConfidence": false,
       "signals": [
         {
           "kind": "kpi",
@@ -272,7 +288,7 @@
     }
   },
   "divergence": {
-    "value": 34,
+    "value": 30,
     "leadingSign": 0,
     "coincidentSign": -1,
     "signsDiffer": false
@@ -281,16 +297,16 @@
     null,
     null,
     -67,
-    36
+    31
   ],
   "stage": {
     "stageId": "early-upcycle",
-    "position": 30,
+    "position": 29,
     "ruleId": "early-upcycle",
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading -4 (flat, rising), coincident -38 (negative, falling), lagging 0 (flat).",
+      "Leading -8 (flat, rising), coincident -38 (negative, falling), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -352,6 +368,12 @@
         "vote": "silent"
       }
     ]
+  },
+  "stageMacro": {
+    "stageId": "early-upcycle",
+    "expected": "crude recovering",
+    "observed": "crude falling",
+    "agrees": false
   },
   "toneDrift": [
     {
@@ -455,8 +477,26 @@
       "direction": "up"
     }
   ],
-  "coverageWarnings": [],
+  "coverageWarnings": [
+    {
+      "groupId": "leading",
+      "kind": "low-coverage",
+      "text": "Moves first: 7 of 20 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    }
+  ],
   "alerts": [
+    {
+      "id": "stage-macro",
+      "severity": "review",
+      "kind": "stage-macro",
+      "text": "Flagged for review: this stage expects crude recovering, but crude falling."
+    },
+    {
+      "id": "coverage-leading",
+      "severity": "info",
+      "kind": "low-coverage",
+      "text": "Moves first: 7 of 20 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    },
     {
       "id": "tone-petronet-lng",
       "severity": "warn",
@@ -527,7 +567,7 @@
     {
       "id": "leading",
       "label": "Leading indicators",
-      "text": "Leading indicators are flat and rising — driven by Engineers India Order inflow, Engineers India Order book, Ratnamani Metals Order book."
+      "text": "Leading indicators are flat and rising — driven by Engineers India Order inflow, Engineers India Order book, L&T Hydrocarbon order inflow."
     },
     {
       "id": "coincident",
@@ -542,7 +582,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +34. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +30. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -1026,39 +1066,31 @@
   ],
   "changes": [
     {
-      "kind": "score",
-      "text": "Moves first moved up 14 points to -4."
-    },
-    {
-      "kind": "score",
-      "text": "Moving now moved up 15 points to -38."
-    },
-    {
-      "kind": "alert",
-      "text": "New alert: Reliance moved 2 tone steps up (cautious → constructive) in Q1 FY27."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-07-28T17:59:25.631Z",
+    "generatedAt": "2026-07-28T19:00:54.674Z",
     "asOf": "Q4 FY26",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
-      "leading": -18,
-      "coincident": -53,
+      "leading": -8,
+      "coincident": -38,
       "lagging": 0
     },
     "alertIds": [
+      "coverage-leading",
+      "stage-macro",
       "tone-bpcl",
       "tone-castrol-india",
-      "tone-gail",
       "tone-gandhar-oil",
-      "tone-igl",
-      "tone-lt",
       "tone-mahanagar-gas",
       "tone-ongc",
       "tone-petronet-lng",
       "tone-ratnamani",
+      "tone-reliance",
       "tone-shipping-corp",
       "tone-supreme-petrochem"
     ]

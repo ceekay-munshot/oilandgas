@@ -49,6 +49,39 @@ export function excludeOneOffs(values, oneOffs) {
 }
 
 /**
+ * Blank the quarters whose provenance could not be established.
+ *
+ * Part D: "[Unknown] values are excluded from all scoring and shown only in the
+ * one-off/quarantine ledger until provenance is resolved." A number nobody can
+ * trace is not evidence, and letting it set a trajectory would launder it into
+ * a bucket score through the flag.
+ *
+ * Like the one-off filter, the quarter becomes null rather than being dropped,
+ * so the remaining quarters keep their positions.
+ *
+ * @param {(number|null)[]} values
+ * @param {(string|null)[]} [sourceTags] one tag per quarter
+ * @returns {(number|null)[]}
+ */
+export function quarantineUnknown(values, sourceTags) {
+  const v = Array.isArray(values) ? values.slice() : [];
+  if (!Array.isArray(sourceTags)) return v;
+  return v.map((x, i) => (sourceTags[i] === 'unknown' ? null : x));
+}
+
+/**
+ * Everything the brief holds out of a trajectory, in one place: quarters
+ * distorted by a one-off, and quarters whose provenance is unknown.
+ *
+ * @param {(number|null)[]} values
+ * @param {{oneOffs?:(string|null)[], sourceTags?:(string|null)[]}} [masks]
+ * @returns {(number|null)[]}
+ */
+export function usableSeries(values, masks = {}) {
+  return quarantineUnknown(excludeOneOffs(values, masks.oneOffs), masks.sourceTags);
+}
+
+/**
  * The series the flag is computed on, per the brief's series-handling rules.
  *
  *   flow   (level) - trend the 4-quarter series directly

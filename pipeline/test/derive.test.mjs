@@ -57,7 +57,7 @@ test('EBITDA/scm: the gap is filled from Operating Profit ÷ volume×days, and o
   const row = out.find((k) => k.id === 'ebitda-per-scm');
   // Q2: 441cr × 10 / (9.31 × 92 days) = 5.149 -> 5.15. Q1/Q3 held (not emitted); Q4 has no volume.
   assert.deepEqual(row.values, [null, 5.15, null, null]);
-  assert.deepEqual(row.sourceTags, [null, 'derived', null, null]);
+  assert.deepEqual(row.sourceTags, [null, 'estimate', null, null]);
   assert.equal(row.unit, '₹/scm');
   assert.match(row.notes, /Operating Profit/);
 });
@@ -71,7 +71,7 @@ test('EBITDA/scm: merged and rendered, the row is a complete series that shows i
   assert.deepEqual(row.values, [6.16, 5.15, 5.4, null]);
   // The derived cell reads as derived, the model cells as model.
   assert.deepEqual(row.origins, ['model', 'derived', 'model', null]);
-  assert.deepEqual(row.sourceTags, ['mgmt-claim', 'derived', 'mgmt-claim', null]);
+  assert.deepEqual(row.sourceTags, ['mgmt-claim', 'estimate', 'mgmt-claim', null]);
   // The formula rides along on the row so the number is checkable.
   assert.match(row.notes, /Total Sales Volume/);
 });
@@ -148,7 +148,7 @@ test('CNG+PNG growth: where total-volume yoy DOES match, a blank is filled', () 
   const out = fillDerived({ store, companyId: 'c', kpis: [GROWTH_SPEC], quarters: QUARTERS, fin: {}, insights: MGL_INS, quarterLabel });
   const row = out.find((k) => k.id === 'cng-png-volume-growth');
   assert.equal(row.values[1], 13.6);   // (4.59/4.04 - 1) × 100 = 13.61 -> 13.6
-  assert.equal(row.sourceTags[1], 'derived');
+  assert.equal(row.sourceTags[1], 'estimate');
 });
 
 test('a KPI with no declared derivation (O2C EBITDA/tonne) is left as a gap', () => {

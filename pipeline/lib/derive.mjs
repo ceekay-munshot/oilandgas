@@ -219,7 +219,13 @@ export function fillDerived({ store, companyId, kpis, quarters, fin, insights, q
       const dv = computed.get(q);
       if ((!held || held.value == null) && dv != null) {
         values.push(round(dv, d.decimals));
-        sourceTags.push('derived');
+        /* Part D reserves [Derived] for arithmetic on tagged inputs - flags,
+           bucket scores, the stage call. A cell the pipeline COMPUTED because
+           nobody disclosed one is [Estimate]: "a value the pipeline computed to
+           fill a disclosure gap, with the method noted". The method is in the
+           note; the cell keeps origin 'derived' so the store's rank rules are
+           untouched. */
+        sourceTags.push('estimate');
         filledAny = true;
       } else {
         values.push(null);
