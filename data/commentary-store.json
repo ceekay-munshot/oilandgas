@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-07-28T08:14:39.086Z",
+  "generatedAt": "2026-07-28T17:59:25.576Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -382,9 +382,30 @@
           "attempts": 1,
           "model": "gpt-4o",
           "at": "2026-07-28T08:13:21.344Z"
+        },
+        "Q1 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "demand remains very, very buoyant… booked well through FY28… already seeing clarity emerging on FY29 as well.",
+          "rationale": "Management expressed strong confidence in future demand and growth prospects, particularly in the US and Middle East markets.",
+          "driver": "order book",
+          "direction": "positive",
+          "signal": "Management is optimistic about demand growth, particularly in the US and Middle East, and plans to continue capex to support this.",
+          "mgmtDataPoints": [
+            "EBITDA: 756 cr",
+            "RoCE: >20%",
+            "Net cash: 2,336 cr",
+            "Order book: 25,750 cr"
+          ],
+          "implication": "The company is likely to continue its growth trajectory with strong demand and a robust order book supporting future quarters.",
+          "doc": "Concall AI summary (Q1 FY27)",
+          "fingerprint": "7fff7cea7071",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T17:59:22.306Z"
         }
       },
-      "updatedAt": "2026-07-28T08:13:21.344Z"
+      "updatedAt": "2026-07-28T17:59:22.306Z"
     },
     "reliance": {
       "cells": {
@@ -786,9 +807,9 @@
           "quote": null,
           "rationale": "no concall document cached for this quarter",
           "doc": null,
-          "fingerprint": "a1b963e7c647",
-          "attempts": 1,
-          "at": "2026-07-28T08:14:05.475Z"
+          "fingerprint": "1a8456f029ab",
+          "attempts": 2,
+          "at": "2026-07-28T17:59:24.185Z"
         },
         "Q3 FY26": {
           "toneId": null,
@@ -796,9 +817,9 @@
           "quote": null,
           "rationale": "no concall document cached for this quarter",
           "doc": null,
-          "fingerprint": "a1b963e7c647",
-          "attempts": 1,
-          "at": "2026-07-28T08:14:05.475Z"
+          "fingerprint": "1a8456f029ab",
+          "attempts": 2,
+          "at": "2026-07-28T17:59:24.185Z"
         },
         "Q4 FY26": {
           "toneId": null,
@@ -806,9 +827,9 @@
           "quote": null,
           "rationale": "no concall document cached for this quarter",
           "doc": null,
-          "fingerprint": "a1b963e7c647",
-          "attempts": 1,
-          "at": "2026-07-28T08:14:05.475Z"
+          "fingerprint": "1a8456f029ab",
+          "attempts": 2,
+          "at": "2026-07-28T17:59:24.185Z"
         },
         "Q1 FY27": {
           "toneId": null,
@@ -816,12 +837,12 @@
           "quote": null,
           "rationale": "no concall document cached for this quarter",
           "doc": null,
-          "fingerprint": "a1b963e7c647",
-          "attempts": 1,
-          "at": "2026-07-28T08:14:05.475Z"
+          "fingerprint": "1a8456f029ab",
+          "attempts": 2,
+          "at": "2026-07-28T17:59:24.185Z"
         }
       },
-      "updatedAt": "2026-07-28T08:14:05.475Z"
+      "updatedAt": "2026-07-28T17:59:24.185Z"
     },
     "aegis-logistics": {
       "cells": {
@@ -1064,9 +1085,25 @@
           "attempts": 1,
           "model": "gpt-4o",
           "at": "2026-07-28T08:14:24.187Z"
+        },
+        "Q1 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "delivering highest quarterly profit in the company's history",
+          "rationale": "Management highlighted record profitability and strong financial performance, indicating confidence.",
+          "driver": "profitability",
+          "direction": "positive",
+          "signal": "Management is optimistic about maintaining strong margins and revenue growth despite market challenges.",
+          "mgmtDataPoints": [],
+          "implication": "Expect continued strong financial performance in the next quarters due to effective market navigation.",
+          "doc": "Concall transcript (Q1 FY27)",
+          "fingerprint": "bab4fb9a6715",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-28T17:59:24.198Z"
         }
       },
-      "updatedAt": "2026-07-28T08:14:24.187Z"
+      "updatedAt": "2026-07-28T17:59:24.198Z"
     },
     "linde-india": {
       "cells": {
@@ -1076,9 +1113,9 @@
           "quote": null,
           "rationale": "no concall document cached for this quarter",
           "doc": null,
-          "fingerprint": "a1b963e7c647",
-          "attempts": 1,
-          "at": "2026-07-28T08:14:28.554Z"
+          "fingerprint": "1a8456f029ab",
+          "attempts": 2,
+          "at": "2026-07-28T17:59:25.566Z"
         },
         "Q3 FY26": {
           "toneId": null,
@@ -1086,9 +1123,9 @@
           "quote": null,
           "rationale": "no concall document cached for this quarter",
           "doc": null,
-          "fingerprint": "a1b963e7c647",
-          "attempts": 1,
-          "at": "2026-07-28T08:14:28.554Z"
+          "fingerprint": "1a8456f029ab",
+          "attempts": 2,
+          "at": "2026-07-28T17:59:25.566Z"
         },
         "Q4 FY26": {
           "toneId": null,
@@ -1096,9 +1133,9 @@
           "quote": null,
           "rationale": "no concall document cached for this quarter",
           "doc": null,
-          "fingerprint": "a1b963e7c647",
-          "attempts": 1,
-          "at": "2026-07-28T08:14:28.554Z"
+          "fingerprint": "1a8456f029ab",
+          "attempts": 2,
+          "at": "2026-07-28T17:59:25.566Z"
         },
         "Q1 FY27": {
           "toneId": null,
@@ -1106,12 +1143,12 @@
           "quote": null,
           "rationale": "no concall document cached for this quarter",
           "doc": null,
-          "fingerprint": "a1b963e7c647",
-          "attempts": 1,
-          "at": "2026-07-28T08:14:28.554Z"
+          "fingerprint": "1a8456f029ab",
+          "attempts": 2,
+          "at": "2026-07-28T17:59:25.566Z"
         }
       },
-      "updatedAt": "2026-07-28T08:14:28.554Z"
+      "updatedAt": "2026-07-28T17:59:25.566Z"
     },
     "adani-ports": {
       "cells": {

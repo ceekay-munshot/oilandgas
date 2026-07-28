@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-28T16:57:23.823Z",
+  "generatedAt": "2026-07-28T17:59:08.632Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -17,7 +17,7 @@
     "realCells": 119,
     "nullCells": 105,
     "kpis": 58,
-    "kpisWithTrend": 30
+    "kpisWithTrend": 31
   },
   "companies": {
     "deep-industries": {
@@ -32,7 +32,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3998,
+      "ctxChars": 33678,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -112,7 +112,7 @@
             null
           ],
           "flag": null,
-          "notes": "Day-rate not explicitly mentioned in any of the provided excerpts."
+          "notes": "Day-rate not mentioned in any excerpt."
         },
         {
           "id": "order-book",
@@ -170,7 +170,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 4070,
+      "ctxChars": 34068,
       "kpis": [
         {
           "id": "order-inflow",
@@ -328,7 +328,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3823,
+      "ctxChars": 27823,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -440,7 +440,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3699,
+      "ctxChars": 27698,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -531,7 +531,7 @@
       "asOf": "Q2 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3420,
+      "ctxChars": 21419,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -658,7 +658,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3643,
+      "ctxChars": 33643,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -762,7 +762,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3716,
+      "ctxChars": 32257,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -924,7 +924,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3721,
+      "ctxChars": 33720,
       "kpis": [
         {
           "id": "hydrocarbon-order-inflow",
@@ -972,19 +972,19 @@
           "values": [
             612800,
             667000,
-            null,
+            1830000,
             740300
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
-            null,
+            "company-filing",
             "company-filing"
           ],
           "origins": [
             "model",
             "model",
-            null,
+            "model",
             "model"
           ],
           "citations": [
@@ -999,8 +999,8 @@
             null,
             null
           ],
-          "flag": null,
-          "notes": "Q3 FY26 order book not stated."
+          "flag": "inflecting-down",
+          "notes": null
         }
       ]
     },
@@ -1016,7 +1016,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3027,
+      "ctxChars": 33027,
       "kpis": [
         {
           "id": "order-book",
@@ -1100,15 +1100,15 @@
       "name": "Welspun Corp",
       "slug": "WELCORP",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 4054,
+      "ctxChars": 34052,
       "kpis": [
         {
           "id": "order-book",
@@ -1116,29 +1116,24 @@
           "unit": "INR Crore",
           "flagBasis": "qoq",
           "values": [
-            19000,
             23500,
             23600,
-            25350
+            25350,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 29 Jul 2025",
-              "quote": "Order Book (Total value ~INR 19,000 Crore)",
-              "page": 6
-            },
             {
               "doc": "Presentation - 30 Oct 2025",
               "quote": "Total Order Book Value stands at ~INR 23,500 Cr",
@@ -1153,7 +1148,8 @@
               "doc": "Presentation - 21 May 2026",
               "quote": "Maintained all-time high order book of ~Rs 25,350 crore",
               "page": 2
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -1162,7 +1158,7 @@
             null
           ],
           "flag": "inflecting-up",
-          "notes": null
+          "notes": "From Screener Insights row \"Total Order Book Value\"; latest value cited to Presentation - 30 Oct 2025, page 6."
         },
         {
           "id": "line-pipe-order-inflow",
@@ -1200,7 +1196,7 @@
             null
           ],
           "flag": null,
-          "notes": "Line-pipe order inflow figures were not provided in any of the excerpts."
+          "notes": "Line-pipe order inflow not explicitly stated for any quarter."
         }
       ]
     },
@@ -1216,7 +1212,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3396,
+      "ctxChars": 33579,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -1254,7 +1250,7 @@
             null
           ],
           "flag": null,
-          "notes": "O2C EBITDA per tonne not explicitly stated in any excerpt."
+          "notes": "O2C EBITDA per tonne not stated in any excerpt."
         },
         {
           "id": "petchem-margin",
@@ -1292,7 +1288,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin not explicitly stated in any excerpt."
+          "notes": "Petchem margin not stated in any excerpt."
         },
         {
           "id": "retail-fuel-margin",
@@ -1330,7 +1326,7 @@
             null
           ],
           "flag": null,
-          "notes": "Retail fuel margin not explicitly stated in any excerpt."
+          "notes": "Retail fuel margin not stated in any excerpt."
         }
       ]
     },
@@ -1346,7 +1342,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3953,
+      "ctxChars": 31945,
       "kpis": [
         {
           "id": "grm",
@@ -1492,7 +1488,7 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3889,
+      "ctxChars": 32700,
       "kpis": [
         {
           "id": "grm",
@@ -1646,7 +1642,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 4138,
+      "ctxChars": 30611,
       "kpis": [
         {
           "id": "grm",
@@ -1788,7 +1784,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3246,
+      "ctxChars": 34072,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -1896,7 +1892,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 4031,
+      "ctxChars": 34030,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -2080,7 +2076,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 4005,
+      "ctxChars": 34004,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -2188,7 +2184,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3037,
+      "ctxChars": 33034,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -2292,7 +2288,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 2916,
+      "ctxChars": 32914,
       "kpis": [
         {
           "id": "sps-spread",
@@ -2400,7 +2396,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 1581,
+      "ctxChars": 31578,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -2484,15 +2480,15 @@
       "name": "Gandhar Oil",
       "slug": "GANDHAR",
       "quarters": [
-        "Q4 FY25",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3128,
+      "ctxChars": 33126,
       "kpis": [
         {
           "id": "base-oil-spread",
@@ -2500,22 +2496,22 @@
           "unit": "$/t",
           "flagBasis": "level",
           "values": [
-            null,
             8662,
             7271,
-            9351
+            9351,
+            null
           ],
           "sourceTags": [
-            null,
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim"
+            "mgmt-claim",
+            null
           ],
           "origins": [
-            null,
             "model",
             "model",
-            "model"
+            "model",
+            null
           ],
           "citations": [
             null,
@@ -2530,7 +2526,7 @@
             null
           ],
           "flag": "inflecting-up",
-          "notes": "Base-oil spread not explicitly mentioned in any of the provided excerpts."
+          "notes": "Base-oil spread not explicitly stated in any excerpt."
         },
         {
           "id": "white-oil-volume",
@@ -2538,25 +2534,24 @@
           "unit": "kL",
           "flagBasis": "level",
           "values": [
-            null,
             72404,
             74938,
-            55155
+            55155,
+            null
           ],
           "sourceTags": [
-            null,
             "company-filing",
             "company-filing",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
-            null,
             "insights",
             "insights",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            null,
             {
               "doc": "Presentation - 12 Nov 2025",
               "quote": "PHPO (kl)",
@@ -2571,7 +2566,8 @@
               "doc": "Presentation - 26 May 2026",
               "quote": "PHPO (kl)",
               "page": 24
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2596,7 +2592,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3450,
+      "ctxChars": 9450,
       "kpis": [
         {
           "id": "industrial-gas-volume",
@@ -2650,12 +2646,12 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3175,
+      "ctxChars": 32949,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
           "label": "POL/LPG/LNG cargo throughput",
-          "unit": "percent",
+          "unit": "% yoy",
           "flagBasis": "yoy",
           "values": [
             null,
@@ -2704,7 +2700,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 4377,
+      "ctxChars": 34375,
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -2826,7 +2822,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3382,
+      "ctxChars": 21382,
       "kpis": [
         {
           "id": "freight-rate",
@@ -2875,7 +2871,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3968,
+      "ctxChars": 15968,
       "kpis": [
         {
           "id": "order-book",
