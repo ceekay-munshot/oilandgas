@@ -99,6 +99,13 @@ jobs:
         if: ${{ github.event.inputs.scope != 'dump' }}
         run: node pipeline/extract-commentary.mjs --scope ${{ github.event.inputs.scope || 'all' }}
 
+      # Step 5: the KPIs and tones above are what the cycle reading is computed
+      # from, so rescore in the same job -> data/scores.json. No network, no model
+      # call, and it re-reads data/ from disk, so it always matches what just landed.
+      - name: Rescore the cycle
+        if: ${{ github.event.inputs.scope != 'dump' }}
+        run: node pipeline/rescore.mjs
+
       - name: Commit if anything changed
         run: |
           set -euo pipefail
@@ -111,7 +118,7 @@ jobs:
           # kpi-store.json (and commentary-store.json) MUST be committed: they are
           # the durable record of every value/tone ever extracted, and what lets the
           # next run skip work already paid for. Drop them and every run starts over.
-          FILES="data/financials.json data/docs-manifest.json data/companies.json data/kpis.json data/insights.json data/kpi-store.json data/commentary.json data/commentary-store.json"
+          FILES="data/financials.json data/docs-manifest.json data/companies.json data/kpis.json data/insights.json data/kpi-store.json data/commentary.json data/commentary-store.json data/scores.json"
           if git diff --quiet -- $FILES; then
             echo "No company-data change - nothing to commit."
             exit 0

@@ -1,0 +1,339 @@
+{
+  "schemaVersion": 1,
+  "title": "Cycle scores",
+  "generatedBy": "pipeline/rescore.mjs",
+  "generatedAt": "2026-07-28T16:09:37.756Z",
+  "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
+  "sourceTag": "derived",
+  "momentumMap": {
+    "accelerating": 100,
+    "inflecting-up": 75,
+    "steady": 50,
+    "inflecting-down": 25,
+    "decelerating": 0
+  },
+  "quarters": [
+    "Q1 FY26",
+    "Q2 FY26",
+    "Q3 FY26",
+    "Q4 FY26"
+  ],
+  "asOf": "Q4 FY26",
+  "scores": {
+    "leading": {
+      "score": 50,
+      "prev": 25,
+      "delta": 25,
+      "level": "neutral",
+      "direction": "rising",
+      "kpisScored": 11,
+      "kpisTotal": 20,
+      "companiesScored": 8
+    },
+    "coincident": {
+      "score": 33,
+      "prev": 50,
+      "delta": -17,
+      "level": "weak",
+      "direction": "falling",
+      "kpisScored": 18,
+      "kpisTotal": 34,
+      "companiesScored": 11
+    },
+    "lagging": {
+      "score": 13,
+      "prev": 38,
+      "delta": -25,
+      "level": "weak",
+      "direction": "falling",
+      "kpisScored": 2,
+      "kpisTotal": 4,
+      "companiesScored": 1
+    }
+  },
+  "divergence": {
+    "value": 17,
+    "leadingSign": 0,
+    "coincidentSign": -1,
+    "signsDiffer": false
+  },
+  "divergenceSeries": [
+    null,
+    null,
+    -25,
+    17
+  ],
+  "stage": {
+    "stageId": "early-upcycle",
+    "position": 31,
+    "ruleId": "leading-turns-first",
+    "ruleLabel": "Leading strong or rising, coincident not yet following",
+    "confidence": "normal",
+    "because": [
+      "Leading 50 (neutral, rising), coincident 33 (weak, falling).",
+      "Leading strong or rising, coincident not yet following."
+    ]
+  },
+  "macro": {
+    "supporting": 1,
+    "opposing": 3,
+    "silent": 2,
+    "macroBias": "down",
+    "scoreBias": "down",
+    "agree": true,
+    "conflict": false,
+    "tiles": [
+      {
+        "id": "brent",
+        "label": "Brent",
+        "direction": "falling",
+        "supports": "up",
+        "vote": "opposes"
+      },
+      {
+        "id": "indian-basket",
+        "label": "Indian Basket",
+        "direction": "falling",
+        "supports": "up",
+        "vote": "opposes"
+      },
+      {
+        "id": "crack-spread",
+        "label": "Crack spread",
+        "direction": "rising",
+        "supports": "up",
+        "vote": "supports"
+      },
+      {
+        "id": "domestic-gas",
+        "label": "Gas (JKM)",
+        "direction": null,
+        "supports": "down",
+        "vote": "silent"
+      },
+      {
+        "id": "inr-usd",
+        "label": "USD/INR",
+        "direction": "rising",
+        "supports": "down",
+        "vote": "opposes"
+      },
+      {
+        "id": "baltic-dirty",
+        "label": "Freight",
+        "direction": null,
+        "supports": "up",
+        "vote": "silent"
+      }
+    ]
+  },
+  "toneDrift": [
+    {
+      "companyId": "ongc",
+      "name": "ONGC",
+      "from": "confident",
+      "to": "cautious",
+      "fromQuarter": "Q4 FY25",
+      "quarter": "Q2 FY26",
+      "steps": -3,
+      "direction": "down"
+    },
+    {
+      "companyId": "petronet-lng",
+      "name": "Petronet LNG",
+      "from": "constructive",
+      "to": "defensive",
+      "fromQuarter": "Q3 FY26",
+      "quarter": "Q4 FY26",
+      "steps": -3,
+      "direction": "down"
+    },
+    {
+      "companyId": "mahanagar-gas",
+      "name": "Mahanagar Gas",
+      "from": "confident",
+      "to": "cautious",
+      "fromQuarter": "Q3 FY26",
+      "quarter": "Q4 FY26",
+      "steps": -3,
+      "direction": "down"
+    },
+    {
+      "companyId": "castrol-india",
+      "name": "Castrol India",
+      "from": "confident",
+      "to": "cautious",
+      "fromQuarter": "Q3 FY26",
+      "quarter": "Q4 FY26",
+      "steps": -3,
+      "direction": "down"
+    },
+    {
+      "companyId": "lt",
+      "name": "L&T",
+      "from": "constructive",
+      "to": "cautious",
+      "fromQuarter": "Q3 FY26",
+      "quarter": "Q4 FY26",
+      "steps": -2,
+      "direction": "down"
+    },
+    {
+      "companyId": "ratnamani",
+      "name": "Ratnamani Metals",
+      "from": "neutral",
+      "to": "defensive",
+      "fromQuarter": "Q2 FY26",
+      "quarter": "Q4 FY26",
+      "steps": -2,
+      "direction": "down"
+    },
+    {
+      "companyId": "bpcl",
+      "name": "BPCL",
+      "from": "neutral",
+      "to": "defensive",
+      "fromQuarter": "Q1 FY26",
+      "quarter": "Q1 FY27",
+      "steps": -2,
+      "direction": "down"
+    },
+    {
+      "companyId": "gail",
+      "name": "GAIL",
+      "from": "constructive",
+      "to": "cautious",
+      "fromQuarter": "Q2 FY26",
+      "quarter": "Q3 FY26",
+      "steps": -2,
+      "direction": "down"
+    },
+    {
+      "companyId": "igl",
+      "name": "IGL",
+      "from": "constructive",
+      "to": "cautious",
+      "fromQuarter": "Q3 FY26",
+      "quarter": "Q4 FY26",
+      "steps": -2,
+      "direction": "down"
+    },
+    {
+      "companyId": "supreme-petrochem",
+      "name": "Supreme Petrochem",
+      "from": "cautious",
+      "to": "constructive",
+      "fromQuarter": "Q3 FY26",
+      "quarter": "Q4 FY26",
+      "steps": 2,
+      "direction": "up"
+    },
+    {
+      "companyId": "gandhar-oil",
+      "name": "Gandhar Oil",
+      "from": "constructive",
+      "to": "cautious",
+      "fromQuarter": "Q3 FY26",
+      "quarter": "Q4 FY26",
+      "steps": -2,
+      "direction": "down"
+    },
+    {
+      "companyId": "shipping-corp",
+      "name": "Shipping Corp of India",
+      "from": "neutral",
+      "to": "confident",
+      "fromQuarter": "Q2 FY26",
+      "quarter": "Q4 FY26",
+      "steps": 2,
+      "direction": "up"
+    }
+  ],
+  "coverageWarnings": [
+    {
+      "groupId": "lagging",
+      "kind": "thin",
+      "text": "Moves last: scored on 2 of 4 KPIs."
+    }
+  ],
+  "alerts": [
+    {
+      "id": "coverage-lagging",
+      "severity": "info",
+      "kind": "low-coverage",
+      "text": "Moves last: scored on 2 of 4 KPIs."
+    },
+    {
+      "id": "tone-ongc",
+      "severity": "warn",
+      "kind": "tone-drift",
+      "text": "ONGC moved 3 tone steps down (confident → cautious) in Q2 FY26."
+    },
+    {
+      "id": "tone-petronet-lng",
+      "severity": "warn",
+      "kind": "tone-drift",
+      "text": "Petronet LNG moved 3 tone steps down (constructive → defensive) in Q4 FY26."
+    },
+    {
+      "id": "tone-mahanagar-gas",
+      "severity": "warn",
+      "kind": "tone-drift",
+      "text": "Mahanagar Gas moved 3 tone steps down (confident → cautious) in Q4 FY26."
+    },
+    {
+      "id": "tone-castrol-india",
+      "severity": "warn",
+      "kind": "tone-drift",
+      "text": "Castrol India moved 3 tone steps down (confident → cautious) in Q4 FY26."
+    },
+    {
+      "id": "tone-lt",
+      "severity": "warn",
+      "kind": "tone-drift",
+      "text": "L&T moved 2 tone steps down (constructive → cautious) in Q4 FY26."
+    },
+    {
+      "id": "tone-ratnamani",
+      "severity": "warn",
+      "kind": "tone-drift",
+      "text": "Ratnamani Metals moved 2 tone steps down (neutral → defensive) in Q4 FY26."
+    },
+    {
+      "id": "tone-bpcl",
+      "severity": "warn",
+      "kind": "tone-drift",
+      "text": "BPCL moved 2 tone steps down (neutral → defensive) in Q1 FY27."
+    },
+    {
+      "id": "tone-gail",
+      "severity": "warn",
+      "kind": "tone-drift",
+      "text": "GAIL moved 2 tone steps down (constructive → cautious) in Q3 FY26."
+    },
+    {
+      "id": "tone-igl",
+      "severity": "warn",
+      "kind": "tone-drift",
+      "text": "IGL moved 2 tone steps down (constructive → cautious) in Q4 FY26."
+    },
+    {
+      "id": "tone-supreme-petrochem",
+      "severity": "info",
+      "kind": "tone-drift",
+      "text": "Supreme Petrochem moved 2 tone steps up (cautious → constructive) in Q4 FY26."
+    },
+    {
+      "id": "tone-gandhar-oil",
+      "severity": "warn",
+      "kind": "tone-drift",
+      "text": "Gandhar Oil moved 2 tone steps down (constructive → cautious) in Q4 FY26."
+    },
+    {
+      "id": "tone-shipping-corp",
+      "severity": "info",
+      "kind": "tone-drift",
+      "text": "Shipping Corp of India moved 2 tone steps up (neutral → confident) in Q4 FY26."
+    }
+  ]
+}
