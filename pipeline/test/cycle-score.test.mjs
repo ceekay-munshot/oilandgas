@@ -654,3 +654,87 @@ test('the coverage guard counts only companies genuinely behind the frontier', (
      and not the one exactly on it */
   assert.equal(out.staleKpis, 1);
 });
+
+/* ------------------------------------ Part D: quarantine + confidence + 4b */
+
+import { TAG_CONFIDENCE, stageMacroCheck, STAGE_MACRO } from '../lib/cycle-score.mjs';
+import { quarantineUnknown, usableSeries } from '../lib/kpi-flag.mjs';
+
+const kpisTagged = (values, sourceTags, oneOffs) => ({
+  flatBandPct: 1.5, quarters: ['Q1 FY26', 'Q2 FY26', 'Q3 FY26', 'Q4 FY26'],
+  companies: { a: { asOf: 'Q4 FY26', kpis: [
+    { id: 'k', flagBasis: 'level', values, sourceTags, oneOffs }] } }
+});
+const G1 = { id: 'leading', companies: [{ id: 'a' }] };
+
+test('an [Unknown] quarter is blanked before anything is trended', () => {
+  assert.deepEqual(quarantineUnknown([1, 2, 3], ['official', 'unknown', 'official']),
+    [1, null, 3]);
+  /* usableSeries applies both masks the brief holds out */
+  assert.deepEqual(
+    usableSeries([1, 2, 3, 4], { oneOffs: [null, 'provision', null, null], sourceTags: ['official', 'official', 'unknown', 'official'] }),
+    [1, null, null, 4]);
+});
+
+test('an unverifiable number cannot set a trajectory, so it cannot reach a score', () => {
+  /* the spike that would read as a turn is the one nobody can source */
+  const clean = kpisTagged([100, 90, 80, 260], ['official', 'official', 'official', 'official']);
+  assert.equal(scoreGroup(clean, G1).score, FLAG_SCORE['inflecting-up'] * 100);
+  const dirty = kpisTagged([100, 90, 80, 260], ['official', 'official', 'official', 'unknown']);
+  assert.notEqual(scoreGroup(dirty, G1).score, 100);
+  assert.equal(scoreGroup(dirty, G1).unknownKpis, 1);
+});
+
+test('a score inherits the WEAKEST tag among the quarters behind it', () => {
+  const firm = kpisTagged([10, 20, 40, 80], ['official', 'official', 'official', 'official']);
+  const soft = kpisTagged([10, 20, 40, 80], ['official', 'estimate', 'official', 'official']);
+  assert.equal(scoreGroup(firm, G1).weakestTag, 'official');
+  assert.equal(scoreGroup(firm, G1).reducedConfidence, false);
+  /* "a score built partly on [Estimate] inputs shows a reduced-confidence
+     marker even though the score itself is [Derived]" */
+  assert.equal(scoreGroup(soft, G1).weakestTag, 'estimate');
+  assert.equal(scoreGroup(soft, G1).reducedConfidence, true);
+  assert.ok(TAG_CONFIDENCE.official > TAG_CONFIDENCE['company-filing']);
+  assert.ok(TAG_CONFIDENCE['mgmt-claim'] > TAG_CONFIDENCE.estimate);
+});
+
+test('a quarantined quarter never sets the confidence either', () => {
+  /* unknown is the weakest thing on the board, but it is excluded outright -
+     it must not quietly become the score's inherited tag */
+  const k = kpisTagged([10, 20, 40, 80], ['official', 'official', 'official', 'unknown']);
+  assert.equal(scoreGroup(k, G1).weakestTag, 'official');
+});
+
+test('4b: every stage names the crude backdrop it expects', () => {
+  ['trough', 'early-upcycle', 'mid-upcycle', 'late-upcycle', 'early-downcycle']
+    .forEach((id) => assert.ok(STAGE_MACRO[id] && STAGE_MACRO[id].text));
+});
+
+test('4b: the backdrop corroborates the call, and disagreement is reported', () => {
+  const crude = (direction, percentile) => ({ tiles: [{ id: 'brent', direction, percentile }] });
+  /* Early Upcycle expects crude recovering */
+  assert.equal(stageMacroCheck('early-upcycle', crude('rising', 50)).agrees, true);
+  assert.equal(stageMacroCheck('early-upcycle', crude('falling', 50)).agrees, false);
+  /* Trough expects crude near cycle lows */
+  assert.equal(stageMacroCheck('trough', crude('flat', 12)).agrees, true);
+  assert.equal(stageMacroCheck('trough', crude('flat', 88)).agrees, false);
+  /* Late Upcycle expects crude elevated */
+  assert.equal(stageMacroCheck('late-upcycle', crude('flat', 90)).agrees, true);
+});
+
+test('4b: an unknown backdrop is not a disagreement', () => {
+  assert.equal(stageMacroCheck('trough', { tiles: [] }), null);
+  assert.equal(stageMacroCheck('trough', { tiles: [{ id: 'brent' }] }), null);
+  assert.equal(stageMacroCheck(null, { tiles: [{ id: 'brent', direction: 'rising' }] }), null);
+});
+
+test('4b: a contradicted stage raises the manual-review flag, it does not change the call', () => {
+  const alerts = buildAlerts({
+    divergence: { signsDiffer: false }, macro: { conflict: false }, coverage: [], drift: [],
+    stageMacro: { stageId: 'trough', expected: 'crude near cycle lows', observed: '88th percentile', agrees: false }
+  });
+  assert.equal(alerts.length, 1);
+  assert.equal(alerts[0].kind, 'stage-macro');
+  assert.equal(alerts[0].severity, 'review');
+  assert.ok(/crude near cycle lows/.test(alerts[0].text));
+});

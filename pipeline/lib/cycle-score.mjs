@@ -20,7 +20,7 @@
  * one place where it can be changed and argued with.
  */
 
-import { flagFor } from './kpi-flag.mjs';
+import { flagFor, usableSeries } from './kpi-flag.mjs';
 import { isOlderQuarter, quarterOrdinal } from './fiscal.mjs';
 
 /**
@@ -80,6 +80,36 @@ const DELTA_BAND = 5;
 
 /** The brief's coverage guard: more than a third unusable and the score is thin. */
 export const COVERAGE_LIMIT = 1 / 3;
+
+/**
+ * How much weight a source tag carries, for confidence display only.
+ *
+ * Part D: "Derived values inherit the weakest tag among their inputs for
+ * confidence display: a score built partly on [Estimate] inputs shows a
+ * reduced-confidence marker even though the score itself is [Derived]."
+ *
+ * The order is the brief's own taxonomy read as a ladder: an audited filing is
+ * the firmest thing on the board, a company's own unaudited slide is next, an
+ * aggregator after that, then a forward-looking management claim, then a figure
+ * the pipeline computed because nobody disclosed one. [Unknown] does not appear
+ * because it never reaches a score - it is quarantined before the trend.
+ */
+export const TAG_CONFIDENCE = {
+  'official':       5,
+  'company-filing': 4,
+  'external':       3,
+  'mgmt-claim':     2,
+  'estimate':       1,
+  /* Cells written before the derive step was retagged carry 'derived' as their
+     source. It means the same thing - the pipeline computed it to fill a gap -
+     so it sits at the same confidence rather than falling out of the ladder and
+     silently counting as firm. */
+  'derived':        1
+};
+
+/* At or below this, the score carries a reduced-confidence marker. The brief
+   names [Estimate] as the case that must show one. */
+const REDUCED_AT = TAG_CONFIDENCE.estimate;
 
 /**
  * Bump when a change would make today's scores incomparable with a stored one -
@@ -162,8 +192,11 @@ export function scoreGroup(kpisJson, group, drop = 0, opts = {}) {
   const band = isNum(kpisJson && kpisJson.flatBandPct) ? kpisJson.flatBandPct : 1.5;
   const byId = (kpisJson && kpisJson.companies) || {};
   const latestQuarter = opts.latestQuarter || null;
-  let weighted = 0, weight = 0, scored = 0, total = 0, stale = 0, oneOff = 0;
+  let weighted = 0, weight = 0, scored = 0, total = 0, stale = 0, oneOff = 0, unknown = 0;
   const companies = new Set();
+  /* the weakest tag among the cells that actually fed a score - Part D's
+     confidence inheritance */
+  let weakest = null, weakestRank = Infinity;
   /* the strongest signals, for the summary paragraph's "driven by ..." clause */
   const signals = [];
 
@@ -179,13 +212,27 @@ export function scoreGroup(kpisJson, group, drop = 0, opts = {}) {
     entry.kpis.forEach((k) => {
       total++;
       if (isStale) stale++;
-      if (k.oneOff) oneOff++;
-      const values = Array.isArray(k.values) ? k.values : [];
+      if ((k.oneOffs || []).some(Boolean)) oneOff++;
+      if ((k.sourceTags || []).some((t) => t === 'unknown')) unknown++;
+      /* Hold out what the brief holds out before anything is trended: quarters
+         a one-off distorted, and quarters whose provenance is unknown. */
+      const values = usableSeries(Array.isArray(k.values) ? k.values : [],
+        { oneOffs: k.oneOffs, sourceTags: k.sourceTags });
       /* Walking back means dropping the newest quarters, not the oldest: the
          window is oldest-first, so slice from the end. */
       const window = drop > 0 ? values.slice(0, values.length - drop) : values;
       const flag = flagFor(window, k.flagBasis, band);
       if (!flag || !isNum(FLAG_SCORE[flag])) return;
+      /* A score inherits the weakest provenance among the quarters behind it:
+         one estimated cell is enough to make the whole reading softer. Only the
+         quarters that survived quarantine count - an unknown never feeds a
+         score, so it cannot set its confidence either. */
+      (k.sourceTags || []).forEach((t, i) => {
+        if (!t || t === 'unknown') return;
+        if (values[i] == null) return;
+        const rank = TAG_CONFIDENCE[t];
+        if (isNum(rank) && rank < weakestRank) { weakestRank = rank; weakest = t; }
+      });
       const w = FLAG_WEIGHT[flag];
       weighted += FLAG_SCORE[flag] * w;
       weight += w;
@@ -206,7 +253,9 @@ export function scoreGroup(kpisJson, group, drop = 0, opts = {}) {
     if (t.weight > 1) signals.push({ kind: 'tone', companyId: t.companyId, company: t.company, label: t.theme, flag: t.drift > 0 ? 'tone-up' : 'tone-down' });
   });
 
-  const usable = total ? (stale + oneOff) / total : 0;
+  /* the brief's guard counts what cannot carry a trajectory: stale rows,
+     one-off-distorted quarters, and quarantined provenance */
+  const usable = total ? (stale + oneOff + unknown) / total : 0;
 
   return {
     score: weight ? Math.round((weighted / weight) * 100) : null,
@@ -216,7 +265,10 @@ export function scoreGroup(kpisJson, group, drop = 0, opts = {}) {
     companiesScored: companies.size,
     staleKpis: stale,
     oneOffKpis: oneOff,
+    unknownKpis: unknown,
     lowCoverage: total > 0 && usable > COVERAGE_LIMIT,
+    weakestTag: weakest,
+    reducedConfidence: isNum(weakestRank) && weakestRank <= REDUCED_AT,
     signals
   };
 }
@@ -291,7 +343,10 @@ export function bucketScores(kpisJson, companiesJson, opts = {}) {
       companiesScored: now.companiesScored,
       staleKpis: now.staleKpis,
       oneOffKpis: now.oneOffKpis,
+      unknownKpis: now.unknownKpis,
       lowCoverage: now.lowCoverage,
+      weakestTag: now.weakestTag,
+      reducedConfidence: now.reducedConfidence,
       signals: now.signals
     };
   });
@@ -453,6 +508,72 @@ export function stageCall(scores, cycleStages) {
 }
 
 /**
+ * The Macro backdrop column of the 4b stage table: what crude should be doing
+ * if the stage the scores called is the stage we are actually in.
+ *
+ * 4a is explicit that macro flags "do not enter the scores - they are the
+ * sanity check", so this never changes the call. It corroborates it, and a
+ * disagreement raises the manual-review flag the brief asks for rather than
+ * being quietly dropped.
+ *
+ * "Low" and "elevated" are read off the 12-month percentile, which is what the
+ * brief means by "near cycle lows" and "elevated" - 90th percentile crude reads
+ * very differently from 40th even when both are Rising.
+ */
+export const STAGE_MACRO = {
+  'trough':          { text: 'crude near cycle lows',  wants: { maxPercentile: 35 } },
+  'early-upcycle':   { text: 'crude recovering',       wants: { direction: 'rising' } },
+  'mid-upcycle':     { text: 'crude trending up',      wants: { direction: 'rising' } },
+  'late-upcycle':    { text: 'crude elevated',         wants: { minPercentile: 65 } },
+  'early-downcycle': { text: 'crude falling',          wants: { direction: 'falling' } }
+};
+
+/**
+ * Does the crude backdrop corroborate the stage the scores called?
+ *
+ * Returns null when there is nothing to check against - no call, or no crude
+ * tile with enough history. An unknown backdrop is not a disagreement.
+ */
+export function stageMacroCheck(stageId, macroVerdict) {
+  const want = STAGE_MACRO[stageId];
+  if (!want) return null;
+  const tiles = (macroVerdict && macroVerdict.tiles) || [];
+  /* Brent is the reference the 4b column is written against */
+  const crude = tiles.find((t) => t.id === 'brent') || tiles.find((t) => /crude|brent/i.test(t.id || ''));
+  if (!crude || (!crude.direction && !isNum(crude.percentile))) return null;
+
+  const checks = [];
+  if (want.wants.direction) {
+    checks.push({
+      ok: crude.direction === want.wants.direction,
+      saw: `crude ${crude.direction || 'flat'}`
+    });
+  }
+  if (isNum(want.wants.maxPercentile)) {
+    checks.push({
+      ok: isNum(crude.percentile) ? crude.percentile <= want.wants.maxPercentile : null,
+      saw: isNum(crude.percentile) ? `${crude.percentile}th percentile` : 'no percentile'
+    });
+  }
+  if (isNum(want.wants.minPercentile)) {
+    checks.push({
+      ok: isNum(crude.percentile) ? crude.percentile >= want.wants.minPercentile : null,
+      saw: isNum(crude.percentile) ? `${crude.percentile}th percentile` : 'no percentile'
+    });
+  }
+  const decided = checks.filter((c) => c.ok !== null);
+  if (!decided.length) return null;
+
+  const agrees = decided.every((c) => c.ok);
+  return {
+    stageId,
+    expected: want.text,
+    observed: decided.map((c) => c.saw).join(', '),
+    agrees
+  };
+}
+
+/**
  * Which way a macro tile has moved, mirroring what the browser draws so the
  * pipeline's verdict and the tab's badges cannot disagree.
  */
@@ -606,7 +727,7 @@ export function coverageWarnings(scores, groupMeta) {
  * The alert strip, in the order the client listed it: macro conflict first
  * (it questions the whole reading), then thin coverage, then tone drift.
  */
-export function buildAlerts({ macro, scores, coverage, drift, divergence }) {
+export function buildAlerts({ macro, scores, coverage, drift, divergence, stageMacro }) {
   const alerts = [];
 
   if (divergence && divergence.signsDiffer) {
@@ -623,6 +744,17 @@ export function buildAlerts({ macro, scores, coverage, drift, divergence }) {
       severity: 'review',
       kind: 'macro-conflict',
       text: `Flagged for review: the market backdrop points ${macro.macroBias} while the scores are moving ${macro.scoreBias}.`
+    });
+  }
+  /* The 4b table pairs each stage with a crude backdrop. The scores make the
+     call; when crude does not corroborate it, the brief wants that shown rather
+     than resolved. */
+  if (stageMacro && stageMacro.agrees === false) {
+    alerts.push({
+      id: 'stage-macro',
+      severity: 'review',
+      kind: 'stage-macro',
+      text: `Flagged for review: this stage expects ${stageMacro.expected}, but ${stageMacro.observed}.`
     });
   }
   (coverage || []).forEach((w) => {
@@ -962,9 +1094,11 @@ export function buildScores({ kpis, companies, framework, macro, commentary, gen
   const divergence = divergenceOf(scores);
   const stage = stageCall(scores, framework && framework.cycleStages);
   const macroVerdict = macroAgreement(macro, scores);
+  /* 4b's Macro backdrop column: does crude corroborate the called stage? */
+  const stageMacro = stageMacroCheck(stage.stageId, macroVerdict);
   const drift = toneDrift(commentary, 2);
   const coverage = coverageWarnings(scores, framework && framework.groupMeta);
-  const alerts = buildAlerts({ macro: macroVerdict, scores, coverage, drift, divergence });
+  const alerts = buildAlerts({ macro: macroVerdict, scores, coverage, drift, divergence, stageMacro });
 
   /* The divergence history: the same calculation walked back a quarter at a time.
      Only the steps that still have enough quarters to flag produce a number; the
@@ -996,6 +1130,7 @@ export function buildScores({ kpis, companies, framework, macro, commentary, gen
     divergenceSeries,
     stage,
     macro: macroVerdict,
+    stageMacro,
     toneDrift: drift,
     coverageWarnings: coverage,
     alerts

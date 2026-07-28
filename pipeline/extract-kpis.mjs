@@ -289,6 +289,17 @@ async function main() {
     let called = false;
 
     process.stdout.write(`  ${id.padEnd(20)} `);
+
+    /* Part C: the scrape marked this company checked-and-unchanged, so it
+       deliberately fetched no documents for it. Skipping here keeps its previous
+       entry (out is seeded from the last kpis.json) and, crucially, asks the
+       model nothing: an empty document set would otherwise change the
+       fingerprint and re-open settled cells with no source to answer from. */
+    if (man && man.unchanged) {
+      console.log('unchanged since last run - no new filing, nothing asked');
+      continue;
+    }
+
     const perQuarter = await gatherByQuarter(man);
     /* --render-only keeps each company's existing window. The window is derived
        from the cached documents, and that cache is gitignored, so re-deriving it

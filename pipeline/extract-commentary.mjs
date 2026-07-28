@@ -164,6 +164,16 @@ async function main() {
     let called = false;
 
     process.stdout.write(`  ${id.padEnd(20)} `);
+
+    /* Part C: the scrape checked this company and found nothing newer, so it
+       fetched no documents for it. Skip rather than read an empty cache: an
+       empty document set changes the fingerprint, which would re-open settled
+       quarters and ask the model about a call it cannot see. */
+    if (man && man.unchanged) {
+      console.log('unchanged since last run - no new concall, nothing asked');
+      continue;
+    }
+
     const perQuarter = await gatherByQuarter(man);
     const quarters = windowFor(perQuarter, fallbackQuarters);
 

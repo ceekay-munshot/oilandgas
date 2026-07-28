@@ -33,6 +33,7 @@ import { loadEnv, screenerCredentials } from './lib/env.mjs';
 import { openScreener, resolveSlug, getCompanyPage, downloadDoc, maskEmail } from './sources/screener-session.mjs';
 import { parseAllFinancials } from './parsers/screener-financials.mjs';
 import { parseConcalls, selectDocuments, looksLikeDoc } from './parsers/screener-docs.mjs';
+import { filingDecision } from './lib/filing-check.mjs';
 import { parseProsCons } from './parsers/screener-summary.mjs';
 import {
   insightsFromPage, insightsTableIndex, insightsMatrix, toggleQuarterlyInCard
@@ -58,6 +59,10 @@ function parseArgs(argv) {
     scope: get('--scope') || 'all',
     only: (get('--only') || '').split(',').map((s) => s.trim()).filter(Boolean),
     headful: args.includes('--headful'),
+    /* Part C: skip the document fetches for a company with nothing newer than
+       the manifest already holds. OFF by default - a wrong skip freezes a
+       company quietly, so the first run with it on should be watched. */
+    incremental: args.includes('--incremental'),
     verbose: args.includes('--verbose') || (get('--scope') || '') === 'smoke'
   };
 }
@@ -245,7 +250,7 @@ async function main() {
   let ok = 0, failed = 0, docsCached = 0, docsOcr = 0, docsRecovered = 0, docsGated = 0;
 
   try {
-    let i = 0;
+    let i = 0, skippedCompanies = 0, gatheredCompanies = 0;
     for (const { ref: co } of work) {
       i++;
       const t0 = Date.now();
@@ -355,6 +360,27 @@ async function main() {
         const concalls = parseConcalls(html);
         const picked = selectDocuments(concalls, { transcripts: 6, summaries: 6 });
         const docs = [...picked.summaries, ...(picked.ppt ? [picked.ppt] : []), ...picked.transcripts];
+
+        /* Part C's filing check. The page is loaded either way - that IS the
+           check - so what this decides is whether the dozen document fetches
+           follow. A skip is recorded on the manifest, never inferred from an
+           empty cache, because the extractors must skip the company outright
+           rather than see no text and re-ask with nothing attached. */
+        const prevMan = manifest.companies[co.id] || null;
+        const decision = filingDecision(prevMan, docs, { incremental: opts.incremental });
+        if (decision.skip) {
+          /* Keep everything the last gather recorded and mark the company as
+             checked-and-unchanged, so the extractors can skip it deliberately. */
+          manifest.companies[co.id] = {
+            ...prevMan, unchanged: true, checkedAt: new Date().toISOString()
+          };
+          skippedCompanies++;
+          console.log(` unchanged - ${decision.reason}`);
+          continue;
+        }
+
+        /* gathered now, so it is not "unchanged" any more */
+        gatheredCompanies++;
 
         const gathered = [];
         for (const d of docs) {

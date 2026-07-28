@@ -234,6 +234,12 @@ h1,h2,h3,p{margin:0;}
   color:var(--ink-4); white-space:nowrap;
 }
 .stamp.is-stale{ opacity:.55; font-style:italic; }
+/* Part D's confidence inheritance: a score is only as firm as its weakest input */
+.stamp.is-reduced{
+  color:#B45309; font-weight:700;
+  background:color-mix(in srgb, #E9A526 14%, #fff);
+  border-radius:var(--r-chip); padding:1px 6px;
+}
 .is-stale-value{ opacity:.5; }
 
 /* --- card --------------------------------------------------------------- */
@@ -750,6 +756,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
 .offrow__co{font-weight:660; color:var(--ink-1);}
 .offrow__k{color:var(--ink-2);}
 .offrow__why{color:#B45309; font-weight:600;}
+.offrow.is-quarantined .offrow__why{color:#7C8496; font-style:italic;}
 .offempty{font-size:11px; color:var(--ink-4); line-height:1.45;}
 
 /* --- 5.1 the read ------------------------------------------------------- */
@@ -985,7 +992,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
         <div class="card__head">
           <div class="card__headL">
             <span class="card__title">Quarters held out of the trend</span>
-            <span class="card__sub">One-offs are excluded from the trajectory, and listed here so the exclusion is auditable</span>
+            <span class="card__sub">One-offs and unsourced values are excluded from the trajectory, and listed here so the exclusion is auditable</span>
           </div>
           <span class="chip chip--ghost" id="oneOffChip">None flagged</span>
         </div>
@@ -1437,6 +1444,16 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
                   (s.kpisTotal - s.kpisScored) + ' of ' + s.kpisTotal + ' are not yet flaggable.') + '">' +
               s.kpisScored + '/' + s.kpisTotal + ' KPIs &middot; ' + esc(scoreAsOf() || '') +
             '</span>' +
+            /* Part D: a score inherits the weakest tag among its inputs. One
+               estimated quarter makes the whole reading softer, and the brief
+               wants that said out loud rather than hidden behind [Derived]. */
+            (s.reducedConfidence
+              ? '<span class="stamp is-reduced" title="' +
+                  esc('Reduced confidence: part of this score rests on ' +
+                      ((tagById[s.weakestTag] || {}).label || s.weakestTag) +
+                      ' inputs. The score is still [Derived], but it is only as firm as its weakest source.') +
+                '">reduced confidence</span>'
+              : '') +
           '</div>'
         : '';
       return '' +
@@ -2579,12 +2596,22 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     (g.companies || []).forEach(function (c) {
       var entry = kdata[c.id];
       ((entry && entry.kpis) || []).forEach(function (k) {
+        var qAt = function (i) { return (entry.quarters && entry.quarters[i]) || ('Q' + (i + 1)); };
         (k.oneOffs || []).forEach(function (reason, i) {
           if (!reason) return;
           rows.push({
-            company: c.name, kpi: k.label,
-            quarter: (entry.quarters && entry.quarters[i]) || ('Q' + (i + 1)),
+            kind: 'one-off', company: c.name, kpi: k.label, quarter: qAt(i),
             value: k.values ? k.values[i] : null, reason: reason
+          });
+        });
+        /* Part D: an [Unknown] value is quarantined from scoring and shown
+           only here, until somebody establishes where it came from. */
+        (k.sourceTags || []).forEach(function (tag, i) {
+          if (tag !== 'unknown') return;
+          rows.push({
+            kind: 'quarantined', company: c.name, kpi: k.label, quarter: qAt(i),
+            value: k.values ? k.values[i] : null,
+            reason: 'provenance not established — quarantined from scoring'
           });
         });
       });
@@ -2599,7 +2626,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     }
     node.innerHTML = rows.length
       ? rows.map(function (r) {
-          return '<div class="offrow">' +
+          return '<div class="offrow' + (r.kind === 'quarantined' ? ' is-quarantined' : '') + '">' +
             '<span class="offrow__q">' + esc(r.quarter) + '</span>' +
             '<span class="offrow__co">' + esc(r.company) + '</span>' +
             '<span class="offrow__k">' + esc(r.kpi) +
@@ -2608,7 +2635,8 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
           '</div>';
         }).join('')
       : '<div class="offempty">No quarter in this group is flagged as distorted by a ' +
-        'one-off, so nothing has been held out of a trend here.</div>';
+        'one-off, and every value carries a source, so nothing has been held out ' +
+        'of a trend here.</div>';
   }
 
   /* ---------------------------------------------------------- 4. commentary */

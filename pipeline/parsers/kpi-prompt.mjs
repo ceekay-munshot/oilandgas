@@ -11,7 +11,7 @@
  *    excerpts do not state comes back null with a note, never a guess.
  */
 
-import { flagFor, excludeOneOffs } from '../lib/kpi-flag.mjs';
+import { flagFor, usableSeries } from '../lib/kpi-flag.mjs';
 import { quarterLabel } from '../lib/fiscal.mjs';
 
 /** Source tags the dashboard knows (framework.json). Anything else -> unknown. */
@@ -234,7 +234,7 @@ export function normalizeResult(raw, kpis, quarters, { flatBandPct = 1.5 } = {})
       oneOffs,
       /* The brief: one-off quarters are excluded from trajectory computation, so
          a distorted quarter can never register as an inflection. */
-      flag: flagFor(excludeOneOffs(values, oneOffs), spec.flagBasis, flatBandPct),
+      flag: flagFor(usableSeries(values, { oneOffs, sourceTags }), spec.flagBasis, flatBandPct),
       notes
     };
   });

@@ -19,6 +19,10 @@ on:
         type: choice
         options: [smoke, all, dump]
         default: smoke
+      incremental:
+        description: 'Skip companies with no filing newer than we already hold (faster; watch the first run)'
+        type: boolean
+        default: false
       refreshCommentary:
         description: 'Re-read every concall (only after a commentary prompt change - costs one model call per company)'
         type: boolean
@@ -88,7 +92,7 @@ jobs:
       # A manual run honours the chosen scope; the weekly schedule does all 27.
       - name: Scrape Screener
         if: ${{ github.event.inputs.scope != 'dump' }}
-        run: node pipeline/scrape-screener.mjs --scope ${{ github.event.inputs.scope || 'all' }}
+        run: node pipeline/scrape-screener.mjs --scope ${{ github.event.inputs.scope || 'all' }}${{ github.event.inputs.incremental == 'true' && ' --incremental' || '' }}
 
       # Recon only - dump one company's concall markup, no scrape, no extract.
       - name: Dump concall markup
