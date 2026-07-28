@@ -224,13 +224,18 @@ async function main() {
         merged = mergeIntoStore({
           store, companyId: id, fingerprint, at, docByQuarter,
           model: usedProvider ? resolvedModel(usedProvider) : null,
-          tones: normalizeResult(raw, askWithText)
+          tones: normalizeResult(raw, askWithText),
+          /* --refresh re-asks a settled quarter on purpose, so its answer has to
+             be allowed to land. Without this the run pays for every call and
+             then discards the result, and a prompt change can never take. */
+          overwrite: opts.refresh
         });
       } else {
         // A failed call records nothing: the quarters stay open for the next run.
         note = `classification failed: ${(err && err.message ? err.message : String(err)).slice(0, 140)}`;
       }
       console.log(`asked ${askWithText.length} quarter${askWithText.length === 1 ? '' : 's'} · +${merged.gained} new` +
+        (merged.replaced ? ` · ${merged.replaced} re-read` : '') +
         (plan.settled ? ` · ${plan.settled} held` : '') + (note ? ' · ' + note : ''));
     }
     totalGained += merged.gained;

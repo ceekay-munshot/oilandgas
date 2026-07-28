@@ -83,14 +83,20 @@ export function planQuarters({ store, companyId, quarters, fingerprint }) {
  * @param {{quarter:string,toneId:string|null,score:number|null,quote:string|null,rationale:string|null}[]} opts.tones
  * @param {Record<string,string>} [opts.docByQuarter]  which document label each
  *        quarter's tone was read from, for provenance
- * @returns {{gained:number, kept:number, recorded:number}}
+ * @param {boolean} [opts.overwrite=false]  accept a NEW real reading over an
+ *        existing one. Off by default: the first real reading stands, so an
+ *        ordinary run can never churn a settled quarter. Turned on only by an
+ *        explicit --refresh, which exists precisely to let a prompt change take
+ *        effect - without it the run pays for every call and discards the answer.
+ *        A null STILL never displaces a real tone, refresh or not.
+ * @returns {{gained:number, kept:number, recorded:number, replaced:number}}
  */
-export function mergeIntoStore({ store, companyId, tones, docByQuarter = {}, fingerprint, model, at }) {
+export function mergeIntoStore({ store, companyId, tones, docByQuarter = {}, fingerprint, model, at, overwrite = false }) {
   if (!store.companies[companyId]) store.companies[companyId] = { cells: {} };
   const entry = store.companies[companyId];
   if (!entry.cells) entry.cells = {};
 
-  let gained = 0, kept = 0, recorded = 0;
+  let gained = 0, kept = 0, recorded = 0, replaced = 0;
   for (const t of tones || []) {
     const q = t && t.quarter;
     if (!q) continue;
@@ -112,7 +118,9 @@ export function mergeIntoStore({ store, companyId, tones, docByQuarter = {}, fin
       continue;
     }
 
-    if (prev && prev.toneId) { kept++; continue; }          // first real reading stands
+    /* The first real reading stands - unless this run was told to re-read. */
+    if (prev && prev.toneId && !overwrite) { kept++; continue; }
+    if (prev && prev.toneId) replaced++;
     entry.cells[q] = {
       toneId: t.toneId,
       score: t.score,
@@ -135,7 +143,7 @@ export function mergeIntoStore({ store, companyId, tones, docByQuarter = {}, fin
     gained++;
   }
   entry.updatedAt = at;
-  return { gained, kept, recorded };
+  return { gained, kept, recorded, replaced };
 }
 
 /**

@@ -231,3 +231,42 @@ test('fingerprint moves when the documents change, holds when they do not', () =
   assert.equal(a, b);
   assert.notEqual(a, c);
 });
+
+/* -------------------------------------------- --refresh has to be able to land */
+
+test('an ordinary run never churns a settled quarter', () => {
+  const store = freshStore();
+  const at = '2026-07-28T00:00:00Z';
+  mergeIntoStore({ store, companyId: 'a', fingerprint: 'f1', at,
+    tones: [{ quarter: 'Q4', toneId: 'confident', score: 5, quote: 'q', rationale: 'r' }] });
+  const out = mergeIntoStore({ store, companyId: 'a', fingerprint: 'f2', at,
+    tones: [{ quarter: 'Q4', toneId: 'defensive', score: 1, quote: 'q2', rationale: 'r2' }] });
+  assert.equal(out.kept, 1);
+  assert.equal(out.replaced, 0);
+  assert.equal(cellsOf(store, 'a').Q4.toneId, 'confident');   // first reading stands
+});
+
+test('--refresh lets a re-read replace a settled quarter, or it paid for nothing', () => {
+  const store = freshStore();
+  const at = '2026-07-28T00:00:00Z';
+  mergeIntoStore({ store, companyId: 'a', fingerprint: 'f1', at,
+    tones: [{ quarter: 'Q4', toneId: 'confident', score: 5, quote: 'q', rationale: 'r' }] });
+  const out = mergeIntoStore({ store, companyId: 'a', fingerprint: 'f2', at, overwrite: true,
+    tones: [{ quarter: 'Q4', toneId: 'defensive', score: 1, quote: 'q2', rationale: 'r2',
+              direction: 'negative', signal: 'a synthesized sentence' }] });
+  assert.equal(out.replaced, 1);
+  const cell = cellsOf(store, 'a').Q4;
+  assert.equal(cell.toneId, 'defensive');
+  assert.equal(cell.signal, 'a synthesized sentence');   // the new template field lands
+});
+
+test('a null never displaces a real tone, even on --refresh', () => {
+  const store = freshStore();
+  const at = '2026-07-28T00:00:00Z';
+  mergeIntoStore({ store, companyId: 'a', fingerprint: 'f1', at,
+    tones: [{ quarter: 'Q4', toneId: 'confident', score: 5, quote: 'q', rationale: 'r' }] });
+  const out = mergeIntoStore({ store, companyId: 'a', fingerprint: 'f2', at, overwrite: true,
+    tones: [{ quarter: 'Q4', toneId: null, score: null, quote: null, rationale: 'nothing said' }] });
+  assert.equal(out.kept, 1);
+  assert.equal(cellsOf(store, 'a').Q4.toneId, 'confident');   // coverage still only goes up
+});
