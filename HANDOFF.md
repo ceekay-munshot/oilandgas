@@ -3,9 +3,15 @@
 Read this first if you are picking the project up in a new session. It is the
 state of play, the rules that are not negotiable, and what to do next.
 
-Last updated for the derived-KPIs change plus the Gujarat Gas repoint and mid-week
-cron (branch `claude/company-data-derived-kpis-uwm535`); baseline was commit
-`13b4f7a` (PR #32 merged).
+Last updated after building the client's full specification (Parts A-D) - the
+cycle-scoring spine, all five dashboard sections, the refresh architecture and
+the source-tagging rules. Branch `claude/company-data-derived-kpis-uwm535`.
+
+**The specification is the authority.** It is a Word document held by the client
+("Oil & Gas Cycle Dashboard - Pipeline Specification, Dashboard Layout & Refresh
+Architecture - v2"). Where this file and the brief disagree, the brief wins. Two
+places where an earlier reading of it was WRONG and has been corrected are called
+out below, because both were the kind of mistake that looks right in code review.
 
 ---
 
@@ -167,7 +173,8 @@ extract-commentary.mjs
   step (same job, same cache). Like the KPIs, real tone fills on the **next scheduled
   run** - the paid scrape/LLM can't run locally. A steady-state run classifies nothing
   and spends nothing.
-- **Still SEED:** the Cockpit (tab 1) scores and the Insight & Action (tab 5) slots.
+- **Nothing is SEED any more.** The hardcoded object is gone; every number on
+  screen is read from `data/*.json`.
 
 ---
 
@@ -302,6 +309,46 @@ data we actually hold:
   extractor doesn't do yet and (b) a render path that draws a single labelled cell
   instead of four blanks. Left scoped for a later prompt, not built blind — it
   can't be tested here without the paid scrape.
+
+### 3b. The scoring spine (Step 4) - and two corrections worth remembering
+
+`pipeline/lib/cycle-score.mjs` + `pipeline/rescore.mjs` -> `data/scores.json`.
+Arithmetic only: no network, no model call, so the chain from a reported figure
+to the stage on the dial is inspectable end to end. Run it any time with
+`node pipeline/rescore.mjs` - it re-reads `data/` and costs nothing.
+
+- **Bucket score** = net trajectory of the group's flagged KPIs **plus** the tone
+  drift of the themes that feed it, signed -100..+100 with zero as "no news".
+- **Inflection flags carry DOUBLE weight**, and so does a tone drift of two steps
+  or more. This was implemented backwards at first (inflections at *half* weight,
+  on the reasoning that a turn is not yet a trend). The brief says the opposite,
+  twice, and it is the point of the instrument. Do not "simplify" it back.
+- **A stock variable is flagged on its QoQ change row**, a seasonal one on YoY.
+  `flagBasis` in `kpi-spec.json` has always carried this; `kpi-flag.mjs` ignored
+  it for months and trended every KPI on its level. The dead band stays a
+  fraction of the KPI's own level, not of its changes - see the Deep Industries
+  case in `test/kpi.test.mjs`.
+- **Stale = strictly OLDER than the reporting window's end.** Not "different
+  from", which greys the company that reported *early*; and not "older than the
+  newest quarter anyone filed", which lets one early filer grey 21 of 27 rows.
+- `scoringVersion` guards the change log: a scoring change refuses to diff rather
+  than reporting the rescale as movement. **Bump it whenever weights or scale
+  change.**
+- Every run appends to `data/scores-history.json`, one entry per quarter, so the
+  instrument is back-testable against its own past calls (Part C).
+
+### 3c. What the client's own tables drive
+
+Three things in `data/framework.json` are the client's content, not ours, and are
+meant to be edited there rather than in code:
+
+- `themes` - the seven listening themes, each naming the companies it covers and
+  the bucket its tone scores into.
+- `stageActions` - the Step 5b research table, verbatim. Names outside the
+  27-company backbone (Man Industries, ISGEC, JNK...) carry `companyId: null` and
+  render "no series", because showing them plainly would make an uncovered name
+  look covered.
+- `standingSix` - unchanged, and still always rendered whatever the stage.
 
 ### 4. Deliberately unmapped (do not "fix" these)
 
