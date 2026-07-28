@@ -24,7 +24,7 @@ import { loadEnv, credentialReport } from './lib/env.mjs';
 import { probeScrapeTarget, SCRAPE_TARGETS } from './sources/probe.mjs';
 import {
   fetchBrent, fetchWti, fetchUsdInr, fetchIndianBasket,
-  fetchCrackSpread, fetchApmGas, fetchJkm, fetchBalticDirty
+  fetchCrackSpread, fetchApmGas, fetchJkm, fetchNaphtha, fetchBalticDirty
 } from './sources/macro-sources.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -59,6 +59,21 @@ const TILES = [
     supports: 'up', supportsWhy: 'Fatter margins pay for refinery upgrades.',
     lines: [
       { id: 'crack-321', label: '3-2-1 crack (US Gulf)', shortLabel: 'Crack', color: '#0F7A3A', primary: true, fetch: fetchCrackSpread }
+    ]
+  },
+  {
+    /* The cost side of every petrochemical margin in the backbone. Reliance,
+       GAIL and Supreme Petrochem all crack naphtha; when it runs away from the
+       polymer price their margins compress, and this is the half of that
+       equation that is honestly available. The polymer half is quoted CNY/T on
+       every free source, i.e. Chinese domestic, so the spread itself is left
+       unstated rather than mixed across currencies and geographies. */
+    id: 'naphtha', label: 'Petrochemical Feedstock - naphtha', shortLabel: 'Naphtha',
+    plainSub: 'What crackers pay for feedstock', unit: '$/t', decimals: 0,
+    supports: 'down', supportsWhy: 'Cheaper feedstock widens petrochemical margins.',
+    standIn: 'The cost side only - no free Indian polymer assessment exists to pair it with, so this is not a petchem margin.',
+    lines: [
+      { id: 'naphtha', label: 'Naphtha', shortLabel: 'Naphtha', color: '#7C3AED', primary: true, fetch: fetchNaphtha }
     ]
   },
   {

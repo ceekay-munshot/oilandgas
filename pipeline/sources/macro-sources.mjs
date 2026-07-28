@@ -184,6 +184,50 @@ export async function fetchJkm({ env = process.env, today } = {}) {
 }
 
 /**
+ * Naphtha, the feedstock every Indian cracker runs on.
+ *
+ * Trading Economics quotes it in USD/T, which is why it is here and the polymer
+ * pages are not: polyethylene, polypropylene and styrene are all quoted CNY/T,
+ * i.e. Chinese domestic prices. Subtracting a global USD feedstock from a
+ * Chinese domestic polymer would produce a number that looks like a petchem
+ * margin and is neither Indian nor internally consistent - the wrong-basis trap
+ * this pipeline exists to avoid. So this tile carries the COST side only, and
+ * says so; the margin itself stays an honest gap until a real Indian polymer
+ * assessment is available.
+ *
+ * Spot only, like JKM: no free history is published.
+ */
+export async function fetchNaphtha({ env = process.env, today } = {}) {
+  const url = 'https://tradingeconomics.com/commodity/naphtha';
+  let html, via = 'direct fetch';
+  try {
+    html = await getText(url, { timeoutMs: 30_000, retries: 2 });
+  } catch (e) {
+    if (!hasScraper(env)) {
+      throw new SourceUnavailableError(
+        'Naphtha tracker unreachable and no scraper key set',
+        { detail: e.message, cause: e }
+      );
+    }
+    ({ html } = await scrapePage(url, { env }));
+    via = 'scraper';
+  }
+
+  const q = parseTradingEconomicsQuote(html, {
+    plausible: [200, 1600],     // $/tonne - a misread lands well outside this
+    expectUnit: 'usd',          // refuses the CNY-quoted pages outright
+    source: 'Naphtha'
+  });
+
+  return {
+    points: [{ date: q.date || `${String(today).slice(0, 7)}-01`, value: q.value, spot: true }],
+    source: `Trading Economics - naphtha spot (${via})`,
+    sourceTag: 'external',
+    notes: 'Spot quote only - no free history is published, so this line has no 12-month trend.'
+  };
+}
+
+/**
  * APM - the administered domestic gas price, a gazetted figure. PPAC posts it
  * monthly, but only as a scanned one-page PDF with no text layer: pdf-parse
  * returns an empty string, so it takes an OCR pass rather than a PDF pass.
