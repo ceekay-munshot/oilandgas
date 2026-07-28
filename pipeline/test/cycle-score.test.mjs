@@ -539,3 +539,38 @@ test('a scoring-method change refuses to diff rather than reporting a fake move'
   /* the 58-point "move" was the rescale, and must not be reported as one */
   assert.ok(!/58/.test(changes[0].text));
 });
+
+/* ------------------------------------------------------- 4.3 theme rollup */
+
+import { themeRollup } from '../lib/cycle-score.mjs';
+
+test('a theme states the balance of its own companies and who moved', () => {
+  const commentary = { companies: {
+    a: { name: 'ONGC', tones: [
+      { quarter: 'Q3', toneId: 'confident', score: 5, direction: 'positive' },
+      { quarter: 'Q4', toneId: 'cautious', score: 2, direction: 'negative' }] }
+  } };
+  const out = themeRollup(commentary, FRAMEWORK);
+  const upstream = out.find((t) => t.id === 'upstream-capex');
+  assert.equal(upstream.members.length, 1);
+  assert.equal(upstream.mood, 'negative');
+  assert.ok(/ONGC moved 3 steps down/.test(upstream.state));
+  assert.equal(upstream.drivers[0].name, 'ONGC');
+});
+
+test('a theme with nothing heard says so instead of implying calm', () => {
+  const out = themeRollup({ companies: {} }, FRAMEWORK);
+  assert.ok(out.length >= 2);
+  out.forEach((t) => {
+    assert.equal(t.members.length, 0);
+    assert.equal(t.mood, null);
+    assert.ok(/no company/i.test(t.state));
+  });
+});
+
+test('every theme carries the bucket it scores into and what to listen for', () => {
+  const out = themeRollup({ companies: {} }, FRAMEWORK);
+  const ids = out.map((t) => t.id);
+  assert.ok(ids.includes('upstream-capex') && ids.includes('freight-shipping'));
+  assert.equal(out.find((t) => t.id === 'freight-shipping').bucket, 'lagging');
+});

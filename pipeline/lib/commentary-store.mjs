@@ -118,6 +118,14 @@ export function mergeIntoStore({ store, companyId, tones, docByQuarter = {}, fin
       score: t.score,
       quote: t.quote || null,
       rationale: t.rationale || null,
+      /* the fixed template: the synthesized read, the guided numbers it
+         reported, and what it suggests next. Absent on cells written before
+         the template existed, which is why every reader below defaults them. */
+      driver: t.driver || null,
+      direction: t.direction || null,
+      signal: t.signal || null,
+      mgmtDataPoints: Array.isArray(t.mgmtDataPoints) ? t.mgmtDataPoints : [],
+      implication: t.implication || null,
       doc: docByQuarter[q] || null,
       fingerprint,
       attempts: ((prev && prev.attempts) || 0) + 1,
@@ -148,6 +156,11 @@ export function renderTimeline({ store, companyId, quarters }) {
         score: null,
         quote: null,
         rationale: (c && c.rationale) || null,
+        driver: null,
+        direction: null,
+        signal: null,
+        mgmtDataPoints: [],
+        implication: null,
         doc: null
       };
     }
@@ -157,6 +170,11 @@ export function renderTimeline({ store, companyId, quarters }) {
       score: c.score,
       quote: c.quote || null,
       rationale: c.rationale || null,
+      driver: c.driver || null,
+      direction: c.direction || null,
+      signal: c.signal || null,
+      mgmtDataPoints: Array.isArray(c.mgmtDataPoints) ? c.mgmtDataPoints : [],
+      implication: c.implication || null,
       doc: c.doc || null
     };
   });

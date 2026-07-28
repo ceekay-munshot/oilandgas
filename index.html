@@ -675,6 +675,48 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 .legendrow__plain{font-size:10.5px; color:var(--ink-3); font-weight:450; line-height:1.3; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
 
 /* ============================ SIX CARDS ================================= */
+/* --- 4.2 the company card ------------------------------------------------ */
+.heat__row{cursor:pointer; border-radius:6px;}
+.heat__row:hover{background:color-mix(in srgb, var(--c) 8%, transparent);}
+.heat__row:focus-visible{outline:2px solid var(--c); outline-offset:-2px;}
+.heat__row.is-picked{background:color-mix(in srgb, var(--c) 13%, transparent); font-weight:700;}
+.readcard{flex:1 1 auto; min-height:0; overflow:auto; padding:9px 13px 13px; display:flex; flex-direction:column; gap:8px;}
+.cardline{display:grid; grid-template-columns:96px minmax(0,1fr); gap:9px; align-items:baseline;}
+.cardline__lab{
+  font-size:9.5px; font-weight:720; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--ink-4); text-align:right;
+}
+.cardline__txt{font-size:11.5px; line-height:1.45; color:var(--ink-1); font-weight:520; text-wrap:pretty;}
+.cardline__on{color:var(--ink-3); font-weight:500;}
+/* a field the current data cannot fill yet says why, rather than sitting blank */
+.cardline__await{color:var(--ink-4); font-style:italic; font-weight:500;}
+.cardquote{color:var(--ink-2); font-style:italic;}
+.drift{
+  display:inline-block; padding:1px 6px; border-radius:var(--r-chip);
+  background:color-mix(in srgb, var(--c) 14%, #fff);
+  color:color-mix(in srgb, var(--c) 84%, var(--ink-1));
+  font-size:10px; font-weight:680;
+}
+.drift.is-none{background:var(--surface-2); color:var(--ink-4);}
+.driftarrow{color:var(--ink-4); font-size:10px; margin:0 3px;}
+
+/* --- 4.3 the seven themes ------------------------------------------------ */
+.themelist{flex:1 1 auto; min-height:0; overflow:auto; padding:8px 12px 12px; display:flex; flex-direction:column; gap:7px;}
+.theme{--c:var(--ink-3); border-left:3px solid var(--c); padding:3px 0 3px 8px;}
+.theme__hd{display:flex; align-items:center; gap:6px;}
+.theme__dot{width:6px; height:6px; border-radius:50%; background:var(--c); flex:0 0 auto;}
+.theme__nm{font-size:11px; font-weight:700; color:var(--ink-1);}
+.theme__b{
+  font-size:9px; font-weight:660; letter-spacing:.03em; text-transform:uppercase;
+  color:var(--ink-4); margin-left:auto;
+}
+.theme__state{font-size:10.5px; color:var(--ink-2); line-height:1.4; margin-top:2px; text-wrap:pretty;}
+.theme__who{display:flex; gap:4px; flex-wrap:wrap; margin-top:3px;}
+.theme__co{
+  font-size:9.5px; font-weight:640; color:color-mix(in srgb, var(--c) 82%, var(--ink-1));
+  background:color-mix(in srgb, var(--c) 10%, #fff); padding:1px 6px; border-radius:var(--r-chip);
+}
+
 /* --- 3.1 the drill-down: the standard TTM table -------------------------- */
 tr.kpirow{cursor:pointer;}
 tr.kpirow:hover > td{background:color-mix(in srgb, var(--ink-4) 6%, transparent);}
@@ -957,18 +999,34 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
         <h2>What management said</h2>
         <p>How upbeat or worried each company sounded, over the last four quarters.</p>
       </div>
-      <div class="tiles" style="grid-template-columns:minmax(0,1.55fr) minmax(240px,.85fr);grid-template-rows:minmax(0,1fr) minmax(0,.62fr);">
+      <div class="tiles" style="grid-template-columns:minmax(0,1.15fr) minmax(0,1.05fr) minmax(230px,.8fr);grid-template-rows:minmax(0,1fr) minmax(0,.6fr);">
         <div class="card" style="grid-row:1 / span 2;">
           <div class="card__head">
             <div class="card__headL"><span class="card__title">Tone over 4 quarters</span>
-              <span class="card__sub" id="toneHeatSub">Heat strip</span></div>
+              <span class="card__sub" id="toneHeatSub">Heat strip &middot; click a company</span></div>
             <span class="chip chip--ghost" id="toneHeatChip">No data yet</span>
           </div>
           <div class="card__body"><div class="heat" id="toneHeat"></div></div>
         </div>
+
+        <!-- 4.2 the fixed-template read for whichever company is selected -->
+        <div class="card" style="grid-row:1 / span 2;">
+          <div class="card__head">
+            <div class="card__headL"><span class="card__title" id="cardTitle">The read</span>
+              <span class="card__sub" id="cardSub">Pick a company on the left</span></div>
+            <span id="cardChip"></span>
+          </div>
+          <div class="card__body"><div class="readcard" id="companyCard"></div></div>
+        </div>
+
+        <!-- 4.3 the seven listening themes -->
         <div class="card">
-          <div class="card__head"><div class="card__headL"><span class="card__title">How we score tone</span></div></div>
-          <div class="card__body"><div class="legendbox" id="toneLegend"></div></div>
+          <div class="card__head">
+            <div class="card__headL"><span class="card__title">Themes</span>
+              <span class="card__sub">What we listen for</span></div>
+            <span class="chip chip--ghost" id="themeChip">No data yet</span>
+          </div>
+          <div class="card__body"><div class="themelist" id="themeList"></div></div>
         </div>
         <div class="card">
           <div class="card__head">
@@ -978,6 +1036,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
           <div class="card__body"><div class="toneshift" id="toneShift"><div class="ghost" data-ghost="bars"></div></div></div>
         </div>
       </div>
+      <div class="sr" id="toneLegend"></div>
     </section>
 
     <!-- ======================= 5. INSIGHT & ACTION ====================== -->
@@ -2541,7 +2600,8 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
       '<div class="heat__grid">' +
         '<div></div>' + qs.map(function (q) { return '<div class="heat__colhead">' + esc(q) + '</div>'; }).join('') +
         rows.map(function (r) {
-          var head = '<div class="heat__row" style="--c:' + r.color + '" title="' + esc(r.what) + '">' +
+          var head = '<div class="heat__row" data-company="' + esc(r.id) + '" tabindex="0" ' +
+            'style="--c:' + r.color + '" title="' + esc(r.what + ' — click to open the read') + '">' +
             '<i></i><span>' + esc(r.name) + '</span></div>';
           /* the company's own four quarters, newest at the right. Each cell names
              the quarter it is, because the column heading is only the common window. */
@@ -2580,6 +2640,162 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     }).join('');
 
     renderToneShift(rows, toneById);
+    renderThemes();
+
+    /* 4.2: the heat strip is the index into the company cards. Clicking a row
+       opens that company's fixed-template read beside it. */
+    var heat = el('toneHeat');
+    heat.addEventListener('click', function (e) {
+      var row = e.target.closest ? e.target.closest('[data-company]') : null;
+      if (row && heat.contains(row)) selectCompanyCard(row.getAttribute('data-company'));
+    });
+    heat.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var row = e.target.closest ? e.target.closest('[data-company]') : null;
+      if (row && heat.contains(row)) { e.preventDefault(); selectCompanyCard(row.getAttribute('data-company')); }
+    });
+    /* open the company with the loudest move, so the panel is never empty */
+    var first = (DATA.scores && DATA.scores.toneDrift && DATA.scores.toneDrift[0])
+      ? DATA.scores.toneDrift[0].companyId
+      : (rows[0] && rows[0].id);
+    if (first) selectCompanyCard(first);
+  }
+
+  /* ---- 4.2 the company card: the fixed template, per the brief -----------
+     Direction on the main driver, the synthesized signal, any guided numbers
+     as [Mgmt Claim] chips, the four-quarter drift, and the cycle implication -
+     plus a link to the document the read was made from, for audit.          */
+  var cardCompany = null;
+
+  function selectCompanyCard(companyId) {
+    cardCompany = companyId;
+    var heat = el('toneHeat');
+    if (heat) {
+      [].forEach.call(heat.querySelectorAll('[data-company]'), function (n) {
+        n.classList.toggle('is-picked', n.getAttribute('data-company') === companyId);
+      });
+    }
+    renderCompanyCard(companyId);
+  }
+
+  function renderCompanyCard(companyId) {
+    var node = el('companyCard'); if (!node) return;
+    var c = DATA.commentary && DATA.commentary.companies && DATA.commentary.companies[companyId];
+    var co = byId[companyId];
+    el('cardTitle').textContent = (co && co.name) || (c && c.name) || 'The read';
+    if (!c) {
+      el('cardSub').textContent = 'Pick a company on the left';
+      el('cardChip').innerHTML = '<span class="chip chip--ghost">No data yet</span>';
+      node.innerHTML = '<div class="ghost" data-ghost="text"></div>';
+      return;
+    }
+    var toned = (c.tones || []).filter(function (t) { return t && t.toneId; });
+    var latest = toned.length ? toned[toned.length - 1] : null;
+    el('cardSub').textContent = latest ? latest.quarter : 'no classified quarter yet';
+    /* The synthesized read is the analyst layer's own words, so it is tagged
+       [Inference] - never [Official]. That boundary is the point of the tag. */
+    el('cardChip').innerHTML = latest
+      ? sourceChip('inference', 'the analyst layer\'s own distillation of the call')
+      : '<span class="chip chip--ghost">No tone yet</span>';
+
+    if (!latest) {
+      node.innerHTML = '<div class="cardline"><div class="cardline__lab">No read</div>' +
+        '<div class="cardline__txt">' +
+        esc((c.tones && c.tones.length && c.tones[c.tones.length - 1].rationale) ||
+            'No concall text has been classified for this company yet.') +
+        '</div></div>';
+      return;
+    }
+
+    var DIR = {
+      positive: { c: '#0F7A3A', w: 'Positive' },
+      neutral:  { c: '#7C8496', w: 'Neutral' },
+      negative: { c: '#C42433', w: 'Negative' }
+    };
+    var d = latest.direction ? DIR[latest.direction] : null;
+    var toneMeta = toneStepById(latest.toneId) || {};
+
+    function line(lab, html) {
+      return '<div class="cardline"><div class="cardline__lab">' + esc(lab) + '</div>' +
+             '<div class="cardline__txt">' + html + '</div></div>';
+    }
+
+    var html = '';
+    /* Direction: Positive / Neutral / Negative on [main driver] */
+    html += line('Direction', d
+      ? '<span class="chip" style="--c:' + d.c + '"><span class="chip__sw"></span>' + d.w + '</span>' +
+        (latest.driver ? ' <span class="cardline__on">on ' + esc(latest.driver) + '</span>' : '')
+      : '<span class="cardline__await">Not yet read &mdash; this quarter was classified before the ' +
+        'full template existed, and fills on the next commentary run.</span>');
+
+    /* Signal: one synthesized sentence */
+    html += line('Signal', latest.signal
+      ? esc(latest.signal)
+      : '<span class="cardline__await">Awaiting the next commentary run.</span>');
+
+    /* Mgmt data points: guided numbers, chipped as claims */
+    html += line('Mgmt data points', (latest.mgmtDataPoints && latest.mgmtDataPoints.length)
+      ? latest.mgmtDataPoints.map(function (p) {
+          return '<span class="chip" style="--c:' + ((tagById['mgmt-claim'] || {}).color || '#7C3AED') + '" ' +
+            'title="Management said this. It is a claim, not an audited fact, and never becomes one by being repeated.">' +
+            '<span class="chip__sw"></span>' + esc(p) + '</span>';
+        }).join(' ')
+      : '<span class="cardline__await">None guided this quarter.</span>');
+
+    /* Tone drift (4Q) */
+    html += line('Tone drift', (c.tones || []).map(function (t) {
+      var m = t && t.toneId ? toneStepById(t.toneId) : null;
+      return '<span class="drift' + (m ? '' : ' is-none') + '" style="--c:' + (m ? m.color : '#AEB4C0') + '" ' +
+        'title="' + esc((t && t.quarter ? t.quarter + ': ' : '') + (m ? m.label : 'not classified')) + '">' +
+        esc(m ? m.plainLabel : '–') + '</span>';
+    }).join('<span class="driftarrow">→</span>'));
+
+    /* Cycle implication */
+    html += line('Implication', latest.implication
+      ? esc(latest.implication)
+      : '<span class="cardline__await">Awaiting the next commentary run.</span>');
+
+    /* the evidence: the quote it rests on, and the document it came from */
+    if (latest.quote) {
+      html += line('Rests on', '<span class="cardquote">&ldquo;' + esc(latest.quote) + '&rdquo;</span>');
+    }
+    html += line('Source', esc(latest.doc || 'concall text (document not named)') +
+      (latest.rationale ? ' <span class="cardline__on">' + esc(latest.rationale) + '</span>' : ''));
+
+    node.innerHTML = html;
+  }
+
+  /* ---- 4.3 the seven listening themes ---------------------------------- */
+  function renderThemes() {
+    var node = el('themeList'), chip = el('themeChip');
+    if (!node) return;
+    var themes = (DATA.scores && DATA.scores.themes) || [];
+    if (chip) {
+      chip.className = themes.length ? 'chip' : 'chip chip--ghost';
+      if (themes.length) chip.style.setProperty('--c', '#7C3AED');
+      chip.innerHTML = themes.length
+        ? '<span class="chip__sw"></span>' + themes.length + ' themes'
+        : 'No data yet';
+    }
+    var MOOD = { positive: '#0F7A3A', negative: '#C42433', mixed: '#E9A526' };
+    node.innerHTML = themes.length
+      ? themes.map(function (t) {
+          var col = MOOD[t.mood] || '#7C8496';
+          return '<div class="theme" style="--c:' + col + '" title="' + esc(t.listenFor || '') + '">' +
+            '<div class="theme__hd">' +
+              '<span class="theme__dot"></span>' +
+              '<span class="theme__nm">' + esc(t.label) + '</span>' +
+              '<span class="theme__b">' + esc(t.bucket) + '</span>' +
+            '</div>' +
+            '<div class="theme__state">' + esc(t.state) + '</div>' +
+            (t.drivers && t.drivers.length
+              ? '<div class="theme__who">' + t.drivers.map(function (m) {
+                  return '<span class="theme__co">' + esc(m.name) + '</span>';
+                }).join('') + '</div>'
+              : '') +
+          '</div>';
+        }).join('')
+      : '<div class="ghost" data-ghost="list"></div>';
   }
 
   /* "What changed this quarter": companies whose tone moved between their two most

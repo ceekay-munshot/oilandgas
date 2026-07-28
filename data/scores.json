@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-07-28T16:57:24.130Z",
+  "generatedAt": "2026-07-28T17:03:59.237Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -640,6 +640,452 @@
       }
     ]
   },
+  "themes": [
+    {
+      "id": "upstream-capex",
+      "label": "Upstream capex intent",
+      "bucket": "leading",
+      "listenFor": "Capex/drilling guidance up, flat or down; new block awards; rig additions or deferrals; tendering activity from ONGC/OIL",
+      "state": "4 companies heard, leaning positive (2 positive, 1 negative); ONGC moved 3 steps down.",
+      "mood": "positive",
+      "members": [
+        {
+          "companyId": "ongc",
+          "name": "ONGC",
+          "toneId": "cautious",
+          "quarter": "Q2 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -3
+        },
+        {
+          "companyId": "oil-india",
+          "name": "Oil India",
+          "toneId": "confident",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": 1
+        },
+        {
+          "companyId": "deep-industries",
+          "name": "Deep Industries",
+          "toneId": "constructive",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": 1
+        },
+        {
+          "companyId": "jindal-drilling",
+          "name": "Jindal Drilling",
+          "toneId": "neutral",
+          "quarter": "Q3 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": 1
+        }
+      ],
+      "drivers": [
+        {
+          "companyId": "ongc",
+          "name": "ONGC",
+          "toneId": "cautious",
+          "quarter": "Q2 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -3
+        },
+        {
+          "companyId": "oil-india",
+          "name": "Oil India",
+          "toneId": "confident",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": 1
+        }
+      ]
+    },
+    {
+      "id": "capex-pipeline",
+      "label": "Refining/petchem capex pipeline",
+      "bucket": "leading",
+      "listenFor": "Tone on bid pipeline and tendering - healthy / muted / delayed awards; specific large projects named (refinery expansion, new pipeline, LNG terminal)",
+      "state": "4 companies heard, split (2 positive, 2 negative); L&T moved 2 steps down, Ratnamani Metals moved 2 steps down.",
+      "mood": "mixed",
+      "members": [
+        {
+          "companyId": "engineers-india",
+          "name": "Engineers India",
+          "toneId": "constructive",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -1
+        },
+        {
+          "companyId": "lt",
+          "name": "L&T",
+          "toneId": "cautious",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -2
+        },
+        {
+          "companyId": "ratnamani",
+          "name": "Ratnamani Metals",
+          "toneId": "defensive",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -2
+        },
+        {
+          "companyId": "welspun-corp",
+          "name": "Welspun Corp",
+          "toneId": "confident",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": 1
+        }
+      ],
+      "drivers": [
+        {
+          "companyId": "lt",
+          "name": "L&T",
+          "toneId": "cautious",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -2
+        },
+        {
+          "companyId": "ratnamani",
+          "name": "Ratnamani Metals",
+          "toneId": "defensive",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -2
+        }
+      ]
+    },
+    {
+      "id": "refining-margin",
+      "label": "Refining margin outlook",
+      "bucket": "coincident",
+      "listenFor": "Management's own GRM outlook vs. benchmark; planned shutdowns/turnarounds (temporary distortion); new capacity coming online (structural cap)",
+      "state": "4 companies heard, leaning negative (0 positive, 4 negative); BPCL moved 2 steps down.",
+      "mood": "negative",
+      "members": [
+        {
+          "companyId": "reliance",
+          "name": "Reliance",
+          "toneId": "cautious",
+          "quarter": "Q1 FY27",
+          "direction": null,
+          "driver": null,
+          "drift": 0
+        },
+        {
+          "companyId": "iocl",
+          "name": "IOCL",
+          "toneId": "cautious",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": 0
+        },
+        {
+          "companyId": "bpcl",
+          "name": "BPCL",
+          "toneId": "defensive",
+          "quarter": "Q1 FY27",
+          "direction": null,
+          "driver": null,
+          "drift": -2
+        },
+        {
+          "companyId": "hpcl",
+          "name": "HPCL",
+          "toneId": "defensive",
+          "quarter": "Q1 FY27",
+          "direction": null,
+          "driver": null,
+          "drift": -1
+        }
+      ],
+      "drivers": [
+        {
+          "companyId": "bpcl",
+          "name": "BPCL",
+          "toneId": "defensive",
+          "quarter": "Q1 FY27",
+          "direction": null,
+          "driver": null,
+          "drift": -2
+        },
+        {
+          "companyId": "hpcl",
+          "name": "HPCL",
+          "toneId": "defensive",
+          "quarter": "Q1 FY27",
+          "direction": null,
+          "driver": null,
+          "drift": -1
+        }
+      ]
+    },
+    {
+      "id": "marketing-margin",
+      "label": "Marketing margin normalization",
+      "bucket": "coincident",
+      "listenFor": "Retail fuel pricing signals, under-recovery risk - politically driven, moves independent of GRM",
+      "state": "3 companies heard, leaning negative (0 positive, 3 negative); BPCL moved 2 steps down.",
+      "mood": "negative",
+      "members": [
+        {
+          "companyId": "iocl",
+          "name": "IOCL",
+          "toneId": "cautious",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": 0
+        },
+        {
+          "companyId": "bpcl",
+          "name": "BPCL",
+          "toneId": "defensive",
+          "quarter": "Q1 FY27",
+          "direction": null,
+          "driver": null,
+          "drift": -2
+        },
+        {
+          "companyId": "hpcl",
+          "name": "HPCL",
+          "toneId": "defensive",
+          "quarter": "Q1 FY27",
+          "direction": null,
+          "driver": null,
+          "drift": -1
+        }
+      ],
+      "drivers": [
+        {
+          "companyId": "bpcl",
+          "name": "BPCL",
+          "toneId": "defensive",
+          "quarter": "Q1 FY27",
+          "direction": null,
+          "driver": null,
+          "drift": -2
+        },
+        {
+          "companyId": "hpcl",
+          "name": "HPCL",
+          "toneId": "defensive",
+          "quarter": "Q1 FY27",
+          "direction": null,
+          "driver": null,
+          "drift": -1
+        }
+      ]
+    },
+    {
+      "id": "gas-demand",
+      "label": "Gas demand trajectory",
+      "bucket": "coincident",
+      "listenFor": "Volume growth guidance, new geographic-area rollout pace, industrial vs. domestic PNG mix shift, spot vs. term LNG contracting stance",
+      "state": "4 companies heard, leaning negative (0 positive, 4 negative); GAIL moved 2 steps down, Petronet LNG moved 3 steps down, IGL moved 2 steps down, Mahanagar Gas moved 3 steps down.",
+      "mood": "negative",
+      "members": [
+        {
+          "companyId": "gail",
+          "name": "GAIL",
+          "toneId": "cautious",
+          "quarter": "Q3 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -2
+        },
+        {
+          "companyId": "petronet-lng",
+          "name": "Petronet LNG",
+          "toneId": "defensive",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -3
+        },
+        {
+          "companyId": "igl",
+          "name": "IGL",
+          "toneId": "cautious",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -2
+        },
+        {
+          "companyId": "mahanagar-gas",
+          "name": "Mahanagar Gas",
+          "toneId": "cautious",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -3
+        }
+      ],
+      "drivers": [
+        {
+          "companyId": "petronet-lng",
+          "name": "Petronet LNG",
+          "toneId": "defensive",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -3
+        },
+        {
+          "companyId": "mahanagar-gas",
+          "name": "Mahanagar Gas",
+          "toneId": "cautious",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -3
+        },
+        {
+          "companyId": "gail",
+          "name": "GAIL",
+          "toneId": "cautious",
+          "quarter": "Q3 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -2
+        }
+      ]
+    },
+    {
+      "id": "freight-shipping",
+      "label": "Freight / shipping outlook",
+      "bucket": "lagging",
+      "listenFor": "Fleet redeployment plans, charter rate outlook, global vessel-supply tightness commentary",
+      "state": "2 companies heard, leaning positive (2 positive, 0 negative); Shipping Corp of India moved 2 steps up.",
+      "mood": "positive",
+      "members": [
+        {
+          "companyId": "ge-shipping",
+          "name": "GE Shipping",
+          "toneId": "confident",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": 1
+        },
+        {
+          "companyId": "shipping-corp",
+          "name": "Shipping Corp of India",
+          "toneId": "confident",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": 2
+        }
+      ],
+      "drivers": [
+        {
+          "companyId": "shipping-corp",
+          "name": "Shipping Corp of India",
+          "toneId": "confident",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": 2
+        },
+        {
+          "companyId": "ge-shipping",
+          "name": "GE Shipping",
+          "toneId": "confident",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": 1
+        }
+      ]
+    },
+    {
+      "id": "spread-demand",
+      "label": "Spread / demand commentary",
+      "bucket": "coincident",
+      "listenFor": "Auto/industrial offtake trend - tracks broad economic activity, not just crude",
+      "state": "3 companies heard, leaning negative (1 positive, 2 negative); Supreme Petrochem moved 2 steps up, Castrol India moved 3 steps down, Gandhar Oil moved 2 steps down.",
+      "mood": "negative",
+      "members": [
+        {
+          "companyId": "supreme-petrochem",
+          "name": "Supreme Petrochem",
+          "toneId": "constructive",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": 2
+        },
+        {
+          "companyId": "castrol-india",
+          "name": "Castrol India",
+          "toneId": "cautious",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -3
+        },
+        {
+          "companyId": "gandhar-oil",
+          "name": "Gandhar Oil",
+          "toneId": "cautious",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -2
+        }
+      ],
+      "drivers": [
+        {
+          "companyId": "castrol-india",
+          "name": "Castrol India",
+          "toneId": "cautious",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -3
+        },
+        {
+          "companyId": "supreme-petrochem",
+          "name": "Supreme Petrochem",
+          "toneId": "constructive",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": 2
+        },
+        {
+          "companyId": "gandhar-oil",
+          "name": "Gandhar Oil",
+          "toneId": "cautious",
+          "quarter": "Q4 FY26",
+          "direction": null,
+          "driver": null,
+          "drift": -2
+        }
+      ]
+    }
+  ],
   "changes": [
     {
       "kind": "none",
@@ -647,7 +1093,7 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-07-28T16:54:17.004Z",
+    "generatedAt": "2026-07-28T16:57:24.130Z",
     "asOf": "Q4 FY26",
     "scoringVersion": 2,
     "stageId": "early-upcycle",

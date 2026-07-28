@@ -614,6 +614,74 @@ export function buildAlerts({ macro, scores, coverage, drift, divergence }) {
 }
 
 /**
+ * Section 4.3: the seven listening themes, each with a one-line state and the
+ * companies driving it.
+ *
+ * The state is computed from the member companies' own reads rather than asked
+ * of a model a second time. That keeps it [Derived] - arithmetic on tagged
+ * inputs - so a reader can check it against the cards underneath, and a theme
+ * can never say something none of its companies said. The companies "driving"
+ * it are the ones that actually moved: a two-step tone drift first, then a
+ * direction away from neutral.
+ */
+export function themeRollup(commentaryJson, framework) {
+  const themes = ((framework && framework.themes && framework.themes.items) || []);
+  const companies = (commentaryJson && commentaryJson.companies) || {};
+
+  return themes.map((theme) => {
+    const members = [];
+    (theme.companyIds || []).forEach((id) => {
+      const c = companies[id];
+      const toned = ((c && c.tones) || []).filter((t) => t && t.toneId);
+      if (!toned.length) return;
+      const latest = toned[toned.length - 1];
+      const prior = toned.length > 1 ? toned[toned.length - 2] : null;
+      const drift = (prior && isNum(latest.score) && isNum(prior.score)) ? latest.score - prior.score : 0;
+      members.push({
+        companyId: id, name: (c && c.name) || id,
+        toneId: latest.toneId, quarter: latest.quarter,
+        direction: latest.direction || null, driver: latest.driver || null,
+        drift
+      });
+    });
+
+    if (!members.length) {
+      return {
+        id: theme.id, label: theme.label, bucket: theme.bucket, listenFor: theme.listenFor,
+        state: 'No company in this theme has a classified quarter yet.',
+        mood: null, members: [], drivers: []
+      };
+    }
+
+    /* the balance of what the member companies sounded like */
+    const pos = members.filter((m) => (m.direction ? m.direction === 'positive' : TONE_DIRECTION[m.toneId] > 0)).length;
+    const neg = members.filter((m) => (m.direction ? m.direction === 'negative' : TONE_DIRECTION[m.toneId] < 0)).length;
+    const mood = pos > neg ? 'positive' : (neg > pos ? 'negative' : 'mixed');
+
+    /* who moved: a two-step drift is the loudest thing a theme can contain */
+    const drivers = members.slice()
+      .sort((a, b) => Math.abs(b.drift) - Math.abs(a.drift))
+      .filter((m, i) => Math.abs(m.drift) >= 2 || i < 2)
+      .slice(0, 3);
+
+    const moved = members.filter((m) => Math.abs(m.drift) >= 2);
+    const word = mood === 'positive' ? 'leaning positive'
+               : mood === 'negative' ? 'leaning negative' : 'split';
+    const state =
+      `${members.length} compan${members.length === 1 ? 'y' : 'ies'} heard, ${word} ` +
+      `(${pos} positive, ${neg} negative)` +
+      (moved.length
+        ? `; ${moved.map((m) => `${m.name} moved ${Math.abs(m.drift)} step${Math.abs(m.drift) === 1 ? '' : 's'} ${m.drift > 0 ? 'up' : 'down'}`).join(', ')}.`
+        : '; no two-step move this quarter.');
+
+    return {
+      id: theme.id, label: theme.label, bucket: theme.bucket, listenFor: theme.listenFor,
+      state, mood, members, drivers
+    };
+  });
+}
+
+/**
  * The summary read, assembled in a fixed structure so it says the same KINDS of
  * thing every quarter and only the facts move. Returned as labelled lines
  * rather than one blob, so the tab can lay them out and a test can check them.
@@ -863,6 +931,7 @@ export function buildScores({ kpis, companies, framework, macro, commentary, gen
   payload.summary = summaryLines(
     { scores, stage, divergence, macro: macroVerdict, drift }, framework);
   payload.actions = actionsFor(stage.stageId, framework);
+  payload.themes = themeRollup(commentary, framework);
   payload.changes = changesSince(previous, payload, framework);
   payload.previous = previous || null;
 

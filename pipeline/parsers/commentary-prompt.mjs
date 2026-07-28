@@ -49,7 +49,11 @@ const TONE_GLOSS = {
  *
  *   1  first commentary scorer
  */
-export const COMMENTARY_PROMPT_VERSION = 1;
+/* 2: the fixed per-quarter template from Step 3 - direction on the main driver,
+      a synthesized signal, any guided numbers as [Mgmt Claim], and the cycle
+      implication. Bumping this re-opens every quarter on the next run, which is
+      the intended cost of asking for more than the tone. */
+export const COMMENTARY_PROMPT_VERSION = 2;
 
 /* Keep quotes and reasons short: they ride in a hover title, and a whole
    paragraph pasted from a transcript is neither a quote nor checkable. */
@@ -73,7 +77,15 @@ export function buildMessages({ companyName, quarterBlocks }) {
     `Choose exactly one tone per quarter from these five: ${labels}.`,
     'Judge the tone of management\'s words about their business, demand, spending and outlook - NOT the share price, NOT whether you personally think the results were good, NOT anything you know about the company from elsewhere.',
     'Ground every tone: quote the single most representative phrase VERBATIM from that quarter\'s text (at most 160 characters), and give a one-line reason.',
-    'If a quarter\'s text is missing, or says nothing about how the business is going, return tone null with a short reason - never guess a tone with no evidence.',
+    '',
+    'For each quarter also produce the standard read:',
+    '- driver: the ONE thing that quarter\'s commentary was mainly about for this company (a few words, e.g. "order inflow", "refining margin", "CNG volume growth").',
+    '- direction: positive, neutral or negative ON THAT DRIVER - not on the tone generally.',
+    '- signal: ONE sentence in YOUR OWN WORDS distilling what management conveyed about capex intent, demand outlook or margin trajectory. This is a synthesis, NOT a quote - do not paste transcript sentences here.',
+    '- mgmtDataPoints: any SPECIFIC numbers management guided or targeted (capex plans, volume targets, margin guidance), each as a short "label: value" string. These are claims, not audited facts, so include only figures management actually stated, and never restate them as certainties. Empty array when none.',
+    '- implication: ONE sentence in your own words on what this suggests for the next one to two quarters.',
+    '',
+    'If a quarter\'s text is missing, or says nothing about how the business is going, return tone null with a short reason - never guess a tone with no evidence. Null tone means null driver, direction, signal and implication too, and an empty mgmtDataPoints.',
     'Output STRICT JSON matching the schema and nothing else.'
   ].join(' ');
 
@@ -109,9 +121,15 @@ export const TONE_SCHEMA = {
           quarter: { type: 'string' },
           tone: { type: ['string', 'null'] },
           quote: { type: ['string', 'null'] },
-          why: { type: ['string', 'null'] }
+          why: { type: ['string', 'null'] },
+          /* the fixed template from Step 3 */
+          driver: { type: ['string', 'null'] },
+          direction: { type: ['string', 'null'] },
+          signal: { type: ['string', 'null'] },
+          mgmtDataPoints: { type: 'array', items: { type: 'string' } },
+          implication: { type: ['string', 'null'] }
         },
-        required: ['quarter', 'tone', 'quote', 'why']
+        required: ['quarter', 'tone', 'quote', 'why', 'driver', 'direction', 'signal', 'mgmtDataPoints', 'implication']
       }
     }
   },
@@ -120,6 +138,11 @@ export const TONE_SCHEMA = {
 
 const clean = (s, max) =>
   (typeof s === 'string' && s.trim()) ? s.trim().replace(/\s+/g, ' ').slice(0, max) : null;
+
+/* Step 3's latest-quarter direction flag. Anything else the model returns is
+   dropped rather than coerced - a made-up direction is worse than none. */
+export const DIRECTION_IDS = ['positive', 'neutral', 'negative'];
+const SIGNAL_MAX = 240, DRIVER_MAX = 60, POINT_MAX = 80, POINTS_MAX = 6;
 
 /**
  * Normalise the model reply against the quarters we asked about.
@@ -148,20 +171,44 @@ export function normalizeResult(raw, quarters) {
     const toneId = TONE_IDS.includes(rawTone) ? rawTone : null;
     const why = clean(got.why, WHY_MAX);
 
+    /* Guided numbers are management CLAIMS. They are kept verbatim-ish and short,
+       and the dashboard chips them as [Mgmt Claim] so they can never be read as
+       audited facts - the brief's boundary that "a management claim is never
+       treated as an audited fact". */
+    const mgmtDataPoints = Array.isArray(got.mgmtDataPoints)
+      ? got.mgmtDataPoints.map((x) => clean(x, POINT_MAX)).filter(Boolean).slice(0, POINTS_MAX)
+      : [];
+
     if (!toneId) {
+      /* No tone means no read. Returning a signal or an implication here would
+         be a synthesis resting on nothing, which is the one thing the read
+         layer must never produce. */
       return {
         quarter,
         toneId: null,
         score: null,
         quote: null,
+        driver: null,
+        direction: null,
+        signal: null,
+        mgmtDataPoints: [],
+        implication: null,
         rationale: why || (rawTone ? `model returned an unrecognised tone "${rawTone}"` : 'no tone stated for this quarter')
       };
     }
+
+    const rawDir = typeof got.direction === 'string' ? got.direction.trim().toLowerCase() : null;
     return {
       quarter,
       toneId,
       score: TONE_SCORE[toneId],
       quote: clean(got.quote, QUOTE_MAX),
+      driver: clean(got.driver, DRIVER_MAX),
+      /* an unrecognised direction is dropped, exactly as an unrecognised tone is */
+      direction: DIRECTION_IDS.includes(rawDir) ? rawDir : null,
+      signal: clean(got.signal, SIGNAL_MAX),
+      mgmtDataPoints,
+      implication: clean(got.implication, SIGNAL_MAX),
       rationale: why
     };
   });
