@@ -362,3 +362,35 @@ test('parseInvestingQuote will not take a number belonging to another sentence',
   const noisy = 'Baltic Dirty Tanker 999 Advertisement. Brent Crude live stock price is 82.10.';
   assert.throws(() => parseInvestingQuote(noisy, BDTI_OPTS), ParseError);
 });
+
+/* ------------------------------------------------- naphtha, and what it is not
+
+   Written against the real Trading Economics responses of 2026-07-28. The point
+   of these two tests is the pair: naphtha is quoted in USD and is usable, while
+   every polymer on the same site is quoted CNY/T - Chinese domestic - so a
+   "petchem margin" built by subtracting one from the other would mix currency
+   AND geography while looking entirely plausible. The unit guard is what stops
+   that, so it is worth a test of its own. */
+
+test('a naphtha quote in USD/T parses', () => {
+  const html = `
+    <div>Naphtha increased to 754.66 USD/T on July 27, 2026</div>
+    <table><tr><th>Actual</th><th>Previous</th><th>Highest</th><th>Lowest</th><th>Unit</th></tr>
+    <tr><td>754.66</td><td>750.10</td><td>1200.00</td><td>200.00</td><td>USD/T</td></tr></table>`;
+  const q = parseTradingEconomicsQuote(html, { plausible: [200, 1600], expectUnit: 'usd', source: 'Naphtha' });
+  assert.equal(q.value, 754.66);
+  assert.equal(q.unit, 'USD/T');
+});
+
+test('a CNY-quoted polymer is REFUSED, not silently used as a dollar price', () => {
+  /* styrene, polyethylene and polypropylene all come back like this */
+  const html = `
+    <div>Styrene rose to 8760 CNY/MT on June 10, 2026</div>
+    <table><tr><th>Actual</th><th>Previous</th><th>Highest</th><th>Lowest</th><th>Unit</th></tr>
+    <tr><td>8760</td><td>8700</td><td>12000</td><td>5000</td><td>CNY/MT</td></tr></table>`;
+  assert.throws(
+    () => parseTradingEconomicsQuote(html, { plausible: [200, 20000], expectUnit: 'usd', source: 'Styrene' }),
+    /CNY\/MT|expected/i,
+    'a Chinese domestic polymer price must never pass as a USD feedstock spread input'
+  );
+});
