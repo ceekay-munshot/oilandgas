@@ -39,52 +39,75 @@ export const SCRAPE_TARGETS = {
     parsers: [['parsePpacGasNotification', (html) => parsePpacGasNotification(html)]]
   },
   'ppac-flash': {
-    label: 'PPAC monthly flash report / oil & gas snapshot (refinery-wise throughput)',
-    unit: 'TMT / MMT',
-    plausible: [0, 100000],
-    /* The only free publication carrying company-level refinery throughput for
-       IOCL, BPCL, HPCL and the private refiners. Confirmed 2026-07-28: the PDF
-       downloads with a plain GET but yields 559 characters of text layer from
-       539 KB, i.e. it is scanned. So the number is behind OCR, and this probe
-       is the test of whether Firecrawl can read the tables out of it.
-
-       No parser yet, deliberately. The point of the first run is to see what
-       the OCR actually returns before a single selector is written - the same
-       discipline the Insights table cost three rounds to learn. */
+    label: 'PPAC monthly snapshot - refinery-wise crude processing by company',
+    unit: 'MMT',
+    plausible: [0, 500],
+    /* SETTLED by the run of 2026-07-29, and the answer moved.
+    
+       The Flash Report is national product consumption only - petrol, diesel,
+       ATF in TMT with YoY - and names no company at all. Useful as a demand
+       series; useless for a company KPI.
+    
+       The prize is the OTHER document PPAC publishes the same month: the
+       Snapshot / Monthly Ready Reckoner. Firecrawl OCR'd it to 46,090
+       characters of clean text, and it carries crude processing refinery by
+       refinery WITH company totals -
+    
+         9 Paradip (2016) 15.0 14.7 16.3 1.4 1.4 1.2 4.2 4.1 3.7
+           IOCL-TOTAL     70.3 71.6 75.5 6.2 6.1 6.1 18.7 18.4 19.2
+           CPCL-TOTAL     10.5 10.5 11.7 1.0 0.0 0.9 3.0 0.0 2.8
+    
+       - plus domestic and overseas production for ONGC and OIL, and the crude
+       pipeline network by company. The columns run annual, then the month,
+       then April-to-date, each for the prior and current fiscal year.
+    
+       The keywords below are the anchors that document actually contains, read
+       off that run rather than guessed, and the context window is widened
+       because the table is what has to be read, not a single number. */
     discover: findFlashReports,
-    candidates: ['https://ppac.gov.in/prices/price-build-up'],
+    candidates: [],
+    contextPad: 1400,
+    contextMax: 2,
     keywords: [
-      'IOCL', 'BPCL', 'HPCL', 'Indian Oil', 'Bharat Petroleum', 'Hindustan Petroleum',
-      'Reliance', 'Refinery', 'Refineries', 'Crude Oil Processed', 'Throughput',
-      'Capacity Utilisation', 'Price Build', 'Dealer', 'Excise', 'TMT'
+      'IOCL-TOTAL', 'BPCL-TOTAL', 'HPCL-TOTAL', 'CPCL-TOTAL', 'RIL-TOTAL',
+      'crude oil processing', 'Refinery-wise', 'Paradip', 'Manali',
+      'Total domestic production', 'Ready Reckoner'
     ],
-    labels: [/Crude Oil Processed[^0-9]{0,60}/, /Refiner(?:y|ies)[^0-9]{0,60}/],
+    labels: [/IOCL-TOTAL[^0-9]{0,40}/, /crude oil processing[^0-9]{0,80}/],
     parsers: []
   },
   'pngrb-cgd': {
-    label: 'PNGRB data bank - natural gas sales (CNG+PNG) by CGD company',
+    label: 'PNGRB monthly CGD MIS - CNG/PNG volumes by CGD entity',
     unit: 'MMSCM',
     plausible: [0, 100000],
-    /* Entity-level CNG and PNG volumes for IGL, Mahanagar Gas and Gujarat Gas -
-       the numbers behind three volume-growth KPIs that currently depend on a
-       management remark on a call.
-
-       Confirmed 2026-07-28: the data-bank page returns 200 to a plain GET and
-       DOES name the datasets ("Monthly CGD MIS", "Natural Gas Sales (CNG+PNG)
-       by CGD Companies"), but the file rows are loaded by script - the static
-       HTML has the table headers and no links. Rendering it needs a real
-       browser, which is what the scraper provides and this sandbox could not
-       reach. That is the whole question this probe answers. */
-    candidates: [
-      'https://pngrb.gov.in/eng-web/data-bank.html',
-      'https://pngrb.gov.in/OurRegulation/cgd-data.html'
-    ],
+    /* SETTLED by the run of 2026-07-29, half good.
+    
+       The data-bank page DOES render through the scraper - scrapedo returned
+       201 KB and 18,386 characters, and the file rows are all there:
+    
+         CGD MIS - Month of May 2026   22/07/2026  pdf (Size: 13.6 MB)
+         CGD MIS - Month of April 2026 16/06/2026  pdf (Size: 12.9 MB)
+    
+       So the monthly CGD MIS is current and large. Two things the run also
+       settled, both worth keeping written down:
+    
+       1. "Natural Gas Sales (CNG+PNG) by CGD Companies" - the dataset whose
+          NAME is exactly what we want - is ABANDONED. Its newest entry is
+          H-1 Apr-Sept 2016. Chasing it would have been a dead end.
+       2. No company name appears on the listing page, because the volumes live
+          inside the 13.6 MB PDF. The listing gives the link; the PDF is where
+          the numbers are, so that is the next thing to read.
+    
+       The second candidate URL from the first pass returned an empty document
+       and has been dropped - it does not exist. */
+    candidates: ['https://pngrb.gov.in/eng-web/data-bank.html'],
+    contextPad: 700,
+    contextMax: 2,
     keywords: [
-      'CGD MIS', 'Natural Gas Sales', 'CNG', 'PNG', 'MMSCM', 'SCM',
-      'Indraprastha', 'Mahanagar', 'Gujarat Gas', 'Adani Total', 'Torrent',
-      '.xls', '.pdf', 'Data Sheet'
+      'CGD MIS - Month of', 'Monthly CGD MIS', 'Download pdf',
+      'Indraprastha', 'Mahanagar', 'Gujarat Gas', 'MMSCM'
     ],
-    labels: [/CNG[^0-9]{0,40}/, /PNG[^0-9]{0,40}/],
+    labels: [/CGD MIS - Month of[^0-9]{0,40}/],
     parsers: []
   },
   'baltic-dirty': {
@@ -178,7 +201,9 @@ export async function probeScrapeTarget(id, { env = process.env } = {}) {
     console.log(`  first 300 chars: ${JSON.stringify(text.slice(0, 300))}`);
 
     console.log('\n  -- keyword context --');
-    for (const w of contextWindows(text, target.keywords)) {
+    for (const w of contextWindows(text, target.keywords, {
+      pad: target.contextPad || 220, max: target.contextMax || 4
+    })) {
       if (w.at < 0) { console.log(`  [${w.keyword}] NOT PRESENT`); continue; }
       console.log(`  [${w.keyword}] @${w.at}: ...${w.context.replace(/\s+/g, ' ')}...`);
     }
