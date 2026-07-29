@@ -231,3 +231,69 @@ test('a PPAC figure outranks Screener\'s grid, and never the reverse', () => {
   assert.ok(rankOf('insights') > rankOf('derived'));
   assert.ok(rankOf('derived') > rankOf('model'));
 });
+
+/* ------------------------------------------------------- pruning thin extras
+
+   The client's rule: an extra row needs a trend and a value in the two most
+   recent quarters, or it does not earn a line on the grid.                    */
+
+import { pruneThinExtras } from '../lib/kpi-store.mjs';
+
+const row = (id, values, extra) => ({
+  id, label: id, values, flag: values.filter((v) => v != null).length >= 3 ? 'steady' : null,
+  ...(extra ? { beyondBrief: true } : {})
+});
+
+test('an extra with one quarter and no trend is dropped', () => {
+  const out = pruneThinExtras([
+    row('brief', [1, 2, 3, 4]),
+    row('thin', [null, null, null, 8000], true)
+  ]);
+  assert.deepEqual(out.kpis.map((k) => k.id), ['brief']);
+  assert.match(out.dropped[0].reason, /1 quarter, no trend/);
+});
+
+test('an extra missing the newest reported quarter is dropped', () => {
+  /* the company HAS reported column 3 - its brief row is filled there - so the
+     extra is genuinely behind, not merely waiting on a late filer */
+  const out = pruneThinExtras([
+    row('brief', [1, 2, 3, 4]),
+    row('behind', [10, 11, 12, null], true)
+  ]);
+  assert.deepEqual(out.kpis.map((k) => k.id), ['brief']);
+  assert.match(out.dropped[0].reason, /two most recent/);
+});
+
+test('a late filer keeps its extras: the frontier is the COMPANY\'s, not the calendar\'s', () => {
+  /* Welspun's window runs to Q1 FY27 and Welspun has filed nothing for it, so
+     every row is empty in that column. Measuring against the calendar would
+     delete four healthy three-point series for reporting late. */
+  const out = pruneThinExtras([
+    row('brief', [1, 2, 3, null]),
+    row('pipe', [252, 265, 255, null], true)
+  ]);
+  assert.deepEqual(out.kpis.map((k) => k.id), ['brief', 'pipe']);
+  assert.equal(out.dropped.length, 0);
+});
+
+test('the brief\'s own KPIs are never pruned, however thin', () => {
+  /* A gap in the client's own list is the question they asked. Hiding the row
+     would answer it by pretending it was never asked. */
+  const out = pruneThinExtras([row('brief', [null, null, null, null])]);
+  assert.deepEqual(out.kpis.map((k) => k.id), ['brief']);
+  assert.equal(out.dropped.length, 0);
+});
+
+test('a full extra with a live trend is kept', () => {
+  const out = pruneThinExtras([
+    row('brief', [1, 2, 3, 4]),
+    row('good', [107.1, 106.7, 99.5, 113.9], true)
+  ]);
+  assert.deepEqual(out.kpis.map((k) => k.id), ['brief', 'good']);
+});
+
+test('a company with nothing reported at all drops its extras rather than throwing', () => {
+  const out = pruneThinExtras([row('x', [null, null, null, null], true)]);
+  assert.deepEqual(out.kpis, []);
+  assert.equal(out.dropped.length, 1);
+});

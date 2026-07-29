@@ -37,7 +37,7 @@ import {
 import { flagFor } from './lib/kpi-flag.mjs';
 import {
   freshStore, fingerprintFor, docsSignature, planCompany, mergeIntoStore,
-  renderWindow, storeTotals, seedFromWindow, cellsOf
+  renderWindow, storeTotals, seedFromWindow, cellsOf, pruneThinExtras
 } from './lib/kpi-store.mjs';
 import { fillFromInsights, fillTotals } from './lib/insights-fill.mjs';
 import { fillDerived, deriveTotals } from './lib/derive.mjs';
@@ -422,7 +422,19 @@ async function main() {
 
     // The window view the dashboard reads, rendered from the store - so it shows
     // everything we have ever learned, not only what this run happened to return.
-    const kpiObjects = renderWindow({ store, companyId: id, kpis, quarters, flagFor, flatBandPct });
+    const rendered = renderWindow({ store, companyId: id, kpis, quarters, flagFor, flatBandPct });
+    /* An extra row earns its line on the grid or loses it: a trend, and a value
+       in the two most recent quarters THIS company reported. Pruned here rather
+       than deleted from the spec, because the window rolls - a row that is thin
+       today can be full next quarter, and the store keeps its values either way.
+       The brief's own KPIs are never pruned: a gap there is the client's
+       question to ask, and hiding the row would answer it by pretending it was
+       never asked. */
+    const { kpis: kpiObjects, dropped } = pruneThinExtras(rendered);
+    if (dropped.length) {
+      console.log(`      ${dropped.length} extra row${dropped.length === 1 ? '' : 's'} not shown: ` +
+        dropped.map((d) => `${d.id} (${d.reason})`).join('; '));
+    }
     const cov = coverageOf(kpiObjects);
     out.companies[id] = {
       name, slug, quarters, asOf: asOfFrom(kpiObjects, quarters),
