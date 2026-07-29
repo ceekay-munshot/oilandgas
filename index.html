@@ -590,6 +590,18 @@ table.kpi tbody td.what{padding-left:13px;}
 table.kpi td.co[rowspan]{vertical-align:top;}
 .kpiunit{color:var(--ink-4); font-weight:500; font-size:10px; margin-left:2px;}
 .kpimuted{color:var(--ink-4); font-weight:500;}
+/* "extra" marks a row beyond the KPI list the brief names for that company, and
+   "leads"/"lags"/"coincides" marks one whose own behaviour is not its company's
+   group. Both are deliberately quiet - the row is real data, not a warning -
+   but they must be legible, because a reader is entitled to know which rows
+   moved the dial and which are context. */
+.kpixtra,.kpirole{
+  display:inline-block; margin-left:5px; padding:0 4px; border-radius:3px;
+  font-size:9px; font-weight:650; letter-spacing:.03em; text-transform:uppercase;
+  vertical-align:1px; cursor:help;
+}
+.kpixtra{color:var(--ink-4); background:color-mix(in srgb, var(--ink-4) 13%, transparent);}
+.kpirole{color:var(--ink-3); background:color-mix(in srgb, var(--ink-3) 15%, transparent);}
 /* each company sits on its own rolling 4-quarter window, so the window has to be
    stated per company rather than in the header. A second line inside the rowspan
    cell, small enough to ride inside the existing row block without growing it. */
@@ -2399,6 +2411,25 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     } else {
       cover = '<span class="chip chip--ghost">Awaiting extraction</span>';
     }
+    /* How many of this group's rows actually move the dial. A grid that grew
+       from 58 rows to 114 has to say which half the stage call was computed on,
+       or "more rows" reads as "a stronger reading" - which is exactly backwards
+       when the extra rows are deliberately held out of the score. */
+    var kdata0 = (DATA.kpis && DATA.kpis.companies) || {};
+    var nScored = 0, nExtra = 0;
+    g.companies.forEach(function (c) {
+      var e = kdata0[c.id];
+      ((e && e.kpis) || []).forEach(function (k) { if (k.beyondBrief) nExtra++; else nScored++; });
+    });
+    var scoredChip = (nScored + nExtra)
+      ? '<span class="chip" style="--c:' + g.color + '" title="' +
+          esc(nScored + ' rows are the KPIs the brief names for these companies and feed the ' +
+              'cycle score. ' + nExtra + ' are extra rows mapped from Screener - shown and ' +
+              'sourced, but held out of the score so the stage call stays on the brief’s list.') +
+          '"><span class="chip__sw"></span>' + nScored + ' scored' +
+          (nExtra ? ' · ' + nExtra + ' extra' : '') + '</span>'
+      : '';
+
     var upF = flagById['inflecting-up'], dnF = flagById['inflecting-down'];
     var toggle = '<button type="button" class="chip kpitoggle" id="kpiTurnToggle" ' +
       'aria-pressed="' + (kpiJustTurned ? 'true' : 'false') + '" ' +
@@ -2416,7 +2447,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
       '<span class="grouphead__desc">' + esc(g.plainDescription) + '</span>' +
       '<span class="chip" style="--c:' + g.color + '"><span class="chip__sw"></span>' +
         g.companies.length + ' companies</span>' +
-      cover + toggle;
+      cover + scoredChip + toggle;
 
     var tog = el('kpiTurnToggle');
     if (tog) tog.addEventListener('click', function () {
@@ -2461,10 +2492,34 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
             '" style="--c:' + g.color + '">' +
             '<i></i>' + esc(c.name) + kpiWindowLine(entry, ax) + '</td>';
         }
-        /* KPI label + unit, titled with how the trajectory was judged */
+        /* KPI label + unit, titled with how the trajectory was judged.
+
+           A row beyond the brief's named KPI list says so, and says that it is
+           read but not scored. Without the marker a reader would reasonably
+           assume every row on the grid feeds the dial - and the reason these do
+           not is that the interpretation framework was specified against the
+           brief's list, so letting them in would reweight it by how much spare
+           data a company happens to publish.
+
+           cycleRole appears only where the row's own lead/lag behaviour is not
+           its company's: order INTAKE leads even when the company sits under
+           Lagging. It stays with its company, because that is how the brief
+           groups; the marker just stops it reading as its neighbours' signal. */
+        var extra = k.beyondBrief
+          ? '<span class="kpixtra" title="Beyond the KPI list the brief names for this ' +
+              'company. Shown and sourced like any other row, but held out of the cycle ' +
+              'score so the stage call stays computed on the brief’s own list.">extra</span>'
+          : '';
+        var role = (k.beyondBrief && k.cycleRole && k.cycleRole !== g.id)
+          ? '<span class="kpirole" title="This row behaves as a ' + esc(k.cycleRole) +
+              ' indicator, not a ' + esc(g.id) + ' one like the rest of this company’s rows.">' +
+              esc(k.cycleRole === 'leading' ? 'leads' : k.cycleRole === 'lagging' ? 'lags' : 'coincides') +
+            '</span>'
+          : '';
         cells += '<td class="what"' + (k.flagBasis ? ' title="flagged on ' + esc(k.flagBasis) + '"' : '') +
           '>' + esc(k.label) +
-          (k.unit ? ' <span class="kpiunit">' + esc(k.unit) + '</span>' : '') + '</td>';
+          (k.unit ? ' <span class="kpiunit">' + esc(k.unit) + '</span>' : '') +
+          extra + role + '</td>';
         /* four quarter values, pulled onto this company's own axis. Every cell
            names the quarter it belongs to, because the column heading cannot:
            without it a number under "Latest" is unattributable. Nulls stay a dash,
