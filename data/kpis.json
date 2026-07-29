@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-28T19:00:54.512Z",
+  "generatedAt": "2026-07-29T09:24:29.979Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 224,
-    "realCells": 119,
-    "nullCells": 105,
-    "kpis": 58,
-    "kpisWithTrend": 31
+    "kpiCells": 377,
+    "realCells": 257,
+    "nullCells": 120,
+    "kpis": 97,
+    "kpisWithTrend": 66
   },
   "companies": {
     "deep-industries": {
@@ -32,7 +32,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3679,
+      "ctxChars": 33678,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -112,7 +112,7 @@
             null
           ],
           "flag": null,
-          "notes": "Day-rate not mentioned in any excerpt."
+          "notes": "Day-rate not explicitly stated in any quarter."
         },
         {
           "id": "order-book",
@@ -170,7 +170,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 4070,
+      "ctxChars": 34070,
       "kpis": [
         {
           "id": "order-inflow",
@@ -313,6 +313,116 @@
           ],
           "flag": null,
           "notes": "Bid pipeline not mentioned in any excerpt."
+        },
+        {
+          "id": "consultancy-order-book",
+          "label": "Consultancy order book",
+          "unit": "INR mn",
+          "flagBasis": "qoq",
+          "values": [
+            68133,
+            76856,
+            75012,
+            108648
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Consultancy 68,133 55,223 64,957 55,538 66,482",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Consultancy 76,856 68,133 55,223 64,957 55,538 66,482",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Consultancy 75,012 76,856 68,133 55,223 64,957 55,538 66,482",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 22 May 2026",
+              "quote": "Consultancy (Domestic) 43,736 (Overseas) 64,912 Total 108,648 (sum)",
+              "page": 28
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-up",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "consultancy-share",
+          "label": "Consultancy share of book",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            56.1,
+            58.5,
+            59.8,
+            71.9
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Consultancy 68,133 of Total Order Book 121,443 (56%)",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Consultancy 76,856 of Total Order Book 131,311 (59%)",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Consultancy 75,012 of Total Order Book 125,379 (60%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 22 May 2026",
+              "quote": "Consultancy 108,648 of Total Order Book 151,093 (72%)",
+              "page": 28
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "accelerating",
+          "beyondBrief": true,
+          "notes": null
         }
       ]
     },
@@ -328,7 +438,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3823,
+      "ctxChars": 27823,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -425,6 +535,156 @@
           ],
           "flag": "inflecting-down",
           "notes": null
+        },
+        {
+          "id": "dahej-throughput",
+          "label": "Dahej throughput",
+          "unit": "TBTU",
+          "flagBasis": "level",
+          "values": [
+            207,
+            211,
+            214,
+            201
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 04 Aug 2025",
+              "quote": "Dahej terminal, our flagship terminal, processed 207 TBTU",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 14 Nov 2025",
+              "quote": "Dahej terminal processed 211 TBTU",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 20 Feb 2026",
+              "quote": "At the Dahej terminal, volume throughput during the current quarter was 214 TBTU",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 11 May 2026",
+              "quote": "At the Dahej terminal, LNG throughput during the quarter stood at 201 TBTU",
+              "page": 3
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
+          "notes": null
+        },
+        {
+          "id": "kochi-throughput",
+          "label": "Kochi throughput",
+          "unit": "TBTU",
+          "flagBasis": "level",
+          "values": [
+            13,
+            null,
+            19,
+            18
+          ],
+          "sourceTags": [
+            "company-filing",
+            null,
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            null,
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 04 Aug 2025",
+              "quote": "Overall volume processed during the quarter was 220 TBTU",
+              "page": 3
+            },
+            null,
+            {
+              "doc": "Concall Transcript - 20 Feb 2026",
+              "quote": "the overall LNG volume processed by the company stood at 233 TBTU",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 11 May 2026",
+              "quote": "the overall LNG volume processed by the company stood at 219 TBTU",
+              "page": 3
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-down",
+          "notes": "From Screener Insights row \"Kochi Terminal LNG Throughput\"; latest value cited to Concall Transcript - 04 Aug 2025, page 3."
+        },
+        {
+          "id": "kochi-utilisation",
+          "label": "Kochi utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            null,
+            27,
+            29,
+            null
+          ],
+          "sourceTags": [
+            null,
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            null,
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Concall Transcript - 14 Nov 2025",
+              "quote": "highest ever capacity utilization of Kochi terminal in the current quarter, which stands at -- stood at 27%",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 20 Feb 2026",
+              "quote": "At Kochi Terminal, PLL achieved the highest ever capacity utilization of 29% during the current quarter",
+              "page": 3
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "From Screener Insights row \"Kochi Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 14 Nov 2025, page 3."
         }
       ]
     },
@@ -440,7 +700,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3699,
+      "ctxChars": 27698,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -531,7 +791,7 @@
       "asOf": "Q2 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3420,
+      "ctxChars": 21419,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -564,7 +824,7 @@
             null
           ],
           "flag": null,
-          "notes": "Capex spend vs budget not explicitly stated in any excerpt."
+          "notes": "Capex spend vs budget not stated in any excerpt."
         },
         {
           "id": "production-volume",
@@ -642,7 +902,48 @@
             null
           ],
           "flag": null,
-          "notes": "New well count not explicitly stated for any specific quarter."
+          "notes": "New well count not stated in any excerpt."
+        },
+        {
+          "id": "gas-production",
+          "label": "Natural gas production",
+          "unit": "BCM",
+          "flagBasis": "level",
+          "values": [
+            4.97,
+            4.91,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Natural Gas (BCM) FY'25: Q3: 4.97",
+              "page": 7
+            },
+            {
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Natural Gas (BCM) FY'25: 9M: 14.74; FY25 total standalone: 19.654",
+              "page": 7
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "From Screener Insights row \"Natural Gas Production (Standalone)\" (Standalone data); latest value cited to Presentation - 03 Feb 2025, page 7."
         }
       ]
     },
@@ -658,7 +959,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3643,
+      "ctxChars": 33642,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -696,7 +997,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q1 FY26 capex spend was ₹3,350 cr as per management claim. Q4 FY26 capex spend was ₹13,025 cr as per management claim. No specific capex spend vs budget figures for Q2 and Q3 FY26."
+          "notes": "Capex spend vs budget not explicitly stated for any quarter."
         },
         {
           "id": "production-volume",
@@ -747,6 +1048,56 @@
           ],
           "flag": "steady",
           "notes": "6.64 MMT / bcm (model) withheld: does not match this row's unit MMT"
+        },
+        {
+          "id": "gas-production",
+          "label": "Natural gas production",
+          "unit": "BCM",
+          "flagBasis": "level",
+          "values": [
+            0.83,
+            0.8,
+            0.8,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 19 Aug 2025",
+              "quote": "The natural gas production for the quarter has reached 0.83 bcm. On quarter-to-quarter, it has increased by 2.61%",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 21 Nov 2025",
+              "quote": "The natural gas production for the quarter stood at 0.804 bcm at marginal decrease of minus 2.8% on quarter-to-quarter",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 17 Feb 2026",
+              "quote": "The natural gas production for the quarter is 0.801 bcm, which is almost at par with the previous quarter",
+              "page": 5
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "notes": "From Screener Insights row \"Natural Gas Production\" (Standalone data); latest value cited to Concall Transcript - 19 Aug 2025, page 4."
         }
       ]
     },
@@ -762,7 +1113,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3716,
+      "ctxChars": 32257,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -909,6 +1260,60 @@
           ],
           "flag": "decelerating",
           "notes": null
+        },
+        {
+          "id": "day-rate-supreme",
+          "label": "Day rate - Jindal Supreme",
+          "unit": "USD/day",
+          "flagBasis": "level",
+          "values": [
+            88859,
+            88859,
+            88859,
+            88859
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "notes": null
         }
       ]
     },
@@ -924,7 +1329,7 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3722,
+      "ctxChars": 33720,
       "kpis": [
         {
           "id": "hydrocarbon-order-inflow",
@@ -1016,7 +1421,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3027,
+      "ctxChars": 33027,
       "kpis": [
         {
           "id": "order-book",
@@ -1108,7 +1513,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 4054,
+      "ctxChars": 34052,
       "kpis": [
         {
           "id": "order-book",
@@ -1197,6 +1602,214 @@
           ],
           "flag": null,
           "notes": "Line-pipe order inflow not explicitly stated for any quarter."
+        },
+        {
+          "id": "line-pipe-volume",
+          "label": "Line pipe volume",
+          "unit": "KMT",
+          "flagBasis": "level",
+          "values": [
+            252,
+            265,
+            255,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 30 Oct 2025",
+              "quote": "Line Pipes (India + USA) 252 206 22% 182 38%",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Line Pipes (India + USA) 265 235 +13% 252 +5%",
+              "page": 7
+            },
+            {
+              "doc": "Presentation - 21 May 2026",
+              "quote": "Line Pipes (India + USA) 255 245 4% 954 851 12%",
+              "page": 8
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-down",
+          "beyondBrief": true,
+          "cycleRole": "coincident",
+          "notes": "From Screener Insights row \"Line Pipes Sales Volume (India + USA)\"; latest value cited to Presentation - 30 Oct 2025, page 6."
+        },
+        {
+          "id": "di-pipe-volume",
+          "label": "DI pipe volume",
+          "unit": "KMT",
+          "flagBasis": "level",
+          "values": [
+            79,
+            92,
+            105,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 30 Oct 2025",
+              "quote": "DI Pipes 79 65 22% 65 22%",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "DI Pipes 92 67 +39% 79 +16%",
+              "page": 7
+            },
+            {
+              "doc": "Presentation - 21 May 2026",
+              "quote": "DI Pipes 105 76 38% 342 272 26%",
+              "page": 8
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "beyondBrief": true,
+          "cycleRole": "coincident",
+          "notes": "From Screener Insights row \"DI Pipes Sales Volume\"; latest value cited to Presentation - 30 Oct 2025, page 6."
+        },
+        {
+          "id": "tmt-rebar-volume",
+          "label": "TMT rebar volume",
+          "unit": "KMT",
+          "flagBasis": "level",
+          "values": [
+            34,
+            50,
+            60,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 30 Oct 2025",
+              "quote": "TMT Rebars 34 41 (17%) 40 (15%)",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "TMT Rebars 50 62 -19% 34 +46%",
+              "page": 7
+            },
+            {
+              "doc": "Presentation - 21 May 2026",
+              "quote": "TMT Rebars 60 51 17% 185 211 -12%",
+              "page": 8
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
+          "beyondBrief": true,
+          "cycleRole": "coincident",
+          "notes": "From Screener Insights row \"TMT Rebars Sales Volume\"; latest value cited to Presentation - 30 Oct 2025, page 6."
+        },
+        {
+          "id": "ss-bar-volume",
+          "label": "Stainless bar volume",
+          "unit": "MT",
+          "flagBasis": "level",
+          "values": [
+            7100,
+            6100,
+            6600,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 30 Oct 2025",
+              "quote": "Stainless Steel Bars 7.1 3.9 81% 7.4 (4%)",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Stainless Steel Bars 6.1 5.0 +22% 7.1 -13%",
+              "page": 7
+            },
+            {
+              "doc": "Presentation - 21 May 2026",
+              "quote": "Stainless Steel Bars 6.6 5.2 28%",
+              "page": 8
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-up",
+          "beyondBrief": true,
+          "cycleRole": "coincident",
+          "notes": "From Screener Insights row \"Stainless Steel Bars Sales Volume\"; latest value cited to Presentation - 30 Oct 2025, page 6."
         }
       ]
     },
@@ -1209,10 +1822,10 @@
         "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": null,
+      "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3431,
+      "ctxChars": 34307,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -1250,7 +1863,7 @@
             null
           ],
           "flag": null,
-          "notes": "O2C EBITDA per tonne not stated in any excerpt."
+          "notes": "No O2C EBITDA per tonne figures provided."
         },
         {
           "id": "petchem-margin",
@@ -1288,7 +1901,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin not stated in any excerpt."
+          "notes": "No Petchem margin figures provided."
         },
         {
           "id": "retail-fuel-margin",
@@ -1326,7 +1939,53 @@
             null
           ],
           "flag": null,
-          "notes": "Retail fuel margin not stated in any excerpt."
+          "notes": "No Retail fuel margin figures provided."
+        },
+        {
+          "id": "kgd6-gas-production",
+          "label": "KG-D6 gas production",
+          "unit": "BCFe",
+          "flagBasis": "level",
+          "values": [
+            63.5,
+            null,
+            59.6,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            null,
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            null,
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 17 Oct 2025",
+              "quote": "KGD6: 63.5 (-8.4% YoY)",
+              "page": 44
+            },
+            null,
+            {
+              "doc": "Presentation - 24 Apr 2026",
+              "quote": "KGD6: 59.6 (-6.4% YoY)",
+              "page": 67
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": "From Screener Insights row \"KG D6 Gas Production (RIL Share)\"; latest value cited to Presentation - 17 Oct 2025, page 44."
         }
       ]
     },
@@ -1342,7 +2001,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3953,
+      "ctxChars": 31988,
       "kpis": [
         {
           "id": "grm",
@@ -1418,7 +2077,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin not explicitly stated in any excerpt."
+          "notes": "Marketing margin not stated in excerpts"
         },
         {
           "id": "throughput",
@@ -1473,6 +2132,277 @@
           ],
           "flag": "inflecting-up",
           "notes": null
+        },
+        {
+          "id": "refinery-utilisation",
+          "label": "Refinery utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            107.1,
+            106.7,
+            99.5,
+            113.9
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 02 May 2025",
+              "quote": "The throughput during the quarter was 18.5 MMT, with a capacity utilization of 107.1%",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Q1 2025-26: Refinery Capacity utilization (%) 106.7",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Oct 2025",
+              "quote": "Q2 2025-26: Refinery Capacity utilization (%) 99.5",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 19 May 2026",
+              "quote": "Q4 2025-26: Refinery Capacity utilization (%) 113.9",
+              "page": 5
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-up",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "petchem-sales",
+          "label": "Petchem sales",
+          "unit": "MMT",
+          "flagBasis": "level",
+          "values": [
+            0.83,
+            0.83,
+            0.77,
+            0.9
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 02 May 2025",
+              "quote": "The sale of petrochemical products during this quarter was 0.83 MMT as compared to 0.89 MMT in the preceding quarter",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Q1 2025-26: Petrochemicals Total 0.800 Domestic + 0.032 Exports = 0.832",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 28 Oct 2025",
+              "quote": "The sales of petrochemical products, including exports, during this quarter was 0.77 MMT",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 19 May 2026",
+              "quote": "For Q4 2025-26, sale of 0.901 MMT was achieved as compared to 0.893 MMT in the preceding quarter",
+              "page": 4
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-up",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "pipeline-throughput",
+          "label": "Pipeline throughput",
+          "unit": "MMT",
+          "flagBasis": "level",
+          "values": [
+            25.8,
+            26.3,
+            24.1,
+            27.7
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 02 May 2025",
+              "quote": "Pipeline throughput during the quarter 4 '24, '25 is 25.8 MMT",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Pipeline Operations: Throughput (MMT) 26.3",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Oct 2025",
+              "quote": "Q2 2025-26: Pipeline Throughput (MMT) 24.1",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 19 May 2026",
+              "quote": "Q4 2025-26: Pipeline Throughput (MMT) 27.7",
+              "page": 5
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-up",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "total-sales-volume",
+          "label": "Total sales volume",
+          "unit": "MMT",
+          "flagBasis": "level",
+          "values": [
+            23.19,
+            26.33,
+            24.26,
+            27.34
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Q4 2024-25: Total Sales (a+b+c) 23.193 MMT",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Q1 2025-26: Total Sales (a+b+c) 26.328 MMT (highest ever total quarterly sale)",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 27 Oct 2025",
+              "quote": "Q2 2025-26: Total Sales (a+b+c) 24.262 MMT",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 19 May 2026",
+              "quote": "Q4 2025-26: Total Sales (a+b+c) 27.343 MMT",
+              "page": 6
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-up",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "gas-sales",
+          "label": "Gas sales",
+          "unit": "MMT",
+          "flagBasis": "level",
+          "values": [
+            null,
+            1.69,
+            1.84,
+            1.81
+          ],
+          "sourceTags": [
+            null,
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            null,
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Q1 2025-26: Gas 1.685 (Domestic 0.800 + Exports 0.032 + CGD included)",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 28 Oct 2025",
+              "quote": "During the year, we registered highest quarterly gas sales of 1.840 MMT, which includes CGD sales of 44 TMT",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 19 May 2026",
+              "quote": "During the quarter, we registered gas sales of 1,814 TMT which includes CGD sales of 54 TMT",
+              "page": 4
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-down",
+          "beyondBrief": true,
+          "notes": "From Screener Insights row \"Gas Sales\" (Standalone data); latest value cited to Presentation - 14 Aug 2025, page 5."
         }
       ]
     },
@@ -1488,7 +2418,7 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3889,
+      "ctxChars": 33887,
       "kpis": [
         {
           "id": "grm",
@@ -1576,7 +2506,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin figures were not explicitly stated for any quarter."
+          "notes": "Marketing margin not explicitly stated in any excerpt."
         },
         {
           "id": "throughput",
@@ -1587,19 +2517,19 @@
             9.54,
             10.58,
             10.42,
-            10.15
+            10.2
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "mgmt-claim"
+            "official"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "model"
+            "ppac"
           ],
           "citations": [
             {
@@ -1639,10 +2569,10 @@
         "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3886,
+      "ctxChars": 31831,
       "kpis": [
         {
           "id": "grm",
@@ -1680,7 +2610,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": "Q2 FY26 GRM $8.8/bbl; Q3 FY26 GRM $8.85/bbl; Q1 FY27 inventory markdown."
+          "notes": "Q2 FY26 GRM $8.8/bbl, Q3 FY26 GRM $8.85/bbl, Q4 FY26 and Q1 FY27 not stated."
         },
         {
           "id": "marketing-margin",
@@ -1718,7 +2648,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin not explicitly stated for any quarter."
+          "notes": "Marketing margin not stated for any quarter."
         },
         {
           "id": "throughput",
@@ -1729,19 +2659,19 @@
             6.57,
             6.38,
             6.39,
-            null
+            6.5
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "official"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "ppac"
           ],
           "citations": [
             {
@@ -1767,8 +2697,8 @@
             null,
             null
           ],
-          "flag": "steady",
-          "notes": "From Screener Insights row \"Refining Throughput (HPCL Standalone)\" (Standalone data); latest value cited to Concall Transcript - 31 Oct 2025, page 3."
+          "flag": "accelerating",
+          "notes": null
         }
       ]
     },
@@ -1784,7 +2714,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3223,
+      "ctxChars": 33512,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -1877,6 +2807,226 @@
           ],
           "flag": null,
           "notes": "Petchem margin not stated in any excerpt."
+        },
+        {
+          "id": "gas-marketing-volume",
+          "label": "Gas marketing volume",
+          "unit": "MMSCMD",
+          "flagBasis": "level",
+          "values": [
+            99.99,
+            105.45,
+            105.49,
+            103.98
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "gas marketing volume stood at 99.99 MMSCMD in current quarter as against 98.14 MMSCMD previous quarter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "Gas marketing volume during the quarter stood at 105.45 MMSCMD as against 106.53 MMSCMD in Q4 financial year '25",
+              "page": 2
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "Gas marketing volume during the quarter stood at 105.49 MMSCMD as against 105.45 MMSCMD in Q1 Financial Year '26",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "Gas marketing volume during the quarter stood at 103.98 MMSCMD as against 105.49 MMSCMD in Q2 FY26",
+              "page": 4
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "lpg-transmission",
+          "label": "LPG transmission",
+          "unit": "TMT",
+          "flagBasis": "level",
+          "values": [
+            1114,
+            1131,
+            1167,
+            1188
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "LPG transmission stood at 1114 TMT as against 1095 TMT in previous quarter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "The LPG transmission was also flat, it was 1,131 TMT as against 1,132 TMT in Q4 FY'20",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "LPG transmission was 1,167 TMT as against 1,131 TMT in previous quarter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "LPG transmission was 1,188 TMT as against 1,167 TMT in previous quarter",
+              "page": 4
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "petchem-sales",
+          "label": "Petchem sales",
+          "unit": "TMT",
+          "flagBasis": "level",
+          "values": [
+            248,
+            177,
+            220,
+            219
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "Polymer production stood at 248 TMT as against 205 TMT last quarter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "Polymer production is down to 177 TMT in Q1 as against 215 TMT in previous quarter",
+              "page": 2
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "Polymer production was back to normal level of 220 TMT in Q2",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "Polymer production was almost flat at 219 TMT in Q3 FY26",
+              "page": 4
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "liquid-hydrocarbon-sales",
+          "label": "Liquid hydrocarbon sales",
+          "unit": "TMT",
+          "flagBasis": "level",
+          "values": [
+            265,
+            199,
+            221,
+            199
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "LHC production is stood at 265 TMT against 249 TMT in previous quarter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "LHC production is almost flat, and it stood at 199 TMT as against 196 TMT in previous quarter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "Liquid hydrocarbon production stood at 221 TMT as against 199 TMT in previous quarter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "LHC production stood at 199 TMT as against 221 TMT in previous quarter",
+              "page": 4
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-down",
+          "beyondBrief": true,
+          "notes": null
         }
       ]
     },
@@ -1892,7 +3042,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 4031,
+      "ctxChars": 34030,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -1969,6 +3119,225 @@
           ],
           "flag": "inflecting-down",
           "notes": "Derived: EBITDA (Screener quarterly Operating Profit, ₹ cr) ÷ quarterly gas volume (Insights \"Total Sales Volume\" MMSCMD × days in quarter), in ₹/scm."
+        },
+        {
+          "id": "total-sales-volume",
+          "label": "Total sales volume",
+          "unit": "MMSCMD",
+          "flagBasis": "level",
+          "values": [
+            4.45,
+            4.59,
+            4.62,
+            4.67
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 23 Jul 2025",
+              "quote": "MGL+UEPL Q1 FY 26: CNG 3.185, Domestic 0.571, I&C 0.698, Total 4.454",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 30 Oct 2025",
+              "quote": "MGL+Erstwhile UEPL Q2 FY 26: CNG 3.255, Domestic 0.582, I&C 0.757, Total 4.593",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q3 FY 25-26: CNG 3.281, Domestic 0.604, I&C 0.735, Total 4.620",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q4 FY 25-26: CNG 3.349, Domestic 0.605, I&C 0.719, Total 4.672",
+              "page": 13
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "cng-volume",
+          "label": "CNG sales volume",
+          "unit": "MMSCMD",
+          "flagBasis": "level",
+          "values": [
+            3.19,
+            3.25,
+            3.28,
+            3.35
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 23 Jul 2025",
+              "quote": "MGL+UEPL Q1 FY 26: CNG 3.185",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 30 Oct 2025",
+              "quote": "MGL+Erstwhile UEPL Q2 FY 26: CNG 3.255",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q3 FY 25-26: CNG 3.281",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q4 FY 25-26: CNG 3.349",
+              "page": 13
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "accelerating",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "png-domestic-volume",
+          "label": "Domestic PNG volume",
+          "unit": "MMSCMD",
+          "flagBasis": "level",
+          "values": [
+            0.57,
+            0.58,
+            0.6,
+            0.6
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 23 Jul 2025",
+              "quote": "MGL+UEPL Q1 FY 26: Domestic 0.571",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 30 Oct 2025",
+              "quote": "MGL+Erstwhile UEPL Q2 FY 26: Domestic 0.582",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q3 FY 25-26: Domestic 0.604",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q4 FY 25-26: Domestic 0.605",
+              "page": 13
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "ic-volume",
+          "label": "Industrial & commercial volume",
+          "unit": "MMSCMD",
+          "flagBasis": "level",
+          "values": [
+            0.7,
+            0.76,
+            0.73,
+            0.72
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 23 Jul 2025",
+              "quote": "MGL+UEPL Q1 FY 26: I&C 0.698",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 30 Oct 2025",
+              "quote": "MGL+Erstwhile UEPL Q2 FY 26: I&C 0.757",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q3 FY 25-26: I&C 0.735",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q4 FY 25-26: I&C 0.719",
+              "page": 13
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "notes": null
         }
       ]
     },
@@ -2076,7 +3445,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 4005,
+      "ctxChars": 34004,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -2168,7 +3537,117 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % was not explicitly stated in any of the provided excerpts."
+          "notes": "Terminal utilisation % not explicitly stated in any excerpt."
+        },
+        {
+          "id": "lpg-distribution-volume",
+          "label": "LPG distribution volume",
+          "unit": "'000 MT",
+          "flagBasis": "level",
+          "values": [
+            145,
+            192,
+            183,
+            234
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "128 145 Q1FY25 Q1FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "129 192 Q2FY25 Q2FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "127 183 Q3FY25 Q3FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "136 234 Q4FY25 Q4FY26",
+              "page": 11
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-up",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "lpg-sourcing-volume",
+          "label": "LPG sourcing volume",
+          "unit": "'000 MT",
+          "flagBasis": "level",
+          "values": [
+            119,
+            208,
+            151,
+            129
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "124 119 Q1FY25 Q1FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "194 208 Q2FY25 Q2FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "140 151 Q3FY25 Q3FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "139 129 Q4FY25 Q4FY26",
+              "page": 11
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
+          "beyondBrief": true,
+          "notes": null
         }
       ]
     },
@@ -2184,7 +3663,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3037,
+      "ctxChars": 33034,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -2288,7 +3767,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 2916,
+      "ctxChars": 32914,
       "kpis": [
         {
           "id": "sps-spread",
@@ -2326,7 +3805,7 @@
             null
           ],
           "flag": null,
-          "notes": "Styrene-polystyrene spread not mentioned in any excerpt."
+          "notes": "Styrene-polystyrene spread not mentioned in any quarter."
         },
         {
           "id": "volume",
@@ -2381,6 +3860,57 @@
           ],
           "flag": "decelerating",
           "notes": null
+        },
+        {
+          "id": "capacity-utilisation",
+          "label": "Capacity utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            null,
+            79,
+            80,
+            80
+          ],
+          "sourceTags": [
+            null,
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            null,
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 26 Jan 2026",
+              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 30 Apr 2026",
+              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
+              "page": 3
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "beyondBrief": true,
+          "notes": "From Screener Insights row \"Capacity Utilization\" (Standalone data); latest value cited to Concall Transcript - 31 Oct 2025, page 5."
         }
       ]
     },
@@ -2393,39 +3923,43 @@
         "Q3 FY26",
         "Q4 FY26"
       ],
-      "asOf": null,
+      "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 1581,
+      "ctxChars": 31578,
       "kpis": [
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume",
-          "unit": "million liters",
+          "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
             null,
             null,
             null,
-            null
+            7.5
           ],
           "sourceTags": [
             null,
             null,
             null,
-            null
+            "company-filing"
           ],
           "origins": [
             null,
             null,
             null,
-            null
+            "insights"
           ],
           "citations": [
             null,
             null,
             null,
-            null
+            {
+              "doc": "Concall Transcript - 04 May 2026",
+              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
+              "page": 6
+            }
           ],
           "oneOffs": [
             null,
@@ -2434,7 +3968,7 @@
             null
           ],
           "flag": null,
-          "notes": "No quarterly lubricant volume data for FY26 was provided."
+          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
         },
         {
           "id": "base-oil-spread",
@@ -2472,7 +4006,7 @@
             null
           ],
           "flag": null,
-          "notes": "No base-oil spread data was provided."
+          "notes": "Base-oil spread not mentioned in any excerpt."
         }
       ]
     },
@@ -2488,7 +4022,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3128,
+      "ctxChars": 33126,
       "kpis": [
         {
           "id": "base-oil-spread",
@@ -2577,6 +4111,158 @@
           ],
           "flag": "inflecting-down",
           "notes": "From Screener Insights row \"PHPO Sales Volume\"; latest value cited to Presentation - 12 Nov 2025, page 23."
+        },
+        {
+          "id": "mfg-gross-spread",
+          "label": "Manufacturing gross spread",
+          "unit": "INR/kL",
+          "flagBasis": "level",
+          "values": [
+            8274,
+            9146,
+            9351,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 26 May 2026",
+              "quote": "Manufacturing Gross Margin Spread (INR/kL)",
+              "page": 19
+            },
+            {
+              "doc": "Presentation - 26 May 2026",
+              "quote": "Manufacturing Gross Margin Spread (INR/kL)",
+              "page": 19
+            },
+            {
+              "doc": "Concall Transcript - 02 Jun 2026",
+              "quote": "During the quarter, gross margin spread stood at INR9,351 per kL",
+              "page": 5
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
+          "notes": "From Screener Insights row \"Manufacturing Gross Margin Spread\"; latest value cited to Presentation - 26 May 2026, page 19."
+        },
+        {
+          "id": "lubricant-volume",
+          "label": "Lubricants volume",
+          "unit": "kL",
+          "flagBasis": "level",
+          "values": [
+            33366,
+            31949,
+            33697,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 12 Nov 2025",
+              "quote": "Lubricants (kl)",
+              "page": 23
+            },
+            {
+              "doc": "Presentation - 23 Jan 2026",
+              "quote": "Lubricants (kl)",
+              "page": 23
+            },
+            {
+              "doc": "Presentation - 26 May 2026",
+              "quote": "Lubricants (kl)",
+              "page": 24
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-up",
+          "beyondBrief": true,
+          "notes": "From Screener Insights row \"Lubricants Sales Volume\"; latest value cited to Presentation - 12 Nov 2025, page 23."
+        },
+        {
+          "id": "mfg-volume",
+          "label": "Manufacturing sales volume",
+          "unit": "kL",
+          "flagBasis": "level",
+          "values": [
+            139791,
+            148450,
+            135781,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 12 Nov 2025",
+              "quote": "Total Sales Manufacturing Volumes (kl)",
+              "page": 23
+            },
+            {
+              "doc": "Presentation - 23 Jan 2026",
+              "quote": "Total Sales Manufacturing Volumes (kl)",
+              "page": 23
+            },
+            {
+              "doc": "Presentation - 26 May 2026",
+              "quote": "Total Sales Manufacturing Volumes (kl)",
+              "page": 24
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-down",
+          "beyondBrief": true,
+          "notes": "From Screener Insights row \"Total Sales Manufacturing Volume\"; latest value cited to Presentation - 12 Nov 2025, page 23."
         }
       ]
     },
@@ -2592,7 +4278,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3450,
+      "ctxChars": 9450,
       "kpis": [
         {
           "id": "industrial-gas-volume",
@@ -2643,10 +4329,10 @@
         "Q3 FY26",
         "Q4 FY26"
       ],
-      "asOf": null,
+      "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 2760,
+      "ctxChars": 32878,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -2684,7 +4370,62 @@
             null
           ],
           "flag": null,
-          "notes": "POL/LPG/LNG throughput not stated in any excerpt."
+          "notes": "No explicit POL/LPG/LNG throughput figures provided."
+        },
+        {
+          "id": "total-cargo-volume",
+          "label": "Total cargo volume",
+          "unit": "MMT",
+          "flagBasis": "level",
+          "values": [
+            117.9,
+            123.6,
+            123.1,
+            133.4
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 30 Apr 2026",
+              "quote": "Cargo (MMT) Q4 FY26 Q4 FY25 133.4 117.9",
+              "page": 2
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "APSEZ volume 123.6 110.8",
+              "page": 41
+            },
+            {
+              "doc": "Presentation - 03 Feb 2026",
+              "quote": "APSEZ volume 123.1 112.5",
+              "page": 47
+            },
+            {
+              "doc": "Presentation - 30 Apr 2026",
+              "quote": "Cargo (MMT) Q4 FY26 133.4",
+              "page": 2
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "accelerating",
+          "beyondBrief": true,
+          "notes": null
         }
       ]
     },
@@ -2692,7 +4433,7 @@
       "name": "GE Shipping",
       "slug": "GESHIP",
       "quarters": [
-        "Q4 FY25",
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26"
@@ -2700,7 +4441,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 4377,
+      "ctxChars": 34375,
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -2708,7 +4449,7 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            53182,
+            46352,
             28492,
             47281,
             61424
@@ -2727,9 +4468,9 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 09 May 2025",
-              "quote": "Crude Carriers: Q4 FY24 53,182",
-              "page": 13
+              "doc": "Presentation - 31 Jul 2025",
+              "quote": "Crude Carriers: Q1 FY25 46,352",
+              "page": 14
             },
             {
               "doc": "Presentation - 11 Dec 2025",
@@ -2762,7 +4503,7 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3546,
+            3507,
             3678,
             3765,
             3525
@@ -2781,8 +4522,8 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 09 May 2025",
-              "quote": "Total Revenue Days: 3,546",
+              "doc": "Presentation - 31 Jul 2025",
+              "quote": "Total Revenue Days: 3,507",
               "page": 12
             },
             {
@@ -2809,6 +4550,276 @@
           ],
           "flag": "inflecting-down",
           "notes": null
+        },
+        {
+          "id": "tcy-product",
+          "label": "TCY - product carriers",
+          "unit": "USD/day",
+          "flagBasis": "level",
+          "values": [
+            37153,
+            28978,
+            25117,
+            30511
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 31 Jul 2025",
+              "quote": "Product Carriers: Q1 FY25 37,153",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Product Carriers: Q2 FY25 28,978",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 29 Jan 2026",
+              "quote": "Product Carriers: Q3 FY26 25,117",
+              "page": 26
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Product Carriers: Q4 FY26 30,511",
+              "page": 26
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-up",
+          "notes": null
+        },
+        {
+          "id": "tcy-lpg",
+          "label": "TCY - LPG carriers",
+          "unit": "USD/day",
+          "flagBasis": "level",
+          "values": [
+            36742,
+            43507,
+            43611,
+            45216
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 31 Jul 2025",
+              "quote": "LPG Carriers: Q1 FY25 36,742",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "LPG Carriers: Q2 FY25 43,507",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 29 Jan 2026",
+              "quote": "LPG Carriers: Q3 FY26 43,611",
+              "page": 26
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "LPG Carriers: Q4 FY26 45,216",
+              "page": 26
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "accelerating",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "tcy-dry-bulk",
+          "label": "TCY - dry bulk",
+          "unit": "USD/day",
+          "flagBasis": "level",
+          "values": [
+            17976,
+            16686,
+            17983,
+            16678
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 31 Jul 2025",
+              "quote": "Dry Bulk: Q1 FY25 17,976",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Dry Bulk: Q2 FY25 16,686",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 29 Jan 2026",
+              "quote": "Dry Bulk: Q3 FY26 17,983",
+              "page": 26
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Dry Bulk: Q4 FY26 16,678",
+              "page": 26
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-down",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "revenue-days-owned",
+          "label": "Revenue days (owned)",
+          "unit": "Days",
+          "flagBasis": "level",
+          "values": [
+            3325,
+            3494,
+            3581,
+            3345
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 31 Jul 2025",
+              "quote": "Owned Tonnage: 3,325",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Owned Tonnage: 3,494",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 29 Jan 2026",
+              "quote": "Owned Tonnage: 3,581",
+              "page": 25
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Owned Tonnage: 3,345",
+              "page": 25
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-down",
+          "notes": null
+        },
+        {
+          "id": "jackup-utilisation",
+          "label": "Jack-up rig utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            null,
+            84,
+            84,
+            84
+          ],
+          "sourceTags": [
+            null,
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            null,
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Jack Up Utilisation - from chart showing Under Contract ~84%",
+              "page": 34
+            },
+            {
+              "doc": "Presentation - 29 Jan 2026",
+              "quote": "Jack Up Utilisation - from chart showing Under Contract ~84%",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "This is the simple utilization. We have another measure called marketed utilization, which is rigs which are being marketed actively for contracts. That utilization continues to be somewhere around the 84% to 85% mark",
+              "page": 19
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "beyondBrief": true,
+          "cycleRole": "leading",
+          "notes": "From Screener Insights row \"Jack-up Rig Utilization (Industry Under Contract)\"; latest value cited to Presentation - 11 Dec 2025, page 34."
         }
       ]
     },
@@ -2822,7 +4833,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3382,
+      "ctxChars": 21381,
       "kpis": [
         {
           "id": "freight-rate",
@@ -2859,6 +4870,42 @@
           ],
           "flag": null,
           "notes": null
+        },
+        {
+          "id": "aframax-rate",
+          "label": "Aframax TD8 TCE",
+          "unit": "USD/day",
+          "flagBasis": "level",
+          "values": [
+            32709,
+            80914
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 07 Nov 2025",
+              "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-II 32,708.75",
+              "page": 19
+            },
+            {
+              "doc": "Presentation - 11 May 2026",
+              "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-IV 80,914",
+              "page": 17
+            }
+          ],
+          "oneOffs": [
+            null,
+            null
+          ],
+          "flag": null,
+          "notes": null
         }
       ]
     },
@@ -2871,7 +4918,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3460,
+      "ctxChars": 15300,
       "kpis": [
         {
           "id": "order-book",

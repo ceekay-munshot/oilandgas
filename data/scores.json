@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-07-28T19:01:31.578Z",
+  "generatedAt": "2026-07-29T09:25:17.462Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,17 +38,17 @@
   "asOf": "Q4 FY26",
   "scores": {
     "leading": {
-      "score": -8,
-      "prev": -57,
-      "delta": 45,
+      "score": -7,
+      "prev": -50,
+      "delta": 39,
       "deltaBasis": "kpi-only",
       "level": "flat",
       "direction": "rising",
-      "kpisScored": 11,
-      "kpisTotal": 20,
+      "kpisScored": 13,
+      "kpisTotal": 23,
       "tonesScored": 8,
       "companiesScored": 8,
-      "staleKpis": 6,
+      "staleKpis": 8,
       "oneOffKpis": 1,
       "unknownKpis": 0,
       "lowCoverage": true,
@@ -107,14 +107,14 @@
       ]
     },
     "coincident": {
-      "score": -38,
-      "prev": 10,
-      "delta": -53,
+      "score": -40,
+      "prev": 0,
+      "delta": -45,
       "deltaBasis": "kpi-only",
-      "level": "negative",
+      "level": "strong-negative",
       "direction": "falling",
-      "kpisScored": 18,
-      "kpisTotal": 34,
+      "kpisScored": 22,
+      "kpisTotal": 40,
       "tonesScored": 14,
       "companiesScored": 11,
       "staleKpis": 4,
@@ -157,6 +157,13 @@
           "companyId": "petronet-lng",
           "company": "Petronet LNG",
           "label": "Volume",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "petronet-lng",
+          "company": "Petronet LNG",
+          "label": "Kochi throughput",
           "flag": "inflecting-down"
         },
         {
@@ -254,13 +261,13 @@
     },
     "lagging": {
       "score": 0,
-      "prev": 33,
-      "delta": -133,
+      "prev": -20,
+      "delta": -23,
       "deltaBasis": "kpi-only",
       "level": "flat",
       "direction": "falling",
-      "kpisScored": 2,
-      "kpisTotal": 4,
+      "kpisScored": 4,
+      "kpisTotal": 7,
       "tonesScored": 2,
       "companiesScored": 1,
       "staleKpis": 0,
@@ -278,6 +285,20 @@
           "flag": "inflecting-down"
         },
         {
+          "kind": "kpi",
+          "companyId": "ge-shipping",
+          "company": "GE Shipping",
+          "label": "TCY - product carriers",
+          "flag": "inflecting-up"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "ge-shipping",
+          "company": "GE Shipping",
+          "label": "Revenue days (owned)",
+          "flag": "inflecting-down"
+        },
+        {
           "kind": "tone",
           "companyId": "shipping-corp",
           "company": "Shipping Corp of India",
@@ -288,7 +309,7 @@
     }
   },
   "divergence": {
-    "value": 30,
+    "value": 33,
     "leadingSign": 0,
     "coincidentSign": -1,
     "signsDiffer": false
@@ -296,8 +317,8 @@
   "divergenceSeries": [
     null,
     null,
-    -67,
-    31
+    -50,
+    34
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -306,7 +327,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading -8 (flat, rising), coincident -38 (negative, falling), lagging 0 (flat).",
+      "Leading -7 (flat, rising), coincident -40 (strong-negative, falling), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -481,7 +502,7 @@
     {
       "groupId": "leading",
       "kind": "low-coverage",
-      "text": "Moves first: 7 of 20 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves first: 9 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     }
   ],
   "alerts": [
@@ -495,7 +516,7 @@
       "id": "coverage-leading",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moves first: 7 of 20 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves first: 9 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "tone-petronet-lng",
@@ -572,7 +593,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are negative and falling — IOCL GRM, IOCL Throughput, BPCL GRM."
+      "text": "Coincident indicators are strongly negative and falling — IOCL GRM, IOCL Throughput, BPCL GRM."
     },
     {
       "id": "macro",
@@ -582,7 +603,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +30. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +33. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -1071,7 +1092,7 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-07-28T19:00:54.674Z",
+    "generatedAt": "2026-07-28T19:01:31.578Z",
     "asOf": "Q4 FY26",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
