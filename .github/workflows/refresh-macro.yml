@@ -45,10 +45,23 @@ jobs:
         with:
           node-version: '22'
 
-      # Nothing to install: the macro fetcher uses only Node built-ins. The
-      # dependencies in pipeline/package.json are for the Screener/PDF steps in
-      # prompts 4-6. (package.json lives under pipeline/ so Cloudflare keeps
-      # treating the repo root as a static site.)
+      # The macro FETCHER still uses only Node built-ins - but `npm test` runs the
+      # whole suite, and three of its files reach the Screener parsers, which
+      # import cheerio. With no install those files fail to load with
+      # ERR_MODULE_NOT_FOUND, npm test exits 1, and the job dies BEFORE the fetch.
+      #
+      # That is what happened: the daily macro run failed silently on 27, 28 and
+      # 29 July, and data/macro.json froze on the 27th while the dashboard went on
+      # showing it as live. A test step that guards the fetch has to be able to run.
+      #
+      # Chromium is skipped: nothing here drives a browser, and pulling it would
+      # add two minutes to a job that otherwise takes forty seconds.
+      - name: Install dependencies
+        working-directory: pipeline
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm install --no-audit --no-fund
+
       - name: Verify parsers
         working-directory: pipeline
         run: npm test
