@@ -596,12 +596,20 @@ table.kpi td.co[rowspan]{vertical-align:top;}
    but they must be legible, because a reader is entitled to know which rows
    moved the dial and which are context. */
 .kpixtra,.kpirole{
-  display:inline-block; margin-left:5px; padding:0 4px; border-radius:3px;
-  font-size:9px; font-weight:650; letter-spacing:.03em; text-transform:uppercase;
+  display:inline-block; margin-left:5px; border-radius:3px;
+  font-size:9px; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
   vertical-align:1px; cursor:help;
 }
-.kpixtra{color:var(--ink-4); background:color-mix(in srgb, var(--ink-4) 13%, transparent);}
-.kpirole{color:var(--ink-3); background:color-mix(in srgb, var(--ink-3) 15%, transparent);}
+/* square, so a single letter still reads as a badge rather than a stray capital */
+.kpixtra{
+  width:13px; height:13px; line-height:13px; margin-left:6px; padding:0;
+  text-align:center; letter-spacing:0;
+  color:var(--ink-4); background:color-mix(in srgb, var(--ink-4) 15%, transparent);
+}
+.kpirole{padding:0 4px; color:var(--ink-3); background:color-mix(in srgb, var(--ink-3) 15%, transparent);}
+/* the legend entry carries the badge inline, so the key looks like the thing */
+.chip--key{--c:var(--ink-4); font-weight:550;}
+.chip--key .kpixtra{margin-left:0; margin-right:4px;}
 /* each company sits on its own rolling 4-quarter window, so the window has to be
    stated per company rather than in the header. A second line inside the rowspan
    cell, small enough to ride inside the existing row block without growing it. */
@@ -2172,7 +2180,16 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     el('kpiFlagLegend').innerHTML = DATA.framework.trajectoryFlags.map(function (f) {
       return '<span class="chip" style="--c:' + f.color + '" title="' + esc(f.meaning) + '">' +
         '<span class="chip__sw"></span>' + f.glyph + ' ' + esc(f.plainLabel) + '</span>';
-    }).join('');
+    }).join('') +
+    /* A bare "E" beside a KPI needs decoding somewhere a reader can see without
+       hovering, so the key sits with the trajectory key rather than only in a
+       tooltip. It appears whether or not this group has extras, because its job
+       is to make the ABSENCE of an E meaningful too. */
+    '<span class="chip chip--key" title="Rows marked E are beyond the KPI list the ' +
+      'brief names for that company. They are sourced and cited like any other row ' +
+      'and are shown in full - but they are held out of the cycle score, so the ' +
+      'stage call stays computed on the brief’s own list. A row with no E scored.">' +
+      '<span class="kpixtra">E</span> extra · read, not scored</span>';
   }
   function setKpiGroup(id) {
     kpiActive = id;
@@ -2294,11 +2311,35 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     yoy:   { kind: 'seasonal', flaggedOn: 'YoY growth' }
   };
 
+  /* ---- the "E" badge ---------------------------------------------------
+     One definition, used everywhere a KPI is named, so a row cannot appear
+     unmarked in one place and marked in another. E means: beyond the KPI list
+     the brief names for this company - read it, but it did not move the dial.
+     The letter is deliberately terse because it sits inline beside a label; the
+     legend above the grid and this tooltip are what carry the meaning.        */
+  function kpiExtraBadge(k) {
+    if (!k || !k.beyondBrief) return '';
+    return '<span class="kpixtra" title="EXTRA - beyond the KPI list the brief ' +
+      'names for this company. Sourced and cited like any other row, but held out ' +
+      'of the cycle score, so the stage call stays computed on the brief’s own list.">E</span>';
+  }
+  /* Only where the row's own lead/lag behaviour is not its company's group. */
+  function kpiRoleBadge(k, groupId) {
+    if (!k || !k.cycleRole || k.cycleRole === groupId) return '';
+    var word = k.cycleRole === 'leading' ? 'leads'
+             : k.cycleRole === 'lagging' ? 'lags' : 'coincides';
+    return '<span class="kpirole" title="This row behaves as a ' + esc(k.cycleRole) +
+      ' indicator, not a ' + esc(groupId) + ' one like the rest of this company’s rows. ' +
+      'It stays with its company because the brief groups by company, not by KPI.">' +
+      word + '</span>';
+  }
+
   function kpiTtmTable(k, vals, tags, cites, oneOffs, ax) {
     var basis = KPI_BASIS_WORD[k.flagBasis] || KPI_BASIS_WORD.level;
     var n = KPI_COLS.length;
     var head = '<tr><th class="ttm__rh">' + esc(k.label) +
-      (k.unit ? ' <span class="kpiunit">' + esc(k.unit) + '</span>' : '') + '</th>';
+      (k.unit ? ' <span class="kpiunit">' + esc(k.unit) + '</span>' : '') +
+      kpiExtraBadge(k) + '</th>';
     for (var i = 0; i < n; i++) head += '<th>' + esc(kpiQLab(ax, i)) + '</th>';
     head += '<th class="ttm__basis">Flag basis</th></tr>';
 
@@ -2505,21 +2546,10 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
            its company's: order INTAKE leads even when the company sits under
            Lagging. It stays with its company, because that is how the brief
            groups; the marker just stops it reading as its neighbours' signal. */
-        var extra = k.beyondBrief
-          ? '<span class="kpixtra" title="Beyond the KPI list the brief names for this ' +
-              'company. Shown and sourced like any other row, but held out of the cycle ' +
-              'score so the stage call stays computed on the brief’s own list.">extra</span>'
-          : '';
-        var role = (k.beyondBrief && k.cycleRole && k.cycleRole !== g.id)
-          ? '<span class="kpirole" title="This row behaves as a ' + esc(k.cycleRole) +
-              ' indicator, not a ' + esc(g.id) + ' one like the rest of this company’s rows.">' +
-              esc(k.cycleRole === 'leading' ? 'leads' : k.cycleRole === 'lagging' ? 'lags' : 'coincides') +
-            '</span>'
-          : '';
         cells += '<td class="what"' + (k.flagBasis ? ' title="flagged on ' + esc(k.flagBasis) + '"' : '') +
           '>' + esc(k.label) +
           (k.unit ? ' <span class="kpiunit">' + esc(k.unit) + '</span>' : '') +
-          extra + role + '</td>';
+          kpiExtraBadge(k) + kpiRoleBadge(k, g.id) + '</td>';
         /* four quarter values, pulled onto this company's own axis. Every cell
            names the quarter it belongs to, because the column heading cannot:
            without it a number under "Latest" is unattributable. Nulls stay a dash,
