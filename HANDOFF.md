@@ -156,6 +156,45 @@ The single most important piece. Rules, in force:
   is withheld with the reason. Never rescaled.
 - `--refresh` re-asks everything. Only after a fix that should change answers.
 
+### Reliance's results deck — O2C EBITDA/tonne, [Company Filing]
+
+`pipeline/parsers/ril-segments.mjs` + `lib/ril-fill.mjs`, run from `extract-kpis`
+before the plan (so the model is never asked for what it answers).
+
+- **What it closes.** "O2C EBITDA per tonne" is one of the four KPIs the brief
+  names for Reliance and was blank. `lib/derive.mjs` refuses to compute it and is
+  right to: the only EBITDA held elsewhere is **consolidated** — Jio and Retail
+  and E&P as well as O2C — so dividing it by refinery tonnes would be a
+  fabricated number wearing a formula. The segment EBITDA had to come from the
+  filing.
+- The deck carries both halves, ~24,000 characters apart, for the same two
+  quarters: `Oil to Chemicals 14,511 17,010` (₹ crore) and `Throughput 19.1 18.1`
+  (MMT). Q1 FY26 = ₹7,597/t, Q1 FY27 = ₹9,398/t.
+- **The refusal that matters.** Those are two tables on two pages and nothing in
+  the text guarantees they cover the same periods. Both headers are read and the
+  result is refused unless they match — a deck reporting EBITDA year-on-year and
+  volumes quarter-on-quarter would yield a number that looks exactly like a
+  margin and is not.
+- **₹/t, not $/t.** The deck states ₹ crore and MMT and no exchange rate. The
+  only rate implied anywhere in it (the balance sheet's `$ Bn` column) belongs to
+  the current quarter; applying it to the year-ago quarter would misprice the
+  comparison. The brief says "GRM/O2C EBITDA per tonne" without a currency, and
+  EBITDA/scm is already stated in rupees. The spec unit was changed to match.
+- **Merged over the DECK's quarters, never the window** — same rule as PPAC. A
+  deck covers two quarters and the window four; merging over the window writes
+  null cells carrying the run's fingerprint, and a null cell with the current
+  fingerprint counts as settled, so the model would never be asked about those
+  quarters again.
+- **Cadence**: two quarters per deck, so the row fills one quarter per refresh.
+  Today one cell lands in the window (Q1 FY27) and Q1 FY26 waits in the store.
+- **Header read BACKWARDS from the data row.** Anchoring forwards on `₹ crore`
+  found the balance sheet's header — the phrase appears three times — and
+  returned nothing.
+
+**GAIL's petchem margin is NOT reachable this way.** The deck we cache for GAIL
+is a corporate overview: EBITDA is annual (FY22–FY26) and there is no quarterly
+segment table. It needs a different document than the one the scraper takes.
+
 ### Rows beyond the brief's KPI list (`beyondBrief`)
 
 The brief names **exact KPIs per company** (Step 2, tables 2a/2b/2c). The grid now
