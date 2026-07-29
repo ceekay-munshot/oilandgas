@@ -193,6 +193,8 @@ export function scoreGroup(kpisJson, group, drop = 0, opts = {}) {
   const byId = (kpisJson && kpisJson.companies) || {};
   const latestQuarter = opts.latestQuarter || null;
   let weighted = 0, weight = 0, scored = 0, total = 0, stale = 0, oneOff = 0, unknown = 0;
+  /* shown on the grid but deliberately not scored - see the beyondBrief note below */
+  let beyond = 0;
   const companies = new Set();
   /* the weakest tag among the cells that actually fed a score - Part D's
      confidence inheritance */
@@ -210,6 +212,15 @@ export function scoreGroup(kpisJson, group, drop = 0, opts = {}) {
     const isStale = isOlderQuarter(entry.asOf, latestQuarter);
 
     entry.kpis.forEach((k) => {
+      /* Rows beyond the brief's named KPI list are shown, not scored.
+         The interpretation framework in Step 4 was specified against the KPIs
+         the brief names per company; letting extra rows in would reweight every
+         bucket by how much spare data a company happens to publish - IOCL would
+         carry eight rows into coincident where the brief gives it three, and
+         the refiners would outvote the gas utilities for no analytical reason.
+         Held out of `total` as well as the score, so the coverage guard keeps
+         measuring the brief's list rather than a diluted version of it. */
+      if (k.beyondBrief) { beyond++; return; }
       total++;
       if (isStale) stale++;
       if ((k.oneOffs || []).some(Boolean)) oneOff++;
@@ -261,6 +272,9 @@ export function scoreGroup(kpisJson, group, drop = 0, opts = {}) {
     score: weight ? Math.round((weighted / weight) * 100) : null,
     kpisScored: scored,
     kpisTotal: total,
+    /* reported so the dashboard can say "3 of 8 rows score" rather than leaving
+       a reader to wonder why a full-looking company moves the dial so little */
+    kpisBeyondBrief: beyond,
     tonesScored: tones,
     companiesScored: companies.size,
     staleKpis: stale,

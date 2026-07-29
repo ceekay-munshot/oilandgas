@@ -738,3 +738,61 @@ test('4b: a contradicted stage raises the manual-review flag, it does not change
   assert.equal(alerts[0].severity, 'review');
   assert.ok(/crude near cycle lows/.test(alerts[0].text));
 });
+
+/* ------------------------------------------------- rows beyond the brief's list
+
+   The brief names exact KPIs per company. Rows mapped from Screener beyond that
+   list are shown on the grid and held out of the score, because the Step 4
+   interpretation framework was specified against the brief's list - letting the
+   extras in would reweight every bucket by how much spare data a company
+   happens to publish.                                                          */
+
+test('a beyondBrief row cannot move the score, however hard it trends', () => {
+  const g = { id: 'leading', companies: [{ id: 'a' }] };
+  const kpis = {
+    flatBandPct: 1.5, quarters: ['Q1', 'Q2', 'Q3', 'Q4'],
+    companies: { a: { kpis: [
+      { id: 'brief', flagBasis: 'level', values: RISING },
+      /* four extra rows all falling hard - enough to flip the sign if counted */
+      { id: 'x1', flagBasis: 'level', values: FALLING, beyondBrief: true },
+      { id: 'x2', flagBasis: 'level', values: FALLING, beyondBrief: true },
+      { id: 'x3', flagBasis: 'level', values: FALLING, beyondBrief: true },
+      { id: 'x4', flagBasis: 'level', values: FALLING, beyondBrief: true }
+    ] } }
+  };
+  const out = scoreGroup(kpis, g);
+  assert.equal(out.score, 100);            // the brief's one rising row, undiluted
+  assert.equal(out.kpisScored, 1);
+  assert.equal(out.kpisTotal, 1);          // held out of the denominator too
+  assert.equal(out.kpisBeyondBrief, 4);    // but counted, so the grid can say so
+});
+
+test('the coverage guard measures the brief\'s list, not a diluted version', () => {
+  /* One stale brief row out of one is 100% unusable and must warn. Four healthy
+     extra rows must not dilute that to 20% and hide it. */
+  const g = { id: 'leading', companies: [{ id: 'a' }] };
+  const kpis = {
+    flatBandPct: 1.5, quarters: ['Q1', 'Q2', 'Q3', 'Q4'],
+    companies: { a: { asOf: 'Q1 FY25', kpis: [
+      { id: 'brief', flagBasis: 'level', values: RISING },
+      { id: 'x1', flagBasis: 'level', values: RISING, beyondBrief: true },
+      { id: 'x2', flagBasis: 'level', values: RISING, beyondBrief: true },
+      { id: 'x3', flagBasis: 'level', values: RISING, beyondBrief: true },
+      { id: 'x4', flagBasis: 'level', values: RISING, beyondBrief: true }
+    ] } }
+  };
+  const out = scoreGroup(kpis, g, 0, { latestQuarter: 'Q4 FY26' });
+  assert.equal(out.staleKpis, 1);
+  assert.equal(out.kpisTotal, 1);
+  assert.equal(out.lowCoverage, true);
+});
+
+test('a row the brief DOES name still scores, marker or not', () => {
+  /* The 12 rows that closed gaps the brief itself named carry no beyondBrief
+     flag, so nothing about this path changed for them. */
+  const g = { id: 'leading', companies: [{ id: 'a' }] };
+  const kpis = kpisWith({ a: [RISING, FALLING] });
+  const out = scoreGroup(kpis, g);
+  assert.equal(out.kpisTotal, 2);
+  assert.equal(out.kpisBeyondBrief, 0);
+});

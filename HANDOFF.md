@@ -156,6 +156,38 @@ The single most important piece. Rules, in force:
   is withheld with the reason. Never rescaled.
 - `--refresh` re-asks everything. Only after a fix that should change answers.
 
+### Rows beyond the brief's KPI list (`beyondBrief`)
+
+The brief names **exact KPIs per company** (Step 2, tables 2a/2b/2c). The grid now
+carries 114 rows where the brief's list is 70. The extra 44 are marked and
+**held out of the cycle score**.
+
+- `beyondBrief: true` in `data/kpi-spec.json` → carried through `renderWindow` →
+  `scoreGroup` skips the row entirely, including from `kpisTotal`, so the
+  coverage guard keeps measuring the brief's list rather than a diluted version.
+  The count comes back as `kpisBeyondBrief`.
+- **Why**: Step 4's interpretation framework was specified against the brief's
+  list. Letting the extras in would reweight every bucket by how much spare data
+  a company happens to publish — IOCL would carry 8 rows into coincident where
+  the brief gives it 3, and the refiners would outvote the gas utilities for no
+  analytical reason.
+- **12 rows carry no marker and DO score**, because the brief named them and the
+  dashboard simply did not have them: Reliance's *upstream volume* (KG-D6),
+  Petronet's *Kochi* terminal (the brief says "Dahej + Kochi"), Mahanagar's
+  *industrial PNG mix*, ONGC/Oil India gas production ("production volume**s**"),
+  GE Shipping's product-carrier rate and fleet deployment, Shipping Corp's second
+  tanker rate, Jindal's second day rate, Gandhar's base-oil spread.
+- `cycleRole` is set only where a row's own lead/lag behaviour is **not** its
+  company's group — Thermax's order *intake* leads though Thermax is a lagging
+  cross-check; Welspun's pipe *deliveries* coincide though Welspun leads on its
+  order book. The row stays with its company (that is how the brief groups); the
+  marker stops it reading as its neighbours' signal.
+- The grid shows `extra` and, where set, `leads` / `lags` / `coincides`, plus a
+  per-group "N scored · N extra" chip.
+
+To go back to strictly the brief's list, drop every spec entry with
+`beyondBrief: true` — nothing else references them.
+
 ### The Insights table (the best source)
 
 Screener Premium's **Investors → Insights** grid. Each value cell carries the
