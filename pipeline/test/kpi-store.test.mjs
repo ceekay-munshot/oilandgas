@@ -14,7 +14,7 @@ import assert from 'node:assert/strict';
 
 import {
   cellKey, fingerprintFor, docsSignature, freshStore, planCompany, isSettled,
-  mergeIntoStore, renderWindow, storeTotals, quartersKnown, seedFromWindow
+  mergeIntoStore, renderWindow, storeTotals, quartersKnown, seedFromWindow, rankOf
 } from '../lib/kpi-store.mjs';
 import { flagFor } from '../lib/kpi-flag.mjs';
 
@@ -222,4 +222,12 @@ test('storeTotals counts what we hold across every company and quarter', () => {
     kpiObjects: [reply('order-book', [7])]
   });
   assert.deepEqual(storeTotals(store), { companies: 2, cells: 5, real: 3, empty: 2 });
+});
+
+test('a PPAC figure outranks Screener\'s grid, and never the reverse', () => {
+  /* The brief files regulator data under [Official] and an aggregator under
+     [External], so the ministry's number corrects a transcribed one in place. */
+  assert.ok(rankOf('ppac') > rankOf('insights'));
+  assert.ok(rankOf('insights') > rankOf('derived'));
+  assert.ok(rankOf('derived') > rankOf('model'));
 });
