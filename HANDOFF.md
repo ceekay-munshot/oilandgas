@@ -88,17 +88,48 @@ than shipping nothing.
 ## How the KPI pipeline works
 
 ```
-scrape-screener.mjs          extract-kpis.mjs
-  login (paid account)         1. seed store from kpis.json (once)
-  resolve slug                 2. fillFromInsights()  <- deterministic, cited
-  financials + Pros/Cons       3. planCompany()       <- what is still missing
-  Insights grid (quarterly)    4. one LLM call for the gaps only
-  AI summaries x6              5. mergeIntoStore()    <- rank rules
-  PPT + transcripts x6         6. fillDerived()       <- arithmetic on held figures
-     -> pipeline/cache/        7. mergeIntoStore()    <- gaps only, tagged derived
-                               8. renderWindow()      -> data/kpis.json
-                                  (unit guard applies here)
+scrape-screener.mjs      fetch-ppac-kpis.mjs      extract-kpis.mjs
+  login (paid account)     findSnapshots()          1. seed store from kpis.json (once)
+  resolve slug             scrapePage() -> OCR      2. fillFromInsights()  <- deterministic, cited
+  financials + Pros/Cons   parseRefinerTotals()     3. planCompany()       <- what is still missing
+  Insights grid (quarterly) parseDataMonth()        4. one LLM call for the gaps only
+  AI summaries x6          applyPpacToStore()       5. mergeIntoStore()    <- rank rules
+  PPT + transcripts x6       -> kpi-store.json      6. fillDerived()       <- arithmetic on held figures
+     -> pipeline/cache/       tagged [Official]     7. mergeIntoStore()    <- gaps only, tagged estimate
+                                                    8. renderWindow()      -> data/kpis.json
+                                                       (unit guard applies here)
 ```
+
+**Order matters.** `fetch-ppac-kpis` runs *before* `extract-kpis` so the
+ministry's throughput figures are already in the store when the planner decides
+what to ask. The model is then never asked — and never paid — for a number the
+government already published.
+
+### PPAC — refinery throughput, [Official]
+
+`pipeline/fetch-ppac-kpis.mjs` + `lib/ppac-fill.mjs` + `parsers/ppac-snapshot.mjs`.
+
+- The document is PPAC's **Snapshot of India's Oil & Gas Data / Monthly Ready
+  Reckoner** — *not* the Flash Report, which the probe of 2026-07-29 settled is
+  national product consumption with **no company named anywhere in it**.
+- It is a scanned PDF: 559 characters of text layer from 539 KB. It needs
+  Firecrawl's OCR, which is why this step needs a scraper key and why nothing
+  about it can be tested locally.
+- **Two column layouts under one heading** (9 numbers for IOCL/CPCL/BPCL/NRL,
+  10 for ONGC/HPCL/HMEL/RIL — the second inserts an extra year). A row whose
+  count matches neither is skipped, not guessed at.
+- PPAC publishes **April-to-date**, so a quarter is a difference between
+  consecutive year-to-date readings, and only editions at a quarter *end*
+  (Jun/Sep/Dec/Mar) can close one. A mid-quarter edition is read and discarded.
+- **There is no archive** of past editions on any PPAC listing page (checked:
+  `/archives` has none, `/reports-studies` 500s, `/publications` lists only the
+  Flash Reports). So the series accrues one quarter per edition, and a backfill
+  needs `--url` with a URL found elsewhere.
+- It **never fails the run**: no key, a listing page down, a layout change — all
+  leave the store untouched, exit 0, and say so in the log.
+- Test the OCR path with **`probe-macro.yml` → `ppac-kpis`**: it runs the whole
+  fetcher with `--dry-run`, so discovery, OCR, parse, quarter arithmetic and the
+  merge all happen for real and only the write is skipped.
 
 ### The store (`pipeline/lib/kpi-store.mjs`)
 
@@ -111,10 +142,15 @@ The single most important piece. Rules, in force:
   documents in the window, the KPI spec, or `PROMPT_VERSION` in
   `parsers/kpi-prompt.mjs`. Bump that version when a prompt change should change
   existing answers.
-- **Rank**: `insights: 3` beats `derived: 2` beats `model: 1` / `seeded: 1`. A
-  cited Insights value corrects a model-inferred one in place; a `derived` value
-  (arithmetic on held figures) outranks the model but stays below Insights, and in
-  practice only ever fills empty cells. Within a rank the first answer stands.
+- **Rank**: `ppac: 4` beats `insights: 3` beats `derived: 2` beats `model: 1` /
+  `seeded: 1`. Regulator data corrects an aggregator; a cited Insights value
+  corrects a model-inferred one in place; a `derived` value (arithmetic on held
+  figures) outranks the model but stays below Insights, and in practice only ever
+  fills empty cells. Within a rank the first answer stands. The live case:
+  BPCL's Q1 FY27 throughput was a **[Mgmt Claim] of 10.15** from a call, and PPAC
+  publishes **10.2** — same quarter, independently sourced, agreeing to within a
+  rounding step, and the cell is now [Official] with `replaced` recording what
+  it displaced.
 - What a correction replaced is kept on the cell (`replaced`), so it is auditable.
 - **One unit per row.** The strongest-evidenced unit wins; a cell in another unit
   is withheld with the reason. Never rescaled.
@@ -182,12 +218,16 @@ extract-commentary.mjs
 
 | Workflow | Trigger | Scope |
 |---|---|---|
-| `refresh-company.yml` | manual + **Mon 05:30 UTC** (+ **TEMP Tue–Thu**, remove after 2026-07-30) | `smoke` (4 cos) / `all` (27) / `dump` (recon) |
-| `refresh-full.yml` | manual + Mon 06:40 UTC | macro → screener → kpis → **commentary** |
-| `refresh-macro.yml` | manual + daily | 6 macro tiles |
-| `probe-macro.yml` | manual | source recon |
+| `refresh-company.yml` | manual + **05:30 UTC** — daily in earnings months (Jan/Feb, Apr/May, Jul/Aug, Oct/Nov), Mondays otherwise | `smoke` (4 cos) / `all` (27) / `dump` (recon) |
+| `refresh-full.yml` | manual + **06:40 UTC**, same cadence an hour later | macro → screener → **ppac** → kpis → commentary → rescore |
+| `refresh-macro.yml` | manual + daily all year | 6 macro tiles |
+| `probe-macro.yml` | manual | source recon + `ppac-kpis` dry run |
 
-The weekly schedule runs **`all`**, so the dashboard refreshes itself.
+That is the brief's own cadence: stages 2–6 daily during earnings months, weekly
+the rest of the year. A run on unchanged data is a no-op — no new filing, nothing
+asked, nothing committed — so the daily window costs Actions minutes, not spend.
+
+The schedule runs **`all`**, so the dashboard refreshes itself.
 
 `--scope dump` is the recon mode: it runs the *real* functions against a live
 page and prints what each returned, plus raw markup and `innerText` vs

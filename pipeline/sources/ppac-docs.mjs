@@ -110,3 +110,40 @@ export async function findFlashReports({ limit = 3 } = {}) {
   }
   return found.slice(0, limit);
 }
+
+/* The Snapshot family only - "Snapshot of India's Oil and Gas Data", "Monthly
+   Ready Reckoner". Deliberately NOT the Flash Report: the probe of 2026-07-29
+   settled that question, and the Flash Report is national product consumption
+   in TMT with no company named anywhere in it. Scraping it would spend an OCR
+   credit to learn nothing, every run, forever. */
+const SNAPSHOT_NAME = /snapshot[_%\s-]*of[_%\s-]*india|ready[_%\s-]*reckoner/i;
+
+/**
+ * Newest-first PDF links to PPAC's Snapshot / Ready Reckoner - the one free
+ * publication that carries refinery throughput with COMPANY totals.
+ *
+ * There is no archive of past editions on any PPAC listing page (checked
+ * 2026-07-29: /archives carries none, /reports-studies 500s, /publications
+ * lists only the two current Flash Reports). So this returns the current
+ * edition, the series accrues one quarter per edition, and a backfill has to be
+ * driven by explicit URLs rather than discovery.
+ *
+ * @param {{limit?:number}} [opts]
+ * @returns {Promise<string[]>}
+ */
+export function rankSnapshotUrls(urls, { limit = 2 } = {}) {
+  const stamp = (u) => Number((/[?=/](\d{9,})_/.exec(u) || [])[1] || 0);
+  /* The MONTHLY snapshot leads the annual Ready Reckoner: only the monthly one
+     carries a "Data for <Mon> <Year>" line, and without it an edition cannot be
+     dated and is discarded downstream. Each URL costs an OCR credit, so the one
+     most likely to parse goes first. */
+  const monthly = (u) => (/snapshot[_%\s-]*of[_%\s-]*india/i.test(u) ? 1 : 0);
+  return (urls || [])
+    .filter((u) => SNAPSHOT_NAME.test(u))
+    .sort((a, b) => (monthly(b) - monthly(a)) || (stamp(b) - stamp(a)))
+    .slice(0, limit);
+}
+
+export async function findSnapshots({ limit = 2 } = {}) {
+  return rankSnapshotUrls(await findFlashReports({ limit: 50 }), { limit });
+}

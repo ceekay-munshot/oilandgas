@@ -26,7 +26,8 @@
  */
 
 import { quarterLabel } from './fiscal.mjs';
-import { quarterFromCumulative } from '../parsers/ppac-snapshot.mjs';
+import { quarterFromCumulative, REFINER_TOTALS } from '../parsers/ppac-snapshot.mjs';
+import { mergeIntoStore } from './kpi-store.mjs';
 
 /** Quarter-end months of the Indian fiscal year, in order. */
 const QUARTER_END = { 6: 1, 9: 2, 12: 3, 3: 4 };
@@ -153,4 +154,57 @@ export function fillFromPpac({ editions, kpis, companyId, quarters, kpiId = 'thr
            'so a quarter is the difference between consecutive year-to-date readings.',
     flag: null      // computed by the store on merge, never here
   }];
+}
+
+/**
+ * Fold every quarter PPAC can close into the durable KPI store.
+ *
+ * Separated from the fetcher so the part that decides what gets WRITTEN can be
+ * tested without a network, an OCR credit or a PDF - the fetcher above it is
+ * then only discovery, scrape and print.
+ *
+ * The quarters passed to the merge are PPAC's own, never the company's display
+ * window. The store is keyed by quarter and holds every quarter ever seen, so a
+ * value outside today's four is kept and surfaces when the window slides onto
+ * it. Passing the window instead would write NULL cells for quarters PPAC has
+ * not reached - and a null cell carries a fingerprint, which re-opens a settled
+ * question and sends the model a bill for answering it again.
+ *
+ * @param {object} opts
+ * @param {object} opts.store       the loaded kpi-store document (mutated)
+ * @param {object[]} opts.editions  parsed Snapshot editions
+ * @param {object} opts.spec        data/kpi-spec.json
+ * @param {string} opts.at          ISO timestamp for the merge
+ * @param {string} opts.fingerprint
+ * @returns {{rows:{companyId:string, quarters:string[], gained:number,
+ *            corrected:number, kept:number, skipped:string|null}[],
+ *           gained:number, corrected:number, kept:number}}
+ */
+export function applyPpacToStore({ store, editions, spec, at, fingerprint }) {
+  const byCompany = quartersFromEditions(editions);
+  const rows = [];
+  let gained = 0, corrected = 0, kept = 0;
+
+  /* REFINER_TOTALS is the map of what PPAC prints; the nulls in it are refiners
+     the ministry reports and this dashboard does not carry, which are read and
+     ignored rather than mapped onto a company they do not describe. */
+  for (const companyId of new Set(Object.values(REFINER_TOTALS).filter(Boolean))) {
+    const kpis = (spec && spec.companies && spec.companies[companyId]) || null;
+    const held = byCompany.get(companyId);
+    if (!held || !held.size) continue;
+    if (!kpis) { rows.push({ companyId, quarters: [], gained: 0, corrected: 0, kept: 0, skipped: 'not in the KPI spec' }); continue; }
+
+    const quarters = [...held.keys()].sort();
+    const kpiObjects = fillFromPpac({ editions, kpis, companyId, quarters });
+    if (!kpiObjects.length) {
+      rows.push({ companyId, quarters, gained: 0, corrected: 0, kept: 0, skipped: 'no KPI in this company\'s spec that PPAC can speak to' });
+      continue;
+    }
+
+    const merged = mergeIntoStore({ store, companyId, kpiObjects, quarters, at, fingerprint, origin: 'ppac' });
+    gained += merged.gained; corrected += merged.corrected; kept += merged.kept;
+    rows.push({ companyId, quarters, gained: merged.gained, corrected: merged.corrected, kept: merged.kept, skipped: null });
+  }
+
+  return { rows, gained, corrected, kept };
 }

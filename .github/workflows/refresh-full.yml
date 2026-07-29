@@ -91,6 +91,13 @@ jobs:
         run: node pipeline/scrape-screener.mjs --scope all
 
       # --- 3. kpis --------------------------------------------------------
+      # PPAC first: the ministry publishes refinery throughput per company every
+      # month, so those cells are filled from the source and tagged [Official]
+      # before the model is planned against the store - which means it is never
+      # asked, or paid, for a number the government already published.
+      - name: 'Step 3/5 - kpis (PPAC, official)'
+        run: node pipeline/fetch-ppac-kpis.mjs
+
       # Reads the documents the screener step just cached and extracts each
       # company's KPIs to data/kpis.json (one LLM call per company).
       - name: 'Step 3/5 - kpis'
