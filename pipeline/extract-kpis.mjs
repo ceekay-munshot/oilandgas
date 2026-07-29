@@ -40,6 +40,7 @@ import {
   renderWindow, storeTotals, seedFromWindow, cellsOf, pruneThinExtras
 } from './lib/kpi-store.mjs';
 import { fillFromInsights, fillTotals } from './lib/insights-fill.mjs';
+import { fillFromDeck } from './lib/ril-fill.mjs';
 import { fillDerived, deriveTotals } from './lib/derive.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -275,7 +276,7 @@ async function main() {
 
   let usedProvider = null;
   let calls = 0, skippedCalls = 0, totalGained = 0, totalKept = 0;
-  let insFilledCells = 0, insCorrected = 0, derivedCells = 0;
+  let insFilledCells = 0, insCorrected = 0, derivedCells = 0, deckCells = 0;
   for (const id of ids) {
     const kpis = spec.companies[id];
     const name = nameById[id] || id;
@@ -340,6 +341,29 @@ async function main() {
       insFilledCells += insMerged.gained; insCorrected += insMerged.corrected;
       process.stdout.write(`insights ${t.cells} cells/${t.kpis} KPIs` +
         (insMerged.corrected ? ` (${insMerged.corrected} corrected)` : '') + ' · ');
+    }
+
+    /* The company's own results deck, for the one KPI Screener's grid cannot
+       reach: a segment margin needs the SEGMENT's EBITDA, and the only EBITDA
+       held anywhere else is consolidated. Runs before the plan for the same
+       reason the Insights fill does - what it answers, the model is not asked. */
+    if (!opts.dryRun && !opts.renderOnly && man && man.ppt && man.ppt.status === 'ok' && man.ppt.cache) {
+      const deckText = await readText(resolve(ROOT, man.ppt.cache));
+      const deck = deckText ? fillFromDeck({ deckText, kpis }) : { kpiObjects: [], quarters: [] };
+      if (deck.kpiObjects.length) {
+        /* The DECK's quarters, never the window. A deck covers two quarters and
+           the window four; merging over the window would write null cells for
+           the two it does not reach, and a null cell carrying this run's
+           fingerprint counts as settled - so the model would never be asked
+           about them again. The store is keyed by quarter, so the year-ago
+           figure is kept too and appears when the window slides onto it. */
+        const dm = mergeIntoStore({
+          store, companyId: id, kpiObjects: deck.kpiObjects, quarters: deck.quarters,
+          fingerprint, origin: 'filing', at: new Date().toISOString()
+        });
+        deckCells += dm.gained;
+        process.stdout.write(`deck ${deck.quarters.length} cells (+${dm.gained} new) · `);
+      }
     }
 
     /* --render-only redraws the window from what the store already holds, so
@@ -470,6 +494,10 @@ async function main() {
     console.log(
       `insights: ${insFilledCells} cells filled deterministically from Screener's table` +
       (insCorrected ? `, ${insCorrected} model values corrected` : '') + '.'
+    );
+    console.log(
+      `filings: ${deckCells} cells read out of a company's own results deck ` +
+      '(segment EBITDA ÷ segment volume, both printed in the same document).'
     );
     console.log(
       `derived: ${derivedCells} cell${derivedCells === 1 ? '' : 's'} computed from figures already held ` +
