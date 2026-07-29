@@ -2571,15 +2571,25 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
         (window.CSS && CSS.escape ? CSS.escape(companyId) : companyId) + '"]');
       if (co) co.rowSpan = Math.max(1, co.rowSpan + (open ? -1 : 1));
     }
-    tbl.addEventListener('click', function (e) {
-      var tr = e.target.closest ? e.target.closest('tr.kpirow') : null;
-      if (tr && tbl.contains(tr)) toggleRow(tr);
-    });
-    tbl.addEventListener('keydown', function (e) {
-      if (e.key !== 'Enter' && e.key !== ' ') return;
-      var tr = e.target.closest ? e.target.closest('tr.kpirow') : null;
-      if (tr && tbl.contains(tr)) { e.preventDefault(); toggleRow(tr); }
-    });
+    /* BIND ONCE. The table element persists across renders - only its rows are
+       replaced - so binding on every render stacked a second listener, and a
+       click then ran toggleRow twice: open, close, nothing visible. Switching
+       KPI group was enough to do it, which meant the drill-down worked on the
+       first group a reader looked at and silently died on the next one.
+       Delegation is still what makes the handler survive the re-render; it is
+       the re-BINDING that had to stop. */
+    if (!tbl.dataset.rowsBound) {
+      tbl.dataset.rowsBound = '1';
+      tbl.addEventListener('click', function (e) {
+        var tr = e.target.closest ? e.target.closest('tr.kpirow') : null;
+        if (tr && tbl.contains(tr)) toggleRow(tr);
+      });
+      tbl.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        var tr = e.target.closest ? e.target.closest('tr.kpirow') : null;
+        if (tr && tbl.contains(tr)) { e.preventDefault(); toggleRow(tr); }
+      });
+    }
 
     renderOneOffLedger(g);
   }
@@ -2731,16 +2741,23 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
 
     /* 4.2: the heat strip is the index into the company cards. Clicking a row
        opens that company's fixed-template read beside it. */
+    /* Bind once, for the same reason as the KPI table: this element outlives
+       its contents, so re-binding per render stacks listeners. Selecting a card
+       is idempotent so nothing broke visibly here - but it is the same latent
+       fault, and the next handler added to this element would not be. */
     var heat = el('toneHeat');
-    heat.addEventListener('click', function (e) {
-      var row = e.target.closest ? e.target.closest('[data-company]') : null;
-      if (row && heat.contains(row)) selectCompanyCard(row.getAttribute('data-company'));
-    });
-    heat.addEventListener('keydown', function (e) {
-      if (e.key !== 'Enter' && e.key !== ' ') return;
-      var row = e.target.closest ? e.target.closest('[data-company]') : null;
-      if (row && heat.contains(row)) { e.preventDefault(); selectCompanyCard(row.getAttribute('data-company')); }
-    });
+    if (!heat.dataset.rowsBound) {
+      heat.dataset.rowsBound = '1';
+      heat.addEventListener('click', function (e) {
+        var row = e.target.closest ? e.target.closest('[data-company]') : null;
+        if (row && heat.contains(row)) selectCompanyCard(row.getAttribute('data-company'));
+      });
+      heat.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        var row = e.target.closest ? e.target.closest('[data-company]') : null;
+        if (row && heat.contains(row)) { e.preventDefault(); selectCompanyCard(row.getAttribute('data-company')); }
+      });
+    }
     /* open the company with the loudest move, so the panel is never empty */
     var first = (DATA.scores && DATA.scores.toneDrift && DATA.scores.toneDrift[0])
       ? DATA.scores.toneDrift[0].companyId

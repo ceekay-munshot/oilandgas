@@ -429,6 +429,22 @@ Each of these cost at least one round. They are here so they cost zero next time
   per source.
 - **Quarter mapping from month-array arithmetic** was off by one. It is now an
   explicit table in `lib/fiscal.mjs` — `{6:1, 9:2, 12:3, 3:4}`.
+- **Chasing the hard source while the easy one sat unopened.** PPAC took a probe,
+  a parser for two column layouts, a quarter-differencing rule and a fetcher — and
+  delivered 3 cells. Meanwhile 166 quarterly, page-cited values sat in
+  `data/insights.json` waiting only for a `insightsRows` line in the spec. Before
+  building an ingest for a new source, check what is already parsed and unmapped.
+- **Re-binding a delegated listener on every render.** `el('kpiTable')` outlives
+  its rows, so `tbl.addEventListener` inside `renderKpiTable` stacked one listener
+  per render. Two listeners made one click run `toggleRow` twice — open, close,
+  nothing. The drill-down worked on the first KPI group a reader opened and died
+  silently on the next. Delegation is what survives a re-render; the **binding**
+  must happen once (`dataset.rowsBound`). Same shape was latent on `toneHeat`.
+- **A "% yoy" KPI pointed at an absolute-volume Insights row.** Castrol's
+  `lubricant-volume` declared `Lubricant Volume` while its unit said `% yoy`.
+  `fillFromInsights` takes the first declared row that is PRESENT, so the wrong
+  row won and contributed nothing, and the fallback was never reached. Check the
+  unit against the row before declaring it.
 
 ---
 

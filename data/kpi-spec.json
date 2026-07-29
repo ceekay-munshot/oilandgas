@@ -69,6 +69,20 @@
         "insightsRows": [
           "Wells Drilled (Total)"
         ]
+      },
+      {
+        "id": "gas-production",
+        "label": "Natural gas production",
+        "unit": "BCM",
+        "flagBasis": "level",
+        "keywords": [
+          "gas production",
+          "natural gas",
+          "BCM"
+        ],
+        "insightsRows": [
+          "Natural Gas Production (Standalone)"
+        ]
       }
     ],
     "oil-india": [
@@ -101,6 +115,34 @@
         ],
         "insightsRows": [
           "Crude Oil Production"
+        ]
+      },
+      {
+        "id": "gas-production",
+        "label": "Natural gas production",
+        "unit": "BCM",
+        "flagBasis": "level",
+        "keywords": [
+          "gas production",
+          "natural gas",
+          "BCM"
+        ],
+        "insightsRows": [
+          "Natural Gas Production"
+        ]
+      },
+      {
+        "id": "nrl-throughput",
+        "label": "NRL crude throughput",
+        "unit": "TMT",
+        "flagBasis": "level",
+        "keywords": [
+          "NRL",
+          "Numaligarh",
+          "throughput"
+        ],
+        "insightsRows": [
+          "NRL Crude Throughput"
         ]
       }
     ],
@@ -153,6 +195,20 @@
         "insightsRows": [
           "Order Book"
         ]
+      },
+      {
+        "id": "bid-pipeline",
+        "label": "Bidding pipeline",
+        "unit": "₹ cr",
+        "flagBasis": "level",
+        "keywords": [
+          "bid pipeline",
+          "bidding",
+          "tender"
+        ],
+        "insightsRows": [
+          "Bidding Pipeline"
+        ]
       }
     ],
     "jindal-drilling": [
@@ -200,6 +256,20 @@
         ],
         "insightsRows": [
           "Rig order book"
+        ]
+      },
+      {
+        "id": "day-rate-supreme",
+        "label": "Day rate - Jindal Supreme",
+        "unit": "USD/day",
+        "flagBasis": "level",
+        "keywords": [
+          "day rate",
+          "Jindal Supreme",
+          "operating day"
+        ],
+        "insightsRows": [
+          "Day rate - Jindal Supreme (USD per operating day)"
         ]
       }
     ],
@@ -250,6 +320,59 @@
           "opportunities",
           "bidding"
         ]
+      },
+      {
+        "id": "consultancy-order-book",
+        "label": "Consultancy order book",
+        "unit": "INR mn",
+        "flagBasis": "qoq",
+        "keywords": [
+          "consultancy",
+          "order book"
+        ],
+        "insightsRows": [
+          "Consultancy Order Book"
+        ]
+      },
+      {
+        "id": "consultancy-order-inflow",
+        "label": "Consultancy order inflow",
+        "unit": "INR mn",
+        "flagBasis": "level",
+        "keywords": [
+          "consultancy",
+          "order inflow",
+          "business secured"
+        ],
+        "insightsRows": [
+          "Consultancy Order Inflow"
+        ]
+      },
+      {
+        "id": "consultancy-share",
+        "label": "Consultancy share of book",
+        "unit": "%",
+        "flagBasis": "level",
+        "keywords": [
+          "consultancy share",
+          "order book mix"
+        ],
+        "insightsRows": [
+          "Order Book Consultancy Share"
+        ]
+      },
+      {
+        "id": "domestic-share",
+        "label": "Domestic share of book",
+        "unit": "%",
+        "flagBasis": "level",
+        "keywords": [
+          "domestic share",
+          "order book mix"
+        ],
+        "insightsRows": [
+          "Order Book Domestic Share"
+        ]
       }
     ],
     "lt": [
@@ -276,6 +399,34 @@
           "order book",
           "orderbook",
           "backlog"
+        ]
+      },
+      {
+        "id": "group-order-inflow",
+        "label": "Group order inflow",
+        "unit": "₹ cr",
+        "flagBasis": "level",
+        "keywords": [
+          "order inflow",
+          "group",
+          "consolidated"
+        ],
+        "insightsRows": [
+          "Order Inflow"
+        ]
+      },
+      {
+        "id": "group-order-book",
+        "label": "Group order book",
+        "unit": "₹ cr",
+        "flagBasis": "qoq",
+        "keywords": [
+          "order book",
+          "group",
+          "consolidated"
+        ],
+        "insightsRows": [
+          "Order Book"
         ]
       }
     ],
@@ -339,6 +490,62 @@
           "new orders",
           "pipe"
         ]
+      },
+      {
+        "id": "line-pipe-volume",
+        "label": "Line pipe volume",
+        "unit": "KMT",
+        "flagBasis": "level",
+        "keywords": [
+          "line pipe",
+          "sales volume",
+          "KMT"
+        ],
+        "insightsRows": [
+          "Line Pipes Sales Volume (India + USA)"
+        ]
+      },
+      {
+        "id": "di-pipe-volume",
+        "label": "DI pipe volume",
+        "unit": "KMT",
+        "flagBasis": "level",
+        "keywords": [
+          "DI pipe",
+          "ductile iron",
+          "volume"
+        ],
+        "insightsRows": [
+          "DI Pipes Sales Volume"
+        ]
+      },
+      {
+        "id": "tmt-rebar-volume",
+        "label": "TMT rebar volume",
+        "unit": "KMT",
+        "flagBasis": "level",
+        "keywords": [
+          "TMT rebar",
+          "rebar",
+          "volume"
+        ],
+        "insightsRows": [
+          "TMT Rebars Sales Volume"
+        ]
+      },
+      {
+        "id": "ss-bar-volume",
+        "label": "Stainless bar volume",
+        "unit": "MT",
+        "flagBasis": "level",
+        "keywords": [
+          "stainless",
+          "bars",
+          "volume"
+        ],
+        "insightsRows": [
+          "Stainless Steel Bars Sales Volume"
+        ]
       }
     ],
     "reliance": [
@@ -400,6 +607,21 @@
         "insightsRows": [
           "O2C Refinery Throughput"
         ]
+      },
+      {
+        "id": "kgd6-gas-production",
+        "label": "KG-D6 gas production",
+        "unit": "BCFe",
+        "flagBasis": "level",
+        "keywords": [
+          "KG D6",
+          "KG-D6",
+          "gas production",
+          "BCFe"
+        ],
+        "insightsRows": [
+          "KG D6 Gas Production (RIL Share)"
+        ]
       }
     ],
     "iocl": [
@@ -440,6 +662,77 @@
         ],
         "insightsRows": [
           "Refinery Throughput"
+        ]
+      },
+      {
+        "id": "refinery-utilisation",
+        "label": "Refinery utilisation",
+        "unit": "%",
+        "flagBasis": "level",
+        "keywords": [
+          "capacity utilisation",
+          "utilization",
+          "refinery"
+        ],
+        "insightsRows": [
+          "Refinery Capacity Utilization"
+        ]
+      },
+      {
+        "id": "petchem-sales",
+        "label": "Petchem sales",
+        "unit": "MMT",
+        "flagBasis": "level",
+        "keywords": [
+          "petrochemical",
+          "petchem",
+          "polymer",
+          "sales"
+        ],
+        "insightsRows": [
+          "Petrochemical Sales"
+        ]
+      },
+      {
+        "id": "pipeline-throughput",
+        "label": "Pipeline throughput",
+        "unit": "MMT",
+        "flagBasis": "level",
+        "keywords": [
+          "pipeline",
+          "throughput",
+          "MMT"
+        ],
+        "insightsRows": [
+          "Pipeline Throughput"
+        ]
+      },
+      {
+        "id": "total-sales-volume",
+        "label": "Total sales volume",
+        "unit": "MMT",
+        "flagBasis": "level",
+        "keywords": [
+          "sales volume",
+          "total sales",
+          "MMT"
+        ],
+        "insightsRows": [
+          "Total Sales Volume (Petroleum + Gas + Petrochemicals)"
+        ]
+      },
+      {
+        "id": "gas-sales",
+        "label": "Gas sales",
+        "unit": "MMT",
+        "flagBasis": "level",
+        "keywords": [
+          "gas sales",
+          "natural gas",
+          "MMT"
+        ],
+        "insightsRows": [
+          "Gas Sales"
         ]
       }
     ],
@@ -485,6 +778,34 @@
         "insightsRows": [
           "Refinery Crude Throughput"
         ]
+      },
+      {
+        "id": "market-sales",
+        "label": "Market sales",
+        "unit": "MMT",
+        "flagBasis": "level",
+        "keywords": [
+          "market sales",
+          "sales volume",
+          "MMT"
+        ],
+        "insightsRows": [
+          "Market Sales"
+        ]
+      },
+      {
+        "id": "refinery-utilisation",
+        "label": "Refinery utilisation",
+        "unit": "%",
+        "flagBasis": "level",
+        "keywords": [
+          "capacity utilisation",
+          "utilization",
+          "refinery"
+        ],
+        "insightsRows": [
+          "Refinery Capacity Utilization"
+        ]
       }
     ],
     "hpcl": [
@@ -526,6 +847,20 @@
         "insightsRows": [
           "Refining Throughput (HPCL Standalone)"
         ]
+      },
+      {
+        "id": "refinery-utilisation",
+        "label": "Refinery utilisation",
+        "unit": "%",
+        "flagBasis": "level",
+        "keywords": [
+          "capacity utilisation",
+          "utilization",
+          "refining"
+        ],
+        "insightsRows": [
+          "Refining Capacity Utilization"
+        ]
       }
     ],
     "gail": [
@@ -556,6 +891,62 @@
           "polymer",
           "margin",
           "spread"
+        ]
+      },
+      {
+        "id": "gas-marketing-volume",
+        "label": "Gas marketing volume",
+        "unit": "MMSCMD",
+        "flagBasis": "level",
+        "keywords": [
+          "marketing volume",
+          "gas marketing",
+          "MMSCMD"
+        ],
+        "insightsRows": [
+          "Natural Gas Marketing Volume"
+        ]
+      },
+      {
+        "id": "lpg-transmission",
+        "label": "LPG transmission",
+        "unit": "TMT",
+        "flagBasis": "level",
+        "keywords": [
+          "LPG transmission",
+          "LPG pipeline",
+          "TMT"
+        ],
+        "insightsRows": [
+          "LPG Transmission"
+        ]
+      },
+      {
+        "id": "petchem-sales",
+        "label": "Petchem sales",
+        "unit": "TMT",
+        "flagBasis": "level",
+        "keywords": [
+          "petrochemical",
+          "petchem",
+          "polymer sales"
+        ],
+        "insightsRows": [
+          "Petrochemicals Sales"
+        ]
+      },
+      {
+        "id": "liquid-hydrocarbon-sales",
+        "label": "Liquid hydrocarbon sales",
+        "unit": "TMT",
+        "flagBasis": "level",
+        "keywords": [
+          "liquid hydrocarbon",
+          "LHC sales",
+          "TMT"
+        ],
+        "insightsRows": [
+          "Liquid Hydrocarbons Sales"
         ]
       }
     ],
@@ -593,6 +984,48 @@
         "insightsRows": [
           "Total LNG Throughput"
         ]
+      },
+      {
+        "id": "dahej-throughput",
+        "label": "Dahej throughput",
+        "unit": "TBTU",
+        "flagBasis": "level",
+        "keywords": [
+          "Dahej",
+          "throughput",
+          "TBTU"
+        ],
+        "insightsRows": [
+          "Dahej Terminal LNG Throughput"
+        ]
+      },
+      {
+        "id": "kochi-throughput",
+        "label": "Kochi throughput",
+        "unit": "TBTU",
+        "flagBasis": "level",
+        "keywords": [
+          "Kochi",
+          "throughput",
+          "TBTU"
+        ],
+        "insightsRows": [
+          "Kochi Terminal LNG Throughput"
+        ]
+      },
+      {
+        "id": "kochi-utilisation",
+        "label": "Kochi utilisation",
+        "unit": "%",
+        "flagBasis": "level",
+        "keywords": [
+          "Kochi",
+          "utilisation",
+          "utilization"
+        ],
+        "insightsRows": [
+          "Kochi Terminal Capacity Utilization"
+        ]
       }
     ],
     "igl": [
@@ -622,6 +1055,20 @@
           "unit margin",
           "margin"
         ]
+      },
+      {
+        "id": "total-sales-volume",
+        "label": "Total sales volume",
+        "unit": "MMSCMD",
+        "flagBasis": "level",
+        "keywords": [
+          "total sales",
+          "sales volume",
+          "MMSCMD"
+        ],
+        "insightsRows": [
+          "Total Sales Volume"
+        ]
       }
     ],
     "mahanagar-gas": [
@@ -650,6 +1097,62 @@
           "per scm",
           "unit margin",
           "margin"
+        ]
+      },
+      {
+        "id": "total-sales-volume",
+        "label": "Total sales volume",
+        "unit": "MMSCMD",
+        "flagBasis": "level",
+        "keywords": [
+          "total sales",
+          "sales volume",
+          "MMSCMD"
+        ],
+        "insightsRows": [
+          "Total Sales Volume"
+        ]
+      },
+      {
+        "id": "cng-volume",
+        "label": "CNG sales volume",
+        "unit": "MMSCMD",
+        "flagBasis": "level",
+        "keywords": [
+          "CNG volume",
+          "CNG sales",
+          "MMSCMD"
+        ],
+        "insightsRows": [
+          "CNG Sales Volume"
+        ]
+      },
+      {
+        "id": "png-domestic-volume",
+        "label": "Domestic PNG volume",
+        "unit": "MMSCMD",
+        "flagBasis": "level",
+        "keywords": [
+          "domestic PNG",
+          "DPNG",
+          "household"
+        ],
+        "insightsRows": [
+          "DPNG (Domestic PNG) Sales Volume"
+        ]
+      },
+      {
+        "id": "ic-volume",
+        "label": "Industrial & commercial volume",
+        "unit": "MMSCMD",
+        "flagBasis": "level",
+        "keywords": [
+          "industrial",
+          "commercial",
+          "I&C volume"
+        ],
+        "insightsRows": [
+          "Industrial & Commercial Sales Volume"
         ]
       }
     ],
@@ -710,6 +1213,45 @@
           "utilization",
           "capacity",
           "storage"
+        ]
+      },
+      {
+        "id": "lpg-distribution-volume",
+        "label": "LPG distribution volume",
+        "unit": "'000 MT",
+        "flagBasis": "level",
+        "keywords": [
+          "distribution volume",
+          "LPG distribution"
+        ],
+        "insightsRows": [
+          "LPG Distribution Volume"
+        ]
+      },
+      {
+        "id": "lpg-sourcing-volume",
+        "label": "LPG sourcing volume",
+        "unit": "'000 MT",
+        "flagBasis": "level",
+        "keywords": [
+          "sourcing volume",
+          "LPG sourcing"
+        ],
+        "insightsRows": [
+          "LPG Sourcing Volume"
+        ]
+      },
+      {
+        "id": "lpg-throughput-capacity",
+        "label": "LPG throughput capacity",
+        "unit": "'000 MT",
+        "flagBasis": "qoq",
+        "keywords": [
+          "throughput capacity",
+          "capacity"
+        ],
+        "insightsRows": [
+          "LPG Throughput Capacity"
         ]
       }
     ],
@@ -773,6 +1315,19 @@
         "insightsRows": [
           "Sales Volume (Manufactured Products)"
         ]
+      },
+      {
+        "id": "capacity-utilisation",
+        "label": "Capacity utilisation",
+        "unit": "%",
+        "flagBasis": "level",
+        "keywords": [
+          "capacity utilisation",
+          "utilization"
+        ],
+        "insightsRows": [
+          "Capacity Utilization"
+        ]
       }
     ],
     "castrol-india": [
@@ -790,6 +1345,7 @@
           "growth"
         ],
         "insightsRows": [
+          "Volume Growth YoY",
           "Lubricant Volume"
         ]
       },
@@ -834,6 +1390,48 @@
         "insightsRows": [
           "PHPO Sales Volume"
         ]
+      },
+      {
+        "id": "mfg-gross-spread",
+        "label": "Manufacturing gross spread",
+        "unit": "INR/kL",
+        "flagBasis": "level",
+        "keywords": [
+          "gross margin",
+          "spread",
+          "per kL"
+        ],
+        "insightsRows": [
+          "Manufacturing Gross Margin Spread"
+        ]
+      },
+      {
+        "id": "lubricant-volume",
+        "label": "Lubricants volume",
+        "unit": "kL",
+        "flagBasis": "level",
+        "keywords": [
+          "lubricant",
+          "sales volume",
+          "kL"
+        ],
+        "insightsRows": [
+          "Lubricants Sales Volume"
+        ]
+      },
+      {
+        "id": "mfg-volume",
+        "label": "Manufacturing sales volume",
+        "unit": "kL",
+        "flagBasis": "level",
+        "keywords": [
+          "manufacturing volume",
+          "sales volume",
+          "kL"
+        ],
+        "insightsRows": [
+          "Total Sales Manufacturing Volume"
+        ]
       }
     ],
     "linde-india": [
@@ -867,6 +1465,20 @@
           "volume",
           "MMT",
           "liquid"
+        ]
+      },
+      {
+        "id": "total-cargo-volume",
+        "label": "Total cargo volume",
+        "unit": "MMT",
+        "flagBasis": "level",
+        "keywords": [
+          "cargo volume",
+          "total cargo",
+          "MMT"
+        ],
+        "insightsRows": [
+          "Total Cargo Volume"
         ]
       }
     ],
@@ -904,6 +1516,76 @@
         "insightsRows": [
           "Revenue Days - Shipping (Total)"
         ]
+      },
+      {
+        "id": "tcy-product",
+        "label": "TCY - product carriers",
+        "unit": "USD/day",
+        "flagBasis": "level",
+        "keywords": [
+          "TCY",
+          "product carrier",
+          "time charter"
+        ],
+        "insightsRows": [
+          "Average TCY - Product Carriers"
+        ]
+      },
+      {
+        "id": "tcy-lpg",
+        "label": "TCY - LPG carriers",
+        "unit": "USD/day",
+        "flagBasis": "level",
+        "keywords": [
+          "TCY",
+          "LPG carrier",
+          "time charter"
+        ],
+        "insightsRows": [
+          "Average TCY - LPG Carriers"
+        ]
+      },
+      {
+        "id": "tcy-dry-bulk",
+        "label": "TCY - dry bulk",
+        "unit": "USD/day",
+        "flagBasis": "level",
+        "keywords": [
+          "TCY",
+          "dry bulk",
+          "time charter"
+        ],
+        "insightsRows": [
+          "Average TCY - Dry Bulk Carriers"
+        ]
+      },
+      {
+        "id": "revenue-days-owned",
+        "label": "Revenue days (owned)",
+        "unit": "Days",
+        "flagBasis": "level",
+        "keywords": [
+          "revenue days",
+          "owned fleet"
+        ],
+        "insightsRows": [
+          "Revenue Days - Shipping (Owned)"
+        ]
+      },
+      {
+        "id": "jackup-utilisation",
+        "label": "Jack-up rig utilisation",
+        "unit": "%",
+        "flagBasis": "level",
+        "keywords": [
+          "jack-up",
+          "jackup",
+          "rig utilisation",
+          "under contract"
+        ],
+        "insightsRows": [
+          "Jack-up Rig Utilization (Industry Under Contract)"
+        ]
       }
     ],
     "shipping-corp": [
@@ -922,6 +1604,20 @@
         "insightsRows": [
           "VLCC TD3C (MEG-China) average TCE rate"
         ]
+      },
+      {
+        "id": "aframax-rate",
+        "label": "Aframax TD8 TCE",
+        "unit": "USD/day",
+        "flagBasis": "level",
+        "keywords": [
+          "Aframax",
+          "TD8",
+          "TCE"
+        ],
+        "insightsRows": [
+          "Aframax TD8 (Kuwait-Singapore) average TCE rate"
+        ]
       }
     ],
     "thermax": [
@@ -939,6 +1635,73 @@
         ],
         "insightsRows": [
           "Consolidated Order Balance (Backlog)"
+        ]
+      },
+      {
+        "id": "order-inflow",
+        "label": "Order inflow",
+        "unit": "₹ cr",
+        "flagBasis": "level",
+        "keywords": [
+          "order booking",
+          "order inflow",
+          "consolidated"
+        ],
+        "insightsRows": [
+          "Consolidated Order Booking (Inflow)"
+        ]
+      },
+      {
+        "id": "green-order-inflow",
+        "label": "Green solutions inflow",
+        "unit": "₹ cr",
+        "flagBasis": "level",
+        "keywords": [
+          "green solutions",
+          "order booking"
+        ],
+        "insightsRows": [
+          "Green Solutions Order Booking"
+        ]
+      },
+      {
+        "id": "infra-order-inflow",
+        "label": "Industrial infra inflow",
+        "unit": "₹ cr",
+        "flagBasis": "level",
+        "keywords": [
+          "industrial infra",
+          "order booking"
+        ],
+        "insightsRows": [
+          "Industrial Infra Order Booking"
+        ]
+      },
+      {
+        "id": "products-order-inflow",
+        "label": "Industrial products inflow",
+        "unit": "₹ cr",
+        "flagBasis": "level",
+        "keywords": [
+          "industrial products",
+          "order booking"
+        ],
+        "insightsRows": [
+          "Industrial Products Order Booking"
+        ]
+      },
+      {
+        "id": "cbg-production",
+        "label": "CBG production",
+        "unit": "Tonnes",
+        "flagBasis": "level",
+        "keywords": [
+          "CBG",
+          "compressed biogas",
+          "production"
+        ],
+        "insightsRows": [
+          "CBG (Compressed Biogas) Production - TBSPL"
         ]
       }
     ]
