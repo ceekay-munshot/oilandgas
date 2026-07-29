@@ -90,3 +90,110 @@ test('a KPI the spec does not carry is not invented', () => {
   });
   assert.deepEqual(out, []);
 });
+
+/* ------------------------------------------------------------------------
+   applyPpacToStore - the part that decides what actually gets WRITTEN.
+   Tested against a fake store so the whole ingest path can be exercised
+   without a network, an OCR credit or a PDF.
+   ------------------------------------------------------------------------ */
+
+import { applyPpacToStore } from '../lib/ppac-fill.mjs';
+import { freshStore, cellsOf } from '../lib/kpi-store.mjs';
+import { rankSnapshotUrls } from '../sources/ppac-docs.mjs';
+
+const SPEC = { companies: { hpcl: KPIS, iocl: KPIS, bpcl: KPIS } };
+const AT = '2026-07-29T00:00:00.000Z';
+
+test('PPAC lands in the store as [Official], tagged ppac', () => {
+  const store = freshStore();
+  const out = applyPpacToStore({
+    store, editions: [ed(6, 2026, 6.5, 19.2)], spec: SPEC, at: AT, fingerprint: 'ppac:test'
+  });
+  const cell = cellsOf(store, 'hpcl')['throughput|Q1 FY27'];
+  assert.equal(cell.value, 6.5);
+  assert.equal(cell.unit, 'MMT');
+  assert.equal(cell.sourceTag, 'official');
+  assert.equal(cell.origin, 'ppac');
+  assert.equal(out.gained, 2);          // hpcl and iocl, one quarter each
+});
+
+test('a management claim is corrected by the ministry, not merely joined', () => {
+  /* The live case this exists for: BPCL Q1 FY27 is stored as a [Mgmt Claim] of
+     10.15 from a call, and PPAC publishes 10.2. Same quarter, better source. */
+  const store = freshStore();
+  store.companies.bpcl = { cells: { 'throughput|Q1 FY27': {
+    value: 10.15, unit: 'MMT', sourceTag: 'mgmt-claim', origin: 'model'
+  } } };
+  const bpclEdition = {
+    dataMonth: { month: 6, year: 2026 },
+    totals: [{ label: 'BPCL-TOTAL', companyId: 'bpcl', yearToDate: { provisional: 10.2 } }]
+  };
+  const out = applyPpacToStore({ store, editions: [bpclEdition], spec: SPEC, at: AT, fingerprint: 'ppac:test' });
+
+  const cell = cellsOf(store, 'bpcl')['throughput|Q1 FY27'];
+  assert.equal(cell.value, 10.2);
+  assert.equal(cell.sourceTag, 'official');
+  assert.equal(cell.origin, 'ppac');
+  assert.deepEqual(cell.replaced, { value: 10.15, origin: 'model' });
+  assert.equal(out.corrected, 1);
+});
+
+test('quarters PPAC has not reached are never written as empty cells', () => {
+  /* A null cell carries a fingerprint, and a fingerprint re-opens a settled
+     question - so writing "PPAC has nothing for Q3 FY26" would send the model a
+     bill for answering it again. Only quarters PPAC closed may be touched. */
+  const store = freshStore();
+  store.companies.hpcl = { cells: { 'throughput|Q3 FY26': {
+    value: null, sourceTag: null, origin: 'model', fingerprint: 'model:abc'
+  } } };
+  applyPpacToStore({ store, editions: [ed(6, 2026, 6.5, 19.2)], spec: SPEC, at: AT, fingerprint: 'ppac:test' });
+
+  const cells = cellsOf(store, 'hpcl');
+  assert.equal(cells['throughput|Q3 FY26'].fingerprint, 'model:abc');   // untouched
+  assert.equal(cells['throughput|Q1 FY27'].value, 6.5);
+});
+
+test('a company PPAC covers but the spec does not carry is reported, not written', () => {
+  const store = freshStore();
+  const out = applyPpacToStore({
+    store, editions: [ed(6, 2026, 6.5, 19.2)], spec: { companies: { hpcl: KPIS } },
+    at: AT, fingerprint: 'ppac:test'
+  });
+  assert.equal(Object.keys(store.companies).includes('iocl'), false);
+  assert.equal(out.rows.find((r) => r.companyId === 'iocl').skipped, 'not in the KPI spec');
+});
+
+test('editions that close nothing write nothing', () => {
+  const store = freshStore();
+  const out = applyPpacToStore({
+    store, editions: [ed(7, 2026, 8.7, 25.0)],      // mid-quarter
+    spec: SPEC, at: AT, fingerprint: 'ppac:test'
+  });
+  assert.deepEqual(out.rows, []);
+  assert.equal(out.gained, 0);
+  assert.deepEqual(store.companies, {});
+});
+
+/* ------------------------------------------------------------------------
+   Discovery: which of PPAC's PDFs is worth an OCR credit.
+   ------------------------------------------------------------------------ */
+
+const FLASH    = 'https://ppac.gov.in/download.php?file=menu/1782910010_Flash_Report_June26_Web_Upload.pdf';
+const SNAPSHOT = 'https://ppac.gov.in/download.php?file=rep_studies/1784287517_Snapshot_of_India_Oil_and_Gas_June_2026_A5.pdf';
+const ANNUAL   = 'https://ppac.gov.in/download.php?file=rep_studies/1784899305_The_PPAC_Ready_Reckoner_FY_2025-26_Final.pdf';
+
+test('the Flash Report is never scraped - the probe settled that it names no company', () => {
+  assert.deepEqual(rankSnapshotUrls([FLASH]), []);
+});
+
+test('the monthly Snapshot leads the annual Ready Reckoner', () => {
+  /* Only the monthly one carries "Data for <Mon> <Year>", and an edition that
+     cannot be dated is discarded - so the one most likely to parse goes first,
+     even though the annual has the newer timestamp. */
+  assert.deepEqual(rankSnapshotUrls([FLASH, ANNUAL, SNAPSHOT]), [SNAPSHOT, ANNUAL]);
+});
+
+test('within a kind, the newest timestamp wins', () => {
+  const older = SNAPSHOT.replace('1784287517', '1770000000');
+  assert.deepEqual(rankSnapshotUrls([older, SNAPSHOT], { limit: 1 }), [SNAPSHOT]);
+});

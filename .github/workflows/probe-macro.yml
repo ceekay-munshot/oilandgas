@@ -24,7 +24,7 @@ on:
       target:
         description: 'Which to probe'
         type: choice
-        options: [both, apm, baltic-dirty, ppac-flash, pngrb-cgd, kpi-sources, full-dry-run]
+        options: [both, apm, baltic-dirty, ppac-flash, ppac-kpis, pngrb-cgd, kpi-sources, full-dry-run]
         default: both
 
 permissions:
@@ -79,6 +79,18 @@ jobs:
       - name: Probe PPAC flash report (refinery-wise throughput)
         if: ${{ inputs.target == 'ppac-flash' || inputs.target == 'kpi-sources' }}
         run: node pipeline/fetch-macro.mjs --probe ppac-flash
+
+      # The fetcher itself, end to end, writing nothing. Discovery, OCR, parse,
+      # quarter arithmetic and the merge all run for real against the committed
+      # store - only the final write is skipped. The last two lines of the log
+      # are the answer: how many cells it would gain, correct and hold.
+      #
+      # Run this BEFORE trusting a refresh to do it unwatched, and after any
+      # change to the Snapshot parser: the OCR path has no local equivalent, so
+      # this is the only place it can be checked.
+      - name: Dry-run the PPAC throughput fetcher (writes nothing)
+        if: ${{ inputs.target == 'ppac-kpis' || inputs.target == 'kpi-sources' }}
+        run: node pipeline/fetch-ppac-kpis.mjs --dry-run
 
       - name: Probe PNGRB data bank (CGD volumes by company)
         if: ${{ inputs.target == 'pngrb-cgd' || inputs.target == 'kpi-sources' }}

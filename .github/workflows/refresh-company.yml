@@ -99,7 +99,20 @@ jobs:
         if: ${{ github.event.inputs.scope == 'dump' }}
         run: node pipeline/scrape-screener.mjs --scope dump
 
-      # Step 3: read the documents just cached above and extract the KPIs. Same
+      # Step 3a: the government's own refinery throughput, BEFORE the model is
+      # asked anything. PPAC publishes crude processing per company monthly, so
+      # for IOCL/BPCL/HPCL/Reliance those cells are filled deterministically and
+      # tagged [Official] - and because they are already in the store when the
+      # extractor plans its questions, the model is never asked (or paid) for a
+      # number the ministry already published.
+      #
+      # Never fails the run: no OCR credit, a listing page down or a layout
+      # change all leave the store untouched and say so in the log.
+      - name: Fetch PPAC throughput
+        if: ${{ github.event.inputs.scope != 'dump' }}
+        run: node pipeline/fetch-ppac-kpis.mjs
+
+      # Step 3b: read the documents just cached above and extract the KPIs. Same
       # job on purpose - the cache is gitignored and lives only for this run.
       - name: Extract KPIs
         if: ${{ github.event.inputs.scope != 'dump' }}
