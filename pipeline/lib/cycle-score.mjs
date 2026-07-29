@@ -353,6 +353,9 @@ export function bucketScores(kpisJson, companiesJson, opts = {}) {
       direction: directionOf(delta),
       kpisScored: now.kpisScored,
       kpisTotal: now.kpisTotal,
+      /* shown but not scored - carried into scores.json so anything reading the
+         bucket can say "40 of 58 rows scored" rather than implying all of them did */
+      kpisBeyondBrief: now.kpisBeyondBrief,
       tonesScored: now.tonesScored,
       companiesScored: now.companiesScored,
       staleKpis: now.staleKpis,
