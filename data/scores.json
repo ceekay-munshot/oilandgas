@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-07-29T09:30:24.851Z",
+  "generatedAt": "2026-07-30T08:01:11.109Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -108,15 +108,15 @@
       ]
     },
     "coincident": {
-      "score": -40,
-      "prev": 0,
-      "delta": -45,
+      "score": -34,
+      "prev": -9,
+      "delta": -26,
       "deltaBasis": "kpi-only",
-      "level": "strong-negative",
+      "level": "negative",
       "direction": "falling",
       "kpisScored": 22,
       "kpisTotal": 40,
-      "kpisBeyondBrief": 18,
+      "kpisBeyondBrief": 17,
       "tonesScored": 14,
       "companiesScored": 11,
       "staleKpis": 4,
@@ -188,6 +188,13 @@
           "company": "Aegis Vopak",
           "label": "LPG throughput",
           "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "supreme-petrochem",
+          "company": "Supreme Petrochem",
+          "label": "Volume",
+          "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
@@ -312,7 +319,7 @@
     }
   },
   "divergence": {
-    "value": 33,
+    "value": 27,
     "leadingSign": 0,
     "coincidentSign": -1,
     "signsDiffer": false
@@ -320,40 +327,32 @@
   "divergenceSeries": [
     null,
     null,
-    -50,
-    34
+    -41,
+    24
   ],
   "stage": {
     "stageId": "early-upcycle",
-    "position": 29,
+    "position": 32,
     "ruleId": "early-upcycle",
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading -7 (flat, rising), coincident -40 (strong-negative, falling), lagging 0 (flat).",
+      "Leading -7 (flat, rising), coincident -34 (negative, falling), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
   "macro": {
     "supporting": 1,
-    "opposing": 3,
-    "silent": 2,
+    "opposing": 2,
+    "silent": 3,
     "macroBias": "down",
-    "scoreBias": "down",
-    "agree": true,
+    "scoreBias": "flat",
+    "agree": null,
     "conflict": false,
     "tiles": [
       {
         "id": "brent",
-        "label": "Brent",
-        "direction": "falling",
-        "percentile": 64,
-        "supports": "up",
-        "vote": "opposes"
-      },
-      {
-        "id": "indian-basket",
-        "label": "Indian Basket",
+        "label": "Crude",
         "direction": "falling",
         "percentile": 64,
         "supports": "up",
@@ -366,6 +365,14 @@
         "percentile": 100,
         "supports": "up",
         "vote": "supports"
+      },
+      {
+        "id": "naphtha",
+        "label": "Naphtha",
+        "direction": null,
+        "percentile": null,
+        "supports": "down",
+        "vote": "silent"
       },
       {
         "id": "domestic-gas",
@@ -596,17 +603,17 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are strongly negative and falling — IOCL GRM, IOCL Throughput, BPCL GRM."
+      "text": "Coincident indicators are negative and falling — IOCL GRM, IOCL Throughput, BPCL GRM."
     },
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Brent falling (64th pctile); Indian Basket falling (64th pctile); Crack spread rising (100th pctile); USD/INR rising (100th pctile)."
+      "text": "Crude falling (64th pctile); Crack spread rising (100th pctile); USD/INR rising (100th pctile)."
     },
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +33. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +27. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -1090,12 +1097,12 @@
   ],
   "changes": [
     {
-      "kind": "none",
-      "text": "Nothing material moved since the last refresh."
+      "kind": "score",
+      "text": "Moving now moved up 6 points to -34."
     }
   ],
   "previous": {
-    "generatedAt": "2026-07-29T09:25:17.462Z",
+    "generatedAt": "2026-07-29T09:30:24.851Z",
     "asOf": "Q4 FY26",
     "scoringVersion": 2,
     "stageId": "early-upcycle",

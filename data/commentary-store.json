@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-07-29T09:25:17.420Z",
+  "generatedAt": "2026-07-30T08:01:11.034Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -1667,9 +1667,30 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:20:44.573Z"
+        },
+        "Q4 FY25": {
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "operating income was Rs.1,539 crores, up 99.5% from the previous quarter, but down by 15% on year-on-year basis",
+          "rationale": "The management presented mixed results with both positive and negative aspects, indicating a neutral stance.",
+          "driver": "operating income",
+          "direction": "neutral",
+          "signal": "Management did not provide clear guidance on future capex or demand outlook, focusing instead on past performance.",
+          "mgmtDataPoints": [
+            "Q4 operating income: Rs.1,539 crores",
+            "Q4 EBITDA: INR 163 crores",
+            "Q4 net profit: Rs.107 crores",
+            "FY25 operating income: Rs.6,023 crores"
+          ],
+          "implication": "The mixed results suggest that the company may continue to experience variability in performance in the coming quarters.",
+          "doc": "Concall transcript (Q4 FY25)",
+          "fingerprint": "fd95b5a4d9ef",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-30T08:01:06.439Z"
         }
       },
-      "updatedAt": "2026-07-28T18:20:44.573Z"
+      "updatedAt": "2026-07-30T08:01:06.439Z"
     },
     "castrol-india": {
       "cells": {

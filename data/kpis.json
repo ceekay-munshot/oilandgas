@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-29T09:24:29.979Z",
+  "generatedAt": "2026-07-30T08:00:49.780Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 377,
-    "realCells": 257,
-    "nullCells": 120,
-    "kpis": 97,
-    "kpisWithTrend": 66
+    "kpiCells": 373,
+    "realCells": 255,
+    "nullCells": 118,
+    "kpis": 96,
+    "kpisWithTrend": 65
   },
   "companies": {
     "deep-industries": {
@@ -1822,7 +1822,7 @@
         "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
       "ctxChars": 34307,
@@ -1830,25 +1830,25 @@
         {
           "id": "o2c-ebitda-per-tonne",
           "label": "O2C EBITDA per tonne",
-          "unit": "$/t",
+          "unit": "₹/t",
           "flagBasis": "level",
           "values": [
             null,
             null,
             null,
-            null
+            9398
           ],
           "sourceTags": [
             null,
             null,
             null,
-            null
+            "company-filing"
           ],
           "origins": [
             null,
             null,
             null,
-            null
+            "filing"
           ],
           "citations": [
             null,
@@ -1863,7 +1863,7 @@
             null
           ],
           "flag": null,
-          "notes": "No O2C EBITDA per tonne figures provided."
+          "notes": "O2C EBITDA per tonne not stated in any excerpt."
         },
         {
           "id": "petchem-margin",
@@ -1901,7 +1901,7 @@
             null
           ],
           "flag": null,
-          "notes": "No Petchem margin figures provided."
+          "notes": "Petchem margin not stated in any excerpt."
         },
         {
           "id": "retail-fuel-margin",
@@ -1939,7 +1939,7 @@
             null
           ],
           "flag": null,
-          "notes": "No Retail fuel margin figures provided."
+          "notes": "Retail fuel margin not stated in any excerpt."
         },
         {
           "id": "kgd6-gas-production",
@@ -2418,7 +2418,7 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33887,
+      "ctxChars": 27888,
       "kpis": [
         {
           "id": "grm",
@@ -2506,7 +2506,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin not explicitly stated in any excerpt."
+          "notes": "Marketing margin not explicitly stated in any quarter."
         },
         {
           "id": "throughput",
@@ -2572,7 +2572,7 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 31831,
+      "ctxChars": 32610,
       "kpis": [
         {
           "id": "grm",
@@ -2648,7 +2648,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin not stated for any quarter."
+          "notes": "Marketing margin not explicitly stated"
         },
         {
           "id": "throughput",
@@ -2714,7 +2714,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33512,
+      "ctxChars": 34072,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -3759,15 +3759,15 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
+        "Q4 FY25",
         "Q1 FY26",
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26"
       ],
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32914,
+      "ctxChars": 32913,
       "kpis": [
         {
           "id": "sps-spread",
@@ -3805,7 +3805,7 @@
             null
           ],
           "flag": null,
-          "notes": "Styrene-polystyrene spread not mentioned in any quarter."
+          "notes": "Styrene-polystyrene spread not explicitly stated in any quarter."
         },
         {
           "id": "volume",
@@ -3813,8 +3813,8 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
+            95556,
             93853,
-            76962,
             91265,
             100664
           ],
@@ -3832,14 +3832,14 @@
           ],
           "citations": [
             {
+              "doc": "Presentation - 23 Apr 2025",
+              "quote": "96,255 95,556 Q4-FY24 Q4-FY25",
+              "page": 20
+            },
+            {
               "doc": "Concall Transcript - 30 Apr 2026",
               "quote": "Company's sales volume of manufactured products in the 1st Quarter of FY '26 increased by 0.5% only on a year-on-year basis to 93,853 MT",
               "page": 3
-            },
-            {
-              "doc": "Presentation - 24 Oct 2025",
-              "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
-              "page": 15
             },
             {
               "doc": "Concall Transcript - 26 Jan 2026",
@@ -3858,59 +3858,8 @@
             null,
             null
           ],
-          "flag": "decelerating",
+          "flag": "inflecting-up",
           "notes": null
-        },
-        {
-          "id": "capacity-utilisation",
-          "label": "Capacity utilisation",
-          "unit": "%",
-          "flagBasis": "level",
-          "values": [
-            null,
-            79,
-            80,
-            80
-          ],
-          "sourceTags": [
-            null,
-            "company-filing",
-            "company-filing",
-            "company-filing"
-          ],
-          "origins": [
-            null,
-            "insights",
-            "insights",
-            "insights"
-          ],
-          "citations": [
-            null,
-            {
-              "doc": "Concall Transcript - 31 Oct 2025",
-              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 26 Jan 2026",
-              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 30 Apr 2026",
-              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
-              "page": 3
-            }
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": "steady",
-          "beyondBrief": true,
-          "notes": "From Screener Insights row \"Capacity Utilization\" (Standalone data); latest value cited to Concall Transcript - 31 Oct 2025, page 5."
         }
       ]
     },
@@ -4332,7 +4281,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32878,
+      "ctxChars": 33740,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4918,7 +4867,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15300,
+      "ctxChars": 15968,
       "kpis": [
         {
           "id": "order-book",
