@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-30T08:00:49.780Z",
+  "generatedAt": "2026-07-30T09:32:29.958Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 373,
-    "realCells": 255,
-    "nullCells": 118,
+    "realCells": 257,
+    "nullCells": 116,
     "kpis": 96,
     "kpisWithTrend": 65
   },
@@ -3761,10 +3761,10 @@
       "quarters": [
         "Q4 FY25",
         "Q1 FY26",
-        "Q3 FY26",
-        "Q4 FY26"
+        "Q2 FY26",
+        "Q3 FY26"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
       "ctxChars": 32913,
@@ -3805,7 +3805,7 @@
             null
           ],
           "flag": null,
-          "notes": "Styrene-polystyrene spread not explicitly stated in any quarter."
+          "notes": "Styrene-polystyrene spread not mentioned in any excerpt."
         },
         {
           "id": "volume",
@@ -3815,8 +3815,8 @@
           "values": [
             95556,
             93853,
-            91265,
-            100664
+            76962,
+            91265
           ],
           "sourceTags": [
             "company-filing",
@@ -3842,14 +3842,14 @@
               "page": 3
             },
             {
+              "doc": "Presentation - 24 Oct 2025",
+              "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
+              "page": 15
+            },
+            {
               "doc": "Concall Transcript - 26 Jan 2026",
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
               "page": 3
-            },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "95,556 1,00,664 Q4-FY25 Q4-FY26",
-              "page": 16
             }
           ],
           "oneOffs": [
@@ -3867,12 +3867,12 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
+        "Q4 FY25",
         "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26",
-        "Q4 FY26"
+        "Q3 FY26"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
       "ctxChars": 31578,
@@ -3880,44 +3880,40 @@
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume",
-          "unit": "% YoY",
+          "unit": "% yoy",
           "flagBasis": "yoy",
           "values": [
+            8,
             null,
-            null,
-            null,
+            7,
             7.5
           ],
           "sourceTags": [
+            "mgmt-claim",
             null,
-            null,
-            null,
-            "company-filing"
+            "mgmt-claim",
+            "mgmt-claim"
           ],
           "origins": [
+            "model",
             null,
-            null,
-            null,
-            "insights"
+            "model",
+            "model"
           ],
           "citations": [
             null,
             null,
             null,
-            {
-              "doc": "Concall Transcript - 04 May 2026",
-              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
-              "page": 6
-            }
+            null
           ],
           "oneOffs": [
             null,
             null,
-            null,
-            null
+            "No Q2 FY26 data",
+            "No Q3 FY26 data"
           ],
           "flag": null,
-          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
+          "notes": "Volume growth figures provided for Q4 FY25, Q2 FY26, and Q3 FY26."
         },
         {
           "id": "base-oil-spread",
@@ -3955,7 +3951,7 @@
             null
           ],
           "flag": null,
-          "notes": "Base-oil spread not mentioned in any excerpt."
+          "notes": "Base-oil spread not mentioned in any quarter."
         }
       ]
     },
@@ -4281,12 +4277,12 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33740,
+      "ctxChars": 32882,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
           "label": "POL/LPG/LNG cargo throughput",
-          "unit": "% yoy",
+          "unit": "percent",
           "flagBasis": "yoy",
           "values": [
             null,
@@ -4319,7 +4315,7 @@
             null
           ],
           "flag": null,
-          "notes": "No explicit POL/LPG/LNG throughput figures provided."
+          "notes": "No specific POL/LPG/LNG throughput data provided for any quarter."
         },
         {
           "id": "total-cargo-volume",

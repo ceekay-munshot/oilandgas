@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-07-30T08:01:11.034Z",
+  "generatedAt": "2026-07-30T09:32:45.306Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -1769,9 +1769,19 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:20:49.010Z"
+        },
+        "Q4 FY25": {
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": "The text provided is not about Q4 FY25 but rather about Q1 FY25, and it contains no information about Q4 FY25.",
+          "doc": null,
+          "fingerprint": "85ff64068e6c",
+          "attempts": 1,
+          "at": "2026-07-30T09:32:42.726Z"
         }
       },
-      "updatedAt": "2026-07-28T18:20:49.010Z"
+      "updatedAt": "2026-07-30T09:32:42.726Z"
     },
     "gandhar-oil": {
       "cells": {
