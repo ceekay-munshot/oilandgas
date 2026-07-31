@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-31T08:37:49.095Z",
+  "generatedAt": "2026-07-31T09:46:59.255Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 377,
-    "realCells": 262,
-    "nullCells": 115,
+    "realCells": 259,
+    "nullCells": 118,
     "kpis": 97,
     "kpisWithTrend": 66
   },
@@ -24,15 +24,16 @@
       "name": "Deep Industries",
       "slug": "DEEPINDS",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33678,
+      "ctxChars": 33679,
+      "note": "extraction failed: 401 Unauthorized for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -40,32 +41,32 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
+            null,
+            null,
             100,
-            null,
-            null,
-            100
+            null
           ],
           "sourceTags": [
-            "mgmt-claim",
             null,
             null,
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
-            "model",
             null,
             null,
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            null,
             null,
             null,
             {
               "doc": "Concall Transcript - 21 May 2026",
               "quote": "with regards to rig segment, our assets are 100% utilized",
               "page": 12
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -82,19 +83,19 @@
           "unit": "$/day",
           "flagBasis": "level",
           "values": [
-            30000,
+            null,
             null,
             null,
             null
           ],
           "sourceTags": [
-            "mgmt-claim",
+            null,
             null,
             null,
             null
           ],
           "origins": [
-            "model",
+            null,
             null,
             null,
             null
@@ -120,32 +121,32 @@
           "unit": "Rs Crore",
           "flagBasis": "qoq",
           "values": [
-            3051,
             3050,
             2967,
-            3007
+            3007,
+            null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
             "model",
             "model",
-            "model",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            null,
             null,
             null,
             {
               "doc": "Presentation - 14 May 2026",
               "quote": "Order Book (Rs in Cr.) FY24 FY25 As on date 1210 2960 3007",
               "page": 20
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -154,7 +155,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Order Book\"; latest value cited to Presentation - 14 May 2026, page 20."
         }
       ]
     },
@@ -1514,6 +1515,7 @@
       "provider": "openai",
       "model": "gpt-4o",
       "ctxChars": 34052,
+      "note": "extraction failed: 401 Unauthorized for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "order-book",
@@ -4332,7 +4334,8 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32763,
+      "ctxChars": 33067,
+      "note": "extraction failed: 401 Unauthorized for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4918,7 +4921,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15455,
+      "ctxChars": 15961,
       "kpis": [
         {
           "id": "order-book",
