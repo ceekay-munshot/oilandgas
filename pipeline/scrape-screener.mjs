@@ -248,6 +248,10 @@ async function main() {
     (tier === 'free' ? ' - AI summaries will be premium-gated' : '') + '\n');
 
   let ok = 0, failed = 0, docsCached = 0, docsOcr = 0, docsRecovered = 0, docsGated = 0;
+  /* Named, not just counted. "1 failed of 27" scrolled past in a long log while
+     Gujarat Gas sat broken for four days: its slug had 404'd, the error was
+     recorded honestly on the manifest, and nothing ever said the name out loud. */
+  const failures = [];
 
   try {
     let i = 0, skippedCompanies = 0, gatheredCompanies = 0;
@@ -432,6 +436,7 @@ async function main() {
       } catch (e) {
         failed++;
         const msg = (e && e.message ? e.message : String(e)).slice(0, 200);
+        failures.push({ id: co.id, name: co.name, slug: co.screenerSlug || '(unresolved)', msg });
         manifest.companies[co.id] = { ...(manifest.companies[co.id] || {}), name: co.name, error: msg };
         await writeJson(manifestPath, manifest).catch(() => {});
         console.log(` FAILED: ${msg}`);
@@ -447,6 +452,15 @@ async function main() {
     `${docsRecovered} recovered via scraper, ${docsOcr} need OCR, ${docsGated} premium-gated, ` +
     `${docsCached} served from cache.`
   );
+  if (failures.length) {
+    /* A company that failed keeps whatever the LAST good scrape left behind, so
+       the file still looks populated - stale numbers under a fresh timestamp.
+       That is the failure mode this block exists to make impossible to miss. */
+    console.log('\nCOMPANIES THAT FAILED - each keeps its previous (possibly stale) entry:');
+    for (const f of failures) console.log(`  ${f.name} [${f.slug}]  ${f.msg}`);
+    console.log('  A 404 here usually means the Screener slug moved: check ' +
+                'screenerSlug in data/companies.json against the live page.');
+  }
   console.log(`wrote ${relCache(financialsPath)}, ${relCache(manifestPath)} and ${relCache(insightsPath)}`);
   if (opts.scope !== 'all' && !opts.only.length) {
     console.log('\nsmoke run only. Scale up with:  node pipeline/scrape-screener.mjs --scope all');

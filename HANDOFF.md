@@ -386,10 +386,30 @@ its note. Outcome on the current data:
   holds only nulls for `gujarat-gas`, so nothing stale blocks it, and the changed
   document window re-triggers the empty cells via the fingerprint. *(Data still
   fills on the next Actions run; the paid scrape can't run locally.)*
-  - **Watch — a rename in flight.** RoC approved renaming Gujarat Gas Ltd →
-    **Gujarat Energy Ltd** (effective 14 May 2026); a separate `GUJENERGY` slug also
-    exists on Screener. `GUJGASLTD` is the live, data-carrying page *today*; if a
-    future scrape 404s it, repoint to `GUJENERGY`.
+  - **RESOLVED 2026-07-30 — the watch below fired; now on `GUJENERGY`.**
+    `GUJGASLTD` began returning **404** and every scrape since the repoint failed
+    with `Screener company page HTTP 404 for GUJGASLTD`. The error was recorded
+    honestly on the manifest and nothing said it out loud, so the entry kept the
+    *previous* slug's data — `GUJRATGAS`, `asOf: 2021-03`, the dead shell — under
+    a fresh run timestamp. Four days, one line in a 27-company log.
+    Probed all candidates (2026-07-30):
+
+    | slug | HTTP | page title |
+    |---|---|---|
+    | `GUJGASLTD` | **404** | — |
+    | `GUJENERGY` | 200 | **Gujarat Energy Ltd** — quarterly to Mar 2026, 27 concalls, 15 PPTs |
+    | `GUJRATGAS` | 200 | Gujarat Gas Company Ltd**(Merged)** — the dead shell |
+    | `GSPL` | 200 | Gujarat State Petronet Ltd — *transmission*, being demerged OUT |
+
+    So the standing "repoint to GSPL vs label-as-merged" question resolves to
+    **neither**: GSPL is the wrong business for city-gas KPIs, and the company is
+    not merged away — it was renamed. Now `GUJENERGY`, which is the same legal
+    entity carrying live data. Fills on the next scrape.
+  - **The silence was the real bug.** The scrape summary counted failures and
+    never named them, and a failed company keeps its last good entry — stale
+    numbers under a fresh timestamp, which reads as working. It now prints every
+    failed company by name and slug, with the hint that a 404 usually means the
+    slug moved.
 - **Companies that returned 0 cells** (from the last `scope: all` run): Reliance,
   L&T, Castrol, Linde, Adani Ports. L&T and Gujarat Gas were both wrong slugs and
   are now fixed; the rest need checking individually.
