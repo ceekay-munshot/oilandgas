@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-07-30T09:32:45.306Z",
+  "generatedAt": "2026-07-31T08:38:16.026Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -1389,34 +1389,52 @@
     "gujarat-gas": {
       "cells": {
         "Q2 FY26": {
-          "toneId": null,
-          "score": null,
-          "quote": null,
-          "rationale": "no concall document cached for this quarter",
-          "doc": null,
-          "fingerprint": "1a8456f029ab",
-          "attempts": 3,
-          "at": "2026-07-28T18:20:36.631Z"
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "We are happy to inform that the shareholders of GSPC, GSPL, and Gujarat Gas have approved the scheme with a thumping majority.",
+          "rationale": "Management is optimistic about shareholder support and regulatory progress.",
+          "driver": "scheme of arrangement",
+          "direction": "positive",
+          "signal": "Management expects regulatory approval for the scheme by December 2025, indicating progress in restructuring efforts.",
+          "mgmtDataPoints": [],
+          "implication": "The company is likely to complete the restructuring soon, potentially unlocking value for stakeholders.",
+          "doc": "Concall transcript (Q2 FY26)",
+          "fingerprint": "53e0a956e353",
+          "attempts": 4,
+          "model": "gpt-4o",
+          "at": "2026-07-31T08:38:09.445Z"
         },
         "Q3 FY26": {
-          "toneId": null,
-          "score": null,
-          "quote": null,
-          "rationale": "no concall document cached for this quarter",
-          "doc": null,
-          "fingerprint": "1a8456f029ab",
-          "attempts": 3,
-          "at": "2026-07-28T18:20:36.631Z"
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "We are aggressively setting up CNG infrastructure as well as upgrading CNG infrastructure to promote use of clean and green fuel.",
+          "rationale": "Management is positive about infrastructure development and clean energy promotion.",
+          "driver": "CNG infrastructure expansion",
+          "direction": "positive",
+          "signal": "Management continues to focus on expanding CNG infrastructure to support clean energy goals.",
+          "mgmtDataPoints": [],
+          "implication": "Continued investment in infrastructure is expected, supporting growth in CNG sales.",
+          "doc": "Concall transcript (Q3 FY26)",
+          "fingerprint": "53e0a956e353",
+          "attempts": 4,
+          "model": "gpt-4o",
+          "at": "2026-07-31T08:38:09.445Z"
         },
         "Q4 FY26": {
-          "toneId": null,
-          "score": null,
-          "quote": null,
-          "rationale": "no concall document cached for this quarter",
-          "doc": null,
-          "fingerprint": "1a8456f029ab",
-          "attempts": 3,
-          "at": "2026-07-28T18:20:36.631Z"
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "Q4 of the financial year was marked by a contrasting situation with several positive developments... and several difficult situations...",
+          "rationale": "Management acknowledges both positive developments and challenges, indicating a balanced view.",
+          "driver": "CNG segment sales",
+          "direction": "positive",
+          "signal": "Despite market instability, the company achieved its highest-ever CNG segment sales, showing resilience.",
+          "mgmtDataPoints": [],
+          "implication": "The company may face challenges due to market instability but is likely to maintain strong CNG sales.",
+          "doc": "Concall transcript (Q4 FY26)",
+          "fingerprint": "53e0a956e353",
+          "attempts": 4,
+          "model": "gpt-4o",
+          "at": "2026-07-31T08:38:09.445Z"
         },
         "Q1 FY27": {
           "toneId": null,
@@ -1427,9 +1445,25 @@
           "fingerprint": "1a8456f029ab",
           "attempts": 3,
           "at": "2026-07-28T18:20:36.631Z"
+        },
+        "Q1 FY26": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "We are aggressively setting up CNG infrastructure as well as upgrading CNG infrastructure to promote use of clean and green fuel.",
+          "rationale": "Management is hopeful about infrastructure expansion and promoting clean energy.",
+          "driver": "CNG infrastructure expansion",
+          "direction": "positive",
+          "signal": "Management is focused on expanding and upgrading CNG infrastructure to support clean energy initiatives.",
+          "mgmtDataPoints": [],
+          "implication": "The company is likely to continue investing in infrastructure, potentially boosting CNG sales.",
+          "doc": "Concall transcript (Q1 FY26)",
+          "fingerprint": "53e0a956e353",
+          "attempts": 1,
+          "model": "gpt-4o",
+          "at": "2026-07-31T08:38:09.445Z"
         }
       },
-      "updatedAt": "2026-07-28T18:20:36.631Z"
+      "updatedAt": "2026-07-31T08:38:09.445Z"
     },
     "aegis-logistics": {
       "cells": {

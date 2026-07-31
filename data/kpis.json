@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-07-30T09:32:29.958Z",
+  "generatedAt": "2026-07-31T08:37:49.095Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 373,
-    "realCells": 257,
-    "nullCells": 116,
-    "kpis": 96,
-    "kpisWithTrend": 65
+    "kpiCells": 377,
+    "realCells": 262,
+    "nullCells": 115,
+    "kpis": 97,
+    "kpisWithTrend": 66
   },
   "companies": {
     "deep-industries": {
@@ -2572,7 +2572,7 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32610,
+      "ctxChars": 34133,
       "kpis": [
         {
           "id": "grm",
@@ -2648,7 +2648,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin not explicitly stated"
+          "notes": "No marketing margin figures provided"
         },
         {
           "id": "throughput",
@@ -3042,7 +3042,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34030,
+      "ctxChars": 34037,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3343,40 +3343,40 @@
     },
     "gujarat-gas": {
       "name": "Gujarat Gas",
-      "slug": "GUJRATGAS",
+      "slug": "GUJENERGY",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
-        "Q1 FY27"
+        "Q4 FY26"
       ],
-      "asOf": null,
+      "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 3378,
+      "ctxChars": 33876,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
           "label": "CNG+PNG volume growth",
-          "unit": "%",
+          "unit": "percent",
           "flagBasis": "yoy",
           "values": [
+            12,
             null,
             null,
-            null,
-            null
+            12
           ],
           "sourceTags": [
+            "mgmt-claim",
             null,
             null,
-            null,
-            null
+            "mgmt-claim"
           ],
           "origins": [
+            "model",
             null,
             null,
-            null,
-            null
+            "model"
           ],
           "citations": [
             null,
@@ -3391,12 +3391,12 @@
             null
           ],
           "flag": null,
-          "notes": "CNG+PNG volume growth not stated in any quarter."
+          "notes": "Q1 and Q4 figures reported; Q2 and Q3 missing."
         },
         {
           "id": "ebitda-per-scm",
           "label": "EBITDA / scm",
-          "unit": "₹/scm",
+          "unit": "rs-per-scm",
           "flagBasis": "level",
           "values": [
             null,
@@ -3429,7 +3429,7 @@
             null
           ],
           "flag": null,
-          "notes": "EBITDA / scm not stated in any quarter."
+          "notes": "EBITDA per scm not explicitly stated in any quarter."
         }
       ]
     },
@@ -3759,15 +3759,15 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
-        "Q4 FY25",
         "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26"
+        "Q3 FY26",
+        "Q4 FY26"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32913,
+      "ctxChars": 32914,
       "kpis": [
         {
           "id": "sps-spread",
@@ -3805,7 +3805,7 @@
             null
           ],
           "flag": null,
-          "notes": "Styrene-polystyrene spread not mentioned in any excerpt."
+          "notes": "Styrene-polystyrene spread not stated in any quarter."
         },
         {
           "id": "volume",
@@ -3813,10 +3813,10 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
-            95556,
             93853,
             76962,
-            91265
+            91265,
+            100664
           ],
           "sourceTags": [
             "company-filing",
@@ -3832,11 +3832,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 23 Apr 2025",
-              "quote": "96,255 95,556 Q4-FY24 Q4-FY25",
-              "page": 20
-            },
-            {
               "doc": "Concall Transcript - 30 Apr 2026",
               "quote": "Company's sales volume of manufactured products in the 1st Quarter of FY '26 increased by 0.5% only on a year-on-year basis to 93,853 MT",
               "page": 3
@@ -3850,6 +3845,11 @@
               "doc": "Concall Transcript - 26 Jan 2026",
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
               "page": 3
+            },
+            {
+              "doc": "Presentation - 24 Apr 2026",
+              "quote": "95,556 1,00,664 Q4-FY25 Q4-FY26",
+              "page": 16
             }
           ],
           "oneOffs": [
@@ -3858,8 +3858,59 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "decelerating",
           "notes": null
+        },
+        {
+          "id": "capacity-utilisation",
+          "label": "Capacity utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            null,
+            79,
+            80,
+            80
+          ],
+          "sourceTags": [
+            null,
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            null,
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 26 Jan 2026",
+              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 30 Apr 2026",
+              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
+              "page": 3
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "beyondBrief": true,
+          "notes": "From Screener Insights row \"Capacity Utilization\" (Standalone data); latest value cited to Concall Transcript - 31 Oct 2025, page 5."
         }
       ]
     },
@@ -3867,12 +3918,12 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q4 FY25",
         "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26"
+        "Q3 FY26",
+        "Q4 FY26"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
       "ctxChars": 31578,
@@ -3880,40 +3931,44 @@
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume",
-          "unit": "% yoy",
+          "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            8,
             null,
             7,
+            7.5,
             7.5
           ],
           "sourceTags": [
-            "mgmt-claim",
             null,
             "mgmt-claim",
-            "mgmt-claim"
+            "mgmt-claim",
+            "company-filing"
           ],
           "origins": [
-            "model",
             null,
             "model",
-            "model"
+            "model",
+            "insights"
           ],
           "citations": [
             null,
             null,
             null,
-            null
+            {
+              "doc": "Concall Transcript - 04 May 2026",
+              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
+              "page": 6
+            }
           ],
           "oneOffs": [
             null,
-            null,
             "No Q2 FY26 data",
-            "No Q3 FY26 data"
+            "No Q3 FY26 data",
+            null
           ],
           "flag": null,
-          "notes": "Volume growth figures provided for Q4 FY25, Q2 FY26, and Q3 FY26."
+          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
         },
         {
           "id": "base-oil-spread",
@@ -3951,7 +4006,7 @@
             null
           ],
           "flag": null,
-          "notes": "Base-oil spread not mentioned in any quarter."
+          "notes": "Base-oil spread not mentioned in any excerpt."
         }
       ]
     },
@@ -4277,12 +4332,12 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32882,
+      "ctxChars": 32763,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
           "label": "POL/LPG/LNG cargo throughput",
-          "unit": "percent",
+          "unit": "% yoy",
           "flagBasis": "yoy",
           "values": [
             null,
@@ -4315,7 +4370,7 @@
             null
           ],
           "flag": null,
-          "notes": "No specific POL/LPG/LNG throughput data provided for any quarter."
+          "notes": "No specific POL/LPG/LNG throughput data found."
         },
         {
           "id": "total-cargo-volume",
@@ -4863,7 +4918,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15968,
+      "ctxChars": 15455,
       "kpis": [
         {
           "id": "order-book",

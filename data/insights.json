@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-07-30T09:32:13.101Z",
+  "generatedAt": "2026-07-31T08:30:24.668Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -6599,209 +6599,497 @@
     },
     "gujarat-gas": {
       "name": "Gujarat Gas",
-      "slug": "GUJRATGAS",
-      "view": "yearly",
-      "url": "https://www.screener.in/company/GUJRATGAS/consolidated/#shareholding",
-      "via": "annual-page",
-      "toggled": null,
-      "note": "no Quarterly tab endpoint inside the Insights card - this is the default view",
+      "slug": "GUJENERGY",
+      "view": "quarterly",
+      "url": "https://www.screener.in/company/GUJENERGY/consolidated/#shareholding",
+      "via": "quarterly-fragment",
+      "toggled": "/insights/company/1273048/quarter/?is_consolidated=1",
+      "note": null,
       "periods": [
-        "Mar 2016",
-        "Mar 2017",
-        "Mar 2018"
+        "Jun 2023",
+        "Sep 2023",
+        "Dec 2023",
+        "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
+        "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
+        "Mar 2026"
       ],
       "periodsIso": [
-        "2016-03",
-        "2017-03",
-        "2018-03"
+        "2023-06",
+        "2023-09",
+        "2023-12",
+        "2024-03",
+        "2024-06",
+        "2024-09",
+        "2024-12",
+        "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12",
+        "2026-03"
       ],
       "rows": [
         {
+          "label": "CNG Gas Sales Volume",
+          "unit": "MMSCMD",
+          "scope": "Standalone data",
+          "values": [
+            2.61,
+            2.62,
+            2.78,
+            2.89,
+            2.98,
+            2.93,
+            3.12,
+            3.22,
+            3.33,
+            3.32,
+            3.45,
+            3.6
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 27 Sep 2023",
+              "quote": "CNG Q1 FY23 2.4, Q4 FY23 2.5, Q1 FY24 2.6",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 03 Nov 2023",
+              "quote": "CNG Q2 FY23 2.3, Q1 FY24 2.6, Q2 FY24 2.6",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 14 Feb 2024",
+              "quote": "CNG Q3 FY23 2.43, Q2 FY24 2.62, Q3 FY24 2.78",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "CNG Volume (MMSCMD) Q4 FY24 2.89, Q3 FY25 3.12, Q4 FY25 3.22",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "CNG Volume (MMSCMD) Q2 FY24 2.93, Q1 FY25 2.98, Q2 FY25 2.93",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "CNG Volume (MMSCMD) Q2 FY24 2.93, Q1 FY25 2.98, Q2 FY25 2.93",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "CNG Volume (MMSCMD) Q4 FY24 2.89, Q3 FY25 3.12, Q4 FY25 3.22",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "CNG Volume (MMSCMD) Q4 FY24 2.89, Q3 FY25 3.12, Q4 FY25 3.22",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Aug 2025",
+              "quote": "CNG Volume (MMSCMD) Q1 FY25 2.98, Q4 FY25 3.22, Q1 FY26 3.33",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 10 Nov 2025",
+              "quote": "CNG Volume (MMSCMD) Q2 FY25 2.93, Q1 FY26 3.33, Q2 FY26 3.32",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 Jan 2026",
+              "quote": "CNG Volume (MMSCMD) Q3 FY25 3.12, Q2 FY26 3.32, Q3 FY26 3.45",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "CNG Volume (MMSCMD) Q4 FY25 3.22, Q3 FY26 3.45, Q4 FY26 3.60",
+              "page": 16
+            }
+          ]
+        },
+        {
+          "label": "PNG Domestic Gas Sales Volume",
+          "unit": "MMSCMD",
+          "scope": "Standalone data",
+          "values": [
+            0.66,
+            0.76,
+            0.71,
+            0.85,
+            0.62,
+            0.76,
+            0.74,
+            0.89,
+            0.69,
+            0.83,
+            0.83,
+            0.91
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 27 Sep 2023",
+              "quote": "PNG - Domestic Q1 FY24 0.66",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 03 Nov 2023",
+              "quote": "PNG - Domestic Q2 FY24 0.76",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 14 Feb 2024",
+              "quote": "PNG - Domestic Q3 FY24 0.71",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q4 FY24 0.85, Q3 FY25 0.74, Q4 FY25 0.89",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q2 FY24 0.76, Q1 FY25 0.62, Q2 FY25 0.76",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q2 FY24 0.76, Q1 FY25 0.62, Q2 FY25 0.76",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q4 FY24 0.85, Q3 FY25 0.74, Q4 FY25 0.89",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q4 FY24 0.85, Q3 FY25 0.74, Q4 FY25 0.89",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Aug 2025",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q1 FY25 0.62, Q4 FY25 0.89, Q1 FY26 0.69",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 10 Nov 2025",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q2 FY25 0.76, Q1 FY26 0.69, Q2 FY26 0.83",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 Jan 2026",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q3 FY25 0.74, Q2 FY26 0.83, Q3 FY26 0.83",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q4 FY25 0.89, Q3 FY26 0.83, Q4 FY26 0.91",
+              "page": 16
+            }
+          ]
+        },
+        {
+          "label": "PNG Industrial Gas Sales Volume",
+          "unit": "MMSCMD",
+          "scope": "Standalone data",
+          "values": [
+            5.8,
+            4.91,
+            5.8,
+            5.8,
+            7.25,
+            4.91,
+            5.45,
+            5.03,
+            4.71,
+            4.35,
+            3.93,
+            4.19
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 27 Sep 2023",
+              "quote": "PNG - Industrial Q1 FY24 5.80",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 03 Nov 2023",
+              "quote": "PNG - Industrial Q2 FY24 4.91",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 14 Feb 2024",
+              "quote": "PNG - Industrial Q3 FY24 5.80",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q4 FY24 5.80, Q3 FY25 5.45, Q4 FY25 5.03",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q2 FY24 4.91, Q1 FY25 7.25, Q2 FY25 4.91",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q2 FY24 4.91, Q1 FY25 7.25, Q2 FY25 4.91",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q4 FY24 5.80, Q3 FY25 5.45, Q4 FY25 5.03",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q4 FY24 5.80, Q3 FY25 5.45, Q4 FY25 5.03",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Aug 2025",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q1 FY25 7.25, Q4 FY25 5.03, Q1 FY26 4.71",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 10 Nov 2025",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q2 FY25 4.91, Q1 FY26 4.71, Q2 FY26 4.35",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 Jan 2026",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q3 FY25 5.45, Q2 FY26 4.35, Q3 FY26 3.93",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q4 FY25 5.03, Q3 FY26 3.93, Q4 FY26 4.19",
+              "page": 16
+            }
+          ]
+        },
+        {
+          "label": "Total CGD Gas Sales Volume",
+          "unit": "MMSCMD",
+          "scope": "Standalone data",
+          "values": [
+            9.2,
+            7.6,
+            9.32,
+            9.69,
+            10.98,
+            8.75,
+            9.47,
+            9.31,
+            8.88,
+            8.65,
+            8.37,
+            8.88
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 27 Sep 2023",
+              "quote": "Total Volume Q1 FY23 9.7, Q4 FY23 8.9, Q1 FY24 9.2",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 03 Nov 2023",
+              "quote": "Total Volume Q2 FY23 9.2, Q1 FY24 9.2, Q2 FY24 7.6",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 14 Feb 2024",
+              "quote": "Total Volume Q3 FY23 9.2, Q2 FY24 9.3, Q3 FY24 9.3",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "Total Volume (MMSCMD) Q4 FY24 9.69, Q3 FY25 9.47, Q4 FY25 9.31",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "Total Volume (MMSCMD) Q2 FY24 8.75, Q1 FY25 10.98, Q2 FY25 8.75",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "Total Volume (MMSCMD) Q2 FY24 8.75, Q1 FY25 10.98, Q2 FY25 8.75",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "Total Volume (MMSCMD) Q4 FY24 9.69, Q3 FY25 9.47, Q4 FY25 9.31",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "Total Volume (MMSCMD) Q4 FY24 9.69, Q3 FY25 9.47, Q4 FY25 9.31",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Aug 2025",
+              "quote": "Total Volume (MMSCMD) Q1 FY25 10.98, Q4 FY25 9.31, Q1 FY26 8.88",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 10 Nov 2025",
+              "quote": "Total Volume (MMSCMD) Q2 FY25 8.75, Q1 FY26 8.88, Q2 FY26 8.65",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 Jan 2026",
+              "quote": "Total Volume (MMSCMD) Q3 FY25 9.47, Q2 FY26 8.65, Q3 FY26 8.37",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "Total Volume (MMSCMD) Q4 FY25 8.88, Q3 FY26 8.37, Q4 FY26 8.88",
+              "page": 16
+            }
+          ]
+        },
+        {
           "label": "CNG Stations",
-          "unit": "number",
+          "unit": "count",
           "scope": "Standalone data",
           "values": [
-            233,
-            252,
-            291
+            null,
+            null,
+            null,
+            808,
+            null,
+            null,
+            null,
+            828,
+            null,
+            null,
+            null,
+            839
           ],
           "citations": [
+            null,
+            null,
+            null,
             {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "catering to 10,99,122 residential customers, 12,077 commercial customers, dispensing CNG from 233 operational CNG stations for automotive sector and providing clean energy solutions to 2,886 industrial units across its operational area with a spread of around 17,120 kilometers of pipeline network",
-              "page": 22
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "CNG Stations (Nos.) FY22 711, FY23 808, FY24 808, FY25 828, FY26 839",
+              "page": 20
             },
+            null,
+            null,
+            null,
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "catering to 11,64,461 residential customers, 12,341 commercial customers, dispensing CNG from 252 operational CNG stations for automotive sector and providing clean energy solutions to 3,067 industrial units across its operational area with a spread of around 19,974 kilometers of pipeline network",
-              "page": 18
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "CNG Stations (Nos.) FY22 711, FY23 808, FY24 808, FY25 828, FY26 839",
+              "page": 20
             },
+            null,
+            null,
+            null,
             {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Your Company continues to hold the leadership position as the largest CGD Company in the country catering to more than 12.5 lakh residential customers, over 13,440 commercial customers, dispensing CNG from 291 CNG stations for automotive sector and providing clean energy solutions to around 3,300 industrial units across its operational area with a spread of around 21,640 kilometers of pipeline network",
-              "page": 12
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "CNG Stations (Nos.) FY22 711, FY23 808, FY24 808, FY25 828, FY26 839",
+              "page": 20
             }
           ]
         },
         {
-          "label": "Commercial Customers",
-          "unit": "number",
+          "label": "Gas Pipeline Network",
+          "unit": "'000 KMs",
           "scope": "Standalone data",
           "values": [
-            12077,
-            12341,
-            13440
+            null,
+            null,
+            null,
+            39.3,
+            null,
+            null,
+            null,
+            42.6,
+            null,
+            null,
+            null,
+            45.3
           ],
           "citations": [
+            null,
+            null,
+            null,
             {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "12,077 commercial customers",
-              "page": 22
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "Gas Pipeline Network ('000 KMs) FY22 32.8, FY23 35.6, FY24 39.3, FY25 42.6, FY26 45.3",
+              "page": 20
             },
+            null,
+            null,
+            null,
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "12,341 commercial customers",
-              "page": 18
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "Gas Pipeline Network ('000 KMs) FY22 32.8, FY23 35.6, FY24 39.3, FY25 42.6, FY26 45.3",
+              "page": 20
             },
+            null,
+            null,
+            null,
             {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "over 13,440 commercial customers",
-              "page": 12
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "Gas Pipeline Network ('000 KMs) FY22 32.8, FY23 35.6, FY24 39.3, FY25 42.6, FY26 45.3",
+              "page": 20
             }
           ]
         },
         {
-          "label": "Industrial Customers",
-          "unit": "number",
+          "label": "PNG Domestic Connections",
+          "unit": "Lakhs",
           "scope": "Standalone data",
           "values": [
-            2886,
-            3067,
-            3300
+            null,
+            null,
+            null,
+            21.1,
+            null,
+            null,
+            null,
+            22.7,
+            null,
+            null,
+            null,
+            24.18
           ],
           "citations": [
+            null,
+            null,
+            null,
             {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "providing clean energy solutions to 2,886 industrial units across its operational area",
-              "page": 22
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "Domestic Connections (IN LAKHS) FY22 17.1, FY23 19.3, FY24 21.1, FY25 22.7, FY26 24.2",
+              "page": 20
             },
+            null,
+            null,
+            null,
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "providing clean energy solutions to 3,067 industrial units across its operational area",
-              "page": 18
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "Domestic Connections (IN LAKHS) FY22 17.1, FY23 19.3, FY24 21.1, FY25 22.7, FY26 24.2",
+              "page": 20
             },
+            null,
+            null,
+            null,
             {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "providing clean energy solutions to around 3,300 industrial units across its operational area",
-              "page": 12
-            }
-          ]
-        },
-        {
-          "label": "Market Share - CNG Stations",
-          "unit": "%",
-          "scope": "Standalone data",
-          "values": [
-            22,
-            21,
-            23
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "CNG Stations Others GGL 22%",
-              "page": 22
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "CNG Stations Others GGL 21%",
-              "page": 26
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "CNG Stations GGL 23%",
-              "page": 18
-            }
-          ]
-        },
-        {
-          "label": "Market Share - Domestic PNG Connections",
-          "unit": "%",
-          "scope": "Standalone data",
-          "values": [
-            35,
-            33,
-            32
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "Domestic Connections Others GGL 35%",
-              "page": 22
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Domestic Connections Others GGL 33%",
-              "page": 26
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Domestic Connections Others 68% GGL 32%",
-              "page": 18
-            }
-          ]
-        },
-        {
-          "label": "Pipeline Network Length",
-          "unit": "km",
-          "scope": "Standalone data",
-          "values": [
-            17120,
-            19974,
-            21640
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "spread of around 17,120 kilometers of pipeline network",
-              "page": 22
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "spread of around 19,974 kilometers of pipeline network",
-              "page": 18
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "spread of around 21,640 kilometers of pipeline network",
-              "page": 12
-            }
-          ]
-        },
-        {
-          "label": "Residential PNG Customers",
-          "unit": "number",
-          "scope": "Standalone data",
-          "values": [
-            1099122,
-            1164461,
-            1250000
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "catering to 10,99,122 residential customers",
-              "page": 22
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "catering to 11,64,461 residential customers",
-              "page": 18
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "catering to more than 12.5 lakh residential customers",
-              "page": 12
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "Domestic Connections (IN LAKHS) FY22 17.1, FY23 19.3, FY24 21.1, FY25 22.7, FY26 24.2",
+              "page": 20
             }
           ]
         }
