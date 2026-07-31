@@ -61,10 +61,20 @@
 
 *,*::before,*::after{box-sizing:border-box;}
 
+/* The page SCROLLS.
+
+   It used to be locked to one screen - overflow:hidden on the document, every
+   panel absolutely positioned to the viewport, and a dozen inner panes each
+   with their own overflow:auto. Everything technically fitted and nothing was
+   readable: five separate scrollbars on a tab, a company card clipped mid-
+   sentence, and no way to tell what the main thing on the page was. Fitting is
+   not the same as showing.
+
+   So: one scrollbar, the window's. Panels size to their content, cards grow to
+   fit what is in them, and a long tab is simply long. */
 html,body{
-  height:100%; margin:0;
-  overflow:hidden;              /* the page itself never scrolls */
-  overscroll-behavior:none;
+  margin:0;
+  overscroll-behavior-x:none;
 }
 body{
   font-family:var(--font);
@@ -80,14 +90,13 @@ h1,h2,h3,p{margin:0;}
 .app{
   --accent:var(--tab-cockpit);
   --accent2:#0891B2;
-  height:100dvh;
+  min-height:100dvh;
   display:grid;
   /* an explicit minmax(0,...) column: grid children default to min-width:auto,
-     so a wide panel would push .stage past the viewport and get clipped by the
-     page's overflow:hidden with no way to scroll to it */
+     so a wide panel would otherwise push the stage past the viewport and force
+     the whole page to scroll sideways */
   grid-template-columns:minmax(0, 1fr);
-  grid-template-rows:48px auto minmax(0,1fr);
-  overflow:hidden;
+  grid-template-rows:auto auto 1fr;
   position:relative;
   isolation:isolate;
 }
@@ -103,8 +112,10 @@ h1,h2,h3,p{margin:0;}
 }
 
 /* ---------------------------- top bar ------------------------------------ */
+/* Sticky, because the tabs below it are: the two travel together so switching
+   section never means scrolling back to the top first. */
 .topbar{
-  position:relative; z-index:3;
+  position:sticky; top:0; z-index:5;
   height:48px;
   display:flex; align-items:center; justify-content:space-between; gap:14px;
   padding:0 18px;
@@ -128,10 +139,13 @@ h1,h2,h3,p{margin:0;}
 
 /* ---------------------------- tab bar ------------------------------------ */
 .tabbar{
-  position:relative; z-index:3;
+  position:sticky; top:48px; z-index:4;
   display:flex; align-items:center; gap:6px;
   padding:9px 18px 10px;
   overflow-x:auto; scrollbar-width:none;
+  background:rgba(247,248,251,.88);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--hair);
 }
 .tabbar::-webkit-scrollbar{display:none;}
 .tab{
@@ -168,18 +182,20 @@ h1,h2,h3,p{margin:0;}
 .tab:focus-visible{outline:2px solid color-mix(in srgb, var(--c) 60%, transparent); outline-offset:2px;}
 
 /* ---------------------------- stage / panels ----------------------------- */
-.stage{position:relative; z-index:1; min-height:0; min-width:0; overflow:hidden;}
+.stage{position:relative; z-index:1; min-width:0;}
+/* Inactive panels are REMOVED from layout, not stacked invisibly on top of the
+   active one. Absolute positioning made every panel exactly the viewport's
+   height, which is what forced the inner scrollbars; display:none lets the
+   stage take the height of whichever tab is actually open. */
 .panel{
-  position:absolute; inset:0;
-  padding:2px 18px 16px;
-  display:flex; flex-direction:column; gap:var(--gap);
-  min-height:0;
-  opacity:0; visibility:hidden; transform:translateY(8px);
-  transition:opacity var(--t), transform var(--t), visibility var(--t);
+  display:none;
+  padding:14px 18px 28px;
+  flex-direction:column; gap:var(--gap);
 }
-.panel.is-active{opacity:1; visibility:visible; transform:none;}
+.panel.is-active{display:flex; animation:panelIn var(--t) ease both;}
+@keyframes panelIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
 @media (prefers-reduced-motion:reduce){
-  .panel{transition:none;} .app::before{transition:none;}
+  .panel.is-active{animation:none;} .app::before{transition:none;}
 }
 
 /* ============================ COMPONENTS ================================= */
@@ -244,7 +260,7 @@ h1,h2,h3,p{margin:0;}
 
 /* --- card --------------------------------------------------------------- */
 .card{
-  display:flex; flex-direction:column; min-height:0;
+  display:flex; flex-direction:column;
   background:var(--surface);
   border:1px solid var(--hair);
   border-radius:var(--r-card);
@@ -265,21 +281,23 @@ h1,h2,h3,p{margin:0;}
 .card__headL{display:flex; align-items:center; gap:8px; min-width:0;}
 .card__title{font-size:13px; font-weight:680; letter-spacing:-.012em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 .card__sub{font-size:11px; font-weight:450; color:var(--ink-3); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-.card__body{flex:1 1 auto; min-height:0; display:flex; flex-direction:column;}
+.card__body{display:flex; flex-direction:column;}
 
 /* chart box: absolute fill so ECharts always has a measurable size */
-.chart-wrap{position:relative; flex:1 1 auto; min-height:0;}
+/* A chart has no intrinsic height, and nothing stretches it any more, so it
+   states its own. Without this every ECharts canvas collapses to zero. */
+.chart-wrap{position:relative; min-height:230px;}
 .chart{position:absolute; inset:0;}
 
 /* --- alert strip -------------------------------------------------------- */
 .alerts{
   flex:0 0 auto;
   display:grid; gap:10px;
-  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
 }
 .alert{
-  display:flex; align-items:center; gap:9px;
-  padding:7px 12px 7px 9px;
+  display:flex; align-items:flex-start; gap:9px;
+  padding:10px 13px 10px 10px;
   background:var(--surface);
   border:1px solid var(--hair);
   border-left:4px solid var(--c, var(--ink-3));
@@ -297,13 +315,16 @@ h1,h2,h3,p{margin:0;}
 .alert__txt{min-width:0;}
 .alert__msg{
   font-size:12px; font-weight:600; color:var(--ink-1); letter-spacing:-.008em;
-  line-height:1.3;
-  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  line-height:1.35;
+  /* Clamped to two lines, an alert read "Flagged for review: this stage expects
+     crude..." - the half that mattered was the half cut off. There is room on a
+     scrolling page, so the whole sentence is shown. */
 }
 .alert__meta{display:flex; align-items:center; gap:5px; margin-top:3px;}
 
 /* --- segmented control (subtabs) --------------------------------------- */
-.subbar{flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px;}
+/* wraps on a narrow screen instead of pushing the legend off the right edge */
+.subbar{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
 .segmented{
   display:inline-flex; gap:4px; padding:4px;
   background:rgba(255,255,255,.72);
@@ -330,6 +351,30 @@ h1,h2,h3,p{margin:0;}
 .seg[aria-selected="true"] .seg__dot{background:var(--c); opacity:1; box-shadow:0 0 0 3px color-mix(in srgb, var(--c) 16%, transparent);}
 .seg:focus-visible{outline:2px solid color-mix(in srgb, var(--c) 60%, transparent); outline-offset:2px;}
 
+/* --- group dropdown (KPI tab) ------------------------------------------- */
+.grouppick{display:flex; align-items:center; gap:8px; flex:0 0 auto;}
+.grouppick__lab{
+  font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--ink-4);
+}
+.grouppick__sel{
+  appearance:none; cursor:pointer;
+  padding:7px 30px 7px 12px;
+  border:1px solid var(--hair); border-radius:10px;
+  background:var(--surface);
+  /* the caret, drawn rather than imported, so the control needs no asset */
+  background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),
+                   linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);
+  background-position:calc(100% - 15px) calc(50% + 1px), calc(100% - 10px) calc(50% + 1px);
+  background-size:5px 5px, 5px 5px;
+  background-repeat:no-repeat;
+  font-size:12.5px; font-weight:650; letter-spacing:-.012em; color:var(--ink-1);
+  box-shadow:0 1px 2px rgba(15,20,36,.05);
+  transition:border-color var(--t), box-shadow var(--t);
+}
+.grouppick__sel:hover{border-color:color-mix(in srgb, var(--ink-3) 40%, var(--hair));}
+.grouppick__sel:focus-visible{outline:2px solid var(--tab-kpis); outline-offset:1px;}
+
 /* --- panel heading ----------------------------------------------------- */
 .phead{flex:0 0 auto; display:flex; align-items:baseline; gap:10px; padding:4px 2px 0; flex-wrap:wrap;}
 .phead h2{font-size:16px; font-weight:750; letter-spacing:-.022em;}
@@ -337,17 +382,16 @@ h1,h2,h3,p{margin:0;}
 
 /* ============================ COCKPIT =================================== */
 .cockpit{
-  flex:1 1 auto; min-height:0;
   display:grid; gap:var(--gap);
-  grid-template-columns:minmax(300px, 0.95fr) minmax(0, 1.78fr);
-  grid-template-rows:minmax(0,1fr) minmax(0,.72fr) auto;
+  grid-template-columns:minmax(320px, 0.95fr) minmax(0, 1.78fr);
+  grid-template-rows:auto auto auto;
 }
-.cockpit__dial{grid-column:1; grid-row:1 / span 2; min-height:0;}
+.cockpit__dial{grid-column:1; grid-row:1 / span 2;}
 .cockpit__gauges{
   grid-column:2; grid-row:1;
-  display:grid; gap:var(--gap); grid-template-columns:repeat(3, minmax(0,1fr)); min-height:0;
+  display:grid; gap:var(--gap); grid-template-columns:repeat(3, minmax(0,1fr));
 }
-.cockpit__div{grid-column:2; grid-row:2; min-height:0;}
+.cockpit__div{grid-column:2; grid-row:2;}
 .cockpit__alerts{grid-column:1 / -1; grid-row:3;}
 
 /* the verdict lives INSIDE the dial, where the arc is hollow - so the card has
@@ -372,9 +416,8 @@ h1,h2,h3,p{margin:0;}
    use (the arc is width-limited) so the card has no dead band at its foot. */
 .cockpit__dial .chart-wrap{flex:0 1 auto; aspect-ratio:1.34; width:100%; min-height:150px;}
 .stagelist{
-  flex:1 1 auto; min-height:0;
-  display:flex; flex-direction:column; justify-content:space-evenly; gap:2px;
-  padding:7px 11px 9px; border-top:1px solid var(--hair); background:var(--surface-2);
+  display:flex; flex-direction:column; gap:3px;
+  padding:9px 12px 11px; border-top:1px solid var(--hair); background:var(--surface-2);
 }
 .stagelist__row{
   display:flex; align-items:center; gap:9px;
@@ -425,13 +468,12 @@ h1,h2,h3,p{margin:0;}
 
 /* ============================ GHOST TILES =============================== */
 .tiles{
-  flex:1 1 auto; min-height:0;
   display:grid; gap:var(--gap);
 }
-.tiles--3x2{grid-template-columns:repeat(3, minmax(0,1fr)); grid-template-rows:repeat(2, minmax(0,1fr));}
-.tiles--2x2{grid-template-columns:repeat(2, minmax(0,1fr)); grid-template-rows:repeat(2, minmax(0,1fr));}
+.tiles--3x2{grid-template-columns:repeat(3, minmax(0,1fr));}
+.tiles--2x2{grid-template-columns:repeat(2, minmax(0,1fr));}
 .ghost{
-  flex:1 1 auto; min-height:0;
+  min-height:120px;
   display:grid; place-items:center; gap:8px;
   padding:10px; position:relative;
   background:
@@ -504,7 +546,7 @@ h1,h2,h3,p{margin:0;}
 
 /* a source we could not reach: ghost body, plain statement, no chart */
 .mtile--awaiting .card__body{padding:6px 12px 10px; gap:4px;}
-.mtile--awaiting .ghost{flex:1 1 auto; min-height:0;}
+.mtile--awaiting .ghost{min-height:150px;}
 .mawait{
   flex:0 0 auto; text-align:center;
   font-size:10.5px; font-weight:600; color:var(--ink-4); letter-spacing:-.005em;
@@ -513,7 +555,7 @@ h1,h2,h3,p{margin:0;}
 
 /* one observation and no history: say so where the chart would be */
 .mspot{
-  flex:1 1 auto; min-height:0; display:grid; place-items:center; text-align:center;
+  min-height:150px; display:grid; place-items:center; text-align:center;
   padding:10px 14px; border-radius:var(--r-tile); background:var(--surface-2);
   border:1px dashed var(--axis);
   font-size:11px; font-weight:550; color:var(--ink-3); line-height:1.4;
@@ -528,7 +570,7 @@ h1,h2,h3,p{margin:0;}
 /* ---- macro vs scores strip ---- */
 .mscore{flex:0 0 auto;}
 .mscore__body{display:flex; align-items:center; gap:14px; padding:10px 14px; flex-wrap:wrap;}
-.mscore__verdict{display:flex; align-items:center; gap:9px; min-width:0; flex:0 0 auto;}
+.mscore__verdict{display:flex; align-items:center; gap:9px; min-width:0; flex:1 1 260px;}
 .mscore__ico{
   display:grid; place-items:center; width:26px; height:26px; border-radius:9px;
   background:color-mix(in srgb, var(--c) 14%, #fff);
@@ -536,18 +578,25 @@ h1,h2,h3,p{margin:0;}
   font-size:14px; font-weight:800; line-height:1; flex:0 0 auto;
 }
 .mscore__txt{min-width:0;}
-.mscore__hd{display:block; font-size:12.5px; font-weight:750; letter-spacing:-.015em; color:color-mix(in srgb, var(--c) 74%, var(--ink-1));}
-.mscore__say{display:block; margin-top:1px; font-size:11px; font-weight:500; color:var(--ink-2); line-height:1.3;}
+.mscore__hd{display:block; font-size:12.5px; font-weight:750; letter-spacing:-.015em; color:color-mix(in srgb, var(--c) 74%, var(--ink-1)); overflow-wrap:anywhere;}
+.mscore__say{display:block; margin-top:1px; font-size:11px; font-weight:500; color:var(--ink-2); line-height:1.3; overflow-wrap:anywhere;}
 .mscore__tally{display:flex; align-items:center; gap:5px; flex-wrap:wrap; margin-left:auto;}
 
 /* ============================ TABLES ==================================== */
-.tablewrap{flex:1 1 auto; min-height:0; overflow:auto;}
+/* The table is as tall as its rows. It scrolls only sideways, and only when the
+   viewport is genuinely too narrow for the columns - never vertically, because
+   a scrollbar inside a scrolling page is a trap: you reach the bottom of the
+   window and the content has not moved. */
+.tablewrap{overflow-x:auto; overflow-y:visible;}
 /* the table takes what it needs; the empty state grows into whatever is left,
    so a short group (3 rows) leaves no dead white below it */
-.tablecol{display:flex; flex-direction:column; min-height:100%;}
+.tablecol{display:flex; flex-direction:column;}
 .tablecol > table{flex:0 0 auto;}
-.tablecol > .ghost{flex:1 1 auto; min-height:0; overflow:hidden;}
-table.kpi{width:100%; border-collapse:separate; border-spacing:0; font-size:12px;}
+/* The grid scrolls sideways inside its card when the viewport cannot hold the
+   columns. Squeezing eight columns into 420px makes every one unreadable; a
+   horizontal scroll on the table alone keeps the numbers legible and leaves the
+   page itself scrolling only downwards. */
+table.kpi{width:100%; min-width:760px; border-collapse:separate; border-spacing:0; font-size:12px;}
 table.kpi thead th{
   position:sticky; top:0; z-index:2;
   background:var(--surface);
@@ -637,7 +686,21 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 }
 .kpispark__b--last{background:var(--c);}
 .kpispark__b--nil{height:2px; min-height:2px; border-radius:0; background:var(--grid);}
-.kpitrend{display:inline-flex; align-items:center; justify-content:flex-end; gap:8px;}
+/* Two FIXED slots: the spark, then the trajectory chip. Laid out as inline-flex
+   with justify-content:flex-end, a row with no chip pulled its spark right into
+   the space the chip would have used, so the sparks zig-zagged down the column
+   and nothing lined up with anything. A grid with a reserved chip column keeps
+   every spark on one vertical line whether or not the row is flagged. */
+.kpitrend{
+  display:grid; grid-template-columns:44px 128px;
+  align-items:center; justify-items:start; gap:9px;
+  margin-left:auto; width:max-content;
+}
+.kpitrend > .chip{justify-self:stretch; justify-content:center;}
+.kpitrend > .kpimuted{justify-self:center;}
+/* the chips themselves must not resize with their word length, or "Speeding up"
+   and "Just turned down" would sit on different left edges */
+.kpitrend .chip{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:flex;}
 /* the "Just turned" filter - a chip that doubles as an aria-pressed toggle */
 .chip.kpitoggle{cursor:pointer; appearance:none; -webkit-appearance:none; font-family:inherit;}
 .chip.kpitoggle[aria-pressed="true"]{
@@ -655,22 +718,33 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 .grouphead__desc{font-size:11.5px; color:var(--ink-3); font-weight:500; flex:1 1 260px; min-width:0;}
 
 /* ============================ HEAT STRIP SHELL ========================== */
-.heat{flex:1 1 auto; min-height:0; display:flex; overflow:auto; padding:6px 13px 10px;}
+.heat{display:flex; overflow-x:auto; padding:8px 13px 12px;}
 .heat__grid{
-  flex:1 1 auto; min-height:0;
-  display:grid; gap:3px 6px;
-  grid-template-columns:minmax(150px, 1.1fr) repeat(4, minmax(58px, 1fr));
-  grid-template-rows:auto; grid-auto-rows:minmax(21px, 1fr);
+  flex:1 1 auto;
+  display:grid; gap:4px 6px;
+  grid-template-columns:minmax(170px, 1.15fr) repeat(4, minmax(62px, 1fr));
+  grid-template-rows:auto; grid-auto-rows:minmax(30px, auto);
   align-items:stretch;
 }
 .heat__colhead{font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-3); text-align:center; padding-bottom:3px; align-self:end;}
+/* Two lines: the company, then the window it is actually on. The name is no
+   longer squeezed onto one line with a quarter stamp beside it - that produced
+   "Jindal Drill... Q3 FY..." and told a reader neither thing. */
 .heat__row{
-  display:flex; align-items:center; gap:7px;
-  font-size:11px; font-weight:620; color:var(--ink-1); letter-spacing:-.01em;
-  overflow:hidden; padding-right:8px;
+  display:grid; grid-template-columns:6px minmax(0,1fr); align-items:center;
+  column-gap:7px; row-gap:0;
+  font-size:11.5px; font-weight:620; color:var(--ink-1); letter-spacing:-.01em;
+  padding:2px 8px 2px 0; min-width:0;
 }
-.heat__row i{width:6px; height:6px; border-radius:50%; background:var(--c); flex:0 0 auto;}
-.heat__row span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.heat__row i{width:6px; height:6px; border-radius:50%; background:var(--c); grid-row:1 / span 2;}
+.heat__name{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.heat__win{
+  grid-column:2;
+  font-size:9.5px; font-weight:600; color:var(--ink-4); letter-spacing:-.005em;
+  font-variant-numeric:tabular-nums;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.heat__win.is-stale{color:var(--warn, #B45309);}
 .heat__cell{
   border-radius:5px;
   background:var(--surface-2); border:1px dashed var(--axis);
@@ -680,7 +754,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 /* a read quarter is a solid colour block; the legend beside it decodes the hue,
    and the hover carries the quote the tone rests on */
 .heat__cell--on{border:1px solid rgba(15,20,36,.10); color:transparent;}
-.toneshift{flex:1 1 auto; min-height:0; overflow:auto; display:flex; flex-direction:column; gap:5px; padding:8px 12px 10px;}
+.toneshift{display:flex; flex-direction:column; gap:6px; padding:10px 12px 12px;}
 .toneshift__row{display:grid; grid-template-columns:minmax(0,1fr) 18px 10px 18px auto; align-items:center; gap:6px; font-size:11px;}
 .toneshift__co{display:flex; align-items:center; gap:6px; min-width:0; font-weight:620; color:var(--ink-1);}
 .toneshift__co i{width:6px; height:6px; border-radius:50%; background:var(--c); flex:0 0 auto;}
@@ -689,9 +763,8 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 .toneshift__arrow{color:var(--ink-3); text-align:center;}
 .toneshift__dir{font-size:10px; font-weight:700; letter-spacing:.02em; white-space:nowrap;}
 .legendbox{
-  flex:1 1 auto; min-height:0; overflow:auto;
-  display:flex; flex-direction:column; justify-content:space-evenly; gap:4px;
-  padding:9px 13px 12px;
+  display:flex; flex-direction:column; gap:6px;
+  padding:11px 13px 13px;
 }
 .legendrow{display:flex; align-items:center; gap:10px; min-width:0;}
 .legendrow__sw{width:26px; height:15px; border-radius:5px; background:var(--c); flex:0 0 auto;}
@@ -706,7 +779,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 .heat__row:hover{background:color-mix(in srgb, var(--c) 8%, transparent);}
 .heat__row:focus-visible{outline:2px solid var(--c); outline-offset:-2px;}
 .heat__row.is-picked{background:color-mix(in srgb, var(--c) 13%, transparent); font-weight:700;}
-.readcard{flex:1 1 auto; min-height:0; overflow:auto; padding:9px 13px 13px; display:flex; flex-direction:column; gap:8px;}
+.readcard{padding:12px 14px 14px; display:flex; flex-direction:column; gap:10px;}
 .cardline{display:grid; grid-template-columns:96px minmax(0,1fr); gap:9px; align-items:baseline;}
 .cardline__lab{
   font-size:9.5px; font-weight:720; letter-spacing:.04em; text-transform:uppercase;
@@ -727,7 +800,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 .driftarrow{color:var(--ink-4); font-size:10px; margin:0 3px;}
 
 /* --- 4.3 the seven themes ------------------------------------------------ */
-.themelist{flex:1 1 auto; min-height:0; overflow:auto; padding:8px 12px 12px; display:flex; flex-direction:column; gap:7px;}
+.themelist{padding:10px 12px 14px; display:flex; flex-direction:column; gap:8px;}
 .theme{--c:var(--ink-3); border-left:3px solid var(--c); padding:3px 0 3px 8px;}
 .theme__hd{display:flex; align-items:center; gap:6px;}
 .theme__dot{width:6px; height:6px; border-radius:50%; background:var(--c); flex:0 0 auto;}
@@ -767,7 +840,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
 .ttm__note{padding:6px 9px 0; font-size:10.5px; color:var(--ink-3); line-height:1.4;}
 
 /* --- 3.3 the one-off ledger ---------------------------------------------- */
-.offledger{padding:9px 13px 12px; display:flex; flex-direction:column; gap:5px; max-height:110px; overflow:auto;}
+.offledger{padding:10px 14px 14px; display:flex; flex-direction:column; gap:6px;}
 .offrow{
   display:grid; grid-template-columns:74px 132px minmax(0,1fr) minmax(0,1.2fr);
   gap:9px; align-items:baseline; font-size:11px;
@@ -780,7 +853,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
 .offempty{font-size:11px; color:var(--ink-4); line-height:1.45;}
 
 /* --- 5.1 the read ------------------------------------------------------- */
-.readbox{flex:1 1 auto; min-height:0; overflow:auto; padding:10px 13px 13px; display:flex; flex-direction:column; gap:9px;}
+.readbox{padding:12px 14px 14px; display:flex; flex-direction:column; gap:11px;}
 .readline{display:grid; grid-template-columns:104px minmax(0,1fr); gap:10px; align-items:baseline;}
 .readline__lab{
   font-size:10.5px; font-weight:720; letter-spacing:.03em; text-transform:uppercase;
@@ -789,7 +862,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
 .readline__txt{font-size:12px; line-height:1.45; color:var(--ink-1); font-weight:520; text-wrap:pretty;}
 
 /* --- 5.2 the shortlist -------------------------------------------------- */
-.actionlist{flex:1 1 auto; min-height:0; overflow:auto; padding:10px 13px 13px; display:flex; flex-direction:column; gap:10px;}
+.actionlist{padding:12px 14px 14px; display:flex; flex-direction:column; gap:11px;}
 .action__lead{font-size:11.5px; line-height:1.45; color:var(--ink-2); font-weight:530; text-wrap:pretty;}
 .researchrow{display:flex; flex-wrap:wrap; gap:7px;}
 .research{
@@ -833,7 +906,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
 .sixcard__w{font-size:10.5px; color:var(--ink-3); font-weight:500; line-height:1.35; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;}
 /* slots pinned to the card foot so the card reads as structured, not hollow */
 .sixcard__slots{display:flex; gap:5px; flex-wrap:wrap; margin-top:auto; padding-top:8px;}
-.chiprow{display:flex; flex-wrap:wrap; gap:6px; padding:11px 13px 13px; overflow:auto; min-height:0; align-content:flex-start;}
+.chiprow{display:flex; flex-wrap:wrap; gap:7px; padding:12px 14px 14px; align-content:flex-start;}
 
 /* ============================ BOOT / ERROR ============================== */
 .boot{
@@ -996,10 +1069,13 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     <!-- ======================= 3. KPIs ================================= -->
     <section class="panel" id="panel-kpis" role="tabpanel" aria-labelledby="tab-kpis" hidden>
       <div class="subbar">
-        <div class="segmented" role="tablist" aria-label="Company groups" id="kpiSegs"></div>
-        <div id="kpiFlagLegend" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+        <div class="grouppick">
+          <label class="grouppick__lab" for="kpiGroupSel">Group</label>
+          <select class="grouppick__sel" id="kpiGroupSel" aria-label="Company group"></select>
+        </div>
+        <div id="kpiFlagLegend" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;min-width:0;"></div>
       </div>
-      <div class="card" style="flex:1 1 auto;min-height:0;">
+      <div class="card">
         <div class="grouphead" id="kpiGroupHead"></div>
         <div class="tablewrap">
           <div class="tablecol">
@@ -1026,7 +1102,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
         <h2>What management said</h2>
         <p>How upbeat or worried each company sounded, over the last four quarters.</p>
       </div>
-      <div class="tiles" style="grid-template-columns:minmax(0,1.15fr) minmax(0,1.05fr) minmax(230px,.8fr);grid-template-rows:minmax(0,1fr) minmax(0,.6fr);">
+      <div class="tiles" style="grid-template-columns:minmax(0,1.15fr) minmax(0,1.05fr) minmax(240px,.8fr);">
         <div class="card" style="grid-row:1 / span 2;">
           <div class="card__head">
             <div class="card__headL"><span class="card__title">Tone over 4 quarters</span>
@@ -1072,7 +1148,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
         <h2>The summary, and what to look at next</h2>
         <p>One read of the cycle, then the shortlist worth digging into.</p>
       </div>
-      <div class="tiles" style="grid-template-columns:minmax(0,1.22fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto auto;">
+      <div class="tiles" style="grid-template-columns:minmax(0,1.22fr) minmax(0,1fr);">
         <div class="card">
           <div class="card__head">
             <div class="card__headL"><span class="card__title">The read</span>
@@ -2168,14 +2244,20 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
   var KPI_COL_WHY = 'Columns are positions, not fixed quarters: the 4 most recent ' +
     'quarters each company has reported; the exact quarter is shown on every value.';
   function renderKpiChrome() {
-    el('kpiSegs').innerHTML = DATA.framework.groupMeta.map(function (g) {
-      return '<button class="seg" role="tab" data-group="' + g.id + '" style="--c:' + g.color + '" ' +
-        'aria-selected="' + (g.id === kpiActive) + '">' +
-        '<span class="seg__dot"></span>' + esc(g.name) + '</button>';
+    /* A dropdown, not three pills. The three groups are mutually exclusive and
+       only one is ever on screen, which is what a select says and a row of
+       buttons does not - and it stops the control competing with the tab bar
+       directly above it for "where am I". */
+    var sel = el('kpiGroupSel');
+    sel.innerHTML = DATA.framework.groupMeta.map(function (g) {
+      return '<option value="' + esc(g.id) + '"' + (g.id === kpiActive ? ' selected' : '') + '>' +
+        esc(g.plainLabel) + ' \u00b7 ' + esc(g.name) + '</option>';
     }).join('');
-    el('kpiSegs').querySelectorAll('.seg').forEach(function (b) {
-      b.addEventListener('click', function () { setKpiGroup(b.dataset.group); });
-    });
+    sel.value = kpiActive;
+    if (!sel.dataset.bound) {
+      sel.dataset.bound = '1';
+      sel.addEventListener('change', function () { setKpiGroup(sel.value); });
+    }
     /* the trajectory vocabulary, shown as the Trend column's key */
     el('kpiFlagLegend').innerHTML = DATA.framework.trajectoryFlags.map(function (f) {
       return '<span class="chip" style="--c:' + f.color + '" title="' + esc(f.meaning) + '">' +
@@ -2193,9 +2275,8 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
   }
   function setKpiGroup(id) {
     kpiActive = id;
-    el('kpiSegs').querySelectorAll('.seg').forEach(function (b) {
-      b.setAttribute('aria-selected', String(b.dataset.group === id));
-    });
+    var sel = el('kpiGroupSel');
+    if (sel && sel.value !== id) sel.value = id;
     renderKpiTable();
     setHash();
   }
@@ -2735,14 +2816,34 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
   }
 
   /* ---------------------------------------------------------- 4. commentary */
+  /* "Q1 FY26 → Q1 FY27" for one company's own tone window, or '' when it has
+     no read at all. The heat strip's columns are relative, so this is the only
+     place a reader can see which quarters a row actually covers. */
+  function windowOf(entry) {
+    var ts = (entry && entry.tones) ? entry.tones.filter(function (t) { return t && t.quarter; }) : [];
+    if (!ts.length) return '';
+    var a = ts[0].quarter, b = ts[ts.length - 1].quarter;
+    return a === b ? a : a + ' \u2192 ' + b;
+  }
+
   function renderCommentary() {
     var com = DATA.commentary;
     var toneById = {};
     DATA.framework.toneScale.steps.forEach(function (s) { toneById[s.id] = s; });
 
-    /* Column headers: the window most companies share once tones exist, else the
-       backbone labels so the empty skeleton still reads. */
-    var qs = (com && com.quarters && com.quarters.length) ? com.quarters : DATA.companies.quarterLabels;
+    /* Column headers are RELATIVE, exactly as the KPI grid's are.
+
+       They used to be one shared list of quarter labels - Q1 FY26 ... Q4 FY26 -
+       while every row padded its own tones to four and dropped them into those
+       columns. Companies are not on a common window: Welspun, Reliance, BPCL,
+       HPCL and Gandhar have already reported Q1 FY27, so their newest tone sat
+       under a heading that said Q4 FY26. The number was right and the label was
+       a lie, which is worse than either.
+
+       So the columns say how far back a reading is, each row states its own
+       window beside the company name, and every cell still names its own
+       quarter in the tooltip. */
+    var qs = KPI_COLS.map(function (c) { return c.lab; });
 
     /* every tracked company gets a row, grouped and colour-coded, whether or not a
        call has been read yet - an absent company is honest dashes, not a dropped row */
@@ -2782,8 +2883,12 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
             esc(r.what + ' — click to open the read' +
                 (rStale ? '. Latest read quarter is ' + r.entry.asOf + ', older than ' + latestReportedQuarter() + '.' : '')) +
             '">' +
-            '<i></i><span>' + esc(r.name) + '</span>' +
-            (rStale ? '<span class="stamp is-stale">' + esc(r.entry.asOf) + '</span>' : '') +
+            '<i></i><span class="heat__name">' + esc(r.name) + '</span>' +
+            /* Every row states the window it is actually on, because the columns
+               no longer can: "Latest" means a different quarter for a company
+               that has filed Q1 FY27 than for one that has not. */
+            (windowOf(r.entry) ? '<span class="heat__win' + (rStale ? ' is-stale' : '') + '">' +
+              esc(windowOf(r.entry)) + '</span>' : '') +
             '</div>';
           /* the company's own four quarters, newest at the right. Each cell names
              the quarter it is, because the column heading is only the common window. */
