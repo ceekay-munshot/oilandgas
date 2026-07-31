@@ -26,8 +26,13 @@
   /* --- ink -------------------------------------------------------------- */
   --ink-1:#0F1424;   /* titles, values      */
   --ink-2:#454B5E;   /* body                */
-  --ink-3:#7C8496;   /* labels, axes        */
-  --ink-4:#A3AAB9;   /* hints, ghosts       */
+  /* Darkened to clear WCAG AA (4.5:1 on white) - they were 3.75 and 2.33.
+     ink-4 carried the source stamps and the "13/23 KPIs" basis lines, which are
+     exactly the provenance the brief insists a reader can check; a label that
+     cannot be read is not a citation. The hierarchy between the four inks is
+     unchanged, it is just shifted into legible territory. */
+  --ink-3:#5C6472;   /* labels, axes        */
+  --ink-4:#6B7385;   /* hints, ghosts       */
 
   /* --- surfaces --------------------------------------------------------- */
   --plane:#F3F5FB;
@@ -296,6 +301,9 @@ h1,h2,h3,p{margin:0;}
   grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
 }
 .alert{
+  /* also used as a <button> for "N more flagged", so the button defaults have
+     to be cleared here rather than in a second rule that could drift */
+  appearance:none; -webkit-appearance:none; font:inherit; text-align:left; width:100%;
   display:flex; align-items:flex-start; gap:9px;
   padding:10px 13px 10px 10px;
   background:var(--surface);
@@ -355,7 +363,7 @@ h1,h2,h3,p{margin:0;}
 .grouppick{display:flex; align-items:center; gap:8px; flex:0 0 auto;}
 .grouppick__lab{
   font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
-  color:var(--ink-4);
+  color:var(--ink-3);
 }
 .grouppick__sel{
   appearance:none; cursor:pointer;
@@ -410,7 +418,10 @@ h1,h2,h3,p{margin:0;}
 .verdict__tech{margin-top:3px; font-size:10.5px; color:var(--ink-3); font-weight:600; letter-spacing:.01em;}
 .verdict__say{margin-top:7px; font-size:11.5px; color:var(--ink-2); font-weight:500; line-height:1.35; text-wrap:pretty;}
 .verdict__meta{margin-top:8px; display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap;}
-.alert--more .alert__msg{color:var(--ink-4); font-weight:600;}
+.alert--more{cursor:pointer;}
+.alert--more:hover{background:var(--surface-2); border-color:color-mix(in srgb, var(--ink-3) 30%, var(--hair));}
+.alert--more:focus-visible{outline:2px solid var(--tab-insight); outline-offset:2px;}
+.alert--more .alert__msg{color:var(--ink-3); font-weight:650;}
 
 /* the dial's legend = the five stages, in order. Takes the slack the arc cannot
    use (the arc is width-limited) so the card has no dead band at its foot. */
@@ -653,7 +664,7 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 .kpixtra{
   width:13px; height:13px; line-height:13px; margin-left:6px; padding:0;
   text-align:center; letter-spacing:0;
-  color:var(--ink-4); background:color-mix(in srgb, var(--ink-4) 15%, transparent);
+  color:var(--ink-2); background:color-mix(in srgb, var(--ink-4) 18%, transparent);
 }
 .kpirole{padding:0 4px; color:var(--ink-3); background:color-mix(in srgb, var(--ink-3) 15%, transparent);}
 /* the legend entry carries the badge inline, so the key looks like the thing */
@@ -669,7 +680,8 @@ table.kpi td.co[rowspan]{vertical-align:top;}
 }
 /* only drawn when asOf disagrees with the window's newest quarter - i.e. when the
    file itself says the company is behind - so it should catch the eye a little */
-.kpiasof{color:#B07310; font-weight:600;}
+/* darkened from #B07310, which read 3.96:1 - under AA for 11px text */
+.kpiasof{color:#9A6410; font-weight:600;}
 .kpidot{
   display:inline-block; width:6px; height:6px; border-radius:50%;
   background:var(--c); margin-right:5px; vertical-align:1px;
@@ -1465,10 +1477,12 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
           '</div>' +
         '</div></div>';
     }).join('') + (rest > 0
-      ? '<div class="alert alert--more" style="--c:#7C8496">' +
+      /* A button, not a label. It named where to go and then could not be
+         clicked or tabbed to, which is a signpost pointing at a wall. */
+      ? '<button type="button" class="alert alert--more" data-goto="insight" style="--c:#7C8496">' +
           '<span class="alert__ico" aria-hidden="true">+</span>' +
           '<div class="alert__txt"><div class="alert__msg">' + rest +
-          ' more flagged - see Insight &amp; Action</div></div></div>'
+          ' more flagged - open Insight &amp; Action</div></div></button>'
       : '');
   }
 
@@ -1574,9 +1588,23 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     el('gauges').innerHTML = html;
   }
 
+  /* One line describing a macro tile for a screen reader: what it is, where it
+     stands now, and which way it has moved. */
+  function macroChartLabel(t) {
+    var parts = [t.label + ' (' + (t.unit || '') + ')'];
+    (t.lines || []).forEach(function (l) {
+      var pts = (l.series || []).filter(function (p) { return p && p.value != null; });
+      if (!pts.length) return;
+      parts.push(l.label + ' latest ' + pts[pts.length - 1].value +
+        (pts.length > 1 ? ', over ' + pts.length + ' readings' : ', one reading only'));
+    });
+    if (t.direction) parts.push('direction ' + t.direction);
+    return parts.join('. ') + '.';
+  }
+
   /* ---------------------------------------------------------- ECharts bits */
   var charts = {};
-  function mount(id, option) {
+  function mount(id, option, label) {
     var node = el(id);
     if (!node) return;
     var c = charts[id];
@@ -1586,6 +1614,13 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     if (!c) c = echarts.init(node, null, { renderer: 'canvas' });
     charts[id] = c;
     c.setOption(option, true);
+    /* A canvas is nothing at all to a screen reader, and every chart here
+       carries a number the page states nowhere else. role=img plus a one-line
+       summary is the minimum that makes the reading available without sight. */
+    if (label) {
+      node.setAttribute('role', 'img');
+      node.setAttribute('aria-label', label);
+    }
     return c;
   }
 
@@ -1783,9 +1818,29 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
   function drawCockpit() {
     renderDialChip();
     renderDivergenceChip();
-    mount('ch-dial', dialOption());
-    DATA.framework.groupMeta.forEach(function (g) { mount('ch-g-' + g.id, gaugeOption(g)); });
-    mount('ch-div', divergenceOption());
+    /* Each chart says its own reading aloud. The label is built from the same
+       data the chart draws, so it cannot drift out of step with the picture. */
+    var st = currentStage(), so = stageOf();
+    mount('ch-dial', dialOption(),
+      'Cycle stage dial. ' + (st ? st.plainLabel + ' (' + st.label + ')' : 'No stage call yet') +
+      (so && so.position != null ? ', at ' + so.position + ' out of 100.' : '.'));
+
+    DATA.framework.groupMeta.forEach(function (g) {
+      /* scoreFor returns the whole bucket record, not a number - reading it as
+         one printed "[object Object]" into the label. */
+      var b = scoreFor(g.id);
+      var v = b && b.score != null ? b.score : null;
+      mount('ch-g-' + g.id, gaugeOption(g),
+        g.plainLabel + ' (' + g.name + ') score: ' +
+        (v == null ? 'not enough data to score' : v + ' on a scale of minus 100 to plus 100') +
+        (b && b.kpisScored != null ? ', from ' + b.kpisScored + ' of ' + b.kpisTotal + ' KPIs' : '') + '.');
+    });
+
+    var dv = (DATA.scores && DATA.scores.divergence);
+    var dvv = (dv && typeof dv === 'object') ? dv.value : dv;
+    mount('ch-div', divergenceOption(),
+      'How far the early movers lead, by quarter, in points' +
+      (dvv != null ? '. Latest: ' + dvv + ' points.' : '.'));
   }
 
   /* ------------------------------------------------------ ghost placeholders */
@@ -2128,7 +2183,8 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
 
     MACRO_TILES.forEach(function (row) {
       if (row.live && primaryLine(row.tile).series.length >= 2) {
-        mount('ch-macro-' + row.tile.id, sparkOption(row.tile));
+        mount('ch-macro-' + row.tile.id, sparkOption(row.tile),
+          macroChartLabel(row.tile));
       }
     });
     renderMacroScore();
@@ -2278,7 +2334,10 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     var sel = el('kpiGroupSel');
     if (sel && sel.value !== id) sel.value = id;
     renderKpiTable();
-    setHash();
+    /* replace, not push: choosing a group refines the view you are already on,
+       it is not a place you navigated to. The URL still updates so the choice
+       is shareable; Back stays a tab-level control. */
+    setHash(false);
   }
   /* a KPI has "just turned" when its trajectory is one of the two inflections */
   function kpiIsTurned(k) {
@@ -3285,11 +3344,18 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     app.style.setProperty('--accent2', TAB_ACCENT[name][1]);
 
     if (!drawn[name]) { drawn[name] = true; drawTab(name); }
+    /* Back to the top. The page scrolls now, and tabs are different lengths, so
+       leaving the scroll where it was dropped a reader into the middle of a
+       section they had not opened yet - 800px down the KPI grid, switch to
+       Commentary, and you are halfway through the heat strip with no idea what
+       is above you. Instant rather than smooth: this is a change of place, not
+       a movement through one. */
+    window.scrollTo(0, 0);
     /* panels are laid out only once visible - let the browser settle, then resize */
     requestAnimationFrame(function () { resizeAll(); });
 
     el('live').textContent = el('tab-' + name).textContent.replace(/^\d/, '').trim() + ' tab';
-    if (!opts || !opts.silent) setHash();
+    if (!opts || !opts.silent) setHash(true);
   }
 
   function drawTab(name) {
@@ -3306,9 +3372,19 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     });
   }
 
-  function setHash() {
+  /* PUSH a history entry for a change the reader made, REPLACE for one the app
+     made on its own.
+
+     It used to replaceState unconditionally, so five tab switches left one
+     history entry and Back took the reader out of the dashboard altogether -
+     the browser's most-used button, doing the one thing nobody expects it to.
+     Now Back walks back through the tabs they opened, and only leaves when
+     there are none left to walk. */
+  function setHash(push) {
     var h = '#' + active + (active === 'kpis' ? '/' + kpiActive : '');
-    if (location.hash !== h) history.replaceState(null, '', h);
+    if (location.hash === h) return;
+    if (push) history.pushState(null, '', h);
+    else history.replaceState(null, '', h);
   }
   function readHash() {
     var parts = (location.hash || '').replace(/^#/, '').split('/');
@@ -3321,6 +3397,13 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
     TABS.forEach(function (t) {
       el('tab-' + t).addEventListener('click', function () { setTab(t); });
     });
+    /* Anything carrying data-goto jumps to that tab. One delegated listener on
+       the document, bound once, so a control rendered later still works. */
+    document.addEventListener('click', function (e) {
+      var go = e.target.closest ? e.target.closest('[data-goto]') : null;
+      if (go) setTab(go.getAttribute('data-goto'));
+    });
+
     el('tab-cockpit').parentNode.addEventListener('keydown', function (e) {
       var i = TABS.indexOf(active), n = null;
       if (e.key === 'ArrowRight') n = TABS[(i + 1) % TABS.length];
@@ -3336,6 +3419,9 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
       if (i >= 1 && i <= TABS.length) { setTab(TABS[i - 1]); el('tab-' + TABS[i - 1]).focus(); }
     });
     window.addEventListener('hashchange', readHash);
+    /* pushState does not fire hashchange, and Back fires popstate first - listen
+       for both so the tab always matches the URL whichever way it changed */
+    window.addEventListener('popstate', readHash);
 
     var raf = null;
     window.addEventListener('resize', function () {
