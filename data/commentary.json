@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-07-31T09:47:24.504Z",
+  "generatedAt": "2026-08-01T07:58:19.074Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
@@ -182,7 +182,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "note": "classification failed: 401 Unauthorized for https://api.mistral.ai/v1/chat/completions",
+      "note": "classification failed: Reply missing required keys: quarters",
       "tones": [
         {
           "quarter": "Q2 FY26",
@@ -1561,15 +1561,33 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
+        "Q4 FY25",
         "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26",
-        "Q4 FY26"
+        "Q3 FY26"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
       "tones": [
+        {
+          "quarter": "Q4 FY25",
+          "toneId": "neutral",
+          "score": 3,
+          "quote": "operating income was Rs.1,539 crores, up 99.5% from the previous quarter, but down by 15% on year-on-year basis",
+          "rationale": "The management presented mixed results with both positive and negative aspects, indicating a neutral stance.",
+          "driver": "operating income",
+          "direction": "neutral",
+          "signal": "Management did not provide clear guidance on future capex or demand outlook, focusing instead on past performance.",
+          "mgmtDataPoints": [
+            "Q4 operating income: Rs.1,539 crores",
+            "Q4 EBITDA: INR 163 crores",
+            "Q4 net profit: Rs.107 crores",
+            "FY25 operating income: Rs.6,023 crores"
+          ],
+          "implication": "The mixed results suggest that the company may continue to experience variability in performance in the coming quarters.",
+          "doc": "Concall transcript (Q4 FY25)"
+        },
         {
           "quarter": "Q1 FY26",
           "toneId": "cautious",
@@ -1620,22 +1638,6 @@
           ],
           "implication": "Expect continued caution as SM price declines may further impact financial results.",
           "doc": "Concall transcript (Q3 FY26)"
-        },
-        {
-          "quarter": "Q4 FY26",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "revenue from the operations for the 4th Quarter stood at INR 1,587 crores, reflecting a growth of 3%",
-          "rationale": "Management highlighted revenue growth and better spreads, indicating a constructive outlook.",
-          "driver": "revenue growth",
-          "direction": "positive",
-          "signal": "Management is constructive as higher volumes and better spreads drive revenue growth.",
-          "mgmtDataPoints": [
-            "Revenue: INR 1,587 crores",
-            "Operating EBITDA: INR 253 crores"
-          ],
-          "implication": "Expect a more positive outlook with potential for continued growth in revenue and margins.",
-          "doc": "Concall transcript (Q4 FY26)"
         }
       ]
     },
