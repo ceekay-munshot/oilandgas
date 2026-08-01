@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-01T07:56:48.912Z",
+  "generatedAt": "2026-08-01T09:11:24.346Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 373,
-    "realCells": 256,
-    "nullCells": 117,
-    "kpis": 96,
-    "kpisWithTrend": 65
+    "kpiCells": 377,
+    "realCells": 259,
+    "nullCells": 118,
+    "kpis": 97,
+    "kpisWithTrend": 66
   },
   "companies": {
     "deep-industries": {
@@ -1515,7 +1515,7 @@
       "provider": "openai",
       "model": "gpt-4o",
       "ctxChars": 34052,
-      "note": "extraction failed: Reply missing required keys: kpis",
+      "note": "extraction failed: 429 Too Many Requests for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "order-book",
@@ -2421,7 +2421,7 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 27368,
+      "ctxChars": 33887,
       "note": "extraction failed: Reply missing required keys: kpis",
       "kpis": [
         {
@@ -3764,16 +3764,15 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
-        "Q4 FY25",
         "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26"
+        "Q3 FY26",
+        "Q4 FY26"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32913,
-      "note": "extraction failed: Reply missing required keys: kpis",
+      "ctxChars": 32914,
       "kpis": [
         {
           "id": "sps-spread",
@@ -3811,7 +3810,7 @@
             null
           ],
           "flag": null,
-          "notes": "Styrene-polystyrene spread not mentioned in any excerpt."
+          "notes": "Styrene-polystyrene spread not stated in any quarter."
         },
         {
           "id": "volume",
@@ -3819,10 +3818,10 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
-            95556,
             93853,
             76962,
-            91265
+            91265,
+            100664
           ],
           "sourceTags": [
             "company-filing",
@@ -3838,11 +3837,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 23 Apr 2025",
-              "quote": "96,255 95,556 Q4-FY24 Q4-FY25",
-              "page": 20
-            },
-            {
               "doc": "Concall Transcript - 30 Apr 2026",
               "quote": "Company's sales volume of manufactured products in the 1st Quarter of FY '26 increased by 0.5% only on a year-on-year basis to 93,853 MT",
               "page": 3
@@ -3856,6 +3850,11 @@
               "doc": "Concall Transcript - 26 Jan 2026",
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
               "page": 3
+            },
+            {
+              "doc": "Presentation - 24 Apr 2026",
+              "quote": "95,556 1,00,664 Q4-FY25 Q4-FY26",
+              "page": 16
             }
           ],
           "oneOffs": [
@@ -3864,8 +3863,59 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "decelerating",
           "notes": null
+        },
+        {
+          "id": "capacity-utilisation",
+          "label": "Capacity utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            null,
+            79,
+            80,
+            80
+          ],
+          "sourceTags": [
+            null,
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            null,
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 26 Jan 2026",
+              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 30 Apr 2026",
+              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
+              "page": 3
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "beyondBrief": true,
+          "notes": "From Screener Insights row \"Capacity Utilization\" (Standalone data); latest value cited to Concall Transcript - 31 Oct 2025, page 5."
         }
       ]
     },
@@ -4287,8 +4337,8 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33329,
-      "note": "extraction failed: Reply missing required keys: kpis",
+      "ctxChars": 32870,
+      "note": "extraction failed: 429 Too Many Requests for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
