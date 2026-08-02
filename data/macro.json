@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-08-01T08:37:46.166Z",
+  "generatedAt": "2026-08-02T08:43:43.833Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -10,7 +10,7 @@
   "coverage": {
     "tilesLive": 6,
     "tilesTotal": 6,
-    "linesLive": 9,
+    "linesLive": 7,
     "linesTotal": 9
   },
   "tiles": [
@@ -95,60 +95,12 @@
           "shortLabel": "Indian",
           "color": "#9A3412",
           "primary": false,
-          "status": "live",
-          "source": "PPAC, Ministry of Petroleum & Natural Gas - Indian Crude Basket, monthly average",
-          "sourceTag": "official",
-          "asOf": "2026-07-01",
-          "series": [
-            {
-              "date": "2025-08-01",
-              "value": 69.11
-            },
-            {
-              "date": "2025-09-01",
-              "value": 69.61
-            },
-            {
-              "date": "2025-10-01",
-              "value": 65.08
-            },
-            {
-              "date": "2025-11-01",
-              "value": 64.31
-            },
-            {
-              "date": "2025-12-01",
-              "value": 62.2
-            },
-            {
-              "date": "2026-01-01",
-              "value": 63.08
-            },
-            {
-              "date": "2026-02-01",
-              "value": 69.01
-            },
-            {
-              "date": "2026-03-01",
-              "value": 113.49
-            },
-            {
-              "date": "2026-04-01",
-              "value": 114.48
-            },
-            {
-              "date": "2026-05-01",
-              "value": 106.23
-            },
-            {
-              "date": "2026-06-01",
-              "value": 83.22
-            },
-            {
-              "date": "2026-07-01",
-              "value": 81.52
-            }
-          ]
+          "status": "awaiting",
+          "source": null,
+          "sourceTag": "unknown",
+          "asOf": null,
+          "series": [],
+          "awaitingReason": "Request failed for https://ppac.gov.in/AjaxController/getInternationalPricesCrudeOil: fetch failed"
         },
         {
           "id": "wti",
@@ -367,17 +319,12 @@
           "shortLabel": "APM",
           "color": "#0891B2",
           "primary": false,
-          "status": "live",
-          "source": "PPAC, Ministry of Petroleum & Natural Gas - domestic gas notification for 1 August 2026 to 31 August 2026, issued 2026-07-31 (https://ppac.gov.in/download.php?file=importantnews/1785497891_Dom_Gas_Price_Aug_2026.pdf)",
-          "sourceTag": "official",
-          "notes": "ONGC/OIL nomination-gas ceiling of $7.00/mmbtu, below the notified price of $7.86. This month only - PPAC publishes each month as a separate scanned notification.",
-          "asOf": "2026-08-01",
-          "series": [
-            {
-              "date": "2026-08-01",
-              "value": 7
-            }
-          ]
+          "status": "awaiting",
+          "source": null,
+          "sourceTag": "unknown",
+          "asOf": null,
+          "series": [],
+          "awaitingReason": "PPAC listed no gas-price notification to read"
         }
       ]
     },
