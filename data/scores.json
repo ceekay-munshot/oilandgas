@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-01T09:13:05.995Z",
+  "generatedAt": "2026-08-02T07:59:26.056Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -1099,12 +1099,12 @@
   ],
   "changes": [
     {
-      "kind": "alert",
-      "text": "New alert: Supreme Petrochem moved 2 tone steps up (cautious → constructive) in Q4 FY26."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-01T07:58:30.891Z",
+    "generatedAt": "2026-08-01T09:13:05.995Z",
     "asOf": "Q4 FY26",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
@@ -1124,7 +1124,8 @@
       "tone-petronet-lng",
       "tone-ratnamani",
       "tone-reliance",
-      "tone-shipping-corp"
+      "tone-shipping-corp",
+      "tone-supreme-petrochem"
     ]
   }
 }

@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-01T09:11:24.346Z",
+  "generatedAt": "2026-08-02T07:57:22.057Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -1515,7 +1515,7 @@
       "provider": "openai",
       "model": "gpt-4o",
       "ctxChars": 34052,
-      "note": "extraction failed: 429 Too Many Requests for https://api.mistral.ai/v1/chat/completions",
+      "note": "extraction failed: Reply missing required keys: kpis",
       "kpis": [
         {
           "id": "order-book",
@@ -1827,7 +1827,8 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34307,
+      "ctxChars": 33393,
+      "note": "extraction failed: Reply missing required keys: kpis",
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -2421,7 +2422,7 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33887,
+      "ctxChars": 33042,
       "note": "extraction failed: Reply missing required keys: kpis",
       "kpis": [
         {
@@ -2576,7 +2577,8 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34133,
+      "ctxChars": 33765,
+      "note": "extraction failed: Reply missing required keys: kpis",
       "kpis": [
         {
           "id": "grm",
@@ -2718,7 +2720,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 31836,
+      "ctxChars": 31274,
       "note": "extraction failed: Reply missing required keys: kpis",
       "kpis": [
         {
@@ -3772,7 +3774,8 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32914,
+      "ctxChars": 32670,
+      "note": "extraction failed: Reply missing required keys: kpis",
       "kpis": [
         {
           "id": "sps-spread",
@@ -4337,8 +4340,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32870,
-      "note": "extraction failed: 429 Too Many Requests for https://api.mistral.ai/v1/chat/completions",
+      "ctxChars": 32763,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
