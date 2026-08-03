@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-02T09:13:49.707Z",
+  "generatedAt": "2026-08-03T09:03:41.958Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -30,10 +30,9 @@
         "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 33679,
-      "note": "extraction failed: Reply missing required keys: kpis",
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -80,7 +79,7 @@
         {
           "id": "day-rate",
           "label": "Day-rate",
-          "unit": "$/day",
+          "unit": "₹/day or $/day",
           "flagBasis": "level",
           "values": [
             null,
@@ -113,7 +112,7 @@
             null
           ],
           "flag": null,
-          "notes": "Day-rate not explicitly stated in any quarter."
+          "notes": "Day-rate not disclosed in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. Management discussed utilization (100% for drilling/workover rigs), fleet composition (20 onshore rigs), and offshore barge contract run-rates, but no "
         },
         {
           "id": "order-book",
@@ -1512,10 +1511,9 @@
         "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 34052,
-      "note": "extraction failed: Reply missing required keys: kpis",
       "kpis": [
         {
           "id": "order-book",
@@ -1570,7 +1568,7 @@
         {
           "id": "line-pipe-order-inflow",
           "label": "Line-pipe order inflow",
-          "unit": "₹ cr / MT",
+          "unit": "₹ cr",
           "flagBasis": "level",
           "values": [
             null,
@@ -1603,7 +1601,7 @@
             null
           ],
           "flag": null,
-          "notes": "Line-pipe order inflow not explicitly stated for any quarter."
+          "notes": "Order inflow (new orders received in the quarter) is not stated in any excerpt. The excerpts provide order book (stock measure) at various quarter-ends: Q2 FY26 ₹23,500 cr, Q3 FY26 ₹23,600 cr, Q4 FY26 ₹25,350 cr, Q1 FY27 ₹24,750 cr (as of 2"
         },
         {
           "id": "line-pipe-volume",
@@ -1827,8 +1825,7 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33393,
-      "note": "extraction failed: Reply missing required keys: kpis",
+      "ctxChars": 34307,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -2002,10 +1999,9 @@
         "Q4 FY26"
       ],
       "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 31992,
-      "note": "extraction failed: Reply missing required keys: kpis",
       "kpis": [
         {
           "id": "grm",
@@ -2043,7 +2039,7 @@
             null
           ],
           "flag": "inflecting-up",
-          "notes": "Q4 FY26 GRM not disclosed; policy paused due to volatility."
+          "notes": "Q4 FY25: $7.85/bbl reported GRM with inventory gain stated. Q1 FY26: $2.15/bbl reported GRM with ~₹6,500 cr inventory loss stated. Q2 FY26: $10.66/bbl reported GRM, no one-off mentioned. Q4 FY26: No GRM figure stated in any excerpt."
         },
         {
           "id": "marketing-margin",
@@ -2081,7 +2077,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin not stated in excerpts"
+          "notes": "No marketing margin per litre figure stated in any excerpt for any quarter. Excerpts discuss LPG under-recovery per cylinder and qualitative margin commentary but no ₹/l marketing margin metric."
         },
         {
           "id": "throughput",
@@ -2422,8 +2418,7 @@
       "asOf": "Q1 FY27",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 27219,
-      "note": "extraction failed: Reply missing required keys: kpis",
+      "ctxChars": 27888,
       "kpis": [
         {
           "id": "grm",
@@ -2717,10 +2712,9 @@
         "Q3 FY26"
       ],
       "asOf": "Q3 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 31836,
-      "note": "extraction failed: Reply missing required keys: kpis",
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -2812,7 +2806,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin not stated in any excerpt."
+          "notes": "Petchem margin in $/t not stated in any of the excerpts. The documents report petrochemical sales volumes (TMT) and production volumes, but do not disclose the margin per tonne in dollars or any other currency. The Q2 FY26 concall mentions "
         },
         {
           "id": "gas-marketing-volume",
@@ -3773,8 +3767,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32810,
-      "note": "extraction failed: Reply missing required keys: kpis",
+      "ctxChars": 32914,
       "kpis": [
         {
           "id": "sps-spread",
@@ -4337,10 +4330,9 @@
         "Q4 FY26"
       ],
       "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
-      "ctxChars": 32882,
-      "note": "extraction failed: Reply missing required keys: kpis",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "ctxChars": 32989,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4378,7 +4370,7 @@
             null
           ],
           "flag": null,
-          "notes": "No specific POL/LPG/LNG throughput data found."
+          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not spe"
         },
         {
           "id": "total-cargo-volume",
@@ -4926,7 +4918,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15455,
+      "ctxChars": 15961,
       "kpis": [
         {
           "id": "order-book",

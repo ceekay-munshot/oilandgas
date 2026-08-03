@@ -2,14 +2,14 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-02T09:15:26.793Z",
+  "generatedAt": "2026-08-03T09:04:14.134Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
     "companies": 27,
     "quarterCells": 102,
-    "tonedQuarters": 97,
-    "nullQuarters": 5
+    "tonedQuarters": 98,
+    "nullQuarters": 4
   },
   "companies": {
     "ongc": {
@@ -179,10 +179,9 @@
         "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
-      "note": "classification failed: Reply missing required keys: quarters",
+      "asOf": "Q1 FY27",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
         {
           "quarter": "Q2 FY26",
@@ -238,16 +237,23 @@
         },
         {
           "quarter": "Q1 FY27",
-          "toneId": null,
-          "score": null,
-          "quote": null,
-          "rationale": null,
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
-          "doc": null
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Energy security over short-term expediency and natural gas as the critical bridge fuel... Deep positioned as covering over 70% of the post-exploration services value chain",
+          "rationale": "Management is very upbeat about structural policy tailwinds, 40% revenue growth, expanding capacity, 100% rig utilization, and guiding >25% consolidated growth.",
+          "driver": "upstream policy pivot and E&P acceleration",
+          "direction": "positive",
+          "signal": "Management is planning disciplined capex expansion (₹150 cr by March 2027 for PEC, exploring higher-capacity rigs) backed by strong order execution visibility and structural demand from India's exploration-first policy shift.",
+          "mgmtDataPoints": [
+            "Order book: ₹3,047 cr as of 30 Jun 2026",
+            "FY27 execution guidance: ~₹800 cr",
+            "Standalone growth FY27: ~18–20%",
+            "Consolidated growth FY27: >25%",
+            "EBITDA margin range: ~43–45%",
+            "PEC capex by March 2027: ~₹150 cr"
+          ],
+          "implication": "Expect continued strong execution through H1 FY27 driven by high rig utilization and order-book conversion, with incremental PEC revenue kicking in from Q3 FY27 onward as production ramps post-incident recovery.",
+          "doc": "Concall AI summary (Q1 FY27)"
         }
       ]
     },

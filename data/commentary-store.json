@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-02T09:15:38.359Z",
+  "generatedAt": "2026-08-03T09:04:24.162Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -247,9 +247,32 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:19:17.330Z"
+        },
+        "Q1 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Energy security over short-term expediency and natural gas as the critical bridge fuel... Deep positioned as covering over 70% of the post-exploration services value chain",
+          "rationale": "Management is very upbeat about structural policy tailwinds, 40% revenue growth, expanding capacity, 100% rig utilization, and guiding >25% consolidated growth.",
+          "driver": "upstream policy pivot and E&P acceleration",
+          "direction": "positive",
+          "signal": "Management is planning disciplined capex expansion (₹150 cr by March 2027 for PEC, exploring higher-capacity rigs) backed by strong order execution visibility and structural demand from India's exploration-first policy shift.",
+          "mgmtDataPoints": [
+            "Order book: ₹3,047 cr as of 30 Jun 2026",
+            "FY27 execution guidance: ~₹800 cr",
+            "Standalone growth FY27: ~18–20%",
+            "Consolidated growth FY27: >25%",
+            "EBITDA margin range: ~43–45%",
+            "PEC capex by March 2027: ~₹150 cr"
+          ],
+          "implication": "Expect continued strong execution through H1 FY27 driven by high rig utilization and order-book conversion, with incremental PEC revenue kicking in from Q3 FY27 onward as production ramps post-incident recovery.",
+          "doc": "Concall AI summary (Q1 FY27)",
+          "fingerprint": "dc40ab8df820",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-03T09:04:14.153Z"
         }
       },
-      "updatedAt": "2026-07-28T18:19:17.330Z"
+      "updatedAt": "2026-08-03T09:04:14.153Z"
     },
     "jindal-drilling": {
       "cells": {
