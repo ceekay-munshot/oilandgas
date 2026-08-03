@@ -16,6 +16,7 @@
 
 import { HttpError, LlmSchemaError, MissingCredentialError } from './errors.mjs';
 import { request } from './http.mjs';
+import { callClaudeBedrock } from './llm-bedrock.mjs';
 
 /**
  * Models are deliberately NOT the cheap tier.
@@ -69,6 +70,14 @@ export async function callLLM({
   schemaName = 'result',
   maxTokens = 2048
 }) {
+  // Additive Claude/Bedrock path (lib/llm-bedrock.mjs) - reroutes only when
+  // explicitly toggled, so every existing deployment (LLM_PROVIDER unset)
+  // hits the OpenAI branch below exactly as before. Delete llm-bedrock.mjs
+  // and this guard to remove the Claude path entirely.
+  if (provider === 'openai' && process.env.LLM_PROVIDER === 'claude') {
+    return callClaudeBedrock({ model, apiKey, system, user, schema, schemaName, maxTokens });
+  }
+
   const spec = PROVIDERS[provider];
   if (!spec) throw new LlmSchemaError(`Unknown provider "${provider}"`, { provider });
 

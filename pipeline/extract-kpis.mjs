@@ -274,7 +274,7 @@ async function main() {
   }
   if (seeded) console.log(`seeded ${seeded} previously extracted cells from data/kpis.json\n`);
 
-  let usedProvider = null;
+  let usedProvider = null, usedModel = null;
   let calls = 0, skippedCalls = 0, totalGained = 0, totalKept = 0;
   let insFilledCells = 0, insCorrected = 0, derivedCells = 0, deckCells = 0;
   for (const id of ids) {
@@ -402,7 +402,8 @@ async function main() {
       for (const provider of providers) {
         try {
           raw = await callLLM({ provider, system, user, schema: KPI_SCHEMA, schemaName: 'kpis', maxTokens: 3000 });
-          usedProvider = provider;
+          usedProvider = (raw && raw.__provider) || provider;
+          usedModel = (raw && raw.__model) || null;
           break;
         } catch (e) { err = e; }
       }
@@ -411,7 +412,7 @@ async function main() {
       if (raw) {
         merged = mergeIntoStore({
           store, companyId: id, quarters, fingerprint,
-          model: usedProvider ? resolvedModel(usedProvider) : null, at,
+          model: usedModel || (usedProvider ? resolvedModel(usedProvider) : null), at,
           kpiObjects: normalizeResult(raw, plan.ask, quarters, { flatBandPct })
         });
       } else {
@@ -463,7 +464,7 @@ async function main() {
     out.companies[id] = {
       name, slug, quarters, asOf: asOfFrom(kpiObjects, quarters),
       provider: called && usedProvider ? usedProvider : (prior && prior.provider) || null,
-      model: called && usedProvider ? resolvedModel(usedProvider) : (prior && prior.model) || null,
+      model: called && usedProvider ? (usedModel || resolvedModel(usedProvider)) : (prior && prior.model) || null,
       ctxChars,
       ...(note ? { note } : {}),
       kpis: kpiObjects
