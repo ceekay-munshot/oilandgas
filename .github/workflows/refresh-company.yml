@@ -67,6 +67,13 @@ jobs:
       # Optional: override the extraction model without a code change.
       OPENAI_MODEL:      ${{ vars.OPENAI_MODEL }}
       MISTRAL_MODEL:     ${{ vars.MISTRAL_MODEL }}
+      # Additive Claude/Bedrock path (pipeline/lib/llm-bedrock.mjs) - inert
+      # unless LLM_PROVIDER is set to "claude" as a repo variable; unset/any
+      # other value keeps every run on the OpenAI path exactly as before.
+      LLM_PROVIDER:            ${{ vars.LLM_PROVIDER }}
+      CLAUDE_BEDROCK_API_KEY:  ${{ secrets.temp_claude_token }}
+      BEDROCK_REGION:          ${{ vars.BEDROCK_REGION }}
+      BEDROCK_MODEL_ID:        ${{ vars.BEDROCK_MODEL_ID }}
 
     steps:
       - uses: actions/checkout@v4

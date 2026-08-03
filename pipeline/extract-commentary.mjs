@@ -155,7 +155,7 @@ async function main() {
   const storePath = resolve(ROOT, 'data/commentary-store.json');
   const store = { ...freshStore(), companies: (await readJson(storePath, {})).companies || {} };
 
-  let usedProvider = null;
+  let usedProvider = null, usedModel = null;
   let calls = 0, skippedCalls = 0, totalGained = 0;
   for (const id of ids) {
     const name = nameById[id] || id;
@@ -225,7 +225,8 @@ async function main() {
       for (const provider of providers) {
         try {
           raw = await callLLM({ provider, system, user, schema: TONE_SCHEMA, schemaName: 'commentary', maxTokens: 1500 });
-          usedProvider = provider;
+          usedProvider = (raw && raw.__provider) || provider;
+          usedModel = (raw && raw.__model) || null;
           break;
         } catch (e) { err = e; }
       }
@@ -233,7 +234,7 @@ async function main() {
       if (raw) {
         merged = mergeIntoStore({
           store, companyId: id, fingerprint, at, docByQuarter,
-          model: usedProvider ? resolvedModel(usedProvider) : null,
+          model: usedModel || (usedProvider ? resolvedModel(usedProvider) : null),
           tones: normalizeResult(raw, askWithText),
           /* --refresh re-asks a settled quarter on purpose, so its answer has to
              be allowed to land. Without this the run pays for every call and
@@ -255,7 +256,7 @@ async function main() {
     out.companies[id] = {
       name, slug: slugById[id], quarters, asOf: asOfFrom(tones),
       provider: called && usedProvider ? usedProvider : (prior && prior.provider) || null,
-      model: called && usedProvider ? resolvedModel(usedProvider) : (prior && prior.model) || null,
+      model: called && usedProvider ? (usedModel || resolvedModel(usedProvider)) : (prior && prior.model) || null,
       ...(note ? { note } : {}),
       tones
     };
