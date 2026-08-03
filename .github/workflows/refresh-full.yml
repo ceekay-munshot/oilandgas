@@ -57,7 +57,7 @@ jobs:
       # Additive Claude/Bedrock path (pipeline/lib/llm-bedrock.mjs) - inert
       # unless LLM_PROVIDER is set to "claude" as a repo variable; unset/any
       # other value keeps every run on the OpenAI path exactly as before.
-      LLM_PROVIDER:            ${{ vars.LLM_PROVIDER }}
+      LLM_PROVIDER:            ${{ vars.LLM_PROVIDER || 'claude' }}
       CLAUDE_BEDROCK_API_KEY:  ${{ secrets.temp_claude_token }}
       BEDROCK_REGION:          ${{ vars.BEDROCK_REGION }}
       BEDROCK_MODEL_ID:        ${{ vars.BEDROCK_MODEL_ID }}
