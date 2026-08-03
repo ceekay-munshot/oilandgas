@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-03T09:03:41.958Z",
+  "generatedAt": "2026-08-03T10:41:23.809Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -1823,9 +1823,9 @@
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
-      "provider": "openai",
-      "model": "gpt-4o",
-      "ctxChars": 34307,
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "ctxChars": 33393,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -1863,7 +1863,7 @@
             null
           ],
           "flag": null,
-          "notes": "O2C EBITDA per tonne not stated in any excerpt."
+          "notes": "O2C EBITDA per tonne not stated in any excerpt. Q2 FY26 EBITDA was ₹17,010 cr (Q1 FY27 per investor PPT p.10) but throughput not given for that quarter. Screener shows Q2 FY26 throughput 20.8 MMT but no EBITDA per tonne figure is reported."
         },
         {
           "id": "petchem-margin",
@@ -1901,7 +1901,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin not stated in any excerpt."
+          "notes": "Petchem margin in $/t not stated. Q1 FY27 concall mentions 'downstream chemical deltas at 3-4 year high' and ethane advantage but no numeric margin per tonne. Q4 FY26 and Q3 FY26 concalls discuss delta movements qualitatively (PE/PP/PVC/pol"
         },
         {
           "id": "retail-fuel-margin",
@@ -1939,7 +1939,7 @@
             null
           ],
           "flag": null,
-          "notes": "Retail fuel margin not stated in any excerpt."
+          "notes": "Retail fuel margin per litre not stated. Q1 FY27 concall mentions 'under-recovery in domestic fuel retail' and Q4 FY26 mentions 'under-recoveries in fuel retail' but no numeric margin. Screener shows Jio-bp outlet count but no margin data."
         },
         {
           "id": "kgd6-gas-production",
@@ -4332,7 +4332,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32989,
+      "ctxChars": 33448,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4370,7 +4370,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not spe"
+          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not bre"
         },
         {
           "id": "total-cargo-volume",
