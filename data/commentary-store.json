@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-03T10:41:39.281Z",
+  "generatedAt": "2026-08-04T08:23:40.436Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -1745,9 +1745,32 @@
           "attempts": 1,
           "model": "gpt-4o",
           "at": "2026-07-30T08:01:06.439Z"
+        },
+        "Q1 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "operating EBITDA stood at INR 331 crores, reflecting a strong growth of 188% year-on-year, with operating EBITDA margins improving to 19.53%",
+          "rationale": "Management highlights exceptional 188% EBITDA growth and strong margin expansion despite lower volumes, emphasizing benefits from favorable international market dynamics.",
+          "driver": "styrene-polystyrene margin spread",
+          "direction": "positive",
+          "signal": "Management conveyed that wider international deltas between styrene monomer and downstream products drove exceptional profitability, suggesting sustained margin strength in the near term.",
+          "mgmtDataPoints": [
+            "Q1 FY27 revenue: INR 1693 crores",
+            "Q1 FY27 operating EBITDA: INR 331 crores",
+            "Q1 FY27 operating EBITDA margin: 19.53%",
+            "Q1 FY27 total EBITDA: INR 348 crores",
+            "Q1 FY27 total EBITDA margin: 20.3%",
+            "Q1 FY27 PAT: INR 236 crores"
+          ],
+          "implication": "The exceptional margin performance driven by favorable international spreads suggests continued strong profitability in Q2 if the styrene-downstream product delta remains wide, though volume growth remains a watch point.",
+          "doc": "Concall transcript (Q1 FY27)",
+          "fingerprint": "612da63f2898",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-04T08:23:32.360Z"
         }
       },
-      "updatedAt": "2026-07-30T08:01:06.439Z"
+      "updatedAt": "2026-08-04T08:23:32.360Z"
     },
     "castrol-india": {
       "cells": {

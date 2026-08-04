@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-03T10:41:23.809Z",
+  "generatedAt": "2026-08-04T08:23:03.759Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 377,
-    "realCells": 259,
-    "nullCells": 118,
+    "realCells": 258,
+    "nullCells": 119,
     "kpis": 97,
     "kpisWithTrend": 66
   },
@@ -1825,7 +1825,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33393,
+      "ctxChars": 34307,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -1863,7 +1863,7 @@
             null
           ],
           "flag": null,
-          "notes": "O2C EBITDA per tonne not stated in any excerpt. Q2 FY26 EBITDA was ₹17,010 cr (Q1 FY27 per investor PPT p.10) but throughput not given for that quarter. Screener shows Q2 FY26 throughput 20.8 MMT but no EBITDA per tonne figure is reported."
+          "notes": "O2C EBITDA per tonne not stated in any excerpt. Q2 FY26 EBITDA was ₹17,010 crore but throughput not disclosed for that quarter. Q3 FY26 and Q4 FY26 EBITDA figures not stated. Q1 FY27 EBITDA was ₹17,010 crore but throughput not disclosed for"
         },
         {
           "id": "petchem-margin",
@@ -1901,7 +1901,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated. Q1 FY27 concall mentions 'downstream chemical deltas at 3-4 year high' and ethane advantage but no numeric margin per tonne. Q4 FY26 and Q3 FY26 concalls discuss delta movements qualitatively (PE/PP/PVC/pol"
+          "notes": "Petchem margin in $/t not stated for any quarter. Q1 FY27 concall mentions 'downstream chemical deltas at 3-4 year high' and discusses various product deltas qualitatively (PE, PP, PVC, polyester) but does not provide a single petchem margi"
         },
         {
           "id": "retail-fuel-margin",
@@ -1939,7 +1939,7 @@
             null
           ],
           "flag": null,
-          "notes": "Retail fuel margin per litre not stated. Q1 FY27 concall mentions 'under-recovery in domestic fuel retail' and Q4 FY26 mentions 'under-recoveries in fuel retail' but no numeric margin. Screener shows Jio-bp outlet count but no margin data."
+          "notes": "Retail fuel margin in ₹/l not stated for any quarter. Q2 FY26 and Q1 FY27 concalls mention 'under-recovery in domestic fuel retail' and 'SAED related costs' as headwinds but do not quantify the margin per litre. No figures for Q3 or Q4 FY26"
         },
         {
           "id": "kgd6-gas-production",
@@ -2416,9 +2416,9 @@
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
-      "provider": "openai",
-      "model": "gpt-4o",
-      "ctxChars": 27888,
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "ctxChars": 33887,
       "kpis": [
         {
           "id": "grm",
@@ -2506,7 +2506,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin not explicitly stated in any quarter."
+          "notes": "Marketing margin in ₹/l not disclosed in any of the excerpts. Q3 FY25 concall mentions 'adverse marketing margins' and inventory loss of ₹722 crore but no per-litre figure. Q4 FY25 concall discusses LPG under-recovery per cylinder but no re"
         },
         {
           "id": "throughput",
@@ -3759,15 +3759,15 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
-      "ctxChars": 32914,
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "ctxChars": 32913,
       "kpis": [
         {
           "id": "sps-spread",
@@ -3805,7 +3805,7 @@
             null
           ],
           "flag": null,
-          "notes": "Styrene-polystyrene spread not stated in any quarter."
+          "notes": "Q2 FY26: No styrene-polystyrene spread figure stated. Q3 FY26: No styrene-polystyrene spread figure stated. Q4 FY26: No styrene-polystyrene spread figure stated. Q1 FY27: Management mentioned 'Wider delta in the international markets betwee"
         },
         {
           "id": "volume",
@@ -3813,29 +3813,24 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
-            93853,
             76962,
             91265,
-            100664
+            100664,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 30 Apr 2026",
-              "quote": "Company's sales volume of manufactured products in the 1st Quarter of FY '26 increased by 0.5% only on a year-on-year basis to 93,853 MT",
-              "page": 3
-            },
             {
               "doc": "Presentation - 24 Oct 2025",
               "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
@@ -3850,7 +3845,8 @@
               "doc": "Presentation - 24 Apr 2026",
               "quote": "95,556 1,00,664 Q4-FY25 Q4-FY26",
               "page": 16
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -3859,7 +3855,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Sales Volume (Manufactured Products)\" (Standalone data); latest value cited to Presentation - 24 Oct 2025, page 15."
         },
         {
           "id": "capacity-utilisation",
@@ -3867,25 +3863,24 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            null,
             79,
             80,
-            80
+            80,
+            null
           ],
           "sourceTags": [
-            null,
             "company-filing",
             "company-filing",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
-            null,
             "insights",
             "insights",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            null,
             {
               "doc": "Concall Transcript - 31 Oct 2025",
               "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
@@ -3900,7 +3895,8 @@
               "doc": "Concall Transcript - 30 Apr 2026",
               "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
               "page": 3
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -4332,7 +4328,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33448,
+      "ctxChars": 32870,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4370,7 +4366,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not bre"
+          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not spe"
         },
         {
           "id": "total-cargo-volume",
@@ -4441,7 +4437,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34375,
+      "ctxChars": 34291,
       "kpis": [
         {
           "id": "tanker-freight-rate",
