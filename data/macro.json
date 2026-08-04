@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-08-03T10:10:39.338Z",
+  "generatedAt": "2026-08-04T09:17:58.256Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -98,12 +98,8 @@
           "status": "live",
           "source": "PPAC, Ministry of Petroleum & Natural Gas - Indian Crude Basket, monthly average",
           "sourceTag": "official",
-          "asOf": "2026-07-01",
+          "asOf": "2026-08-01",
           "series": [
-            {
-              "date": "2025-08-01",
-              "value": 69.11
-            },
             {
               "date": "2025-09-01",
               "value": 69.61
@@ -147,6 +143,11 @@
             {
               "date": "2026-07-01",
               "value": 82.04
+            },
+            {
+              "date": "2026-08-01",
+              "value": 88.12,
+              "partial": true
             }
           ]
         },
@@ -303,9 +304,9 @@
       "supportsWhy": "Cheaper feedstock widens petrochemical margins.",
       "standIn": "The cost side only - no free Indian polymer assessment exists to pair it with, so this is not a petchem margin.",
       "status": "live",
-      "source": "Trading Economics - naphtha spot (direct fetch)",
+      "source": "Trading Economics - naphtha spot (scraper)",
       "sourceTag": "external",
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-03",
       "lines": [
         {
           "id": "naphtha",
@@ -314,14 +315,14 @@
           "color": "#7C3AED",
           "primary": true,
           "status": "live",
-          "source": "Trading Economics - naphtha spot (direct fetch)",
+          "source": "Trading Economics - naphtha spot (scraper)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-07-31",
+          "asOf": "2026-08-03",
           "series": [
             {
-              "date": "2026-07-31",
-              "value": 778.41,
+              "date": "2026-08-03",
+              "value": 732.55,
               "spot": true
             }
           ]
@@ -338,7 +339,7 @@
       "supports": "down",
       "supportsWhy": "Cheaper imported gas means more of it gets burned here.",
       "status": "live",
-      "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
+      "source": "Trading Economics - LNG Japan/Korea Marker spot (scraper)",
       "sourceTag": "external",
       "asOf": "2026-07-31",
       "lines": [
@@ -349,7 +350,7 @@
           "color": "#7C3AED",
           "primary": true,
           "status": "live",
-          "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
+          "source": "Trading Economics - LNG Japan/Korea Marker spot (scraper)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
           "asOf": "2026-07-31",
@@ -393,7 +394,7 @@
       "status": "live",
       "source": "Frankfurter / European Central Bank reference rates, monthly mean of daily",
       "sourceTag": "official",
-      "asOf": "2026-07-01",
+      "asOf": "2026-08-01",
       "lines": [
         {
           "id": "inr-usd",
@@ -403,7 +404,7 @@
           "status": "live",
           "source": "Frankfurter / European Central Bank reference rates, monthly mean of daily",
           "sourceTag": "official",
-          "asOf": "2026-07-01",
+          "asOf": "2026-08-01",
           "series": [
             {
               "date": "2025-09-01",
@@ -448,6 +449,11 @@
             {
               "date": "2026-07-01",
               "value": 95.83
+            },
+            {
+              "date": "2026-08-01",
+              "value": 95.34,
+              "partial": true
             }
           ]
         }
