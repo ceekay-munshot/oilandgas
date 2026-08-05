@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-08-04T09:17:58.256Z",
+  "generatedAt": "2026-08-05T09:15:25.492Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -146,7 +146,7 @@
             },
             {
               "date": "2026-08-01",
-              "value": 88.12,
+              "value": 86.65,
               "partial": true
             }
           ]
@@ -304,9 +304,9 @@
       "supportsWhy": "Cheaper feedstock widens petrochemical margins.",
       "standIn": "The cost side only - no free Indian polymer assessment exists to pair it with, so this is not a petchem margin.",
       "status": "live",
-      "source": "Trading Economics - naphtha spot (scraper)",
+      "source": "Trading Economics - naphtha spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-08-03",
+      "asOf": "2026-08-04",
       "lines": [
         {
           "id": "naphtha",
@@ -315,14 +315,14 @@
           "color": "#7C3AED",
           "primary": true,
           "status": "live",
-          "source": "Trading Economics - naphtha spot (scraper)",
+          "source": "Trading Economics - naphtha spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-08-03",
+          "asOf": "2026-08-04",
           "series": [
             {
-              "date": "2026-08-03",
-              "value": 732.55,
+              "date": "2026-08-04",
+              "value": 683.23,
               "spot": true
             }
           ]
@@ -339,9 +339,9 @@
       "supports": "down",
       "supportsWhy": "Cheaper imported gas means more of it gets burned here.",
       "status": "live",
-      "source": "Trading Economics - LNG Japan/Korea Marker spot (scraper)",
+      "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-07-31",
+      "asOf": "2026-08-04",
       "lines": [
         {
           "id": "jkm",
@@ -350,14 +350,14 @@
           "color": "#7C3AED",
           "primary": true,
           "status": "live",
-          "source": "Trading Economics - LNG Japan/Korea Marker spot (scraper)",
+          "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-07-31",
+          "asOf": "2026-08-04",
           "series": [
             {
-              "date": "2026-07-31",
-              "value": 21.45,
+              "date": "2026-08-04",
+              "value": 21.18,
               "spot": true
             }
           ]
@@ -452,7 +452,7 @@
             },
             {
               "date": "2026-08-01",
-              "value": 95.34,
+              "value": 95.36,
               "partial": true
             }
           ]
