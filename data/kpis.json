@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-04T08:23:03.759Z",
+  "generatedAt": "2026-08-05T08:26:44.965Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -789,9 +789,9 @@
         "Q2 FY26"
       ],
       "asOf": "Q2 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
-      "ctxChars": 21419,
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "ctxChars": 21412,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -824,7 +824,7 @@
             null
           ],
           "flag": null,
-          "notes": "Capex spend vs budget not stated in any excerpt."
+          "notes": "Q3 FY25: No capex vs budget figure stated in excerpts. Q4 FY25: No capex vs budget figure stated; only full-year and multi-year capex guidance mentioned (₹30,000-35,000 cr/year E&P capex). Q2 FY26: No capex vs budget figure stated; only gui"
         },
         {
           "id": "production-volume",
@@ -902,7 +902,7 @@
             null
           ],
           "flag": null,
-          "notes": "New well count not stated in any excerpt."
+          "notes": "Q3 FY25: Excerpt states '9M FY25: 353 development, 60 exploratory' (cumulative for 9 months), not the Q3 quarter alone. Q4 FY25: Excerpt states 'Record 578 wells drilled (109 exploratory, 469 development)' for full FY25, not Q4 alone. Q2 FY"
         },
         {
           "id": "gas-production",
@@ -2570,9 +2570,9 @@
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
-      "provider": "openai",
-      "model": "gpt-4o",
-      "ctxChars": 34133,
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "ctxChars": 33354,
       "kpis": [
         {
           "id": "grm",
@@ -2610,7 +2610,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": "Q2 FY26 GRM $8.8/bbl, Q3 FY26 GRM $8.85/bbl, Q4 FY26 and Q1 FY27 not stated."
+          "notes": "Q2 FY26: $8.8/bbl stated in Q2 concall (management: 'quarter 2 GRM was $8.8 per barrel'). Q3 FY26: Q3 concall AI summary reports '$8.85/bbl' but also mentions Mumbai crude contamination impact; management stated without contamination GRM wo"
         },
         {
           "id": "marketing-margin",
@@ -2648,7 +2648,7 @@
             null
           ],
           "flag": null,
-          "notes": "No marketing margin figures provided"
+          "notes": "No marketing margin per liter figures stated in any of the quarterly excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. LPG under-recoveries are mentioned (₹5,200 cr for FY26, ₹1,350 cr for Q4) and per-cylinder LPG losses (₹170/cylinder Ap"
         },
         {
           "id": "throughput",
@@ -2714,7 +2714,7 @@
       "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31836,
+      "ctxChars": 31102,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -2806,7 +2806,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated in any of the excerpts. The documents report petrochemical sales volumes (TMT) and production volumes, but do not disclose the margin per tonne in dollars or any other currency. The Q2 FY26 concall mentions "
+          "notes": "Petchem margin not stated in any of the excerpts. The documents report petrochemical sales volumes (TMT) and production volumes, but do not disclose the margin per tonne in $/t or any other unit for Q4 FY25, Q1 FY26, Q2 FY26, or Q3 FY26."
         },
         {
           "id": "gas-marketing-volume",
@@ -4328,7 +4328,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32870,
+      "ctxChars": 33740,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",

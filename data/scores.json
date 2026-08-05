@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-04T08:23:40.492Z",
+  "generatedAt": "2026-08-05T08:27:16.785Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -329,11 +329,11 @@
   },
   "macro": {
     "supporting": 1,
-    "opposing": 2,
-    "silent": 3,
-    "macroBias": "down",
+    "opposing": 1,
+    "silent": 4,
+    "macroBias": "mixed",
     "scoreBias": "down",
-    "agree": true,
+    "agree": null,
     "conflict": false,
     "tiles": [
       {
@@ -371,10 +371,10 @@
       {
         "id": "inr-usd",
         "label": "USD/INR",
-        "direction": "rising",
-        "percentile": 100,
+        "direction": "flat",
+        "percentile": 82,
         "supports": "down",
-        "vote": "opposes"
+        "vote": "silent"
       },
       {
         "id": "baltic-dirty",
@@ -578,7 +578,7 @@
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude falling (64th pctile); Crack spread rising (100th pctile); USD/INR rising (100th pctile)."
+      "text": "Crude falling (64th pctile); Crack spread rising (100th pctile); USD/INR flat (82th pctile)."
     },
     {
       "id": "divergence",
@@ -1072,13 +1072,13 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-03T10:41:39.340Z",
+    "generatedAt": "2026-08-04T08:23:40.492Z",
     "asOf": "Q4 FY26",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": -7,
-      "coincident": -39,
+      "coincident": -42,
       "lagging": 0
     },
     "alertIds": [
@@ -1092,8 +1092,7 @@
       "tone-petronet-lng",
       "tone-ratnamani",
       "tone-reliance",
-      "tone-shipping-corp",
-      "tone-supreme-petrochem"
+      "tone-shipping-corp"
     ]
   }
 }

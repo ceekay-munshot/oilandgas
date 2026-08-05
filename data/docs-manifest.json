@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-04T08:22:58.431Z",
+  "generatedAt": "2026-08-05T08:26:39.816Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -1270,9 +1270,9 @@
           "periodIso": "2026-05",
           "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
           "source": "investors.larsentoubro.com",
-          "status": "ok",
-          "chars": 85469,
-          "pages": 28,
+          "status": "http_503",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/transcript-2026-05.txt"
         },
@@ -1283,9 +1283,9 @@
           "periodIso": "2026-01",
           "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Transcript%20Q3FY26.pdf",
           "source": "investors.larsentoubro.com",
-          "status": "ok",
-          "chars": 60083,
-          "pages": 19,
+          "status": "http_503",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/transcript-2026-01.txt"
         },
@@ -1296,9 +1296,9 @@
           "periodIso": "2025-10",
           "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf",
           "source": "investors.larsentoubro.com",
-          "status": "ok",
-          "chars": 67509,
-          "pages": 25,
+          "status": "http_503",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/transcript-2025-10.txt"
         },
@@ -1309,9 +1309,9 @@
           "periodIso": "2025-07",
           "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Earnings%20Call%20Transcript%20Q1FY26.pdf",
           "source": "investors.larsentoubro.com",
-          "status": "ok",
-          "chars": 55122,
-          "pages": 20,
+          "status": "http_503",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/transcript-2025-07.txt"
         },
@@ -1322,9 +1322,9 @@
           "periodIso": "2025-05",
           "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2025AnalysttransL&T%20Q4FY25%20Earnings%20Call%20Transcript.pdf",
           "source": "investors.larsentoubro.com",
-          "status": "ok",
-          "chars": 73754,
-          "pages": 28,
+          "status": "http_503",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/transcript-2025-05.txt"
         },
@@ -1335,9 +1335,9 @@
           "periodIso": "2025-01",
           "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2025AnalysttransL&T%20Transcript%20Q3FY25.pdf",
           "source": "investors.larsentoubro.com",
-          "status": "ok",
-          "chars": 59555,
-          "pages": 21,
+          "status": "http_503",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/transcript-2025-01.txt"
         }
@@ -4381,9 +4381,23 @@
         "pros": 4,
         "cons": 2
       },
-      "summariesAvailable": 42,
+      "summariesAvailable": 43,
       "transcriptsFound": 41,
       "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://www.screener.in/concalls/summary/23269797/",
+          "source": "screener.in",
+          "status": "gated",
+          "chars": 88,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GESHIP/summary-2026-08.txt",
+          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+        },
         {
           "type": "summary",
           "role": "summary",
@@ -4452,20 +4466,6 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GESHIP/summary-2025-05.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Jan 2025",
-          "periodIso": "2025-01",
-          "url": "https://www.screener.in/concalls/summary/22975086/",
-          "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/GESHIP/summary-2025-01.txt",
           "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
         }
       ],
