@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-05T08:26:44.965Z",
+  "generatedAt": "2026-08-06T08:14:45.926Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 377,
-    "realCells": 258,
-    "nullCells": 119,
+    "kpiCells": 373,
+    "realCells": 257,
+    "nullCells": 116,
     "kpis": 97,
-    "kpisWithTrend": 66
+    "kpisWithTrend": 65
   },
   "companies": {
     "deep-industries": {
@@ -784,14 +784,13 @@
       "name": "ONGC",
       "slug": "ONGC",
       "quarters": [
-        "Q3 FY25",
         "Q4 FY25",
         "Q2 FY26"
       ],
       "asOf": "Q2 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 21412,
+      "ctxChars": 15412,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -800,31 +799,26 @@
           "flagBasis": "level",
           "values": [
             null,
-            null,
             null
           ],
           "sourceTags": [
-            null,
             null,
             null
           ],
           "origins": [
             null,
-            null,
             null
           ],
           "citations": [
-            null,
             null,
             null
           ],
           "oneOffs": [
             null,
-            null,
             null
           ],
           "flag": null,
-          "notes": "Q3 FY25: No capex vs budget figure stated in excerpts. Q4 FY25: No capex vs budget figure stated; only full-year and multi-year capex guidance mentioned (₹30,000-35,000 cr/year E&P capex). Q2 FY26: No capex vs budget figure stated; only gui"
+          "notes": "Q4 FY25: No capex vs budget figure stated in excerpts. Q2 FY26: No capex vs budget figure stated in excerpts. The Q4 FY25 concall mentions FY25 full-year capex guidance of INR 30,000-35,000 crore but does not break down quarterly spend or b"
         },
         {
           "id": "production-volume",
@@ -832,26 +826,18 @@
           "unit": "MMT",
           "flagBasis": "level",
           "values": [
-            4.92,
             4.96,
             4.63
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing",
             "company-filing"
           ],
           "origins": [
             "insights",
-            "insights",
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Presentation - 03 Feb 2025",
-              "quote": "Crude Oil (MMT) FY'25: Q3: 4.92",
-              "page": 7
-            },
             {
               "doc": "Presentation - 03 Feb 2025",
               "quote": "Crude Oil (MMT) FY'25: 9M: 14.64; FY25 total standalone: 19.598",
@@ -865,10 +851,9 @@
           ],
           "oneOffs": [
             null,
-            null,
             null
           ],
-          "flag": "decelerating",
+          "flag": null,
           "notes": null
         },
         {
@@ -878,31 +863,26 @@
           "flagBasis": "level",
           "values": [
             null,
-            null,
             null
           ],
           "sourceTags": [
-            null,
             null,
             null
           ],
           "origins": [
             null,
-            null,
             null
           ],
           "citations": [
-            null,
             null,
             null
           ],
           "oneOffs": [
             null,
-            null,
             null
           ],
           "flag": null,
-          "notes": "Q3 FY25: Excerpt states '9M FY25: 353 development, 60 exploratory' (cumulative for 9 months), not the Q3 quarter alone. Q4 FY25: Excerpt states 'Record 578 wells drilled (109 exploratory, 469 development)' for full FY25, not Q4 alone. Q2 FY"
+          "notes": "Q4 FY25: Only full-year FY25 figure stated (578 wells drilled: 109 exploratory, 469 development). No Q4 FY25 standalone quarter figure provided. Q2 FY26: No new well count stated for Q2 FY26 in excerpts."
         },
         {
           "id": "gas-production",
@@ -910,26 +890,18 @@
           "unit": "BCM",
           "flagBasis": "level",
           "values": [
-            4.97,
             4.91,
             null
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing",
             null
           ],
           "origins": [
             "insights",
-            "insights",
             null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 03 Feb 2025",
-              "quote": "Natural Gas (BCM) FY'25: Q3: 4.97",
-              "page": 7
-            },
             {
               "doc": "Presentation - 03 Feb 2025",
               "quote": "Natural Gas (BCM) FY'25: 9M: 14.74; FY25 total standalone: 19.654",
@@ -938,7 +910,6 @@
             null
           ],
           "oneOffs": [
-            null,
             null,
             null
           ],
@@ -2001,7 +1972,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31992,
+      "ctxChars": 31059,
       "kpis": [
         {
           "id": "grm",
@@ -2012,19 +1983,19 @@
             7.85,
             2.15,
             10.66,
-            null
+            15.59
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "mgmt-claim",
-            null
+            "company-filing"
           ],
           "origins": [
             "model",
             "model",
             "model",
-            null
+            "model"
           ],
           "citations": [
             null,
@@ -2038,8 +2009,8 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
-          "notes": "Q4 FY25: $7.85/bbl reported GRM with inventory gain stated. Q1 FY26: $2.15/bbl reported GRM with ~₹6,500 cr inventory loss stated. Q2 FY26: $10.66/bbl reported GRM, no one-off mentioned. Q4 FY26: No GRM figure stated in any excerpt."
+          "flag": "decelerating",
+          "notes": null
         },
         {
           "id": "marketing-margin",
@@ -2077,7 +2048,7 @@
             null
           ],
           "flag": null,
-          "notes": "No marketing margin per litre figure stated in any excerpt for any quarter. Excerpts discuss LPG under-recovery per cylinder and qualitative margin commentary but no ₹/l marketing margin metric."
+          "notes": "Marketing margin in ₹/l not stated in any excerpt. Q4 FY25 concall mentions 'Q4 margins on other marketing products were better vis-à-vis earlier quarters' but no ₹/l figure. Q1 FY26 and Q2 FY26 concalls discuss LPG under-recovery per cylin"
         },
         {
           "id": "throughput",
@@ -2418,7 +2389,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33887,
+      "ctxChars": 27940,
       "kpis": [
         {
           "id": "grm",
@@ -2506,7 +2477,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin in ₹/l not disclosed in any of the excerpts. Q3 FY25 concall mentions 'adverse marketing margins' and inventory loss of ₹722 crore but no per-litre figure. Q4 FY25 concall discusses LPG under-recovery per cylinder but no re"
+          "notes": "Marketing margin in ₹/l not explicitly stated in any of the excerpts. Q3 FY25 summary mentions 'adverse marketing margins' and inventory loss of ₹722 crore but no per-litre figure. Q4 FY25 summary discusses LPG under-recoveries per cylinder"
         },
         {
           "id": "throughput",
@@ -2572,7 +2543,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33354,
+      "ctxChars": 34133,
       "kpis": [
         {
           "id": "grm",
@@ -2610,7 +2581,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": "Q2 FY26: $8.8/bbl stated in Q2 concall (management: 'quarter 2 GRM was $8.8 per barrel'). Q3 FY26: Q3 concall AI summary reports '$8.85/bbl' but also mentions Mumbai crude contamination impact; management stated without contamination GRM wo"
+          "notes": "Q2 FY26: $8.8/bbl stated in Q2 concall (\"quarter 2 GRM was $8.8 per barrel\"). Q3 FY26: Reported GRM $8.85/bbl stated in Q3 AI summary, but management quantified Mumbai crude contamination impact: without it would have been $10.24/bbl - this"
         },
         {
           "id": "marketing-margin",
@@ -2648,7 +2619,7 @@
             null
           ],
           "flag": null,
-          "notes": "No marketing margin per liter figures stated in any of the quarterly excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. LPG under-recoveries are mentioned (₹5,200 cr for FY26, ₹1,350 cr for Q4) and per-cylinder LPG losses (₹170/cylinder Ap"
+          "notes": "No marketing margin per liter stated in any of the four quarters. Excerpts discuss LPG under-recoveries in absolute terms (₹5,200 cr for FY26, ₹1,350 cr for Q4) and per-cylinder losses (₹170/cyl April, ₹670/cyl May in Q1 FY27 context), but "
         },
         {
           "id": "throughput",
@@ -2714,7 +2685,7 @@
       "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31102,
+      "ctxChars": 31836,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -2806,7 +2777,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin not stated in any of the excerpts. The documents report petrochemical sales volumes (TMT) and production volumes, but do not disclose the margin per tonne in $/t or any other unit for Q4 FY25, Q1 FY26, Q2 FY26, or Q3 FY26."
+          "notes": "Petchem margin in $/t not stated in any of the excerpts. The documents report petrochemical sales volumes (TMT) and production volumes, but do not disclose the margin per tonne in dollars or any other currency. The Q2 FY26 concall mentions "
         },
         {
           "id": "gas-marketing-volume",
@@ -3042,7 +3013,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34038,
+      "ctxChars": 32235,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3661,9 +3632,9 @@
         "Q4 FY26"
       ],
       "asOf": "Q3 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
-      "ctxChars": 33034,
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "ctxChars": 33121,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3751,7 +3722,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % was not explicitly stated in any of the provided excerpts."
+          "notes": "Terminal utilisation % not stated in any of the excerpts for Q1, Q2, Q3, or Q4 FY26. The SCREENER INSIGHTS table shows capacity figures (LPG Static Storage Capacity, Liquid Storage Capacity) but no utilisation percentages. The concall trans"
         }
       ]
     },
@@ -4328,7 +4299,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33740,
+      "ctxChars": 32763,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4437,7 +4408,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34291,
+      "ctxChars": 34338,
       "kpis": [
         {
           "id": "tanker-freight-rate",

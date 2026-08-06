@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-05T08:27:16.785Z",
+  "generatedAt": "2026-08-06T08:15:44.875Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,17 +38,17 @@
   "asOf": "Q4 FY26",
   "scores": {
     "leading": {
-      "score": -7,
+      "score": -4,
       "prev": -50,
-      "delta": 39,
+      "delta": 44,
       "deltaBasis": "kpi-only",
       "level": "flat",
       "direction": "rising",
-      "kpisScored": 13,
+      "kpisScored": 12,
       "kpisTotal": 23,
       "kpisBeyondBrief": 6,
       "tonesScored": 8,
-      "companiesScored": 8,
+      "companiesScored": 7,
       "staleKpis": 8,
       "oneOffKpis": 1,
       "unknownKpis": 0,
@@ -108,9 +108,9 @@
       ]
     },
     "coincident": {
-      "score": -42,
+      "score": -48,
       "prev": -9,
-      "delta": -36,
+      "delta": -47,
       "deltaBasis": "kpi-only",
       "level": "strong-negative",
       "direction": "falling",
@@ -126,13 +126,6 @@
       "weakestTag": "derived",
       "reducedConfidence": true,
       "signals": [
-        {
-          "kind": "kpi",
-          "companyId": "iocl",
-          "company": "IOCL",
-          "label": "GRM",
-          "flag": "inflecting-up"
-        },
         {
           "kind": "kpi",
           "companyId": "iocl",
@@ -305,7 +298,7 @@
     }
   },
   "divergence": {
-    "value": 35,
+    "value": 44,
     "leadingSign": 0,
     "coincidentSign": -1,
     "signsDiffer": false
@@ -314,7 +307,7 @@
     null,
     null,
     -41,
-    34
+    50
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -323,7 +316,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading -7 (flat, rising), coincident -42 (strong-negative, falling), lagging 0 (flat).",
+      "Leading -4 (flat, rising), coincident -48 (strong-negative, falling), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -573,7 +566,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are strongly negative and falling — IOCL GRM, IOCL Throughput, BPCL GRM."
+      "text": "Coincident indicators are strongly negative and falling — IOCL Throughput, BPCL GRM, Petronet LNG Regas utilisation %."
     },
     {
       "id": "macro",
@@ -583,7 +576,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +35. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +44. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -1067,12 +1060,12 @@
   ],
   "changes": [
     {
-      "kind": "none",
-      "text": "Nothing material moved since the last refresh."
+      "kind": "score",
+      "text": "Moving now moved down 6 points to -48."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-04T08:23:40.492Z",
+    "generatedAt": "2026-08-05T08:27:16.785Z",
     "asOf": "Q4 FY26",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
