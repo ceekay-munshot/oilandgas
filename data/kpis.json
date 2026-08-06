@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-06T08:14:45.926Z",
+  "generatedAt": "2026-08-06T09:43:51.083Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -13,9 +13,9 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 373,
+    "kpiCells": 377,
     "realCells": 257,
-    "nullCells": 116,
+    "nullCells": 120,
     "kpis": 97,
     "kpisWithTrend": 65
   },
@@ -785,12 +785,13 @@
       "slug": "ONGC",
       "quarters": [
         "Q4 FY25",
-        "Q2 FY26"
+        "Q2 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q2 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 15412,
+      "ctxChars": 21412,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -799,26 +800,31 @@
           "flagBasis": "level",
           "values": [
             null,
+            null,
             null
           ],
           "sourceTags": [
+            null,
             null,
             null
           ],
           "origins": [
             null,
+            null,
             null
           ],
           "citations": [
+            null,
             null,
             null
           ],
           "oneOffs": [
             null,
+            null,
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: No capex vs budget figure stated in excerpts. Q2 FY26: No capex vs budget figure stated in excerpts. The Q4 FY25 concall mentions FY25 full-year capex guidance of INR 30,000-35,000 crore but does not break down quarterly spend or b"
+          "notes": "Q4 FY25: No capex vs budget figure stated in excerpts. Q2 FY26: No capex vs budget figure stated in excerpts. Q1 FY27: No capex vs budget figure stated in excerpts. The concall summaries mention capex guidance ranges (₹30,000-35,000 cr/year"
         },
         {
           "id": "production-volume",
@@ -827,15 +833,18 @@
           "flagBasis": "level",
           "values": [
             4.96,
-            4.63
+            4.63,
+            null
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
             "insights",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
             {
@@ -847,14 +856,16 @@
               "doc": "Concall Transcript - 11 Nov 2025",
               "quote": "The standalone crude oil production during Q2 FY26 and H1 FY26 were 4.630 million metric tons and 9.314 million metric tons",
               "page": 2
-            }
+            },
+            null
           ],
           "oneOffs": [
+            null,
             null,
             null
           ],
           "flag": null,
-          "notes": null
+          "notes": "From Screener Insights row \"Crude Oil Production (Standalone)\" (Standalone data); latest value cited to Presentation - 03 Feb 2025, page 7."
         },
         {
           "id": "new-well-count",
@@ -863,26 +874,31 @@
           "flagBasis": "level",
           "values": [
             null,
+            null,
             null
           ],
           "sourceTags": [
+            null,
             null,
             null
           ],
           "origins": [
             null,
+            null,
             null
           ],
           "citations": [
+            null,
             null,
             null
           ],
           "oneOffs": [
             null,
+            null,
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: Only full-year FY25 figure stated (578 wells drilled: 109 exploratory, 469 development). No Q4 FY25 standalone quarter figure provided. Q2 FY26: No new well count stated for Q2 FY26 in excerpts."
+          "notes": "Q4 FY25: Concall mentions 'Record 578 wells drilled (109 exploratory, 469 development)' but this is stated as FY25 full-year, not Q4 alone. Q2 FY26: No quarterly well count stated. Q1 FY27: No quarterly well count stated. Only the full-year"
         },
         {
           "id": "gas-production",
@@ -891,14 +907,17 @@
           "flagBasis": "level",
           "values": [
             4.91,
+            null,
             null
           ],
           "sourceTags": [
             "company-filing",
+            null,
             null
           ],
           "origins": [
             "insights",
+            null,
             null
           ],
           "citations": [
@@ -907,9 +926,11 @@
               "quote": "Natural Gas (BCM) FY'25: 9M: 14.74; FY25 total standalone: 19.654",
               "page": 7
             },
+            null,
             null
           ],
           "oneOffs": [
+            null,
             null,
             null
           ],
@@ -3013,7 +3034,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32235,
+      "ctxChars": 34038,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3414,9 +3435,9 @@
         "Q4 FY26"
       ],
       "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
-      "ctxChars": 34004,
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "ctxChars": 33995,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3508,7 +3529,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not explicitly stated in any excerpt."
+          "notes": "Terminal utilisation percentage is not explicitly stated in any of the excerpts for Q1, Q2, Q3, or Q4 FY26. The management calls mention 'higher utilization levels', 'improved utilization', 'high utilization', and 'very high utilization rat"
         },
         {
           "id": "lpg-distribution-volume",

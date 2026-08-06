@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-06T08:15:44.875Z",
+  "generatedAt": "2026-08-06T09:44:15.015Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,11 +38,11 @@
   "asOf": "Q4 FY26",
   "scores": {
     "leading": {
-      "score": -4,
+      "score": 11,
       "prev": -50,
       "delta": 44,
       "deltaBasis": "kpi-only",
-      "level": "flat",
+      "level": "positive",
       "direction": "rising",
       "kpisScored": 12,
       "kpisTotal": 23,
@@ -96,7 +96,7 @@
           "companyId": "ongc",
           "company": "ONGC",
           "label": "Upstream capex intent",
-          "flag": "tone-down"
+          "flag": "tone-up"
         },
         {
           "kind": "tone",
@@ -298,10 +298,10 @@
     }
   },
   "divergence": {
-    "value": 44,
-    "leadingSign": 0,
+    "value": 59,
+    "leadingSign": 1,
     "coincidentSign": -1,
-    "signsDiffer": false
+    "signsDiffer": true
   },
   "divergenceSeries": [
     null,
@@ -316,7 +316,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading -4 (flat, rising), coincident -48 (strong-negative, falling), lagging 0 (flat).",
+      "Leading 11 (positive, rising), coincident -48 (strong-negative, falling), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -333,7 +333,7 @@
         "id": "brent",
         "label": "Crude",
         "direction": "falling",
-        "percentile": 64,
+        "percentile": 73,
         "supports": "up",
         "vote": "opposes"
       },
@@ -341,7 +341,7 @@
         "id": "crack-spread",
         "label": "Crack spread",
         "direction": "rising",
-        "percentile": 100,
+        "percentile": 91,
         "supports": "up",
         "vote": "supports"
       },
@@ -387,6 +387,16 @@
   },
   "toneDrift": [
     {
+      "companyId": "ongc",
+      "name": "ONGC",
+      "from": "cautious",
+      "to": "confident",
+      "fromQuarter": "Q2 FY26",
+      "quarter": "Q1 FY27",
+      "steps": 3,
+      "direction": "up"
+    },
+    {
       "companyId": "petronet-lng",
       "name": "Petronet LNG",
       "from": "constructive",
@@ -425,16 +435,6 @@
       "quarter": "Q1 FY27",
       "steps": 3,
       "direction": "up"
-    },
-    {
-      "companyId": "ongc",
-      "name": "ONGC",
-      "from": "constructive",
-      "to": "cautious",
-      "fromQuarter": "Q4 FY25",
-      "quarter": "Q2 FY26",
-      "steps": -2,
-      "direction": "down"
     },
     {
       "companyId": "ratnamani",
@@ -486,6 +486,12 @@
   ],
   "alerts": [
     {
+      "id": "divergence",
+      "severity": "high",
+      "kind": "divergence",
+      "text": "Leading and coincident have split: the front of the chain has turned up while the middle has not."
+    },
+    {
       "id": "stage-macro",
       "severity": "review",
       "kind": "stage-macro",
@@ -496,6 +502,12 @@
       "severity": "info",
       "kind": "low-coverage",
       "text": "Moves first: 9 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    },
+    {
+      "id": "tone-ongc",
+      "severity": "info",
+      "kind": "tone-drift",
+      "text": "ONGC moved 3 tone steps up (cautious → confident) in Q1 FY27."
     },
     {
       "id": "tone-petronet-lng",
@@ -520,12 +532,6 @@
       "severity": "info",
       "kind": "tone-drift",
       "text": "Gandhar Oil moved 3 tone steps up (cautious → confident) in Q1 FY27."
-    },
-    {
-      "id": "tone-ongc",
-      "severity": "warn",
-      "kind": "tone-drift",
-      "text": "ONGC moved 2 tone steps down (constructive → cautious) in Q2 FY26."
     },
     {
       "id": "tone-ratnamani",
@@ -561,7 +567,7 @@
     {
       "id": "leading",
       "label": "Leading indicators",
-      "text": "Leading indicators are flat and rising — driven by Engineers India Order inflow, Engineers India Order book, L&T Hydrocarbon order inflow."
+      "text": "Leading indicators are positive and rising — driven by Engineers India Order inflow, Engineers India Order book, L&T Hydrocarbon order inflow."
     },
     {
       "id": "coincident",
@@ -571,17 +577,17 @@
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude falling (64th pctile); Crack spread rising (100th pctile); USD/INR flat (82th pctile)."
+      "text": "Crude falling (73th pctile); Crack spread rising (91th pctile); USD/INR flat (82th pctile)."
     },
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +44. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +59. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "Petronet LNG (constructive → defensive); Mahanagar Gas (confident → cautious); Castrol India (confident → cautious); Gandhar Oil (cautious → confident); ONGC (constructive → cautious); Ratnamani Metals (neutral → defensive); and 3 more."
+      "text": "ONGC (cautious → confident); Petronet LNG (constructive → defensive); Mahanagar Gas (confident → cautious); Castrol India (confident → cautious); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); and 3 more."
     },
     {
       "id": "implication",
@@ -627,17 +633,17 @@
       "label": "Upstream capex intent",
       "bucket": "leading",
       "listenFor": "Capex/drilling guidance up, flat or down; new block awards; rig additions or deferrals; tendering activity from ONGC/OIL",
-      "state": "4 companies heard, leaning positive (2 positive, 1 negative); ONGC moved 2 steps down.",
+      "state": "4 companies heard, leaning positive (3 positive, 0 negative); ONGC moved 3 steps up.",
       "mood": "positive",
       "members": [
         {
           "companyId": "ongc",
           "name": "ONGC",
-          "toneId": "cautious",
-          "quarter": "Q2 FY26",
-          "direction": "negative",
-          "driver": "production guidance",
-          "drift": -2
+          "toneId": "confident",
+          "quarter": "Q1 FY27",
+          "direction": "positive",
+          "driver": "gas portfolio transformation",
+          "drift": 3
         },
         {
           "companyId": "oil-india",
@@ -671,11 +677,11 @@
         {
           "companyId": "ongc",
           "name": "ONGC",
-          "toneId": "cautious",
-          "quarter": "Q2 FY26",
-          "direction": "negative",
-          "driver": "production guidance",
-          "drift": -2
+          "toneId": "confident",
+          "quarter": "Q1 FY27",
+          "direction": "positive",
+          "driver": "gas portfolio transformation",
+          "drift": 3
         },
         {
           "companyId": "oil-india",
@@ -1061,17 +1067,21 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moving now moved down 6 points to -48."
+      "text": "Moves first moved up 15 points to 11."
+    },
+    {
+      "kind": "alert",
+      "text": "New alert: Leading and coincident have split: the front of the chain has turned up while the middle has not."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-05T08:27:16.785Z",
+    "generatedAt": "2026-08-06T08:15:44.875Z",
     "asOf": "Q4 FY26",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
-      "leading": -7,
-      "coincident": -42,
+      "leading": -4,
+      "coincident": -48,
       "lagging": 0
     },
     "alertIds": [

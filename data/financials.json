@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Company financials (raw context from Screener)",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-06T08:14:40.969Z",
+  "generatedAt": "2026-08-06T09:43:46.526Z",
   "source": "Screener.in (consolidated where available)",
   "sourceTag": "external",
   "tag": "[External]",
@@ -6213,7 +6213,7 @@
               34.19,
               20.37
             ],
-            "Expenses -": [
+            "Expenses": [
               335,
               284,
               355,
@@ -6226,48 +6226,6 @@
               478,
               587,
               647
-            ],
-            "Manufacturing Cost %": [
-              48,
-              72,
-              75,
-              66,
-              69,
-              55,
-              61,
-              55,
-              49,
-              52,
-              59,
-              0
-            ],
-            "Employee Cost %": [
-              10,
-              12,
-              12,
-              18,
-              16,
-              21,
-              17,
-              16,
-              14,
-              12,
-              11,
-              9
-            ],
-            "Other Cost %": [
-              4,
-              5,
-              9,
-              56,
-              10,
-              290,
-              12,
-              3,
-              6,
-              13,
-              2,
-              56
             ],
             "Operating Profit": [
               205,
@@ -6297,7 +6255,7 @@
               29,
               35
             ],
-            "Other Income -": [
+            "Other Income": [
               42,
               127,
               89,
@@ -6310,34 +6268,6 @@
               29,
               131,
               80
-            ],
-            "Exceptional items": [
-              25,
-              11,
-              7,
-              13,
-              3,
-              1,
-              0,
-              0,
-              1,
-              1,
-              4,
-              -4
-            ],
-            "Other income normal": [
-              17,
-              116,
-              82,
-              43,
-              79,
-              33,
-              8,
-              32,
-              45,
-              28,
-              127,
-              84
             ],
             "Interest": [
               12,
@@ -6441,15 +6371,10 @@
           "order": [
             "Sales -",
             "Sales Growth %",
-            "Expenses -",
-            "Manufacturing Cost %",
-            "Employee Cost %",
-            "Other Cost %",
+            "Expenses",
             "Operating Profit",
             "OPM %",
-            "Other Income -",
-            "Exceptional items",
-            "Other income normal",
+            "Other Income",
             "Interest",
             "Depreciation",
             "Profit before tax",
@@ -6906,7 +6831,7 @@
           "Company has been maintaining a healthy dividend payout of 33.1%"
         ],
         "cons": [
-          "Stock is trading at 5.10 times its book value"
+          "Stock is trading at 5.08 times its book value"
         ]
       },
       "sectionsFound": [
@@ -8597,7 +8522,7 @@
               2.52,
               -13.35
             ],
-            "Expenses": [
+            "Expenses -": [
               1388,
               1431,
               1155,
@@ -8610,6 +8535,62 @@
               4162,
               4363,
               3736
+            ],
+            "Material Cost %": [
+              66,
+              66,
+              62,
+              65,
+              69,
+              66,
+              64,
+              67,
+              66,
+              66,
+              65,
+              60
+            ],
+            "Manufacturing Cost %": [
+              8,
+              9,
+              10,
+              12,
+              10,
+              10,
+              10,
+              10,
+              10,
+              10,
+              11,
+              12
+            ],
+            "Employee Cost %": [
+              5,
+              6,
+              7,
+              6,
+              5,
+              6,
+              6,
+              5,
+              5,
+              5,
+              6,
+              8
+            ],
+            "Other Cost %": [
+              2,
+              2,
+              2,
+              2,
+              1,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              3
             ],
             "Operating Profit": [
               300,
@@ -8639,7 +8620,7 @@
               16,
               17
             ],
-            "Other Income": [
+            "Other Income -": [
               26,
               16,
               14,
@@ -8652,6 +8633,34 @@
               73,
               60,
               112
+            ],
+            "Exceptional items": [
+              0,
+              -2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2,
+              2,
+              -10
+            ],
+            "Other income normal": [
+              25,
+              17,
+              14,
+              32,
+              41,
+              59,
+              43,
+              37,
+              33,
+              71,
+              58,
+              122
             ],
             "Interest": [
               9,
@@ -8755,10 +8764,16 @@
           "order": [
             "Sales -",
             "Sales Growth %",
-            "Expenses",
+            "Expenses -",
+            "Material Cost %",
+            "Manufacturing Cost %",
+            "Employee Cost %",
+            "Other Cost %",
             "Operating Profit",
             "OPM %",
-            "Other Income",
+            "Other Income -",
+            "Exceptional items",
+            "Other income normal",
             "Interest",
             "Depreciation",
             "Profit before tax",
@@ -12122,7 +12137,7 @@
               10,
               8
             ],
-            "Other Income -": [
+            "Other Income": [
               5860,
               5219,
               4356,
@@ -12136,36 +12151,6 @@
               7112,
               7139,
               6550
-            ],
-            "Exceptional items": [
-              1710,
-              1423,
-              -103,
-              31,
-              -2,
-              -11305,
-              2,
-              12,
-              0,
-              370,
-              1945,
-              0,
-              null
-            ],
-            "Other income normal": [
-              4149,
-              3796,
-              4459,
-              4300,
-              4099,
-              4140,
-              4694,
-              4306,
-              5124,
-              5015,
-              5167,
-              7139,
-              null
             ],
             "Interest": [
               4201,
@@ -12283,9 +12268,7 @@
             "Other Cost %",
             "Operating Profit",
             "OPM %",
-            "Other Income -",
-            "Exceptional items",
-            "Other income normal",
+            "Other Income",
             "Interest",
             "Depreciation",
             "Profit before tax",
@@ -13309,7 +13292,7 @@
               9,
               5
             ],
-            "Other Income": [
+            "Other Income -": [
               2117,
               1913,
               2721,
@@ -13323,6 +13306,36 @@
               3629,
               4399,
               6536
+            ],
+            "Exceptional items": [
+              -3,
+              -34,
+              -37,
+              -36,
+              4,
+              -1937,
+              5244,
+              1138,
+              -1121,
+              -268,
+              -369,
+              -346,
+              null
+            ],
+            "Other income normal": [
+              2120,
+              1947,
+              2758,
+              2963,
+              2971,
+              3330,
+              2245,
+              3802,
+              3675,
+              3300,
+              3998,
+              4745,
+              null
             ],
             "Interest": [
               1180,
@@ -13440,7 +13453,9 @@
             "Other Cost %",
             "Operating Profit",
             "OPM %",
-            "Other Income",
+            "Other Income -",
+            "Exceptional items",
+            "Other income normal",
             "Interest",
             "Depreciation",
             "Profit before tax",
@@ -19316,7 +19331,7 @@
       "slug": "AEGISLOG",
       "view": "consolidated",
       "url": "https://www.screener.in/company/AEGISLOG/consolidated/",
-      "asOf": "2026-03",
+      "asOf": "2026-06",
       "sourceTag": "external",
       "source": "Screener.in",
       "analysis": {
@@ -19327,7 +19342,7 @@
           "Debtor days have improved from 28.4 to 21.1 days."
         ],
         "cons": [
-          "Stock is trading at 7.96 times its book value",
+          "Stock is trading at 8.05 times its book value",
           "Company might be capitalizing the interest cost"
         ]
       },
@@ -19342,7 +19357,6 @@
       "tables": {
         "quarters": {
           "periods": [
-            "Mar 2023",
             "Jun 2023",
             "Sep 2023",
             "Dec 2023",
@@ -19354,10 +19368,10 @@
             "Jun 2025",
             "Sep 2025",
             "Dec 2025",
-            "Mar 2026"
+            "Mar 2026",
+            "Jun 2026"
           ],
           "periodsIso": [
-            "2023-03",
             "2023-06",
             "2023-09",
             "2023-12",
@@ -19369,11 +19383,11 @@
             "2025-06",
             "2025-09",
             "2025-12",
-            "2026-03"
+            "2026-03",
+            "2026-06"
           ],
           "rows": {
             "Sales -": [
-              2154,
               2101,
               1235,
               1873,
@@ -19385,10 +19399,10 @@
               1719,
               2294,
               1725,
-              2594
+              2594,
+              2357
             ],
             "YOY Sales Growth %": [
-              2,
               -6,
               -43,
               -10,
@@ -19400,10 +19414,10 @@
               7,
               31,
               1,
-              52
+              52,
+              null
             ],
             "Expenses -": [
-              1952,
               1905,
               1027,
               1662,
@@ -19415,10 +19429,10 @@
               1479,
               2003,
               1428,
-              1970
+              1970,
+              1643
             ],
             "Material Cost %": [
-              87,
               87,
               76,
               84,
@@ -19430,11 +19444,11 @@
               81,
               83,
               77,
-              69
+              69,
+              null
             ],
             "Employee Cost %": [
               1,
-              1,
               2,
               1,
               2,
@@ -19445,10 +19459,10 @@
               1,
               1,
               1,
-              1
+              1,
+              null
             ],
             "Operating Profit": [
-              203,
               196,
               208,
               212,
@@ -19460,10 +19474,10 @@
               240,
               291,
               297,
-              624
+              624,
+              714
             ],
             "OPM %": [
-              9,
               9,
               17,
               11,
@@ -19475,10 +19489,10 @@
               14,
               13,
               17,
-              24
+              24,
+              30
             ],
             "Other Income -": [
-              64,
               37,
               44,
               45,
@@ -19490,10 +19504,10 @@
               63,
               96,
               81,
-              87
+              87,
+              106
             ],
             "Other income normal": [
-              64,
               37,
               44,
               45,
@@ -19505,10 +19519,10 @@
               63,
               96,
               81,
-              87
+              87,
+              null
             ],
             "Interest": [
-              25,
               30,
               27,
               30,
@@ -19520,10 +19534,10 @@
               33,
               24,
               26,
-              63
+              63,
+              48
             ],
             "Depreciation": [
-              29,
               33,
               34,
               34,
@@ -19535,10 +19549,10 @@
               42,
               52,
               53,
+              53,
               53
             ],
             "Profit before tax": [
-              212,
               170,
               192,
               192,
@@ -19550,10 +19564,10 @@
               228,
               310,
               299,
-              596
+              596,
+              719
             ],
             "Tax %": [
-              25,
               22,
               22,
               21,
@@ -19565,10 +19579,10 @@
               23,
               21,
               22,
+              24,
               24
             ],
             "Net Profit -": [
-              159,
               133,
               150,
               152,
@@ -19580,10 +19594,10 @@
               175,
               244,
               233,
-              455
+              455,
+              545
             ],
             "Minority share": [
-              -18,
               -17,
               -23,
               -22,
@@ -19595,10 +19609,10 @@
               -44,
               -64,
               -56,
-              -44
+              -44,
+              null
             ],
             "Profit excl Excep": [
-              159,
               133,
               150,
               152,
@@ -19610,10 +19624,10 @@
               175,
               244,
               233,
-              455
+              455,
+              null
             ],
             "Profit for PE": [
-              141,
               116,
               127,
               130,
@@ -19625,10 +19639,10 @@
               131,
               180,
               177,
-              410
+              410,
+              null
             ],
             "Profit for EPS": [
-              141,
               116,
               127,
               130,
@@ -19640,10 +19654,10 @@
               131,
               180,
               177,
-              410
+              410,
+              null
             ],
             "YOY Profit Growth %": [
-              49,
               12,
               36,
               4,
@@ -19655,10 +19669,10 @@
               0,
               43,
               42,
-              46
+              46,
+              null
             ],
             "EPS in Rs": [
-              4.01,
               3.3,
               3.62,
               3.71,
@@ -19670,7 +19684,8 @@
               3.74,
               5.12,
               5.04,
-              11.69
+              11.69,
+              13.8
             ],
             "Raw PDF": [
               null,
@@ -19725,7 +19740,8 @@
             "Mar 2023",
             "Mar 2024",
             "Mar 2025",
-            "Mar 2026"
+            "Mar 2026",
+            "TTM"
           ],
           "periodsIso": [
             "2015-03",
@@ -19739,7 +19755,8 @@
             "2023-03",
             "2024-03",
             "2025-03",
-            "2026-03"
+            "2026-03",
+            null
           ],
           "rows": {
             "Sales -": [
@@ -19754,7 +19771,8 @@
               8627,
               7046,
               6764,
-              8333
+              8333,
+              8971
             ],
             "Sales Growth %": [
               -22.16,
@@ -19768,7 +19786,8 @@
               86.29,
               -18.33,
               -4,
-              23.2
+              23.2,
+              null
             ],
             "Expenses -": [
               3771,
@@ -19782,7 +19801,8 @@
               7955,
               6123,
               5666,
-              6881
+              6881,
+              7045
             ],
             "Material Cost %": [
               93,
@@ -19796,7 +19816,8 @@
               88,
               82,
               78,
-              77
+              77,
+              null
             ],
             "Manufacturing Cost %": [
               1,
@@ -19810,7 +19831,8 @@
               1,
               2,
               2,
-              2
+              2,
+              null
             ],
             "Employee Cost %": [
               1,
@@ -19824,7 +19846,8 @@
               1,
               2,
               2,
-              1
+              1,
+              null
             ],
             "Other Cost %": [
               1,
@@ -19838,7 +19861,8 @@
               2,
               2,
               2,
-              2
+              2,
+              null
             ],
             "Operating Profit": [
               144,
@@ -19852,7 +19876,8 @@
               672,
               923,
               1098,
-              1452
+              1452,
+              1926
             ],
             "OPM %": [
               3.7,
@@ -19866,7 +19891,8 @@
               8,
               13,
               16,
-              17
+              17,
+              21
             ],
             "Other Income -": [
               42,
@@ -19880,7 +19906,8 @@
               187,
               190,
               208,
-              326
+              326,
+              370
             ],
             "Exceptional items": [
               31,
@@ -19894,7 +19921,8 @@
               12,
               12,
               2,
-              28
+              28,
+              null
             ],
             "Other income normal": [
               11,
@@ -19908,7 +19936,8 @@
               175,
               178,
               206,
-              298
+              298,
+              null
             ],
             "Interest": [
               20,
@@ -19922,7 +19951,8 @@
               88,
               116,
               165,
-              146
+              146,
+              161
             ],
             "Depreciation": [
               23,
@@ -19936,7 +19966,8 @@
               126,
               135,
               152,
-              199
+              199,
+              210
             ],
             "Profit before tax": [
               142,
@@ -19950,7 +19981,8 @@
               645,
               861,
               989,
-              1433
+              1433,
+              1925
             ],
             "Tax %": [
               21,
@@ -19964,7 +19996,8 @@
               21,
               22,
               20,
-              23
+              23,
+              null
             ],
             "Net Profit": [
               112,
@@ -19978,7 +20011,8 @@
               511,
               672,
               787,
-              1107
+              1107,
+              1476
             ],
             "EPS in Rs": [
               3.1,
@@ -19992,7 +20026,8 @@
               13.19,
               16.22,
               18.9,
-              25.59
+              25.59,
+              35.65
             ],
             "Dividend Payout %": [
               24,
@@ -20006,7 +20041,8 @@
               44,
               40,
               42,
-              34
+              34,
+              null
             ]
           },
           "order": [
@@ -20476,7 +20512,7 @@
       "analysis": {
         "pros": [],
         "cons": [
-          "Stock is trading at 7.45 times its book value",
+          "Stock is trading at 7.57 times its book value",
           "Company has a low return on equity of 12.0% over last 3 years.",
           "Company might be capitalizing the interest cost"
         ]
@@ -20840,13 +20876,29 @@
               74,
               75
             ],
-            "Other Income": [
+            "Other Income -": [
               0,
               3,
               8,
               32,
               37,
               14
+            ],
+            "Exceptional items": [
+              0,
+              0,
+              0.02,
+              -0.05,
+              -0.06,
+              null
+            ],
+            "Other income normal": [
+              0,
+              2.66,
+              8.34,
+              31.63,
+              37.47,
+              null
             ],
             "Interest": [
               1,
@@ -20914,7 +20966,9 @@
             "Other Cost %",
             "Operating Profit",
             "OPM %",
-            "Other Income",
+            "Other Income -",
+            "Exceptional items",
+            "Other income normal",
             "Interest",
             "Depreciation",
             "Profit before tax",
@@ -21411,7 +21465,7 @@
             null
           ],
           "rows": {
-            "Sales": [
+            "Sales -": [
               1432,
               1493,
               1483,
@@ -21420,7 +21474,16 @@
               5406,
               5719
             ],
-            "Expenses -": [
+            "Sales Growth %": [
+              null,
+              4.26,
+              -0.67,
+              -5.96,
+              15.61,
+              null,
+              null
+            ],
+            "Expenses": [
               1386,
               1422,
               1438,
@@ -21428,42 +21491,6 @@
               1489,
               4881,
               4982
-            ],
-            "Material Cost %": [
-              90,
-              89,
-              90,
-              88,
-              86,
-              83,
-              null
-            ],
-            "Manufacturing Cost %": [
-              2,
-              2,
-              2,
-              2,
-              2,
-              2,
-              null
-            ],
-            "Employee Cost %": [
-              1,
-              1,
-              1,
-              1,
-              1,
-              1,
-              null
-            ],
-            "Other Cost %": [
-              5,
-              4,
-              4,
-              4,
-              4,
-              4,
-              null
             ],
             "Operating Profit": [
               46,
@@ -21483,7 +21510,7 @@
               10,
               13
             ],
-            "Other Income": [
+            "Other Income -": [
               20,
               15,
               18,
@@ -21491,6 +21518,24 @@
               4,
               33,
               36
+            ],
+            "Exceptional items": [
+              6.85,
+              -0.12,
+              5.84,
+              -0.04,
+              0.07,
+              3.68,
+              null
+            ],
+            "Other income normal": [
+              13.53,
+              15.14,
+              11.91,
+              6.49,
+              4.29,
+              29.01,
+              null
             ],
             "Interest": [
               22,
@@ -21557,15 +21602,14 @@
             ]
           },
           "order": [
-            "Sales",
-            "Expenses -",
-            "Material Cost %",
-            "Manufacturing Cost %",
-            "Employee Cost %",
-            "Other Cost %",
+            "Sales -",
+            "Sales Growth %",
+            "Expenses",
             "Operating Profit",
             "OPM %",
-            "Other Income",
+            "Other Income -",
+            "Exceptional items",
+            "Other income normal",
             "Interest",
             "Depreciation",
             "Profit before tax",
@@ -24264,7 +24308,7 @@
             null
           ],
           "rows": {
-            "Sales": [
+            "Sales -": [
               6152,
               7109,
               8439,
@@ -24279,7 +24323,22 @@
               38736,
               40430
             ],
-            "Expenses -": [
+            "Sales Growth %": [
+              27.38,
+              15.55,
+              18.72,
+              34.17,
+              -3.51,
+              8.67,
+              5.7,
+              36.41,
+              21.81,
+              28.1,
+              14.09,
+              27.11,
+              null
+            ],
+            "Expenses": [
               2250,
               2532,
               3021,
@@ -24293,66 +24352,6 @@
               12054,
               15868,
               17032
-            ],
-            "Material Cost %": [
-              0,
-              0,
-              1.32,
-              1.15,
-              1.29,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              null
-            ],
-            "Manufacturing Cost %": [
-              27.39,
-              26.45,
-              24.96,
-              27.87,
-              24.55,
-              26.67,
-              26.53,
-              28.9,
-              27.66,
-              27.24,
-              27.14,
-              29.77,
-              null
-            ],
-            "Employee Cost %": [
-              3.87,
-              3.89,
-              4.55,
-              3.96,
-              4.86,
-              4.61,
-              4.91,
-              4.57,
-              5.66,
-              7.11,
-              6.6,
-              6.09,
-              null
-            ],
-            "Other Cost %": [
-              5.31,
-              5.28,
-              4.98,
-              3.82,
-              8.94,
-              18.63,
-              -0.67,
-              10.88,
-              14.18,
-              7.29,
-              5.81,
-              5.1,
-              null
             ],
             "Operating Profit": [
               3902,
@@ -24506,12 +24505,9 @@
             ]
           },
           "order": [
-            "Sales",
-            "Expenses -",
-            "Material Cost %",
-            "Manufacturing Cost %",
-            "Employee Cost %",
-            "Other Cost %",
+            "Sales -",
+            "Sales Growth %",
+            "Expenses",
             "Operating Profit",
             "OPM %",
             "Other Income",
@@ -26594,7 +26590,7 @@
               10774,
               10839
             ],
-            "Expenses": [
+            "Expenses -": [
               4842,
               4712,
               4049,
@@ -26608,6 +26604,66 @@
               9477,
               9736,
               9970
+            ],
+            "Material Cost %": [
+              54,
+              53,
+              51,
+              53,
+              56,
+              54,
+              53,
+              57,
+              57,
+              56,
+              56,
+              52,
+              null
+            ],
+            "Manufacturing Cost %": [
+              14,
+              15,
+              14,
+              13,
+              15,
+              15,
+              15,
+              15,
+              16,
+              15,
+              15,
+              17,
+              null
+            ],
+            "Employee Cost %": [
+              13,
+              13,
+              15,
+              15,
+              13,
+              14,
+              16,
+              13,
+              12,
+              12,
+              12,
+              13,
+              null
+            ],
+            "Other Cost %": [
+              10,
+              10,
+              10,
+              11,
+              9,
+              10,
+              9,
+              8,
+              8,
+              8,
+              8,
+              9,
+              null
             ],
             "Operating Profit": [
               462,
@@ -26762,7 +26818,11 @@
           },
           "order": [
             "Sales",
-            "Expenses",
+            "Expenses -",
+            "Material Cost %",
+            "Manufacturing Cost %",
+            "Employee Cost %",
+            "Other Cost %",
             "Operating Profit",
             "OPM %",
             "Other Income",
@@ -27720,7 +27780,7 @@
               31,
               38
             ],
-            "Other Income -": [
+            "Other Income": [
               395,
               193,
               185,
@@ -27732,34 +27792,6 @@
               184,
               283,
               225,
-              475
-            ],
-            "Exceptional items": [
-              124,
-              12,
-              9,
-              47,
-              114,
-              96,
-              5,
-              6,
-              6,
-              50,
-              9,
-              0
-            ],
-            "Other income normal": [
-              271,
-              181,
-              177,
-              149,
-              178,
-              181,
-              199,
-              170,
-              178,
-              233,
-              216,
               475
             ],
             "Interest": [
@@ -27870,9 +27902,7 @@
             "Other Cost %",
             "Operating Profit",
             "OPM %",
-            "Other Income -",
-            "Exceptional items",
-            "Other income normal",
+            "Other Income",
             "Interest",
             "Depreciation",
             "Profit before tax",

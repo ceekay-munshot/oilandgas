@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-06T08:15:44.817Z",
+  "generatedAt": "2026-08-06T09:44:14.960Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -70,9 +70,32 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:19:09.227Z"
+        },
+        "Q1 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Highest-ever standalone quarterly PBT: ₹22,048 crore",
+          "rationale": "Management delivered record profitability and framed the quarter around three major transformations (gas portfolio, western offshore, deepwater exploration) with substantial capital commitments.",
+          "driver": "gas portfolio transformation",
+          "direction": "positive",
+          "signal": "ONGC is executing one of its largest capital programs exceeding ₹40,000 crore in Western Offshore while commencing the government-backed ₹84,084 crore Samudra Manthan deepwater exploration program, signaling aggressive growth investment des",
+          "mgmtDataPoints": [
+            "Standalone revenue: ₹46,450 crore, +45% YoY",
+            "Standalone PAT: ₹17,034 crore, +112% YoY",
+            "Standalone PBT: ₹22,048 crore (highest-ever quarterly)",
+            "New Well gas revenue: ~₹4,000 crore in quarter",
+            "New Well gas incremental realization: ~₹1,900 crore vs APM",
+            "New Well gas share: ~38% of nomination gas revenue, ~19% volume"
+          ],
+          "implication": "Expect continued strong gas revenue growth and margin expansion as New Well gas volumes ramp and KG-DWN 98/2 gas production doubles by year-end, though consolidated earnings will remain sensitive to downstream refining volatility at HPCL.",
+          "doc": "Concall AI summary (Q1 FY27)",
+          "fingerprint": "2d63e157b8de",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-06T09:44:04.006Z"
         }
       },
-      "updatedAt": "2026-07-28T18:19:09.227Z"
+      "updatedAt": "2026-08-06T09:44:04.006Z"
     },
     "oil-india": {
       "cells": {
