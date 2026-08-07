@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-07T06:58:17.666Z",
+  "generatedAt": "2026-08-07T08:11:30.789Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -177,7 +177,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/transcript-2025-08.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; L"
+          "error": "apiRequestContext.get: read ECONNRESET\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; Linux x86_6"
         },
         {
           "type": "transcript",
@@ -1443,15 +1443,15 @@
       "ppt": {
         "type": "ppt",
         "role": "ppt",
-        "period": "May 2026",
-        "periodIso": "2026-05",
-        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6ee05b84-ac34-4cc1-a151-847e3842cd8e.pdf",
+        "period": "Aug 2026",
+        "periodIso": "2026-08",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=561e12b4-db0d-4a52-bec1-9968410b56c0.pdf",
         "source": "bseindia.com",
         "status": "ok",
-        "chars": 28079,
-        "pages": 34,
+        "chars": 27883,
+        "pages": 35,
         "via": "browser",
-        "cache": "pipeline/cache/docs/RATNAMANI/ppt-2026-05.txt"
+        "cache": "pipeline/cache/docs/RATNAMANI/ppt-2026-08.txt"
       },
       "transcripts": [
         {
@@ -1856,9 +1856,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 95882,
+          "pages": 31,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -3713,9 +3713,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e0aca11e-1b05-4087-b721-fe5651591c4f.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 46273,
+          "pages": 18,
           "via": "browser",
           "cache": "pipeline/cache/docs/SPLPETRO/transcript-2026-04.txt"
         },

@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-07T06:58:30.940Z",
+  "generatedAt": "2026-08-07T08:11:35.555Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 373,
-    "realCells": 254,
+    "kpiCells": 377,
+    "realCells": 258,
     "nullCells": 119,
-    "kpis": 96,
-    "kpisWithTrend": 64
+    "kpis": 97,
+    "kpisWithTrend": 65
   },
   "companies": {
     "deep-industries": {
@@ -1411,9 +1411,9 @@
         "Q4 FY26"
       ],
       "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
-      "ctxChars": 33027,
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "ctxChars": 33026,
       "kpis": [
         {
           "id": "order-book",
@@ -1421,19 +1421,19 @@
           "unit": "₹ cr",
           "flagBasis": "qoq",
           "values": [
-            null,
+            2900,
             2100,
             2050,
             2162
           ],
           "sourceTags": [
-            null,
+            "company-filing",
             "mgmt-claim",
             "mgmt-claim",
             "mgmt-claim"
           ],
           "origins": [
-            null,
+            "model",
             "model",
             "model",
             "model"
@@ -1451,7 +1451,7 @@
             null
           ],
           "flag": "inflecting-up",
-          "notes": "Q2 FY25 order book not stated. Q4 FY25 order book from concall. Q2 FY26 order book from concall. Q4 FY26 order book from investor presentation."
+          "notes": null
         },
         {
           "id": "pipe-order-inflow",
@@ -1489,7 +1489,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY25, Q4 FY25, and Q4 FY26 pipe order inflow not stated. Q2 FY26 pipe order inflow from concall."
+          "notes": "Order inflow not stated for any quarter. Q2 FY26 concall mentions carbon steel domestic order booking in the quarter was ₹750 cr, but this is only one segment (carbon steel domestic) not total pipe order inflow. Q2 FY25 concall mentions 'st"
         }
       ]
     },
@@ -3751,12 +3751,12 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 32913,
@@ -3797,7 +3797,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q1 FY26: Styrene-polystyrene spread not stated. Q2 FY26: Styrene-polystyrene spread not stated. Q3 FY26: Styrene-polystyrene spread not stated. Q1 FY27: Management mentioned 'Wider delta in the international markets between Styrene Monomer "
+          "notes": "Q2 FY26: No styrene-polystyrene spread figure stated. Q3 FY26: No spread figure stated; management mentioned SM prices ~$810 and falling prices/destocking but no explicit spread. Q4 FY26: No spread figure stated; SM stable until Feb then sp"
         },
         {
           "id": "volume",
@@ -3805,9 +3805,9 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
-            93853,
             76962,
             91265,
+            100664,
             null
           ],
           "sourceTags": [
@@ -3824,11 +3824,6 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 30 Apr 2026",
-              "quote": "Company's sales volume of manufactured products in the 1st Quarter of FY '26 increased by 0.5% only on a year-on-year basis to 93,853 MT",
-              "page": 3
-            },
-            {
               "doc": "Presentation - 24 Oct 2025",
               "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
               "page": 15
@@ -3836,6 +3831,61 @@
             {
               "doc": "Concall Transcript - 26 Jan 2026",
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
+              "page": 3
+            },
+            {
+              "doc": "Presentation - 24 Apr 2026",
+              "quote": "95,556 1,00,664 Q4-FY25 Q4-FY26",
+              "page": 16
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
+          "notes": "From Screener Insights row \"Sales Volume (Manufactured Products)\" (Standalone data); latest value cited to Presentation - 24 Oct 2025, page 15."
+        },
+        {
+          "id": "capacity-utilisation",
+          "label": "Capacity utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            79,
+            80,
+            80,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 26 Jan 2026",
+              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 30 Apr 2026",
+              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
               "page": 3
             },
             null
@@ -3846,8 +3896,9 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
-          "notes": "From Screener Insights row \"Sales Volume (Manufactured Products)\" (Standalone data); latest value cited to Concall Transcript - 30 Apr 2026, page 3."
+          "flag": "steady",
+          "beyondBrief": true,
+          "notes": "From Screener Insights row \"Capacity Utilization\" (Standalone data); latest value cited to Concall Transcript - 31 Oct 2025, page 5."
         }
       ]
     },
@@ -4269,7 +4320,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32763,
+      "ctxChars": 33329,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4307,7 +4358,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not spe"
+          "notes": "No POL/LPG/LNG throughput or growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not break out POL"
         },
         {
           "id": "total-cargo-volume",
