@@ -11,7 +11,7 @@ import assert from 'node:assert/strict';
 import {
   parseFinancialTable, parseAllFinancials, cleanLabel, parseCell, periodToIso
 } from '../parsers/screener-financials.mjs';
-import { parseConcalls, selectDocuments, absoluteUrl, looksLikeDoc } from '../parsers/screener-docs.mjs';
+import { parseConcalls, selectDocuments, absoluteUrl, looksLikeDoc, isTransientHttp } from '../parsers/screener-docs.mjs';
 import { parseProsCons } from '../parsers/screener-summary.mjs';
 import { parseCompanySlug, slugFromUrl } from '../parsers/screener-search.mjs';
 import { isPdf, classify, classifyHtml, normalizeText } from '../lib/pdf.mjs';
@@ -273,4 +273,17 @@ test('looksLikeDoc refuses index/landing/HTML pages so they are not faked', () =
   // Recovering these would hand back a nav menu, not a transcript.
   assert.equal(looksLikeDoc('https://ongcindia.com/web/eng/investors/transcription'), false);
   assert.equal(looksLikeDoc('https://www.morningstar.com/stocks/xnse/ongc/earnings-transcript'), false);
+});
+
+test('isTransientHttp retries the burst-403 that starved Thermax, not a 404', () => {
+  // The Thermax case: BSE/NSE 403 a rapid sequence of transcript fetches. That is
+  // transient and clears on a back-off, so it must retry.
+  assert.equal(isTransientHttp(403), true);
+  assert.equal(isTransientHttp(429), true);
+  for (const s of [500, 502, 503, 504]) assert.equal(isTransientHttp(s), true);
+  // A real not-found or an auth failure is NOT transient - retrying wastes time
+  // and the miss should be recorded honestly.
+  assert.equal(isTransientHttp(404), false);
+  assert.equal(isTransientHttp(401), false);
+  assert.equal(isTransientHttp(200), false);
 });

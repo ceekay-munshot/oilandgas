@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-07T08:11:58.784Z",
+  "generatedAt": "2026-08-07T09:42:57.825Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,19 +38,19 @@
   "asOf": "Q4 FY26",
   "scores": {
     "leading": {
-      "score": 11,
-      "prev": -53,
-      "delta": 47,
+      "score": 25,
+      "prev": -38,
+      "delta": 52,
       "deltaBasis": "kpi-only",
       "level": "positive",
       "direction": "rising",
-      "kpisScored": 12,
+      "kpisScored": 10,
       "kpisTotal": 23,
       "kpisBeyondBrief": 6,
       "tonesScored": 8,
-      "companiesScored": 7,
+      "companiesScored": 6,
       "staleKpis": 8,
-      "oneOffKpis": 1,
+      "oneOffKpis": 0,
       "unknownKpis": 0,
       "lowCoverage": true,
       "weakestTag": "mgmt-claim",
@@ -69,13 +69,6 @@
           "company": "Engineers India",
           "label": "Order book",
           "flag": "inflecting-up"
-        },
-        {
-          "kind": "kpi",
-          "companyId": "lt",
-          "company": "L&T",
-          "label": "Hydrocarbon order inflow",
-          "flag": "inflecting-down"
         },
         {
           "kind": "kpi",
@@ -108,13 +101,13 @@
       ]
     },
     "coincident": {
-      "score": -48,
-      "prev": -9,
+      "score": -52,
+      "prev": -17,
       "delta": -47,
       "deltaBasis": "kpi-only",
       "level": "strong-negative",
       "direction": "falling",
-      "kpisScored": 22,
+      "kpisScored": 20,
       "kpisTotal": 40,
       "kpisBeyondBrief": 18,
       "tonesScored": 15,
@@ -138,13 +131,6 @@
           "companyId": "bpcl",
           "company": "BPCL",
           "label": "GRM",
-          "flag": "inflecting-down"
-        },
-        {
-          "kind": "kpi",
-          "companyId": "petronet-lng",
-          "company": "Petronet LNG",
-          "label": "Regas utilisation %",
           "flag": "inflecting-down"
         },
         {
@@ -181,13 +167,6 @@
           "company": "Aegis Vopak",
           "label": "LPG throughput",
           "flag": "inflecting-down"
-        },
-        {
-          "kind": "kpi",
-          "companyId": "gandhar-oil",
-          "company": "Gandhar Oil",
-          "label": "Base-oil spread",
-          "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
@@ -298,7 +277,7 @@
     }
   },
   "divergence": {
-    "value": 59,
+    "value": 77,
     "leadingSign": 1,
     "coincidentSign": -1,
     "signsDiffer": true
@@ -306,17 +285,17 @@
   "divergenceSeries": [
     null,
     null,
-    -44,
-    50
+    -21,
+    78
   ],
   "stage": {
     "stageId": "early-upcycle",
-    "position": 30,
+    "position": 31,
     "ruleId": "early-upcycle",
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 11 (positive, rising), coincident -48 (strong-negative, falling), lagging 0 (flat).",
+      "Leading 25 (positive, rising), coincident -52 (strong-negative, falling), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -481,7 +460,7 @@
     {
       "groupId": "leading",
       "kind": "low-coverage",
-      "text": "Moves first: 9 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves first: 8 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     }
   ],
   "alerts": [
@@ -501,7 +480,7 @@
       "id": "coverage-leading",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moves first: 9 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves first: 8 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "tone-ongc",
@@ -567,12 +546,12 @@
     {
       "id": "leading",
       "label": "Leading indicators",
-      "text": "Leading indicators are positive and rising — driven by Engineers India Order inflow, Engineers India Order book, L&T Hydrocarbon order inflow."
+      "text": "Leading indicators are positive and rising — driven by Engineers India Order inflow, Engineers India Order book, Ratnamani Metals Order book."
     },
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are strongly negative and falling — IOCL Throughput, BPCL GRM, Petronet LNG Regas utilisation %."
+      "text": "Coincident indicators are strongly negative and falling — IOCL Throughput, BPCL GRM, Petronet LNG Volume."
     },
     {
       "id": "macro",
@@ -582,7 +561,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +59. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
+      "text": "Leading minus coincident is +77. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
     },
     {
       "id": "watchlist",
@@ -1067,17 +1046,17 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moving now moved down 9 points to -48."
+      "text": "Moves first moved up 14 points to 25."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-07T06:58:49.330Z",
+    "generatedAt": "2026-08-07T08:11:58.784Z",
     "asOf": "Q4 FY26",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 11,
-      "coincident": -39,
+      "coincident": -48,
       "lagging": 0
     },
     "alertIds": [
@@ -1092,8 +1071,7 @@
       "tone-petronet-lng",
       "tone-ratnamani",
       "tone-reliance",
-      "tone-shipping-corp",
-      "tone-supreme-petrochem"
+      "tone-shipping-corp"
     ]
   }
 }

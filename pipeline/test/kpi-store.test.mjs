@@ -61,6 +61,49 @@ test('every KPI complete means no call at all - the run costs nothing', () => {
   assert.equal(plan.openCells, 0);
 });
 
+test('a noModel KPI is never asked, however empty - it stays a gap', () => {
+  // The live bug: L&T's hydrocarbon order book came back as the GROUP order book
+  // because the model, given the group Insights row, filed it as the segment's.
+  const fencedKpis = [
+    KPIS[0],
+    { id: 'hydrocarbon-order-book', label: 'Hydrocarbon order book', unit: '₹ cr', flagBasis: 'level', noModel: true }
+  ];
+  const plan = planCompany({ store: freshStore(), companyId: 'lt', kpis: fencedKpis, quarters: QUARTERS, fingerprint: FP });
+  assert.deepEqual(plan.ask.map((k) => k.id), ['order-book']);
+  assert.deepEqual(plan.fenced.map((k) => k.id), ['hydrocarbon-order-book']);
+  // The fenced KPI contributes NOTHING to the open-cell count - it will never
+  // be asked, so it is not "work remaining".
+  assert.equal(plan.openCells, QUARTERS.length);
+});
+
+test('a noModel KPI can still be filled by a deterministic source', () => {
+  // Fencing stops the MODEL, not a cited fill. A value merged from Insights or a
+  // filing stands exactly as any other.
+  const store = freshStore();
+  mergeIntoStore({
+    store, companyId: 'lt', quarters: QUARTERS, fingerprint: FP, origin: 'insights', at: 'now',
+    kpiObjects: [reply('hydrocarbon-order-book', [10, 11, 12, 13])]
+  });
+  const spec = [{ id: 'hydrocarbon-order-book', label: 'HC order book', unit: '₹ cr', flagBasis: 'level', noModel: true }];
+  const plan = planCompany({ store, companyId: 'lt', kpis: spec, quarters: QUARTERS, fingerprint: FP });
+  assert.equal(plan.ask.length, 0);           // still never asked
+  const row = renderWindow({ store, companyId: 'lt', kpis: spec, quarters: QUARTERS, flagFor, flatBandPct: 1.5 })[0];
+  assert.deepEqual(row.values, [10, 11, 12, 13]);   // but the cited fill shows
+});
+
+test('a wholly-empty KPI shows its spec awaitingReason, and market/noModel flags', () => {
+  const store = freshStore();
+  const spec = [{
+    id: 'base-oil-spread', label: 'Base-oil spread', unit: '$/t', flagBasis: 'level',
+    noModel: true, market: true, awaitingReason: 'commodity market price, not company-disclosed'
+  }];
+  const row = renderWindow({ store, companyId: 'castrol', kpis: spec, quarters: QUARTERS, flagFor, flatBandPct: 1.5 })[0];
+  assert.deepEqual(row.values, [null, null, null, null]);
+  assert.equal(row.notes, 'commodity market price, not company-disclosed');
+  assert.equal(row.market, true);
+  assert.equal(row.noModel, true);
+});
+
 test('a null NEVER overwrites a real value - the table cannot go backwards', () => {
   const store = freshStore();
   mergeIntoStore({

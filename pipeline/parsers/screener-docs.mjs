@@ -46,6 +46,22 @@ export function looksLikeDoc(url) {
   return /\.pdf(\/|\?|$)/i.test(url) || /AnnPdfOpen|AttachLive|corpfiling/i.test(url);
 }
 
+/**
+ * Is this HTTP status worth retrying after a back-off?
+ *
+ * 403 is included, and it is the reason this exists. Screener links its concall
+ * transcripts to BSE/NSE announcement PDFs, and those hosts burst-rate-limit: the
+ * first fetch for a company succeeds, then the rapid sequence behind it comes back
+ * 403 - which is why Thermax cached 1 transcript of 6 and collapsed to a
+ * single-quarter window. A rate-based 403 clears on a pause, exactly like the 429
+ * the summary endpoint already backs off on. (A persistent bot-block 403 will
+ * still fail after the retries, and is recorded honestly as http_403.)
+ */
+export function isTransientHttp(status) {
+  return status === 429 || status === 403 ||
+         status === 500 || status === 502 || status === 503 || status === 504;
+}
+
 /** Make a possibly-relative Screener href absolute. */
 export function absoluteUrl(href, base = 'https://www.screener.in') {
   const h = String(href || '').trim();

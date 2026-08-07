@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Extracted KPI values, kept across runs",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-07T08:11:58.530Z",
+  "generatedAt": "2026-08-07T09:42:57.767Z",
   "note": "One entry per company/KPI/quarter, for every quarter ever extracted - not just the current window. A run only asks the model about cells it does not already have, and a null never overwrites a real value. Delete a cell (or run with --refresh) to force re-extraction.",
   "companies": {
     "deep-industries": {
@@ -756,16 +756,6 @@
           "fingerprint": "9081470a6815",
           "attempts": 25,
           "at": "2026-08-07T08:11:44.796Z"
-        },
-        "regas-utilisation|Q2 FY26": {
-          "value": 27,
-          "unit": "%",
-          "sourceTag": "mgmt-claim",
-          "note": "Q1 FY26 value not provided; Q2 FY26 Kochi utilisation 27% from management claim; Q3 FY26 Kochi utilisation 29% from management claim; Q4 FY26 Dahej utilisation 90.1% from management claim.",
-          "fingerprint": "d179ce3b9154",
-          "attempts": 1,
-          "model": "gpt-4o",
-          "at": "2026-07-26T15:53:15.275Z"
         },
         "volume|Q2 FY26": {
           "value": 211,
@@ -1765,117 +1755,6 @@
     },
     "lt": {
       "cells": {
-        "hydrocarbon-order-inflow|Q2 FY26": {
-          "value": 115784,
-          "unit": "₹ cr",
-          "sourceTag": "company-filing",
-          "note": null,
-          "origin": "model",
-          "fingerprint": "253f519548ed",
-          "attempts": 2,
-          "model": "gpt-4o",
-          "at": "2026-07-27T10:42:47.727Z"
-        },
-        "hydrocarbon-order-inflow|Q3 FY26": {
-          "value": 135600,
-          "unit": "₹ cr",
-          "sourceTag": "mgmt-claim",
-          "note": null,
-          "origin": "model",
-          "fingerprint": "253f519548ed",
-          "attempts": 2,
-          "model": "gpt-4o",
-          "at": "2026-07-27T10:42:47.727Z"
-        },
-        "hydrocarbon-order-inflow|Q4 FY26": {
-          "value": 89772,
-          "unit": "₹ cr",
-          "sourceTag": "company-filing",
-          "note": null,
-          "origin": "model",
-          "fingerprint": "253f519548ed",
-          "attempts": 2,
-          "model": "gpt-4o",
-          "at": "2026-07-27T10:42:47.727Z"
-        },
-        "hydrocarbon-order-inflow|Q1 FY27": {
-          "value": 31000,
-          "unit": "₹ cr",
-          "sourceTag": "mgmt-claim",
-          "oneOff": "High base + deferred awards",
-          "note": "Q2 FY26 from Screener Insights; Q3 FY26 from Concall AI Summary; Q4 FY26 from Concall AI Summary; Q1 FY27 from Concall AI Summary.",
-          "origin": "model",
-          "fingerprint": "9108056ea849",
-          "attempts": 2,
-          "model": "gpt-4o",
-          "at": "2026-07-28T18:19:03.173Z"
-        },
-        "hydrocarbon-order-book|Q2 FY26": {
-          "value": 667000,
-          "unit": "₹ cr",
-          "sourceTag": "company-filing",
-          "note": "Q3 FY26 order book not stated.",
-          "origin": "model",
-          "fingerprint": "253f519548ed",
-          "attempts": 2,
-          "model": "gpt-4o",
-          "at": "2026-07-27T10:42:47.727Z"
-        },
-        "hydrocarbon-order-book|Q3 FY26": {
-          "value": 1830000,
-          "unit": "₹ cr",
-          "sourceTag": "company-filing",
-          "note": null,
-          "origin": "model",
-          "fingerprint": "78ccd6c40372",
-          "attempts": 3,
-          "model": "gpt-4o",
-          "at": "2026-07-28T17:59:13.534Z"
-        },
-        "hydrocarbon-order-book|Q4 FY26": {
-          "value": 740300,
-          "unit": "₹ cr",
-          "sourceTag": "company-filing",
-          "note": "Q3 FY26 order book not stated.",
-          "origin": "model",
-          "fingerprint": "253f519548ed",
-          "attempts": 2,
-          "model": "gpt-4o",
-          "at": "2026-07-27T10:42:47.727Z"
-        },
-        "hydrocarbon-order-book|Q1 FY27": {
-          "value": 222000,
-          "unit": "₹ cr",
-          "sourceTag": "mgmt-claim",
-          "note": "Q2 FY26 from Screener Insights; Q3 FY26 from Concall AI Summary; Q4 FY26 from Concall AI Summary; Q1 FY27 from Concall AI Summary.",
-          "origin": "model",
-          "fingerprint": "9108056ea849",
-          "attempts": 2,
-          "model": "gpt-4o",
-          "at": "2026-07-28T18:19:03.173Z"
-        },
-        "hydrocarbon-order-inflow|Q1 FY26": {
-          "value": 94453,
-          "unit": "₹ cr",
-          "sourceTag": "company-filing",
-          "note": null,
-          "origin": "model",
-          "fingerprint": "253f519548ed",
-          "attempts": 1,
-          "model": "gpt-4o",
-          "at": "2026-07-27T10:42:47.727Z"
-        },
-        "hydrocarbon-order-book|Q1 FY26": {
-          "value": 612800,
-          "unit": "₹ cr",
-          "sourceTag": "company-filing",
-          "note": "Q3 FY26 order book not stated.",
-          "origin": "model",
-          "fingerprint": "253f519548ed",
-          "attempts": 1,
-          "model": "gpt-4o",
-          "at": "2026-07-27T10:42:47.727Z"
-        },
         "group-order-inflow|Q2 FY26": {
           "value": 115784,
           "unit": "INR crore",
@@ -4860,46 +4739,6 @@
     },
     "supreme-petrochem": {
       "cells": {
-        "sps-spread|Q1 FY26": {
-          "value": null,
-          "unit": "$/t",
-          "sourceTag": null,
-          "note": "Q1 FY26: Styrene-polystyrene spread not stated. Q2 FY26: Styrene-polystyrene spread not stated. Q3 FY26: Styrene-polystyrene spread not stated. Q1 FY27: Management mentioned 'Wider delta in the international markets between Styrene Monomer ",
-          "origin": "model",
-          "fingerprint": "d2e884030383",
-          "attempts": 8,
-          "at": "2026-08-07T06:58:48.999Z"
-        },
-        "sps-spread|Q2 FY26": {
-          "value": null,
-          "unit": "$/t",
-          "sourceTag": null,
-          "note": "Q2 FY26: No styrene-polystyrene spread figure stated. Q3 FY26: No spread figure stated; management mentioned SM prices ~$810 and falling prices/destocking but no explicit spread. Q4 FY26: No spread figure stated; SM stable until Feb then sp",
-          "origin": "model",
-          "fingerprint": "e4a5e24fc78a",
-          "attempts": 9,
-          "at": "2026-08-07T08:11:52.327Z"
-        },
-        "sps-spread|Q3 FY26": {
-          "value": null,
-          "unit": "$/t",
-          "sourceTag": null,
-          "note": "Q2 FY26: No styrene-polystyrene spread figure stated. Q3 FY26: No spread figure stated; management mentioned SM prices ~$810 and falling prices/destocking but no explicit spread. Q4 FY26: No spread figure stated; SM stable until Feb then sp",
-          "origin": "model",
-          "fingerprint": "e4a5e24fc78a",
-          "attempts": 10,
-          "at": "2026-08-07T08:11:52.327Z"
-        },
-        "sps-spread|Q4 FY26": {
-          "value": null,
-          "unit": "$/t",
-          "sourceTag": null,
-          "note": "Q2 FY26: No styrene-polystyrene spread figure stated. Q3 FY26: No spread figure stated; management mentioned SM prices ~$810 and falling prices/destocking but no explicit spread. Q4 FY26: No spread figure stated; SM stable until Feb then sp",
-          "origin": "model",
-          "fingerprint": "e4a5e24fc78a",
-          "attempts": 8,
-          "at": "2026-08-07T08:11:52.327Z"
-        },
         "volume|Q1 FY26": {
           "value": 93853,
           "unit": "MT",
@@ -5048,16 +4887,6 @@
           "attempts": 3,
           "at": "2026-08-01T07:57:51.135Z"
         },
-        "sps-spread|Q4 FY25": {
-          "value": null,
-          "unit": "$/t",
-          "sourceTag": null,
-          "note": "Styrene-polystyrene spread not mentioned in any excerpt.",
-          "origin": "model",
-          "fingerprint": "b659b1c81811",
-          "attempts": 2,
-          "at": "2026-07-30T09:32:32.285Z"
-        },
         "volume|Q1 FY27": {
           "value": null,
           "unit": "MT",
@@ -5077,16 +4906,6 @@
           "fingerprint": "e4a5e24fc78a",
           "attempts": 6,
           "at": "2026-08-07T08:11:44.850Z"
-        },
-        "sps-spread|Q1 FY27": {
-          "value": null,
-          "unit": "$/t",
-          "sourceTag": null,
-          "note": "Q2 FY26: No styrene-polystyrene spread figure stated. Q3 FY26: No spread figure stated; management mentioned SM prices ~$810 and falling prices/destocking but no explicit spread. Q4 FY26: No spread figure stated; SM stable until Feb then sp",
-          "origin": "model",
-          "fingerprint": "e4a5e24fc78a",
-          "attempts": 3,
-          "at": "2026-08-07T08:11:52.327Z"
         }
       },
       "updatedAt": "2026-08-07T08:11:52.327Z"
@@ -5143,46 +4962,6 @@
           "model": null,
           "at": "2026-07-29T09:25:08.619Z"
         },
-        "base-oil-spread|Q1 FY26": {
-          "value": null,
-          "unit": "$/t",
-          "sourceTag": null,
-          "note": "Base-oil spread not mentioned in any excerpt.",
-          "origin": "model",
-          "fingerprint": "d61d86d5d5a3",
-          "attempts": 5,
-          "at": "2026-07-31T08:38:07.225Z"
-        },
-        "base-oil-spread|Q2 FY26": {
-          "value": null,
-          "unit": "$/t",
-          "sourceTag": null,
-          "note": "Base-oil spread not mentioned in any excerpt.",
-          "origin": "model",
-          "fingerprint": "d61d86d5d5a3",
-          "attempts": 5,
-          "at": "2026-07-31T08:38:07.225Z"
-        },
-        "base-oil-spread|Q3 FY26": {
-          "value": null,
-          "unit": "$/t",
-          "sourceTag": null,
-          "note": "Base-oil spread not mentioned in any excerpt.",
-          "origin": "model",
-          "fingerprint": "d61d86d5d5a3",
-          "attempts": 5,
-          "at": "2026-07-31T08:38:07.225Z"
-        },
-        "base-oil-spread|Q4 FY26": {
-          "value": null,
-          "unit": "$/t",
-          "sourceTag": null,
-          "note": "Base-oil spread not mentioned in any excerpt.",
-          "origin": "model",
-          "fingerprint": "d61d86d5d5a3",
-          "attempts": 4,
-          "at": "2026-07-31T08:38:07.225Z"
-        },
         "lubricant-volume|Q4 FY25": {
           "value": 8,
           "unit": "% yoy",
@@ -5193,62 +4972,12 @@
           "attempts": 1,
           "model": "gpt-4o",
           "at": "2026-07-30T09:32:37.730Z"
-        },
-        "base-oil-spread|Q4 FY25": {
-          "value": null,
-          "unit": "$/t",
-          "sourceTag": null,
-          "note": "Base-oil spread not mentioned in any quarter.",
-          "origin": "model",
-          "fingerprint": "e7e060c5fb05",
-          "attempts": 1,
-          "at": "2026-07-30T09:32:37.730Z"
         }
       },
       "updatedAt": "2026-08-07T08:11:52.336Z"
     },
     "gandhar-oil": {
       "cells": {
-        "base-oil-spread|Q4 FY25": {
-          "value": null,
-          "unit": "$/t",
-          "sourceTag": null,
-          "note": "Base-oil spread not explicitly mentioned in any of the provided excerpts.",
-          "origin": "model",
-          "fingerprint": "663498c87544",
-          "attempts": 3,
-          "at": "2026-07-28T08:12:41.830Z"
-        },
-        "base-oil-spread|Q2 FY26": {
-          "value": 8662,
-          "unit": "$/t",
-          "sourceTag": "mgmt-claim",
-          "note": "Q4 FY25 value missing; Q2 FY26 and Q3 FY26 values from management call; Q4 FY26 value from management call.",
-          "fingerprint": "703a94e51696",
-          "attempts": 1,
-          "model": "gpt-4o",
-          "at": "2026-07-27T09:10:01.397Z"
-        },
-        "base-oil-spread|Q3 FY26": {
-          "value": 7271,
-          "unit": "$/t",
-          "sourceTag": "mgmt-claim",
-          "note": "Q4 FY25 value missing; Q2 FY26 and Q3 FY26 values from management call; Q4 FY26 value from management call.",
-          "fingerprint": "703a94e51696",
-          "attempts": 1,
-          "model": "gpt-4o",
-          "at": "2026-07-27T09:10:01.397Z"
-        },
-        "base-oil-spread|Q4 FY26": {
-          "value": 9351,
-          "unit": "$/t",
-          "sourceTag": "mgmt-claim",
-          "note": "Q4 FY25 value missing; Q2 FY26 and Q3 FY26 values from management call; Q4 FY26 value from management call.",
-          "fingerprint": "703a94e51696",
-          "attempts": 1,
-          "model": "gpt-4o",
-          "at": "2026-07-27T09:10:01.397Z"
-        },
         "white-oil-volume|Q4 FY25": {
           "value": null,
           "unit": "kL",
@@ -5316,16 +5045,6 @@
           "fingerprint": "db75dce42d26",
           "attempts": 19,
           "at": "2026-08-07T08:11:52.343Z"
-        },
-        "base-oil-spread|Q1 FY27": {
-          "value": null,
-          "unit": "$/t",
-          "sourceTag": null,
-          "note": "Base-oil spread not explicitly stated in any excerpt.",
-          "origin": "model",
-          "fingerprint": "db75dce42d26",
-          "attempts": 2,
-          "at": "2026-07-29T09:25:13.617Z"
         },
         "mfg-gross-spread|Q2 FY26": {
           "value": 8274,

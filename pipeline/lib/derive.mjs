@@ -133,10 +133,27 @@ function computeVolumeYoy({ insights, quarterLabel }) {
  * value the store already holds before it is trusted to fill that KPI's gaps -
  * relative for a level, absolute (percentage points) for a growth rate.
  *
- * Deliberately NOT here: Reliance's O2C EBITDA/tonne. We hold O2C throughput but
- * not the O2C SEGMENT's EBITDA - only Reliance's consolidated operating profit,
- * which is Jio and Retail and E&P as well as O2C. Dividing that by refinery
- * tonnes would be a fabricated number wearing a formula. It stays a gap.
+ * Deliberately NOT here, each assessed and refused:
+ *
+ *   O2C EBITDA/tonne (Reliance). We hold O2C throughput but not the O2C SEGMENT's
+ *     EBITDA - only Reliance's consolidated operating profit, which is Jio and
+ *     Retail and E&P as well as O2C. Dividing that by refinery tonnes would be a
+ *     fabricated number wearing a formula. (The segment figure is read from the
+ *     results deck instead - see lib/ril-fill.mjs.)
+ *
+ *   Terminal utilisation (Aegis Logistics, Aegis-Vopak). Throughput is quarterly
+ *     but LPG Throughput Capacity is reported once a year AND jumped 9,600 ->
+ *     19,600 in Mar 2026 (a capacity expansion). Dividing quarterly throughput by
+ *     an annual capacity that changed at an unknown point in the year would draw a
+ *     utilisation cliff (57% -> 25%) that is an artefact of the expansion timing,
+ *     not a real fall. There is also no held utilisation value to reproduce
+ *     against, so the corroboration gate could not catch it. It stays a gap.
+ *     (Aegis-Vopak's throughput row is empty outright.)
+ *
+ *   Marketing margin (IOCL/BPCL/HPCL), Petchem margin (Reliance/GAIL). These need
+ *     the marketing/petrochem SEGMENT's profitability per unit, which neither the
+ *     Insights grid nor Screener's P&L breaks out - only consolidated profit. Same
+ *     trap as O2C. They stay gaps until a segmental source is added.
  */
 export const DERIVATIONS = {
   'ebitda-per-scm': {

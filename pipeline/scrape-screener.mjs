@@ -32,7 +32,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadEnv, screenerCredentials } from './lib/env.mjs';
 import { openScreener, resolveSlug, getCompanyPage, downloadDoc, maskEmail } from './sources/screener-session.mjs';
 import { parseAllFinancials } from './parsers/screener-financials.mjs';
-import { parseConcalls, selectDocuments, looksLikeDoc } from './parsers/screener-docs.mjs';
+import { parseConcalls, selectDocuments, looksLikeDoc, isTransientHttp } from './parsers/screener-docs.mjs';
 import { filingDecision } from './lib/filing-check.mjs';
 import { parseProsCons } from './parsers/screener-summary.mjs';
 import {
@@ -126,9 +126,9 @@ async function gatherDoc(context, slug, doc, { env = process.env } = {}) {
       ? { timeout, headers: { 'x-requested-with': 'XMLHttpRequest', accept: 'text/html, */*; q=0.01' } }
       : { timeout };
     let dl = await downloadDoc(context, doc.url, dlOpts);
-    // Screener rate-limits its own summary endpoint; a 429 clears on a short
-    // back-off, so retry rather than record a miss.
-    for (let a = 0; !dl.ok && dl.status === 429 && a < 3; a++) {
+    // Screener's summary endpoint 429s and the BSE/NSE transcript hosts 403 under
+    // a burst; both clear on a short back-off, so retry rather than record a miss.
+    for (let a = 0; !dl.ok && isTransientHttp(dl.status) && a < 3; a++) {
       await sleep(2500 * (a + 1));
       dl = await downloadDoc(context, doc.url, dlOpts);
     }
@@ -394,9 +394,12 @@ async function main() {
           if (g.status === 'ocr_needed') docsOcr++;
           if (g.status === 'gated') docsGated++;
           if (g.via && g.via !== 'browser') docsRecovered++;
-          // The summary endpoint is Screener's own and rate-limited; the rest are
-          // external hosts, so only the summaries need the wider gap.
-          await sleep(d.role === 'summary' ? 500 : 200);
+          /* Pace the fetches so the burst does not trip a host's rate limit in the
+             first place. Transcripts point at BSE/NSE, which 403s a rapid sequence
+             (Thermax lost 5 of 6 that way), so they get the widest gap; the summary
+             endpoint is Screener's own and 429-prone; a cache hit waited on nothing
+             and needs no gap at all. */
+          if (!g.cached) await sleep(d.role === 'transcript' ? 900 : d.role === 'summary' ? 500 : 200);
         }
 
         const manifestDoc = (g) => ({
