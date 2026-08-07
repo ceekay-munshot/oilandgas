@@ -58,16 +58,48 @@ than shipping nothing.
 
 | | |
 |---|---|
-| KPI coverage | **117 / 224 cells**, 30 of 58 KPIs have a trajectory flag |
+| KPI coverage | **246 / 377 cells**, 61 of 97 KPIs have a trajectory flag |
+| Cell origins | insights 206 · model 33 · derived 4 · ppac 2 · filing 1 — **83% deterministic/cited** |
 | Companies | 27, all with financials, docs and an Insights table |
-| Insights table | 26 of 27 on the **quarterly** view, **1,150 values** parsed |
-| Deterministic mapping | 27 of 58 KPIs mapped → filled from Screener's table, no model call |
-| Derived | **4 cells** computed from held figures (EBITDA/scm), formula in the note |
-| Store | `data/kpi-store.json`, 27 companies, **121 cells held**, accumulates forever |
+| Commentary | 98 / 102 quarters toned; cycle stage `early-upcycle` ~31/100 |
+| Store | `data/kpi-store.json`, 27 companies, accumulates forever |
 
-> How coverage got to 117: the deterministic Insights fill took it **97 → 113**
-> (its first `scope: all` run), and the derived step took it **113 → 117**. It can
-> only go up — a null never displaces a number.
+> Coverage can only go **up over time** — a null never displaces a number — but a
+> correctness pass can take it *down* on purpose: the 2026-08-07 alignment pass
+> (below) replaced ~12 wrong-basis model values with honest gaps, which is why
+> model-sourced cells fell 45 → 33. A removed wrong number is a win, not a loss.
+
+### 2026-08-07 alignment pass — what changed and why
+
+A full read of the repo against the brief found the honesty machinery had one
+hole: **the "deliberately unmapped" discipline only bound the deterministic fill,
+not the model.** The model, handed a company's whole Insights grid as context,
+was answering KPIs we had declined to map by reaching for a related-but-wrong row.
+
+- **`noModel` fence (`planCompany`).** A spec KPI with `noModel: true` is never
+  sent to the model — it stays a gap unless a declared deterministic/derived
+  source fills it. Applied to the five KPIs the model was getting wrong:
+  L&T `hydrocarbon-order-inflow`/`-order-book` (it filed the ~10× larger **group**
+  order book as the hydrocarbon **segment**'s — 667000/1830000 ₹ cr), and the
+  three commodity **market spreads** (Gandhar/Castrol base-oil, Supreme
+  styrene-polystyrene) where it invented $/t figures from gross-margin rows.
+  Those wrong cells were purged from the store so the rows render as honest gaps.
+- **`market: true`** marks a commodity-price KPI. The grid draws an "M" badge and
+  an empty one reads "market series, awaiting a price feed" — not a company that
+  failed to disclose. No fabricated feed was added (base-oil/styrene prices have
+  no free source; ICIS/Platts would be needed).
+- **Petronet regas Q2 FY26 = 27** purged — it was Kochi's terminal read into the
+  Dahej-based series, driving a false `inflecting-down`. Now `[·, ·, 94, 90.1]`.
+- **Castrol `lubricant-volume` relabelled "Lubricant volume (YoY)"** — the values
+  were volume *growth* % (coherent, `unit: % yoy`), the label just read as litres.
+- **Burst-403 transcript recovery.** `isTransientHttp` now retries 403 (and 5xx)
+  with back-off, and transcript fetches are paced 900 ms apart. Thermax/BPCL were
+  losing 5–6 transcripts each to BSE/NSE rate-limiting (first fetch ok, the rapid
+  sequence 403) — which is why Thermax had collapsed to a one-quarter window.
+  Verified only on the next Actions run (paid scrape can't run locally).
+- **`derive.mjs` refusals recorded**: terminal utilisation (annual capacity that
+  jumped mid-window → a fake cliff), marketing/petchem margins (need segment
+  profitability we do not hold). Assessed and left as gaps, not forced.
 
 ### Data files (all committed)
 
@@ -493,6 +525,15 @@ the KPI:
 
 A wrong number carrying a page citation is worse than a gap, because the citation
 makes it look checked.
+
+**Not mapping a row no longer relies on convention.** Before the alignment pass,
+"unmapped" only stopped the deterministic fill — the model still answered the KPI
+and reached for the related row. A KPI that must NOT be model-guessed now carries
+`noModel: true` in `data/kpi-spec.json`, which `planCompany` enforces (the model
+is never asked). Use `noModel` for a KPI whose only nearby data is a wrong-basis
+row; add `market: true` as well when the KPI is a commodity price rather than
+company data. Both take a spec-level `awaitingReason` that the grid shows in the
+empty cell.
 
 ---
 

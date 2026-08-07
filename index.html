@@ -667,6 +667,16 @@ table.kpi td.co[rowspan]{vertical-align:top;}
   color:var(--ink-2); background:color-mix(in srgb, var(--ink-4) 18%, transparent);
 }
 .kpirole{padding:0 4px; color:var(--ink-3); background:color-mix(in srgb, var(--ink-3) 15%, transparent);}
+/* "market" marks a commodity-price row (base-oil spread, styrene-polystyrene) -
+   a market series, not a figure the company discloses. It belongs to the macro
+   feed, so an empty one is awaiting a price source, NOT a company that failed to
+   report. Tinted like the macro tab so the eye files it with the backdrop. */
+.kpimkt{
+  display:inline-block; width:13px; height:13px; line-height:13px; margin-left:6px;
+  border-radius:3px; font-size:9px; font-weight:700; text-align:center;
+  vertical-align:1px; cursor:help;
+  color:var(--tab-macro,#1098ad); background:color-mix(in srgb, var(--tab-macro,#1098ad) 16%, transparent);
+}
 /* the legend entry carries the badge inline, so the key looks like the thing */
 .chip--key{--c:var(--ink-4); font-weight:550;}
 .chip--key .kpixtra{margin-left:0; margin-right:4px;}
@@ -2463,6 +2473,13 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
       'names for this company. Sourced and cited like any other row, but held out ' +
       'of the cycle score, so the stage call stays computed on the brief’s own list.">E</span>';
   }
+  /* A market-price row: the value comes from a commodity feed, not the company. */
+  function kpiMarketBadge(k) {
+    if (!k || !k.market) return '';
+    return '<span class="kpimkt" title="MARKET SERIES - a commodity price (not a ' +
+      'figure this company discloses). It belongs to the macro backdrop; an empty ' +
+      'row here is awaiting a price feed, not a company that failed to report.">M</span>';
+  }
   /* Only where the row's own lead/lag behaviour is not its company's group. */
   function kpiRoleBadge(k, groupId) {
     if (!k || !k.cycleRole || k.cycleRole === groupId) return '';
@@ -2689,7 +2706,7 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
         cells += '<td class="what"' + (k.flagBasis ? ' title="flagged on ' + esc(k.flagBasis) + '"' : '') +
           '>' + esc(k.label) +
           (k.unit ? ' <span class="kpiunit">' + esc(k.unit) + '</span>' : '') +
-          kpiExtraBadge(k) + kpiRoleBadge(k, g.id) + '</td>';
+          kpiExtraBadge(k) + kpiMarketBadge(k) + kpiRoleBadge(k, g.id) + '</td>';
         /* four quarter values, pulled onto this company's own axis. Every cell
            names the quarter it belongs to, because the column heading cannot:
            without it a number under "Latest" is unattributable. Nulls stay a dash,
@@ -2705,10 +2722,13 @@ tr.kpirow.is-open > td{background:color-mix(in srgb, var(--ink-4) 8%, transparen
           if (v == null || v === '' || !isFinite(Number(v))) {
             /* An empty cell says the company did not state it - not that we
                failed to look. The note carries whatever the extractor could say
-               about why, so hovering answers "is this missing or unreported?". */
+               about why, so hovering answers "is this missing or unreported?".
+               A market row is different again: the gap is a missing price FEED,
+               not a company that stayed silent, so it says so. */
+            var emptyWhy = k.market ? ' · market series, awaiting a price feed'
+                                    : ' · not disclosed for this quarter';
             cells += '<td class="empty num' + staleRow + '" title="' +
-              esc(qlab + ' · not disclosed for this quarter' +
-                  (k.notes ? ' · ' + k.notes : '')) + '">&ndash;</td>';
+              esc(qlab + emptyWhy + (k.notes ? ' · ' + k.notes : '')) + '">&ndash;</td>';
           } else {
             var tag = kpiTagText(tags[i]);
             /* A cell taken from Screener's Insights grid carries that table's own

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Per-company KPI specification",
   "note": "The exact KPIs the client tracks for each company, verbatim from the client doc - not invented by the pipeline. flagBasis says how the series is read: 'level' is the value itself, 'qoq' a quarter-on-quarter stock like an order book, 'yoy' a figure that is already year-on-year. keywords are only used to pre-filter the source text before the LLM reads it. unit is a hint; the extractor records whatever unit the source actually states.",
-  "updated": "2026-07-26",
+  "updated": "2026-08-07",
   "quartersNote": "Only a fallback for a company with no cached documents. Each company's real window is the four most recent quarters its own concalls report, derived per run by the extractor, so it rolls forward by itself as new calls appear on Screener.",
   "quarters": [
     "Q2 FY26",
@@ -394,7 +394,9 @@
           "order intake",
           "new orders",
           "energy"
-        ]
+        ],
+        "noModel": true,
+        "awaitingReason": "L&T reports order inflow and book at group level; the Hydrocarbon segment figure the brief asks for is in its results-deck segmental table, not the group Insights row. Held as a gap rather than file the ~10x-larger group number as the segment."
       },
       {
         "id": "hydrocarbon-order-book",
@@ -406,7 +408,9 @@
           "order book",
           "orderbook",
           "backlog"
-        ]
+        ],
+        "noModel": true,
+        "awaitingReason": "L&T reports order inflow and book at group level; the Hydrocarbon segment figure the brief asks for is in its results-deck segmental table, not the group Insights row. Held as a gap rather than file the ~10x-larger group number as the segment."
       },
       {
         "id": "group-order-inflow",
@@ -1337,7 +1341,10 @@
           "spread",
           "margin",
           "delta"
-        ]
+        ],
+        "market": true,
+        "noModel": true,
+        "awaitingReason": "Styrene–polystyrene spread is a commodity market price, not a figure Supreme reports. Needs a petrochemical price feed; not company-disclosed."
       },
       {
         "id": "volume",
@@ -1373,7 +1380,7 @@
     "castrol-india": [
       {
         "id": "lubricant-volume",
-        "label": "Lubricant volume",
+        "label": "Lubricant volume (YoY)",
         "unit": "% yoy",
         "flagBasis": "yoy",
         "keywords": [
@@ -1399,7 +1406,10 @@
           "base-oil",
           "spread",
           "margin"
-        ]
+        ],
+        "market": true,
+        "noModel": true,
+        "awaitingReason": "Base-oil spread is a commodity market price, not a figure Castrol reports. Needs a base-oil price feed; not company-disclosed."
       }
     ],
     "gandhar-oil": [
@@ -1413,7 +1423,10 @@
           "base-oil",
           "spread",
           "margin"
-        ]
+        ],
+        "market": true,
+        "noModel": true,
+        "awaitingReason": "Base-oil spread is a commodity market price (base oil vs crude feedstock), not a figure Gandhar reports. Needs a petrochemical price feed (ICIS/Platts); Gandhar’s own manufacturing gross spread is carried separately."
       },
       {
         "id": "white-oil-volume",

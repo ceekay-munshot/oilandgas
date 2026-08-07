@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-07T08:11:35.555Z",
+  "generatedAt": "2026-08-07T09:42:57.619Z",
   "quarters": [
     "Q1 FY26",
     "Q2 FY26",
@@ -14,10 +14,10 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 377,
-    "realCells": 258,
-    "nullCells": 119,
+    "realCells": 246,
+    "nullCells": 131,
     "kpis": 97,
-    "kpisWithTrend": 65
+    "kpisWithTrend": 61
   },
   "companies": {
     "deep-industries": {
@@ -32,7 +32,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33679,
+      "ctxChars": 3679,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -170,7 +170,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34070,
+      "ctxChars": 4070,
       "kpis": [
         {
           "id": "order-inflow",
@@ -438,7 +438,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 27823,
+      "ctxChars": 3823,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -447,19 +447,19 @@
           "flagBasis": "level",
           "values": [
             null,
-            27,
+            null,
             94,
             90.1
           ],
           "sourceTags": [
             null,
-            "mgmt-claim",
+            null,
             "company-filing",
             "company-filing"
           ],
           "origins": [
             null,
-            "model",
+            null,
             "insights",
             "insights"
           ],
@@ -483,7 +483,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": null,
           "notes": "From Screener Insights row \"Dahej Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
         },
         {
@@ -700,7 +700,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 27698,
+      "ctxChars": 3699,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -791,7 +791,7 @@
       "asOf": "Q2 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 21412,
+      "ctxChars": 3413,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -951,7 +951,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33642,
+      "ctxChars": 3643,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -1105,7 +1105,7 @@
       "asOf": "Q3 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 32257,
+      "ctxChars": 3716,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -1318,10 +1318,10 @@
         "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33720,
+      "ctxChars": 3722,
       "kpis": [
         {
           "id": "hydrocarbon-order-inflow",
@@ -1329,22 +1329,22 @@
           "unit": "₹ cr",
           "flagBasis": "level",
           "values": [
-            115784,
-            135600,
-            89772,
-            31000
+            null,
+            null,
+            null,
+            null
           ],
           "sourceTags": [
-            "company-filing",
-            "mgmt-claim",
-            "company-filing",
-            "mgmt-claim"
+            null,
+            null,
+            null,
+            null
           ],
           "origins": [
-            "model",
-            "model",
-            "model",
-            "model"
+            null,
+            null,
+            null,
+            null
           ],
           "citations": [
             null,
@@ -1356,10 +1356,11 @@
             null,
             null,
             null,
-            "High base + deferred awards"
+            null
           ],
-          "flag": "inflecting-down",
-          "notes": null
+          "flag": null,
+          "noModel": true,
+          "notes": "L&T reports order inflow and book at group level; the Hydrocarbon segment figure the brief asks for is in its results-deck segmental table, not the group Insights row. Held as a gap rather than file the ~10x-larger group number as the segment."
         },
         {
           "id": "hydrocarbon-order-book",
@@ -1367,22 +1368,22 @@
           "unit": "₹ cr",
           "flagBasis": "qoq",
           "values": [
-            667000,
-            1830000,
-            740300,
-            222000
+            null,
+            null,
+            null,
+            null
           ],
           "sourceTags": [
-            "company-filing",
-            "company-filing",
-            "company-filing",
-            "mgmt-claim"
+            null,
+            null,
+            null,
+            null
           ],
           "origins": [
-            "model",
-            "model",
-            "model",
-            "model"
+            null,
+            null,
+            null,
+            null
           ],
           "citations": [
             null,
@@ -1396,8 +1397,9 @@
             null,
             null
           ],
-          "flag": "decelerating",
-          "notes": null
+          "flag": null,
+          "noModel": true,
+          "notes": "L&T reports order inflow and book at group level; the Hydrocarbon segment figure the brief asks for is in its results-deck segmental table, not the group Insights row. Held as a gap rather than file the ~10x-larger group number as the segment."
         }
       ]
     },
@@ -1413,7 +1415,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33026,
+      "ctxChars": 3027,
       "kpis": [
         {
           "id": "order-book",
@@ -1505,7 +1507,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34052,
+      "ctxChars": 4054,
       "kpis": [
         {
           "id": "order-book",
@@ -1817,7 +1819,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34307,
+      "ctxChars": 4310,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -1993,7 +1995,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31059,
+      "ctxChars": 3957,
       "kpis": [
         {
           "id": "grm",
@@ -2410,7 +2412,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27940,
+      "ctxChars": 3941,
       "kpis": [
         {
           "id": "grm",
@@ -2564,7 +2566,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34133,
+      "ctxChars": 4138,
       "kpis": [
         {
           "id": "grm",
@@ -2706,7 +2708,7 @@
       "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31836,
+      "ctxChars": 4080,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -3034,7 +3036,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34038,
+      "ctxChars": 4038,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3345,7 +3347,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33876,
+      "ctxChars": 3877,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3437,7 +3439,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34048,
+      "ctxChars": 4049,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3655,7 +3657,7 @@
       "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33121,
+      "ctxChars": 3124,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3759,7 +3761,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32913,
+      "ctxChars": 2916,
       "kpis": [
         {
           "id": "sps-spread",
@@ -3797,7 +3799,9 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: No styrene-polystyrene spread figure stated. Q3 FY26: No spread figure stated; management mentioned SM prices ~$810 and falling prices/destocking but no explicit spread. Q4 FY26: No spread figure stated; SM stable until Feb then sp"
+          "market": true,
+          "noModel": true,
+          "notes": "Styrene–polystyrene spread is a commodity market price, not a figure Supreme reports. Needs a petrochemical price feed; not company-disclosed."
         },
         {
           "id": "volume",
@@ -3914,11 +3918,11 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 31578,
+      "ctxChars": 1581,
       "kpis": [
         {
           "id": "lubricant-volume",
-          "label": "Lubricant volume",
+          "label": "Lubricant volume (YoY)",
           "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
@@ -3994,7 +3998,9 @@
             null
           ],
           "flag": null,
-          "notes": "Base-oil spread not mentioned in any excerpt."
+          "market": true,
+          "noModel": true,
+          "notes": "Base-oil spread is a commodity market price, not a figure Castrol reports. Needs a base-oil price feed; not company-disclosed."
         }
       ]
     },
@@ -4010,7 +4016,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33126,
+      "ctxChars": 3128,
       "kpis": [
         {
           "id": "base-oil-spread",
@@ -4018,21 +4024,21 @@
           "unit": "$/t",
           "flagBasis": "level",
           "values": [
-            8662,
-            7271,
-            9351,
+            null,
+            null,
+            null,
             null
           ],
           "sourceTags": [
-            "mgmt-claim",
-            "mgmt-claim",
-            "mgmt-claim",
+            null,
+            null,
+            null,
             null
           ],
           "origins": [
-            "model",
-            "model",
-            "model",
+            null,
+            null,
+            null,
             null
           ],
           "citations": [
@@ -4047,8 +4053,10 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
-          "notes": "Base-oil spread not explicitly stated in any excerpt."
+          "flag": null,
+          "market": true,
+          "noModel": true,
+          "notes": "Base-oil spread is a commodity market price (base oil vs crude feedstock), not a figure Gandhar reports. Needs a petrochemical price feed (ICIS/Platts); Gandhar’s own manufacturing gross spread is carried separately."
         },
         {
           "id": "white-oil-volume",
@@ -4266,7 +4274,7 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 9450,
+      "ctxChars": 3450,
       "kpis": [
         {
           "id": "industrial-gas-volume",
@@ -4320,7 +4328,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33329,
+      "ctxChars": 3329,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4429,7 +4437,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34338,
+      "ctxChars": 4340,
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -4821,7 +4829,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21342,
+      "ctxChars": 3343,
       "kpis": [
         {
           "id": "freight-rate",
@@ -4906,7 +4914,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15961,
+      "ctxChars": 3961,
       "kpis": [
         {
           "id": "order-book",
