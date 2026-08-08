@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-07T09:42:57.825Z",
+  "generatedAt": "2026-08-08T06:23:48.881Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -30,12 +30,12 @@
     }
   },
   "quarters": [
-    "Q1 FY26",
     "Q2 FY26",
     "Q3 FY26",
-    "Q4 FY26"
+    "Q4 FY26",
+    "Q1 FY27"
   ],
-  "asOf": "Q4 FY26",
+  "asOf": "Q1 FY27",
   "scores": {
     "leading": {
       "score": 25,
@@ -49,7 +49,7 @@
       "kpisBeyondBrief": 6,
       "tonesScored": 8,
       "companiesScored": 6,
-      "staleKpis": 8,
+      "staleKpis": 21,
       "oneOffKpis": 0,
       "unknownKpis": 0,
       "lowCoverage": true,
@@ -101,21 +101,21 @@
       ]
     },
     "coincident": {
-      "score": -52,
-      "prev": -17,
-      "delta": -47,
+      "score": -49,
+      "prev": -24,
+      "delta": -37,
       "deltaBasis": "kpi-only",
       "level": "strong-negative",
       "direction": "falling",
       "kpisScored": 20,
       "kpisTotal": 40,
-      "kpisBeyondBrief": 18,
+      "kpisBeyondBrief": 10,
       "tonesScored": 15,
       "companiesScored": 11,
-      "staleKpis": 4,
+      "staleKpis": 23,
       "oneOffKpis": 1,
       "unknownKpis": 0,
-      "lowCoverage": false,
+      "lowCoverage": true,
       "weakestTag": "derived",
       "reducedConfidence": true,
       "signals": [
@@ -124,7 +124,7 @@
           "companyId": "iocl",
           "company": "IOCL",
           "label": "Throughput",
-          "flag": "inflecting-up"
+          "flag": "inflecting-down"
         },
         {
           "kind": "kpi",
@@ -159,7 +159,7 @@
           "companyId": "mahanagar-gas",
           "company": "Mahanagar Gas",
           "label": "EBITDA / scm",
-          "flag": "inflecting-down"
+          "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
@@ -205,13 +205,6 @@
         },
         {
           "kind": "tone",
-          "companyId": "mahanagar-gas",
-          "company": "Mahanagar Gas",
-          "label": "Gas demand trajectory",
-          "flag": "tone-down"
-        },
-        {
-          "kind": "tone",
           "companyId": "castrol-india",
           "company": "Castrol India",
           "label": "Spread / demand commentary",
@@ -238,10 +231,10 @@
       "kpisBeyondBrief": 3,
       "tonesScored": 2,
       "companiesScored": 1,
-      "staleKpis": 0,
+      "staleKpis": 7,
       "oneOffKpis": 0,
       "unknownKpis": 0,
-      "lowCoverage": false,
+      "lowCoverage": true,
       "weakestTag": "company-filing",
       "reducedConfidence": false,
       "signals": [
@@ -277,7 +270,7 @@
     }
   },
   "divergence": {
-    "value": 77,
+    "value": 74,
     "leadingSign": 1,
     "coincidentSign": -1,
     "signsDiffer": true
@@ -285,17 +278,17 @@
   "divergenceSeries": [
     null,
     null,
-    -21,
-    78
+    -14,
+    75
   ],
   "stage": {
     "stageId": "early-upcycle",
-    "position": 31,
+    "position": 32,
     "ruleId": "early-upcycle",
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 25 (positive, rising), coincident -52 (strong-negative, falling), lagging 0 (flat).",
+      "Leading 25 (positive, rising), coincident -49 (strong-negative, falling), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -304,7 +297,7 @@
     "opposing": 1,
     "silent": 4,
     "macroBias": "mixed",
-    "scoreBias": "down",
+    "scoreBias": "flat",
     "agree": null,
     "conflict": false,
     "tiles": [
@@ -386,16 +379,6 @@
       "direction": "down"
     },
     {
-      "companyId": "mahanagar-gas",
-      "name": "Mahanagar Gas",
-      "from": "confident",
-      "to": "cautious",
-      "fromQuarter": "Q3 FY26",
-      "quarter": "Q4 FY26",
-      "steps": -3,
-      "direction": "down"
-    },
-    {
       "companyId": "castrol-india",
       "name": "Castrol India",
       "from": "confident",
@@ -460,7 +443,17 @@
     {
       "groupId": "leading",
       "kind": "low-coverage",
-      "text": "Moves first: 8 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves first: 21 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    },
+    {
+      "groupId": "coincident",
+      "kind": "low-coverage",
+      "text": "Moving now: 24 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    },
+    {
+      "groupId": "lagging",
+      "kind": "low-coverage",
+      "text": "Moves last: 7 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     }
   ],
   "alerts": [
@@ -480,7 +473,19 @@
       "id": "coverage-leading",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moves first: 8 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves first: 21 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    },
+    {
+      "id": "coverage-coincident",
+      "severity": "info",
+      "kind": "low-coverage",
+      "text": "Moving now: 24 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    },
+    {
+      "id": "coverage-lagging",
+      "severity": "info",
+      "kind": "low-coverage",
+      "text": "Moves last: 7 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "tone-ongc",
@@ -493,12 +498,6 @@
       "severity": "warn",
       "kind": "tone-drift",
       "text": "Petronet LNG moved 3 tone steps down (constructive → defensive) in Q4 FY26."
-    },
-    {
-      "id": "tone-mahanagar-gas",
-      "severity": "warn",
-      "kind": "tone-drift",
-      "text": "Mahanagar Gas moved 3 tone steps down (confident → cautious) in Q4 FY26."
     },
     {
       "id": "tone-castrol-india",
@@ -561,12 +560,12 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +77. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
+      "text": "Leading minus coincident is +74. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "ONGC (cautious → confident); Petronet LNG (constructive → defensive); Mahanagar Gas (confident → cautious); Castrol India (confident → cautious); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); and 3 more."
+      "text": "ONGC (cautious → confident); Petronet LNG (constructive → defensive); Castrol India (confident → cautious); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 2 more."
     },
     {
       "id": "implication",
@@ -760,9 +759,9 @@
           "companyId": "iocl",
           "name": "IOCL",
           "toneId": "cautious",
-          "quarter": "Q4 FY26",
+          "quarter": "Q1 FY27",
           "direction": "negative",
-          "driver": "supply chain disruption",
+          "driver": "geopolitical volatility and crude sourcing",
           "drift": 0
         },
         {
@@ -817,9 +816,9 @@
           "companyId": "iocl",
           "name": "IOCL",
           "toneId": "cautious",
-          "quarter": "Q4 FY26",
+          "quarter": "Q1 FY27",
           "direction": "negative",
-          "driver": "supply chain disruption",
+          "driver": "geopolitical volatility and crude sourcing",
           "drift": 0
         },
         {
@@ -867,7 +866,7 @@
       "label": "Gas demand trajectory",
       "bucket": "coincident",
       "listenFor": "Volume growth guidance, new geographic-area rollout pace, industrial vs. domestic PNG mix shift, spot vs. term LNG contracting stance",
-      "state": "5 companies heard, split (2 positive, 2 negative); Petronet LNG moved 3 steps down, Mahanagar Gas moved 3 steps down.",
+      "state": "5 companies heard, split (2 positive, 2 negative); Petronet LNG moved 3 steps down.",
       "mood": "mixed",
       "members": [
         {
@@ -901,10 +900,10 @@
           "companyId": "mahanagar-gas",
           "name": "Mahanagar Gas",
           "toneId": "cautious",
-          "quarter": "Q4 FY26",
+          "quarter": "Q1 FY27",
           "direction": "negative",
-          "driver": "gas supply and pricing",
-          "drift": -3
+          "driver": "geopolitical supply disruption",
+          "drift": 0
         },
         {
           "companyId": "gujarat-gas",
@@ -927,13 +926,13 @@
           "drift": -3
         },
         {
-          "companyId": "mahanagar-gas",
-          "name": "Mahanagar Gas",
-          "toneId": "cautious",
+          "companyId": "igl",
+          "name": "IGL",
+          "toneId": "neutral",
           "quarter": "Q4 FY26",
-          "direction": "negative",
-          "driver": "gas supply and pricing",
-          "drift": -3
+          "direction": "neutral",
+          "driver": "profitability resilience",
+          "drift": -1
         }
       ]
     },
@@ -1045,18 +1044,22 @@
   ],
   "changes": [
     {
-      "kind": "score",
-      "text": "Moves first moved up 14 points to 25."
+      "kind": "alert",
+      "text": "New alert: Moving now: 24 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    },
+    {
+      "kind": "alert",
+      "text": "New alert: Moves last: 7 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-07T08:11:58.784Z",
+    "generatedAt": "2026-08-07T09:42:57.825Z",
     "asOf": "Q4 FY26",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
-      "leading": 11,
-      "coincident": -48,
+      "leading": 25,
+      "coincident": -52,
       "lagging": 0
     },
     "alertIds": [

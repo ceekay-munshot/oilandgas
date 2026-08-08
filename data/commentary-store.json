@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-07T08:11:58.734Z",
+  "generatedAt": "2026-08-08T06:23:48.821Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -914,9 +914,27 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:19:52.770Z"
+        },
+        "Q1 FY27": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "The reported loss needs to be viewed in the context of heightened geopolitical tensions and ongoing conflicts, which led to significant volatility",
+          "rationale": "Management reported a net loss of ₹2,661 crore and emphasized geopolitical risks, supply chain challenges, and market volatility throughout their commentary.",
+          "driver": "geopolitical volatility and crude sourcing",
+          "direction": "negative",
+          "signal": "Management is focused on maintaining operational continuity through diversified crude sourcing amid heightened uncertainty, with no indication of growth investments or margin recovery in the near term.",
+          "mgmtDataPoints": [
+            "Spot imports: 84% in Q1 FY27 vs 51% last year"
+          ],
+          "implication": "Continued pressure on margins likely in the next quarter unless geopolitical tensions ease and crude sourcing costs stabilize; defensive posture suggests limited upside.",
+          "doc": "Concall transcript (Q1 FY27)",
+          "fingerprint": "2649fbe22ab2",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-08T06:23:36.939Z"
         }
       },
-      "updatedAt": "2026-07-28T18:19:52.770Z"
+      "updatedAt": "2026-08-08T06:23:36.939Z"
     },
     "bpcl": {
       "cells": {
@@ -1428,9 +1446,25 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:20:27.852Z"
+        },
+        "Q1 FY27": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "The ongoing geopolitical conflict in West Asia has triggered a global energy crisis, significantly affecting the availability and pricing of natural gas",
+          "rationale": "Management highlights major supply uncertainty from geopolitical conflict, curtailed industrial/commercial gas supplies, and near-term price volatility despite domestic sourcing advantages",
+          "driver": "geopolitical supply disruption",
+          "direction": "negative",
+          "signal": "Management is navigating supply uncertainty and price volatility from West Asia conflict while maintaining domestic PNG/CNG supply; capex focus remains on PNG network expansion through PNG Drive 2.0 initiative.",
+          "mgmtDataPoints": [],
+          "implication": "Continued supply constraints to industrial/commercial segments and price pressure will likely weigh on volumes and margins until geopolitical tensions ease, though residential PNG growth may partially offset weakness.",
+          "doc": "Concall transcript (Q1 FY27)",
+          "fingerprint": "612da63f2898",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-08T06:23:43.336Z"
         }
       },
-      "updatedAt": "2026-07-28T18:20:27.852Z"
+      "updatedAt": "2026-08-08T06:23:43.336Z"
     },
     "gujarat-gas": {
       "cells": {

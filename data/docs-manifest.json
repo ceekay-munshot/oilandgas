@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-07T08:11:30.789Z",
+  "generatedAt": "2026-08-08T06:22:40.915Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -177,7 +177,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/transcript-2025-08.txt",
-          "error": "apiRequestContext.get: read ECONNRESET\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; Linux x86_6"
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; L"
         },
         {
           "type": "transcript",
@@ -776,7 +776,7 @@
       "view": "consolidated",
       "url": "https://www.screener.in/company/OIL/consolidated/",
       "analysis": {
-        "pros": 1,
+        "pros": 2,
         "cons": 0
       },
       "summariesAvailable": 21,
@@ -1270,11 +1270,12 @@
           "periodIso": "2026-05",
           "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
           "source": "investors.larsentoubro.com",
-          "status": "ok",
-          "chars": 85469,
-          "pages": 28,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/LT/transcript-2026-05.txt"
+          "cache": "pipeline/cache/docs/LT/transcript-2026-05.txt",
+          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND investors.larsentoubro.com\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2026Analyst"
         },
         {
           "type": "transcript",
@@ -1283,11 +1284,12 @@
           "periodIso": "2026-01",
           "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Transcript%20Q3FY26.pdf",
           "source": "investors.larsentoubro.com",
-          "status": "ok",
-          "chars": 60083,
-          "pages": 19,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/LT/transcript-2026-01.txt"
+          "cache": "pipeline/cache/docs/LT/transcript-2026-01.txt",
+          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND investors.larsentoubro.com\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2026Analyst"
         },
         {
           "type": "transcript",
@@ -1296,11 +1298,12 @@
           "periodIso": "2025-10",
           "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf",
           "source": "investors.larsentoubro.com",
-          "status": "ok",
-          "chars": 67509,
-          "pages": 25,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/LT/transcript-2025-10.txt"
+          "cache": "pipeline/cache/docs/LT/transcript-2025-10.txt",
+          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND investors.larsentoubro.com\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2026Analyst"
         },
         {
           "type": "transcript",
@@ -1309,11 +1312,12 @@
           "periodIso": "2025-07",
           "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Earnings%20Call%20Transcript%20Q1FY26.pdf",
           "source": "investors.larsentoubro.com",
-          "status": "ok",
-          "chars": 55122,
-          "pages": 20,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/LT/transcript-2025-07.txt"
+          "cache": "pipeline/cache/docs/LT/transcript-2025-07.txt",
+          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND investors.larsentoubro.com\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2026Analyst"
         },
         {
           "type": "transcript",
@@ -1322,11 +1326,12 @@
           "periodIso": "2025-05",
           "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2025AnalysttransL&T%20Q4FY25%20Earnings%20Call%20Transcript.pdf",
           "source": "investors.larsentoubro.com",
-          "status": "ok",
-          "chars": 73754,
-          "pages": 28,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/LT/transcript-2025-05.txt"
+          "cache": "pipeline/cache/docs/LT/transcript-2025-05.txt",
+          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND investors.larsentoubro.com\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2025Analyst"
         },
         {
           "type": "transcript",
@@ -1335,11 +1340,12 @@
           "periodIso": "2025-01",
           "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2025AnalysttransL&T%20Transcript%20Q3FY25.pdf",
           "source": "investors.larsentoubro.com",
-          "status": "ok",
-          "chars": 59555,
-          "pages": 21,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/LT/transcript-2025-01.txt"
+          "cache": "pipeline/cache/docs/LT/transcript-2025-01.txt",
+          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND investors.larsentoubro.com\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2025Analyst"
         }
       ]
     },
@@ -1856,9 +1862,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 95882,
-          "pages": 31,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -1925,9 +1931,23 @@
         "pros": 2,
         "cons": 0
       },
-      "summariesAvailable": 7,
-      "transcriptsFound": 7,
+      "summariesAvailable": 8,
+      "transcriptsFound": 8,
       "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://www.screener.in/concalls/summary/23276745/",
+          "source": "screener.in",
+          "status": "gated",
+          "chars": 88,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IOC/summary-2026-08.txt",
+          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+        },
         {
           "type": "summary",
           "role": "summary",
@@ -1997,20 +2017,6 @@
           "via": "browser",
           "cache": "pipeline/cache/docs/IOC/summary-2025-01.txt",
           "sample": "Indian Oil Corporation Ltd – Q3 FY25 Earnings Call Summary Financial Performance Q3 FY25 PAT: INR 2,874 cr vs INR 180 cr in Q2 FY25 and INR 8,063 cr in Q3 FY24."
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Aug 2018",
-          "periodIso": "2018-08",
-          "url": "https://www.screener.in/concalls/summary/518530/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 8489,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/IOC/summary-2018-08.txt",
-          "sample": "Indian Oil Corporation Ltd – Q1 FY19 Earnings Call Summary (13 Aug 2018) Headline Financials & Reporting Changes PAT: ₹6,831 cr vs ₹4,549 cr YoY ( ~50% growth )"
         }
       ],
       "ppt": {
@@ -2027,6 +2033,19 @@
         "cache": "pipeline/cache/docs/IOC/ppt-2026-08.txt"
       },
       "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://www.iocl.com/uploads/IOCLTranscriptQ126-27.pdf",
+          "source": "iocl.com",
+          "status": "ok",
+          "chars": 53056,
+          "pages": 18,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IOC/transcript-2026-08.txt"
+        },
         {
           "type": "transcript",
           "role": "transcript",
@@ -2091,19 +2110,6 @@
           "pages": 18,
           "via": "browser",
           "cache": "pipeline/cache/docs/IOC/transcript-2025-01.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Aug 2018",
-          "periodIso": "2018-08",
-          "url": "https://iocl.com/download/Concall-TranscriptQ1-FY19.pdf",
-          "source": "iocl.com",
-          "status": "ok",
-          "chars": 46140,
-          "pages": 32,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/IOC/transcript-2018-08.txt"
         }
       ]
     },
@@ -2881,21 +2887,21 @@
         "pros": 2,
         "cons": 0
       },
-      "summariesAvailable": 53,
-      "transcriptsFound": 51,
+      "summariesAvailable": 54,
+      "transcriptsFound": 52,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
-          "period": "Jul 2026",
-          "periodIso": "2026-07",
-          "url": "https://www.screener.in/concalls/summary/23262160/",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://www.screener.in/concalls/summary/23276725/",
           "source": "screener.in",
           "status": "gated",
           "chars": 88,
           "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/MGL/summary-2026-07.txt",
+          "cache": "pipeline/cache/docs/MGL/summary-2026-08.txt",
           "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
         },
         {
@@ -2972,17 +2978,30 @@
       "ppt": {
         "type": "ppt",
         "role": "ppt",
-        "period": "Jul 2026",
-        "periodIso": "2026-07",
+        "period": "Aug 2026",
+        "periodIso": "2026-08",
         "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d44ebb1b-c892-4af1-8a57-3293f5fa739e.pdf",
         "source": "bseindia.com",
         "status": "ok",
         "chars": 8838,
         "pages": 17,
         "via": "browser",
-        "cache": "pipeline/cache/docs/MGL/ppt-2026-07.txt"
+        "cache": "pipeline/cache/docs/MGL/ppt-2026-08.txt"
       },
       "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=0ea88aca-7ee8-4c87-8c7f-beffab60a9ba.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 47552,
+          "pages": 17,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/MGL/transcript-2026-08.txt"
+        },
         {
           "type": "transcript",
           "role": "transcript",
@@ -3047,19 +3066,6 @@
           "pages": 19,
           "via": "browser",
           "cache": "pipeline/cache/docs/MGL/transcript-2025-06.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Feb 2025",
-          "periodIso": "2025-02",
-          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=ddefd054-efc4-4ede-9de1-7e8743efe67a.pdf",
-          "source": "bseindia.com",
-          "status": "ok",
-          "chars": 60814,
-          "pages": 22,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/MGL/transcript-2025-02.txt"
         }
       ]
     },
@@ -3519,11 +3525,11 @@
         "role": "ppt",
         "period": "Aug 2026",
         "periodIso": "2026-08",
-        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=4dccd3ec-147c-4174-8ffa-12297802ca33.pdf",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=1a253599-0dc0-4ffb-87b6-df05270b7298.pdf",
         "source": "bseindia.com",
         "status": "ok",
-        "chars": 28215,
-        "pages": 33,
+        "chars": 29588,
+        "pages": 34,
         "via": "browser",
         "cache": "pipeline/cache/docs/AEGISVOPAK/ppt-2026-08.txt"
       },
@@ -4571,7 +4577,7 @@
       "url": "https://www.screener.in/company/SCI/consolidated/",
       "analysis": {
         "pros": 1,
-        "cons": 4
+        "cons": 5
       },
       "summariesAvailable": 2,
       "transcriptsFound": 2,

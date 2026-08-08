@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-07T08:11:58.625Z",
+  "generatedAt": "2026-08-08T06:23:36.887Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
@@ -764,31 +764,15 @@
       "name": "IOCL",
       "slug": "IOC",
       "quarters": [
-        "Q4 FY25",
         "Q1 FY26",
         "Q2 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "asOf": "Q1 FY27",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q4 FY25",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "we expect refining margins to be pretty good for us going forward in this year.",
-          "rationale": "Management expressed optimism about future refining margins despite current challenges.",
-          "driver": "refining margins",
-          "direction": "positive",
-          "signal": "Management expects refining margins to improve, indicating a positive outlook for profitability.",
-          "mgmtDataPoints": [
-            "ROs plan: 3,000-4,000",
-            "Petchem intensity target: 15% by 2030"
-          ],
-          "implication": "The company is likely to see improved profitability from refining operations in the coming quarters.",
-          "doc": "Concall AI summary (Q4 FY25)"
-        },
         {
           "quarter": "Q1 FY26",
           "toneId": "neutral",
@@ -840,6 +824,21 @@
           ],
           "implication": "Geopolitical tensions may lead to increased costs and supply chain challenges in the near term.",
           "doc": "Concall AI summary (Q4 FY26)"
+        },
+        {
+          "quarter": "Q1 FY27",
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "The reported loss needs to be viewed in the context of heightened geopolitical tensions and ongoing conflicts, which led to significant volatility",
+          "rationale": "Management reported a net loss of ₹2,661 crore and emphasized geopolitical risks, supply chain challenges, and market volatility throughout their commentary.",
+          "driver": "geopolitical volatility and crude sourcing",
+          "direction": "negative",
+          "signal": "Management is focused on maintaining operational continuity through diversified crude sourcing amid heightened uncertainty, with no indication of growth investments or margin recovery in the near term.",
+          "mgmtDataPoints": [
+            "Spot imports: 84% in Q1 FY27 vs 51% last year"
+          ],
+          "implication": "Continued pressure on margins likely in the next quarter unless geopolitical tensions ease and crude sourcing costs stabilize; defensive posture suggests limited upside.",
+          "doc": "Concall transcript (Q1 FY27)"
         }
       ]
     },
@@ -1263,33 +1262,15 @@
       "name": "Mahanagar Gas",
       "slug": "MGL",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "asOf": "Q1 FY27",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q1 FY26",
-          "toneId": "confident",
-          "score": 5,
-          "quote": "MGL continues to create CGD infrastructure across its business segments",
-          "rationale": "Management is focused on growth and expansion, indicating confidence.",
-          "driver": "CGD infrastructure expansion",
-          "direction": "positive",
-          "signal": "Management is actively expanding infrastructure, indicating strong capex intent and growth outlook.",
-          "mgmtDataPoints": [
-            "domestic households connected: 16,348",
-            "pipeline length: 7,538.63 km",
-            "CNG stations: 385",
-            "CNG vehicles added: 20,332"
-          ],
-          "implication": "Continued infrastructure expansion suggests robust growth in customer base and service capacity.",
-          "doc": "Concall transcript (Q1 FY26)"
-        },
         {
           "quarter": "Q2 FY26",
           "toneId": "confident",
@@ -1342,6 +1323,19 @@
           ],
           "implication": "Supply challenges may impact short-term operations, but infrastructure growth continues.",
           "doc": "Concall transcript (Q4 FY26)"
+        },
+        {
+          "quarter": "Q1 FY27",
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "The ongoing geopolitical conflict in West Asia has triggered a global energy crisis, significantly affecting the availability and pricing of natural gas",
+          "rationale": "Management highlights major supply uncertainty from geopolitical conflict, curtailed industrial/commercial gas supplies, and near-term price volatility despite domestic sourcing advantages",
+          "driver": "geopolitical supply disruption",
+          "direction": "negative",
+          "signal": "Management is navigating supply uncertainty and price volatility from West Asia conflict while maintaining domestic PNG/CNG supply; capex focus remains on PNG network expansion through PNG Drive 2.0 initiative.",
+          "mgmtDataPoints": [],
+          "implication": "Continued supply constraints to industrial/commercial segments and price pressure will likely weigh on volumes and margins until geopolitical tensions ease, though residential PNG growth may partially offset weakness.",
+          "doc": "Concall transcript (Q1 FY27)"
         }
       ]
     },
