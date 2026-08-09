@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-08T07:51:39.169Z",
+  "generatedAt": "2026-08-09T06:27:35.427Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -1275,7 +1275,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/transcript-2026-05.txt",
-          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND investors.larsentoubro.com\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2026Analyst"
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20"
         },
         {
           "type": "transcript",
@@ -1289,7 +1289,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/transcript-2026-01.txt",
-          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND investors.larsentoubro.com\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2026Analyst"
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Transcript%2"
         },
         {
           "type": "transcript",
@@ -1303,7 +1303,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/transcript-2025-10.txt",
-          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND investors.larsentoubro.com\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2026Analyst"
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Ear"
         },
         {
           "type": "transcript",
@@ -1317,7 +1317,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/transcript-2025-07.txt",
-          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND investors.larsentoubro.com\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2026Analyst"
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Earnings%20C"
         },
         {
           "type": "transcript",
@@ -1331,7 +1331,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/transcript-2025-05.txt",
-          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND investors.larsentoubro.com\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2025Analyst"
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2025AnalysttransL&T%20Q4FY25%20Ear"
         },
         {
           "type": "transcript",
@@ -1345,7 +1345,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/transcript-2025-01.txt",
-          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND investors.larsentoubro.com\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2025Analyst"
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://investors.larsentoubro.com/upload/Analysttrans/FY2025AnalysttransL&T%20Transcript%2"
         }
       ]
     },
@@ -3719,9 +3719,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e0aca11e-1b05-4087-b721-fe5651591c4f.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 46273,
+          "pages": 18,
           "via": "browser",
           "cache": "pipeline/cache/docs/SPLPETRO/transcript-2026-04.txt"
         },
@@ -3897,9 +3897,9 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b2502bf8-680b-48ed-a5f0-5409b7938365.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 40455,
+          "pages": 14,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-05.txt"
         },

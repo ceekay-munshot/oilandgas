@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-08T07:52:09.292Z",
+  "generatedAt": "2026-08-09T06:27:46.700Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -101,15 +101,15 @@
       ]
     },
     "coincident": {
-      "score": -34,
-      "prev": -13,
-      "delta": -35,
+      "score": -49,
+      "prev": -24,
+      "delta": -37,
       "deltaBasis": "kpi-only",
-      "level": "negative",
+      "level": "strong-negative",
       "direction": "falling",
       "kpisScored": 20,
       "kpisTotal": 40,
-      "kpisBeyondBrief": 9,
+      "kpisBeyondBrief": 10,
       "tonesScored": 15,
       "companiesScored": 11,
       "staleKpis": 23,
@@ -170,13 +170,6 @@
         },
         {
           "kind": "kpi",
-          "companyId": "supreme-petrochem",
-          "company": "Supreme Petrochem",
-          "label": "Volume",
-          "flag": "inflecting-up"
-        },
-        {
-          "kind": "kpi",
           "companyId": "gandhar-oil",
           "company": "Gandhar Oil",
           "label": "White-oil volume",
@@ -212,10 +205,10 @@
         },
         {
           "kind": "tone",
-          "companyId": "supreme-petrochem",
-          "company": "Supreme Petrochem",
+          "companyId": "castrol-india",
+          "company": "Castrol India",
           "label": "Spread / demand commentary",
-          "flag": "tone-up"
+          "flag": "tone-down"
         },
         {
           "kind": "tone",
@@ -277,7 +270,7 @@
     }
   },
   "divergence": {
-    "value": 59,
+    "value": 74,
     "leadingSign": 1,
     "coincidentSign": -1,
     "signsDiffer": true
@@ -285,8 +278,8 @@
   "divergenceSeries": [
     null,
     null,
-    -25,
-    62
+    -14,
+    75
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -295,7 +288,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 25 (positive, rising), coincident -34 (negative, falling), lagging 0 (flat).",
+      "Leading 25 (positive, rising), coincident -49 (strong-negative, falling), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -386,14 +379,14 @@
       "direction": "down"
     },
     {
-      "companyId": "supreme-petrochem",
-      "name": "Supreme Petrochem",
-      "from": "cautious",
-      "to": "confident",
+      "companyId": "castrol-india",
+      "name": "Castrol India",
+      "from": "confident",
+      "to": "cautious",
       "fromQuarter": "Q3 FY26",
-      "quarter": "Q1 FY27",
-      "steps": 3,
-      "direction": "up"
+      "quarter": "Q4 FY26",
+      "steps": -3,
+      "direction": "down"
     },
     {
       "companyId": "gandhar-oil",
@@ -507,10 +500,10 @@
       "text": "Petronet LNG moved 3 tone steps down (constructive → defensive) in Q4 FY26."
     },
     {
-      "id": "tone-supreme-petrochem",
-      "severity": "info",
+      "id": "tone-castrol-india",
+      "severity": "warn",
       "kind": "tone-drift",
-      "text": "Supreme Petrochem moved 3 tone steps up (cautious → confident) in Q1 FY27."
+      "text": "Castrol India moved 3 tone steps down (confident → cautious) in Q4 FY26."
     },
     {
       "id": "tone-gandhar-oil",
@@ -557,7 +550,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are negative and falling — IOCL Throughput, BPCL GRM, Petronet LNG Volume."
+      "text": "Coincident indicators are strongly negative and falling — IOCL Throughput, BPCL GRM, Petronet LNG Volume."
     },
     {
       "id": "macro",
@@ -567,12 +560,12 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +59. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
+      "text": "Leading minus coincident is +74. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "ONGC (cautious → confident); Petronet LNG (constructive → defensive); Supreme Petrochem (cautious → confident); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 2 more."
+      "text": "ONGC (cautious → confident); Petronet LNG (constructive → defensive); Castrol India (confident → cautious); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 2 more."
     },
     {
       "id": "implication",
@@ -996,7 +989,7 @@
       "label": "Spread / demand commentary",
       "bucket": "coincident",
       "listenFor": "Auto/industrial offtake trend - tracks broad economic activity, not just crude",
-      "state": "3 companies heard, leaning positive (3 positive, 0 negative); Supreme Petrochem moved 3 steps up, Gandhar Oil moved 3 steps up.",
+      "state": "3 companies heard, leaning positive (2 positive, 1 negative); Castrol India moved 3 steps down, Gandhar Oil moved 3 steps up.",
       "mood": "positive",
       "members": [
         {
@@ -1006,16 +999,16 @@
           "quarter": "Q1 FY27",
           "direction": "positive",
           "driver": "styrene-polystyrene margin spread",
-          "drift": 3
+          "drift": 1
         },
         {
           "companyId": "castrol-india",
           "name": "Castrol India",
-          "toneId": "confident",
-          "quarter": "Q3 FY26",
-          "direction": "positive",
-          "driver": "volume-led growth",
-          "drift": 1
+          "toneId": "cautious",
+          "quarter": "Q4 FY26",
+          "direction": "negative",
+          "driver": "macro uncertainty",
+          "drift": -3
         },
         {
           "companyId": "gandhar-oil",
@@ -1029,13 +1022,13 @@
       ],
       "drivers": [
         {
-          "companyId": "supreme-petrochem",
-          "name": "Supreme Petrochem",
-          "toneId": "confident",
-          "quarter": "Q1 FY27",
-          "direction": "positive",
-          "driver": "styrene-polystyrene margin spread",
-          "drift": 3
+          "companyId": "castrol-india",
+          "name": "Castrol India",
+          "toneId": "cautious",
+          "quarter": "Q4 FY26",
+          "direction": "negative",
+          "driver": "macro uncertainty",
+          "drift": -3
         },
         {
           "companyId": "gandhar-oil",
@@ -1052,21 +1045,21 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moving now moved up 15 points to -34."
+      "text": "Moving now moved down 15 points to -49."
     },
     {
       "kind": "alert",
-      "text": "New alert: Supreme Petrochem moved 3 tone steps up (cautious → confident) in Q1 FY27."
+      "text": "New alert: Castrol India moved 3 tone steps down (confident → cautious) in Q4 FY26."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-08T06:23:48.881Z",
+    "generatedAt": "2026-08-08T07:52:09.292Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 25,
-      "coincident": -49,
+      "coincident": -34,
       "lagging": 0
     },
     "alertIds": [
@@ -1076,13 +1069,13 @@
       "divergence",
       "stage-macro",
       "tone-bpcl",
-      "tone-castrol-india",
       "tone-gandhar-oil",
       "tone-ongc",
       "tone-petronet-lng",
       "tone-ratnamani",
       "tone-reliance",
-      "tone-shipping-corp"
+      "tone-shipping-corp",
+      "tone-supreme-petrochem"
     ]
   }
 }
