@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-10T07:09:07.420Z",
+  "generatedAt": "2026-08-10T08:35:44.529Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -1044,22 +1044,18 @@
   ],
   "changes": [
     {
-      "kind": "score",
-      "text": "Moving now moved down 15 points to -49."
-    },
-    {
-      "kind": "alert",
-      "text": "New alert: Castrol India moved 3 tone steps down (confident → cautious) in Q4 FY26."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-09T08:01:23.169Z",
+    "generatedAt": "2026-08-10T07:09:07.420Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 25,
-      "coincident": -34,
+      "coincident": -49,
       "lagging": 0
     },
     "alertIds": [
@@ -1069,13 +1065,13 @@
       "divergence",
       "stage-macro",
       "tone-bpcl",
+      "tone-castrol-india",
       "tone-gandhar-oil",
       "tone-ongc",
       "tone-petronet-lng",
       "tone-ratnamani",
       "tone-reliance",
-      "tone-shipping-corp",
-      "tone-supreme-petrochem"
+      "tone-shipping-corp"
     ]
   }
 }
