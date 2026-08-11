@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-11T06:34:50.313Z",
+  "generatedAt": "2026-08-11T08:10:50.064Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,8 +13,8 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 343,
-    "realCells": 205,
+    "kpiCells": 345,
+    "realCells": 207,
     "nullCells": 138,
     "kpis": 89,
     "kpisWithTrend": 53
@@ -3884,7 +3884,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33174,
+      "ctxChars": 32989,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -3922,7 +3922,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not bre"
+          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not spe"
         },
         {
           "id": "total-cargo-volume",
@@ -4355,12 +4355,13 @@
       "name": "Shipping Corp of India",
       "slug": "SCI",
       "quarters": [
-        "Q2 FY26"
+        "Q2 FY26",
+        "Q4 FY26"
       ],
-      "asOf": "Q2 FY26",
+      "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15383,
+      "ctxChars": 21382,
       "kpis": [
         {
           "id": "freight-rate",
@@ -4368,12 +4369,15 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            47817
+            47817,
+            216387
           ],
           "sourceTags": [
+            "company-filing",
             "company-filing"
           ],
           "origins": [
+            "insights",
             "insights"
           ],
           "citations": [
@@ -4381,9 +4385,15 @@
               "doc": "Presentation - 07 Nov 2025",
               "quote": "VLCC MEG-CHINA 270,000 MT TD3C TCE Qtr-II 47,817.44",
               "page": 19
+            },
+            {
+              "doc": "Presentation - 11 May 2026",
+              "quote": "VLCC MEG-CHINA 270,000 MT TD3C TCE Qtr-IV 216,387",
+              "page": 17
             }
           ],
           "oneOffs": [
+            null,
             null
           ],
           "flag": null,
@@ -4395,12 +4405,15 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            32709
+            32709,
+            80914
           ],
           "sourceTags": [
+            "company-filing",
             "company-filing"
           ],
           "origins": [
+            "insights",
             "insights"
           ],
           "citations": [
@@ -4408,9 +4421,15 @@
               "doc": "Presentation - 07 Nov 2025",
               "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-II 32,708.75",
               "page": 19
+            },
+            {
+              "doc": "Presentation - 11 May 2026",
+              "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-IV 80,914",
+              "page": 17
             }
           ],
           "oneOffs": [
+            null,
             null
           ],
           "flag": null,

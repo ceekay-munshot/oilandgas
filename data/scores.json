@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-11T06:35:22.072Z",
+  "generatedAt": "2026-08-11T08:10:57.582Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -220,11 +220,11 @@
       ]
     },
     "lagging": {
-      "score": -22,
+      "score": 0,
       "prev": -43,
       "delta": 0,
       "deltaBasis": "kpi-only",
-      "level": "negative",
+      "level": "flat",
       "direction": "flat",
       "kpisScored": 4,
       "kpisTotal": 7,
@@ -258,6 +258,13 @@
           "company": "GE Shipping",
           "label": "Revenue days (owned)",
           "flag": "inflecting-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "shipping-corp",
+          "company": "Shipping Corp of India",
+          "label": "Freight / shipping outlook",
+          "flag": "tone-up"
         }
       ]
     }
@@ -281,7 +288,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 25 (positive, rising), coincident -41 (strong-negative, falling), lagging -22 (negative).",
+      "Leading 25 (positive, rising), coincident -41 (strong-negative, falling), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -420,6 +427,16 @@
       "quarter": "Q1 FY27",
       "steps": -2,
       "direction": "down"
+    },
+    {
+      "companyId": "shipping-corp",
+      "name": "Shipping Corp of India",
+      "from": "neutral",
+      "to": "confident",
+      "fromQuarter": "Q2 FY26",
+      "quarter": "Q4 FY26",
+      "steps": 2,
+      "direction": "up"
     }
   ],
   "coverageWarnings": [
@@ -511,6 +528,12 @@
       "severity": "warn",
       "kind": "tone-drift",
       "text": "BPCL moved 2 tone steps down (neutral → defensive) in Q1 FY27."
+    },
+    {
+      "id": "tone-shipping-corp",
+      "severity": "info",
+      "kind": "tone-drift",
+      "text": "Shipping Corp of India moved 2 tone steps up (neutral → confident) in Q4 FY26."
     }
   ],
   "summary": [
@@ -542,7 +565,7 @@
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "ONGC (cautious → confident); Petronet LNG (constructive → defensive); Castrol India (cautious → confident); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 1 more."
+      "text": "ONGC (cautious → confident); Petronet LNG (constructive → defensive); Castrol India (cautious → confident); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 2 more."
     },
     {
       "id": "implication",
@@ -918,7 +941,7 @@
       "label": "Freight / shipping outlook",
       "bucket": "lagging",
       "listenFor": "Fleet redeployment plans, charter rate outlook, global vessel-supply tightness commentary",
-      "state": "2 companies heard, leaning positive (1 positive, 0 negative); no two-step move this quarter.",
+      "state": "2 companies heard, leaning positive (2 positive, 0 negative); Shipping Corp of India moved 2 steps up.",
       "mood": "positive",
       "members": [
         {
@@ -933,14 +956,23 @@
         {
           "companyId": "shipping-corp",
           "name": "Shipping Corp of India",
-          "toneId": "neutral",
-          "quarter": "Q2 FY26",
-          "direction": "neutral",
-          "driver": "financial performance",
-          "drift": 0
+          "toneId": "confident",
+          "quarter": "Q4 FY26",
+          "direction": "positive",
+          "driver": "annual financial performance",
+          "drift": 2
         }
       ],
       "drivers": [
+        {
+          "companyId": "shipping-corp",
+          "name": "Shipping Corp of India",
+          "toneId": "confident",
+          "quarter": "Q4 FY26",
+          "direction": "positive",
+          "driver": "annual financial performance",
+          "drift": 2
+        },
         {
           "companyId": "ge-shipping",
           "name": "GE Shipping",
@@ -948,15 +980,6 @@
           "quarter": "Q1 FY27",
           "direction": "positive",
           "driver": "tanker freight rates",
-          "drift": 0
-        },
-        {
-          "companyId": "shipping-corp",
-          "name": "Shipping Corp of India",
-          "toneId": "neutral",
-          "quarter": "Q2 FY26",
-          "direction": "neutral",
-          "driver": "financial performance",
           "drift": 0
         }
       ]
@@ -1022,22 +1045,22 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moving now moved up 8 points to -41."
+      "text": "Moves last moved up 22 points to 0."
     },
     {
-      "kind": "score",
-      "text": "Moves last moved down 22 points to -22."
+      "kind": "alert",
+      "text": "New alert: Shipping Corp of India moved 2 tone steps up (neutral → confident) in Q4 FY26."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-10T08:35:44.529Z",
+    "generatedAt": "2026-08-11T06:35:22.072Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 25,
-      "coincident": -49,
-      "lagging": 0
+      "coincident": -41,
+      "lagging": -22
     },
     "alertIds": [
       "coverage-coincident",
@@ -1051,8 +1074,7 @@
       "tone-ongc",
       "tone-petronet-lng",
       "tone-ratnamani",
-      "tone-reliance",
-      "tone-shipping-corp"
+      "tone-reliance"
     ]
   }
 }
