@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-10T08:35:44.529Z",
+  "generatedAt": "2026-08-11T06:35:22.072Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -101,7 +101,7 @@
       ]
     },
     "coincident": {
-      "score": -49,
+      "score": -41,
       "prev": -24,
       "delta": -37,
       "deltaBasis": "kpi-only",
@@ -208,7 +208,7 @@
           "companyId": "castrol-india",
           "company": "Castrol India",
           "label": "Spread / demand commentary",
-          "flag": "tone-down"
+          "flag": "tone-up"
         },
         {
           "kind": "tone",
@@ -220,12 +220,12 @@
       ]
     },
     "lagging": {
-      "score": 0,
-      "prev": -20,
-      "delta": -23,
+      "score": -22,
+      "prev": -43,
+      "delta": 0,
       "deltaBasis": "kpi-only",
-      "level": "flat",
-      "direction": "falling",
+      "level": "negative",
+      "direction": "flat",
       "kpisScored": 4,
       "kpisTotal": 7,
       "kpisBeyondBrief": 3,
@@ -258,19 +258,12 @@
           "company": "GE Shipping",
           "label": "Revenue days (owned)",
           "flag": "inflecting-down"
-        },
-        {
-          "kind": "tone",
-          "companyId": "shipping-corp",
-          "company": "Shipping Corp of India",
-          "label": "Freight / shipping outlook",
-          "flag": "tone-up"
         }
       ]
     }
   },
   "divergence": {
-    "value": 74,
+    "value": 66,
     "leadingSign": 1,
     "coincidentSign": -1,
     "signsDiffer": true
@@ -288,7 +281,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 25 (positive, rising), coincident -49 (strong-negative, falling), lagging 0 (flat).",
+      "Leading 25 (positive, rising), coincident -41 (strong-negative, falling), lagging -22 (negative).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -297,7 +290,7 @@
     "opposing": 1,
     "silent": 4,
     "macroBias": "mixed",
-    "scoreBias": "flat",
+    "scoreBias": "up",
     "agree": null,
     "conflict": false,
     "tiles": [
@@ -381,12 +374,12 @@
     {
       "companyId": "castrol-india",
       "name": "Castrol India",
-      "from": "confident",
-      "to": "cautious",
-      "fromQuarter": "Q3 FY26",
-      "quarter": "Q4 FY26",
-      "steps": -3,
-      "direction": "down"
+      "from": "cautious",
+      "to": "confident",
+      "fromQuarter": "Q4 FY26",
+      "quarter": "Q1 FY27",
+      "steps": 3,
+      "direction": "up"
     },
     {
       "companyId": "gandhar-oil",
@@ -427,16 +420,6 @@
       "quarter": "Q1 FY27",
       "steps": -2,
       "direction": "down"
-    },
-    {
-      "companyId": "shipping-corp",
-      "name": "Shipping Corp of India",
-      "from": "neutral",
-      "to": "confident",
-      "fromQuarter": "Q2 FY26",
-      "quarter": "Q4 FY26",
-      "steps": 2,
-      "direction": "up"
     }
   ],
   "coverageWarnings": [
@@ -501,9 +484,9 @@
     },
     {
       "id": "tone-castrol-india",
-      "severity": "warn",
+      "severity": "info",
       "kind": "tone-drift",
-      "text": "Castrol India moved 3 tone steps down (confident → cautious) in Q4 FY26."
+      "text": "Castrol India moved 3 tone steps up (cautious → confident) in Q1 FY27."
     },
     {
       "id": "tone-gandhar-oil",
@@ -528,12 +511,6 @@
       "severity": "warn",
       "kind": "tone-drift",
       "text": "BPCL moved 2 tone steps down (neutral → defensive) in Q1 FY27."
-    },
-    {
-      "id": "tone-shipping-corp",
-      "severity": "info",
-      "kind": "tone-drift",
-      "text": "Shipping Corp of India moved 2 tone steps up (neutral → confident) in Q4 FY26."
     }
   ],
   "summary": [
@@ -560,12 +537,12 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +74. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
+      "text": "Leading minus coincident is +66. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "ONGC (cautious → confident); Petronet LNG (constructive → defensive); Castrol India (confident → cautious); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 2 more."
+      "text": "ONGC (cautious → confident); Petronet LNG (constructive → defensive); Castrol India (cautious → confident); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 1 more."
     },
     {
       "id": "implication",
@@ -941,46 +918,46 @@
       "label": "Freight / shipping outlook",
       "bucket": "lagging",
       "listenFor": "Fleet redeployment plans, charter rate outlook, global vessel-supply tightness commentary",
-      "state": "2 companies heard, leaning positive (2 positive, 0 negative); Shipping Corp of India moved 2 steps up.",
+      "state": "2 companies heard, leaning positive (1 positive, 0 negative); no two-step move this quarter.",
       "mood": "positive",
       "members": [
         {
           "companyId": "ge-shipping",
           "name": "GE Shipping",
           "toneId": "confident",
-          "quarter": "Q4 FY26",
+          "quarter": "Q1 FY27",
           "direction": "positive",
-          "driver": "profit growth",
-          "drift": 1
+          "driver": "tanker freight rates",
+          "drift": 0
         },
         {
           "companyId": "shipping-corp",
           "name": "Shipping Corp of India",
-          "toneId": "confident",
-          "quarter": "Q4 FY26",
-          "direction": "positive",
-          "driver": "annual financial performance",
-          "drift": 2
+          "toneId": "neutral",
+          "quarter": "Q2 FY26",
+          "direction": "neutral",
+          "driver": "financial performance",
+          "drift": 0
         }
       ],
       "drivers": [
         {
-          "companyId": "shipping-corp",
-          "name": "Shipping Corp of India",
-          "toneId": "confident",
-          "quarter": "Q4 FY26",
-          "direction": "positive",
-          "driver": "annual financial performance",
-          "drift": 2
-        },
-        {
           "companyId": "ge-shipping",
           "name": "GE Shipping",
           "toneId": "confident",
-          "quarter": "Q4 FY26",
+          "quarter": "Q1 FY27",
           "direction": "positive",
-          "driver": "profit growth",
-          "drift": 1
+          "driver": "tanker freight rates",
+          "drift": 0
+        },
+        {
+          "companyId": "shipping-corp",
+          "name": "Shipping Corp of India",
+          "toneId": "neutral",
+          "quarter": "Q2 FY26",
+          "direction": "neutral",
+          "driver": "financial performance",
+          "drift": 0
         }
       ]
     },
@@ -989,7 +966,7 @@
       "label": "Spread / demand commentary",
       "bucket": "coincident",
       "listenFor": "Auto/industrial offtake trend - tracks broad economic activity, not just crude",
-      "state": "3 companies heard, leaning positive (2 positive, 1 negative); Castrol India moved 3 steps down, Gandhar Oil moved 3 steps up.",
+      "state": "3 companies heard, leaning positive (3 positive, 0 negative); Castrol India moved 3 steps up, Gandhar Oil moved 3 steps up.",
       "mood": "positive",
       "members": [
         {
@@ -1004,11 +981,11 @@
         {
           "companyId": "castrol-india",
           "name": "Castrol India",
-          "toneId": "cautious",
-          "quarter": "Q4 FY26",
-          "direction": "negative",
-          "driver": "macro uncertainty",
-          "drift": -3
+          "toneId": "confident",
+          "quarter": "Q1 FY27",
+          "direction": "positive",
+          "driver": "broad-based volume growth",
+          "drift": 3
         },
         {
           "companyId": "gandhar-oil",
@@ -1024,11 +1001,11 @@
         {
           "companyId": "castrol-india",
           "name": "Castrol India",
-          "toneId": "cautious",
-          "quarter": "Q4 FY26",
-          "direction": "negative",
-          "driver": "macro uncertainty",
-          "drift": -3
+          "toneId": "confident",
+          "quarter": "Q1 FY27",
+          "direction": "positive",
+          "driver": "broad-based volume growth",
+          "drift": 3
         },
         {
           "companyId": "gandhar-oil",
@@ -1044,12 +1021,16 @@
   ],
   "changes": [
     {
-      "kind": "none",
-      "text": "Nothing material moved since the last refresh."
+      "kind": "score",
+      "text": "Moving now moved up 8 points to -41."
+    },
+    {
+      "kind": "score",
+      "text": "Moves last moved down 22 points to -22."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-10T07:09:07.420Z",
+    "generatedAt": "2026-08-10T08:35:44.529Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",

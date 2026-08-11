@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-10T08:35:44.058Z",
+  "generatedAt": "2026-08-11T06:34:50.313Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,9 +13,9 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 345,
-    "realCells": 214,
-    "nullCells": 131,
+    "kpiCells": 343,
+    "realCells": 205,
+    "nullCells": 138,
     "kpis": 89,
     "kpisWithTrend": 53
   },
@@ -32,7 +32,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33679,
+      "ctxChars": 33822,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -79,7 +79,7 @@
         {
           "id": "day-rate",
           "label": "Day-rate",
-          "unit": "₹/day or $/day",
+          "unit": "$/day or ₹/day",
           "flagBasis": "level",
           "values": [
             null,
@@ -112,7 +112,7 @@
             null
           ],
           "flag": null,
-          "notes": "Day-rate not disclosed in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. Management discussed utilization (100% for drilling/workover rigs), fleet composition (20 onshore rigs), and offshore barge contract run-rates, but no "
+          "notes": "Day-rate figures are not stated in any of the excerpts. The Q2 FY26 concall mentions management did not expect near-term pressure on market rates for offshore vessels and that day rates for the HF Hunter vessel were 'in line with what we we"
         },
         {
           "id": "order-book",
@@ -1995,7 +1995,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31060,
+      "ctxChars": 31112,
       "kpis": [
         {
           "id": "grm",
@@ -2071,7 +2071,7 @@
             null
           ],
           "flag": null,
-          "notes": "No marketing margin per litre figure stated in any of the excerpts for any quarter. Concall summaries discuss margin pressure, LPG under-recovery per cylinder, and qualitative commentary, but no ₹/l marketing margin metric is provided."
+          "notes": "Marketing margin per litre not disclosed in any of the excerpts. The Q4 FY26 AI summary mentions 'pressure on marketing margins on retail fuels' and the Q1 FY27 concall transcript states 'considerable pressure on marketing margins on retail"
         },
         {
           "id": "throughput",
@@ -3466,15 +3466,15 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31578,
+      "ctxChars": 31579,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -3482,41 +3482,41 @@
           "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            8,
             7,
             7.5,
-            7.5
+            7.5,
+            null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
             "model",
             "model",
-            "model",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            null,
             null,
             null,
             {
               "doc": "Concall Transcript - 04 May 2026",
               "quote": "7% to 8% volume growth is what we have delivered for the quarter",
               "page": 6
-            }
+            },
+            null
           ],
           "oneOffs": [
-            null,
             "No Q2 FY26 data",
             "No Q3 FY26 data",
+            null,
             null
           ],
           "flag": null,
-          "notes": null
+          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
         },
         {
           "id": "base-oil-spread",
@@ -3884,7 +3884,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33740,
+      "ctxChars": 33174,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -3922,7 +3922,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not spe"
+          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not bre"
         },
         {
           "id": "total-cargo-volume",
@@ -3985,10 +3985,10 @@
       "name": "GE Shipping",
       "slug": "GESHIP",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
       "provider": "openai",
@@ -4001,29 +4001,24 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            46352,
             28492,
             47281,
-            61424
+            61424,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Crude Carriers: Q1 FY25 46,352",
-              "page": 14
-            },
             {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Crude Carriers: Q2 FY25 28,492",
@@ -4038,7 +4033,8 @@
               "doc": "Presentation - 15 May 2026",
               "quote": "Crude Carriers: Q4 FY26 61,424",
               "page": 26
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -4047,7 +4043,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Average TCY - Crude Carriers\"; latest value cited to Presentation - 11 Dec 2025, page 13."
         },
         {
           "id": "fleet-deployment",
@@ -4055,29 +4051,24 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3507,
             3678,
             3765,
-            3525
+            3525,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Total Revenue Days: 3,507",
-              "page": 12
-            },
             {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Total Revenue Days: 3,678",
@@ -4092,7 +4083,8 @@
               "doc": "Presentation - 15 May 2026",
               "quote": "Total Revenue Days: 3,525",
               "page": 25
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -4101,7 +4093,7 @@
             null
           ],
           "flag": "inflecting-down",
-          "notes": null
+          "notes": "From Screener Insights row \"Revenue Days - Shipping (Total)\"; latest value cited to Presentation - 11 Dec 2025, page 12."
         },
         {
           "id": "tcy-product",
@@ -4109,29 +4101,24 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            37153,
             28978,
             25117,
-            30511
+            30511,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Product Carriers: Q1 FY25 37,153",
-              "page": 14
-            },
             {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Product Carriers: Q2 FY25 28,978",
@@ -4146,7 +4133,8 @@
               "doc": "Presentation - 15 May 2026",
               "quote": "Product Carriers: Q4 FY26 30,511",
               "page": 26
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -4155,7 +4143,7 @@
             null
           ],
           "flag": "inflecting-up",
-          "notes": null
+          "notes": "From Screener Insights row \"Average TCY - Product Carriers\"; latest value cited to Presentation - 11 Dec 2025, page 13."
         },
         {
           "id": "tcy-lpg",
@@ -4163,29 +4151,24 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            36742,
             43507,
             43611,
-            45216
+            45216,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "LPG Carriers: Q1 FY25 36,742",
-              "page": 14
-            },
             {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "LPG Carriers: Q2 FY25 43,507",
@@ -4200,7 +4183,8 @@
               "doc": "Presentation - 15 May 2026",
               "quote": "LPG Carriers: Q4 FY26 45,216",
               "page": 26
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -4210,7 +4194,7 @@
           ],
           "flag": "accelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Average TCY - LPG Carriers\"; latest value cited to Presentation - 11 Dec 2025, page 13."
         },
         {
           "id": "tcy-dry-bulk",
@@ -4218,29 +4202,24 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            17976,
             16686,
             17983,
-            16678
+            16678,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Dry Bulk: Q1 FY25 17,976",
-              "page": 14
-            },
             {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Dry Bulk: Q2 FY25 16,686",
@@ -4255,7 +4234,8 @@
               "doc": "Presentation - 15 May 2026",
               "quote": "Dry Bulk: Q4 FY26 16,678",
               "page": 26
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -4265,7 +4245,7 @@
           ],
           "flag": "inflecting-down",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Average TCY - Dry Bulk Carriers\"; latest value cited to Presentation - 11 Dec 2025, page 13."
         },
         {
           "id": "revenue-days-owned",
@@ -4273,29 +4253,24 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3325,
             3494,
             3581,
-            3345
+            3345,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Owned Tonnage: 3,325",
-              "page": 12
-            },
             {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Owned Tonnage: 3,494",
@@ -4310,7 +4285,8 @@
               "doc": "Presentation - 15 May 2026",
               "quote": "Owned Tonnage: 3,345",
               "page": 25
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -4319,7 +4295,7 @@
             null
           ],
           "flag": "inflecting-down",
-          "notes": null
+          "notes": "From Screener Insights row \"Revenue Days - Shipping (Owned)\"; latest value cited to Presentation - 11 Dec 2025, page 12."
         },
         {
           "id": "jackup-utilisation",
@@ -4327,25 +4303,24 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            null,
             84,
             84,
-            84
+            84,
+            null
           ],
           "sourceTags": [
-            null,
             "company-filing",
             "company-filing",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
-            null,
             "insights",
             "insights",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            null,
             {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Jack Up Utilisation - from chart showing Under Contract ~84%",
@@ -4360,7 +4335,8 @@
               "doc": "Presentation - 15 May 2026",
               "quote": "This is the simple utilization. We have another measure called marketed utilization, which is rigs which are being marketed actively for contracts. That utilization continues to be somewhere around the 84% to 85% mark",
               "page": 19
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -4379,13 +4355,12 @@
       "name": "Shipping Corp of India",
       "slug": "SCI",
       "quarters": [
-        "Q2 FY26",
-        "Q4 FY26"
+        "Q2 FY26"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q2 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21382,
+      "ctxChars": 15383,
       "kpis": [
         {
           "id": "freight-rate",
@@ -4393,15 +4368,12 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            47817,
-            216387
+            47817
           ],
           "sourceTags": [
-            "company-filing",
             "company-filing"
           ],
           "origins": [
-            "insights",
             "insights"
           ],
           "citations": [
@@ -4409,15 +4381,9 @@
               "doc": "Presentation - 07 Nov 2025",
               "quote": "VLCC MEG-CHINA 270,000 MT TD3C TCE Qtr-II 47,817.44",
               "page": 19
-            },
-            {
-              "doc": "Presentation - 11 May 2026",
-              "quote": "VLCC MEG-CHINA 270,000 MT TD3C TCE Qtr-IV 216,387",
-              "page": 17
             }
           ],
           "oneOffs": [
-            null,
             null
           ],
           "flag": null,
@@ -4429,15 +4395,12 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            32709,
-            80914
+            32709
           ],
           "sourceTags": [
-            "company-filing",
             "company-filing"
           ],
           "origins": [
-            "insights",
             "insights"
           ],
           "citations": [
@@ -4445,15 +4408,9 @@
               "doc": "Presentation - 07 Nov 2025",
               "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-II 32,708.75",
               "page": 19
-            },
-            {
-              "doc": "Presentation - 11 May 2026",
-              "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-IV 80,914",
-              "page": 17
             }
           ],
           "oneOffs": [
-            null,
             null
           ],
           "flag": null,

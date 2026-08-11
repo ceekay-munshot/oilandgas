@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-10T08:35:44.476Z",
+  "generatedAt": "2026-08-11T06:35:22.015Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -1916,9 +1916,25 @@
           "fingerprint": "85ff64068e6c",
           "attempts": 1,
           "at": "2026-07-30T09:32:42.726Z"
+        },
+        "Q1 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "we delivered another strong quarter with broad-based growth across our consumer, industrial, and institutional business",
+          "rationale": "Management emphasizes strong performance across all segments despite volatile conditions, highlighting disciplined execution and brand strength.",
+          "driver": "broad-based volume growth",
+          "direction": "positive",
+          "signal": "Management is investing behind brands, innovation, and distribution while maintaining margin discipline through effective pricing and cost management in a volatile commodity environment.",
+          "mgmtDataPoints": [],
+          "implication": "Continued momentum across all business segments with sustained investment in growth initiatives suggests stable performance ahead, though commodity volatility remains a watch factor.",
+          "doc": "Concall transcript (Q1 FY27)",
+          "fingerprint": "612da63f2898",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-11T06:35:09.493Z"
         }
       },
-      "updatedAt": "2026-07-30T09:32:42.726Z"
+      "updatedAt": "2026-08-11T06:35:09.493Z"
     },
     "gandhar-oil": {
       "cells": {
@@ -2228,9 +2244,32 @@
           "attempts": 1,
           "model": "gpt-4o",
           "at": "2026-07-28T18:21:02.276Z"
+        },
+        "Q1 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "We've had our most profitable quarter ever by a significant margin. The consolidated profit is INR1,309 crores",
+          "rationale": "Management announced record profits, highest-ever dividend, and rising NAV while accumulating cash despite modernizing transactions.",
+          "driver": "tanker freight rates",
+          "direction": "positive",
+          "signal": "Management is accumulating cash and executing modernizing transactions while benefiting from all-time high tanker rates driven by Strait of Hormuz disruptions that increased ton-mile demand.",
+          "mgmtDataPoints": [
+            "Consolidated profit: INR 1,309 crores",
+            "Stand-alone profit: INR 1,157 crores",
+            "EPS: INR 91-92/share consolidated",
+            "NAV increase: INR 100/share",
+            "Stand-alone NAV: INR 1,512/share",
+            "Consolidated NAV: just short of INR 1,900/share"
+          ],
+          "implication": "The company is well-positioned with strong cash generation and record profitability, though sustainability depends on whether Strait of Hormuz disruptions persist and tanker rates remain elevated.",
+          "doc": "Concall transcript (Q1 FY27)",
+          "fingerprint": "612da63f2898",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-11T06:35:15.037Z"
         }
       },
-      "updatedAt": "2026-07-28T18:21:02.276Z"
+      "updatedAt": "2026-08-11T06:35:15.037Z"
     },
     "shipping-corp": {
       "cells": {
