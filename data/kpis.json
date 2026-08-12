@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-11T08:10:50.064Z",
+  "generatedAt": "2026-08-12T07:11:39.909Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -2901,9 +2901,9 @@
         "Q4 FY26"
       ],
       "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
-      "ctxChars": 33876,
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "ctxChars": 33893,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -2941,12 +2941,12 @@
             null
           ],
           "flag": null,
-          "notes": "Q1 and Q4 figures reported; Q2 and Q3 missing."
+          "notes": "Q1 FY26: Q1 FY26 concall states 'CNG sales rose by 12% year-over-year'. Q2 FY26: No single-quarter yoy growth stated for CNG+PNG combined. Q3 FY26: No single-quarter yoy growth stated for CNG+PNG combined. Q4 FY26: Q4 FY26 concall states 'h"
         },
         {
           "id": "ebitda-per-scm",
           "label": "EBITDA / scm",
-          "unit": "rs-per-scm",
+          "unit": "₹/scm",
           "flagBasis": "level",
           "values": [
             null,
@@ -2979,7 +2979,7 @@
             null
           ],
           "flag": null,
-          "notes": "EBITDA per scm not explicitly stated in any quarter."
+          "notes": "Q1 FY26: EBITDA per scm not stated. Q2 FY26: EBITDA per scm not stated. Q3 FY26: EBITDA per scm not stated. Q4 FY26: EBITDA per scm not stated. The investor presentation and concalls provide quarterly EBITDA in ₹ crore and volume data in MM"
         }
       ]
     },
@@ -3828,9 +3828,9 @@
         "Q1 FY27"
       ],
       "asOf": null,
-      "provider": "openai",
-      "model": "gpt-4o",
-      "ctxChars": 9450,
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "ctxChars": 9452,
       "kpis": [
         {
           "id": "industrial-gas-volume",
@@ -3868,7 +3868,7 @@
             null
           ],
           "flag": null,
-          "notes": "Industrial gas volume data not provided in the excerpts."
+          "notes": "No industrial gas volume data found in the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Screener Insights table shows various operational metrics (Gases Revenue Share %, Number of Operating Plants, Medical Oxygen Daily Delivery T"
         }
       ]
     },
@@ -3884,7 +3884,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32989,
+      "ctxChars": 33740,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
