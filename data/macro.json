@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-08-11T07:43:38.258Z",
+  "generatedAt": "2026-08-12T07:59:59.715Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -147,7 +147,7 @@
             },
             {
               "date": "2026-08-01",
-              "value": 85.85,
+              "value": 86.92,
               "partial": true
             }
           ]
@@ -309,7 +309,7 @@
       "status": "live",
       "source": "Trading Economics - naphtha spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-08-10",
+      "asOf": "2026-08-11",
       "lines": [
         {
           "id": "naphtha",
@@ -321,11 +321,11 @@
           "source": "Trading Economics - naphtha spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-08-10",
+          "asOf": "2026-08-11",
           "series": [
             {
-              "date": "2026-08-10",
-              "value": 747.24,
+              "date": "2026-08-11",
+              "value": 743.18,
               "spot": true
             }
           ]
@@ -344,7 +344,7 @@
       "status": "live",
       "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-08-10",
+      "asOf": "2026-08-11",
       "lines": [
         {
           "id": "jkm",
@@ -356,11 +356,11 @@
           "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-08-10",
+          "asOf": "2026-08-11",
           "series": [
             {
-              "date": "2026-08-10",
-              "value": 21.26,
+              "date": "2026-08-11",
+              "value": 21.19,
               "spot": true
             }
           ]
@@ -372,7 +372,7 @@
           "color": "#0891B2",
           "primary": false,
           "status": "live",
-          "source": "PPAC, Ministry of Petroleum & Natural Gas - domestic gas notification for 1 August 2026 to 31 August 2026, issued 2026-07-31 (https://ppac.gov.in/download.php?file=importantnews/1785497891_Dom_Gas_Price_Aug_2026.pdf)",
+          "source": "PPAC, Ministry of Petroleum & Natural Gas - domestic gas notification for 1 August 2026 to 31 August 2026, issued 2026-07-31 (https://ppac.gov.in/download.php?file=gasprice/1785497764_Dom_Gas_Price_Aug_2026.pdf)",
           "sourceTag": "official",
           "notes": "ONGC/OIL nomination-gas ceiling of $7.00/mmbtu, below the notified price of $7.86. This month only - PPAC publishes each month as a separate scanned notification.",
           "asOf": "2026-08-01",
@@ -455,7 +455,7 @@
             },
             {
               "date": "2026-08-01",
-              "value": 95.26,
+              "value": 95.29,
               "partial": true
             }
           ]
