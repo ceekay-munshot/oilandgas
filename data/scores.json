@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-12T08:23:26.823Z",
+  "generatedAt": "2026-08-13T07:13:18.844Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,17 +38,17 @@
   "asOf": "Q1 FY27",
   "scores": {
     "leading": {
-      "score": 25,
-      "prev": -38,
-      "delta": 52,
+      "score": 27,
+      "prev": -45,
+      "delta": 62,
       "deltaBasis": "kpi-only",
       "level": "positive",
       "direction": "rising",
-      "kpisScored": 10,
+      "kpisScored": 8,
       "kpisTotal": 23,
       "kpisBeyondBrief": 6,
       "tonesScored": 8,
-      "companiesScored": 6,
+      "companiesScored": 5,
       "staleKpis": 21,
       "oneOffKpis": 0,
       "unknownKpis": 0,
@@ -270,7 +270,7 @@
     }
   },
   "divergence": {
-    "value": 66,
+    "value": 68,
     "leadingSign": 1,
     "coincidentSign": -1,
     "signsDiffer": true
@@ -278,17 +278,17 @@
   "divergenceSeries": [
     null,
     null,
-    -14,
-    75
+    -21,
+    78
   ],
   "stage": {
     "stageId": "early-upcycle",
-    "position": 32,
+    "position": 33,
     "ruleId": "early-upcycle",
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 25 (positive, rising), coincident -41 (strong-negative, falling), lagging 0 (flat).",
+      "Leading 27 (positive, rising), coincident -41 (strong-negative, falling), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -560,7 +560,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +66. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
+      "text": "Leading minus coincident is +68. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
     },
     {
       "id": "watchlist",
@@ -1049,7 +1049,7 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-12T07:12:01.585Z",
+    "generatedAt": "2026-08-12T08:23:26.823Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",

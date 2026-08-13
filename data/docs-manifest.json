@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-12T08:23:10.734Z",
+  "generatedAt": "2026-08-13T07:12:42.309Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -780,14 +780,14 @@
         "cons": 0
       },
       "summariesAvailable": 22,
-      "transcriptsFound": 21,
+      "transcriptsFound": 22,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Aug 2026",
           "periodIso": "2026-08",
-          "url": "https://www.screener.in/concalls/summary/23284524/",
+          "url": "https://www.screener.in/concalls/summary/23290463/",
           "source": "screener.in",
           "status": "gated",
           "chars": 88,
@@ -884,6 +884,19 @@
         {
           "type": "transcript",
           "role": "transcript",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=446efde6-34f5-4d65-b403-85acfbd635fa.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 58687,
+          "pages": 23,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/OIL/transcript-2026-08.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
           "period": "May 2026",
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2a520951-8bd3-4612-92b2-5e1b1ca8af5b.pdf",
@@ -927,9 +940,9 @@
           "periodIso": "2025-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6c3dda1-8e29-48fc-b146-16a6d6aaaab7.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 51358,
-          "pages": 18,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/OIL/transcript-2025-08.txt"
         },
@@ -945,19 +958,6 @@
           "pages": 27,
           "via": "browser",
           "cache": "pipeline/cache/docs/OIL/transcript-2025-06.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Feb 2025",
-          "periodIso": "2025-02",
-          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=048e7324-1142-4979-9e78-ca6a6accef26.pdf",
-          "source": "bseindia.com",
-          "status": "ok",
-          "chars": 53086,
-          "pages": 20,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/OIL/transcript-2025-02.txt"
         }
       ]
     },
@@ -2216,7 +2216,7 @@
         "pages": null,
         "via": "browser",
         "cache": "pipeline/cache/docs/BPCL/ppt-2026-01.txt",
-        "error": "scraper returned only 0 chars"
+        "error": "Every scraper failed for https://www.bharatpetroleum.in/images/files/bpcl-investor-presentation-q3-2026.pdf (firecrawl: 408 Request Timeout for https://api.fire"
       },
       "transcripts": [
         {
@@ -3072,9 +3072,23 @@
         "pros": 3,
         "cons": 1
       },
-      "summariesAvailable": 13,
+      "summariesAvailable": 14,
       "transcriptsFound": 13,
       "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://www.screener.in/concalls/summary/23291252/",
+          "source": "screener.in",
+          "status": "gated",
+          "chars": 88,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GUJENERGY/summary-2026-08.txt",
+          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+        },
         {
           "type": "summary",
           "role": "summary",
@@ -3143,20 +3157,6 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GUJENERGY/summary-2025-05.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Feb 2025",
-          "periodIso": "2025-02",
-          "url": "https://www.screener.in/concalls/summary/22983071/",
-          "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/GUJENERGY/summary-2025-02.txt",
           "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
         }
       ],

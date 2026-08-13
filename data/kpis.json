@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-12T08:23:15.715Z",
+  "generatedAt": "2026-08-13T07:13:04.594Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,10 +14,10 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 345,
-    "realCells": 207,
-    "nullCells": 138,
+    "realCells": 204,
+    "nullCells": 141,
     "kpis": 89,
-    "kpisWithTrend": 53
+    "kpisWithTrend": 51
   },
   "companies": {
     "deep-industries": {
@@ -438,7 +438,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 27823,
+      "ctxChars": 27791,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -943,10 +943,10 @@
       "name": "Oil India",
       "slug": "OIL",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
       "provider": "claude",
@@ -959,22 +959,22 @@
           "unit": "₹ cr",
           "flagBasis": "level",
           "values": [
-            3350,
             null,
             null,
-            13025
+            13025,
+            null
           ],
           "sourceTags": [
+            null,
+            null,
             "mgmt-claim",
-            null,
-            null,
-            "mgmt-claim"
+            null
           ],
           "origins": [
+            null,
+            null,
             "model",
-            null,
-            null,
-            "model"
+            null
           ],
           "citations": [
             null,
@@ -989,7 +989,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q1 FY26: Q1 concall summary mentions total Q1 capex ~₹3,350 cr toward ~₹7,000 cr FY26 target, but does not state a budget figure for Q1 alone or capex vs budget metric. Q2 FY26: Q2 concall summary does not mention capex spend vs budget. Q3 "
+          "notes": "No capex vs budget data found for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Q4 FY26 AI summary mentions FY26 capex of ₹13,025 cr (full year) and the Q3 FY26 summary mentions 9M capex but no single-quarter or vs-budget figures are stated in"
         },
         {
           "id": "production-volume",
@@ -998,28 +998,23 @@
           "flagBasis": "level",
           "values": [
             0.85,
-            0.85,
             0.86,
+            null,
             null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
-            "company-filing",
+            null,
             null
           ],
           "origins": [
             "insights",
             "insights",
-            "insights",
+            null,
             null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 19 Aug 2025",
-              "quote": "The crude oil production for the quarter stood 0.85 million metric tons",
-              "page": 4
-            },
             {
               "doc": "Concall Transcript - 21 Nov 2025",
               "quote": "The crude oil production for the quarter stood at 0.848 million metric tons, a minor decrease of 0.6% on quarter-to-quarter",
@@ -1030,6 +1025,7 @@
               "quote": "The crude oil production for the quarter is 0.858 MMT, which is increased by 1.18% on quarter-to-quarter",
               "page": 5
             },
+            null,
             null
           ],
           "oneOffs": [
@@ -1038,7 +1034,7 @@
             null,
             null
           ],
-          "flag": "steady",
+          "flag": null,
           "notes": "6.64 MMT / bcm (model) withheld: does not match this row's unit MMT"
         },
         {
@@ -1047,29 +1043,24 @@
           "unit": "BCM",
           "flagBasis": "level",
           "values": [
-            0.83,
             0.8,
             0.8,
+            null,
             null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
-            "company-filing",
+            null,
             null
           ],
           "origins": [
             "insights",
             "insights",
-            "insights",
+            null,
             null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 19 Aug 2025",
-              "quote": "The natural gas production for the quarter has reached 0.83 bcm. On quarter-to-quarter, it has increased by 2.61%",
-              "page": 4
-            },
             {
               "doc": "Concall Transcript - 21 Nov 2025",
               "quote": "The natural gas production for the quarter stood at 0.804 bcm at marginal decrease of minus 2.8% on quarter-to-quarter",
@@ -1080,6 +1071,7 @@
               "quote": "The natural gas production for the quarter is 0.801 bcm, which is almost at par with the previous quarter",
               "page": 5
             },
+            null,
             null
           ],
           "oneOffs": [
@@ -1088,8 +1080,8 @@
             null,
             null
           ],
-          "flag": "steady",
-          "notes": "From Screener Insights row \"Natural Gas Production\" (Standalone data); latest value cited to Concall Transcript - 19 Aug 2025, page 4."
+          "flag": null,
+          "notes": "From Screener Insights row \"Natural Gas Production\" (Standalone data); latest value cited to Concall Transcript - 21 Nov 2025, page 4."
         }
       ]
     },

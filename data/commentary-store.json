@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-12T08:23:26.763Z",
+  "generatedAt": "2026-08-13T07:13:18.788Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -184,9 +184,19 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:19:12.458Z"
+        },
+        "Q1 FY27": {
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": "Text contains only cover letter and opening formalities of the conference call with no business commentary or outlook.",
+          "doc": null,
+          "fingerprint": "f3a89cb52843",
+          "attempts": 1,
+          "at": "2026-08-13T07:13:14.748Z"
         }
       },
-      "updatedAt": "2026-07-28T18:19:12.458Z"
+      "updatedAt": "2026-08-13T07:13:14.748Z"
     },
     "deep-industries": {
       "cells": {
