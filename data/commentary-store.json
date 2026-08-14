@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-13T08:23:11.933Z",
+  "generatedAt": "2026-08-14T07:09:52.042Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -186,17 +186,30 @@
           "at": "2026-07-28T18:19:12.458Z"
         },
         "Q1 FY27": {
-          "toneId": null,
-          "score": null,
-          "quote": null,
-          "rationale": "Text contains only cover letter and opening formalities of the conference call with no business commentary or outlook.",
-          "doc": null,
-          "fingerprint": "f3a89cb52843",
-          "attempts": 1,
-          "at": "2026-08-13T07:13:14.748Z"
+          "toneId": "confident",
+          "score": 5,
+          "quote": "we are going to achieve close to 1 MMT each quarter this year… minimum 3.9 [MMT]… but we may touch 4 also.",
+          "rationale": "Management delivered record crude production and highest-ever post-listing revenue/profit, with explicit guidance for sustained 1 MMT/quarter oil run-rate and upside to 4 MMT annual, backed by integrated execution processes.",
+          "driver": "crude production ramp",
+          "direction": "positive",
+          "signal": "Management expects to sustain ~1 MMT crude per quarter through integrated workover and drilling programs, with gas volume growth contingent on pipeline connectivity completion over the next 12–18 months.",
+          "mgmtDataPoints": [
+            "Crude production guidance: minimum 3.9 MMT FY27, may touch 4 MMT",
+            "Oil run-rate: ~1 MMT per quarter expected",
+            "Record daily crude: 11,017 MT/day (3 Aug 2026)",
+            "Gas target FY28: 3.8 BCM",
+            "Gas evacuation capacity: 3.5–4 MMSCMD by Dec 2027",
+            "Route to 5 BCM gas affirmed for FY28/29"
+          ],
+          "implication": "Crude production should remain at or above 1 MMT per quarter through Q2–Q3 FY27, while gas volumes stay constrained until pipeline tie-ins complete in late FY27 or early FY28.",
+          "doc": "Concall AI summary (Q1 FY27)",
+          "fingerprint": "5255c7dbe20d",
+          "attempts": 2,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-14T07:09:41.987Z"
         }
       },
-      "updatedAt": "2026-08-13T07:13:14.748Z"
+      "updatedAt": "2026-08-14T07:09:41.987Z"
     },
     "deep-industries": {
       "cells": {

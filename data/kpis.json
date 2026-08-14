@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-13T08:23:11.507Z",
+  "generatedAt": "2026-08-14T07:09:13.922Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 345,
-    "realCells": 204,
-    "nullCells": 141,
+    "realCells": 205,
+    "nullCells": 140,
     "kpis": 89,
     "kpisWithTrend": 51
   },
@@ -168,8 +168,8 @@
         "Q4 FY26"
       ],
       "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 34070,
       "kpis": [
         {
@@ -312,7 +312,7 @@
             null
           ],
           "flag": null,
-          "notes": "Bid pipeline not mentioned in any excerpt."
+          "notes": "Bid pipeline not disclosed in any of the excerpts for FY26 quarters. The excerpts contain order book (unexecuted orders already won) and order inflow (new orders secured), but no forward-looking bid pipeline or tender pipeline figure was st"
         },
         {
           "id": "consultancy-order-book",
@@ -700,7 +700,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 27698,
+      "ctxChars": 27699,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -791,7 +791,7 @@
       "asOf": "Q2 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 21412,
+      "ctxChars": 21360,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -898,7 +898,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: Concall mentions 'Record 578 wells drilled (109 exploratory, 469 development)' but this is stated as FY25 full-year, not Q4 alone. Q2 FY26: No quarterly well count stated. Q1 FY27: No quarterly well count stated. Only the full-year"
+          "notes": "Q4 FY25: Concall mentions 578 wells drilled in FY25 (full year: 109 exploratory, 469 development) but does not break out Q4 alone. Q2 FY26: No quarterly well count stated. Q1 FY27: No quarterly well count stated. Only the full-year FY25 fig"
         },
         {
           "id": "gas-production",
@@ -948,7 +948,7 @@
         "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 33647,
@@ -962,19 +962,19 @@
             null,
             null,
             13025,
-            null
+            3050
           ],
           "sourceTags": [
             null,
             null,
             "mgmt-claim",
-            null
+            "mgmt-claim"
           ],
           "origins": [
             null,
             null,
             "model",
-            null
+            "model"
           ],
           "citations": [
             null,
@@ -989,7 +989,7 @@
             null
           ],
           "flag": null,
-          "notes": "No capex vs budget data found for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Q4 FY26 AI summary mentions FY26 capex of ₹13,025 cr (full year) and the Q3 FY26 summary mentions 9M capex but no single-quarter or vs-budget figures are stated in"
+          "notes": "Q2 FY26: no single-quarter capex stated. Q3 FY26: no single-quarter capex stated. Q4 FY26: no single-quarter capex stated; FY26 full-year capex ₹13,026 cr mentioned but not Q4 alone. Q1 FY27: Q1 capex spend ~₹3,050 cr stated in concall AI s"
         },
         {
           "id": "production-volume",
@@ -3458,7 +3458,7 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q2 FY26",
+        "Q1 FY26",
         "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
@@ -3466,7 +3466,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31579,
+      "ctxChars": 31578,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -3474,7 +3474,7 @@
           "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            7,
+            8,
             7.5,
             7.5,
             null
@@ -3502,7 +3502,7 @@
             null
           ],
           "oneOffs": [
-            "No Q2 FY26 data",
+            null,
             "No Q3 FY26 data",
             null,
             null

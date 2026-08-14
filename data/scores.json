@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-13T08:23:11.988Z",
+  "generatedAt": "2026-08-14T07:09:52.098Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -49,7 +49,7 @@
       "kpisBeyondBrief": 6,
       "tonesScored": 8,
       "companiesScored": 5,
-      "staleKpis": 21,
+      "staleKpis": 18,
       "oneOffKpis": 0,
       "unknownKpis": 0,
       "lowCoverage": true,
@@ -443,7 +443,7 @@
     {
       "groupId": "leading",
       "kind": "low-coverage",
-      "text": "Moves first: 21 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves first: 18 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "groupId": "coincident",
@@ -473,7 +473,7 @@
       "id": "coverage-leading",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moves first: 21 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves first: 18 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "coverage-coincident",
@@ -627,10 +627,10 @@
           "companyId": "oil-india",
           "name": "Oil India",
           "toneId": "confident",
-          "quarter": "Q4 FY26",
+          "quarter": "Q1 FY27",
           "direction": "positive",
-          "driver": "drilling activity",
-          "drift": 1
+          "driver": "crude production ramp",
+          "drift": 0
         },
         {
           "companyId": "deep-industries",
@@ -662,12 +662,12 @@
           "drift": 3
         },
         {
-          "companyId": "oil-india",
-          "name": "Oil India",
+          "companyId": "deep-industries",
+          "name": "Deep Industries",
           "toneId": "confident",
-          "quarter": "Q4 FY26",
+          "quarter": "Q1 FY27",
           "direction": "positive",
-          "driver": "drilling activity",
+          "driver": "upstream policy pivot and E&P acceleration",
           "drift": 1
         }
       ]
@@ -1049,7 +1049,7 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-13T07:13:18.844Z",
+    "generatedAt": "2026-08-13T08:23:11.988Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",

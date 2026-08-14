@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-13T08:22:42.676Z",
+  "generatedAt": "2026-08-14T07:09:08.715Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -18,7 +18,7 @@
       "view": "consolidated",
       "url": "https://www.screener.in/company/ONGC/consolidated/",
       "analysis": {
-        "pros": 3,
+        "pros": 2,
         "cons": 1
       },
       "summariesAvailable": 12,
@@ -500,15 +500,15 @@
       "ppt": {
         "type": "ppt",
         "role": "ppt",
-        "period": "May 2026",
-        "periodIso": "2026-05",
-        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f4b1c97e-c79c-49a1-9644-dfbaa8ad7d63.pdf",
+        "period": "Aug 2026",
+        "periodIso": "2026-08",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=499dd5e5-fde2-4956-8e7e-54cd952419be.pdf",
         "source": "bseindia.com",
         "status": "ok",
-        "chars": 43722,
-        "pages": 51,
+        "chars": 15593,
+        "pages": 20,
         "via": "browser",
-        "cache": "pipeline/cache/docs/ENGINERSIN/ppt-2026-05.txt"
+        "cache": "pipeline/cache/docs/ENGINERSIN/ppt-2026-08.txt"
       },
       "transcripts": [
         {
@@ -600,9 +600,23 @@
         "pros": 1,
         "cons": 1
       },
-      "summariesAvailable": 18,
+      "summariesAvailable": 19,
       "transcriptsFound": 18,
       "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://www.screener.in/concalls/summary/23294584/",
+          "source": "screener.in",
+          "status": "gated",
+          "chars": 88,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/PETRONET/summary-2026-08.txt",
+          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+        },
         {
           "type": "summary",
           "role": "summary",
@@ -672,20 +686,6 @@
           "via": "browser",
           "cache": "pipeline/cache/docs/PETRONET/summary-2025-05.txt",
           "sample": "Petronet LNG – Q4 & FY25 Earnings Call Summary (20 May 2025) 1. Performance Highlights FY25 (Year Ended March 2025) Management described FY25 as “an excellent y"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Feb 2025",
-          "periodIso": "2025-02",
-          "url": "https://www.screener.in/concalls/summary/22977108/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 10114,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/PETRONET/summary-2025-02.txt",
-          "sample": "Petronet LNG Q3 FY25 Earnings Call – Investor Summary Financial Performance Management highlighted that “throughput has been less but we have been able to get h"
         }
       ],
       "ppt": null,
@@ -789,12 +789,12 @@
           "periodIso": "2026-08",
           "url": "https://www.screener.in/concalls/summary/23290463/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
+          "status": "ok",
+          "chars": 11552,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/OIL/summary-2026-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Q1 FY27 Snapshot (Oil India standalone, NRL, and consolidated) Upstream production (OIL): 1.707 MMTOE in Q1. Crude: 0.95 MMT (+11% YoY) . Gas: +0.4% QoQ (manage"
         },
         {
           "type": "summary",
@@ -1856,9 +1856,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 95882,
-          "pages": 31,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -3930,9 +3930,9 @@
           "periodIso": "2025-11",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6f33d826-204e-4df1-8310-f9a4c716f3d9.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 51231,
-          "pages": 18,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2025-11.txt"
         },
