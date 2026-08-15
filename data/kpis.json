@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-14T08:21:47.296Z",
+  "generatedAt": "2026-08-15T06:07:28.499Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,10 +14,10 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 345,
-    "realCells": 205,
-    "nullCells": 140,
+    "realCells": 198,
+    "nullCells": 147,
     "kpis": 89,
-    "kpisWithTrend": 51
+    "kpisWithTrend": 50
   },
   "companies": {
     "deep-industries": {
@@ -162,10 +162,10 @@
       "name": "Engineers India",
       "slug": "ENGINERSIN",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
       "provider": "claude",
@@ -178,29 +178,24 @@
           "unit": "INR mn",
           "flagBasis": "level",
           "values": [
-            14292,
             23349,
             5027,
+            null,
             null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
-            "company-filing",
+            null,
             null
           ],
           "origins": [
             "insights",
             "insights",
-            "insights",
+            null,
             null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 13 Aug 2025",
-              "quote": "Total Business secured 14,292 23,791 27,577 18,784 11,989",
-              "page": 11
-            },
             {
               "doc": "Presentation - 14 Nov 2025",
               "quote": "Total Business secured 37,641 23,349 14,292 23,791 27,577 18,784 11,989",
@@ -211,6 +206,7 @@
               "quote": "Total Business secured 42,668 5,027 23,349 14,292 23,791 27,577 18,784 11,989",
               "page": 15
             },
+            null,
             null
           ],
           "oneOffs": [
@@ -219,7 +215,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": null,
           "notes": "7979 ₹ cr (model) withheld: does not match this row's unit INR mn"
         },
         {
@@ -228,29 +224,24 @@
           "unit": "INR mn",
           "flagBasis": "qoq",
           "values": [
-            121443,
             131311,
             125379,
-            151093
+            151093,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 13 Aug 2025",
-              "quote": "Total Order Book 121,443 96,581 1,11,553 1,13,524 1,17,173",
-              "page": 11
-            },
             {
               "doc": "Presentation - 14 Nov 2025",
               "quote": "Total Order Book 131,311 121,443 96,581 1,11,553 1,13,524 1,17,173",
@@ -265,7 +256,8 @@
               "doc": "Presentation - 22 May 2026",
               "quote": "Total Order Book 151,093 117,173 78,235 76,946 76,549",
               "page": 28
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -274,7 +266,7 @@
             null
           ],
           "flag": "inflecting-up",
-          "notes": null
+          "notes": "From Screener Insights row \"Total Order Book\" (Standalone data); latest value cited to Presentation - 14 Nov 2025, page 14."
         },
         {
           "id": "bid-pipeline",
@@ -312,7 +304,7 @@
             null
           ],
           "flag": null,
-          "notes": "Bid pipeline not disclosed in any of the excerpts for FY26 quarters. The excerpts contain order book (unexecuted orders already won) and order inflow (new orders secured), but no forward-looking bid pipeline or tender pipeline figure was st"
+          "notes": "Bid pipeline not disclosed in any of the excerpts. The excerpts report order book (unexecuted orders already won) and order inflow (business secured), but do not state the value of the bid pipeline (opportunities under bidding or yet to be "
         },
         {
           "id": "consultancy-order-book",
@@ -320,29 +312,24 @@
           "unit": "INR mn",
           "flagBasis": "qoq",
           "values": [
-            68133,
             76856,
             75012,
-            108648
+            108648,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 13 Aug 2025",
-              "quote": "Consultancy 68,133 55,223 64,957 55,538 66,482",
-              "page": 11
-            },
             {
               "doc": "Presentation - 14 Nov 2025",
               "quote": "Consultancy 76,856 68,133 55,223 64,957 55,538 66,482",
@@ -357,7 +344,8 @@
               "doc": "Presentation - 22 May 2026",
               "quote": "Consultancy (Domestic) 43,736 (Overseas) 64,912 Total 108,648 (sum)",
               "page": 28
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -367,7 +355,7 @@
           ],
           "flag": "inflecting-up",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Consultancy Order Book\" (Standalone data); latest value cited to Presentation - 14 Nov 2025, page 14."
         },
         {
           "id": "consultancy-share",
@@ -375,29 +363,24 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            56.1,
             58.5,
             59.8,
-            71.9
+            71.9,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 13 Aug 2025",
-              "quote": "Consultancy 68,133 of Total Order Book 121,443 (56%)",
-              "page": 11
-            },
             {
               "doc": "Presentation - 14 Nov 2025",
               "quote": "Consultancy 76,856 of Total Order Book 131,311 (59%)",
@@ -412,7 +395,8 @@
               "doc": "Presentation - 22 May 2026",
               "quote": "Consultancy 108,648 of Total Order Book 151,093 (72%)",
               "page": 28
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -422,7 +406,7 @@
           ],
           "flag": "accelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Order Book Consultancy Share\" (Standalone data); latest value cited to Presentation - 14 Nov 2025, page 14."
         }
       ]
     },
@@ -1089,10 +1073,10 @@
       "name": "Jindal Drilling",
       "slug": "JINDRILL",
       "quarters": [
-        "Q4 FY25",
         "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26"
+        "Q3 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q3 FY26",
       "provider": "claude",
@@ -1135,7 +1119,7 @@
             null
           ],
           "flag": null,
-          "notes": "No rig utilisation percentage data found in any of the excerpts for Q4 FY25, Q1 FY26, Q2 FY26, or Q3 FY26. The excerpts discuss rig deployment status (number operating, under refurbishment, etc.) but do not state a utilisation percentage fi"
+          "notes": "No offshore rig utilisation percentage data found in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The excerpts discuss rig deployment status, contracts, and dehires/refurbishments but do not state a utilisation percentage "
         },
         {
           "id": "charter-day-rate",
@@ -1146,26 +1130,21 @@
             48324,
             48324,
             48324,
-            48324
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 26 May 2025",
-              "quote": "Discovery-I May 23 - May 26 48,324",
-              "page": 6
-            },
             {
               "doc": "Presentation - 30 Jul 2025",
               "quote": "Discovery-I May 23 - May 26 48,324",
@@ -1180,7 +1159,8 @@
               "doc": "Presentation - 30 Jan 2026",
               "quote": "Discovery-I May 23 - May 26 48,324",
               "page": 6
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -1189,7 +1169,7 @@
             null
           ],
           "flag": "steady",
-          "notes": null
+          "notes": "From Screener Insights row \"Day rate - Discovery-I (USD per operating day)\"; latest value cited to Presentation - 30 Jul 2025, page 6."
         },
         {
           "id": "order-book",
@@ -1197,29 +1177,24 @@
           "unit": "Rs. crore",
           "flagBasis": "qoq",
           "values": [
-            1791,
             1538,
             1369,
-            1183
+            1183,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 26 May 2025",
-              "quote": "Total 208 1791",
-              "page": 6
-            },
             {
               "doc": "Presentation - 30 Jul 2025",
               "quote": "Total 180 1538",
@@ -1234,7 +1209,8 @@
               "doc": "Presentation - 30 Jan 2026",
               "quote": "Total 130 1183",
               "page": 6
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -1243,7 +1219,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Rig order book\"; latest value cited to Presentation - 30 Jul 2025, page 6."
         },
         {
           "id": "day-rate-supreme",
@@ -1254,26 +1230,21 @@
             88859,
             88859,
             88859,
-            88859
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 26 May 2025",
-              "quote": "Jindal Supreme October 24 - October 27 88,859",
-              "page": 6
-            },
             {
               "doc": "Presentation - 30 Jul 2025",
               "quote": "Jindal Supreme October 24 - October 27 88,859",
@@ -1288,7 +1259,8 @@
               "doc": "Presentation - 30 Jan 2026",
               "quote": "Jindal Supreme October 24 - October 27 88,859",
               "page": 6
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -1297,7 +1269,7 @@
             null
           ],
           "flag": "steady",
-          "notes": null
+          "notes": "From Screener Insights row \"Day rate - Jindal Supreme (USD per operating day)\"; latest value cited to Presentation - 30 Jul 2025, page 6."
         }
       ]
     },
@@ -2063,7 +2035,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin per litre not disclosed in any of the excerpts. The Q4 FY26 AI summary mentions 'pressure on marketing margins on retail fuels' and the Q1 FY27 concall transcript states 'considerable pressure on marketing margins on retail"
+          "notes": "Marketing margin per litre not disclosed in any of the excerpts. Q1 FY27 concall mentions 'significant volatility in international crude and product prices exerted considerable pressure on marketing margins on retail fuels' but no ₹/l figur"
         },
         {
           "id": "throughput",
@@ -3458,53 +3430,57 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31578,
+      "ctxChars": 31579,
       "kpis": [
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume (YoY)",
-          "unit": "% yoy",
+          "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            8,
             7,
+            7.5,
             7.5,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
+            "company-filing",
             null
           ],
           "origins": [
             "model",
             "model",
-            "model",
+            "insights",
             null
           ],
           "citations": [
             null,
             null,
-            null,
+            {
+              "doc": "Concall Transcript - 04 May 2026",
+              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
+              "page": 6
+            },
             null
           ],
           "oneOffs": [
-            null,
             "No Q2 FY26 data",
             "No Q3 FY26 data",
+            null,
             null
           ],
           "flag": null,
-          "notes": "Q1 FY26: No YoY volume growth figure stated for Q1 FY26 (Apr-Jun 2025). Q2 FY26: Screener Insights table shows 'Volume Growth YoY [% YoY]' = 7 for Nov 2025, which corresponds to Q3 FY26 (Sep 2025 quarter), and the Q2 FY26 concall (reporting"
+          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
         },
         {
           "id": "base-oil-spread",
@@ -3872,7 +3848,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33740,
+      "ctxChars": 33174,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -3910,7 +3886,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not spe"
+          "notes": "No POL/LPG/LNG cargo throughput or growth data found in any of the excerpts. The screener insights table shows total cargo volume in MMT but does not break out POL/LPG/LNG specifically. The concall transcripts discuss various cargo types (c"
         },
         {
           "id": "total-cargo-volume",

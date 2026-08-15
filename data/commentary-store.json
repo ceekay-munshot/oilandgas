@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-14T08:21:57.949Z",
+  "generatedAt": "2026-08-15T06:08:08.331Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -394,9 +394,32 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:19:22.362Z"
+        },
+        "Q1 FY27": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "revenue will decline in the second half of this financial year",
+          "rationale": "Management explicitly warned of H2 revenue decline due to three rig dehires and 4-6 month refurbishment downtime, despite securing one new contract.",
+          "driver": "rig contract roll-offs and refurbishment cycle",
+          "direction": "negative",
+          "signal": "Management expects near-term revenue pressure from three rigs rolling off in FY27 requiring 4-6 month refurbishments with no revenue during downtime, though they remain fairly confident about eventual redeployment domestically; refurbishmen",
+          "mgmtDataPoints": [
+            "Order book: INR 1,310 crores",
+            "Pioneer day rate: INR 45 lakhs (fixed, INR-denominated)",
+            "Pioneer deployment: October 2026",
+            "Refurbishment cost per rig: INR 90-110 crores",
+            "Refurbishment period: 4-6 months",
+            "Three rigs dehiring: within FY27"
+          ],
+          "implication": "H2 FY27 will see revenue contraction as three rigs enter refurbishment with zero revenue during downtime, though EBITDA margin may hold up; redeployment timing and day rates for these rigs in FY28 remain uncertain given tender volatility an",
+          "doc": "Concall AI summary (Q1 FY27)",
+          "fingerprint": "37deb4225ba8",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-15T06:07:51.776Z"
         }
       },
-      "updatedAt": "2026-07-28T18:19:22.362Z"
+      "updatedAt": "2026-08-15T06:07:51.776Z"
     },
     "engineers-india": {
       "cells": {
@@ -484,9 +507,32 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:19:29.963Z"
+        },
+        "Q1 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "we are expecting more than 50%… it may be around 55% also… it is the strategy of the company to keep consultancy business on higher side since… strong margin",
+          "rationale": "Management is upbeat about structural margin expansion via consultancy mix shift, reiterates full-year order guidance, and expects turnkey revenue re-acceleration in H2.",
+          "driver": "consultancy mix shift",
+          "direction": "positive",
+          "signal": "Management is executing a deliberate pivot to higher-margin consultancy (targeting >50% of revenue), expects turnkey revenue to rebound in Q3-Q4, and aims to sustain ~16% operating margin with upside from change orders.",
+          "mgmtDataPoints": [
+            "Order book: ₹14,424 cr (Consultancy ₹10,498 cr, Turnkey ₹3,926 cr)",
+            "YTD order inflow: ₹2,750 cr (₹1,100 cr overseas)",
+            "FY order inflow target: ₹8,000 cr",
+            "Consultancy revenue target: >50% of total, possibly ~55%",
+            "Consultancy turnover guidance: ₹2,300-2,400 cr for FY",
+            "Total turnover growth guidance: ~10% YoY"
+          ],
+          "implication": "Expect continued margin expansion and revenue recovery in Q2-Q3 as consultancy share rises and turnkey projects ramp, though Middle East new order flow remains a watch-point.",
+          "doc": "Concall AI summary (Q1 FY27)",
+          "fingerprint": "f555d19cb3cc",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-15T06:07:59.746Z"
         }
       },
-      "updatedAt": "2026-07-28T18:19:29.963Z"
+      "updatedAt": "2026-08-15T06:07:59.746Z"
     },
     "lt": {
       "cells": {
