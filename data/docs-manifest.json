@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-15T07:32:22.681Z",
+  "generatedAt": "2026-08-16T06:09:08.350Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -2690,9 +2690,23 @@
         "pros": 2,
         "cons": 1
       },
-      "summariesAvailable": 14,
+      "summariesAvailable": 15,
       "transcriptsFound": 13,
       "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://www.screener.in/concalls/summary/23299679/",
+          "source": "screener.in",
+          "status": "gated",
+          "chars": 88,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/summary-2026-08.txt",
+          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+        },
         {
           "type": "summary",
           "role": "summary",
@@ -2762,20 +2776,6 @@
           "via": "browser",
           "cache": "pipeline/cache/docs/IGL/summary-2025-04.txt",
           "sample": "Indraprastha Gas Ltd (IGL) – Q4 FY25 & FY25 Earnings Call Summary 1. Operating & Financial Performance FY25 vs FY24 Volumes & Mix Total average daily volume: 8."
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Jan 2025",
-          "periodIso": "2025-01",
-          "url": "https://www.screener.in/concalls/summary/22983763/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 9949,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/IGL/summary-2025-01.txt",
-          "sample": "Indraprastha Gas Limited – Q3 FY25 Earnings Call Summary (Jan 28, 2025) 1. Operating Performance & Volume Outlook Q3 FY25 volumes: Total sales: 9.11 MMSCMD (7% "
         }
       ],
       "ppt": {
@@ -3727,9 +3727,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e0aca11e-1b05-4087-b721-fe5651591c4f.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 46273,
-          "pages": 18,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/SPLPETRO/transcript-2026-04.txt"
         },
@@ -3918,9 +3918,9 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b2502bf8-680b-48ed-a5f0-5409b7938365.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 40455,
-          "pages": 14,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-05.txt"
         },
