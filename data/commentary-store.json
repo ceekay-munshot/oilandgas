@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-16T07:35:33.409Z",
+  "generatedAt": "2026-08-17T06:21:42.646Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -2219,9 +2219,19 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:20:58.267Z"
+        },
+        "Q1 FY27": {
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": "no concall document cached for this quarter",
+          "doc": null,
+          "fingerprint": "1a8456f029ab",
+          "attempts": 1,
+          "at": "2026-08-17T06:21:42.637Z"
         }
       },
-      "updatedAt": "2026-07-28T18:20:58.267Z"
+      "updatedAt": "2026-08-17T06:21:42.637Z"
     },
     "ge-shipping": {
       "cells": {

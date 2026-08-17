@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-16T07:35:16.944Z",
+  "generatedAt": "2026-08-17T06:21:08.927Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 345,
-    "realCells": 198,
-    "nullCells": 147,
+    "realCells": 197,
+    "nullCells": 148,
     "kpis": 89,
     "kpisWithTrend": 50
   },
@@ -3430,57 +3430,53 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31579,
+      "ctxChars": 31578,
       "kpis": [
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume (YoY)",
-          "unit": "% YoY",
+          "unit": "% yoy",
           "flagBasis": "yoy",
           "values": [
+            8,
             7,
-            7.5,
             7.5,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "company-filing",
+            "mgmt-claim",
             null
           ],
           "origins": [
             "model",
             "model",
-            "insights",
+            "model",
             null
           ],
           "citations": [
             null,
             null,
-            {
-              "doc": "Concall Transcript - 04 May 2026",
-              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
-              "page": 6
-            },
-            null
-          ],
-          "oneOffs": [
-            "No Q2 FY26 data",
-            "No Q3 FY26 data",
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            "No Q2 FY26 data",
+            "No Q3 FY26 data",
+            null
+          ],
           "flag": null,
-          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
+          "notes": "Q1 FY26: No YoY volume growth figure stated for Q1 FY26 (Apr-Jun 2025). Q2 FY26: Screener Insights table shows 'Volume Growth YoY [% YoY]' = 7 for Nov 2025, which corresponds to Q3 FY26 (Sep 2025 quarter per the concall), not Q2. The Q2 FY2"
         },
         {
           "id": "base-oil-spread",
@@ -3840,15 +3836,15 @@
       "name": "Adani Ports",
       "slug": "ADANIPORTS",
       "quarters": [
-        "Q4 FY25",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33740,
+      "ctxChars": 9740,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -3886,7 +3882,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not spe"
+          "notes": "POL/LPG/LNG cargo throughput YoY growth not stated in any of the provided excerpts. The excerpts contain total cargo volume in MMT but do not break out POL/LPG/LNG specifically, nor do they provide YoY growth rates for this cargo category."
         },
         {
           "id": "total-cargo-volume",
@@ -3894,29 +3890,24 @@
           "unit": "MMT",
           "flagBasis": "level",
           "values": [
-            117.9,
             123.6,
             123.1,
-            133.4
+            133.4,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Apr 2026",
-              "quote": "Cargo (MMT) Q4 FY26 Q4 FY25 133.4 117.9",
-              "page": 2
-            },
             {
               "doc": "Presentation - 04 Nov 2025",
               "quote": "APSEZ volume 123.6 110.8",
@@ -3931,7 +3922,8 @@
               "doc": "Presentation - 30 Apr 2026",
               "quote": "Cargo (MMT) Q4 FY26 133.4",
               "page": 2
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -3941,7 +3933,7 @@
           ],
           "flag": "accelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Total Cargo Volume\"; latest value cited to Presentation - 04 Nov 2025, page 41."
         }
       ]
     },
