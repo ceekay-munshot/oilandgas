@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-17T08:01:08.278Z",
+  "generatedAt": "2026-08-18T06:12:48.148Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 345,
-    "realCells": 198,
-    "nullCells": 147,
+    "realCells": 192,
+    "nullCells": 153,
     "kpis": 89,
     "kpisWithTrend": 50
   },
@@ -32,7 +32,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33822,
+      "ctxChars": 33821,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -79,7 +79,7 @@
         {
           "id": "day-rate",
           "label": "Day-rate",
-          "unit": "$/day or ₹/day",
+          "unit": "₹/day or $/day",
           "flagBasis": "level",
           "values": [
             null,
@@ -112,7 +112,7 @@
             null
           ],
           "flag": null,
-          "notes": "Day-rate figures are not stated in any of the excerpts. The Q2 FY26 concall mentions management did not expect near-term pressure on market rates for offshore vessels and that day rates for the HF Hunter vessel were 'in line with what we we"
+          "notes": "Day-rate figures are not stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The documents discuss asset utilization, rig deployments, and revenue growth, but do not disclose specific day-rate pricing for drilling rigs,"
         },
         {
           "id": "order-book",
@@ -2389,15 +2389,15 @@
       "name": "GAIL",
       "slug": "GAIL",
       "quarters": [
-        "Q4 FY25",
         "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26"
+        "Q3 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31836,
+      "ctxChars": 31837,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -2405,29 +2405,24 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
-            123.65,
             120.62,
             123.59,
-            125.45
+            125.45,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "Natural gas transmission volume stood at 123.65 MMSCMD in quarter four",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "the natural gas transmission volume was 120.62 MMSCMD in Q1",
@@ -2442,7 +2437,8 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "Natural gas transmission volume improved to 125.45 MMSCMD in Q3 FY26",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2451,7 +2447,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Natural Gas Transmission Volume\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 2."
         },
         {
           "id": "petchem-margin",
@@ -2489,7 +2485,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated in any of the excerpts. The documents report petrochemical sales volumes (TMT) and production volumes, but do not disclose the margin per tonne in dollars or any other currency. The Q2 FY26 concall mentions "
+          "notes": "Petchem margin not stated in any of the excerpts. The Q1 FY26 concall mentions polymer segment incurred a loss of Rs 130 crores but no per-tonne margin is given. Q2 FY26 and Q3 FY26 concalls do not mention petchem margin. Q1 FY27 concall me"
         },
         {
           "id": "gas-marketing-volume",
@@ -2497,29 +2493,24 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
-            99.99,
             105.45,
             105.49,
-            103.98
+            103.98,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "gas marketing volume stood at 99.99 MMSCMD in current quarter as against 98.14 MMSCMD previous quarter",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "Gas marketing volume during the quarter stood at 105.45 MMSCMD as against 106.53 MMSCMD in Q4 financial year '25",
@@ -2534,7 +2525,8 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "Gas marketing volume during the quarter stood at 103.98 MMSCMD as against 105.49 MMSCMD in Q2 FY26",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2544,7 +2536,7 @@
           ],
           "flag": "steady",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Natural Gas Marketing Volume\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 2."
         },
         {
           "id": "lpg-transmission",
@@ -2552,29 +2544,24 @@
           "unit": "TMT",
           "flagBasis": "level",
           "values": [
-            1114,
             1131,
             1167,
-            1188
+            1188,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "LPG transmission stood at 1114 TMT as against 1095 TMT in previous quarter",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "The LPG transmission was also flat, it was 1,131 TMT as against 1,132 TMT in Q4 FY'20",
@@ -2589,7 +2576,8 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "LPG transmission was 1,188 TMT as against 1,167 TMT in previous quarter",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2599,7 +2587,7 @@
           ],
           "flag": "decelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"LPG Transmission\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 3."
         },
         {
           "id": "petchem-sales",
@@ -2607,29 +2595,24 @@
           "unit": "TMT",
           "flagBasis": "level",
           "values": [
-            248,
             177,
             220,
-            219
+            219,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "Polymer production stood at 248 TMT as against 205 TMT last quarter",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "Polymer production is down to 177 TMT in Q1 as against 215 TMT in previous quarter",
@@ -2644,7 +2627,8 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "Polymer production was almost flat at 219 TMT in Q3 FY26",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2654,7 +2638,7 @@
           ],
           "flag": "steady",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Petrochemicals Sales\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 2."
         },
         {
           "id": "liquid-hydrocarbon-sales",
@@ -2662,29 +2646,24 @@
           "unit": "TMT",
           "flagBasis": "level",
           "values": [
-            265,
             199,
             221,
-            199
+            199,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "LHC production is stood at 265 TMT against 249 TMT in previous quarter",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "LHC production is almost flat, and it stood at 199 TMT as against 196 TMT in previous quarter",
@@ -2699,7 +2678,8 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "LHC production stood at 199 TMT as against 221 TMT in previous quarter",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2709,7 +2689,7 @@
           ],
           "flag": "inflecting-down",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Liquid Hydrocarbons Sales\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 3."
         }
       ]
     },
@@ -2717,7 +2697,7 @@
       "name": "Mahanagar Gas",
       "slug": "MGL",
       "quarters": [
-        "Q2 FY26",
+        "Q1 FY26",
         "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
@@ -2733,7 +2713,7 @@
           "unit": "percent",
           "flagBasis": "yoy",
           "values": [
-            9.22,
+            9.61,
             7.19,
             6.15,
             null
@@ -2771,7 +2751,7 @@
           "unit": "₹/scm",
           "flagBasis": "level",
           "values": [
-            7.96,
+            12.35,
             8.26,
             6.19,
             7.91
@@ -2809,7 +2789,7 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
-            0.76,
+            0.7,
             0.73,
             0.72,
             null
@@ -2828,8 +2808,8 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 30 Oct 2025",
-              "quote": "MGL+Erstwhile UEPL Q2 FY 26: I&C 0.757",
+              "doc": "Presentation - 23 Jul 2025",
+              "quote": "MGL+UEPL Q1 FY 26: I&C 0.698",
               "page": 14
             },
             {
@@ -2851,7 +2831,7 @@
             null
           ],
           "flag": "steady",
-          "notes": "From Screener Insights row \"Industrial & Commercial Sales Volume\"; latest value cited to Presentation - 30 Oct 2025, page 14."
+          "notes": "From Screener Insights row \"Industrial & Commercial Sales Volume\"; latest value cited to Presentation - 23 Jul 2025, page 14."
         }
       ]
     },
@@ -2859,10 +2839,10 @@
       "name": "Gujarat Gas",
       "slug": "GUJENERGY",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
       "provider": "claude",
@@ -2875,22 +2855,22 @@
           "unit": "percent",
           "flagBasis": "yoy",
           "values": [
+            null,
+            null,
             12,
-            null,
-            null,
-            12
+            null
           ],
           "sourceTags": [
+            null,
+            null,
             "mgmt-claim",
-            null,
-            null,
-            "mgmt-claim"
+            null
           ],
           "origins": [
+            null,
+            null,
             "model",
-            null,
-            null,
-            "model"
+            null
           ],
           "citations": [
             null,
@@ -2905,7 +2885,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q1: 12% yoy CNG growth stated in Q1 FY26 call. Q2: no single-quarter yoy growth stated. Q3: no single-quarter yoy growth stated. Q4: 12% yoy CNG growth stated in Q4 FY26 call. PNG domestic volumes from Screener: Q1 FY26 0.69, Q1 FY25 0.62 →"
+          "notes": "Q2 FY26: no single-quarter CNG+PNG volume growth stated. Q3 FY26: no single-quarter CNG+PNG volume growth stated. Q4 FY26: CNG growth 12% yoy stated, but PNG domestic/commercial/industrial growth not given for Q4 alone. Q1 FY27: CNG 13% yoy"
         },
         {
           "id": "ebitda-per-scm",
@@ -2943,7 +2923,7 @@
             null
           ],
           "flag": null,
-          "notes": "EBITDA per scm not stated in any excerpt. Screener shows quarterly Operating Profit (EBITDA proxy) but no per-scm metric. Volume data available in MMSCMD but no explicit EBITDA/scm calculation provided by company."
+          "notes": "Q2 FY26: EBITDA ₹447 Cr per Screener financials, total CGD volume 8.65 mmscmd per Screener insights; however the Screener financials post-merger include Gas Trading and other segments, so EBITDA is not CGD-only. No CGD-segment EBITDA disclo"
         }
       ]
     },

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-17T08:01:15.176Z",
+  "generatedAt": "2026-08-18T06:13:31.284Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -1244,9 +1244,32 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:20:07.390Z"
+        },
+        "Q1 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Q1 FY'27 demonstrated the resilience of GAIL's integrated business model, with strong financial performance supported by portfolio diversification",
+          "rationale": "Management emphasizes strong performance, resilience, and strategic growth despite geopolitical challenges, highlighting major infrastructure milestones and robust financials.",
+          "driver": "portfolio diversification and infrastructure expansion",
+          "direction": "positive",
+          "signal": "GAIL is committing significant capex to three new LPG pipelines totaling over 1,800 km while operationalizing the Mumbai-Nagpur-Jharsuguda pipeline, signaling continued infrastructure investment despite geopolitical volatility.",
+          "mgmtDataPoints": [
+            "Mumbai-Nagpur-Jharsuguda pipeline: 1,707 km operational",
+            "Three new LPG pipelines authorized: 1,800+ km combined length",
+            "LPG pipeline capex: ~INR 6,700 crores over 3 years",
+            "Q1 FY27 standalone turnover: Rs. 38,912 crores",
+            "Q1 FY27 standalone PBT: Rs. 5,773 crores",
+            "Q1 FY27 standalone PAT: Rs. 4,292 crores"
+          ],
+          "implication": "With major pipeline infrastructure coming online and strong profitability momentum, GAIL is positioned for continued volume growth and margin expansion over the next two quarters, assuming geopolitical disruptions stabilize.",
+          "doc": "Concall transcript (Q1 FY27)",
+          "fingerprint": "0c5549d61204",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-18T06:13:17.544Z"
         }
       },
-      "updatedAt": "2026-07-28T18:20:07.390Z"
+      "updatedAt": "2026-08-18T06:13:17.544Z"
     },
     "petronet-lng": {
       "cells": {
@@ -1586,14 +1609,20 @@
           "at": "2026-07-31T08:38:09.445Z"
         },
         "Q1 FY27": {
-          "toneId": null,
-          "score": null,
-          "quote": null,
-          "rationale": "no concall document cached for this quarter",
-          "doc": null,
-          "fingerprint": "1a8456f029ab",
-          "attempts": 3,
-          "at": "2026-07-28T18:20:36.631Z"
+          "toneId": "confident",
+          "score": 5,
+          "quote": "This quarter is significant for the company as apart from delivering excellent performance across our key business segments",
+          "rationale": "Management highlights excellent performance, completed merger listing, and positions the company as one of India's leading integrated energy companies with strength across multiple segments.",
+          "driver": "post-merger integration and business model strength",
+          "direction": "positive",
+          "signal": "Management emphasizes the integrated business model's ability to navigate evolving markets and support sustainable growth, signaling confidence in continued expansion across gas trading, CGD, E&P and renewables.",
+          "mgmtDataPoints": [],
+          "implication": "The successful merger integration and strong Q1 performance suggest management will likely maintain or accelerate growth investments across the diversified energy portfolio in the near term.",
+          "doc": "Concall transcript (Q1 FY27)",
+          "fingerprint": "a65a49e77013",
+          "attempts": 4,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-18T06:13:25.847Z"
         },
         "Q1 FY26": {
           "toneId": "constructive",
@@ -1612,7 +1641,7 @@
           "at": "2026-07-31T08:38:09.445Z"
         }
       },
-      "updatedAt": "2026-07-31T08:38:09.445Z"
+      "updatedAt": "2026-08-18T06:13:25.847Z"
     },
     "aegis-logistics": {
       "cells": {

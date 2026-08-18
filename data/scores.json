@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-17T08:01:15.229Z",
+  "generatedAt": "2026-08-18T06:13:31.344Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -94,11 +94,11 @@
       ]
     },
     "coincident": {
-      "score": -41,
-      "prev": -24,
-      "delta": -37,
+      "score": -36,
+      "prev": -33,
+      "delta": -28,
       "deltaBasis": "kpi-only",
-      "level": "strong-negative",
+      "level": "negative",
       "direction": "falling",
       "kpisScored": 20,
       "kpisTotal": 40,
@@ -198,6 +198,13 @@
         },
         {
           "kind": "tone",
+          "companyId": "gujarat-gas",
+          "company": "Gujarat Gas",
+          "label": "Gas demand trajectory",
+          "flag": "tone-up"
+        },
+        {
+          "kind": "tone",
           "companyId": "castrol-india",
           "company": "Castrol India",
           "label": "Spread / demand commentary",
@@ -263,7 +270,7 @@
     }
   },
   "divergence": {
-    "value": 76,
+    "value": 71,
     "leadingSign": 1,
     "coincidentSign": -1,
     "signsDiffer": true
@@ -271,17 +278,17 @@
   "divergenceSeries": [
     null,
     null,
-    35,
+    44,
     101
   ],
   "stage": {
     "stageId": "early-upcycle",
-    "position": 29,
+    "position": 30,
     "ruleId": "early-upcycle",
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 35 (positive, rising), coincident -41 (strong-negative, falling), lagging 0 (flat).",
+      "Leading 35 (positive, rising), coincident -36 (negative, falling), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -422,6 +429,16 @@
       "direction": "down"
     },
     {
+      "companyId": "gujarat-gas",
+      "name": "Gujarat Gas",
+      "from": "neutral",
+      "to": "confident",
+      "fromQuarter": "Q4 FY26",
+      "quarter": "Q1 FY27",
+      "steps": 2,
+      "direction": "up"
+    },
+    {
       "companyId": "shipping-corp",
       "name": "Shipping Corp of India",
       "from": "neutral",
@@ -523,6 +540,12 @@
       "text": "BPCL moved 2 tone steps down (neutral → defensive) in Q1 FY27."
     },
     {
+      "id": "tone-gujarat-gas",
+      "severity": "info",
+      "kind": "tone-drift",
+      "text": "Gujarat Gas moved 2 tone steps up (neutral → confident) in Q1 FY27."
+    },
+    {
       "id": "tone-shipping-corp",
       "severity": "info",
       "kind": "tone-drift",
@@ -543,7 +566,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are strongly negative and falling — IOCL Throughput, BPCL GRM, Petronet LNG Volume."
+      "text": "Coincident indicators are negative and falling — IOCL Throughput, BPCL GRM, Petronet LNG Volume."
     },
     {
       "id": "macro",
@@ -553,12 +576,12 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +76. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
+      "text": "Leading minus coincident is +71. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "ONGC (cautious → confident); Petronet LNG (constructive → defensive); Castrol India (cautious → confident); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 2 more."
+      "text": "ONGC (cautious → confident); Petronet LNG (constructive → defensive); Castrol India (cautious → confident); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 3 more."
     },
     {
       "id": "implication",
@@ -859,17 +882,17 @@
       "label": "Gas demand trajectory",
       "bucket": "coincident",
       "listenFor": "Volume growth guidance, new geographic-area rollout pace, industrial vs. domestic PNG mix shift, spot vs. term LNG contracting stance",
-      "state": "5 companies heard, split (2 positive, 2 negative); Petronet LNG moved 3 steps down.",
+      "state": "5 companies heard, split (2 positive, 2 negative); Petronet LNG moved 3 steps down, Gujarat Gas moved 2 steps up.",
       "mood": "mixed",
       "members": [
         {
           "companyId": "gail",
           "name": "GAIL",
-          "toneId": "constructive",
-          "quarter": "Q3 FY26",
+          "toneId": "confident",
+          "quarter": "Q1 FY27",
           "direction": "positive",
-          "driver": "natural gas transmission volume",
-          "drift": 0
+          "driver": "portfolio diversification and infrastructure expansion",
+          "drift": 1
         },
         {
           "companyId": "petronet-lng",
@@ -901,11 +924,11 @@
         {
           "companyId": "gujarat-gas",
           "name": "Gujarat Gas",
-          "toneId": "neutral",
-          "quarter": "Q4 FY26",
+          "toneId": "confident",
+          "quarter": "Q1 FY27",
           "direction": "positive",
-          "driver": "CNG segment sales",
-          "drift": -1
+          "driver": "post-merger integration and business model strength",
+          "drift": 2
         }
       ],
       "drivers": [
@@ -919,13 +942,13 @@
           "drift": -3
         },
         {
-          "companyId": "igl",
-          "name": "IGL",
-          "toneId": "neutral",
-          "quarter": "Q4 FY26",
-          "direction": "neutral",
-          "driver": "profitability resilience",
-          "drift": -1
+          "companyId": "gujarat-gas",
+          "name": "Gujarat Gas",
+          "toneId": "confident",
+          "quarter": "Q1 FY27",
+          "direction": "positive",
+          "driver": "post-merger integration and business model strength",
+          "drift": 2
         }
       ]
     },
@@ -1037,18 +1060,22 @@
   ],
   "changes": [
     {
+      "kind": "score",
+      "text": "Moving now moved up 5 points to -36."
+    },
+    {
       "kind": "alert",
-      "text": "New alert: Castrol India moved 3 tone steps up (cautious → confident) in Q1 FY27."
+      "text": "New alert: Gujarat Gas moved 2 tone steps up (neutral → confident) in Q1 FY27."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-17T06:21:42.702Z",
+    "generatedAt": "2026-08-17T08:01:15.229Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 35,
-      "coincident": -44,
+      "coincident": -41,
       "lagging": 0
     },
     "alertIds": [
@@ -1058,6 +1085,7 @@
       "divergence",
       "stage-macro",
       "tone-bpcl",
+      "tone-castrol-india",
       "tone-gandhar-oil",
       "tone-ongc",
       "tone-petronet-lng",

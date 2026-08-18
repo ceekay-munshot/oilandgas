@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-17T08:00:01.719Z",
+  "generatedAt": "2026-08-18T06:12:43.161Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -219,21 +219,21 @@
         "cons": 3
       },
       "summariesAvailable": 20,
-      "transcriptsFound": 18,
+      "transcriptsFound": 19,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Jul 2026",
           "periodIso": "2026-07",
-          "url": "https://www.screener.in/concalls/summary/23258154/",
+          "url": "https://www.screener.in/concalls/summary/23305254/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 8695,
+          "status": "gated",
+          "chars": 88,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/summary-2026-07.txt",
-          "sample": "Q1 FY27 Performance Snapshot (Consolidated) Revenue: ₹278.92 cr , +40% YoY EBITDA: ₹131.8 cr , +38.7% YoY ; EBITDA margin 43.6% (management reiterated the struc"
+          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
         },
         {
           "type": "summary",
@@ -323,6 +323,19 @@
         {
           "type": "transcript",
           "role": "transcript",
+          "period": "Jul 2026",
+          "periodIso": "2026-07",
+          "url": "https://www.deepindustries.com/docs/TranscriptQ1.pdf",
+          "source": "deepindustries.com",
+          "status": "ok",
+          "chars": 54080,
+          "pages": 20,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
           "period": "May 2026",
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=49c56f22-6c78-43f8-a25b-78897451fe58.pdf",
@@ -384,19 +397,6 @@
           "pages": 19,
           "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/transcript-2025-08.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "May 2025",
-          "periodIso": "2025-05",
-          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=19280978-5bbd-4d17-ac38-0ae2fc6834c9.pdf",
-          "source": "bseindia.com",
-          "status": "ok",
-          "chars": 116074,
-          "pages": 20,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2025-05.txt"
         }
       ]
     },
@@ -2500,14 +2500,14 @@
         "cons": 1
       },
       "summariesAvailable": 25,
-      "transcriptsFound": 22,
+      "transcriptsFound": 23,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Jul 2026",
           "periodIso": "2026-07",
-          "url": "https://www.screener.in/concalls/summary/23262119/",
+          "url": "https://www.screener.in/concalls/summary/23306959/",
           "source": "screener.in",
           "status": "gated",
           "chars": 88,
@@ -2521,7 +2521,7 @@
           "role": "summary",
           "period": "Jul 2026",
           "periodIso": "2026-07",
-          "url": "https://www.screener.in/concalls/summary/23262119/",
+          "url": "https://www.screener.in/concalls/summary/23306959/",
           "source": "screener.in",
           "status": "gated",
           "chars": 88,
@@ -2549,7 +2549,7 @@
           "role": "summary",
           "period": "Oct 2025",
           "periodIso": "2025-10",
-          "url": "https://www.screener.in/concalls/summary/23043677/",
+          "url": "https://www.screener.in/concalls/summary/23044798/",
           "source": "screener.in",
           "status": "gated",
           "chars": 88,
@@ -2563,7 +2563,7 @@
           "role": "summary",
           "period": "Oct 2025",
           "periodIso": "2025-10",
-          "url": "https://www.screener.in/concalls/summary/23043677/",
+          "url": "https://www.screener.in/concalls/summary/23044798/",
           "source": "screener.in",
           "status": "gated",
           "chars": 88,
@@ -2601,6 +2601,19 @@
         "cache": "pipeline/cache/docs/GAIL/ppt-2026-07.txt"
       },
       "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Jul 2026",
+          "periodIso": "2026-07",
+          "url": "https://gailebank.gail.co.in/InvestorsZone/GAIL_EARNINGS_CALL_Q1_FY27.pdf",
+          "source": "gailebank.gail.co.in",
+          "status": "ok",
+          "chars": 46911,
+          "pages": 13,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GAIL/transcript-2026-07.txt"
+        },
         {
           "type": "transcript",
           "role": "transcript",
@@ -2665,19 +2678,6 @@
           "pages": 22,
           "via": "browser",
           "cache": "pipeline/cache/docs/GAIL/transcript-2025-01.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Nov 2024",
-          "periodIso": "2024-11",
-          "url": "https://gailonline.com/pdf/InvestorsZone/GAIL_Earnings_Call_Q2_FY25_11112024.pdf",
-          "source": "gailonline.com",
-          "status": "ok",
-          "chars": 44375,
-          "pages": 17,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2024-11.txt"
         }
       ]
     },
@@ -3029,9 +3029,9 @@
           "periodIso": "2025-11",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=0b4d6735-bdda-4151-9e32-0162007c47e4.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 53961,
-          "pages": 20,
+          "status": "http_404",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/MGL/transcript-2025-11.txt"
         },
@@ -3073,14 +3073,14 @@
         "cons": 1
       },
       "summariesAvailable": 14,
-      "transcriptsFound": 13,
+      "transcriptsFound": 14,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Aug 2026",
           "periodIso": "2026-08",
-          "url": "https://www.screener.in/concalls/summary/23291252/",
+          "url": "https://www.screener.in/concalls/summary/23306933/",
           "source": "screener.in",
           "status": "gated",
           "chars": 88,
@@ -3177,6 +3177,19 @@
         {
           "type": "transcript",
           "role": "transcript",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b4d8a41d-a13b-4a7c-a2f9-f39fb56272ab.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 44967,
+          "pages": 18,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GUJENERGY/transcript-2026-08.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
           "period": "Jun 2026",
           "periodIso": "2026-06",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c76a4ba6-459b-4b62-8479-35e78608d54c.pdf",
@@ -3238,19 +3251,6 @@
           "pages": 20,
           "via": "browser",
           "cache": "pipeline/cache/docs/GUJENERGY/transcript-2025-05.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Feb 2025",
-          "periodIso": "2025-02",
-          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c742ad64-d939-4179-8171-a32711b2be07.pdf",
-          "source": "bseindia.com",
-          "status": "ok",
-          "chars": 60073,
-          "pages": 24,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/GUJENERGY/transcript-2025-02.txt"
         }
       ]
     },

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-17T08:01:15.058Z",
+  "generatedAt": "2026-08-18T06:13:17.470Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
@@ -1011,28 +1011,15 @@
       "name": "GAIL",
       "slug": "GAIL",
       "quarters": [
-        "Q4 FY25",
         "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26"
+        "Q3 FY26",
+        "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "asOf": "Q1 FY27",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q4 FY25",
-          "toneId": "confident",
-          "score": 5,
-          "quote": "our company had a landmark year, reaching unprecedented financial milestones",
-          "rationale": "Management highlighted record financial achievements and growth despite challenges.",
-          "driver": "financial milestones",
-          "direction": "positive",
-          "signal": "Management is optimistic about continued growth and operational improvements.",
-          "mgmtDataPoints": [],
-          "implication": "The company is likely to continue its growth trajectory in the coming quarters.",
-          "doc": "Concall transcript (Q4 FY25)"
-        },
         {
           "quarter": "Q1 FY26",
           "toneId": "neutral",
@@ -1080,6 +1067,26 @@
           ],
           "implication": "Expect improved transmission volumes and financial performance in the next quarters.",
           "doc": "Concall transcript (Q3 FY26)"
+        },
+        {
+          "quarter": "Q1 FY27",
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Q1 FY'27 demonstrated the resilience of GAIL's integrated business model, with strong financial performance supported by portfolio diversification",
+          "rationale": "Management emphasizes strong performance, resilience, and strategic growth despite geopolitical challenges, highlighting major infrastructure milestones and robust financials.",
+          "driver": "portfolio diversification and infrastructure expansion",
+          "direction": "positive",
+          "signal": "GAIL is committing significant capex to three new LPG pipelines totaling over 1,800 km while operationalizing the Mumbai-Nagpur-Jharsuguda pipeline, signaling continued infrastructure investment despite geopolitical volatility.",
+          "mgmtDataPoints": [
+            "Mumbai-Nagpur-Jharsuguda pipeline: 1,707 km operational",
+            "Three new LPG pipelines authorized: 1,800+ km combined length",
+            "LPG pipeline capex: ~INR 6,700 crores over 3 years",
+            "Q1 FY27 standalone turnover: Rs. 38,912 crores",
+            "Q1 FY27 standalone PBT: Rs. 5,773 crores",
+            "Q1 FY27 standalone PAT: Rs. 4,292 crores"
+          ],
+          "implication": "With major pipeline infrastructure coming online and strong profitability momentum, GAIL is positioned for continued volume growth and margin expansion over the next two quarters, assuming geopolitical disruptions stabilize.",
+          "doc": "Concall transcript (Q1 FY27)"
         }
       ]
     },
@@ -1266,7 +1273,7 @@
       "name": "Mahanagar Gas",
       "slug": "MGL",
       "quarters": [
-        "Q2 FY26",
+        "Q1 FY26",
         "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
@@ -1276,21 +1283,22 @@
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
         {
-          "quarter": "Q2 FY26",
+          "quarter": "Q1 FY26",
           "toneId": "confident",
           "score": 5,
-          "quote": "MGL continues to create infrastructure across its business segments",
-          "rationale": "The focus on infrastructure expansion and customer growth reflects confidence.",
-          "driver": "infrastructure expansion",
+          "quote": "MGL continues to create CGD infrastructure across its business segments",
+          "rationale": "Management is focused on growth and expansion, indicating confidence.",
+          "driver": "CGD infrastructure expansion",
           "direction": "positive",
-          "signal": "Management is aggressively expanding infrastructure, indicating strong growth plans.",
+          "signal": "Management is actively expanding infrastructure, indicating strong capex intent and growth outlook.",
           "mgmtDataPoints": [
-            "domestic households connected: 53,566",
-            "pipeline length: 8,061.62 km",
-            "CNG stations: 485"
+            "domestic households connected: 16,348",
+            "pipeline length: 7,538.63 km",
+            "CNG stations: 385",
+            "CNG vehicles added: 20,332"
           ],
-          "implication": "Ongoing expansion efforts are likely to drive further growth in customer base and service reach.",
-          "doc": "Concall transcript (Q2 FY26)"
+          "implication": "Continued infrastructure expansion suggests robust growth in customer base and service capacity.",
+          "doc": "Concall transcript (Q1 FY26)"
         },
         {
           "quarter": "Q3 FY26",
@@ -1347,28 +1355,15 @@
       "name": "Gujarat Gas",
       "slug": "GUJENERGY",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "asOf": "Q1 FY27",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q1 FY26",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "We are aggressively setting up CNG infrastructure as well as upgrading CNG infrastructure to promote use of clean and green fuel.",
-          "rationale": "Management is hopeful about infrastructure expansion and promoting clean energy.",
-          "driver": "CNG infrastructure expansion",
-          "direction": "positive",
-          "signal": "Management is focused on expanding and upgrading CNG infrastructure to support clean energy initiatives.",
-          "mgmtDataPoints": [],
-          "implication": "The company is likely to continue investing in infrastructure, potentially boosting CNG sales.",
-          "doc": "Concall transcript (Q1 FY26)"
-        },
         {
           "quarter": "Q2 FY26",
           "toneId": "constructive",
@@ -1407,6 +1402,19 @@
           "mgmtDataPoints": [],
           "implication": "The company may face challenges due to market instability but is likely to maintain strong CNG sales.",
           "doc": "Concall transcript (Q4 FY26)"
+        },
+        {
+          "quarter": "Q1 FY27",
+          "toneId": "confident",
+          "score": 5,
+          "quote": "This quarter is significant for the company as apart from delivering excellent performance across our key business segments",
+          "rationale": "Management highlights excellent performance, completed merger listing, and positions the company as one of India's leading integrated energy companies with strength across multiple segments.",
+          "driver": "post-merger integration and business model strength",
+          "direction": "positive",
+          "signal": "Management emphasizes the integrated business model's ability to navigate evolving markets and support sustainable growth, signaling confidence in continued expansion across gas trading, CGD, E&P and renewables.",
+          "mgmtDataPoints": [],
+          "implication": "The successful merger integration and strong Q1 performance suggest management will likely maintain or accelerate growth investments across the diversified energy portfolio in the near term.",
+          "doc": "Concall transcript (Q1 FY27)"
         }
       ]
     },
