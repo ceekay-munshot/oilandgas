@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-19T06:22:04.689Z",
+  "generatedAt": "2026-08-19T07:48:50.986Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
@@ -1506,28 +1506,15 @@
       "name": "Aegis Vopak",
       "slug": "AEGISVOPAK",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "asOf": "Q1 FY27",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q1 FY26",
-          "toneId": "confident",
-          "score": 5,
-          "quote": "committed to achieving significant growth in the years ahead",
-          "rationale": "Management expressed strong commitment to growth and expansion plans.",
-          "driver": "IPO reception",
-          "direction": "positive",
-          "signal": "Management is optimistic about growth prospects following a successful IPO and plans to expand operations.",
-          "mgmtDataPoints": [],
-          "implication": "The company is likely to focus on executing its expansion strategy and leveraging IPO proceeds for growth.",
-          "doc": "Concall transcript (Q1 FY26)"
-        },
         {
           "quarter": "Q2 FY26",
           "toneId": "constructive",
@@ -1566,6 +1553,26 @@
           "mgmtDataPoints": [],
           "implication": "Ongoing investments in capacity expansion are expected to support robust growth in the near term.",
           "doc": "Concall transcript (Q4 FY26)"
+        },
+        {
+          "quarter": "Q1 FY27",
+          "toneId": "confident",
+          "score": 5,
+          "quote": "We have continued to make good progress across our existing terminals, while also announcing new capacity additions that further strengthen our long-term growth platform.",
+          "rationale": "Management is upbeat about progress, announcing two new capacity expansion projects and highlighting strong financial momentum with double-digit revenue and EBITDA growth.",
+          "driver": "capacity expansion and liquid volume growth",
+          "direction": "positive",
+          "signal": "Management is actively investing in new capacity at JNPA and Kochi, signaling confidence in sustained demand growth for both liquid and gas storage infrastructure in India.",
+          "mgmtDataPoints": [
+            "JNPA LPG tank capacity: 51,998 metric tons",
+            "Kochi additional liquid storage: 49,577 cubic meters",
+            "Revenue growth: 12.4% YoY to INR 233.8 crores",
+            "Liquid terminaling revenue: INR 126.5 crores, up 31% YoY",
+            "Gas terminaling revenue: INR 107.2 crores",
+            "Operating EBITDA: INR 179.4 crores, up 15.6% YoY"
+          ],
+          "implication": "The announced capacity additions and strong operating leverage suggest continued revenue and margin expansion over the next two quarters as new assets come online and liquid volumes sustain momentum.",
+          "doc": "Concall transcript (Q1 FY27)"
         }
       ]
     },

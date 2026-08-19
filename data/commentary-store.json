@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-19T06:22:04.783Z",
+  "generatedAt": "2026-08-19T07:48:59.810Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -1795,9 +1795,32 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:20:41.290Z"
+        },
+        "Q1 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "We have continued to make good progress across our existing terminals, while also announcing new capacity additions that further strengthen our long-term growth platform.",
+          "rationale": "Management is upbeat about progress, announcing two new capacity expansion projects and highlighting strong financial momentum with double-digit revenue and EBITDA growth.",
+          "driver": "capacity expansion and liquid volume growth",
+          "direction": "positive",
+          "signal": "Management is actively investing in new capacity at JNPA and Kochi, signaling confidence in sustained demand growth for both liquid and gas storage infrastructure in India.",
+          "mgmtDataPoints": [
+            "JNPA LPG tank capacity: 51,998 metric tons",
+            "Kochi additional liquid storage: 49,577 cubic meters",
+            "Revenue growth: 12.4% YoY to INR 233.8 crores",
+            "Liquid terminaling revenue: INR 126.5 crores, up 31% YoY",
+            "Gas terminaling revenue: INR 107.2 crores",
+            "Operating EBITDA: INR 179.4 crores, up 15.6% YoY"
+          ],
+          "implication": "The announced capacity additions and strong operating leverage suggest continued revenue and margin expansion over the next two quarters as new assets come online and liquid volumes sustain momentum.",
+          "doc": "Concall transcript (Q1 FY27)",
+          "fingerprint": "612da63f2898",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-19T07:48:51.081Z"
         }
       },
-      "updatedAt": "2026-07-28T18:20:41.290Z"
+      "updatedAt": "2026-08-19T07:48:51.081Z"
     },
     "supreme-petrochem": {
       "cells": {

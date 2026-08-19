@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-19T06:21:40.762Z",
+  "generatedAt": "2026-08-19T07:48:31.601Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,10 +14,10 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 345,
-    "realCells": 192,
-    "nullCells": 153,
+    "realCells": 191,
+    "nullCells": 154,
     "kpis": 89,
-    "kpisWithTrend": 50
+    "kpisWithTrend": 49
   },
   "companies": {
     "deep-industries": {
@@ -170,7 +170,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34070,
+      "ctxChars": 34069,
       "kpis": [
         {
           "id": "order-inflow",
@@ -304,7 +304,7 @@
             null
           ],
           "flag": null,
-          "notes": "Bid pipeline not disclosed in any of the provided excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The excerpts report order book, order inflow, and business secured, but no bid pipeline or tender pipeline figure was stated."
+          "notes": "Bid pipeline not disclosed in any of the excerpts. The excerpts report order book (unexecuted orders already won) and order inflow (business secured), but do not state the value of the bid pipeline (opportunities under bidding or yet to be "
         },
         {
           "id": "consultancy-order-book",
@@ -3149,10 +3149,10 @@
       "name": "Aegis Vopak",
       "slug": "AEGISVOPAK",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q3 FY26",
       "provider": "claude",
@@ -3165,29 +3165,24 @@
           "unit": "million MT",
           "flagBasis": "yoy",
           "values": [
-            0.52,
             0.68,
             0.67,
+            null,
             null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
-            "company-filing",
+            null,
             null
           ],
           "origins": [
             "insights",
             "insights",
-            "insights",
+            null,
             null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 13 Aug 2025",
-              "quote": "the throughput for the quarter, which is 522,000 metric tons that we did from Kandla and Pipavav",
-              "page": 9
-            },
             {
               "doc": "Concall Transcript - 11 Nov 2025",
               "quote": "Gas report for the quarter was INR 0.68 million metric tons",
@@ -3198,6 +3193,7 @@
               "quote": "gas throughput was 0.67 million metric tons",
               "page": 7
             },
+            null,
             null
           ],
           "oneOffs": [
@@ -3206,8 +3202,8 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
-          "notes": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 13 Aug 2025, page 9."
+          "flag": null,
+          "notes": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 11 Nov 2025, page 6."
         },
         {
           "id": "terminal-utilisation",
@@ -3245,7 +3241,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not explicitly stated in any of the Q1 FY26, Q2 FY26, Q3 FY26, or Q4 FY26 excerpts. The Q1 FY26 call mentions 'high capacity utilization level' at Haldia and 'improved utilization levels' at Kandla, and the Q2 FY26 ca"
+          "notes": "Terminal utilisation % not stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The screener insights table shows capacity figures (LPG static storage, liquid storage capacity) but no utilisation percentages. The concall"
         }
       ]
     },
@@ -3828,7 +3824,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33740,
+      "ctxChars": 33067,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -3866,7 +3862,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not spe"
+          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not bre"
         },
         {
           "id": "total-cargo-volume",

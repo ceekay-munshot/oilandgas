@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-19T06:14:07.605Z",
+  "generatedAt": "2026-08-19T07:48:09.216Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -419,12 +419,12 @@
           "periodIso": "2026-08",
           "url": "https://www.screener.in/concalls/summary/23310102/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
+          "status": "ok",
+          "chars": 9238,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ENGINERSIN/summary-2026-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Financial & Segment Performance (Q1 FY27; quarter ended 30 Jun 2026) Order book (30 Jun 2026): INR 14,424 cr Consultancy: INR 10,498 cr Turnkey/LSTK: INR 3,926 "
         },
         {
           "type": "summary",
@@ -1856,9 +1856,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 95882,
+          "pages": 31,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -3455,14 +3455,14 @@
         "cons": 3
       },
       "summariesAvailable": 5,
-      "transcriptsFound": 4,
+      "transcriptsFound": 5,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Aug 2026",
           "periodIso": "2026-08",
-          "url": "https://www.screener.in/concalls/summary/23297099/",
+          "url": "https://www.screener.in/concalls/summary/23311613/",
           "source": "screener.in",
           "status": "gated",
           "chars": 88,
@@ -3542,6 +3542,19 @@
         "cache": "pipeline/cache/docs/AEGISVOPAK/ppt-2026-08.txt"
       },
       "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2114eb20-f767-45c9-b6e8-40ea4066e753.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 46606,
+          "pages": 17,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/AEGISVOPAK/transcript-2026-08.txt"
+        },
         {
           "type": "transcript",
           "role": "transcript",
