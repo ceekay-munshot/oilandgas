@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-18T07:43:15.958Z",
+  "generatedAt": "2026-08-19T06:14:07.605Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -228,12 +228,12 @@
           "periodIso": "2026-07",
           "url": "https://www.screener.in/concalls/summary/23305254/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
+          "status": "ok",
+          "chars": 8300,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/summary-2026-07.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Q1 FY27 performance snapshot (consolidated) Revenue: INR278.92 cr ( +40% YoY ) EBITDA: INR131.8 cr ( +38.7% YoY ); margin 43.6% . Management reiterated it has m"
         },
         {
           "type": "summary",
@@ -410,21 +410,21 @@
         "cons": 2
       },
       "summariesAvailable": 28,
-      "transcriptsFound": 27,
+      "transcriptsFound": 28,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Aug 2026",
           "periodIso": "2026-08",
-          "url": "https://www.screener.in/concalls/summary/23297185/",
+          "url": "https://www.screener.in/concalls/summary/23310102/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 10116,
+          "status": "gated",
+          "chars": 88,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ENGINERSIN/summary-2026-08.txt",
-          "sample": "Financial performance (Q1 FY26-27; quarter ended 30 Jun 2026) Order book: ₹14,424 cr as of 30 Jun 2026, comprising Consultancy ₹10,498 cr and Turnkey (LSTK) ₹3,"
+          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
         },
         {
           "type": "summary",
@@ -514,6 +514,19 @@
         {
           "type": "transcript",
           "role": "transcript",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=18713484-078f-45d9-96a9-d56fe2f56981.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 49095,
+          "pages": 19,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ENGINERSIN/transcript-2026-08.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
           "period": "May 2026",
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e847f7c3-416c-4b5e-b6b1-94d72890123f.pdf",
@@ -575,19 +588,6 @@
           "pages": 18,
           "via": "browser",
           "cache": "pipeline/cache/docs/ENGINERSIN/transcript-2025-06.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Feb 2025",
-          "periodIso": "2025-02",
-          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=8bfb0596-d277-4791-b4ba-ea9ff57d2184.pdf",
-          "source": "bseindia.com",
-          "status": "ok",
-          "chars": 32950,
-          "pages": 13,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/ENGINERSIN/transcript-2025-02.txt"
         }
       ]
     },
@@ -1856,9 +1856,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 95882,
-          "pages": 31,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -2305,7 +2305,7 @@
       "view": "consolidated",
       "url": "https://www.screener.in/company/HINDPETRO/consolidated/",
       "analysis": {
-        "pros": 4,
+        "pros": 5,
         "cons": 2
       },
       "summariesAvailable": 12,
@@ -3905,9 +3905,9 @@
           "periodIso": "2026-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=502d723a-f53f-4cda-945d-f817254831f7.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 41632,
+          "pages": 22,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-08.txt"
         },
@@ -3918,9 +3918,9 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b2502bf8-680b-48ed-a5f0-5409b7938365.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 40455,
+          "pages": 14,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-05.txt"
         },

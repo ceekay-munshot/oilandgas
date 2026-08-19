@@ -2,14 +2,14 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-18T07:43:20.419Z",
+  "generatedAt": "2026-08-19T06:22:04.689Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
     "companies": 27,
     "quarterCells": 102,
-    "tonedQuarters": 97,
-    "nullQuarters": 5
+    "tonedQuarters": 98,
+    "nullQuarters": 4
   },
   "companies": {
     "ongc": {
@@ -1658,44 +1658,15 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q4 FY25",
-        "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26"
+        "Q3 FY26",
+        "Q4 FY26",
+        "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q4 FY25",
-          "toneId": null,
-          "score": null,
-          "quote": null,
-          "rationale": "The text provided is not about Q4 FY25 but rather about Q1 FY25, and it contains no information about Q4 FY25.",
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
-          "doc": null
-        },
-        {
-          "quarter": "Q1 FY26",
-          "toneId": "confident",
-          "score": 5,
-          "quote": "continued our momentum from the beginning of the year into the second quarter with healthy performance",
-          "rationale": "Management expressed confidence in their growth and resilience despite challenges.",
-          "driver": "volume growth",
-          "direction": "positive",
-          "signal": "Management is optimistic about continued growth through innovation and distribution expansion.",
-          "mgmtDataPoints": [
-            "Revenue growth: 7%",
-            "Revenue: INR1,497 crores"
-          ],
-          "implication": "Expect continued volume growth and potential market share gains in the coming quarters.",
-          "doc": "Concall transcript (Q1 FY26)"
-        },
         {
           "quarter": "Q2 FY26",
           "toneId": "constructive",
@@ -1730,6 +1701,32 @@
           ],
           "implication": "Expect continued strong performance with potential for further market share gains.",
           "doc": "Concall transcript (Q3 FY26)"
+        },
+        {
+          "quarter": "Q4 FY26",
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "continued macro uncertainty...early signs of external headwinds driven by the conflict in the Middle East",
+          "rationale": "Management is careful due to macro uncertainties and external headwinds.",
+          "driver": "macro uncertainty",
+          "direction": "negative",
+          "signal": "Management is focused on executing strategy amidst external challenges to drive profitable growth.",
+          "mgmtDataPoints": [],
+          "implication": "Expect cautious approach with potential impact from external macroeconomic factors.",
+          "doc": "Concall transcript (Q4 FY26)"
+        },
+        {
+          "quarter": "Q1 FY27",
+          "toneId": "confident",
+          "score": 5,
+          "quote": "we delivered another strong quarter with broad-based growth across our consumer, industrial, and institutional business",
+          "rationale": "Management emphasizes strong performance across all segments despite volatile conditions, highlighting disciplined execution and brand strength.",
+          "driver": "broad-based volume growth",
+          "direction": "positive",
+          "signal": "Management is investing behind brands, innovation, and distribution while maintaining margin discipline through effective pricing and cost management in a volatile commodity environment.",
+          "mgmtDataPoints": [],
+          "implication": "Continued momentum across all business segments with sustained investment in growth initiatives suggests stable performance ahead, though commodity volatility remains a watch factor.",
+          "doc": "Concall transcript (Q1 FY27)"
         }
       ]
     },

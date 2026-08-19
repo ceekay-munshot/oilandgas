@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-18T07:43:20.169Z",
+  "generatedAt": "2026-08-19T06:21:40.762Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 345,
-    "realCells": 193,
-    "nullCells": 152,
+    "realCells": 192,
+    "nullCells": 153,
     "kpis": 89,
     "kpisWithTrend": 50
   },
@@ -32,7 +32,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33821,
+      "ctxChars": 33822,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -79,7 +79,7 @@
         {
           "id": "day-rate",
           "label": "Day-rate",
-          "unit": "₹/day or $/day",
+          "unit": "$/day or ₹/day",
           "flagBasis": "level",
           "values": [
             null,
@@ -112,7 +112,7 @@
             null
           ],
           "flag": null,
-          "notes": "Day-rate figures are not stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The documents discuss asset utilization, rig deployments, and revenue growth, but do not disclose specific day-rate pricing for drilling rigs,"
+          "notes": "Day-rate not disclosed in any of the excerpts. The Q2 FY26 concall mentions management did not expect near-term pressure on market rates for offshore vessels and that Q3 growth was 'more of volume' rather than pricing/day-rate, but no numer"
         },
         {
           "id": "order-book",
@@ -304,7 +304,7 @@
             null
           ],
           "flag": null,
-          "notes": "Bid pipeline not disclosed in any of the excerpts. The excerpts report order book (unexecuted orders already won) and order inflow (business secured), but do not state the value of the bid pipeline (opportunities under bidding or yet to be "
+          "notes": "Bid pipeline not disclosed in any of the provided excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The excerpts report order book, order inflow, and business secured, but no bid pipeline or tender pipeline figure was stated."
         },
         {
           "id": "consultancy-order-book",
@@ -2255,7 +2255,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34133,
+      "ctxChars": 34180,
       "kpis": [
         {
           "id": "grm",
@@ -2293,7 +2293,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": "Q2 FY26: $8.8/bbl stated in concall transcript (page 3-4, Q2 FY26 section). Management also noted $8/bbl excluding inventory losses, and that the chlorine contamination impacted GRM by ~$1.39/bbl (would have been $10.24/bbl without it). Q3 "
+          "notes": "Q2 FY26: $8.8/bbl stated in concall transcript (page 3-4). Management also noted $8/bbl excluding inventory losses, and that the chlorine contamination incident impacted GRM - without it, GRM would have been $10.24/bbl per Q3 AI summary. Q3"
         },
         {
           "id": "marketing-margin",
@@ -2331,7 +2331,7 @@
             null
           ],
           "flag": null,
-          "notes": "No marketing margin per liter figures stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The excerpts discuss LPG under-recoveries in absolute terms (₹ crores) and per-cylinder losses, but do not provide a per-liter ma"
+          "notes": "Marketing margin per liter not stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. Excerpts discuss LPG under-recoveries in absolute terms (₹ crores) and per-cylinder losses, but not a per-liter marketing margin metric."
         },
         {
           "id": "throughput",
@@ -3410,53 +3410,57 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q4 FY25",
-        "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26"
+        "Q3 FY26",
+        "Q4 FY26",
+        "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31578,
+      "ctxChars": 31579,
       "kpis": [
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume (YoY)",
-          "unit": "% yoy",
+          "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            8,
-            8,
             7,
-            7.5
+            7.5,
+            7.5,
+            null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
-            "mgmt-claim"
+            "company-filing",
+            null
           ],
           "origins": [
             "model",
             "model",
-            "model",
-            "model"
+            "insights",
+            null
           ],
           "citations": [
             null,
             null,
-            null,
+            {
+              "doc": "Concall Transcript - 04 May 2026",
+              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
+              "page": 6
+            },
             null
           ],
           "oneOffs": [
-            null,
-            null,
             "No Q2 FY26 data",
-            "No Q3 FY26 data"
+            "No Q3 FY26 data",
+            null,
+            null
           ],
           "flag": null,
-          "notes": null
+          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
         },
         {
           "id": "base-oil-spread",
