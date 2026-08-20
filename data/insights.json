@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-20T06:11:59.128Z",
+  "generatedAt": "2026-08-20T07:46:22.838Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -2313,13 +2313,397 @@
     "jindal-drilling": {
       "name": "Jindal Drilling",
       "slug": "JINDRILL",
-      "view": "unknown",
+      "view": "quarterly",
       "url": "https://www.screener.in/company/JINDRILL/consolidated/#shareholding",
-      "via": null,
-      "toggled": null,
-      "periods": [],
-      "rows": [],
-      "note": "apiRequestContext.post: socket hang up\nCall log:\n  - → POST https://www.screener.in/insights/company/1620/quarter/?is_consolidated=1\n    - user-agent: Mozilla/5"
+      "via": "quarterly-fragment",
+      "toggled": "/insights/company/1620/quarter/?is_consolidated=1",
+      "note": null,
+      "periods": [
+        "Jan 2024",
+        "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
+        "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025"
+      ],
+      "periodsIso": [
+        "2024-01",
+        "2024-03",
+        "2024-06",
+        "2024-09",
+        "2024-12",
+        "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12"
+      ],
+      "rows": [
+        {
+          "label": "Day rate - Discovery-I (USD per operating day)",
+          "unit": "USD/day",
+          "scope": null,
+          "values": [
+            48324,
+            48324,
+            48324,
+            48324,
+            48324,
+            48324,
+            48324,
+            48324,
+            48324
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 29 Jan 2024",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 21 May 2024",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            }
+          ]
+        },
+        {
+          "label": "Day rate - Jindal Supreme (USD per operating day)",
+          "unit": "USD/day",
+          "scope": null,
+          "values": [
+            40700,
+            40700,
+            40700,
+            40700,
+            88859,
+            88859,
+            88859,
+            88859,
+            88859
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 29 Jan 2024",
+              "quote": "Jindal Supreme October 20 - January 24 40,700",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 21 May 2024",
+              "quote": "Jindal Supreme (upcoming contract) November 24 - November 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Jindal Supreme (upcoming contract) November 24 - November 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            }
+          ]
+        },
+        {
+          "label": "Rig order book",
+          "unit": "Rs. crore",
+          "scope": null,
+          "values": [
+            2293,
+            2108,
+            1956,
+            1805,
+            1636,
+            1791,
+            1538,
+            1369,
+            1183
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 29 Jan 2024",
+              "quote": "Total 273 2293",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 21 May 2024",
+              "quote": "Total 251 2108",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Total 232 1956",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Total 214 1805",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Total 190 1636",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Total 208 1791",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Total 180 1538",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Total 155 1369",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Total 130 1183",
+              "page": 6
+            }
+          ]
+        },
+        {
+          "label": "Rigs operating overseas (not with ONGC in India)",
+          "unit": "count",
+          "scope": null,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 29 Jan 2024",
+              "quote": "JV company deployed 1 offshore jack-up rig with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 21 May 2024",
+              "quote": "JV company deployed 1 offshore jack-up rig Jindal Pioneer with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "JV company deployed 1 offshore jack-up rig Jindal Pioneer with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "JV company deployed 1 offshore jack-up rig Jindal Pioneer with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "JV company deployed 1 offshore jack-up rig Jindal Pioneer with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Jindal Pioneer continues to operate with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "1 offshore jack-up rig is under refurbishment for next ONGC contract & 1 is engaged overseas",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "1 offshore jack-up rig is under refurbishment in UAE",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "1 offshore jack-up rig is under refurbishment in UAE",
+              "page": 4
+            }
+          ]
+        },
+        {
+          "label": "Number of owned rigs",
+          "unit": "count",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3
+          ],
+          "citations": [
+            null,
+            null,
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Owns 3 offshore jack-up rigs",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            }
+          ]
+        },
+        {
+          "label": "Number of rigs in fleet",
+          "unit": "count",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            5,
+            5,
+            5,
+            5,
+            6,
+            6,
+            6
+          ],
+          "citations": [
+            null,
+            null,
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Owns 3 offshore jack-up rigs; Operates 5 offshore jack-up rigs with ONGC in India",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            }
+          ]
+        }
+      ]
     },
     "lt": {
       "name": "L&T",

@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-20T06:14:13.837Z",
+  "generatedAt": "2026-08-20T07:48:22.408Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 341,
-    "realCells": 184,
-    "nullCells": 157,
-    "kpis": 88,
-    "kpisWithTrend": 47
+    "kpiCells": 345,
+    "realCells": 187,
+    "nullCells": 158,
+    "kpis": 89,
+    "kpisWithTrend": 48
   },
   "companies": {
     "deep-industries": {
@@ -1069,7 +1069,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31277,
+      "ctxChars": 32429,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -1107,7 +1107,7 @@
             null
           ],
           "flag": null,
-          "notes": "No rig utilisation percentage stated in any excerpt for any quarter."
+          "notes": "No offshore rig utilisation percentage data found in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The excerpts discuss rig deployment status, dehires, refurbishments, and contracts, but do not state a utilisation percentag"
         },
         {
           "id": "charter-day-rate",
@@ -1157,7 +1157,7 @@
             null
           ],
           "flag": "steady",
-          "notes": "No single charter day-rate figure stated. Multiple rig-specific rates disclosed in Q1 FY27 PPT (Discovery-I $48,324; Supreme $88,859; Pioneer $47,681; Virtue-I $80,633; Star $44,000; Explorer $35,606) but no fleet-average or single charter "
+          "notes": "From Screener Insights row \"Day rate - Discovery-I (USD per operating day)\"; latest value cited to Presentation - 30 Jul 2025, page 6."
         },
         {
           "id": "order-book",
@@ -3225,12 +3225,12 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 32913,
@@ -3281,9 +3281,9 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
-            93853,
             76962,
             91265,
+            100664,
             null
           ],
           "sourceTags": [
@@ -3299,11 +3299,6 @@
             null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 30 Apr 2026",
-              "quote": "Company's sales volume of manufactured products in the 1st Quarter of FY '26 increased by 0.5% only on a year-on-year basis to 93,853 MT",
-              "page": 3
-            },
             {
               "doc": "Presentation - 24 Oct 2025",
               "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
@@ -3314,6 +3309,11 @@
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
               "page": 3
             },
+            {
+              "doc": "Presentation - 24 Apr 2026",
+              "quote": "95,556 1,00,664 Q4-FY25 Q4-FY26",
+              "page": 16
+            },
             null
           ],
           "oneOffs": [
@@ -3322,8 +3322,59 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
-          "notes": "From Screener Insights row \"Sales Volume (Manufactured Products)\" (Standalone data); latest value cited to Concall Transcript - 30 Apr 2026, page 3."
+          "flag": "decelerating",
+          "notes": "From Screener Insights row \"Sales Volume (Manufactured Products)\" (Standalone data); latest value cited to Presentation - 24 Oct 2025, page 15."
+        },
+        {
+          "id": "capacity-utilisation",
+          "label": "Capacity utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            79,
+            80,
+            80,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 26 Jan 2026",
+              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 30 Apr 2026",
+              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
+              "page": 3
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "beyondBrief": true,
+          "notes": "From Screener Insights row \"Capacity Utilization\" (Standalone data); latest value cited to Concall Transcript - 31 Oct 2025, page 5."
         }
       ]
     },
@@ -3331,53 +3382,57 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31578,
+      "ctxChars": 31579,
       "kpis": [
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume (YoY)",
-          "unit": "% yoy",
+          "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            8,
             7,
+            7.5,
             7.5,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
+            "company-filing",
             null
           ],
           "origins": [
             "model",
             "model",
-            "model",
+            "insights",
             null
           ],
           "citations": [
             null,
             null,
-            null,
+            {
+              "doc": "Concall Transcript - 04 May 2026",
+              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
+              "page": 6
+            },
             null
           ],
           "oneOffs": [
-            null,
             "No Q2 FY26 data",
             "No Q3 FY26 data",
+            null,
             null
           ],
           "flag": null,
-          "notes": "Q1 FY26: The SCREENER INSIGHTS table shows 'Volume Growth YoY [% YoY]' with value 7 for Nov 2025, which corresponds to Q3 FY26, not Q1 FY26. The Q1 FY26 concall (6 Aug 2025) does not state a YoY volume growth percentage. Q2 FY26: The SCREEN"
+          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
         },
         {
           "id": "base-oil-spread",
@@ -3745,7 +3800,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33174,
+      "ctxChars": 33740,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -3783,7 +3838,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not bre"
+          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not spe"
         },
         {
           "id": "total-cargo-volume",
