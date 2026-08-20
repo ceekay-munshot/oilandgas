@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-19T07:48:59.810Z",
+  "generatedAt": "2026-08-20T06:14:59.304Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -1360,9 +1360,31 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:20:15.477Z"
+        },
+        "Q1 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "it has been a strong start to the year...we have delivered a healthy financial performance supported by commercial and operational efficiencies",
+          "rationale": "Management emphasizes strong start, highest-ever Q1 PBT/PAT, and 33% profit growth despite lower volumes, highlighting operational efficiencies.",
+          "driver": "operational efficiency and profitability",
+          "direction": "positive",
+          "signal": "Management conveyed confidence in sustaining strong financial performance through commercial and operational efficiencies even as volumes face headwinds.",
+          "mgmtDataPoints": [
+            "Q1 FY27 standalone PBT: INR 1,514 crores (33% growth)",
+            "Q1 FY27 standalone PAT: INR 1,133 crores (33% growth)",
+            "Q1 FY27 consolidated PBT: INR 1,491 crores (highest ever Q1)",
+            "Q1 FY27 consolidated PAT: INR 1,137 crores (highest ever Q1)",
+            "Dahej terminal volume: 192 TBTU"
+          ],
+          "implication": "The company is likely to maintain strong margins and profitability in the near term through operational leverage, though volume growth remains a watch point.",
+          "doc": "Concall transcript (Q1 FY27)",
+          "fingerprint": "f3a89cb52843",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-20T06:14:45.558Z"
         }
       },
-      "updatedAt": "2026-07-28T18:20:15.477Z"
+      "updatedAt": "2026-08-20T06:14:45.558Z"
     },
     "igl": {
       "cells": {
@@ -1726,9 +1748,32 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:20:36.635Z"
+        },
+        "Q1 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "We delivered a record quarter, crossing the significant milestone of INR500 crores of profit after tax",
+          "rationale": "Management celebrates record profits, exceptional 212% PAT growth, and highest-ever EBITDA in Gas division despite geopolitical headwinds.",
+          "driver": "Gas division EBITDA surge",
+          "direction": "positive",
+          "signal": "Management is investing in Liquids capacity expansion and sees strong earnings momentum carrying forward, with Gas distribution volumes growing robustly.",
+          "mgmtDataPoints": [
+            "Q1 FY27 PAT: INR 500 crores (vs INR 175 crores Q1 FY26)",
+            "Q1 FY27 normalized EBITDA: INR 727 crores (vs INR 256 crores Q1 FY26, +184% YoY)",
+            "Q1 FY27 EPS: INR 13.80 (54% of full FY26 EPS)",
+            "Gas division EBITDA: +296% YoY",
+            "LPG sourcing volumes: +1% YoY",
+            "Gas distribution volumes: +91% YoY"
+          ],
+          "implication": "Strong momentum in Gas and continued Liquids capacity investment suggest sustained earnings growth and margin expansion over the next two quarters.",
+          "doc": "Concall transcript (Q1 FY27)",
+          "fingerprint": "a65a49e77013",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-20T06:14:52.194Z"
         }
       },
-      "updatedAt": "2026-07-28T18:20:36.635Z"
+      "updatedAt": "2026-08-20T06:14:52.194Z"
     },
     "aegis-vopak": {
       "cells": {
