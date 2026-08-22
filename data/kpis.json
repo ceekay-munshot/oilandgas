@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-22T06:09:52.085Z",
+  "generatedAt": "2026-08-22T07:36:55.226Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 345,
-    "realCells": 192,
-    "nullCells": 153,
-    "kpis": 89,
-    "kpisWithTrend": 48
+    "kpiCells": 353,
+    "realCells": 197,
+    "nullCells": 156,
+    "kpis": 91,
+    "kpisWithTrend": 50
   },
   "companies": {
     "deep-industries": {
@@ -2377,15 +2377,15 @@
       "name": "GAIL",
       "slug": "GAIL",
       "quarters": [
-        "Q4 FY25",
         "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26"
+        "Q3 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31836,
+      "ctxChars": 31837,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -2393,29 +2393,24 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
-            123.65,
             120.62,
             123.59,
-            125.45
+            125.45,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "Natural gas transmission volume stood at 123.65 MMSCMD in quarter four",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "the natural gas transmission volume was 120.62 MMSCMD in Q1",
@@ -2430,7 +2425,8 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "Natural gas transmission volume improved to 125.45 MMSCMD in Q3 FY26",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2439,7 +2435,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Natural Gas Transmission Volume\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 2."
         },
         {
           "id": "petchem-margin",
@@ -2477,7 +2473,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated in any of the excerpts. The documents report petrochemical sales volumes (TMT) and production volumes, but do not disclose the margin per tonne in dollars or any other currency. Management commentary discuss"
+          "notes": "Petchem margin not stated in any of the excerpts. The Q1 FY26 concall mentions polymer segment incurred a loss of Rs 130 crores but no per-tonne margin is given. Q2 FY26 and Q3 FY26 concalls do not mention petchem margin. Q1 FY27 concall me"
         },
         {
           "id": "gas-marketing-volume",
@@ -2485,29 +2481,24 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
-            99.99,
             105.45,
             105.49,
-            103.98
+            103.98,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "gas marketing volume stood at 99.99 MMSCMD in current quarter as against 98.14 MMSCMD previous quarter",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "Gas marketing volume during the quarter stood at 105.45 MMSCMD as against 106.53 MMSCMD in Q4 financial year '25",
@@ -2522,7 +2513,8 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "Gas marketing volume during the quarter stood at 103.98 MMSCMD as against 105.49 MMSCMD in Q2 FY26",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2532,7 +2524,7 @@
           ],
           "flag": "steady",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Natural Gas Marketing Volume\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 2."
         },
         {
           "id": "lpg-transmission",
@@ -2540,29 +2532,24 @@
           "unit": "TMT",
           "flagBasis": "level",
           "values": [
-            1114,
             1131,
             1167,
-            1188
+            1188,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "LPG transmission stood at 1114 TMT as against 1095 TMT in previous quarter",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "The LPG transmission was also flat, it was 1,131 TMT as against 1,132 TMT in Q4 FY'20",
@@ -2577,7 +2564,8 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "LPG transmission was 1,188 TMT as against 1,167 TMT in previous quarter",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2587,7 +2575,7 @@
           ],
           "flag": "decelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"LPG Transmission\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 3."
         },
         {
           "id": "petchem-sales",
@@ -2595,29 +2583,24 @@
           "unit": "TMT",
           "flagBasis": "level",
           "values": [
-            248,
             177,
             220,
-            219
+            219,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "Polymer production stood at 248 TMT as against 205 TMT last quarter",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "Polymer production is down to 177 TMT in Q1 as against 215 TMT in previous quarter",
@@ -2632,7 +2615,8 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "Polymer production was almost flat at 219 TMT in Q3 FY26",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2642,7 +2626,7 @@
           ],
           "flag": "steady",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Petrochemicals Sales\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 2."
         },
         {
           "id": "liquid-hydrocarbon-sales",
@@ -2650,29 +2634,24 @@
           "unit": "TMT",
           "flagBasis": "level",
           "values": [
-            265,
             199,
             221,
-            199
+            199,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "LHC production is stood at 265 TMT against 249 TMT in previous quarter",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "LHC production is almost flat, and it stood at 199 TMT as against 196 TMT in previous quarter",
@@ -2687,7 +2666,8 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "LHC production stood at 199 TMT as against 221 TMT in previous quarter",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2697,7 +2677,7 @@
           ],
           "flag": "inflecting-down",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Liquid Hydrocarbons Sales\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 3."
         }
       ]
     },
@@ -2713,7 +2693,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34038,
+      "ctxChars": 32235,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -2792,6 +2772,159 @@
           "notes": "Derived: EBITDA (Screener quarterly Operating Profit, ₹ cr) ÷ quarterly gas volume (Insights \"Total Sales Volume\" MMSCMD × days in quarter), in ₹/scm."
         },
         {
+          "id": "total-sales-volume",
+          "label": "Total sales volume",
+          "unit": "MMSCMD",
+          "flagBasis": "level",
+          "values": [
+            4.59,
+            4.62,
+            4.67,
+            4.766
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "model"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 30 Oct 2025",
+              "quote": "MGL+Erstwhile UEPL Q2 FY 26: CNG 3.255, Domestic 0.582, I&C 0.757, Total 4.593",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q3 FY 25-26: CNG 3.281, Domestic 0.604, I&C 0.735, Total 4.620",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q4 FY 25-26: CNG 3.349, Domestic 0.605, I&C 0.719, Total 4.672",
+              "page": 13
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "accelerating",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "cng-volume",
+          "label": "CNG sales volume",
+          "unit": "MMSCMD",
+          "flagBasis": "level",
+          "values": [
+            3.25,
+            3.28,
+            3.35,
+            3.496
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "model"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 30 Oct 2025",
+              "quote": "MGL+Erstwhile UEPL Q2 FY 26: CNG 3.255",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q3 FY 25-26: CNG 3.281",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q4 FY 25-26: CNG 3.349",
+              "page": 13
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "accelerating",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "png-domestic-volume",
+          "label": "Domestic PNG volume",
+          "unit": "MMSCMD",
+          "flagBasis": "level",
+          "values": [
+            0.58,
+            0.6,
+            0.6,
+            0.623
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "model"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 30 Oct 2025",
+              "quote": "MGL+Erstwhile UEPL Q2 FY 26: Domestic 0.582",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q3 FY 25-26: Domestic 0.604",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 08 May 2026",
+              "quote": "Q4 FY 25-26: Domestic 0.605",
+              "page": 13
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "accelerating",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
           "id": "ic-volume",
           "label": "Industrial & commercial volume",
           "unit": "MMSCMD",
@@ -2800,19 +2933,19 @@
             0.76,
             0.73,
             0.72,
-            null
+            0.648
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "model"
           ],
           "citations": [
             {
@@ -2836,10 +2969,10 @@
             null,
             null,
             null,
-            null
+            "20% cut per govt directive due to West Asia crisis"
           ],
           "flag": "steady",
-          "notes": "From Screener Insights row \"Industrial & Commercial Sales Volume\"; latest value cited to Presentation - 30 Oct 2025, page 14."
+          "notes": null
         }
       ]
     },
@@ -3245,12 +3378,12 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 32913,
@@ -3301,9 +3434,9 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
+            93853,
             76962,
             91265,
-            100664,
             null
           ],
           "sourceTags": [
@@ -3319,6 +3452,11 @@
             null
           ],
           "citations": [
+            {
+              "doc": "Concall Transcript - 30 Apr 2026",
+              "quote": "Company's sales volume of manufactured products in the 1st Quarter of FY '26 increased by 0.5% only on a year-on-year basis to 93,853 MT",
+              "page": 3
+            },
             {
               "doc": "Presentation - 24 Oct 2025",
               "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
@@ -3329,11 +3467,6 @@
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
               "page": 3
             },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "95,556 1,00,664 Q4-FY25 Q4-FY26",
-              "page": 16
-            },
             null
           ],
           "oneOffs": [
@@ -3342,59 +3475,8 @@
             null,
             null
           ],
-          "flag": "decelerating",
-          "notes": "From Screener Insights row \"Sales Volume (Manufactured Products)\" (Standalone data); latest value cited to Presentation - 24 Oct 2025, page 15."
-        },
-        {
-          "id": "capacity-utilisation",
-          "label": "Capacity utilisation",
-          "unit": "%",
-          "flagBasis": "level",
-          "values": [
-            79,
-            80,
-            80,
-            null
-          ],
-          "sourceTags": [
-            "company-filing",
-            "company-filing",
-            "company-filing",
-            null
-          ],
-          "origins": [
-            "insights",
-            "insights",
-            "insights",
-            null
-          ],
-          "citations": [
-            {
-              "doc": "Concall Transcript - 31 Oct 2025",
-              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 26 Jan 2026",
-              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 30 Apr 2026",
-              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
-              "page": 3
-            },
-            null
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": "steady",
-          "beyondBrief": true,
-          "notes": "From Screener Insights row \"Capacity Utilization\" (Standalone data); latest value cited to Concall Transcript - 31 Oct 2025, page 5."
+          "flag": "inflecting-up",
+          "notes": "From Screener Insights row \"Sales Volume (Manufactured Products)\" (Standalone data); latest value cited to Concall Transcript - 30 Apr 2026, page 3."
         }
       ]
     },
@@ -3402,57 +3484,53 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31579,
+      "ctxChars": 31578,
       "kpis": [
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume (YoY)",
-          "unit": "% YoY",
+          "unit": "% yoy",
           "flagBasis": "yoy",
           "values": [
+            8,
             7,
-            7.5,
             7.5,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "company-filing",
+            "mgmt-claim",
             null
           ],
           "origins": [
             "model",
             "model",
-            "insights",
+            "model",
             null
           ],
           "citations": [
             null,
             null,
-            {
-              "doc": "Concall Transcript - 04 May 2026",
-              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
-              "page": 6
-            },
-            null
-          ],
-          "oneOffs": [
-            "No Q2 FY26 data",
-            "No Q3 FY26 data",
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            "No Q2 FY26 data",
+            "No Q3 FY26 data",
+            null
+          ],
           "flag": null,
-          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
+          "notes": "Q1 FY26: No YoY volume growth figure stated for Q1 FY26 (Apr-Jun 2025). Q2 FY26: Screener Insights table shows 'Volume Growth YoY [% YoY]' = 7 for Nov 2025, which corresponds to Q3 FY26 (Sep 2025 quarter per the concall), not Q2. The Q2 FY2"
         },
         {
           "id": "base-oil-spread",
@@ -3820,7 +3898,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32882,
+      "ctxChars": 32948,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
