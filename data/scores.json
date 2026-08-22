@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-21T07:47:04.108Z",
+  "generatedAt": "2026-08-22T06:10:02.254Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -102,8 +102,8 @@
     },
     "coincident": {
       "score": -22,
-      "prev": -48,
-      "delta": -6,
+      "prev": -35,
+      "delta": -19,
       "deltaBasis": "kpi-only",
       "level": "negative",
       "direction": "falling",
@@ -271,12 +271,12 @@
   "divergenceSeries": [
     null,
     null,
-    59,
+    46,
     118
   ],
   "stage": {
     "stageId": "early-upcycle",
-    "position": 35,
+    "position": 34,
     "ruleId": "early-upcycle",
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
@@ -881,11 +881,11 @@
         {
           "companyId": "gail",
           "name": "GAIL",
-          "toneId": "confident",
-          "quarter": "Q1 FY27",
+          "toneId": "constructive",
+          "quarter": "Q3 FY26",
           "direction": "positive",
-          "driver": "portfolio diversification and infrastructure expansion",
-          "drift": 1
+          "driver": "natural gas transmission volume",
+          "drift": 0
         },
         {
           "companyId": "petronet-lng",
@@ -1053,18 +1053,18 @@
   ],
   "changes": [
     {
-      "kind": "score",
-      "text": "Moving now moved down 10 points to -22."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-21T06:15:19.446Z",
+    "generatedAt": "2026-08-21T07:47:04.108Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 48,
-      "coincident": -12,
+      "coincident": -22,
       "lagging": 0
     },
     "alertIds": [
@@ -1081,8 +1081,7 @@
       "tone-petronet-lng",
       "tone-ratnamani",
       "tone-reliance",
-      "tone-shipping-corp",
-      "tone-supreme-petrochem"
+      "tone-shipping-corp"
     ]
   }
 }

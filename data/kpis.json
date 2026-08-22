@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-21T07:46:58.063Z",
+  "generatedAt": "2026-08-22T06:09:52.085Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 345,
-    "realCells": 187,
-    "nullCells": 158,
+    "realCells": 192,
+    "nullCells": 153,
     "kpis": 89,
     "kpisWithTrend": 48
   },
@@ -2377,15 +2377,15 @@
       "name": "GAIL",
       "slug": "GAIL",
       "quarters": [
+        "Q4 FY25",
         "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26",
-        "Q1 FY27"
+        "Q3 FY26"
       ],
       "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31837,
+      "ctxChars": 31836,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -2393,24 +2393,29 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
+            123.65,
             120.62,
             123.59,
-            125.45,
-            null
+            125.45
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "insights"
           ],
           "citations": [
+            {
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "Natural gas transmission volume stood at 123.65 MMSCMD in quarter four",
+              "page": 3
+            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "the natural gas transmission volume was 120.62 MMSCMD in Q1",
@@ -2425,8 +2430,7 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "Natural gas transmission volume improved to 125.45 MMSCMD in Q3 FY26",
               "page": 4
-            },
-            null
+            }
           ],
           "oneOffs": [
             null,
@@ -2435,7 +2439,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": "From Screener Insights row \"Natural Gas Transmission Volume\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 2."
+          "notes": null
         },
         {
           "id": "petchem-margin",
@@ -2473,7 +2477,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin not stated in any of the excerpts. The Q1 FY26 concall mentions polymer segment incurred a loss of Rs 130 crores but no per-tonne margin is given. Q2 FY26 and Q3 FY26 concalls do not mention petchem margin. Q1 FY27 concall me"
+          "notes": "Petchem margin in $/t not stated in any of the excerpts. The documents report petrochemical sales volumes (TMT) and production volumes, but do not disclose the margin per tonne in dollars or any other currency. Management commentary discuss"
         },
         {
           "id": "gas-marketing-volume",
@@ -2481,24 +2485,29 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
+            99.99,
             105.45,
             105.49,
-            103.98,
-            null
+            103.98
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "insights"
           ],
           "citations": [
+            {
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "gas marketing volume stood at 99.99 MMSCMD in current quarter as against 98.14 MMSCMD previous quarter",
+              "page": 3
+            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "Gas marketing volume during the quarter stood at 105.45 MMSCMD as against 106.53 MMSCMD in Q4 financial year '25",
@@ -2513,8 +2522,7 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "Gas marketing volume during the quarter stood at 103.98 MMSCMD as against 105.49 MMSCMD in Q2 FY26",
               "page": 4
-            },
-            null
+            }
           ],
           "oneOffs": [
             null,
@@ -2524,7 +2532,7 @@
           ],
           "flag": "steady",
           "beyondBrief": true,
-          "notes": "From Screener Insights row \"Natural Gas Marketing Volume\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 2."
+          "notes": null
         },
         {
           "id": "lpg-transmission",
@@ -2532,24 +2540,29 @@
           "unit": "TMT",
           "flagBasis": "level",
           "values": [
+            1114,
             1131,
             1167,
-            1188,
-            null
+            1188
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "insights"
           ],
           "citations": [
+            {
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "LPG transmission stood at 1114 TMT as against 1095 TMT in previous quarter",
+              "page": 3
+            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "The LPG transmission was also flat, it was 1,131 TMT as against 1,132 TMT in Q4 FY'20",
@@ -2564,8 +2577,7 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "LPG transmission was 1,188 TMT as against 1,167 TMT in previous quarter",
               "page": 4
-            },
-            null
+            }
           ],
           "oneOffs": [
             null,
@@ -2575,7 +2587,7 @@
           ],
           "flag": "decelerating",
           "beyondBrief": true,
-          "notes": "From Screener Insights row \"LPG Transmission\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 3."
+          "notes": null
         },
         {
           "id": "petchem-sales",
@@ -2583,24 +2595,29 @@
           "unit": "TMT",
           "flagBasis": "level",
           "values": [
+            248,
             177,
             220,
-            219,
-            null
+            219
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "insights"
           ],
           "citations": [
+            {
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "Polymer production stood at 248 TMT as against 205 TMT last quarter",
+              "page": 3
+            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "Polymer production is down to 177 TMT in Q1 as against 215 TMT in previous quarter",
@@ -2615,8 +2632,7 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "Polymer production was almost flat at 219 TMT in Q3 FY26",
               "page": 4
-            },
-            null
+            }
           ],
           "oneOffs": [
             null,
@@ -2626,7 +2642,7 @@
           ],
           "flag": "steady",
           "beyondBrief": true,
-          "notes": "From Screener Insights row \"Petrochemicals Sales\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 2."
+          "notes": null
         },
         {
           "id": "liquid-hydrocarbon-sales",
@@ -2634,24 +2650,29 @@
           "unit": "TMT",
           "flagBasis": "level",
           "values": [
+            265,
             199,
             221,
-            199,
-            null
+            199
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "insights"
           ],
           "citations": [
+            {
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "LHC production is stood at 265 TMT against 249 TMT in previous quarter",
+              "page": 3
+            },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
               "quote": "LHC production is almost flat, and it stood at 199 TMT as against 196 TMT in previous quarter",
@@ -2666,8 +2687,7 @@
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "LHC production stood at 199 TMT as against 221 TMT in previous quarter",
               "page": 4
-            },
-            null
+            }
           ],
           "oneOffs": [
             null,
@@ -2677,7 +2697,7 @@
           ],
           "flag": "inflecting-down",
           "beyondBrief": true,
-          "notes": "From Screener Insights row \"Liquid Hydrocarbons Sales\" (Standalone data); latest value cited to Concall Transcript - 31 Jul 2025, page 3."
+          "notes": null
         }
       ]
     },
@@ -3800,7 +3820,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33740,
+      "ctxChars": 32882,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",

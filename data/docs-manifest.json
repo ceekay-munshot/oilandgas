@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-21T07:46:48.974Z",
+  "generatedAt": "2026-08-22T06:09:39.141Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -2608,11 +2608,12 @@
           "periodIso": "2026-07",
           "url": "https://gailebank.gail.co.in/InvestorsZone/GAIL_EARNINGS_CALL_Q1_FY27.pdf",
           "source": "gailebank.gail.co.in",
-          "status": "ok",
-          "chars": 46911,
-          "pages": 13,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2026-07.txt"
+          "cache": "pipeline/cache/docs/GAIL/transcript-2026-07.txt",
+          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND gailebank.gail.co.in\nCall log:\n  - → GET https://gailebank.gail.co.in/InvestorsZone/GAIL_EARNINGS_CALL_Q1_FY27.pdf\n"
         },
         {
           "type": "transcript",
