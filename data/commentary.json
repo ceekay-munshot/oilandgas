@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-22T07:37:45.781Z",
+  "generatedAt": "2026-08-23T06:14:35.312Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
@@ -1509,8 +1509,8 @@
       "name": "Aegis Vopak",
       "slug": "AEGISVOPAK",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
-        "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
       ],
@@ -1518,6 +1518,19 @@
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
+        {
+          "quarter": "Q1 FY26",
+          "toneId": "confident",
+          "score": 5,
+          "quote": "committed to achieving significant growth in the years ahead",
+          "rationale": "Management expressed strong commitment to growth and expansion plans.",
+          "driver": "IPO reception",
+          "direction": "positive",
+          "signal": "Management is optimistic about growth prospects following a successful IPO and plans to expand operations.",
+          "mgmtDataPoints": [],
+          "implication": "The company is likely to focus on executing its expansion strategy and leveraging IPO proceeds for growth.",
+          "doc": "Concall transcript (Q1 FY26)"
+        },
         {
           "quarter": "Q2 FY26",
           "toneId": "constructive",
@@ -1530,19 +1543,6 @@
           "mgmtDataPoints": [],
           "implication": "The company is expected to see increased revenue from new terminal operations, supporting growth.",
           "doc": "Concall transcript (Q2 FY26)"
-        },
-        {
-          "quarter": "Q3 FY26",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "making excellent progress on our long-term growth strategy",
-          "rationale": "Management emphasized ongoing progress and strategic execution.",
-          "driver": "Project GATI",
-          "direction": "positive",
-          "signal": "The company is expanding its storage footprint and improving efficiency, supporting future growth.",
-          "mgmtDataPoints": [],
-          "implication": "Continued focus on strategic projects is likely to enhance market position and drive growth.",
-          "doc": "Concall transcript (Q3 FY26)"
         },
         {
           "quarter": "Q4 FY26",
@@ -1583,32 +1583,15 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q1 FY26",
-          "toneId": "cautious",
-          "score": 2,
-          "quote": "declined by 12% on year-on-year mainly on account of lower SM prices",
-          "rationale": "Management highlighted a decline in income and margins due to lower prices, indicating caution.",
-          "driver": "SM prices",
-          "direction": "negative",
-          "signal": "Management is cautious due to declining SM prices impacting revenue and margins.",
-          "mgmtDataPoints": [
-            "Operating income: Rs 1,386 crores",
-            "EBITDA: Rs 115 crores",
-            "EBITDA margin: 9.36%"
-          ],
-          "implication": "Expect continued caution as lower SM prices may persist, affecting revenue and margins.",
-          "doc": "Concall transcript (Q1 FY26)"
-        },
         {
           "quarter": "Q2 FY26",
           "toneId": "cautious",
@@ -1644,6 +1627,22 @@
           "doc": "Concall transcript (Q3 FY26)"
         },
         {
+          "quarter": "Q4 FY26",
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "revenue from the operations for the 4th Quarter stood at INR 1,587 crores, reflecting a growth of 3%",
+          "rationale": "Management highlighted revenue growth and better spreads, indicating a constructive outlook.",
+          "driver": "revenue growth",
+          "direction": "positive",
+          "signal": "Management is constructive as higher volumes and better spreads drive revenue growth.",
+          "mgmtDataPoints": [
+            "Revenue: INR 1,587 crores",
+            "Operating EBITDA: INR 253 crores"
+          ],
+          "implication": "Expect a more positive outlook with potential for continued growth in revenue and margins.",
+          "doc": "Concall transcript (Q4 FY26)"
+        },
+        {
           "quarter": "Q1 FY27",
           "toneId": "confident",
           "score": 5,
@@ -1669,31 +1668,15 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q1 FY26",
-          "toneId": "confident",
-          "score": 5,
-          "quote": "continued our momentum from the beginning of the year into the second quarter with healthy performance",
-          "rationale": "Management expressed confidence in their growth and resilience despite challenges.",
-          "driver": "volume growth",
-          "direction": "positive",
-          "signal": "Management is optimistic about continued growth through innovation and distribution expansion.",
-          "mgmtDataPoints": [
-            "Revenue growth: 7%",
-            "Revenue: INR1,497 crores"
-          ],
-          "implication": "Expect continued volume growth and potential market share gains in the coming quarters.",
-          "doc": "Concall transcript (Q1 FY26)"
-        },
         {
           "quarter": "Q2 FY26",
           "toneId": "constructive",
@@ -1728,6 +1711,19 @@
           ],
           "implication": "Expect continued strong performance with potential for further market share gains.",
           "doc": "Concall transcript (Q3 FY26)"
+        },
+        {
+          "quarter": "Q4 FY26",
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "continued macro uncertainty...early signs of external headwinds driven by the conflict in the Middle East",
+          "rationale": "Management is careful due to macro uncertainties and external headwinds.",
+          "driver": "macro uncertainty",
+          "direction": "negative",
+          "signal": "Management is focused on executing strategy amidst external challenges to drive profitable growth.",
+          "mgmtDataPoints": [],
+          "implication": "Expect cautious approach with potential impact from external macroeconomic factors.",
+          "doc": "Concall transcript (Q4 FY26)"
         },
         {
           "quarter": "Q1 FY27",
