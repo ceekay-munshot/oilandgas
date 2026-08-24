@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-24T06:22:00.674Z",
+  "generatedAt": "2026-08-24T08:03:35.799Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -191,7 +191,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/transcript-2025-05.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Q4FY25Earnings.pdf/072c156d-073f-dea7-492b-e7"
+          "error": "apiRequestContext.get: read ECONNRESET\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Q4FY25Earnings.pdf/072c156d-073f-dea7-492b-e7bc3d5ae10e"
         },
         {
           "type": "transcript",
@@ -2374,12 +2374,12 @@
           "periodIso": "2025-10",
           "url": "https://www.screener.in/concalls/summary/23065226/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
+          "status": "ok",
+          "chars": 9675,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/HINDPETRO/summary-2025-10.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Q2 FY26: Earnings quality, operating momentum and balance-sheet trajectory Profitability and consistency H1 PAT: INR 8,201 cr ( +731% YoY ), with management not"
         },
         {
           "type": "summary",
