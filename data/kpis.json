@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-23T06:14:25.059Z",
+  "generatedAt": "2026-08-24T06:22:05.953Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -3278,15 +3278,15 @@
       "name": "Aegis Vopak",
       "slug": "AEGISVOPAK",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
+        "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q2 FY26",
+      "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33122,
+      "ctxChars": 33121,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3294,8 +3294,8 @@
           "unit": "million MT",
           "flagBasis": "yoy",
           "values": [
-            0.52,
             0.68,
+            0.67,
             null,
             null
           ],
@@ -3313,14 +3313,14 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 13 Aug 2025",
-              "quote": "the throughput for the quarter, which is 522,000 metric tons that we did from Kandla and Pipavav",
-              "page": 9
-            },
-            {
               "doc": "Concall Transcript - 11 Nov 2025",
               "quote": "Gas report for the quarter was INR 0.68 million metric tons",
               "page": 6
+            },
+            {
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "gas throughput was 0.67 million metric tons",
+              "page": 7
             },
             null,
             null
@@ -3332,7 +3332,7 @@
             null
           ],
           "flag": null,
-          "notes": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 13 Aug 2025, page 9."
+          "notes": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 11 Nov 2025, page 6."
         },
         {
           "id": "terminal-utilisation",
@@ -3370,7 +3370,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not disclosed in any of the provided excerpts for Q1 FY26, Q2 FY26, Q4 FY26, or Q1 FY27. The Screener Insights table does not include this metric, and the concall transcripts do not mention specific utilisation percen"
+          "notes": "Terminal utilisation % not stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The excerpts mention 'high capacity utilization' and 'improved utilization levels' qualitatively but no specific percentage figures are prov"
         }
       ]
     },

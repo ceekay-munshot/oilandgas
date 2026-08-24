@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Company financials (raw context from Screener)",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-23T06:14:09.870Z",
+  "generatedAt": "2026-08-24T06:22:00.674Z",
   "source": "Screener.in (consolidated where available)",
   "sourceTag": "external",
   "tag": "[External]",
@@ -5831,7 +5831,7 @@
         "pros": [
           "Company has reduced debt.",
           "Company is almost debt free.",
-          "Stock is trading at 1.02 times its book value",
+          "Stock is trading at 1.00 times its book value",
           "Company has delivered good profit growth of 110% CAGR over last 5 years"
         ],
         "cons": [
@@ -11829,8 +11829,8 @@
       "source": "Screener.in",
       "analysis": {
         "pros": [
-          "Stock is trading at 0.87 times its book value",
-          "Stock is providing a good dividend yield of 6.07%.",
+          "Stock is trading at 0.89 times its book value",
+          "Stock is providing a good dividend yield of 6.03%.",
           "Company has been maintaining a healthy dividend payout of 32.3%"
         ],
         "cons": []
@@ -13032,7 +13032,7 @@
       "source": "Screener.in",
       "analysis": {
         "pros": [
-          "Stock is providing a good dividend yield of 5.63%.",
+          "Stock is providing a good dividend yield of 5.64%.",
           "Company has a good return on equity (ROE) track record: 3 Years ROE 28.6%",
           "Company has been maintaining a healthy dividend payout of 31.5%"
         ],
@@ -14220,8 +14220,8 @@
       "analysis": {
         "pros": [
           "Company has reduced debt.",
-          "Stock is trading at 1.18 times its book value",
-          "Stock is providing a good dividend yield of 6.68%.",
+          "Stock is trading at 1.20 times its book value",
+          "Stock is providing a good dividend yield of 6.55%.",
           "Company has a good return on equity (ROE) track record: 3 Years ROE 27.8%",
           "Company has been maintaining a healthy dividend payout of 29.9%"
         ],
@@ -18532,7 +18532,7 @@
       "source": "Screener.in",
       "analysis": {
         "pros": [
-          "Stock is trading at 0.98 times its book value",
+          "Stock is trading at 0.99 times its book value",
           "Company is expected to give good quarter",
           "Company has been maintaining a healthy dividend payout of 27.6%"
         ],
@@ -19743,7 +19743,7 @@
           "Debtor days have improved from 28.4 to 21.1 days."
         ],
         "cons": [
-          "Stock is trading at 8.22 times its book value",
+          "Stock is trading at 8.03 times its book value",
           "Company might be capitalizing the interest cost"
         ]
       },
@@ -20913,7 +20913,7 @@
       "analysis": {
         "pros": [],
         "cons": [
-          "Stock is trading at 7.14 times its book value",
+          "Stock is trading at 7.08 times its book value",
           "Company has a low return on equity of 12.0% over last 3 years.",
           "Company might be capitalizing the interest cost"
         ]
@@ -21630,7 +21630,7 @@
           "Company is almost debt free."
         ],
         "cons": [
-          "Stock is trading at 5.52 times its book value"
+          "Stock is trading at 5.48 times its book value"
         ]
       },
       "sectionsFound": [
@@ -24496,7 +24496,7 @@
           "Company's median sales growth is 20.3% of last 10 years"
         ],
         "cons": [
-          "Stock is trading at 4.08 times its book value",
+          "Stock is trading at 4.05 times its book value",
           "Promoter holding has decreased over last quarter: -1.99%",
           "Tax rate seems low"
         ]
@@ -24960,7 +24960,7 @@
               27.11,
               null
             ],
-            "Expenses": [
+            "Expenses -": [
               2250,
               2532,
               3021,
@@ -24974,6 +24974,66 @@
               12054,
               15868,
               17032
+            ],
+            "Material Cost %": [
+              0,
+              0,
+              1.32,
+              1.15,
+              1.29,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              null
+            ],
+            "Manufacturing Cost %": [
+              27.39,
+              26.45,
+              24.96,
+              27.87,
+              24.55,
+              26.67,
+              26.53,
+              28.9,
+              27.66,
+              27.24,
+              27.14,
+              29.77,
+              null
+            ],
+            "Employee Cost %": [
+              3.87,
+              3.89,
+              4.55,
+              3.96,
+              4.86,
+              4.61,
+              4.91,
+              4.57,
+              5.66,
+              7.11,
+              6.6,
+              6.09,
+              null
+            ],
+            "Other Cost %": [
+              5.31,
+              5.28,
+              4.98,
+              3.82,
+              8.94,
+              18.63,
+              -0.67,
+              10.88,
+              14.18,
+              7.29,
+              5.81,
+              5.1,
+              null
             ],
             "Operating Profit": [
               3902,
@@ -25005,7 +25065,7 @@
               59,
               58
             ],
-            "Other Income": [
+            "Other Income -": [
               686,
               730,
               1037,
@@ -25019,6 +25079,36 @@
               1800,
               2152,
               2778
+            ],
+            "Exceptional items": [
+              10,
+              27,
+              37,
+              -132,
+              -73,
+              -71,
+              -4,
+              -409,
+              -1213,
+              -820,
+              -221,
+              -185,
+              null
+            ],
+            "Other income normal": [
+              675,
+              703,
+              1000,
+              976,
+              1362,
+              1999,
+              1970,
+              2241,
+              1540,
+              1491,
+              2020,
+              2337,
+              null
             ],
             "Interest": [
               1175,
@@ -25129,10 +25219,16 @@
           "order": [
             "Sales -",
             "Sales Growth %",
-            "Expenses",
+            "Expenses -",
+            "Material Cost %",
+            "Manufacturing Cost %",
+            "Employee Cost %",
+            "Other Cost %",
             "Operating Profit",
             "OPM %",
-            "Other Income",
+            "Other Income -",
+            "Exceptional items",
+            "Other income normal",
             "Interest",
             "Depreciation",
             "Profit before tax",
@@ -25588,7 +25684,7 @@
         "pros": [
           "Company has reduced debt.",
           "Company is almost debt free.",
-          "Stock is trading at 1.10 times its book value",
+          "Stock is trading at 1.12 times its book value",
           "Company is expected to give good quarter",
           "Company has been maintaining a healthy dividend payout of 18.3%"
         ],
@@ -26747,7 +26843,7 @@
       "analysis": {
         "pros": [],
         "cons": [
-          "Stock is trading at 8.52 times its book value",
+          "Stock is trading at 8.51 times its book value",
           "Company has a low return on equity of 11.5% over last 3 years.",
           "Earnings include an other income of Rs.331 Cr."
         ]

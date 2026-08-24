@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-23T06:14:09.870Z",
+  "generatedAt": "2026-08-24T06:22:00.674Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -1162,21 +1162,21 @@
         "cons": 1
       },
       "summariesAvailable": 36,
-      "transcriptsFound": 34,
+      "transcriptsFound": 35,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Jul 2026",
           "periodIso": "2026-07",
-          "url": "https://www.screener.in/concalls/summary/23257407/",
+          "url": "https://www.screener.in/concalls/summary/23310885/",
           "source": "screener.in",
           "status": "ok",
-          "chars": 10987,
+          "chars": 9866,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/summary-2026-07.txt",
-          "sample": "Macro & Operating Backdrop (what management is underwriting) India: growth “ remains resilient ” on domestic demand; CPI rose to 4.4% (Jun’26) from 3.4% (Mar’26"
+          "sample": "Executive takeaways (Q1 FY’27) Orders remain the primary positive surprise: Group order inflows ₹1,080 bn (+14% YoY) driven by international (+27% YoY) —especia"
         },
         {
           "type": "summary",
@@ -1266,6 +1266,19 @@
         {
           "type": "transcript",
           "role": "transcript",
+          "period": "Jul 2026",
+          "periodIso": "2026-07",
+          "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T-Earnings-Jul28-2026.pdf",
+          "source": "investors.larsentoubro.com",
+          "status": "ok",
+          "chars": 71297,
+          "pages": 26,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/LT/transcript-2026-07.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
           "period": "May 2026",
           "periodIso": "2026-05",
           "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
@@ -1327,19 +1340,6 @@
           "pages": 28,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/transcript-2025-05.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Jan 2025",
-          "periodIso": "2025-01",
-          "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2025AnalysttransL&T%20Transcript%20Q3FY25.pdf",
-          "source": "investors.larsentoubro.com",
-          "status": "ok",
-          "chars": 59555,
-          "pages": 21,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/LT/transcript-2025-01.txt"
         }
       ]
     },
@@ -1856,9 +1856,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 95882,
-          "pages": 31,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -2207,15 +2207,15 @@
       "ppt": {
         "type": "ppt",
         "role": "ppt",
-        "period": "Jan 2026",
-        "periodIso": "2026-01",
-        "url": "https://www.bharatpetroleum.in/images/files/bpcl-investor-presentation-q3-2026.pdf",
+        "period": "Jul 2026",
+        "periodIso": "2026-07",
+        "url": "https://www.bharatpetroleum.in/images/files/investor-presentation-q1-2026-27-upload.pdf",
         "source": "bharatpetroleum.in",
         "status": "http_403",
         "chars": 0,
         "pages": null,
         "via": "browser",
-        "cache": "pipeline/cache/docs/BPCL/ppt-2026-01.txt",
+        "cache": "pipeline/cache/docs/BPCL/ppt-2026-07.txt",
         "error": "scraper returned only 0 chars"
       },
       "transcripts": [
@@ -3575,9 +3575,9 @@
           "periodIso": "2026-02",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5243a51d-6033-46df-a525-011d334eab57.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 38173,
+          "pages": 15,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISVOPAK/transcript-2026-02.txt"
         },
