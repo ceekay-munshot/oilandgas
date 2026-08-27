@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-26T07:50:25.953Z",
+  "generatedAt": "2026-08-27T16:59:21.086Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -327,12 +327,11 @@
           "periodIso": "2026-07",
           "url": "https://www.deepindustries.com/docs/TranscriptQ1.pdf",
           "source": "deepindustries.com",
-          "status": "error",
+          "status": "http_429",
           "chars": 0,
           "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.deepindustries.com/docs/TranscriptQ1.pdf\n    - user-agent: Mozilla/5.0 (X11; Li"
+          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt"
         },
         {
           "type": "transcript",
@@ -611,12 +610,12 @@
           "periodIso": "2026-08",
           "url": "https://www.screener.in/concalls/summary/23313011/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
+          "status": "ok",
+          "chars": 7687,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/PETRONET/summary-2026-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Q1 FY27: Financial delivery despite volume disruption Record first-quarter profitability (consolidated): Management reported PBT INR 1,491 cr and PAT INR 1,137 "
         },
         {
           "type": "summary",
@@ -969,7 +968,7 @@
       "url": "https://www.screener.in/company/JINDRILL/consolidated/",
       "analysis": {
         "pros": 4,
-        "cons": 2
+        "cons": 1
       },
       "summariesAvailable": 11,
       "transcriptsFound": 11,
@@ -1857,9 +1856,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 95882,
+          "pages": 31,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -2389,12 +2388,12 @@
           "periodIso": "2025-08",
           "url": "https://www.screener.in/concalls/summary/23030679/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
+          "status": "ok",
+          "chars": 10052,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/HINDPETRO/summary-2025-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Q1 FY26 performance snapshot (what drove the quarter) Refining throughput surged: 6.6 MMT (+ 15.6% YoY ) with 109% capacity utilization , aided by prior capacit"
         }
       ],
       "ppt": {
@@ -2510,12 +2509,12 @@
           "periodIso": "2026-07",
           "url": "https://www.screener.in/concalls/summary/23306959/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
+          "status": "ok",
+          "chars": 10023,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GAIL/summary-2026-07.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "1QFY27: Core message—portfolio resilience amid West Asia shock; outsized 1Q profitability likely to normalize Management framed the quarter as being driven by “"
         },
         {
           "type": "summary",
@@ -2524,12 +2523,12 @@
           "periodIso": "2026-07",
           "url": "https://www.screener.in/concalls/summary/23306959/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
+          "status": "ok",
+          "chars": 10023,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GAIL/summary-2026-07.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "1QFY27: Core message—portfolio resilience amid West Asia shock; outsized 1Q profitability likely to normalize Management framed the quarter as being driven by “"
         },
         {
           "type": "summary",
@@ -2538,12 +2537,12 @@
           "periodIso": "2026-02",
           "url": "https://www.screener.in/concalls/summary/23085618/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
+          "status": "ok",
+          "chars": 10345,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GAIL/summary-2026-02.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Macro context and demand environment Management flagged continued volatility in global energy markets driven by “ uncertain weather conditions and evolving geop"
         },
         {
           "type": "summary",
@@ -2552,12 +2551,12 @@
           "periodIso": "2025-10",
           "url": "https://www.screener.in/concalls/summary/23044798/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
+          "status": "ok",
+          "chars": 10312,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GAIL/summary-2025-10.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Major strategic & regulatory developments (projects, authorizations, tariffs) New pipeline commissioned (SAPL): Management highlighted that the Srikakulam–Angul"
         },
         {
           "type": "summary",
@@ -2566,12 +2565,12 @@
           "periodIso": "2025-10",
           "url": "https://www.screener.in/concalls/summary/23044798/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
+          "status": "ok",
+          "chars": 10312,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GAIL/summary-2025-10.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Major strategic & regulatory developments (projects, authorizations, tariffs) New pipeline commissioned (SAPL): Management highlighted that the Srikakulam–Angul"
         },
         {
           "type": "summary",
@@ -2580,12 +2579,12 @@
           "periodIso": "2025-07",
           "url": "https://www.screener.in/concalls/summary/23022151/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 88,
+          "status": "ok",
+          "chars": 9446,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GAIL/summary-2025-07.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Material developments (projects, authorizations, connectivity) JHBDPL milestone / east India gas access: The Durgapur–Kolkata section of the Jagdishpur–Haldia–B"
         }
       ],
       "ppt": {
