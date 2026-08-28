@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-28T17:57:53.302Z",
+  "generatedAt": "2026-08-28T19:31:22.113Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
@@ -1423,15 +1423,33 @@
       "name": "Aegis Logistics",
       "slug": "AEGISLOG",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
+        {
+          "quarter": "Q1 FY26",
+          "toneId": "confident",
+          "score": 5,
+          "quote": "We are pleased to share that our subsidiary AVTL was successfully listed in June, 2025.",
+          "rationale": "Management highlighted successful listing and ongoing projects, indicating confidence in growth.",
+          "driver": "subsidiary listing",
+          "direction": "positive",
+          "signal": "Management is optimistic about growth with new projects underway and successful subsidiary listing.",
+          "mgmtDataPoints": [
+            "Mumbai liquid capacity: 275,000 KL",
+            "LPG static capacity: 21,000 MT",
+            "Upcoming liquid capacity: 125,000 KL",
+            "JNPT CAPEX: INR 1,675 crores"
+          ],
+          "implication": "Expect continued investment and expansion efforts to drive growth in the coming quarters.",
+          "doc": "Concall transcript (Q1 FY26)"
+        },
         {
           "quarter": "Q2 FY26",
           "toneId": "confident",
@@ -1466,23 +1484,6 @@
           ],
           "implication": "Expect continued strong performance with focus on cost optimization and high utilization.",
           "doc": "Concall transcript (Q3 FY26)"
-        },
-        {
-          "quarter": "Q4 FY26",
-          "toneId": "confident",
-          "score": 5,
-          "quote": "It was an outstanding year, a breakout year for us.",
-          "rationale": "Management highlighted exceptional annual performance, showing strong confidence.",
-          "driver": "annual performance",
-          "direction": "positive",
-          "signal": "Management is executing well on diversified operations, leading to strong financial results.",
-          "mgmtDataPoints": [
-            "FY26 revenue: INR 8,333 crores",
-            "FY26 EBITDA: INR 1,599 crores",
-            "Cash and investments: INR 6,000 crores"
-          ],
-          "implication": "Expect continued strong financial performance and shareholder returns in the near term.",
-          "doc": "Concall transcript (Q4 FY26)"
         },
         {
           "quarter": "Q1 FY27",
@@ -1584,15 +1585,32 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
+        {
+          "quarter": "Q1 FY26",
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "declined by 12% on year-on-year mainly on account of lower SM prices",
+          "rationale": "Management highlighted a decline in income and margins due to lower prices, indicating caution.",
+          "driver": "SM prices",
+          "direction": "negative",
+          "signal": "Management is cautious due to declining SM prices impacting revenue and margins.",
+          "mgmtDataPoints": [
+            "Operating income: Rs 1,386 crores",
+            "EBITDA: Rs 115 crores",
+            "EBITDA margin: 9.36%"
+          ],
+          "implication": "Expect continued caution as lower SM prices may persist, affecting revenue and margins.",
+          "doc": "Concall transcript (Q1 FY26)"
+        },
         {
           "quarter": "Q2 FY26",
           "toneId": "cautious",
@@ -1626,22 +1644,6 @@
           ],
           "implication": "Expect continued caution as SM price declines may further impact financial results.",
           "doc": "Concall transcript (Q3 FY26)"
-        },
-        {
-          "quarter": "Q4 FY26",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "revenue from the operations for the 4th Quarter stood at INR 1,587 crores, reflecting a growth of 3%",
-          "rationale": "Management highlighted revenue growth and better spreads, indicating a constructive outlook.",
-          "driver": "revenue growth",
-          "direction": "positive",
-          "signal": "Management is constructive as higher volumes and better spreads drive revenue growth.",
-          "mgmtDataPoints": [
-            "Revenue: INR 1,587 crores",
-            "Operating EBITDA: INR 253 crores"
-          ],
-          "implication": "Expect a more positive outlook with potential for continued growth in revenue and margins.",
-          "doc": "Concall transcript (Q4 FY26)"
         },
         {
           "quarter": "Q1 FY27",
