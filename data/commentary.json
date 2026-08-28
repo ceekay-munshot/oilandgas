@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-27T18:24:03.807Z",
+  "generatedAt": "2026-08-28T17:57:53.302Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
@@ -1186,34 +1186,15 @@
       "name": "IGL",
       "slug": "IGL",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "asOf": "Q1 FY27",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q1 FY26",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "augmenting stations… very aggressively",
-          "rationale": "Management is hopeful about growth through aggressive expansion and customer base expansion.",
-          "driver": "CNG volume growth",
-          "direction": "positive",
-          "signal": "Management is aggressively expanding CNG stations and expects continued growth in CNG vehicle additions.",
-          "mgmtDataPoints": [
-            "Volumes: 831 MMSCM",
-            "Revenue: ₹4,317 cr",
-            "EBITDA: ₹512 cr",
-            "PAT: ₹356 cr",
-            "CNG vehicle additions: ~18,500/month"
-          ],
-          "implication": "The company is likely to see continued growth in CNG volumes and customer base expansion in the coming quarters.",
-          "doc": "Concall AI summary (Q1 FY26)"
-        },
         {
           "quarter": "Q2 FY26",
           "toneId": "cautious",
@@ -1267,6 +1248,26 @@
           ],
           "implication": "The company is likely to maintain stable profitability, balancing cost pressures with strategic pricing and growth initiatives.",
           "doc": "Concall AI summary (Q4 FY26)"
+        },
+        {
+          "quarter": "Q1 FY27",
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "despite these challenges, IGL continued to operate smoothly and ensure uninterrupted gas supplies to all our customer segments.",
+          "rationale": "Management acknowledged a challenging quarter due to geopolitical pressures on gas availability and prices, yet emphasized smooth operations, volume growth, record sales days, and continued capex for long-term sustainable growth.",
+          "driver": "CNG volume growth",
+          "direction": "positive",
+          "signal": "Management is continuing to invest in expanding PNG infrastructure and CNG stations through ongoing capex to support long-term sustainable growth despite near-term gas cost and supply headwinds.",
+          "mgmtDataPoints": [
+            "Q1 FY27 average daily gas sales: 9.66 mmscmd",
+            "Q1 FY26 average daily gas sales: 9.13 mmscmd",
+            "CNG sales growth (net of DTC/DIMTS): ~11%",
+            "Overall CNG sales growth in Delhi: 9%",
+            "Peak single-day CNG sale: 58 lakh kg",
+            "PNG domestic connections: ~35 lakh+"
+          ],
+          "implication": "Continued volume momentum and capex deployment should support sequential growth in the next one to two quarters, though margin recovery will depend on stabilization of gas costs and pricing pass-through.",
+          "doc": "Concall transcript (Q1 FY27)"
         }
       ]
     },

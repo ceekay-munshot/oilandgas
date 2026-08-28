@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-08-27T18:24:03.930Z",
+  "generatedAt": "2026-08-28T17:58:02.355Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -1472,9 +1472,32 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:20:22.299Z"
+        },
+        "Q1 FY27": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "despite these challenges, IGL continued to operate smoothly and ensure uninterrupted gas supplies to all our customer segments.",
+          "rationale": "Management acknowledged a challenging quarter due to geopolitical pressures on gas availability and prices, yet emphasized smooth operations, volume growth, record sales days, and continued capex for long-term sustainable growth.",
+          "driver": "CNG volume growth",
+          "direction": "positive",
+          "signal": "Management is continuing to invest in expanding PNG infrastructure and CNG stations through ongoing capex to support long-term sustainable growth despite near-term gas cost and supply headwinds.",
+          "mgmtDataPoints": [
+            "Q1 FY27 average daily gas sales: 9.66 mmscmd",
+            "Q1 FY26 average daily gas sales: 9.13 mmscmd",
+            "CNG sales growth (net of DTC/DIMTS): ~11%",
+            "Overall CNG sales growth in Delhi: 9%",
+            "Peak single-day CNG sale: 58 lakh kg",
+            "PNG domestic connections: ~35 lakh+"
+          ],
+          "implication": "Continued volume momentum and capex deployment should support sequential growth in the next one to two quarters, though margin recovery will depend on stabilization of gas costs and pricing pass-through.",
+          "doc": "Concall transcript (Q1 FY27)",
+          "fingerprint": "cf167d72838e",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-08-28T17:57:53.381Z"
         }
       },
-      "updatedAt": "2026-07-28T18:20:22.299Z"
+      "updatedAt": "2026-08-28T17:57:53.381Z"
     },
     "mahanagar-gas": {
       "cells": {

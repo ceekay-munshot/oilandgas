@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-27T18:18:08.732Z",
+  "generatedAt": "2026-08-28T17:50:48.442Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -1487,9 +1487,9 @@
           "periodIso": "2025-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=3c4c5606-d76f-4247-ad9c-a0fe80bc1232.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 40149,
-          "pages": 17,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/RATNAMANI/transcript-2025-05.txt"
         },
@@ -2305,7 +2305,7 @@
       "view": "consolidated",
       "url": "https://www.screener.in/company/HINDPETRO/consolidated/",
       "analysis": {
-        "pros": 4,
+        "pros": 5,
         "cons": 2
       },
       "summariesAvailable": 12,
@@ -2691,14 +2691,14 @@
         "cons": 1
       },
       "summariesAvailable": 15,
-      "transcriptsFound": 13,
+      "transcriptsFound": 14,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Aug 2026",
           "periodIso": "2026-08",
-          "url": "https://www.screener.in/concalls/summary/23299679/",
+          "url": "https://www.screener.in/concalls/summary/23324571/",
           "source": "screener.in",
           "status": "gated",
           "chars": 88,
@@ -2795,6 +2795,19 @@
         {
           "type": "transcript",
           "role": "transcript",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://www.iglonline.net/uploads/announcement/Transcript%20of%20Conference%20Call%20-%20Aug%2014,%202026.pdf",
+          "source": "iglonline.net",
+          "status": "ok",
+          "chars": 40416,
+          "pages": 15,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/IGL/transcript-2026-08.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
           "period": "Feb 2026",
           "periodIso": "2026-02",
           "url": "https://www.iglonline.net/uploads/announcement/Link_of_Transcript_Earning_Call_Q3_Dec_31_2025.pdf",
@@ -2856,19 +2869,6 @@
           "pages": 18,
           "via": "browser",
           "cache": "pipeline/cache/docs/IGL/transcript-2025-01.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Oct 2024",
-          "periodIso": "2024-10",
-          "url": "https://www.iglonline.net/uploads/announcement/PhillipCap-Indraprastha-Oct29-2024.pdf",
-          "source": "iglonline.net",
-          "status": "ok",
-          "chars": 45524,
-          "pages": 16,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/IGL/transcript-2024-10.txt"
         }
       ]
     },
@@ -4598,7 +4598,7 @@
       "url": "https://www.screener.in/company/SCI/consolidated/",
       "analysis": {
         "pros": 1,
-        "cons": 5
+        "cons": 4
       },
       "summariesAvailable": 2,
       "transcriptsFound": 2,

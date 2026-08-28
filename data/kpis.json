@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-27T18:24:03.476Z",
+  "generatedAt": "2026-08-28T17:56:43.409Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,10 +14,10 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 357,
-    "realCells": 200,
-    "nullCells": 157,
+    "realCells": 198,
+    "nullCells": 159,
     "kpis": 92,
-    "kpisWithTrend": 51
+    "kpisWithTrend": 50
   },
   "companies": {
     "deep-industries": {
@@ -664,15 +664,16 @@
       "name": "IGL",
       "slug": "IGL",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 27699,
+      "note": "extraction failed: 402 Payment Required for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -680,21 +681,21 @@
           "unit": "% yoy",
           "flagBasis": "yoy",
           "values": [
-            6,
             3,
             3,
+            null,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
+            null,
             null
           ],
           "origins": [
             "model",
             "model",
-            "model",
+            null,
             null
           ],
           "citations": [
@@ -709,7 +710,7 @@
             null,
             null
           ],
-          "flag": "steady",
+          "flag": null,
           "notes": "6 percent (model) withheld: does not match this row's unit % yoy"
         },
         {
@@ -718,22 +719,22 @@
           "unit": "₹/scm",
           "flagBasis": "level",
           "values": [
-            6.16,
             5.15,
             5.4,
-            4.85
+            4.85,
+            null
           ],
           "sourceTags": [
-            "mgmt-claim",
             "derived",
             "mgmt-claim",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
-            "model",
             "derived",
             "model",
-            "model"
+            "model",
+            null
           ],
           "citations": [
             null,
@@ -2243,7 +2244,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34133,
+      "ctxChars": 34180,
       "kpis": [
         {
           "id": "grm",
@@ -2281,7 +2282,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": "Q2 FY26: $8.8/bbl reported GRM from Q2 concall AI summary; management clarified excluding inventory it was ~$8/bbl. Q3 FY26: No GRM figure stated in Q3 excerpts. Q4 FY26: Management stated in Q3 concall AI summary that Q3 reported GRM was $"
+          "notes": "Q2 FY26: $8.8/bbl reported GRM from Q2 concall AI summary; management clarified excluding inventory effects it was ~$8/bbl, with inventory impact of INR338 cr refining (~$0.80/bbl). Q3 FY26: No GRM figure stated in Q3 excerpts. Q4 FY26: Q4 "
         },
         {
           "id": "marketing-margin",
@@ -2319,7 +2320,7 @@
             null
           ],
           "flag": null,
-          "notes": "No marketing margin per liter figures stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The excerpts discuss LPG under-recoveries in absolute rupee crore terms and per-cylinder losses, but do not provide a per-liter m"
+          "notes": "No marketing margin per liter figures stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The excerpts discuss LPG under-recoveries per cylinder (e.g., Q1 FY27: INR510/cylinder average, June INR680/cylinder, July INR490"
         },
         {
           "id": "throughput",
@@ -3953,7 +3954,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33740,
+      "ctxChars": 32989,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4430,7 +4431,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21382,
+      "ctxChars": 21342,
       "kpis": [
         {
           "id": "freight-rate",
