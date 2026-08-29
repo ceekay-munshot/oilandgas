@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-28T19:30:16.086Z",
+  "generatedAt": "2026-08-29T12:01:51.698Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 345,
-    "realCells": 189,
-    "nullCells": 156,
-    "kpis": 89,
-    "kpisWithTrend": 47
+    "kpiCells": 349,
+    "realCells": 192,
+    "nullCells": 157,
+    "kpis": 90,
+    "kpisWithTrend": 48
   },
   "companies": {
     "deep-industries": {
@@ -2090,7 +2090,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27940,
+      "ctxChars": 33940,
       "kpis": [
         {
           "id": "grm",
@@ -2178,7 +2178,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin in ₹/l not explicitly stated in any of the excerpts. Q3 FY25 summary mentions 'adverse marketing margins' and inventory loss of ₹722 crore but no per-litre figure. Q4 FY25 summary discusses LPG under-recoveries per cylinder"
+          "notes": "Marketing margin in ₹/l not disclosed in any of the excerpts. Q3 FY25 concall mentions 'inventory loss of ₹722 crore' and 'adverse marketing margins' but no per-litre figure. Q4 FY25 concall discusses LPG under-recoveries and retail fuel ma"
         },
         {
           "id": "throughput",
@@ -3073,12 +3073,12 @@
       "name": "Aegis Logistics",
       "slug": "AEGISLOG",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 34048,
@@ -3089,9 +3089,9 @@
           "unit": "'000 MT",
           "flagBasis": "yoy",
           "values": [
-            1161,
             1407,
             1361,
+            1223,
             null
           ],
           "sourceTags": [
@@ -3109,17 +3109,17 @@
           "citations": [
             {
               "doc": "Presentation - 30 May 2026",
-              "quote": "1,013 1,161 Q1FY25 Q1FY26",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 30 May 2026",
               "quote": "1,064 1,407 Q2FY25 Q2FY26",
               "page": 11
             },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "1,221 1,361 Q3FY25 Q3FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "1,225 1,223 Q4FY25 Q4FY26",
               "page": 11
             },
             null
@@ -3130,7 +3130,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": "decelerating",
           "notes": "From Screener Insights row \"LPG Terminal Throughput Volume (Logistics)\"; latest value cited to Presentation - 30 May 2026, page 11."
         },
         {
@@ -3169,7 +3169,7 @@
             null
           ],
           "flag": null,
-          "notes": "No terminal utilisation percentage stated in any excerpt for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The concall transcripts mention 'higher utilization levels' and 'improved utilization' qualitatively but do not provide a numeric percentage"
+          "notes": "Terminal utilisation % not stated in any of the excerpts. The Q2 FY26 call mentions Mumbai and JNPT operating at 'high utilization levels' and Kandla at 'improved utilization levels', Q3 FY26 call mentions Mumbai at 'higher utilization leve"
         }
       ]
     },
@@ -3277,12 +3277,12 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 32913,
@@ -3333,9 +3333,9 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
-            93853,
             76962,
             91265,
+            100664,
             null
           ],
           "sourceTags": [
@@ -3352,11 +3352,6 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 30 Apr 2026",
-              "quote": "Company's sales volume of manufactured products in the 1st Quarter of FY '26 increased by 0.5% only on a year-on-year basis to 93,853 MT",
-              "page": 3
-            },
-            {
               "doc": "Presentation - 24 Oct 2025",
               "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
               "page": 15
@@ -3364,6 +3359,61 @@
             {
               "doc": "Concall Transcript - 26 Jan 2026",
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
+              "page": 3
+            },
+            {
+              "doc": "Presentation - 24 Apr 2026",
+              "quote": "95,556 1,00,664 Q4-FY25 Q4-FY26",
+              "page": 16
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
+          "notes": "From Screener Insights row \"Sales Volume (Manufactured Products)\" (Standalone data); latest value cited to Presentation - 24 Oct 2025, page 15."
+        },
+        {
+          "id": "capacity-utilisation",
+          "label": "Capacity utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            79,
+            80,
+            80,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 26 Jan 2026",
+              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 30 Apr 2026",
+              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
               "page": 3
             },
             null
@@ -3374,8 +3424,9 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
-          "notes": "From Screener Insights row \"Sales Volume (Manufactured Products)\" (Standalone data); latest value cited to Concall Transcript - 30 Apr 2026, page 3."
+          "flag": "steady",
+          "beyondBrief": true,
+          "notes": "From Screener Insights row \"Capacity Utilization\" (Standalone data); latest value cited to Concall Transcript - 31 Oct 2025, page 5."
         }
       ]
     },
