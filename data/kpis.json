@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-29T12:01:51.698Z",
+  "generatedAt": "2026-08-29T13:08:58.221Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,10 +14,10 @@
   "coverage": {
     "companies": 27,
     "kpiCells": 349,
-    "realCells": 192,
-    "nullCells": 157,
+    "realCells": 194,
+    "nullCells": 155,
     "kpis": 90,
-    "kpisWithTrend": 48
+    "kpisWithTrend": 49
   },
   "companies": {
     "deep-industries": {
@@ -669,11 +669,10 @@
         "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 27699,
-      "note": "extraction failed: 402 Payment Required for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -684,19 +683,19 @@
             3,
             3,
             null,
-            null
+            6
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
             null,
-            null
+            "mgmt-claim"
           ],
           "origins": [
             "model",
             "model",
             null,
-            null
+            "model"
           ],
           "citations": [
             null,
@@ -710,7 +709,7 @@
             null,
             null
           ],
-          "flag": null,
+          "flag": "accelerating",
           "notes": "6 percent (model) withheld: does not match this row's unit % yoy"
         },
         {
@@ -722,19 +721,19 @@
             5.15,
             5.4,
             4.85,
-            null
+            4.85
           ],
           "sourceTags": [
             "derived",
             "mgmt-claim",
             "company-filing",
-            null
+            "mgmt-claim"
           ],
           "origins": [
             "derived",
             "model",
             "model",
-            null
+            "model"
           ],
           "citations": [
             null,
@@ -748,7 +747,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": "steady",
           "notes": "Derived: EBITDA (Screener quarterly Operating Profit, ₹ cr) ÷ quarterly gas volume (Insights \"Total Sales Volume\" MMSCMD × days in quarter), in ₹/scm."
         }
       ]
@@ -3852,7 +3851,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33740,
+      "ctxChars": 33174,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -3890,7 +3889,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not spe"
+          "notes": "No POL/LPG/LNG cargo throughput or growth data found in any of the excerpts. The screener insights show total cargo volume in MMT but no breakdown by cargo type. The concall transcripts discuss various cargo types (containers, coal, fertili"
         },
         {
           "id": "total-cargo-volume",

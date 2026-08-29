@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-29T12:02:56.857Z",
+  "generatedAt": "2026-08-29T13:09:15.125Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -101,18 +101,18 @@
       ]
     },
     "coincident": {
-      "score": -20,
+      "score": -13,
       "prev": -67,
-      "delta": 10,
+      "delta": 24,
       "deltaBasis": "kpi-only",
       "level": "negative",
       "direction": "rising",
-      "kpisScored": 17,
+      "kpisScored": 18,
       "kpisTotal": 40,
       "kpisBeyondBrief": 11,
       "tonesScored": 15,
       "companiesScored": 10,
-      "staleKpis": 23,
+      "staleKpis": 21,
       "oneOffKpis": 2,
       "unknownKpis": 0,
       "lowCoverage": true,
@@ -138,13 +138,6 @@
           "companyId": "petronet-lng",
           "company": "Petronet LNG",
           "label": "Volume",
-          "flag": "inflecting-down"
-        },
-        {
-          "kind": "kpi",
-          "companyId": "igl",
-          "company": "IGL",
-          "label": "EBITDA / scm",
           "flag": "inflecting-down"
         },
         {
@@ -263,7 +256,7 @@
     }
   },
   "divergence": {
-    "value": 68,
+    "value": 61,
     "leadingSign": 1,
     "coincidentSign": -1,
     "signsDiffer": true
@@ -272,7 +265,7 @@
     null,
     null,
     78,
-    121
+    107
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -281,7 +274,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 48 (strong-positive, rising), coincident -20 (negative, rising), lagging 0 (flat).",
+      "Leading 48 (strong-positive, rising), coincident -13 (negative, rising), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -451,7 +444,7 @@
     {
       "groupId": "coincident",
       "kind": "low-coverage",
-      "text": "Moving now: 25 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 23 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "groupId": "lagging",
@@ -482,7 +475,7 @@
       "id": "coverage-coincident",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moving now: 25 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 23 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "coverage-lagging",
@@ -569,7 +562,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +68. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
+      "text": "Leading minus coincident is +61. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
     },
     {
       "id": "watchlist",
@@ -1054,17 +1047,17 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moving now moved down 8 points to -20."
+      "text": "Moving now moved up 7 points to -13."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-28T19:31:22.264Z",
+    "generatedAt": "2026-08-29T12:02:56.857Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 48,
-      "coincident": -12,
+      "coincident": -20,
       "lagging": 0
     },
     "alertIds": [
@@ -1081,8 +1074,7 @@
       "tone-petronet-lng",
       "tone-ratnamani",
       "tone-reliance",
-      "tone-shipping-corp",
-      "tone-supreme-petrochem"
+      "tone-shipping-corp"
     ]
   }
 }
