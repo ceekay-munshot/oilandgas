@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-08-28T18:57:14.056Z",
+  "generatedAt": "2026-08-29T12:45:52.166Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -10,7 +10,7 @@
   "coverage": {
     "tilesLive": 6,
     "tilesTotal": 6,
-    "linesLive": 8,
+    "linesLive": 9,
     "linesTotal": 9
   },
   "tiles": [
@@ -309,7 +309,7 @@
       "status": "live",
       "source": "Trading Economics - naphtha spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-08-27",
+      "asOf": "2026-08-28",
       "lines": [
         {
           "id": "naphtha",
@@ -321,11 +321,11 @@
           "source": "Trading Economics - naphtha spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-08-27",
+          "asOf": "2026-08-28",
           "series": [
             {
-              "date": "2026-08-27",
-              "value": 745.45,
+              "date": "2026-08-28",
+              "value": 745.84,
               "spot": true
             }
           ]
@@ -344,7 +344,7 @@
       "status": "live",
       "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-08-27",
+      "asOf": "2026-08-28",
       "lines": [
         {
           "id": "jkm",
@@ -356,11 +356,11 @@
           "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-08-27",
+          "asOf": "2026-08-28",
           "series": [
             {
-              "date": "2026-08-27",
-              "value": 23.41,
+              "date": "2026-08-28",
+              "value": 23.18,
               "spot": true
             }
           ]
@@ -371,12 +371,17 @@
           "shortLabel": "APM",
           "color": "#0891B2",
           "primary": false,
-          "status": "awaiting",
-          "source": null,
-          "sourceTag": "unknown",
-          "asOf": null,
-          "series": [],
-          "awaitingReason": "Could not read the PPAC gas notification"
+          "status": "live",
+          "source": "PPAC, Ministry of Petroleum & Natural Gas - domestic gas notification for 1 August 2026 to 31 August 2026, issued 2026-07-31 (https://ppac.gov.in/download.php?file=importantnews/1785497891_Dom_Gas_Price_Aug_2026.pdf)",
+          "sourceTag": "official",
+          "notes": "ONGC/OIL nomination-gas ceiling of $7.00/mmbtu, below the notified price of $7.86. This month only - PPAC publishes each month as a separate scanned notification.",
+          "asOf": "2026-08-01",
+          "series": [
+            {
+              "date": "2026-08-01",
+              "value": 7
+            }
+          ]
         }
       ]
     },
@@ -467,7 +472,7 @@
       "supports": "up",
       "supportsWhy": "Busier tankers mean more cargoes are actually moving.",
       "status": "live",
-      "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via scrapedo)",
+      "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via firecrawl)",
       "sourceTag": "external",
       "asOf": "2026-08-01",
       "lines": [
@@ -477,7 +482,7 @@
           "color": "#B91C1C",
           "primary": true,
           "status": "live",
-          "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via scrapedo)",
+          "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via firecrawl)",
           "sourceTag": "external",
           "notes": "Latest level only - the Baltic Exchange licenses the history, so this line has no 12-month trend.",
           "asOf": "2026-08-01",
