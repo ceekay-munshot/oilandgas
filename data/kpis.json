@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-29T13:08:58.221Z",
+  "generatedAt": "2026-08-30T10:53:00.486Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -3433,57 +3433,53 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31579,
+      "ctxChars": 31578,
       "kpis": [
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume (YoY)",
-          "unit": "% YoY",
+          "unit": "% yoy",
           "flagBasis": "yoy",
           "values": [
+            8,
             7,
-            7.5,
             7.5,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "company-filing",
+            "mgmt-claim",
             null
           ],
           "origins": [
             "model",
             "model",
-            "insights",
+            "model",
             null
           ],
           "citations": [
             null,
             null,
-            {
-              "doc": "Concall Transcript - 04 May 2026",
-              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
-              "page": 6
-            },
-            null
-          ],
-          "oneOffs": [
-            "No Q2 FY26 data",
-            "No Q3 FY26 data",
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            "No Q2 FY26 data",
+            "No Q3 FY26 data",
+            null
+          ],
           "flag": null,
-          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
+          "notes": "Q1 FY26: 6% YoY stated in Q1 FY26 concall (page 3). Q2 FY26: 7% YoY stated in Q2 FY26 concall (page 3). Q3 FY26: 8% YoY stated in Q3 FY26 concall (page 4). Q1 FY27: The Q1 FY27 concall does not explicitly state the YoY volume growth for tha"
         },
         {
           "id": "base-oil-spread",
@@ -3851,7 +3847,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33174,
+      "ctxChars": 32882,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -3889,7 +3885,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput or growth data found in any of the excerpts. The screener insights show total cargo volume in MMT but no breakdown by cargo type. The concall transcripts discuss various cargo types (containers, coal, fertili"
+          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q4 FY25, Q2 FY26, Q3 FY26, or Q4 FY26. The excerpts discuss total cargo volumes, container volumes, coal, fertilizers, and other cargo types, but do not spe"
         },
         {
           "id": "total-cargo-volume",
