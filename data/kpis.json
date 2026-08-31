@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-30T12:31:23.281Z",
+  "generatedAt": "2026-08-31T12:00:45.073Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -33,6 +33,7 @@
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 33822,
+      "note": "extraction failed: 402 Payment Required for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -3072,7 +3073,7 @@
       "name": "Aegis Logistics",
       "slug": "AEGISLOG",
       "quarters": [
-        "Q1 FY26",
+        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
@@ -3081,6 +3082,7 @@
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 34048,
+      "note": "extraction failed: 402 Payment Required for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3088,7 +3090,7 @@
           "unit": "'000 MT",
           "flagBasis": "yoy",
           "values": [
-            1161,
+            1407,
             1361,
             1223,
             null
@@ -3108,7 +3110,7 @@
           "citations": [
             {
               "doc": "Presentation - 30 May 2026",
-              "quote": "1,013 1,161 Q1FY25 Q1FY26",
+              "quote": "1,064 1,407 Q2FY25 Q2FY26",
               "page": 11
             },
             {
@@ -3129,7 +3131,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": "decelerating",
           "notes": "From Screener Insights row \"LPG Terminal Throughput Volume (Logistics)\"; latest value cited to Presentation - 30 May 2026, page 11."
         },
         {
@@ -3168,7 +3170,7 @@
             null
           ],
           "flag": null,
-          "notes": "No terminal utilisation percentage figures stated in any of the excerpts for Q1 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. Management mentions 'high utilization levels' and 'higher utilization' qualitatively at various ports (Mumbai, Kochi, Pipava"
+          "notes": "Terminal utilisation % not stated in any of the excerpts. The Q2 FY26 call mentions Mumbai and JNPT operating at 'high utilization levels' and Kandla at 'improved utilization levels', Q3 FY26 call mentions Mumbai at 'higher utilization leve"
         }
       ]
     },
@@ -3800,7 +3802,8 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32948,
+      "ctxChars": 33740,
+      "note": "extraction failed: 402 Payment Required for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4277,7 +4280,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21342,
+      "ctxChars": 21382,
       "kpis": [
         {
           "id": "freight-rate",

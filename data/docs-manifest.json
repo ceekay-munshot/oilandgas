@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-08-30T12:31:18.210Z",
+  "generatedAt": "2026-08-31T12:00:28.992Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -309,15 +309,15 @@
       "ppt": {
         "type": "ppt",
         "role": "ppt",
-        "period": "Jul 2026",
-        "periodIso": "2026-07",
-        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=cc2552ea-9e6c-4a3d-a8a4-4baffbfabc6d.pdf",
+        "period": "Aug 2026",
+        "periodIso": "2026-08",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=26901577-8aac-49e2-a2e0-5462ee776129.pdf",
         "source": "bseindia.com",
         "status": "ok",
-        "chars": 21160,
-        "pages": 37,
+        "chars": 27984,
+        "pages": 41,
         "via": "browser",
-        "cache": "pipeline/cache/docs/DEEPINDS/ppt-2026-07.txt"
+        "cache": "pipeline/cache/docs/DEEPINDS/ppt-2026-08.txt"
       },
       "transcripts": [
         {
@@ -327,12 +327,11 @@
           "periodIso": "2026-07",
           "url": "https://www.deepindustries.com/docs/TranscriptQ1.pdf",
           "source": "deepindustries.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 54080,
+          "pages": 20,
           "via": "browser",
-          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.deepindustries.com/docs/TranscriptQ1.pdf\n    - user-agent: Mozilla/5.0 (X11; Li"
+          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt"
         },
         {
           "type": "transcript",
@@ -1857,9 +1856,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 95882,
+          "pages": 31,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -3411,9 +3410,9 @@
           "periodIso": "2025-11",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=06b0ba8f-8eb6-42e0-98c0-4cb53ff2ae90.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 40909,
+          "pages": 17,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISLOG/transcript-2025-11.txt"
         },
@@ -4598,7 +4597,7 @@
       "url": "https://www.screener.in/company/SCI/consolidated/",
       "analysis": {
         "pros": 1,
-        "cons": 4
+        "cons": 5
       },
       "summariesAvailable": 2,
       "transcriptsFound": 2,

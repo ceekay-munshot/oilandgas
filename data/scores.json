@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-30T12:31:34.653Z",
+  "generatedAt": "2026-08-31T12:00:46.546Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -101,9 +101,9 @@
       ]
     },
     "coincident": {
-      "score": -6,
-      "prev": -54,
-      "delta": 22,
+      "score": -4,
+      "prev": -52,
+      "delta": 23,
       "deltaBasis": "kpi-only",
       "level": "flat",
       "direction": "rising",
@@ -146,13 +146,6 @@
           "company": "Mahanagar Gas",
           "label": "EBITDA / scm",
           "flag": "inflecting-up"
-        },
-        {
-          "kind": "kpi",
-          "companyId": "aegis-logistics",
-          "company": "Aegis Logistics",
-          "label": "LPG throughput",
-          "flag": "inflecting-down"
         },
         {
           "kind": "kpi",
@@ -277,7 +270,7 @@
     }
   },
   "divergence": {
-    "value": 54,
+    "value": 52,
     "leadingSign": 1,
     "coincidentSign": 0,
     "signsDiffer": false
@@ -285,8 +278,8 @@
   "divergenceSeries": [
     null,
     null,
-    65,
-    96
+    63,
+    93
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -295,7 +288,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 48 (strong-positive, rising), coincident -6 (flat, rising), lagging 0 (flat).",
+      "Leading 48 (strong-positive, rising), coincident -4 (flat, rising), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -593,7 +586,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +54. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +52. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -1086,42 +1079,35 @@
   ],
   "changes": [
     {
-      "kind": "score",
-      "text": "Moving now moved up 10 points to -6."
-    },
-    {
-      "kind": "alert",
-      "text": "New alert: Supreme Petrochem moved 3 tone steps up (cautious → confident) in Q1 FY27."
-    },
-    {
-      "kind": "alert",
-      "text": "New alert: Castrol India moved 3 tone steps up (cautious → confident) in Q1 FY27."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-30T10:53:11.980Z",
+    "generatedAt": "2026-08-30T12:31:34.653Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 48,
-      "coincident": -16,
+      "coincident": -6,
       "lagging": 0
     },
     "alertIds": [
       "coverage-coincident",
       "coverage-lagging",
       "coverage-leading",
-      "divergence",
       "stage-macro",
       "tone-bpcl",
+      "tone-castrol-india",
       "tone-gandhar-oil",
       "tone-gujarat-gas",
       "tone-ongc",
       "tone-petronet-lng",
       "tone-ratnamani",
       "tone-reliance",
-      "tone-shipping-corp"
+      "tone-shipping-corp",
+      "tone-supreme-petrochem"
     ]
   }
 }
