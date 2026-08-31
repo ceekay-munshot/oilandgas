@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-31T12:00:45.073Z",
+  "generatedAt": "2026-08-31T14:41:39.442Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 345,
-    "realCells": 191,
-    "nullCells": 154,
-    "kpis": 89,
-    "kpisWithTrend": 48
+    "kpiCells": 349,
+    "realCells": 194,
+    "nullCells": 155,
+    "kpis": 90,
+    "kpisWithTrend": 49
   },
   "companies": {
     "deep-industries": {
@@ -33,7 +33,6 @@
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 33822,
-      "note": "extraction failed: 402 Payment Required for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -113,7 +112,7 @@
             null
           ],
           "flag": null,
-          "notes": "Day-rate not disclosed in any of the excerpts. The Q2 FY26 concall mentions management did not expect near-term pressure on market rates for offshore vessels and that Q3 growth was 'more of volume' rather than pricing/day-rate, but no numer"
+          "notes": "Day-rate not disclosed in any of the excerpts. The Q2 FY26 concall mentions management did not expect near-term pressure on market rates for offshore vessels and that rates for HF Hunter were 'in line with what we were earlier used to get,'"
         },
         {
           "id": "order-book",
@@ -3082,7 +3081,6 @@
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 34048,
-      "note": "extraction failed: 402 Payment Required for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3170,7 +3168,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not stated in any of the excerpts. The Q2 FY26 call mentions Mumbai and JNPT operating at 'high utilization levels' and Kandla at 'improved utilization levels', Q3 FY26 call mentions Mumbai at 'higher utilization leve"
+          "notes": "Terminal utilisation % not stated in any of the excerpts. The concall transcripts mention 'high utilization levels', 'higher utilization levels', 'improved utilization levels' at various ports but no specific percentage figures are provided"
         }
       ]
     },
@@ -3278,12 +3276,12 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 32913,
@@ -3334,9 +3332,9 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
-            93853,
             76962,
             91265,
+            100664,
             null
           ],
           "sourceTags": [
@@ -3353,11 +3351,6 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 30 Apr 2026",
-              "quote": "Company's sales volume of manufactured products in the 1st Quarter of FY '26 increased by 0.5% only on a year-on-year basis to 93,853 MT",
-              "page": 3
-            },
-            {
               "doc": "Presentation - 24 Oct 2025",
               "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
               "page": 15
@@ -3365,6 +3358,61 @@
             {
               "doc": "Concall Transcript - 26 Jan 2026",
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
+              "page": 3
+            },
+            {
+              "doc": "Presentation - 24 Apr 2026",
+              "quote": "95,556 1,00,664 Q4-FY25 Q4-FY26",
+              "page": 16
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
+          "notes": "From Screener Insights row \"Sales Volume (Manufactured Products)\" (Standalone data); latest value cited to Presentation - 24 Oct 2025, page 15."
+        },
+        {
+          "id": "capacity-utilisation",
+          "label": "Capacity utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            79,
+            80,
+            80,
+            null
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            null
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 26 Jan 2026",
+              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 30 Apr 2026",
+              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
               "page": 3
             },
             null
@@ -3375,8 +3423,9 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
-          "notes": "From Screener Insights row \"Sales Volume (Manufactured Products)\" (Standalone data); latest value cited to Concall Transcript - 30 Apr 2026, page 3."
+          "flag": "steady",
+          "beyondBrief": true,
+          "notes": "From Screener Insights row \"Capacity Utilization\" (Standalone data); latest value cited to Concall Transcript - 31 Oct 2025, page 5."
         }
       ]
     },
@@ -3803,7 +3852,6 @@
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 33740,
-      "note": "extraction failed: 402 Payment Required for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
