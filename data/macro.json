@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-08-31T14:10:09.771Z",
+  "generatedAt": "2026-09-01T11:49:29.039Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -305,7 +305,7 @@
       "status": "live",
       "source": "Trading Economics - naphtha spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-08-28",
+      "asOf": "2026-08-31",
       "lines": [
         {
           "id": "naphtha",
@@ -317,11 +317,11 @@
           "source": "Trading Economics - naphtha spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-08-28",
+          "asOf": "2026-08-31",
           "series": [
             {
-              "date": "2026-08-28",
-              "value": 738.89,
+              "date": "2026-08-31",
+              "value": 761.83,
               "spot": true
             }
           ]
@@ -340,7 +340,7 @@
       "status": "live",
       "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-08-28",
+      "asOf": "2026-08-31",
       "lines": [
         {
           "id": "jkm",
@@ -352,11 +352,11 @@
           "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-08-28",
+          "asOf": "2026-08-31",
           "series": [
             {
-              "date": "2026-08-28",
-              "value": 23.18,
+              "date": "2026-08-31",
+              "value": 22.71,
               "spot": true
             }
           ]
@@ -368,7 +368,7 @@
           "color": "#0891B2",
           "primary": false,
           "status": "live",
-          "source": "PPAC, Ministry of Petroleum & Natural Gas - domestic gas notification for 1 September 2026 to 30 September 2026, issued 2026-08-31 (https://ppac.gov.in/download.php?file=gasprice/1788176488_Domestic_Natural_Gas_price_for_Sep-2026.pdf)",
+          "source": "PPAC, Ministry of Petroleum & Natural Gas - domestic gas notification for 1 September 2026 to 30 September 2026, issued 2026-08-31 (https://ppac.gov.in/download.php?file=importantnews/1788176556_Domestic_Natural_Gas_price_for_Sep-2026.pdf)",
           "sourceTag": "official",
           "notes": "ONGC/OIL nomination-gas ceiling of $7.00/mmbtu, below the notified price of $9.00. This month only - PPAC publishes each month as a separate scanned notification.",
           "asOf": "2026-09-01",
@@ -405,10 +405,6 @@
           "sourceTag": "official",
           "asOf": "2026-08-01",
           "series": [
-            {
-              "date": "2025-09-01",
-              "value": 88.3
-            },
             {
               "date": "2025-10-01",
               "value": 88.42
@@ -469,7 +465,7 @@
       "status": "live",
       "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via firecrawl)",
       "sourceTag": "external",
-      "asOf": "2026-08-01",
+      "asOf": "2026-09-01",
       "lines": [
         {
           "id": "baltic-dirty",
@@ -480,10 +476,10 @@
           "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via firecrawl)",
           "sourceTag": "external",
           "notes": "Latest level only - the Baltic Exchange licenses the history, so this line has no 12-month trend.",
-          "asOf": "2026-08-01",
+          "asOf": "2026-09-01",
           "series": [
             {
-              "date": "2026-08-01",
+              "date": "2026-09-01",
               "value": 1107,
               "spot": true
             }
