@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-09-01T11:49:29.039Z",
+  "generatedAt": "2026-09-02T11:29:55.648Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -98,12 +98,8 @@
           "status": "live",
           "source": "PPAC, Ministry of Petroleum & Natural Gas - Indian Crude Basket, monthly average",
           "sourceTag": "official",
-          "asOf": "2026-08-01",
+          "asOf": "2026-09-01",
           "series": [
-            {
-              "date": "2025-09-01",
-              "value": 69.61
-            },
             {
               "date": "2025-10-01",
               "value": 65.08
@@ -147,6 +143,11 @@
             {
               "date": "2026-08-01",
               "value": 90.19
+            },
+            {
+              "date": "2026-09-01",
+              "value": 95.28,
+              "partial": true
             }
           ]
         },
@@ -305,7 +306,7 @@
       "status": "live",
       "source": "Trading Economics - naphtha spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-01",
       "lines": [
         {
           "id": "naphtha",
@@ -317,11 +318,11 @@
           "source": "Trading Economics - naphtha spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-08-31",
+          "asOf": "2026-09-01",
           "series": [
             {
-              "date": "2026-08-31",
-              "value": 761.83,
+              "date": "2026-09-01",
+              "value": 782.22,
               "spot": true
             }
           ]
@@ -340,7 +341,7 @@
       "status": "live",
       "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-01",
       "lines": [
         {
           "id": "jkm",
@@ -352,11 +353,11 @@
           "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-08-31",
+          "asOf": "2026-09-01",
           "series": [
             {
-              "date": "2026-08-31",
-              "value": 22.71,
+              "date": "2026-09-01",
+              "value": 23.62,
               "spot": true
             }
           ]
@@ -393,7 +394,7 @@
       "status": "live",
       "source": "Frankfurter / European Central Bank reference rates, monthly mean of daily",
       "sourceTag": "official",
-      "asOf": "2026-08-01",
+      "asOf": "2026-09-01",
       "lines": [
         {
           "id": "inr-usd",
@@ -403,7 +404,7 @@
           "status": "live",
           "source": "Frankfurter / European Central Bank reference rates, monthly mean of daily",
           "sourceTag": "official",
-          "asOf": "2026-08-01",
+          "asOf": "2026-09-01",
           "series": [
             {
               "date": "2025-10-01",
@@ -448,6 +449,11 @@
             {
               "date": "2026-08-01",
               "value": 95.45
+            },
+            {
+              "date": "2026-09-01",
+              "value": 94.95,
+              "partial": true
             }
           ]
         }
