@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-31T14:41:39.442Z",
+  "generatedAt": "2026-09-07T10:54:30.204Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -17,7 +17,7 @@
     "realCells": 194,
     "nullCells": 155,
     "kpis": 90,
-    "kpisWithTrend": 49
+    "kpisWithTrend": 50
   },
   "companies": {
     "deep-industries": {
@@ -32,7 +32,8 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33822,
+      "ctxChars": 34047,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -170,7 +171,8 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34069,
+      "ctxChars": 34368,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "order-inflow",
@@ -422,7 +424,8 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 27790,
+      "ctxChars": 28465,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -672,7 +675,8 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27699,
+      "ctxChars": 28270,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -763,7 +767,8 @@
       "asOf": "Q2 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 21360,
+      "ctxChars": 22866,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -923,7 +928,8 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33647,
+      "ctxChars": 34236,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -1069,7 +1075,8 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32364,
+      "ctxChars": 33077,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -1273,7 +1280,8 @@
       "asOf": null,
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33720,
+      "ctxChars": 34172,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "hydrocarbon-order-inflow",
@@ -1367,12 +1375,13 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33027,
+      "ctxChars": 33887,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "order-book",
           "label": "Order book",
-          "unit": "₹ cr",
+          "unit": "INR Crores",
           "flagBasis": "qoq",
           "values": [
             2900,
@@ -1382,19 +1391,23 @@
           ],
           "sourceTags": [
             "company-filing",
-            "mgmt-claim",
+            "company-filing",
             "mgmt-claim",
             "mgmt-claim"
           ],
           "origins": [
             "model",
-            "model",
+            "insights",
             "model",
             "model"
           ],
           "citations": [
             null,
-            null,
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "The Company ended the year with an order book of approximately 2,100 crore (55% exports, 45% domestic).",
+              "page": 29
+            },
             null,
             null
           ],
@@ -1459,7 +1472,8 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34052,
+      "ctxChars": 34040,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "order-book",
@@ -1771,7 +1785,8 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34307,
+      "ctxChars": 34952,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -1947,7 +1962,8 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31112,
+      "ctxChars": 31915,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "grm",
@@ -2089,7 +2105,8 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33940,
+      "ctxChars": 34618,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "grm",
@@ -2243,7 +2260,8 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34180,
+      "ctxChars": 34681,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "grm",
@@ -2385,7 +2403,8 @@
       "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31838,
+      "ctxChars": 32298,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -2693,7 +2712,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34038,
+      "ctxChars": 34296,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -2988,7 +3007,8 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33891,
+      "ctxChars": 34458,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3080,7 +3100,8 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34048,
+      "ctxChars": 34522,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3181,10 +3202,11 @@
         "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33121,
+      "ctxChars": 32814,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3194,19 +3216,19 @@
           "values": [
             0.68,
             0.67,
-            null,
+            3.9,
             null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
-            null,
+            "company-filing",
             null
           ],
           "origins": [
             "insights",
             "insights",
-            null,
+            "insights",
             null
           ],
           "citations": [
@@ -3220,7 +3242,11 @@
               "quote": "gas throughput was 0.67 million metric tons",
               "page": 7
             },
-            null,
+            {
+              "doc": "Concall Transcript - 15 Jun 2026",
+              "quote": "supported by cumulative gas throughput rising from 3.3 million tons in FY25 to 3.9 million tons in FY26",
+              "page": 6
+            },
             null
           ],
           "oneOffs": [
@@ -3229,8 +3255,8 @@
             null,
             null
           ],
-          "flag": null,
-          "notes": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 11 Nov 2025, page 6."
+          "flag": "accelerating",
+          "notes": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 15 Jun 2026, page 6."
         },
         {
           "id": "terminal-utilisation",
@@ -3284,7 +3310,8 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32913,
+      "ctxChars": 33413,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "sps-spread",
@@ -3441,7 +3468,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31579,
+      "ctxChars": 31059,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -3483,7 +3510,7 @@
             null
           ],
           "flag": null,
-          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
+          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 09 Feb 2026, page 3."
         },
         {
           "id": "base-oil-spread",
@@ -3539,7 +3566,8 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 33126,
+      "ctxChars": 33679,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "base-oil-spread",
@@ -3843,15 +3871,16 @@
       "name": "Adani Ports",
       "slug": "ADANIPORTS",
       "quarters": [
-        "Q4 FY25",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33740,
+      "ctxChars": 34581,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -3897,29 +3926,24 @@
           "unit": "MMT",
           "flagBasis": "level",
           "values": [
-            117.9,
             123.6,
             123.1,
-            133.4
+            133.4,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Apr 2026",
-              "quote": "Cargo (MMT) Q4 FY26 Q4 FY25 133.4 117.9",
-              "page": 2
-            },
             {
               "doc": "Presentation - 04 Nov 2025",
               "quote": "APSEZ volume 123.6 110.8",
@@ -3934,7 +3958,8 @@
               "doc": "Presentation - 30 Apr 2026",
               "quote": "Cargo (MMT) Q4 FY26 133.4",
               "page": 2
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -3944,7 +3969,7 @@
           ],
           "flag": "accelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Total Cargo Volume\"; latest value cited to Presentation - 04 Nov 2025, page 41."
         }
       ]
     },
@@ -3960,7 +3985,8 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 34337,
+      "ctxChars": 34220,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -4328,7 +4354,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21382,
+      "ctxChars": 21342,
       "kpis": [
         {
           "id": "freight-rate",
@@ -4413,7 +4439,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15961,
+      "ctxChars": 16350,
       "kpis": [
         {
           "id": "order-book",

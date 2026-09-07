@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Extracted KPI values, kept across runs",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-08-31T14:41:58.251Z",
+  "generatedAt": "2026-09-07T10:54:36.580Z",
   "note": "One entry per company/KPI/quarter, for every quarter ever extracted - not just the current window. A run only asks the model about cells it does not already have, and a null never overwrites a real value. Delete a cell (or run with --refresh) to force re-extraction.",
   "companies": {
     "deep-industries": {
@@ -2123,13 +2123,19 @@
         },
         "order-book|Q4 FY25": {
           "value": 2100,
-          "unit": "₹ cr",
-          "sourceTag": "mgmt-claim",
-          "note": "Q2 FY25 order book not stated; Q4 FY25 order book from concall; Q2 FY26 order book from concall; Q4 FY26 order book from concall.",
-          "fingerprint": "e3f8ec17233f",
-          "attempts": 1,
-          "model": "gpt-4o",
-          "at": "2026-07-27T09:09:24.466Z"
+          "unit": "INR Crores",
+          "sourceTag": "company-filing",
+          "note": "From Screener Insights row \"Order Book (Standalone)\" (Standalone data); latest value cited to Annual Report - 31 Mar 2025, page 29.",
+          "origin": "insights",
+          "citation": {
+            "doc": "Annual Report - 31 Mar 2025",
+            "quote": "The Company ended the year with an order book of approximately 2,100 crore (55% exports, 45% domestic).",
+            "page": 29
+          },
+          "fingerprint": "8e41b573f134",
+          "attempts": 2,
+          "model": null,
+          "at": "2026-09-07T10:54:32.131Z"
         },
         "order-book|Q2 FY26": {
           "value": 2050,
@@ -2192,7 +2198,7 @@
           "at": "2026-08-08T06:23:06.104Z"
         }
       },
-      "updatedAt": "2026-08-08T06:23:06.104Z"
+      "updatedAt": "2026-09-07T10:54:32.131Z"
     },
     "welspun-corp": {
       "cells": {
@@ -2794,7 +2800,7 @@
           "at": "2026-07-30T08:00:49.896Z"
         }
       },
-      "updatedAt": "2026-08-31T14:41:46.207Z"
+      "updatedAt": "2026-09-07T10:54:32.728Z"
     },
     "iocl": {
       "cells": {
@@ -5163,14 +5169,20 @@
           "at": "2026-07-27T10:43:11.133Z"
         },
         "lpg-throughput|Q4 FY26": {
-          "value": null,
+          "value": 3.9,
           "unit": "million MT",
-          "sourceTag": null,
-          "note": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 11 Nov 2025, page 6.",
+          "sourceTag": "company-filing",
+          "note": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 15 Jun 2026, page 6.",
           "origin": "insights",
-          "fingerprint": "d6b95ca5ec05",
-          "attempts": 70,
-          "at": "2026-08-31T14:41:52.630Z"
+          "citation": {
+            "doc": "Concall Transcript - 15 Jun 2026",
+            "quote": "supported by cumulative gas throughput rising from 3.3 million tons in FY25 to 3.9 million tons in FY26",
+            "page": 6
+          },
+          "fingerprint": "19c53dbfa714",
+          "attempts": 71,
+          "model": null,
+          "at": "2026-09-07T10:54:35.188Z"
         },
         "terminal-utilisation|Q1 FY26": {
           "value": null,
@@ -5216,11 +5228,11 @@
           "value": null,
           "unit": "million MT",
           "sourceTag": null,
-          "note": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 11 Nov 2025, page 6.",
+          "note": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 15 Jun 2026, page 6.",
           "origin": "insights",
-          "fingerprint": "d6b95ca5ec05",
-          "attempts": 24,
-          "at": "2026-08-31T14:41:52.630Z"
+          "fingerprint": "19c53dbfa714",
+          "attempts": 25,
+          "at": "2026-09-07T10:54:35.188Z"
         },
         "terminal-utilisation|Q1 FY27": {
           "value": null,
@@ -5233,7 +5245,7 @@
           "at": "2026-08-24T06:22:11.139Z"
         }
       },
-      "updatedAt": "2026-08-31T14:41:52.630Z"
+      "updatedAt": "2026-09-07T10:54:35.188Z"
     },
     "supreme-petrochem": {
       "cells": {
@@ -5476,14 +5488,14 @@
           "value": null,
           "unit": "% YoY",
           "sourceTag": null,
-          "note": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6.",
+          "note": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 09 Feb 2026, page 3.",
           "origin": "insights",
-          "fingerprint": "af7890cafdcf",
-          "attempts": 40,
-          "at": "2026-08-31T14:41:52.647Z"
+          "fingerprint": "5e1f9d42f10c",
+          "attempts": 41,
+          "at": "2026-09-07T10:54:35.698Z"
         }
       },
-      "updatedAt": "2026-08-31T14:41:52.647Z"
+      "updatedAt": "2026-09-07T10:54:35.698Z"
     },
     "gandhar-oil": {
       "cells": {
@@ -6534,7 +6546,7 @@
           "at": "2026-07-29T09:25:17.136Z"
         }
       },
-      "updatedAt": "2026-08-31T14:41:58.243Z"
+      "updatedAt": "2026-09-07T10:54:36.573Z"
     },
     "thermax": {
       "cells": {

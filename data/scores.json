@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-08-31T14:41:58.530Z",
+  "generatedAt": "2026-09-07T10:54:37.354Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -101,17 +101,17 @@
       ]
     },
     "coincident": {
-      "score": -13,
-      "prev": -67,
-      "delta": 24,
+      "score": -11,
+      "prev": -60,
+      "delta": 23,
       "deltaBasis": "kpi-only",
       "level": "negative",
       "direction": "rising",
-      "kpisScored": 18,
+      "kpisScored": 19,
       "kpisTotal": 40,
       "kpisBeyondBrief": 11,
       "tonesScored": 15,
-      "companiesScored": 10,
+      "companiesScored": 11,
       "staleKpis": 21,
       "oneOffKpis": 2,
       "unknownKpis": 0,
@@ -256,7 +256,7 @@
     }
   },
   "divergence": {
-    "value": 61,
+    "value": 59,
     "leadingSign": 1,
     "coincidentSign": -1,
     "signsDiffer": true
@@ -264,8 +264,8 @@
   "divergenceSeries": [
     null,
     null,
-    78,
-    107
+    71,
+    101
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -274,26 +274,26 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 48 (strong-positive, rising), coincident -13 (negative, rising), lagging 0 (flat).",
+      "Leading 48 (strong-positive, rising), coincident -11 (negative, rising), lagging 0 (flat).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
   "macro": {
-    "supporting": 1,
-    "opposing": 1,
+    "supporting": 2,
+    "opposing": 0,
     "silent": 4,
-    "macroBias": "mixed",
+    "macroBias": "up",
     "scoreBias": "up",
-    "agree": null,
+    "agree": true,
     "conflict": false,
     "tiles": [
       {
         "id": "brent",
         "label": "Crude",
-        "direction": "falling",
+        "direction": "rising",
         "percentile": 73,
         "supports": "up",
-        "vote": "opposes"
+        "vote": "supports"
       },
       {
         "id": "crack-spread",
@@ -323,7 +323,7 @@
         "id": "inr-usd",
         "label": "USD/INR",
         "direction": "flat",
-        "percentile": 82,
+        "percentile": 64,
         "supports": "down",
         "vote": "silent"
       },
@@ -340,8 +340,8 @@
   "stageMacro": {
     "stageId": "early-upcycle",
     "expected": "crude recovering",
-    "observed": "crude falling",
-    "agrees": false
+    "observed": "crude rising",
+    "agrees": true
   },
   "toneDrift": [
     {
@@ -460,12 +460,6 @@
       "text": "Leading and coincident have split: the front of the chain has turned up while the middle has not."
     },
     {
-      "id": "stage-macro",
-      "severity": "review",
-      "kind": "stage-macro",
-      "text": "Flagged for review: this stage expects crude recovering, but crude falling."
-    },
-    {
       "id": "coverage-leading",
       "severity": "info",
       "kind": "low-coverage",
@@ -557,12 +551,12 @@
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude falling (73th pctile); Crack spread rising (100th pctile); USD/INR flat (82th pctile)."
+      "text": "Crude rising (73th pctile); Crack spread rising (100th pctile); USD/INR flat (64th pctile)."
     },
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +61. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
+      "text": "Leading minus coincident is +59. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
     },
     {
       "id": "watchlist",
@@ -1046,28 +1040,25 @@
   ],
   "changes": [
     {
-      "kind": "score",
-      "text": "Moving now moved down 9 points to -13."
-    },
-    {
-      "kind": "alert",
-      "text": "New alert: Leading and coincident have split: the front of the chain has turned up while the middle has not."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-31T12:00:46.546Z",
+    "generatedAt": "2026-08-31T14:41:58.530Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 48,
-      "coincident": -4,
+      "coincident": -13,
       "lagging": 0
     },
     "alertIds": [
       "coverage-coincident",
       "coverage-lagging",
       "coverage-leading",
+      "divergence",
       "stage-macro",
       "tone-bpcl",
       "tone-castrol-india",
@@ -1077,8 +1068,7 @@
       "tone-petronet-lng",
       "tone-ratnamani",
       "tone-reliance",
-      "tone-shipping-corp",
-      "tone-supreme-petrochem"
+      "tone-shipping-corp"
     ]
   }
 }
