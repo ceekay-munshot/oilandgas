@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-09-07T10:54:37.291Z",
+  "generatedAt": "2026-09-07T13:25:08.478Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -2341,17 +2341,30 @@
           "at": "2026-07-28T18:20:58.267Z"
         },
         "Q1 FY27": {
-          "toneId": null,
-          "score": null,
-          "quote": null,
-          "rationale": "no concall document cached for this quarter",
-          "doc": null,
-          "fingerprint": "1a8456f029ab",
-          "attempts": 1,
-          "at": "2026-08-17T06:21:42.637Z"
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Today, we are again here to demonstrate our ongoing confidence in the growth trajectory. Our resilient and diversified business model continues to deliver very strong growth",
+          "rationale": "Management emphasizes ongoing confidence, strong growth delivery, and rapid expansion plans across multiple ports under Ambition 2031.",
+          "driver": "diversified portfolio growth",
+          "direction": "positive",
+          "signal": "Management is rapidly expanding domestic port capacity to 1 billion metric tons with major projects underway, while international operations are ramping up strongly and logistics is scaling asset-light businesses.",
+          "mgmtDataPoints": [
+            "Domestic port capacity target: 1 billion metric tons",
+            "Q1 FY27 revenue growth: 19% YoY to INR10,821 crores",
+            "Q1 FY27 EBITDA growth: 19% YoY to INR6,541 crores",
+            "Domestic ports EBITDA margin: 74%",
+            "International ports revenue: INR1,747 crores, up 80% YoY",
+            "International ports EBITDA margin: 41.8% vs 21.1% prior year"
+          ],
+          "implication": "Strong momentum across all three business segments—domestic ports, international operations, and logistics—suggests continued robust performance with margin expansion likely in the next two quarters as capacity additions come online and int",
+          "doc": "Concall transcript (Q1 FY27)",
+          "fingerprint": "612da63f2898",
+          "attempts": 2,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-09-07T13:25:01.238Z"
         }
       },
-      "updatedAt": "2026-08-17T06:21:42.637Z"
+      "updatedAt": "2026-09-07T13:25:01.238Z"
     },
     "ge-shipping": {
       "cells": {

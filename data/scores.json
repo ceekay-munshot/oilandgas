@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-09-07T10:54:37.354Z",
+  "generatedAt": "2026-09-07T13:25:08.539Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,21 +38,21 @@
   "asOf": "Q1 FY27",
   "scores": {
     "leading": {
-      "score": 48,
+      "score": 29,
       "prev": 11,
-      "delta": 53,
+      "delta": 16,
       "deltaBasis": "kpi-only",
-      "level": "strong-positive",
+      "level": "positive",
       "direction": "rising",
       "kpisScored": 7,
       "kpisTotal": 23,
-      "kpisBeyondBrief": 6,
+      "kpisBeyondBrief": 9,
       "tonesScored": 8,
       "companiesScored": 5,
-      "staleKpis": 14,
+      "staleKpis": 6,
       "oneOffKpis": 0,
       "unknownKpis": 0,
-      "lowCoverage": true,
+      "lowCoverage": false,
       "weakestTag": "mgmt-claim",
       "reducedConfidence": false,
       "signals": [
@@ -82,7 +82,7 @@
           "companyId": "welspun-corp",
           "company": "Welspun Corp",
           "label": "Order book",
-          "flag": "inflecting-up"
+          "flag": "inflecting-down"
         },
         {
           "kind": "tone",
@@ -101,19 +101,19 @@
       ]
     },
     "coincident": {
-      "score": -11,
+      "score": -15,
       "prev": -60,
-      "delta": 23,
+      "delta": 18,
       "deltaBasis": "kpi-only",
       "level": "negative",
       "direction": "rising",
-      "kpisScored": 19,
+      "kpisScored": 20,
       "kpisTotal": 40,
-      "kpisBeyondBrief": 11,
+      "kpisBeyondBrief": 16,
       "tonesScored": 15,
       "companiesScored": 11,
-      "staleKpis": 21,
-      "oneOffKpis": 2,
+      "staleKpis": 8,
+      "oneOffKpis": 8,
       "unknownKpis": 0,
       "lowCoverage": true,
       "weakestTag": "derived",
@@ -138,6 +138,13 @@
           "companyId": "petronet-lng",
           "company": "Petronet LNG",
           "label": "Volume",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "petronet-lng",
+          "company": "Petronet LNG",
+          "label": "Kochi utilisation",
           "flag": "inflecting-down"
         },
         {
@@ -206,30 +213,30 @@
       ]
     },
     "lagging": {
-      "score": 0,
-      "prev": -43,
-      "delta": 0,
+      "score": 56,
+      "prev": -20,
+      "delta": 53,
       "deltaBasis": "kpi-only",
-      "level": "flat",
-      "direction": "flat",
+      "level": "strong-positive",
+      "direction": "rising",
       "kpisScored": 4,
       "kpisTotal": 7,
-      "kpisBeyondBrief": 3,
+      "kpisBeyondBrief": 0,
       "tonesScored": 2,
       "companiesScored": 1,
-      "staleKpis": 7,
+      "staleKpis": 3,
       "oneOffKpis": 0,
       "unknownKpis": 0,
       "lowCoverage": true,
-      "weakestTag": "company-filing",
+      "weakestTag": "mgmt-claim",
       "reducedConfidence": false,
       "signals": [
         {
           "kind": "kpi",
           "companyId": "ge-shipping",
           "company": "GE Shipping",
-          "label": "Fleet deployment",
-          "flag": "inflecting-down"
+          "label": "Realised tanker freight rate",
+          "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
@@ -237,13 +244,6 @@
           "company": "GE Shipping",
           "label": "TCY - product carriers",
           "flag": "inflecting-up"
-        },
-        {
-          "kind": "kpi",
-          "companyId": "ge-shipping",
-          "company": "GE Shipping",
-          "label": "Revenue days (owned)",
-          "flag": "inflecting-down"
         },
         {
           "kind": "tone",
@@ -256,7 +256,7 @@
     }
   },
   "divergence": {
-    "value": 59,
+    "value": 44,
     "leadingSign": 1,
     "coincidentSign": -1,
     "signsDiffer": true
@@ -265,16 +265,16 @@
     null,
     null,
     71,
-    101
+    69
   ],
   "stage": {
     "stageId": "early-upcycle",
-    "position": 35,
+    "position": 34,
     "ruleId": "early-upcycle",
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 48 (strong-positive, rising), coincident -11 (negative, rising), lagging 0 (flat).",
+      "Leading 29 (positive, rising), coincident -15 (negative, rising), lagging 56 (strong-positive).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -437,19 +437,14 @@
   ],
   "coverageWarnings": [
     {
-      "groupId": "leading",
-      "kind": "low-coverage",
-      "text": "Moves first: 14 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
-    },
-    {
       "groupId": "coincident",
       "kind": "low-coverage",
-      "text": "Moving now: 23 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 16 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "groupId": "lagging",
       "kind": "low-coverage",
-      "text": "Moves last: 7 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves last: 3 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     }
   ],
   "alerts": [
@@ -460,22 +455,16 @@
       "text": "Leading and coincident have split: the front of the chain has turned up while the middle has not."
     },
     {
-      "id": "coverage-leading",
-      "severity": "info",
-      "kind": "low-coverage",
-      "text": "Moves first: 14 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
-    },
-    {
       "id": "coverage-coincident",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moving now: 23 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 16 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "coverage-lagging",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moves last: 7 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves last: 3 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "tone-petronet-lng",
@@ -541,7 +530,7 @@
     {
       "id": "leading",
       "label": "Leading indicators",
-      "text": "Leading indicators are strongly positive and rising — driven by Jindal Drilling Order book, Engineers India Order book, Ratnamani Metals Order book."
+      "text": "Leading indicators are positive and rising — driven by Jindal Drilling Order book, Engineers India Order book, Ratnamani Metals Order book."
     },
     {
       "id": "coincident",
@@ -556,7 +545,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +59. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
+      "text": "Leading minus coincident is +44. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
     },
     {
       "id": "watchlist",
@@ -947,7 +936,7 @@
           "quarter": "Q1 FY27",
           "direction": "positive",
           "driver": "tanker freight rates",
-          "drift": 0
+          "drift": 1
         },
         {
           "companyId": "shipping-corp",
@@ -976,7 +965,7 @@
           "quarter": "Q1 FY27",
           "direction": "positive",
           "driver": "tanker freight rates",
-          "drift": 0
+          "drift": 1
         }
       ]
     },
@@ -1040,18 +1029,22 @@
   ],
   "changes": [
     {
-      "kind": "none",
-      "text": "Nothing material moved since the last refresh."
+      "kind": "score",
+      "text": "Moves first moved down 19 points to 29."
+    },
+    {
+      "kind": "score",
+      "text": "Moves last moved up 56 points to 56."
     }
   ],
   "previous": {
-    "generatedAt": "2026-08-31T14:41:58.530Z",
+    "generatedAt": "2026-09-07T10:54:37.354Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 48,
-      "coincident": -13,
+      "coincident": -11,
       "lagging": 0
     },
     "alertIds": [
@@ -1059,7 +1052,6 @@
       "coverage-lagging",
       "coverage-leading",
       "divergence",
-      "stage-macro",
       "tone-bpcl",
       "tone-castrol-india",
       "tone-gandhar-oil",
