@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-09-07T13:20:22.263Z",
+  "generatedAt": "2026-09-14T11:10:53.317Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 369,
-    "realCells": 242,
-    "nullCells": 127,
-    "kpis": 95,
-    "kpisWithTrend": 56
+    "kpiCells": 373,
+    "realCells": 248,
+    "nullCells": 125,
+    "kpis": 96,
+    "kpisWithTrend": 58
   },
   "companies": {
     "deep-industries": {
@@ -32,7 +32,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34047,
+      "ctxChars": 34000,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -40,20 +40,20 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            null,
-            null,
+            100,
+            100,
             100,
             100
           ],
           "sourceTags": [
-            null,
-            null,
+            "mgmt-claim",
+            "mgmt-claim",
             "company-filing",
             "mgmt-claim"
           ],
           "origins": [
-            null,
-            null,
+            "model",
+            "model",
             "insights",
             "model"
           ],
@@ -73,8 +73,8 @@
             null,
             null
           ],
-          "flag": null,
-          "notes": "Q2 FY26: not stated. Q3 FY26: not stated. Q4 FY26: not stated. Q1 FY27: management stated '100%... as on date' for rig utilization (20 rigs: 14 workover, 6 drilling)."
+          "flag": "steady",
+          "notes": null
         },
         {
           "id": "day-rate",
@@ -112,7 +112,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: not stated. Q3 FY26: not stated. Q4 FY26: not stated. Q1 FY27: not stated. Management mentioned day rates in context of offshore vessels but no specific figure given."
+          "notes": "No day-rate figures stated in any quarter. Q3 concall mentions growth was 'more of volume' rather than pricing/day-rate, but no numeric rate given."
         },
         {
           "id": "order-book",
@@ -3783,9 +3783,9 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
@@ -3839,9 +3839,9 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
+            93853,
             76962,
             91265,
-            100664,
             70842
           ],
           "sourceTags": [
@@ -3858,6 +3858,11 @@
           ],
           "citations": [
             {
+              "doc": "Concall Transcript - 30 Apr 2026",
+              "quote": "Company's sales volume of manufactured products in the 1st Quarter of FY '26 increased by 0.5% only on a year-on-year basis to 93,853 MT",
+              "page": 3
+            },
+            {
               "doc": "Presentation - 24 Oct 2025",
               "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
               "page": 15
@@ -3867,11 +3872,6 @@
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
               "page": 3
             },
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "95,556 1,00,664 Q4-FY25 Q4-FY26",
-              "page": 16
-            },
             null
           ],
           "oneOffs": [
@@ -3880,7 +3880,7 @@
             null,
             "negligible exports due to West Asia crisis"
           ],
-          "flag": "decelerating",
+          "flag": "inflecting-up",
           "notes": null
         }
       ]
@@ -4256,7 +4256,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34581,
+      "ctxChars": 34015,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4294,7 +4294,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput YoY growth figure stated for any of the four quarters. The Q4 FY26 and Q3 FY26 call transcripts mention handling LPG vessels during disruptions but do not quantify YoY growth. Q2 FY26 and Q1 FY27 excerpts do "
+          "notes": "No POL/LPG/LNG cargo throughput YoY growth data found in any of the excerpts. The Q4 FY26 concall mentions 'handling LPG vessels' during disruptions but provides no volume or YoY figures. The Q1 FY27 concall and investor presentation do not"
         },
         {
           "id": "total-cargo-volume",
@@ -4353,15 +4353,15 @@
       "name": "GE Shipping",
       "slug": "GESHIP",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34222,
+      "ctxChars": 34220,
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -4369,9 +4369,9 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            46352,
             28492,
             47281,
+            61424,
             null
           ],
           "sourceTags": [
@@ -4387,11 +4387,6 @@
             null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Crude Carriers: Q1 FY25 46,352",
-              "page": 14
-            },
             {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Crude Carriers: Q2 FY25 28,492",
@@ -4402,6 +4397,11 @@
               "quote": "Crude Carriers: Q3 FY26 47,281",
               "page": 26
             },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Crude Carriers: Q4 FY26 61,424",
+              "page": 26
+            },
             null
           ],
           "oneOffs": [
@@ -4410,8 +4410,8 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
-          "notes": "No single metric for 'tanker freight rate' found. Separate TCE figures exist for crude and product tankers but no combined tanker rate."
+          "flag": "decelerating",
+          "notes": "No single-quarter realised tanker freight rate (TCE) found for any of the four quarters. The INVESTOR PPT Q1 FY27 shows MR at 37,405 USD/day and Suezmax at 143,199 USD/day for Q1 FY27, but these appear to be market averages, not GE Shipping"
         },
         {
           "id": "fleet-deployment",
@@ -4419,9 +4419,9 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3507,
             3678,
             3765,
+            3525,
             null
           ],
           "sourceTags": [
@@ -4438,11 +4438,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Total Revenue Days: 3,507",
-              "page": 12
-            },
-            {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Total Revenue Days: 3,678",
               "page": 12
@@ -4450,6 +4445,11 @@
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "Total Revenue Days: 3,765",
+              "page": 25
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Total Revenue Days: 3,525",
               "page": 25
             },
             null
@@ -4460,7 +4460,7 @@
             null,
             null
           ],
-          "flag": "decelerating",
+          "flag": "inflecting-down",
           "notes": "46 % (model) withheld: does not match this row's unit Days"
         },
         {
@@ -4469,9 +4469,9 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            37153,
             28978,
             25117,
+            30511,
             45000
           ],
           "sourceTags": [
@@ -4488,11 +4488,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Product Carriers: Q1 FY25 37,153",
-              "page": 14
-            },
-            {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Product Carriers: Q2 FY25 28,978",
               "page": 13
@@ -4500,6 +4495,11 @@
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "Product Carriers: Q3 FY26 25,117",
+              "page": 26
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Product Carriers: Q4 FY26 30,511",
               "page": 26
             },
             null
@@ -4510,7 +4510,58 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "accelerating",
+          "notes": null
+        },
+        {
+          "id": "tcy-lpg",
+          "label": "TCY - LPG carriers",
+          "unit": "USD/day",
+          "flagBasis": "level",
+          "values": [
+            43507,
+            43611,
+            45216,
+            127330
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "model"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "LPG Carriers: Q2 FY25 43,507",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 29 Jan 2026",
+              "quote": "LPG Carriers: Q3 FY26 43,611",
+              "page": 26
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "LPG Carriers: Q4 FY26 45,216",
+              "page": 26
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "accelerating",
+          "beyondBrief": true,
           "notes": null
         },
         {
@@ -4519,9 +4570,9 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3325,
             3494,
             3581,
+            3345,
             null
           ],
           "sourceTags": [
@@ -4538,11 +4589,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Owned Tonnage: 3,325",
-              "page": 12
-            },
-            {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Owned Tonnage: 3,494",
               "page": 12
@@ -4550,6 +4596,11 @@
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "Owned Tonnage: 3,581",
+              "page": 25
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Owned Tonnage: 3,345",
               "page": 25
             },
             null
@@ -4560,8 +4611,8 @@
             null,
             null
           ],
-          "flag": "decelerating",
-          "notes": "Revenue days (owned) not stated in any of the excerpts for any quarter."
+          "flag": "inflecting-down",
+          "notes": "No revenue days (owned) figure stated for any of the four quarters. The Q1 FY27 concall AI summary mentions '46% operating days' but clarifies this is 'pricing fixed for 46% of days', not utilisation or total revenue days. No other excerpt "
         }
       ]
     },
@@ -4575,7 +4626,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21342,
+      "ctxChars": 21382,
       "kpis": [
         {
           "id": "freight-rate",

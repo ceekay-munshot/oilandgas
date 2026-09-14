@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-09-07T13:20:08.632Z",
+  "generatedAt": "2026-09-14T11:10:13.232Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -216,7 +216,7 @@
       "url": "https://www.screener.in/company/DEEPINDS/consolidated/",
       "analysis": {
         "pros": 3,
-        "cons": 4
+        "cons": 3
       },
       "summariesAvailable": 20,
       "transcriptsFound": 19,
@@ -327,9 +327,9 @@
           "periodIso": "2026-07",
           "url": "https://www.deepindustries.com/docs/TranscriptQ1.pdf",
           "source": "deepindustries.com",
-          "status": "http_429",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 54080,
+          "pages": 20,
           "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt"
         },
@@ -1856,9 +1856,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 95882,
-          "pages": 31,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -3739,9 +3739,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e0aca11e-1b05-4087-b721-fe5651591c4f.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 46273,
-          "pages": 18,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/SPLPETRO/transcript-2026-04.txt"
         },
@@ -4530,12 +4530,11 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=ceb8c526-89cd-4ec0-b3a2-00258e7fb63b.pdf",
           "source": "bseindia.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 65351,
+          "pages": 24,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GESHIP/transcript-2026-05.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=ceb8c526-89cd-4ec0-b3a2-00258e7fb6"
+          "cache": "pipeline/cache/docs/GESHIP/transcript-2026-05.txt"
         },
         {
           "type": "transcript",
@@ -4598,7 +4597,7 @@
       "url": "https://www.screener.in/company/SCI/consolidated/",
       "analysis": {
         "pros": 1,
-        "cons": 4
+        "cons": 5
       },
       "summariesAvailable": 2,
       "transcriptsFound": 2,
