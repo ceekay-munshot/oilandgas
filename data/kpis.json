@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-09-14T11:10:53.317Z",
+  "generatedAt": "2026-09-14T13:41:12.922Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 27,
-    "kpiCells": 373,
-    "realCells": 248,
+    "kpiCells": 377,
+    "realCells": 252,
     "nullCells": 125,
-    "kpis": 96,
-    "kpisWithTrend": 58
+    "kpis": 97,
+    "kpisWithTrend": 59
   },
   "companies": {
     "deep-industries": {
@@ -3783,9 +3783,9 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
@@ -3839,9 +3839,9 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
-            93853,
             76962,
             91265,
+            100664,
             70842
           ],
           "sourceTags": [
@@ -3858,11 +3858,6 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 30 Apr 2026",
-              "quote": "Company's sales volume of manufactured products in the 1st Quarter of FY '26 increased by 0.5% only on a year-on-year basis to 93,853 MT",
-              "page": 3
-            },
-            {
               "doc": "Presentation - 24 Oct 2025",
               "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
               "page": 15
@@ -3872,6 +3867,11 @@
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
               "page": 3
             },
+            {
+              "doc": "Presentation - 24 Apr 2026",
+              "quote": "95,556 1,00,664 Q4-FY25 Q4-FY26",
+              "page": 16
+            },
             null
           ],
           "oneOffs": [
@@ -3880,7 +3880,58 @@
             null,
             "negligible exports due to West Asia crisis"
           ],
-          "flag": "inflecting-up",
+          "flag": "decelerating",
+          "notes": null
+        },
+        {
+          "id": "capacity-utilisation",
+          "label": "Capacity utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            79,
+            80,
+            80,
+            80
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "model"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 26 Jan 2026",
+              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 30 Apr 2026",
+              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
+              "page": 3
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "beyondBrief": true,
           "notes": null
         }
       ]
@@ -3889,57 +3940,53 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31059,
+      "ctxChars": 31058,
       "kpis": [
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume (YoY)",
-          "unit": "% YoY",
+          "unit": "% yoy",
           "flagBasis": "yoy",
           "values": [
+            8,
             7,
-            7.5,
             7.5,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "company-filing",
+            "mgmt-claim",
             null
           ],
           "origins": [
             "model",
             "model",
-            "insights",
+            "model",
             null
           ],
           "citations": [
             null,
             null,
-            {
-              "doc": "Concall Transcript - 04 May 2026",
-              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
-              "page": 6
-            },
-            null
-          ],
-          "oneOffs": [
-            "No Q2 FY26 data",
-            "No Q3 FY26 data",
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            "No Q2 FY26 data",
+            "No Q3 FY26 data",
+            null
+          ],
           "flag": null,
-          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 09 Feb 2026, page 3."
+          "notes": "Q1 FY26: No YoY volume growth stated for Q1 FY26 (quarter ending March 2025). Q2 FY26: No YoY volume growth stated for Q2 FY26 (quarter ending June 2025). The Q2 FY26 call mentions 'higher volumes that grew 7% during this quarter' but this "
         },
         {
           "id": "base-oil-spread",
@@ -4256,7 +4303,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34015,
+      "ctxChars": 34581,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4294,7 +4341,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput YoY growth data found in any of the excerpts. The Q4 FY26 concall mentions 'handling LPG vessels' during disruptions but provides no volume or YoY figures. The Q1 FY27 concall and investor presentation do not"
+          "notes": "No POL/LPG/LNG cargo throughput YoY growth figures found in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Q4 FY26 concall mentions 'handling LPG vessels' during disruptions but provides no throughput volume or YoY growt"
         },
         {
           "id": "total-cargo-volume",
