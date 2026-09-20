@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-09-19T11:13:37.819Z",
+  "generatedAt": "2026-09-20T11:43:34.258Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -10,7 +10,7 @@
   "coverage": {
     "tilesLive": 6,
     "tilesTotal": 6,
-    "linesLive": 9,
+    "linesLive": 8,
     "linesTotal": 9
   },
   "tiles": [
@@ -371,17 +371,12 @@
           "shortLabel": "APM",
           "color": "#0891B2",
           "primary": false,
-          "status": "live",
-          "source": "PPAC, Ministry of Petroleum & Natural Gas - domestic gas notification for 1 September 2026 to 30 September 2026, issued 2026-08-31 (https://ppac.gov.in/download.php?file=importantnews/1788176556_Domestic_Natural_Gas_price_for_Sep-2026.pdf)",
-          "sourceTag": "official",
-          "notes": "ONGC/OIL nomination-gas ceiling of $7.00/mmbtu, below the notified price of $9.00. This month only - PPAC publishes each month as a separate scanned notification.",
-          "asOf": "2026-09-01",
-          "series": [
-            {
-              "date": "2026-09-01",
-              "value": 7
-            }
-          ]
+          "status": "awaiting",
+          "source": null,
+          "sourceTag": "unknown",
+          "asOf": null,
+          "series": [],
+          "awaitingReason": "Could not read the PPAC gas notification"
         }
       ]
     },
@@ -472,7 +467,7 @@
       "supports": "up",
       "supportsWhy": "Busier tankers mean more cargoes are actually moving.",
       "status": "live",
-      "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via firecrawl)",
+      "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via scrapedo)",
       "sourceTag": "external",
       "asOf": "2026-09-01",
       "lines": [
@@ -482,7 +477,7 @@
           "color": "#B91C1C",
           "primary": true,
           "status": "live",
-          "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via firecrawl)",
+          "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via scrapedo)",
           "sourceTag": "external",
           "notes": "Latest level only - the Baltic Exchange licenses the history, so this line has no 12-month trend.",
           "asOf": "2026-09-01",
