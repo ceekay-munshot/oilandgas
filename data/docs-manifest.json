@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-09-21T11:17:31.581Z",
+  "generatedAt": "2026-09-21T13:49:31.431Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -121,7 +121,7 @@
         "pages": null,
         "via": "browser",
         "cache": "pipeline/cache/docs/ONGC/ppt-2025-02.txt",
-        "error": "apiRequestContext.get: Timeout 40000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/InvestorPresentation_Q3-FY25.pdf/551ceb5b-6e9"
+        "error": "apiRequestContext.get: connect ECONNREFUSED 122.252.254.35:443\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/InvestorPresentation_Q3-FY25.pd"
       },
       "transcripts": [
         {
@@ -136,7 +136,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/transcript-2026-08.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Transcription-Q1-FY2627.pdf\n    - user-agent:"
+          "error": "apiRequestContext.get: connect ECONNREFUSED 210.212.78.205:443\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Transcription-Q1-FY2627.pdf\n   "
         },
         {
           "type": "transcript",
@@ -163,7 +163,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/transcript-2026-02.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; L"
+          "error": "apiRequestContext.get: connect ECONNREFUSED 122.252.254.35:443\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozil"
         },
         {
           "type": "transcript",
@@ -177,7 +177,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/transcript-2025-11.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Transcription181125.pdf/6f9e95e9-c665-e747-03"
+          "error": "apiRequestContext.get: connect ECONNREFUSED 210.212.78.205:443\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Transcription181125.pdf/6f9e95e"
         },
         {
           "type": "transcript",
@@ -191,7 +191,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/transcript-2025-08.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; L"
+          "error": "apiRequestContext.get: connect ECONNREFUSED 122.252.254.35:443\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozil"
         },
         {
           "type": "transcript",
@@ -205,7 +205,7 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/transcript-2025-05.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Q4FY25Earnings.pdf/072c156d-073f-dea7-492b-e7"
+          "error": "apiRequestContext.get: connect ECONNREFUSED 122.252.254.35:443\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Q4FY25Earnings.pdf/072c156d-073"
         }
       ]
     },
@@ -327,9 +327,9 @@
           "periodIso": "2026-07",
           "url": "https://www.deepindustries.com/docs/TranscriptQ1.pdf",
           "source": "deepindustries.com",
-          "status": "http_429",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 54080,
+          "pages": 20,
           "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt"
         },
@@ -1856,9 +1856,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 95882,
+          "pages": 31,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -2216,7 +2216,7 @@
         "pages": null,
         "via": "browser",
         "cache": "pipeline/cache/docs/BPCL/ppt-2026-07.txt",
-        "error": "Every scraper failed for https://www.bharatpetroleum.in/images/files/investor-presentation-q1-2026-27-upload.pdf (firecrawl: 402 Payment Required for https://ap"
+        "error": "scraper returned only 0 chars"
       },
       "transcripts": [
         {
@@ -5048,11 +5048,12 @@
           "periodIso": "2022-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=79f4b22d-602a-4eac-8d10-9e303ee69ff7.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 30491,
-          "pages": 12,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/ASIANENE/transcript-2022-08.txt"
+          "cache": "pipeline/cache/docs/ASIANENE/transcript-2022-08.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=79f4b22d-602a-4eac-8d10-9e303ee69f"
         }
       ]
     }
