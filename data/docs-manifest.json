@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-09-14T13:41:08.362Z",
+  "generatedAt": "2026-09-21T11:17:31.581Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -22,21 +22,21 @@
         "cons": 1
       },
       "summariesAvailable": 12,
-      "transcriptsFound": 11,
+      "transcriptsFound": 12,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Aug 2026",
           "periodIso": "2026-08",
-          "url": "https://www.screener.in/concalls/summary/23271972/",
+          "url": "https://www.screener.in/concalls/summary/23331206/",
           "source": "screener.in",
           "status": "ok",
-          "chars": 10692,
+          "chars": 9437,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/summary-2026-08.txt",
-          "sample": "Q1 FY26–27: Financial performance (standalone vs. consolidated) and drivers Standalone revenue: ₹46,450 crore , +45% YoY . Standalone PAT: ₹17,034 crore , +112%"
+          "sample": "Financial performance (Q1 FY27) Standalone: Gross revenue INR 46,460 crore ( +45% YoY ); PAT INR 17,034 crore ( +112% YoY ); highest-ever standalone quarterly P"
         },
         {
           "type": "summary",
@@ -127,6 +127,20 @@
         {
           "type": "transcript",
           "role": "transcript",
+          "period": "Aug 2026",
+          "periodIso": "2026-08",
+          "url": "https://ongcindia.com/documents/77751/2660534/Transcription-Q1-FY2627.pdf",
+          "source": "ongcindia.com",
+          "status": "error",
+          "chars": 0,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ONGC/transcript-2026-08.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Transcription-Q1-FY2627.pdf\n    - user-agent:"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
           "period": "May 2026",
           "periodIso": "2026-05",
           "url": "https://www.morningstar.com/stocks/xnse/ongc/earnings-transcript",
@@ -192,20 +206,6 @@
           "via": "browser",
           "cache": "pipeline/cache/docs/ONGC/transcript-2025-05.txt",
           "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Q4FY25Earnings.pdf/072c156d-073f-dea7-492b-e7"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Feb 2025",
-          "periodIso": "2025-02",
-          "url": "https://ongcindia.com/documents/77751/2660534/transcription-ongc_conference2025.pdf/82246ca8-5029-190a-359f-7c9508442ec3",
-          "source": "ongcindia.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/ONGC/transcript-2025-02.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/transcription-ongc_conference2025.pdf/82246ca"
         }
       ]
     },
@@ -610,12 +610,12 @@
           "periodIso": "2026-08",
           "url": "https://www.screener.in/concalls/summary/23313011/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 7687,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/PETRONET/summary-2026-08.txt",
-          "sample": "Q1 FY27: Financial delivery despite volume disruption Record first-quarter profitability (consolidated): Management reported PBT INR 1,491 cr and PAT INR 1,137 "
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -624,12 +624,12 @@
           "periodIso": "2026-05",
           "url": "https://www.screener.in/concalls/summary/23163826/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 7519,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/PETRONET/summary-2026-05.txt",
-          "sample": "FY26 & Q4 FY26: Record profitability despite Gulf disruption Management highlighted a “ strong financial and operational performance… despite the challenging ex"
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -638,12 +638,12 @@
           "periodIso": "2026-02",
           "url": "https://www.screener.in/concalls/summary/23126426/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 7964,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/PETRONET/summary-2026-02.txt",
-          "sample": "Operating performance: throughput, utilization, mix Q3 FY26 LNG processed: 233 TBTU , +2% QoQ and +2% YoY (vs 228 TBTU in both periods cited). Management attrib"
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -652,12 +652,12 @@
           "periodIso": "2025-11",
           "url": "https://www.screener.in/concalls/summary/23051938/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 9588,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/PETRONET/summary-2025-11.txt",
-          "sample": "Financial performance & shareholder returns (Q2 FY26) PAT: INR 805.75 crore , down 5% YoY , attributed by management to “lower LNG volumes.” Revenue from operat"
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -666,12 +666,12 @@
           "periodIso": "2025-08",
           "url": "https://www.screener.in/concalls/summary/23023691/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 8852,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/PETRONET/summary-2025-08.txt",
-          "sample": "Q1 FY26: Financial & Operating Performance (Sequential recovery, YoY softer) Profitability moderated vs prior periods: PBT: INR 1,136 cr (vs INR 1,446 cr in Q4 "
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -680,12 +680,12 @@
           "periodIso": "2025-05",
           "url": "https://www.screener.in/concalls/summary/23006437/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 11049,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/PETRONET/summary-2025-05.txt",
-          "sample": "Petronet LNG – Q4 & FY25 Earnings Call Summary (20 May 2025) 1. Performance Highlights FY25 (Year Ended March 2025) Management described FY25 as “an excellent y"
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": null,
@@ -1242,11 +1242,11 @@
           "url": "https://www.screener.in/concalls/summary/22998490/",
           "source": "screener.in",
           "status": "ok",
-          "chars": 9528,
+          "chars": 9518,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/summary-2025-05.txt",
-          "sample": "Larsen & Toubro Ltd – Q4 FY25 Earnings Concall Detailed Note (May 8, 2025) Macro and Industry Context Global Backdrop: Management highlighted an &quot;Ambiguous"
+          "sample": "Larsen & Toubro Ltd – Q4 FY25 Earnings Concall Detailed Note (May 8, 2025) Macro and Industry Context Global Backdrop: Management highlighted an \"Ambiguous Worl"
         }
       ],
       "ppt": {
@@ -1856,9 +1856,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 95882,
-          "pages": 31,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -2140,12 +2140,12 @@
           "periodIso": "2026-05",
           "url": "https://www.screener.in/concalls/summary/23204953/",
           "source": "screener.in",
-          "status": "thin",
-          "chars": 112,
+          "status": "ok",
+          "chars": 11305,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/BPCL/summary-2026-05.txt",
-          "sample": "Added to queue You will get an email when the notes are prepared. Requests of Premium users are processed first."
+          "sample": "Macro & operating context: supply-chain shock management, volatility, and near-term warning Management framed FY26 exit as occurring amid “ turbulent times ” wi"
         },
         {
           "type": "summary",
@@ -2211,11 +2211,12 @@
         "periodIso": "2026-07",
         "url": "https://www.bharatpetroleum.in/images/files/investor-presentation-q1-2026-27-upload.pdf",
         "source": "bharatpetroleum.in",
-        "status": "ok",
-        "chars": 43021,
+        "status": "http_403",
+        "chars": 0,
         "pages": null,
-        "via": "firecrawl",
-        "cache": "pipeline/cache/docs/BPCL/ppt-2026-07.txt"
+        "via": "browser",
+        "cache": "pipeline/cache/docs/BPCL/ppt-2026-07.txt",
+        "error": "Every scraper failed for https://www.bharatpetroleum.in/images/files/investor-presentation-q1-2026-27-upload.pdf (firecrawl: 402 Payment Required for https://ap"
       },
       "transcripts": [
         {
@@ -2550,12 +2551,12 @@
           "periodIso": "2025-10",
           "url": "https://www.screener.in/concalls/summary/23044798/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 10312,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GAIL/summary-2025-10.txt",
-          "sample": "Major strategic & regulatory developments (projects, authorizations, tariffs) New pipeline commissioned (SAPL): Management highlighted that the Srikakulam–Angul"
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -2564,12 +2565,12 @@
           "periodIso": "2025-10",
           "url": "https://www.screener.in/concalls/summary/23044798/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 10312,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GAIL/summary-2025-10.txt",
-          "sample": "Major strategic & regulatory developments (projects, authorizations, tariffs) New pipeline commissioned (SAPL): Management highlighted that the Srikakulam–Angul"
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -2578,12 +2579,12 @@
           "periodIso": "2025-07",
           "url": "https://www.screener.in/concalls/summary/23022151/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 9446,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GAIL/summary-2025-07.txt",
-          "sample": "Material developments (projects, authorizations, connectivity) JHBDPL milestone / east India gas access: The Durgapur–Kolkata section of the Jagdishpur–Haldia–B"
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": {
@@ -2700,11 +2701,11 @@
           "url": "https://www.screener.in/concalls/summary/23324571/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/IGL/summary-2026-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -2713,12 +2714,12 @@
           "periodIso": "2026-05",
           "url": "https://www.screener.in/concalls/summary/23204946/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 7551,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/IGL/summary-2026-05.txt",
-          "sample": "FY26 snapshot: volumes up, profitability resilient despite sourcing shock Average sales volume (FY26): 9.39 MMSCMD vs 8.99 MMSCMD in FY25. Management highlighte"
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -2727,12 +2728,12 @@
           "periodIso": "2026-02",
           "url": "https://www.screener.in/concalls/summary/23133725/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 9212,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/IGL/summary-2026-02.txt",
-          "sample": "Q3 FY26: Core takeaways (what changed, why it matters) IGL reported modest volume growth but sharp profitability improvement , driven by regulatory tailwinds (t"
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -2741,12 +2742,12 @@
           "periodIso": "2025-11",
           "url": "https://www.screener.in/concalls/summary/23060364/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 8686,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/IGL/summary-2025-11.txt",
-          "sample": "Q2 FY26 snapshot: volumes up modestly; margins compressed by gas mix and FX Total volumes: 857 MMSCM vs 830 MMSCM YoY ( +3% ); 9.31 MMSCMD vs 9.03 MMSCMD . Mana"
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -2755,12 +2756,12 @@
           "periodIso": "2025-07",
           "url": "https://www.screener.in/concalls/summary/23033632/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 8084,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/IGL/summary-2025-07.txt",
-          "sample": "Q1 FY26 performance snapshot (IGL standalone unless stated) Volumes: 831 MMSCM in Q1 ( +6% YoY ), 9.13 MMSCMD avg vs 8.64 MMSCMD last year. Segmentally, managem"
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -2769,12 +2770,12 @@
           "periodIso": "2025-04",
           "url": "https://www.screener.in/concalls/summary/22995867/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 10589,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/IGL/summary-2025-04.txt",
-          "sample": "Indraprastha Gas Ltd (IGL) – Q4 FY25 & FY25 Earnings Call Summary 1. Operating & Financial Performance FY25 vs FY24 Volumes & Mix Total average daily volume: 8."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": {
@@ -2891,11 +2892,11 @@
           "url": "https://www.screener.in/concalls/summary/23276725/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/MGL/summary-2026-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -2905,11 +2906,11 @@
           "url": "https://www.screener.in/concalls/summary/23168976/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/MGL/summary-2026-05.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -2919,11 +2920,11 @@
           "url": "https://www.screener.in/concalls/summary/23114926/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/MGL/summary-2026-02.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -2933,11 +2934,11 @@
           "url": "https://www.screener.in/concalls/summary/23045999/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/MGL/summary-2025-11.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -2947,11 +2948,11 @@
           "url": "https://www.screener.in/concalls/summary/23021246/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/MGL/summary-2025-07.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -2961,11 +2962,11 @@
           "url": "https://www.screener.in/concalls/summary/22998871/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/MGL/summary-2025-06.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": {
@@ -3082,11 +3083,11 @@
           "url": "https://www.screener.in/concalls/summary/23306933/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GUJENERGY/summary-2026-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3096,11 +3097,11 @@
           "url": "https://www.screener.in/concalls/summary/23228397/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GUJENERGY/summary-2026-06.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3110,11 +3111,11 @@
           "url": "https://www.screener.in/concalls/summary/23070764/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GUJENERGY/summary-2026-01.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3124,11 +3125,11 @@
           "url": "https://www.screener.in/concalls/summary/23058035/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GUJENERGY/summary-2025-11.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3138,11 +3139,11 @@
           "url": "https://www.screener.in/concalls/summary/23029155/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GUJENERGY/summary-2025-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3152,11 +3153,11 @@
           "url": "https://www.screener.in/concalls/summary/23006525/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GUJENERGY/summary-2025-05.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": {
@@ -3273,11 +3274,11 @@
           "url": "https://www.screener.in/concalls/summary/23312325/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISLOG/summary-2026-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3287,11 +3288,11 @@
           "url": "https://www.screener.in/concalls/summary/23239659/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISLOG/summary-2026-06.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3301,11 +3302,11 @@
           "url": "https://www.screener.in/concalls/summary/23083668/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISLOG/summary-2026-02.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3315,11 +3316,11 @@
           "url": "https://www.screener.in/concalls/summary/23050795/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISLOG/summary-2025-11.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3329,11 +3330,11 @@
           "url": "https://www.screener.in/concalls/summary/23031563/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISLOG/summary-2025-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3343,11 +3344,11 @@
           "url": "https://www.screener.in/concalls/summary/22967183/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISLOG/summary-2024-11.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": {
@@ -3464,11 +3465,11 @@
           "url": "https://www.screener.in/concalls/summary/23311613/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISVOPAK/summary-2026-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3478,11 +3479,11 @@
           "url": "https://www.screener.in/concalls/summary/23239657/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISVOPAK/summary-2026-06.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3492,11 +3493,11 @@
           "url": "https://www.screener.in/concalls/summary/23083036/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISVOPAK/summary-2026-02.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3506,11 +3507,11 @@
           "url": "https://www.screener.in/concalls/summary/23048815/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISVOPAK/summary-2025-11.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3520,11 +3521,11 @@
           "url": "https://www.screener.in/concalls/summary/23029853/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISVOPAK/summary-2025-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": {
@@ -3628,11 +3629,11 @@
           "url": "https://www.screener.in/concalls/summary/23268677/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/SPLPETRO/summary-2026-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3642,11 +3643,11 @@
           "url": "https://www.screener.in/concalls/summary/23149869/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/SPLPETRO/summary-2026-04.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3656,11 +3657,11 @@
           "url": "https://www.screener.in/concalls/summary/23070418/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/SPLPETRO/summary-2026-01.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3670,11 +3671,11 @@
           "url": "https://www.screener.in/concalls/summary/23043376/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/SPLPETRO/summary-2025-10.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3684,11 +3685,11 @@
           "url": "https://www.screener.in/concalls/summary/23021220/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/SPLPETRO/summary-2025-07.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3698,11 +3699,11 @@
           "url": "https://www.screener.in/concalls/summary/22994245/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/SPLPETRO/summary-2025-04.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": {
@@ -3819,11 +3820,11 @@
           "url": "https://www.screener.in/concalls/summary/23283759/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/summary-2026-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3833,11 +3834,11 @@
           "url": "https://www.screener.in/concalls/summary/23153700/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/summary-2026-05.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3847,11 +3848,11 @@
           "url": "https://www.screener.in/concalls/summary/23094697/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/summary-2026-02.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3861,11 +3862,11 @@
           "url": "https://www.screener.in/concalls/summary/23048886/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/summary-2025-11.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3875,11 +3876,11 @@
           "url": "https://www.screener.in/concalls/summary/23028245/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/summary-2025-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -3889,11 +3890,11 @@
           "url": "https://www.screener.in/concalls/summary/22995885/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/summary-2025-05.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": {
@@ -3930,9 +3931,9 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b2502bf8-680b-48ed-a5f0-5409b7938365.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 40455,
+          "pages": 14,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-05.txt"
         },
@@ -4010,11 +4011,11 @@
           "url": "https://www.screener.in/concalls/summary/23256998/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GANDHAR/summary-2026-07.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4024,11 +4025,11 @@
           "url": "https://www.screener.in/concalls/summary/23219928/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GANDHAR/summary-2026-06.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4038,11 +4039,11 @@
           "url": "https://www.screener.in/concalls/summary/23078282/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GANDHAR/summary-2026-02.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4052,11 +4053,11 @@
           "url": "https://www.screener.in/concalls/summary/23058105/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GANDHAR/summary-2025-11.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4066,11 +4067,11 @@
           "url": "https://www.screener.in/concalls/summary/23006470/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GANDHAR/summary-2025-05.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4080,11 +4081,11 @@
           "url": "https://www.screener.in/concalls/summary/22958523/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GANDHAR/summary-2024-11.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": {
@@ -4228,11 +4229,11 @@
           "url": "https://www.screener.in/concalls/summary/23328789/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ADANIPORTS/summary-2026-07.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4242,11 +4243,11 @@
           "url": "https://www.screener.in/concalls/summary/23156018/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ADANIPORTS/summary-2026-05.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4256,11 +4257,11 @@
           "url": "https://www.screener.in/concalls/summary/23093349/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ADANIPORTS/summary-2026-02.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4270,11 +4271,11 @@
           "url": "https://www.screener.in/concalls/summary/23056839/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ADANIPORTS/summary-2025-11.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4284,11 +4285,11 @@
           "url": "https://www.screener.in/concalls/summary/23026961/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ADANIPORTS/summary-2025-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4298,11 +4299,11 @@
           "url": "https://www.screener.in/concalls/summary/22995624/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ADANIPORTS/summary-2025-05.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": {
@@ -4405,7 +4406,7 @@
       "view": "consolidated",
       "url": "https://www.screener.in/company/GESHIP/consolidated/",
       "analysis": {
-        "pros": 5,
+        "pros": 4,
         "cons": 2
       },
       "summariesAvailable": 44,
@@ -4418,12 +4419,12 @@
           "periodIso": "2026-08",
           "url": "https://www.screener.in/concalls/summary/23285909/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 8481,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GESHIP/summary-2026-08.txt",
-          "sample": "Financial and Capital-Return Highlights (Q1 FY27 ended Jun’26) Record profitability: Management stated this was “our most profitable quarter ever by a significa"
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4432,12 +4433,12 @@
           "periodIso": "2026-08",
           "url": "https://www.screener.in/concalls/summary/23285909/",
           "source": "screener.in",
-          "status": "ok",
-          "chars": 8481,
+          "status": "gated",
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GESHIP/summary-2026-08.txt",
-          "sample": "Financial and Capital-Return Highlights (Q1 FY27 ended Jun’26) Record profitability: Management stated this was “our most profitable quarter ever by a significa"
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4447,11 +4448,11 @@
           "url": "https://www.screener.in/concalls/summary/23181354/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GESHIP/summary-2026-05.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4461,11 +4462,11 @@
           "url": "https://www.screener.in/concalls/summary/23081169/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GESHIP/summary-2026-02.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4475,11 +4476,11 @@
           "url": "https://www.screener.in/concalls/summary/23051999/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GESHIP/summary-2025-12.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4489,11 +4490,11 @@
           "url": "https://www.screener.in/concalls/summary/23024888/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GESHIP/summary-2025-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": {
@@ -4610,11 +4611,11 @@
           "url": "https://www.screener.in/concalls/summary/23176566/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/SCI/summary-2026-05.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4624,11 +4625,11 @@
           "url": "https://www.screener.in/concalls/summary/23053183/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/SCI/summary-2025-11.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": {
@@ -4693,11 +4694,11 @@
           "url": "https://www.screener.in/concalls/summary/23281798/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/THERMAX/summary-2026-07.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4707,11 +4708,11 @@
           "url": "https://www.screener.in/concalls/summary/23243124/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/THERMAX/summary-2026-06.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4721,11 +4722,11 @@
           "url": "https://www.screener.in/concalls/summary/23164680/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/THERMAX/summary-2026-05.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4735,11 +4736,11 @@
           "url": "https://www.screener.in/concalls/summary/23095436/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/THERMAX/summary-2026-02.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4749,11 +4750,11 @@
           "url": "https://www.screener.in/concalls/summary/23055494/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/THERMAX/summary-2025-11.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         },
         {
           "type": "summary",
@@ -4763,11 +4764,11 @@
           "url": "https://www.screener.in/concalls/summary/23025555/",
           "source": "screener.in",
           "status": "gated",
-          "chars": 88,
+          "chars": 72,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/THERMAX/summary-2025-08.txt",
-          "sample": "Limit exceeded - Please try again later Premium users can request 80 summaries each day."
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
       "ppt": {
@@ -4861,6 +4862,197 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/THERMAX/transcript-2025-05.txt"
+        }
+      ]
+    },
+    "asian-energy": {
+      "name": "Asian Energy",
+      "slug": "ASIANENE",
+      "view": "consolidated",
+      "url": "https://www.screener.in/company/ASIANENE/consolidated/",
+      "analysis": {
+        "pros": 2,
+        "cons": 3
+      },
+      "summariesAvailable": 9,
+      "transcriptsFound": 8,
+      "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.screener.in/concalls/summary/23197514/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 9275,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ASIANENE/summary-2026-05.txt",
+          "sample": "Executive takeaways (what changed / what matters) FY26 was positioned as a structural inflection: management claims Asian Energy “ transformed from a domestic e"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Feb 2026",
+          "periodIso": "2026-02",
+          "url": "https://www.screener.in/concalls/summary/23183275/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 10118,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ASIANENE/summary-2026-02.txt",
+          "sample": "Core strategic narrative: shift to an “integrated international energy platform” Management framed FY26 as a structural inflection: “ we transformed from a dome"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.screener.in/concalls/summary/23059266/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 9187,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ASIANENE/summary-2025-11.txt",
+          "sample": "Strategic and Corporate Developments (H1 FY26) — “transformative” phase Kuiper Group acquisition completed; consolidation begins: AESL “successfully completed t"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Sep 2025",
+          "periodIso": "2025-09",
+          "url": "https://www.screener.in/concalls/summary/23039067/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 11073,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ASIANENE/summary-2025-09.txt",
+          "sample": "Transaction headline: Oilmax Energy to merge into Asian Energy (AESL); Kuiper acquisition completed Board-approved scheme of merger by absorption : Oilmax Energ"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "May 2025",
+          "periodIso": "2025-05",
+          "url": "https://www.screener.in/concalls/summary/23003987/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 11241,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ASIANENE/summary-2025-05.txt",
+          "sample": "Asian Energy Services – Q4 & FY25 Earnings Call Summary (Conference date: 19 May 2025) 1. Big Picture & Guidance Management called FY25 “a milestone year” , wit"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Nov 2024",
+          "periodIso": "2024-11",
+          "url": "https://www.screener.in/concalls/summary/22965297/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 9721,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ASIANENE/summary-2024-11.txt",
+          "sample": "Asian Energy Services – Q2 & H1 FY25 Earnings Call Summary (Conference call dated 13 Nov 2024) 1. Business Overview & Strategic Positioning Asian Energy Service"
+        }
+      ],
+      "ppt": {
+        "type": "ppt",
+        "role": "ppt",
+        "period": "Aug 2026",
+        "periodIso": "2026-08",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=be95fa4c-8d7f-479a-8c3a-d3bbc98a1cb8.pdf",
+        "source": "bseindia.com",
+        "status": "ok",
+        "chars": 23282,
+        "pages": 34,
+        "via": "browser",
+        "cache": "pipeline/cache/docs/ASIANENE/ppt-2026-08.txt"
+      },
+      "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2026",
+          "periodIso": "2026-05",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=4ee682b8-06fc-449b-9c90-8908fe79f342.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 38634,
+          "pages": 14,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ASIANENE/transcript-2026-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2025",
+          "periodIso": "2025-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=50f8d839-70d1-4c8b-8e39-592bf5ce13f4.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 34051,
+          "pages": 12,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ASIANENE/transcript-2025-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Sep 2025",
+          "periodIso": "2025-09",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=673ba7cf-7507-4d76-92c3-af15f913958c.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 38051,
+          "pages": 14,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ASIANENE/transcript-2025-09.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "May 2025",
+          "periodIso": "2025-05",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=27e69c38-829d-4436-acb3-61700cc56612.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 50917,
+          "pages": 19,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ASIANENE/transcript-2025-05.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2024",
+          "periodIso": "2024-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=a1c82649-7ab3-4452-988a-9bca3501fec0.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 34064,
+          "pages": 12,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ASIANENE/transcript-2024-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Aug 2022",
+          "periodIso": "2022-08",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=79f4b22d-602a-4eac-8d10-9e303ee69ff7.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 30491,
+          "pages": 12,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ASIANENE/transcript-2022-08.txt"
         }
       ]
     }

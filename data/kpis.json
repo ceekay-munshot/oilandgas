@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-09-14T13:41:12.922Z",
+  "generatedAt": "2026-09-21T11:23:26.982Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -12,7 +12,7 @@
   "flatBandPct": 1.5,
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
-    "companies": 27,
+    "companies": 28,
     "kpiCells": 377,
     "realCells": 252,
     "nullCells": 125,
@@ -477,19 +477,19 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            null,
+            92,
             94,
             90.1,
             58
           ],
           "sourceTags": [
-            null,
+            "mgmt-claim",
             "company-filing",
             "company-filing",
             "mgmt-claim"
           ],
           "origins": [
-            null,
+            "model",
             "insights",
             "insights",
             "model"
@@ -514,8 +514,8 @@
             null,
             "Qatar force majeure; Strait of Hormuz disruption"
           ],
-          "flag": null,
-          "notes": "Q2 FY26: no single-quarter utilisation stated. Q3 FY26: Dahej 94% stated; overall company utilisation not stated for Q3 alone. Q4 FY26: no single-quarter utilisation stated. Q1 FY27: overall company utilisation 58% stated (vs 76% YoY and Qo"
+          "flag": "inflecting-down",
+          "notes": null
         },
         {
           "id": "volume",
@@ -657,7 +657,7 @@
             null
           ],
           "flag": null,
-          "notes": "No single-quarter Kochi throughput stated for any of the four quarters. Screener Insights shows FY26 full-year Kochi throughput 68 TBTU (stock measure as of Mar 2026), but this is a full-year figure, not quarterly."
+          "notes": "Q2 FY26: No quarterly throughput stated in Q2 call. Q3 FY26: No quarterly throughput stated in Q3 call. Q4 FY26: No quarterly throughput stated in Q4 call; management mentioned Kochi achieved highest ever annual volume of 68 TBTU for FY26 ("
         },
         {
           "id": "kochi-utilisation",
@@ -703,7 +703,7 @@
             null
           ],
           "flag": "inflecting-down",
-          "notes": "Q2 FY26: 27% stated (highest ever at that time). Q3 FY26: 29% stated (highest ever capacity utilisation). Q4 FY26: March utilisation stated as 'slightly >20%' but no single-quarter Q4 figure given. Q1 FY27: 23.27% stated."
+          "notes": "Q2 FY26: 27% stated in Q2 call as 'highest ever capacity utilization'. Q3 FY26: 29% stated in Q3 call as 'highest ever capacity utilization'. Q4 FY26: Q4 call mentions March utilization was 'slightly more than 20%' but does not give the ful"
         }
       ]
     },
@@ -711,15 +711,15 @@
       "name": "IGL",
       "slug": "IGL",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 28270,
+      "ctxChars": 28271,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -727,21 +727,21 @@
           "unit": "% yoy",
           "flagBasis": "yoy",
           "values": [
+            6,
             3,
             3,
-            null,
             6
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            null,
+            "mgmt-claim",
             "mgmt-claim"
           ],
           "origins": [
             "model",
             "model",
-            null,
+            "model",
             "model"
           ],
           "citations": [
@@ -757,7 +757,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": "6 percent (model) withheld: does not match this row's unit % yoy"
+          "notes": null
         },
         {
           "id": "ebitda-per-scm",
@@ -765,20 +765,20 @@
           "unit": "₹/scm",
           "flagBasis": "level",
           "values": [
+            6.16,
             5.15,
             5.4,
-            4.85,
             4.85
           ],
           "sourceTags": [
+            "mgmt-claim",
             "derived",
             "mgmt-claim",
-            "company-filing",
             "mgmt-claim"
           ],
           "origins": [
-            "derived",
             "model",
+            "derived",
             "model",
             "model"
           ],
@@ -794,8 +794,59 @@
             null,
             null
           ],
-          "flag": "steady",
+          "flag": "inflecting-down",
           "notes": "Derived: EBITDA (Screener quarterly Operating Profit, ₹ cr) ÷ quarterly gas volume (Insights \"Total Sales Volume\" MMSCMD × days in quarter), in ₹/scm."
+        },
+        {
+          "id": "total-sales-volume",
+          "label": "Total sales volume",
+          "unit": "MMSCMD",
+          "flagBasis": "level",
+          "values": [
+            9.13,
+            9.31,
+            9.43,
+            9.66
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "mgmt-claim"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "model"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "The total sales volume for quarter one stood at 831 million standard cubic meters, registering a growth of 6% year-over-year. This is translating into an average daily volume of 9.13 million standard cubic meter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 14 Nov 2025",
+              "quote": "Our total sales volume for the quarter stood at 857 million standard cubic meter, as compared to 830 million standard cubic meter during the same period of last year, reflecting a 3% year-on-year growth. This translates to an average daily volume of 9.31 million standard cubic meter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 13 Feb 2026",
+              "quote": "9.43 MMSCMD compared to 9.11 million MMSCMD in Q3 financial year '24-'25",
+              "page": 4
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "accelerating",
+          "beyondBrief": true,
+          "notes": null
         }
       ]
     },
@@ -1320,7 +1371,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34172,
+      "ctxChars": 33720,
       "kpis": [
         {
           "id": "hydrocarbon-order-inflow",
@@ -2093,7 +2144,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31915,
+      "ctxChars": 31112,
       "kpis": [
         {
           "id": "grm",
@@ -2169,7 +2220,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin per litre not disclosed in any of the excerpts. Management discussed margin pressure and LPG under-recoveries but did not state a per-litre marketing margin figure for any quarter."
+          "notes": "Marketing margin per litre not disclosed in any of the excerpts. Q1 FY26 concall mentions 'integrated margin' approach for aviation and avoids standalone ATF margin; Q2 FY26 concall discusses LPG under-recovery per cylinder (₹100/cyl in Q2,"
         },
         {
           "id": "throughput",
@@ -2482,15 +2533,15 @@
       "name": "BPCL",
       "slug": "BPCL",
       "quarters": [
-        "Q3 FY25",
         "Q4 FY25",
         "Q1 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34618,
+      "ctxChars": 28618,
       "kpis": [
         {
           "id": "grm",
@@ -2498,29 +2549,24 @@
           "unit": "$/barrel",
           "flagBasis": "level",
           "values": [
-            5.95,
             9.2,
             4.88,
+            null,
             null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
-            "company-filing",
+            null,
             null
           ],
           "origins": [
             "insights",
             "insights",
-            "insights",
+            null,
             null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 02 May 2025",
-              "quote": "9M FY25: $5.95/bbl Refinery GRM",
-              "page": 20
-            },
             {
               "doc": "Concall Transcript - 02 May 2025",
               "quote": "our refineries recorded a GRM of $9.2 per barrel in the current quarter",
@@ -2531,6 +2577,7 @@
               "quote": "our refineries recorded a GRM of $4.88 per barrel in the current quarter",
               "page": 3
             },
+            null,
             null
           ],
           "oneOffs": [
@@ -2539,8 +2586,8 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
-          "notes": "41.41 $/bbl (model) withheld: does not match this row's unit $/barrel"
+          "flag": null,
+          "notes": "Q4 FY25: $9.2/bbl stated in Q4 FY25 concall. Q1 FY26: $4.88/bbl stated in Q1 FY26 concall. Q4 FY26: only full-year FY26 GRM $11.74/bbl stated in Q4 FY26 concall; quarterly figure not provided. Q1 FY27: $41.41/bbl stated in Q1 FY27 concall ("
         },
         {
           "id": "marketing-margin",
@@ -2578,7 +2625,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin in ₹/l not stated in any excerpt. Q1 FY26 call mentions 'adverse marketing margins' and a ₹7.5/l retail price revision in Q1 FY27, but these are not the margin itself. Q4 FY25 call mentions normalized retail fuel margin com"
+          "notes": "No quarterly marketing margin figures in ₹/l stated in any excerpt. Q1 FY27 concall mentions 'adverse marketing margins' and a retail price revision of ~₹7.5/litre but does not provide the actual margin level."
         },
         {
           "id": "throughput",
@@ -2586,29 +2633,24 @@
           "unit": "MMT",
           "flagBasis": "level",
           "values": [
-            9.54,
             10.58,
             10.42,
+            null,
             10.2
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
-            "company-filing",
+            null,
             "official"
           ],
           "origins": [
             "insights",
             "insights",
-            "insights",
+            null,
             "ppac"
           ],
           "citations": [
-            {
-              "doc": "Presentation - 02 May 2025",
-              "quote": "9M FY25: 29.93 MMT Refinery crude throughput",
-              "page": 20
-            },
             {
               "doc": "Concall Transcript - 02 May 2025",
               "quote": "Our refineries processed 10.58 million metric tons of crude, achieving 121% of nameplate capacity",
@@ -2619,6 +2661,7 @@
               "quote": "our refineries processed 10.42 million metric tons of crude, achieving 118% of nameplate capacity",
               "page": 3
             },
+            null,
             null
           ],
           "oneOffs": [
@@ -2628,58 +2671,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
-        },
-        {
-          "id": "market-sales",
-          "label": "Market sales",
-          "unit": "MMT",
-          "flagBasis": "level",
-          "values": [
-            13.43,
-            13.42,
-            13.58,
-            13.62
-          ],
-          "sourceTags": [
-            "company-filing",
-            "company-filing",
-            "company-filing",
-            "company-filing"
-          ],
-          "origins": [
-            "insights",
-            "insights",
-            "insights",
-            "model"
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 02 May 2025",
-              "quote": "9M FY25: 38.98 MMT Market sales",
-              "page": 20
-            },
-            {
-              "doc": "Concall Transcript - 02 May 2025",
-              "quote": "Our domestic market sales grew by 1.82% year-on-year during Q4 to 13.42 million metric tons",
-              "page": 3
-            },
-            {
-              "doc": "Concall Transcript - 14 Aug 2025",
-              "quote": "Our domestic market sales grew by 3.19% year-on-year during this quarter to 13.58 MMT",
-              "page": 3
-            },
-            null
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            "West Asia geopolitics, freight/insurance spike"
-          ],
-          "flag": "steady",
-          "beyondBrief": true,
-          "notes": null
+          "notes": "Q4 FY25: 10.58 MMT stated in Q4 FY25 concall. Q1 FY26: 10.42 MMT stated in Q1 FY26 concall. Q4 FY26: only full-year FY26 throughput 41.15 MMT stated in Q4 FY26 concall; quarterly figure not provided. Q1 FY27: 10.15 MMT stated in Q1 FY27 con"
         },
         {
           "id": "refinery-utilisation",
@@ -2687,9 +2679,9 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            113,
             121,
             118,
+            116,
             84
           ],
           "sourceTags": [
@@ -2701,15 +2693,10 @@
           "origins": [
             "insights",
             "insights",
-            "insights",
+            "model",
             "model"
           ],
           "citations": [
-            {
-              "doc": "Presentation - 02 May 2025",
-              "quote": "9M FY25: 113% utilization",
-              "page": 20
-            },
             {
               "doc": "Concall Transcript - 02 May 2025",
               "quote": "Our refineries processed 10.58 million metric tons of crude, achieving 121% of nameplate capacity",
@@ -2720,6 +2707,7 @@
               "quote": "our refineries processed 10.42 million metric tons of crude, achieving 118% of nameplate capacity",
               "page": 3
             },
+            null,
             null
           ],
           "oneOffs": [
@@ -2888,7 +2876,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32298,
+      "ctxChars": 32297,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -2976,7 +2964,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated in any excerpt. Q1 FY26 mentions polymer segment loss of ₹249 cr and price decline ~₹1,000/MT QoQ. Q2 FY26 mentions loss of ₹299 cr and delivered gas cost ~$10.5-10.6. Q3 FY26 mentions loss of ₹483 cr. Q1 FY"
+          "notes": "Q1 FY26: Not stated. Q2 FY26: Not stated. Q3 FY26: Not stated. Q1 FY27: Not stated. The excerpts discuss petrochemical segment losses, feedstock costs, breakeven pricing, and unit economics (gas price $10.54/MMBtu, breakeven ~$13-14/MMBtu l"
         },
         {
           "id": "gas-marketing-volume",
@@ -3940,53 +3928,57 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31058,
+      "ctxChars": 31059,
       "kpis": [
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume (YoY)",
-          "unit": "% yoy",
+          "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            8,
             7,
+            7.5,
             7.5,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
+            "company-filing",
             null
           ],
           "origins": [
             "model",
             "model",
-            "model",
+            "insights",
             null
           ],
           "citations": [
             null,
             null,
-            null,
+            {
+              "doc": "Concall Transcript - 04 May 2026",
+              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
+              "page": 6
+            },
             null
           ],
           "oneOffs": [
-            null,
             "No Q2 FY26 data",
             "No Q3 FY26 data",
+            null,
             null
           ],
           "flag": null,
-          "notes": "Q1 FY26: No YoY volume growth stated for Q1 FY26 (quarter ending March 2025). Q2 FY26: No YoY volume growth stated for Q2 FY26 (quarter ending June 2025). The Q2 FY26 call mentions 'higher volumes that grew 7% during this quarter' but this "
+          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 09 Feb 2026, page 3."
         },
         {
           "id": "base-oil-spread",
@@ -4408,7 +4400,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34220,
+      "ctxChars": 34174,
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -4458,7 +4450,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": "No single-quarter realised tanker freight rate (TCE) found for any of the four quarters. The INVESTOR PPT Q1 FY27 shows MR at 37,405 USD/day and Suezmax at 143,199 USD/day for Q1 FY27, but these appear to be market averages, not GE Shipping"
+          "notes": "No single metric for 'tanker freight rate' found. Q1 FY27 concall mentions crude tankers at $90,000/day and product tankers at $45,000/day for Q2 (not Q1). Q4 FY26 and Q3 FY26 concalls do not state quarterly TCE figures. Q2 FY26 concall doe"
         },
         {
           "id": "fleet-deployment",
@@ -4659,7 +4651,7 @@
             null
           ],
           "flag": "inflecting-down",
-          "notes": "No revenue days (owned) figure stated for any of the four quarters. The Q1 FY27 concall AI summary mentions '46% operating days' but clarifies this is 'pricing fixed for 46% of days', not utilisation or total revenue days. No other excerpt "
+          "notes": "Revenue days (owned) not stated in any excerpt for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27."
         }
       ]
     },
@@ -4673,7 +4665,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21382,
+      "ctxChars": 21980,
       "kpis": [
         {
           "id": "freight-rate",
@@ -4784,6 +4776,21 @@
           "notes": null
         }
       ]
+    },
+    "asian-energy": {
+      "name": "Asian Energy",
+      "slug": "ASIANENE",
+      "quarters": [
+        "Q1 FY26",
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": null,
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "ctxChars": 33478,
+      "kpis": []
     }
   }
 }

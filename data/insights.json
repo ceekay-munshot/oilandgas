@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-09-14T13:39:36.263Z",
+  "generatedAt": "2026-09-21T11:15:59.964Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -3319,90 +3319,102 @@
     "lt": {
       "name": "L&T",
       "slug": "LT",
-      "view": "yearly",
+      "view": "quarterly",
       "url": "https://www.screener.in/company/LT/consolidated/",
-      "via": "annual-fallback",
+      "via": "quarterly-fragment",
       "toggled": "/insights/company/1870/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
         "Mar 2018",
         "Mar 2019",
-        "Mar 2020",
         "Mar 2021",
         "Mar 2022",
-        "Mar 2023",
+        "Jun 2023",
         "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
         "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
         "Mar 2026"
       ],
       "periodsIso": [
         "2018-03",
         "2019-03",
-        "2020-03",
         "2021-03",
         "2022-03",
-        "2023-03",
+        "2023-06",
         "2024-03",
+        "2024-06",
+        "2024-09",
         "2025-03",
+        "2025-06",
+        "2025-09",
         "2026-03"
       ],
       "rows": [
         {
-          "label": "L&T Finance Loan Book",
+          "label": "Order Inflow",
           "unit": "INR crore",
-          "scope": "Standalone data",
+          "scope": null,
           "values": [
-            82692,
-            99121,
             null,
-            94013,
-            88341,
-            80893,
-            85565,
-            97762,
-            121730
+            null,
+            null,
+            null,
+            65520,
+            72150,
+            70936,
+            80045,
+            89613,
+            94453,
+            115784,
+            89772
           ],
           "citations": [
-            {
-              "doc": "Presentation - 29 Jan 2016",
-              "quote": "Asset Book in focused lending businesses: ₹ 82,692 crore",
-              "page": null
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Total Assets (Loan Book): ₹99,121 crore",
-              "page": 292
-            },
+            null,
+            null,
+            null,
             null,
             {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "FY 2020-21: ₹ 94,013 crore",
-              "page": 95
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "FY 2021-22: ₹ 88,341 crore",
-              "page": 95
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "FY22–23 Loan Book: ₹ 80,893 crore",
-              "page": 108
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "FY23–24 Loan Book (as of March 31, 2024): ₹ 85,565 crore",
-              "page": 108
+              "doc": "Presentation - 24 Jul 2024",
+              "quote": "Total 65520",
+              "page": 27
             },
             {
               "doc": "Presentation - 08 May 2025",
-              "quote": "Book 977.6 14%",
-              "page": 20
+              "quote": "Total 72150 35%",
+              "page": 37
+            },
+            {
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "Total 70936 46%",
+              "page": 31
+            },
+            {
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "Total 80045 63%",
+              "page": 33
             },
             {
               "doc": "Presentation - 05 May 2026",
-              "quote": "Book 1217.3 25%",
-              "page": 20
+              "quote": "89613 70%",
+              "page": 45
+            },
+            {
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "Total 94453 51%",
+              "page": 31
+            },
+            {
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "Total 115784 65%",
+              "page": 33
+            },
+            {
+              "doc": "Presentation - 05 May 2026",
+              "quote": "89772 67%",
+              "page": 45
             }
           ]
         },
@@ -3413,12 +3425,15 @@
           "values": [
             23.8,
             22,
-            null,
             21,
             27,
             null,
             38,
+            null,
+            null,
             46,
+            null,
+            null,
             52
           ],
           "citations": [
@@ -3432,7 +3447,6 @@
               "quote": "International order book declined to 22% as at March 31, 2019",
               "page": 286
             },
-            null,
             {
               "doc": "Annual Report - 31 Mar 2022",
               "quote": "FY 2020-21: 21%",
@@ -3449,11 +3463,15 @@
               "quote": "International: 38%",
               "page": 37
             },
+            null,
+            null,
             {
               "doc": "Presentation - 05 May 2026",
               "quote": "579137 46%",
               "page": 45
             },
+            null,
+            null,
             {
               "doc": "Presentation - 05 May 2026",
               "quote": "740327 52%",
@@ -3466,48 +3484,50 @@
           "unit": "INR crore",
           "scope": null,
           "values": [
-            263107,
-            293427,
             null,
-            262368,
-            357595,
             null,
-            475809,
-            579137,
+            null,
+            null,
+            412600,
+            null,
+            490900,
+            510400,
+            null,
+            612800,
+            667000,
             740300
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null,
             {
-              "doc": "Presentation - 29 Jan 2016",
-              "quote": "L&T Consolidated Order Book (as of Mar 31, FY18): ₹ 263,107 crore",
-              "page": null
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Order Book as at March 31, 2019: ₹293,427 crore",
-              "page": 286
+              "doc": "Presentation - 24 Jul 2024",
+              "quote": "4126 Order Book",
+              "page": 8
             },
             null,
             {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "FY 2020-21: ₹ 262,368 crore (as at March 31, 2021)",
-              "page": 32
+              "doc": "Presentation - 24 Jul 2024",
+              "quote": "4909 Order Book",
+              "page": 8
             },
             {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "Total Order Book (as of March 31, 2022): ₹ 357,595 crore",
-              "page": 32
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "5104 Order Book",
+              "page": 8
             },
             null,
             {
-              "doc": "Presentation - 08 May 2025",
-              "quote": "Total Order Book (as at March 31, 2025): ₹ 5,79,137 crore",
-              "page": 37
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "6128 Order Book",
+              "page": 8
             },
             {
-              "doc": "Presentation - 05 May 2026",
-              "quote": "579137 46%",
-              "page": 45
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "6670 Order Book",
+              "page": 8
             },
             {
               "doc": "Presentation - 05 May 2026",
@@ -3517,58 +3537,7 @@
           ]
         },
         {
-          "label": "Order Inflow",
-          "unit": "INR crore",
-          "scope": null,
-          "values": [
-            null,
-            176834,
-            175497,
-            null,
-            192997,
-            null,
-            302812,
-            356631,
-            435590
-          ],
-          "citations": [
-            null,
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "FY 2018-19 order inflow of ₹176,834 crore",
-              "page": 285
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "FY 2020-21: ₹ 175,497 crore",
-              "page": 31
-            },
-            null,
-            {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "Total Order Inflow: ₹ 192,997 crore",
-              "page": 31
-            },
-            null,
-            {
-              "doc": "Presentation - 08 May 2025",
-              "quote": "Total 302812 54%",
-              "page": 37
-            },
-            {
-              "doc": "Presentation - 05 May 2026",
-              "quote": "356631 58%",
-              "page": 45
-            },
-            {
-              "doc": "Presentation - 05 May 2026",
-              "quote": "435590 58%",
-              "page": 45
-            }
-          ]
-        },
-        {
-          "label": "L&T Realty Pre-sales",
+          "label": "L&T Finance Loan Book",
           "unit": "INR crore",
           "scope": "Standalone data",
           "values": [
@@ -3576,34 +3545,48 @@
             null,
             null,
             null,
+            85560,
             null,
+            88720,
+            93020,
             null,
-            4520,
-            4680,
-            9440
+            102310,
+            107100,
+            null
           ],
           "citations": [
             null,
             null,
             null,
             null,
-            null,
+            {
+              "doc": "Presentation - 24 Jul 2024",
+              "quote": "Book 855.6",
+              "page": 20
+            },
             null,
             {
-              "doc": "Presentation - 08 May 2025",
-              "quote": "Realty 16.7 17.5 5% Realty 45.2 46.8 4%",
-              "page": 37
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "Book 887.2 15%",
+              "page": 20
             },
             {
-              "doc": "Presentation - 08 May 2025",
-              "quote": "Realty 45.2 46.8 4%",
-              "page": 37
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "Book 930.2 15%",
+              "page": 20
+            },
+            null,
+            {
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "Book 1023.1 15%",
+              "page": 20
             },
             {
-              "doc": "Presentation - 05 May 2026",
-              "quote": "Realty 17.5 19.8 13% Realty 46.8 94.4 >100%",
-              "page": 44
-            }
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "Book 1071.0 15%",
+              "page": 20
+            },
+            null
           ]
         }
       ]
@@ -4840,110 +4823,183 @@
     "iocl": {
       "name": "IOCL",
       "slug": "IOC",
-      "view": "yearly",
+      "view": "quarterly",
       "url": "https://www.screener.in/company/IOC/consolidated/",
-      "via": "annual-fallback",
+      "via": "quarterly-fragment",
       "toggled": "/insights/company/1448/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Mar 2016",
-        "Mar 2017",
-        "Mar 2018",
-        "Mar 2019",
-        "Mar 2020",
-        "Mar 2021",
-        "Mar 2022",
-        "Mar 2023",
+        "Jun 2023",
+        "Sep 2023",
+        "Dec 2023",
         "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
         "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
         "Mar 2026"
       ],
       "periodsIso": [
-        "2016-03",
-        "2017-03",
-        "2018-03",
-        "2019-03",
-        "2020-03",
-        "2021-03",
-        "2022-03",
-        "2023-03",
+        "2023-06",
+        "2023-09",
+        "2023-12",
         "2024-03",
+        "2024-06",
+        "2024-09",
+        "2024-12",
         "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12",
         "2026-03"
       ],
       "rows": [
         {
-          "label": "Gas Sales",
+          "label": "Refinery Throughput",
           "unit": "MMT",
           "scope": "Standalone data",
           "values": [
-            1.93,
-            1.92,
-            1.9,
-            1.95,
-            3.32,
-            3.28,
-            3.59,
-            4.14,
-            5.71,
-            6.94,
-            7.28
+            17.6,
+            17.5,
+            18.5,
+            18.3,
+            18.7,
+            16.7,
+            18.1,
+            18.5,
+            18.7,
+            17.6,
+            19.4,
+            19.7
           ],
           "citations": [
             {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Gas Sales (Domestic) FY15-16: 1.929 MMT",
-              "page": 63
+              "doc": "Concall Transcript - 02 May 2025 Source",
+              "quote": null,
+              "page": null
             },
             {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Gas Sales (Domestic) FY16-17: 1.920 MMT",
-              "page": 63
+              "doc": "Concall Transcript - 02 May 2025 Source",
+              "quote": null,
+              "page": null
             },
             {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Gas Sales (Domestic) FY17-18: 1.904 MMT",
-              "page": 63
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Gas Sales (Domestic) FY18-19: 1.950 MMT",
-              "page": 63
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Gas Sales (Domestic) FY 2019-20: 3.318 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Gas Sales (Domestic) FY 2020-21: 3.279 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Gas Sales (Domestic) FY 2021-22: 3.592 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Gas Sales (Domestic) FY 2022-23: 4.145 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Gas Sales (Domestic) FY 2023-24: 5.714 MMT (49% YoY growth)",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Gas Sales (Product Sales) FY 2024-25: 6.938 MMT",
-              "page": 112
-            },
-            {
-              "doc": "Concall Transcript - 19 May 2026",
-              "quote": "For FY 2025-26, total gas sale was 7,276 TMT including CGD sale of 188 TMT",
+              "doc": "Concall Transcript - 02 May 2025",
+              "quote": "throughput of 18.1 MMT and a capacity utilization of 102.3%. And also higher than the corresponding quarter FY '24, which was at 18.3 MMT",
               "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 02 May 2025",
+              "quote": "The throughput during the quarter was 18.5 MMT, with a capacity utilization of 107.1%... corresponding quarter FY '24, which was at 18.3 MMT",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Refinery Operation: Throughput (MMT) 18.7",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 28 Jan 2025",
+              "quote": "The throughput during the quarter was 18.1 MMT with a capacity utilization of 102.3%, which is higher than the preceding quarter, which is at 16.7 MMT of capacity utilization of 94.5%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 28 Jan 2025",
+              "quote": "The throughput during the quarter was 18.1 MMT with a capacity utilization of 102.3%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 02 May 2025",
+              "quote": "The throughput during the quarter was 18.5 MMT, with a capacity utilization of 107.1%",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Q1 2025-26: Refinery Throughput (MMT) 18.7",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Oct 2025",
+              "quote": "Q2 2025-26: Refinery Throughput (MMT) 17.6",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 05 Feb 2026",
+              "quote": "Q3 2025-26: Refinery Throughput (MMT) 19.4",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 19 May 2026",
+              "quote": "Q4 2025-26: Refinery Throughput (MMT) 19.7",
+              "page": 5
+            }
+          ]
+        },
+        {
+          "label": "Refinery Capacity Utilization",
+          "unit": "%",
+          "scope": "Standalone data",
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            106.7,
+            94.5,
+            102.3,
+            107.1,
+            106.7,
+            99.5,
+            109.7,
+            113.9
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Refinery Operation: Capacity utilization (%) 106.7",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 28 Jan 2025",
+              "quote": "preceding quarter, which is at 16.7 MMT of capacity utilization of 94.5%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 28 Jan 2025",
+              "quote": "The throughput during the quarter was 18.1 MMT with a capacity utilization of 102.3%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 02 May 2025",
+              "quote": "The throughput during the quarter was 18.5 MMT, with a capacity utilization of 107.1%",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Q1 2025-26: Refinery Capacity utilization (%) 106.7",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Oct 2025",
+              "quote": "Q2 2025-26: Refinery Capacity utilization (%) 99.5",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 05 Feb 2026",
+              "quote": "Q3 2025-26: Refinery Capacity utilization (%) 109.7",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 19 May 2026",
+              "quote": "Q4 2025-26: Refinery Capacity utilization (%) 113.9",
+              "page": 5
             }
           ]
         },
@@ -4952,72 +5008,54 @@
           "unit": "MMT",
           "scope": "Standalone data",
           "values": [
-            2.53,
-            2.58,
-            2.37,
-            2.64,
-            2.22,
-            2.67,
-            2.87,
-            2.2,
-            3.06,
-            3.24,
-            3.4
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            0.89,
+            0.83,
+            0.83,
+            0.77,
+            0.9,
+            0.9
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Petrochemical Sales 2015-16: 2.528 MMT",
-              "page": 30
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Petrochemical Sales 2016-17: 2.585 MMT (highest ever)",
-              "page": 30
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Petrochemical Sales FY17-18: 2.37 MMT (domestic and exports)",
-              "page": 59
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "total petrochemical sales were 2.64 MMT in FY18-19, compared to 2.37 MMT in FY17-18",
-              "page": 71
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Petrochemicals Sales (Domestic) FY 2019-20: 2.224 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Petrochemicals Sales (Domestic) FY 2020-21: 2.675 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Petrochemicals Sales (Domestic) FY 2021-22: 2.871 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Petrochemicals Sales (Domestic) FY 2022-23: 2.202 MMT",
-              "page": 58
+              "doc": "Concall Transcript - 28 Jan 2025",
+              "quote": "On the petrochemical side, the sale of petrochemical products during this quarter was 0.89 MMT as compared to 0.77 MMT in the preceding quarter",
+              "page": 6
             },
             {
               "doc": "Concall Transcript - 02 May 2025",
-              "quote": "For the full financial year, petchem sales were 3.236 MMT were more than the sales recorded in FY '24 which was at 3.063 MMT",
+              "quote": "The sale of petrochemical products during this quarter was 0.83 MMT as compared to 0.89 MMT in the preceding quarter",
               "page": 5
             },
             {
-              "doc": "Concall Transcript - 02 May 2025",
-              "quote": "For the full financial year, petchem sales were 3.236 MMT",
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Q1 2025-26: Petrochemicals Total 0.800 Domestic + 0.032 Exports = 0.832",
               "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 28 Oct 2025",
+              "quote": "The sales of petrochemical products, including exports, during this quarter was 0.77 MMT",
+              "page": 4
             },
             {
               "doc": "Concall Transcript - 19 May 2026",
-              "quote": "For FY 2025 - 26, petrochemical reported highest-ever sales of 3.396 MMT",
+              "quote": "For Q4 2025-26, sale of 0.901 MMT was achieved",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 19 May 2026",
+              "quote": "For Q4 2025-26, sale of 0.901 MMT was achieved as compared to 0.893 MMT in the preceding quarter",
               "page": 4
             }
           ]
@@ -5027,223 +5065,55 @@
           "unit": "MMT",
           "scope": "Standalone data",
           "values": [
-            79.82,
-            82.49,
-            85.67,
-            88.53,
-            85.35,
-            76.02,
-            85.52,
-            97.38,
-            98.63,
-            100.48,
-            105.6
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            24.9,
+            25.8,
+            26.3,
+            24.1,
+            27.6,
+            27.7
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Pipelines Throughput FY15-16: 79.824 MMT",
-              "page": 63
+              "doc": "Concall Transcript - 28 Jan 2025",
+              "quote": "throughput of 24.9 MMT in the quarter 3 of FY '24-'25 vis-a-vis 24 MMT in the quarter 2 of FY '24-'25",
+              "page": 6
             },
             {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Pipelines Throughput FY16-17: 82.490 MMT",
-              "page": 63
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Pipelines Throughput FY17-18: 85.675 MMT",
-              "page": 63
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Pipelines Throughput FY18-19: 88.527 MMT",
-              "page": 63
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Pipelines Throughput FY 2019-20: 85.349 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Pipelines Throughput FY 2020-21: 76.019 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Pipelines Throughput FY 2021-22: 85.520 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Pipelines Throughput FY 2022-23: 97.382 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Pipelines Throughput FY 2023-24: 98.626 MMT (Record throughput)",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Pipeline throughput crossed 100 MMT for the first time, reaching 100.477 MMT",
-              "page": 112
-            },
-            {
-              "doc": "Concall Transcript - 19 May 2026",
-              "quote": "Pipeline throughput reached a record 105.6 MMT with capacity utilization of 73.7%",
-              "page": 4
-            }
-          ]
-        },
-        {
-          "label": "Refinery Capacity Utilization",
-          "unit": "%",
-          "scope": "Standalone data",
-          "values": [
-            103.7,
-            105.1,
-            99.7,
-            103.8,
-            100,
-            90,
-            97,
-            103,
-            104.5,
-            101.9,
-            107.4
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Refineries (excluding Paradip): 2015-16: 103.7%",
-              "page": 28
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Refineries (excluding Paradip): 2016-17: 105.1%",
-              "page": 28
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Capacity Utilization 2017-18: 99.7%",
-              "page": 67
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Capacity Utilization FY18-19: 103.8%",
-              "page": 67
-            },
-            {
-              "doc": "Presentation - 31 Mar 2021",
-              "quote": "Capacity Utilization FY 19-20: 100",
+              "doc": "Concall Transcript - 02 May 2025",
+              "quote": "Pipeline throughput during the quarter 4 '24, '25 is 25.8 MMT",
               "page": 5
             },
             {
-              "doc": "Presentation - 31 Mar 2021",
-              "quote": "Capacity Utilization FY 20-21: 90",
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Pipeline Operations: Throughput (MMT) 26.3",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Oct 2025",
+              "quote": "Q2 2025-26: Pipeline Throughput (MMT) 24.1",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 05 Feb 2026",
+              "quote": "Q3 2025-26: Pipeline Throughput (MMT) 27.6",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 19 May 2026",
+              "quote": "Q4 2025-26: Pipeline Throughput (MMT) 27.7",
               "page": 5
-            },
-            {
-              "doc": "Presentation - 31 Mar 2022",
-              "quote": "Capacity Utilization FY 21-22: 97",
-              "page": 5
-            },
-            {
-              "doc": "Presentation - 31 Mar 2023",
-              "quote": "Capacity Utilization FY 22-23: 103",
-              "page": 7
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Capacity Utilisation FY 2023-24: 104.5% (highest ever capacity utilisation)",
-              "page": 58
-            },
-            {
-              "doc": "Concall Transcript - 19 May 2026",
-              "quote": "comparison to throughput of 71.6 MMT and capacity utilization of 101.9% during FY 24-25",
-              "page": 4
-            },
-            {
-              "doc": "Concall Transcript - 19 May 2026",
-              "quote": "Refineries achieved highest-ever crude throughput of 75.5 MMT with a capacity utilization of 107.4%",
-              "page": 4
-            }
-          ]
-        },
-        {
-          "label": "Refinery Throughput",
-          "unit": "MMT",
-          "scope": "Standalone data",
-          "values": [
-            56.69,
-            65.19,
-            69,
-            71.82,
-            69.42,
-            62.35,
-            67.67,
-            72.41,
-            73.31,
-            71.56,
-            75.5
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Refinery Crude Throughput FY15-16: 56.694",
-              "page": 63
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Refinery Crude Throughput FY16-17: 65.191",
-              "page": 63
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Refinery Crude Throughput FY17-18: 69.001",
-              "page": 63
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Refinery Crude Throughput FY18-19: 71.816",
-              "page": 63
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Refineries Throughput FY 2019-20: 69.419 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Refineries Throughput FY 2020-21: 62.351 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Refineries Throughput FY 2021-22: 67.665 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Refineries Throughput FY 2022-23: 72.408 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Refineries Throughput FY 2023-24: 73.308 MMT (highest ever annual crude processing)",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "FY 2024-25 Standalone Refinery Throughput: 71.564 MMT",
-              "page": 112
-            },
-            {
-              "doc": "Concall Transcript - 19 May 2026",
-              "quote": "Refineries achieved highest-ever crude throughput of 75.5 MMT with a capacity utilization of 107.4%",
-              "page": 4
             }
           ]
         },
@@ -5252,146 +5122,57 @@
           "unit": "MMT",
           "scope": "Standalone data",
           "values": [
-            80.66,
-            83.49,
-            88.76,
-            89.89,
-            89.7,
-            81.03,
-            86.41,
-            95.71,
-            97.55,
-            100.29,
-            105.12
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            23.19,
+            26.33,
+            24.26,
+            27.18,
+            27.34
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Total Sales Volume FY15-16: 80.664 MMT",
-              "page": 63
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Q4 2024-25: Total Sales (a+b+c) 23.193 MMT",
+              "page": 5
             },
             {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Total Sales Volume FY16-17: 83.490 MMT",
-              "page": 63
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Q1 2025-26: Total Sales (a+b+c) 26.328 MMT (highest ever total quarterly sale)",
+              "page": 5
             },
             {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Total Sales Volume FY17-18: 88.763 MMT",
-              "page": 63
+              "doc": "Presentation - 27 Oct 2025",
+              "quote": "Q2 2025-26: Total Sales (a+b+c) 24.262 MMT",
+              "page": 5
             },
             {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Total Sales Volume FY18-19: 89.894 MMT",
-              "page": 63
+              "doc": "Presentation - 05 Feb 2026",
+              "quote": "Q3 2025-26: Total Sales (a+b+c) 27.184 MMT",
+              "page": 5
             },
             {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Total Sales (Domestic + Export) FY 2019-20: 89.696 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Total Sales (Domestic + Export) FY 2020-21: 81.027 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Total Sales (Domestic + Export) FY 2021-22: 86.407 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Total Sales (Domestic + Export) FY 2022-23: 95.714 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Total Sales (Domestic + Export) FY 2023-24: 97.551 MMT",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Total Sales Volume FY 2024-25: 100.292 MMT (record, crossing 100 MMT milestone)",
-              "page": 112
-            },
-            {
-              "doc": "Concall Transcript - 19 May 2026",
-              "quote": "Indian Oil has recorded highest ever total sales volume of 105.117 MMT recording growth of ~5%",
-              "page": 4
+              "doc": "Presentation - 19 May 2026",
+              "quote": "Q4 2025-26: Total Sales (a+b+c) 27.343 MMT",
+              "page": 6
             }
           ]
         },
         {
-          "label": "Retail Outlets",
-          "unit": "count",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            26212,
-            27089,
-            27702,
-            null,
-            32062,
-            34559,
-            36285,
-            37472,
-            40221,
-            42818
-          ],
-          "citations": [
-            null,
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Total retail outlets: 26,212 (as of 2016-17)",
-              "page": 30
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Retail Outlets: 27,089 (includes Kisan Seva Kendra 7,529)",
-              "page": 56
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "648 new outlets were commissioned in FY18-19 alone, bringing the total to 27,702 by March 31, 2019",
-              "page": 68
-            },
-            null,
-            {
-              "doc": "Presentation - 31 Mar 2021",
-              "quote": "Retail Outlets: 32,062 (As of 31-Mar-21)",
-              "page": 9
-            },
-            {
-              "doc": "Presentation - 31 Mar 2022",
-              "quote": "Retail Outlets: 34,559 (As of 31-Mar-22)",
-              "page": 9
-            },
-            {
-              "doc": "Presentation - 31 Mar 2023",
-              "quote": "Retail Outlets: 36,285 (As of 31-Mar-23)",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Total retail outlets: 37,472 (as on March 31, 2024)",
-              "page": 58
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "As on March 31, 2025, the network comprised 40,221 Retail Outlets",
-              "page": 117
-            },
-            {
-              "doc": "Concall Transcript - 19 May 2026",
-              "quote": "During FY 25 - 26, 2597 retail outlets were commissioned, taking the total number to 42,818",
-              "page": 4
-            }
-          ]
-        },
-        {
-          "label": "Lubricant Sales (SERVO)",
-          "unit": "TMT",
+          "label": "Gas Sales",
+          "unit": "MMT",
           "scope": "Standalone data",
           "values": [
             null,
@@ -5399,12 +5180,13 @@
             null,
             null,
             null,
-            414,
-            513,
-            701,
-            728,
-            780,
-            905
+            null,
+            null,
+            null,
+            1.69,
+            1.84,
+            1.94,
+            1.81
           ],
           "citations": [
             null,
@@ -5412,34 +5194,27 @@
             null,
             null,
             null,
+            null,
+            null,
+            null,
             {
-              "doc": "Presentation - 31 Mar 2021",
-              "quote": "Lube Sales growth of 25% (including Exports)",
-              "page": 10
+              "doc": "Presentation - 14 Aug 2025",
+              "quote": "Q1 2025-26: Gas 1.685 (Domestic 0.800 + Exports 0.032 + CGD included)",
+              "page": 5
             },
             {
-              "doc": "Presentation - 31 Mar 2022",
-              "quote": "Lube Sales growth of 24% (including Exports)",
-              "page": 10
+              "doc": "Concall Transcript - 28 Oct 2025",
+              "quote": "During the year, we registered highest quarterly gas sales of 1.840 MMT, which includes CGD sales of 44 TMT",
+              "page": 5
             },
             {
-              "doc": "Presentation - 31 Mar 2023",
-              "quote": "Highest ever SERVO lube sales of 701 MT, registering a growth rate of 9.0%",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "SERVO registered the highest ever sales volume of 728 TMT (Including exports) in FY 2023-24",
-              "page": 61
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Lubricant Sales: Registered a highest-ever sales volume of 780 TMT (including exports) in FY 2024-25",
-              "page": 118
+              "doc": "Presentation - 05 Feb 2026",
+              "quote": "Q3 2025-26: Gas 1.937 (Domestic 0.744 + Exports 0.026)",
+              "page": 5
             },
             {
               "doc": "Concall Transcript - 19 May 2026",
-              "quote": "Our Lube business achieved record sales of 905 TMT during the year, reflecting ~16% growth",
+              "quote": "During the quarter, we registered gas sales of 1,814 TMT which includes CGD sales of 54 TMT",
               "page": 4
             }
           ]
@@ -11536,101 +11311,102 @@
     "shipping-corp": {
       "name": "Shipping Corp of India",
       "slug": "SCI",
-      "view": "quarterly",
+      "view": "yearly",
       "url": "https://www.screener.in/company/SCI/consolidated/",
-      "via": "quarterly-fragment",
+      "via": "annual-fallback",
       "toggled": "/insights/company/2984/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Sep 2025",
-        "Mar 2026"
+        "Mar 2016",
+        "Mar 2017",
+        "Mar 2018",
+        "Mar 2019",
+        "Mar 2020",
+        "Mar 2021",
+        "Mar 2022",
+        "Mar 2023",
+        "Mar 2024",
+        "Mar 2025"
       ],
       "periodsIso": [
-        "2025-09",
-        "2026-03"
+        "2016-03",
+        "2017-03",
+        "2018-03",
+        "2019-03",
+        "2020-03",
+        "2021-03",
+        "2022-03",
+        "2023-03",
+        "2024-03",
+        "2025-03"
       ],
       "rows": [
-        {
-          "label": "Aframax TD8 (Kuwait-Singapore) average TCE rate",
-          "unit": "USD/day",
-          "scope": null,
-          "values": [
-            32709,
-            80914
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 07 Nov 2025",
-              "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-II 32,708.75",
-              "page": 19
-            },
-            {
-              "doc": "Presentation - 11 May 2026",
-              "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-IV 80,914",
-              "page": 17
-            }
-          ]
-        },
-        {
-          "label": "Average age of owned fleet",
-          "unit": "years",
-          "scope": null,
-          "values": [
-            15.5,
-            15.5
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 07 Nov 2025",
-              "quote": "Average age of fleet: 15.50. Average Age of Owned Vessels: 15.50 Yrs",
-              "page": 5
-            },
-            {
-              "doc": "Presentation - 11 May 2026",
-              "quote": "Average age of fleet: 15.50. Average Age of Owned Vessels: 15.50 Yrs",
-              "page": 5
-            }
-          ]
-        },
         {
           "label": "Bulk Carrier fleet count (owned)",
           "unit": "vessels",
           "scope": null,
           "values": [
+            17,
+            17,
+            16,
+            15,
+            15,
+            15,
+            15,
+            15,
             15,
             15
           ],
           "citations": [
             {
-              "doc": "Presentation - 07 Nov 2025",
-              "quote": "Bulk Carriers:15",
-              "page": 5
+              "doc": "Annual Report - 31 Mar 2016",
+              "quote": "Bulk Carriers 17",
+              "page": 25
             },
             {
-              "doc": "Presentation - 11 May 2026",
-              "quote": "Bulk Carriers:15",
-              "page": 5
-            }
-          ]
-        },
-        {
-          "label": "Number of managed vessels (third-party)",
-          "unit": "vessels",
-          "scope": null,
-          "values": [
-            40,
-            40
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 07 Nov 2025",
-              "quote": "No. of Managed Vessels: 40. 1. ILT Companies: 4. 2. A&N: 27. 3. GSI: 3. 4. ONGC: 2. 5. ICSL: 4",
-              "page": 5
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "Bulk Carriers: 17 vessels (Comprised of 1 Handymax, 9 modern Supramax vessels of ~57,000 DWT, and 7 modern Panamax/Kamsarmax vessels of ~80,000 DWT)",
+              "page": 26
             },
             {
-              "doc": "Presentation - 11 May 2026",
-              "quote": "No. of Managed Vessels: 40. 1. ILT Companies: 4. 2. A&N: 27. 3. GSI: 3. 4. ONGC: 2. 5. ICSL: 4",
-              "page": 5
+              "doc": "Annual Report - 31 Mar 2018",
+              "quote": "Bulk Carriers 16",
+              "page": 25
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Bulk Carrier Segment 15. 1,022,344 DWT",
+              "page": 25
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2020",
+              "quote": "Bulk 15. Bulk Carriers 15. 1,022,344",
+              "page": 35
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2021",
+              "quote": "Bulk Carriers 15. 1,022,344",
+              "page": 35
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "Bulk Segment: 15 vessels (Bulk Carriers)",
+              "page": 48
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "Bulk carriers 15. 1,022,344",
+              "page": 37
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Bulk carriers 15. 1,022,344",
+              "page": 49
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Bulk carriers 15. 1,022,344",
+              "page": 49
             }
           ]
         },
@@ -11639,19 +11415,67 @@
           "unit": "vessels",
           "scope": null,
           "values": [
-            31,
-            31
+            37,
+            36,
+            37,
+            34,
+            32,
+            32,
+            32,
+            32,
+            30,
+            30
           ],
           "citations": [
             {
-              "doc": "Presentation - 07 Nov 2025",
-              "quote": "Tankers: 31",
-              "page": 5
+              "doc": "Annual Report - 31 Mar 2016",
+              "quote": "Tanker: 37 vessels (21 Crude + 14 Product + 2 Gas)",
+              "page": 25
             },
             {
-              "doc": "Presentation - 11 May 2026",
-              "quote": "Tankers: 31",
-              "page": 5
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "Tanker: 36 vessels (Crude Oil Tankers (Suezmax, Aframax, etc.) and Product Tankers)",
+              "page": 24
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2018",
+              "quote": "Total Tanker 37. Crude Oil Tankers 21. Product Tankers 13. Gas Carriers 3",
+              "page": 25
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Total Tankers 34. Crude Oil Tankers 20. Product Tankers 13. Gas Carriers (LPG/LNG) 1",
+              "page": 25
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2020",
+              "quote": "Subtotal (Tanker) 32. Crude Oil Tankers 18. Product Tankers 13. Gas Carriers 1",
+              "page": 35
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2021",
+              "quote": "Tankers 32. Crude Oil Tankers 18. Product Tankers 13. Gas Carriers 1",
+              "page": 35
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "Tanker Segment: 32 vessels. Crude Oil Tankers: 18. Product Tankers: 13. Gas Carriers: 1",
+              "page": 48
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "Total (Tanker) 32. Crude Oil Tankers 18. Product Tankers 13. Gas Carrier (LPG) 1",
+              "page": 37
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Crude oil Tanker 18, Product tanker 11, Gas carriers 1",
+              "page": 49
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Crude oil Tanker 18, Product tanker 11, Gas carriers 1. Subtotal 30",
+              "page": 49
             }
           ]
         },
@@ -11660,19 +11484,67 @@
           "unit": "million DWT",
           "scope": null,
           "values": [
-            5.26,
-            5.26
+            5.89,
+            5.85,
+            5.86,
+            5.61,
+            5.31,
+            5.31,
+            5.31,
+            5.31,
+            5.25,
+            5.25
           ],
           "citations": [
             {
-              "doc": "Presentation - 07 Nov 2025",
-              "quote": "Total 58 29,39,737 52,61,0966",
-              "page": 6
+              "doc": "Annual Report - 31 Mar 2016",
+              "quote": "69 vessels of 5.89 mn DWT",
+              "page": 8
             },
             {
-              "doc": "Presentation - 11 May 2026",
-              "quote": "Total 58 29,39,737 52,61,096",
-              "page": 6
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "Total Fleet Capacity: 5.85 million DWT",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2018",
+              "quote": "Total capacity: 5.863 million DWT (5,863,480 DWT)",
+              "page": 25
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Total Fleet Capacity: 5.606 million DWT (5,606,158 DWT)",
+              "page": 25
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2020",
+              "quote": "Total owned fleet consisted of 59 vessels with a capacity of 5,311,210 DWT",
+              "page": 35
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2021",
+              "quote": "Total Capacity: 5.311 million DWT (Decimal: 5,311,210 DWT)",
+              "page": 35
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "Total Fleet Capacity: 5.311 million DWT (5,311,210 DWT)",
+              "page": 48
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "total capacity of 5.311 million DWT (Deadweight Tonnage)",
+              "page": 37
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Total Capacity: 5.245 million DWT",
+              "page": 49
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Total Capacity: 5.245 million DWT",
+              "page": 49
             }
           ]
         },
@@ -11681,41 +11553,190 @@
           "unit": "vessels",
           "scope": null,
           "values": [
-            58,
-            58
+            69,
+            69,
+            66,
+            61,
+            59,
+            59,
+            59,
+            59,
+            57,
+            57
           ],
           "citations": [
             {
-              "doc": "Presentation - 07 Nov 2025",
-              "quote": "Owned: 58. 1. Liner vessels: 2. 2. Bulk Carriers:15. 3. Tankers: 31. 4. Technical & Offshore:10",
-              "page": 5
+              "doc": "Annual Report - 31 Mar 2016",
+              "quote": "SCI prides in having a diversified fleet of 69 vessels of 5.89 mn DWT",
+              "page": 8
             },
             {
-              "doc": "Presentation - 11 May 2026",
-              "quote": "No. of Vessels Owned: 58. 1. Liner vessels: 2. 2. Bulk Carriers:15. 3. Tankers: 31. 4. Technical & Offshore:10",
-              "page": 5
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "Total Number of Owned Vessels: 69 vessels. Total Fleet Capacity: 5.85 million DWT",
+              "page": 16
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2018",
+              "quote": "Total owned vessels: 66 vessels as on 31st March 2018",
+              "page": 25
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Total Owned Vessels: 61 vessels. Total Fleet Capacity: 5.606 million DWT",
+              "page": 25
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2020",
+              "quote": "Total owned fleet consisted of 59 vessels with a capacity of 5,311,210 DWT",
+              "page": 35
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2021",
+              "quote": "Number of Vessels: 59 vessels. Total Capacity: 5.311 million DWT",
+              "page": 35
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "Total Number of Vessels: 59 vessels. Total Fleet Capacity: 5.311 million DWT",
+              "page": 48
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "SCI's owned fleet consisted of 59 vessels with a total capacity of 5.311 million DWT",
+              "page": 37
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "During the year under report, there were NIL additions to the SCI fleet",
+              "page": 49
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Total Owned Fleet: 57 vessels. Total Capacity: 5.245 million DWT",
+              "page": 49
             }
           ]
         },
         {
-          "label": "VLCC TD3C (MEG-China) average TCE rate",
-          "unit": "USD/day",
+          "label": "Number of managed vessels (third-party)",
+          "unit": "vessels",
           "scope": null,
           "values": [
-            47817,
-            216387
+            21,
+            53,
+            36,
+            36,
+            35,
+            48,
+            48,
+            53,
+            null,
+            28
           ],
           "citations": [
             {
-              "doc": "Presentation - 07 Nov 2025",
-              "quote": "VLCC MEG-CHINA 270,000 MT TD3C TCE Qtr-II 47,817.44",
-              "page": 19
+              "doc": "Annual Report - 31 Mar 2016",
+              "quote": "Total 21. Passenger-cum-Cargo Ships 10. Other Vessels (Offshore/Technical O&M) 10. Cargo Barge 1",
+              "page": 33
             },
             {
-              "doc": "Presentation - 11 May 2026",
-              "quote": "VLCC MEG-CHINA 270,000 MT TD3C TCE Qtr-IV 216,387",
-              "page": 17
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "Passenger-cum-Cargo 10, Foreshore Passenger 17, Research Vessels 8, Offshore (ONGC Managed) 12, MODU 2, MSV 2, WSV 1, ETV 1",
+              "page": 30
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2018",
+              "quote": "Total managed vessels: 36 vessels. 10 Passenger-Cum-Cargo, 1 Cargo barge, 17 Foreshore, 8 Research",
+              "page": 36
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "SCI manages ten (10) managed vessels (owned by A&N Administration) for domestic passenger/cargo services and 17 numbers of Foreshore passenger vessels",
+              "page": 36
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2020",
+              "quote": "Total Managed Fleet Count: 35 vessels. Passenger-cum-Cargo Vessels: 9. Cargo Ships: 1. Other Vessels: 25",
+              "page": 48
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2021",
+              "quote": "T&OS Division Managed Fleet: 48 vessels of various organizations/Government departments",
+              "page": 50
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "T&OS Division: Manages 48 vessels in addition to the 10 owned offshore vessels",
+              "page": 56
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "comprised 53 managed vessels with a total passenger capacity of 8,718 and total cargo capacity of 9,950 MT",
+              "page": 57
+            },
+            null,
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Total Managed Vessels 28",
+              "page": 61
             }
+          ]
+        },
+        {
+          "label": "Average age of owned fleet",
+          "unit": "years",
+          "scope": null,
+          "values": [
+            9,
+            null,
+            10.2,
+            10.08,
+            11.28,
+            12.28,
+            13.28,
+            14.22,
+            null,
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Annual Report - 31 Mar 2016",
+              "quote": "SCI prides in having a diversified fleet of 69 vessels of 5.89 mn DWT with an average age about 9 years",
+              "page": 8
+            },
+            null,
+            {
+              "doc": "Annual Report - 31 Mar 2018",
+              "quote": "Overall fleet average age: About 10.2 years",
+              "page": 28
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "New acquisitions have brought down average age from 18 years in 2007 to about 10.08 years presently",
+              "page": 28
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2020",
+              "quote": "New acquisitions have brought down average age from 18 years in 2007 to about 11.28 years presently",
+              "page": 39
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2021",
+              "quote": "Overall Fleet Average Age: Approximately 12.28 years",
+              "page": 41
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "Bulk Carrier & Tanker (B&T) Fleet: Average age of 13.28 years",
+              "page": 45
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2023",
+              "quote": "average age of the fleet, specifically for the Bulk Carriers & Tankers (B&T) fleet, was reported as 14.22 years",
+              "page": 41
+            },
+            null,
+            null
           ]
         }
       ]
@@ -12154,6 +12175,232 @@
               "doc": "Presentation - 07 May 2026",
               "quote": "Achieved ~8,000 tonnes of CBG production in Q4 FY '26 (19,400+ tonnes YTD)",
               "page": 7
+            }
+          ]
+        }
+      ]
+    },
+    "asian-energy": {
+      "name": "Asian Energy",
+      "slug": "ASIANENE",
+      "view": "quarterly",
+      "url": "https://www.screener.in/company/ASIANENE/consolidated/#shareholding",
+      "via": "annual-fallback",
+      "toggled": "/insights/company/294/quarter/?is_consolidated=1",
+      "note": null,
+      "periods": [
+        "Mar 2019",
+        "Mar 2020",
+        "Jun 2021",
+        "Jul 2023",
+        "Nov 2025"
+      ],
+      "periodsIso": [
+        "2019-03",
+        "2020-03",
+        "2021-06",
+        "2023-07",
+        "2025-11"
+      ],
+      "rows": [
+        {
+          "label": "Total Order Book (ex-GST, ex-Kuiper)",
+          "unit": "Rs Crore",
+          "scope": null,
+          "values": [
+            850,
+            910,
+            null,
+            949,
+            2005
+          ],
+          "citations": [
+            {
+              "doc": "Annual Report - 31 Mar 2020",
+              "quote": "Order Book (Rs in Lacs) 2018-19: 85,000",
+              "page": 10
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2020",
+              "quote": "Order Book (Rs in Lacs) 2019-20: 91,000",
+              "page": 10
+            },
+            null,
+            {
+              "doc": "Credit Rating - 17 Aug 2023",
+              "quote": "AESL had an order book of around INR9,490 million",
+              "page": 1
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "The total order book stands at ~ Rs 2,005 crore* (as on 14th November 2025)",
+              "page": 6
+            }
+          ]
+        },
+        {
+          "label": "Infra/CHP Share of Order Book",
+          "unit": "% of Order Book",
+          "scope": null,
+          "values": [
+            null,
+            21,
+            null,
+            39,
+            33
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Annual Report - 31 Mar 2020",
+              "quote": "Production assets: 21%",
+              "page": 10
+            },
+            null,
+            {
+              "doc": "Credit Rating - 17 Aug 2023",
+              "quote": "INR3,720 million from EPC segment",
+              "page": 1
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "33.2% Order Book ~Rs 667 Crs Order Value",
+              "page": 13
+            }
+          ]
+        },
+        {
+          "label": "O&M Share of Order Book",
+          "unit": "% of Order Book",
+          "scope": null,
+          "values": [
+            null,
+            16,
+            null,
+            43,
+            62
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Annual Report - 31 Mar 2020",
+              "quote": "Seismic: 63%, Production assets: 21%, O&M: 16%",
+              "page": 10
+            },
+            null,
+            {
+              "doc": "Credit Rating - 17 Aug 2023",
+              "quote": "INR4,080 million of O&M work",
+              "page": 1
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "62% Order Book ~Rs 1,251 Crs Order Value",
+              "page": 13
+            }
+          ]
+        },
+        {
+          "label": "Seismic Share of Order Book",
+          "unit": "% of Order Book",
+          "scope": null,
+          "values": [
+            null,
+            63,
+            null,
+            18,
+            4
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Annual Report - 31 Mar 2020",
+              "quote": "Seismic: 63%",
+              "page": 10
+            },
+            null,
+            {
+              "doc": "Credit Rating - 17 Aug 2023",
+              "quote": "INR1,690 million from the seismic data acquisition segment",
+              "page": 1
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "4.4% Order Book ~Rs 88 Crs Order Value",
+              "page": 13
+            }
+          ]
+        },
+        {
+          "label": "Seismic Equipment - Channels",
+          "unit": "channels",
+          "scope": null,
+          "values": [
+            null,
+            16000,
+            30000,
+            null,
+            null
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Presentation - 20 Nov 2019",
+              "quote": "~16,000 Wireless and Cabled channels",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 21 Jun 2021",
+              "quote": "~30,000 Wireless and Cabled channels",
+              "page": 15
+            },
+            null,
+            null
+          ]
+        },
+        {
+          "label": "Oilmax Peak Production Capacity (BOE)",
+          "unit": "BOE (Barrels of Oil Equivalent)",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            3000
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Amguri Assam ON 50% Producing 15 500 3000 FY 26-27",
+              "page": 18
+            }
+          ]
+        },
+        {
+          "label": "Total Active Service Contracts",
+          "unit": "count",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            16
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "O&M Suvali, Amguri, PY-3, AGCL, Rajasthan; INFRA/CHP Gevra, Hura, Singreni, Karo, PKOCP, Rajmahal, Odisha; Seismic Gujarat, Rajasthan Basin, Chattisgarh, Jharkhand",
+              "page": 13
             }
           ]
         }

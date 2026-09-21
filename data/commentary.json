@@ -2,14 +2,14 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-09-14T13:41:34.698Z",
+  "generatedAt": "2026-09-21T11:24:36.139Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
-    "companies": 27,
-    "quarterCells": 102,
+    "companies": 28,
+    "quarterCells": 106,
     "tonedQuarters": 98,
-    "nullQuarters": 4
+    "nullQuarters": 8
   },
   "companies": {
     "ongc": {
@@ -850,32 +850,15 @@
       "name": "BPCL",
       "slug": "BPCL",
       "quarters": [
-        "Q3 FY25",
         "Q4 FY25",
         "Q1 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q3 FY25",
-          "toneId": "cautious",
-          "score": 2,
-          "quote": "Major impact is on account of shutdowns where our energy consumption is on a higher side, the throughput is on the lower side.",
-          "rationale": "Management highlighted risks from shutdowns and lower throughput, indicating a cautious tone.",
-          "driver": "refining margin",
-          "direction": "negative",
-          "signal": "Management is cautious about refining margins due to shutdowns and lower Russian crude availability.",
-          "mgmtDataPoints": [
-            "capex: INR 16,400 crore",
-            "9M capex spent: INR 11,899 crore",
-            "Russian crude share: 31%"
-          ],
-          "implication": "Refining margins may remain under pressure due to operational disruptions and geopolitical factors.",
-          "doc": "Concall AI summary (Q3 FY25)"
-        },
         {
           "quarter": "Q4 FY25",
           "toneId": "constructive",
@@ -908,6 +891,26 @@
           ],
           "implication": "Margins may remain stable but are subject to geopolitical and inventory-related fluctuations.",
           "doc": "Concall AI summary (Q1 FY26)"
+        },
+        {
+          "quarter": "Q4 FY26",
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "the large impact of the war is not fully realized in Q4 due to timing differences and Q1 FY27 will be challenging",
+          "rationale": "Despite record throughput and strong FY26 numbers, management explicitly warned of turbulent times, supply-chain disruptions, and a challenging Q1 ahead.",
+          "driver": "supply-chain disruption and crude sourcing volatility",
+          "direction": "negative",
+          "signal": "Management secured crude through July 2026 but shifted heavily to spot purchases and Russian barrels; they expect Q1 FY27 pressure as war impacts fully materialize despite maintaining refinery runs.",
+          "mgmtDataPoints": [
+            "FY26 refinery utilization: 116%",
+            "FY26 throughput: 41.15 MMT",
+            "FY26 GRM: USD 11.74/bbl",
+            "Russian crude share Q4: 31%, recent: 40-41%",
+            "Term crude realized: 45-46% vs planned 55%",
+            "Retail market share target: 32% over time"
+          ],
+          "implication": "Q1 FY27 will likely see margin compression and higher input costs as war-related crude premia and freight inflation flow through, despite operational strength and volume momentum.",
+          "doc": "Concall AI summary (Q4 FY26)"
         },
         {
           "quarter": "Q1 FY27",
@@ -1186,15 +1189,34 @@
       "name": "IGL",
       "slug": "IGL",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
+        {
+          "quarter": "Q1 FY26",
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "augmenting stations… very aggressively",
+          "rationale": "Management is hopeful about growth through aggressive expansion and customer base expansion.",
+          "driver": "CNG volume growth",
+          "direction": "positive",
+          "signal": "Management is aggressively expanding CNG stations and expects continued growth in CNG vehicle additions.",
+          "mgmtDataPoints": [
+            "Volumes: 831 MMSCM",
+            "Revenue: ₹4,317 cr",
+            "EBITDA: ₹512 cr",
+            "PAT: ₹356 cr",
+            "CNG vehicle additions: ~18,500/month"
+          ],
+          "implication": "The company is likely to see continued growth in CNG volumes and customer base expansion in the coming quarters.",
+          "doc": "Concall AI summary (Q1 FY26)"
+        },
         {
           "quarter": "Q2 FY26",
           "toneId": "cautious",
@@ -1230,24 +1252,6 @@
           ],
           "implication": "Profitability is expected to improve further as regulatory benefits fully materialize, supporting future growth.",
           "doc": "Concall AI summary (Q3 FY26)"
-        },
-        {
-          "quarter": "Q4 FY26",
-          "toneId": "neutral",
-          "score": 3,
-          "quote": "Despite the increasing gas price… we are able to maintain EBITA",
-          "rationale": "Management is maintaining a balanced view, focusing on resilience despite cost pressures.",
-          "driver": "profitability resilience",
-          "direction": "neutral",
-          "signal": "Management is maintaining profitability despite cost pressures, with a focus on balancing growth and margins.",
-          "mgmtDataPoints": [
-            "Volumes: 9.39 MMSCMD",
-            "Gross turnover: ₹17,785 cr",
-            "EBITDA: ₹1,850 cr",
-            "PAT: ₹1,364 cr"
-          ],
-          "implication": "The company is likely to maintain stable profitability, balancing cost pressures with strategic pricing and growth initiatives.",
-          "doc": "Concall AI summary (Q4 FY26)"
         },
         {
           "quarter": "Q1 FY27",
@@ -1669,31 +1673,15 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q1 FY26",
-          "toneId": "confident",
-          "score": 5,
-          "quote": "continued our momentum from the beginning of the year into the second quarter with healthy performance",
-          "rationale": "Management expressed confidence in their growth and resilience despite challenges.",
-          "driver": "volume growth",
-          "direction": "positive",
-          "signal": "Management is optimistic about continued growth through innovation and distribution expansion.",
-          "mgmtDataPoints": [
-            "Revenue growth: 7%",
-            "Revenue: INR1,497 crores"
-          ],
-          "implication": "Expect continued volume growth and potential market share gains in the coming quarters.",
-          "doc": "Concall transcript (Q1 FY26)"
-        },
         {
           "quarter": "Q2 FY26",
           "toneId": "constructive",
@@ -1728,6 +1716,19 @@
           ],
           "implication": "Expect continued strong performance with potential for further market share gains.",
           "doc": "Concall transcript (Q3 FY26)"
+        },
+        {
+          "quarter": "Q4 FY26",
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "continued macro uncertainty...early signs of external headwinds driven by the conflict in the Middle East",
+          "rationale": "Management is careful due to macro uncertainties and external headwinds.",
+          "driver": "macro uncertainty",
+          "direction": "negative",
+          "signal": "Management is focused on executing strategy amidst external challenges to drive profitable growth.",
+          "mgmtDataPoints": [],
+          "implication": "Expect cautious approach with potential impact from external macroeconomic factors.",
+          "doc": "Concall transcript (Q4 FY26)"
         },
         {
           "quarter": "Q1 FY27",
@@ -2128,6 +2129,74 @@
           ],
           "implication": "The company may face challenges in maintaining order momentum if geopolitical tensions escalate.",
           "doc": "Concall transcript (Q4 FY26)"
+        }
+      ]
+    },
+    "asian-energy": {
+      "name": "Asian Energy",
+      "slug": "ASIANENE",
+      "quarters": [
+        "Q1 FY26",
+        "Q2 FY26",
+        "Q3 FY26",
+        "Q4 FY26"
+      ],
+      "asOf": null,
+      "provider": null,
+      "model": null,
+      "note": "classification failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
+      "tones": [
+        {
+          "quarter": "Q1 FY26",
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": null,
+          "driver": null,
+          "direction": null,
+          "signal": null,
+          "mgmtDataPoints": [],
+          "implication": null,
+          "doc": null
+        },
+        {
+          "quarter": "Q2 FY26",
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": null,
+          "driver": null,
+          "direction": null,
+          "signal": null,
+          "mgmtDataPoints": [],
+          "implication": null,
+          "doc": null
+        },
+        {
+          "quarter": "Q3 FY26",
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": null,
+          "driver": null,
+          "direction": null,
+          "signal": null,
+          "mgmtDataPoints": [],
+          "implication": null,
+          "doc": null
+        },
+        {
+          "quarter": "Q4 FY26",
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": null,
+          "driver": null,
+          "direction": null,
+          "signal": null,
+          "mgmtDataPoints": [],
+          "implication": null,
+          "doc": null
         }
       ]
     }

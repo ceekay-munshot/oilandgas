@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-09-14T13:41:34.820Z",
+  "generatedAt": "2026-09-21T11:25:10.635Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -1081,9 +1081,32 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:19:57.599Z"
+        },
+        "Q4 FY26": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "the large impact of the war is not fully realized in Q4 due to timing differences and Q1 FY27 will be challenging",
+          "rationale": "Despite record throughput and strong FY26 numbers, management explicitly warned of turbulent times, supply-chain disruptions, and a challenging Q1 ahead.",
+          "driver": "supply-chain disruption and crude sourcing volatility",
+          "direction": "negative",
+          "signal": "Management secured crude through July 2026 but shifted heavily to spot purchases and Russian barrels; they expect Q1 FY27 pressure as war impacts fully materialize despite maintaining refinery runs.",
+          "mgmtDataPoints": [
+            "FY26 refinery utilization: 116%",
+            "FY26 throughput: 41.15 MMT",
+            "FY26 GRM: USD 11.74/bbl",
+            "Russian crude share Q4: 31%, recent: 40-41%",
+            "Term crude realized: 45-46% vs planned 55%",
+            "Retail market share target: 32% over time"
+          ],
+          "implication": "Q1 FY27 will likely see margin compression and higher input costs as war-related crude premia and freight inflation flow through, despite operational strength and volume momentum.",
+          "doc": "Concall AI summary (Q4 FY26)",
+          "fingerprint": "7759c9f96fc8",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-09-21T11:25:01.891Z"
         }
       },
-      "updatedAt": "2026-07-28T18:19:57.599Z"
+      "updatedAt": "2026-09-21T11:25:01.891Z"
     },
     "hpcl": {
       "cells": {
