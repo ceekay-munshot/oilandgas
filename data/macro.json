@@ -2,15 +2,15 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-09-26T11:41:09.747Z",
+  "generatedAt": "2026-09-27T12:14:22.260Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
   "flagLookbackMonths": 3,
   "coverage": {
-    "tilesLive": 6,
+    "tilesLive": 5,
     "tilesTotal": 6,
-    "linesLive": 8,
+    "linesLive": 7,
     "linesTotal": 9
   },
   "tiles": [
@@ -466,28 +466,22 @@
       "decimals": 0,
       "supports": "up",
       "supportsWhy": "Busier tankers mean more cargoes are actually moving.",
-      "status": "live",
-      "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via scrapedo)",
-      "sourceTag": "external",
-      "asOf": "2026-09-01",
+      "status": "awaiting",
+      "source": null,
+      "sourceTag": "unknown",
+      "asOf": null,
       "lines": [
         {
           "id": "baltic-dirty",
           "label": "Baltic Dirty Tanker",
           "color": "#B91C1C",
           "primary": true,
-          "status": "live",
-          "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via scrapedo)",
-          "sourceTag": "external",
-          "notes": "Latest level only - the Baltic Exchange licenses the history, so this line has no 12-month trend.",
-          "asOf": "2026-09-01",
-          "series": [
-            {
-              "date": "2026-09-01",
-              "value": 1107,
-              "spot": true
-            }
-          ]
+          "status": "awaiting",
+          "source": null,
+          "sourceTag": "unknown",
+          "asOf": null,
+          "series": [],
+          "awaitingReason": "Every scraper failed for https://www.investing.com/indices/baltic-dirty-tanker (firecrawl: 402 Payment Required for https://api.firecrawl.dev/v1/scrape; scraped"
         }
       ]
     }
