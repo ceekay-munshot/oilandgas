@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Extracted KPI values, kept across runs",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-09-21T13:54:38.816Z",
+  "generatedAt": "2026-09-28T12:10:00.927Z",
   "note": "One entry per company/KPI/quarter, for every quarter ever extracted - not just the current window. A run only asks the model about cells it does not already have, and a null never overwrites a real value. Delete a cell (or run with --refresh) to force re-extraction.",
   "companies": {
     "deep-industries": {
@@ -404,31 +404,31 @@
           "value": null,
           "unit": "₹ cr",
           "sourceTag": null,
-          "note": "Not stated in any of the excerpts for any quarter.",
+          "note": "Bid pipeline not disclosed in any of the excerpts. The excerpts report order book (unexecuted orders already won) and order inflow (business secured), but do not state the value of the bid pipeline (opportunities under bidding or yet to be ",
           "origin": "model",
-          "fingerprint": "d79d6ed413f9",
-          "attempts": 10,
-          "at": "2026-09-07T13:21:25.386Z"
+          "fingerprint": "ee3e8eaf0d7e",
+          "attempts": 11,
+          "at": "2026-09-28T12:09:30.874Z"
         },
         "bid-pipeline|Q3 FY26": {
           "value": null,
           "unit": "₹ cr",
           "sourceTag": null,
-          "note": "Not stated in any of the excerpts for any quarter.",
+          "note": "Bid pipeline not disclosed in any of the excerpts. The excerpts report order book (unexecuted orders already won) and order inflow (business secured), but do not state the value of the bid pipeline (opportunities under bidding or yet to be ",
           "origin": "model",
-          "fingerprint": "d79d6ed413f9",
-          "attempts": 10,
-          "at": "2026-09-07T13:21:25.386Z"
+          "fingerprint": "ee3e8eaf0d7e",
+          "attempts": 11,
+          "at": "2026-09-28T12:09:30.874Z"
         },
         "bid-pipeline|Q4 FY26": {
           "value": null,
           "unit": "₹ cr",
           "sourceTag": null,
-          "note": "Not stated in any of the excerpts for any quarter.",
+          "note": "Bid pipeline not disclosed in any of the excerpts. The excerpts report order book (unexecuted orders already won) and order inflow (business secured), but do not state the value of the bid pipeline (opportunities under bidding or yet to be ",
           "origin": "model",
-          "fingerprint": "d79d6ed413f9",
-          "attempts": 10,
-          "at": "2026-09-07T13:21:25.386Z"
+          "fingerprint": "ee3e8eaf0d7e",
+          "attempts": 11,
+          "at": "2026-09-28T12:09:30.874Z"
         },
         "consultancy-order-book|Q1 FY26": {
           "value": 68133,
@@ -546,11 +546,11 @@
           "value": null,
           "unit": "INR mn",
           "sourceTag": null,
-          "note": "Q2 FY26: not stated. Q3 FY26: only 9M cumulative stated, not Q3 alone. Q4 FY26: investor PPT page 10 shows Q4 FY26 consultancy business secured 36,418 mn (domestic 3,694 + overseas 32,724). Q1 FY27: investor PPT shows Q1 FY27 consultancy to",
-          "origin": "model",
-          "fingerprint": "d79d6ed413f9",
-          "attempts": 65,
-          "at": "2026-09-07T13:21:25.386Z"
+          "note": "From Screener Insights row \"Consultancy Order Inflow\" (Standalone data); latest value cited to Presentation - 14 Nov 2025, page 14.",
+          "origin": "insights",
+          "fingerprint": "ee3e8eaf0d7e",
+          "attempts": 66,
+          "at": "2026-09-28T12:09:26.031Z"
         },
         "consultancy-share|Q1 FY26": {
           "value": 56.1,
@@ -630,11 +630,11 @@
           "value": null,
           "unit": "%",
           "sourceTag": null,
-          "note": "Q2 FY26: not stated. Q3 FY26: not stated. Q4 FY26: Screener shows 57% domestic share as of Mar 2026. Q1 FY27: not stated in excerpts.",
-          "origin": "model",
-          "fingerprint": "d79d6ed413f9",
-          "attempts": 65,
-          "at": "2026-09-07T13:21:25.386Z"
+          "note": "From Screener Insights row \"Order Book Domestic Share\" (Standalone data); latest value cited to Presentation - 12 Feb 2026, page 17.",
+          "origin": "insights",
+          "fingerprint": "ee3e8eaf0d7e",
+          "attempts": 66,
+          "at": "2026-09-28T12:09:26.031Z"
         },
         "domestic-share|Q3 FY26": {
           "value": 58,
@@ -738,14 +738,14 @@
           "value": null,
           "unit": "₹ cr",
           "sourceTag": null,
-          "note": "Not stated in any of the excerpts for any quarter.",
+          "note": "Bid pipeline not disclosed in any of the excerpts. The excerpts report order book (unexecuted orders already won) and order inflow (business secured), but do not state the value of the bid pipeline (opportunities under bidding or yet to be ",
           "origin": "model",
-          "fingerprint": "d79d6ed413f9",
-          "attempts": 4,
-          "at": "2026-09-07T13:21:25.386Z"
+          "fingerprint": "ee3e8eaf0d7e",
+          "attempts": 5,
+          "at": "2026-09-28T12:09:30.874Z"
         }
       },
-      "updatedAt": "2026-09-07T13:21:25.386Z"
+      "updatedAt": "2026-09-28T12:09:30.874Z"
     },
     "petronet-lng": {
       "cells": {
@@ -2225,7 +2225,7 @@
           "at": "2026-09-07T13:21:39.138Z"
         }
       },
-      "updatedAt": "2026-09-21T13:54:38.634Z"
+      "updatedAt": "2026-09-28T12:09:30.891Z"
     },
     "welspun-corp": {
       "cells": {
@@ -2832,7 +2832,7 @@
           "at": "2026-07-30T08:00:49.896Z"
         }
       },
-      "updatedAt": "2026-09-21T13:54:38.662Z"
+      "updatedAt": "2026-09-28T12:09:30.910Z"
     },
     "iocl": {
       "cells": {
@@ -2891,31 +2891,31 @@
           "value": null,
           "unit": "₹/l",
           "sourceTag": null,
-          "note": "Marketing margin per litre not disclosed in any of the excerpts. Q1 FY26 concall mentions 'integrated margin' approach for aviation and avoids standalone ATF margin; Q2 FY26 concall discusses LPG under-recovery per cylinder (₹100/cyl in Q2,",
+          "note": "Marketing margin per litre not disclosed in any of the excerpts. Management discussed 'marketing margins on retail fuels' under pressure in Q1 FY27 and LPG under-recoveries in multiple quarters, but no per-litre marketing margin figure was ",
           "origin": "model",
-          "fingerprint": "c8746cc29cd4",
-          "attempts": 11,
-          "at": "2026-09-21T11:23:48.245Z"
+          "fingerprint": "3cfc9c31651c",
+          "attempts": 12,
+          "at": "2026-09-28T12:09:36.201Z"
         },
         "marketing-margin|Q2 FY26": {
           "value": null,
           "unit": "₹/l",
           "sourceTag": null,
-          "note": "Marketing margin per litre not disclosed in any of the excerpts. Q1 FY26 concall mentions 'integrated margin' approach for aviation and avoids standalone ATF margin; Q2 FY26 concall discusses LPG under-recovery per cylinder (₹100/cyl in Q2,",
+          "note": "Marketing margin per litre not disclosed in any of the excerpts. Management discussed 'marketing margins on retail fuels' under pressure in Q1 FY27 and LPG under-recoveries in multiple quarters, but no per-litre marketing margin figure was ",
           "origin": "model",
-          "fingerprint": "c8746cc29cd4",
-          "attempts": 11,
-          "at": "2026-09-21T11:23:48.245Z"
+          "fingerprint": "3cfc9c31651c",
+          "attempts": 12,
+          "at": "2026-09-28T12:09:36.201Z"
         },
         "marketing-margin|Q4 FY26": {
           "value": null,
           "unit": "₹/l",
           "sourceTag": null,
-          "note": "Marketing margin per litre not disclosed in any of the excerpts. Q1 FY26 concall mentions 'integrated margin' approach for aviation and avoids standalone ATF margin; Q2 FY26 concall discusses LPG under-recovery per cylinder (₹100/cyl in Q2,",
+          "note": "Marketing margin per litre not disclosed in any of the excerpts. Management discussed 'marketing margins on retail fuels' under pressure in Q1 FY27 and LPG under-recoveries in multiple quarters, but no per-litre marketing margin figure was ",
           "origin": "model",
-          "fingerprint": "c8746cc29cd4",
-          "attempts": 11,
-          "at": "2026-09-21T11:23:48.245Z"
+          "fingerprint": "3cfc9c31651c",
+          "attempts": 12,
+          "at": "2026-09-28T12:09:36.201Z"
         },
         "throughput|Q4 FY25": {
           "value": 18.5,
@@ -3376,14 +3376,14 @@
           "value": null,
           "unit": "₹/l",
           "sourceTag": null,
-          "note": "Marketing margin per litre not disclosed in any of the excerpts. Q1 FY26 concall mentions 'integrated margin' approach for aviation and avoids standalone ATF margin; Q2 FY26 concall discusses LPG under-recovery per cylinder (₹100/cyl in Q2,",
+          "note": "Marketing margin per litre not disclosed in any of the excerpts. Management discussed 'marketing margins on retail fuels' under pressure in Q1 FY27 and LPG under-recoveries in multiple quarters, but no per-litre marketing margin figure was ",
           "origin": "model",
-          "fingerprint": "c8746cc29cd4",
-          "attempts": 5,
-          "at": "2026-09-21T11:23:48.245Z"
+          "fingerprint": "3cfc9c31651c",
+          "attempts": 6,
+          "at": "2026-09-28T12:09:36.201Z"
         }
       },
-      "updatedAt": "2026-09-21T13:54:38.672Z"
+      "updatedAt": "2026-09-28T12:09:36.201Z"
     },
     "bpcl": {
       "cells": {
@@ -3971,21 +3971,21 @@
           "value": null,
           "unit": "$/t",
           "sourceTag": null,
-          "note": "Q1 FY26: Not stated. Q2 FY26: Not stated. Q3 FY26: Not stated. Q1 FY27: Not stated. The excerpts discuss petrochemical segment losses, feedstock costs, breakeven pricing, and unit economics (gas price $10.54/MMBtu, breakeven ~$13-14/MMBtu l",
+          "note": "Petchem margin in $/t not disclosed in any of the excerpts. Q1 FY26 concall mentions polymer segment loss of ₹130 cr and average landed gas price of $10.54/MMBtu with breakeven framing around $13-14 landed price and selling price ~₹130,000,",
           "origin": "model",
-          "fingerprint": "49ecf56bbe18",
-          "attempts": 17,
-          "at": "2026-09-21T11:24:10.492Z"
+          "fingerprint": "227a070cd154",
+          "attempts": 18,
+          "at": "2026-09-28T12:09:43.710Z"
         },
         "petchem-margin|Q3 FY26": {
           "value": null,
           "unit": "$/t",
           "sourceTag": null,
-          "note": "Q1 FY26: Not stated. Q2 FY26: Not stated. Q3 FY26: Not stated. Q1 FY27: Not stated. The excerpts discuss petrochemical segment losses, feedstock costs, breakeven pricing, and unit economics (gas price $10.54/MMBtu, breakeven ~$13-14/MMBtu l",
+          "note": "Petchem margin in $/t not disclosed in any of the excerpts. Q1 FY26 concall mentions polymer segment loss of ₹130 cr and average landed gas price of $10.54/MMBtu with breakeven framing around $13-14 landed price and selling price ~₹130,000,",
           "origin": "model",
-          "fingerprint": "49ecf56bbe18",
-          "attempts": 17,
-          "at": "2026-09-21T11:24:10.492Z"
+          "fingerprint": "227a070cd154",
+          "attempts": 18,
+          "at": "2026-09-28T12:09:43.710Z"
         },
         "petchem-margin|Q4 FY26": {
           "value": null,
@@ -4001,11 +4001,11 @@
           "value": null,
           "unit": "$/t",
           "sourceTag": null,
-          "note": "Q1 FY26: Not stated. Q2 FY26: Not stated. Q3 FY26: Not stated. Q1 FY27: Not stated. The excerpts discuss petrochemical segment losses, feedstock costs, breakeven pricing, and unit economics (gas price $10.54/MMBtu, breakeven ~$13-14/MMBtu l",
+          "note": "Petchem margin in $/t not disclosed in any of the excerpts. Q1 FY26 concall mentions polymer segment loss of ₹130 cr and average landed gas price of $10.54/MMBtu with breakeven framing around $13-14 landed price and selling price ~₹130,000,",
           "origin": "model",
-          "fingerprint": "49ecf56bbe18",
-          "attempts": 8,
-          "at": "2026-09-21T11:24:10.492Z"
+          "fingerprint": "227a070cd154",
+          "attempts": 9,
+          "at": "2026-09-28T12:09:43.710Z"
         },
         "gas-transmission-volume|Q4 FY25": {
           "value": 123.65,
@@ -4053,11 +4053,11 @@
           "value": null,
           "unit": "$/t",
           "sourceTag": null,
-          "note": "Q1 FY26: Not stated. Q2 FY26: Not stated. Q3 FY26: Not stated. Q1 FY27: Not stated. The excerpts discuss petrochemical segment losses, feedstock costs, breakeven pricing, and unit economics (gas price $10.54/MMBtu, breakeven ~$13-14/MMBtu l",
+          "note": "Petchem margin in $/t not disclosed in any of the excerpts. Q1 FY26 concall mentions polymer segment loss of ₹130 cr and average landed gas price of $10.54/MMBtu with breakeven framing around $13-14 landed price and selling price ~₹130,000,",
           "origin": "model",
-          "fingerprint": "49ecf56bbe18",
-          "attempts": 14,
-          "at": "2026-09-21T11:24:10.492Z"
+          "fingerprint": "227a070cd154",
+          "attempts": 15,
+          "at": "2026-09-28T12:09:43.710Z"
         },
         "gas-marketing-volume|Q4 FY25": {
           "value": 99.99,
@@ -4363,7 +4363,7 @@
           "at": "2026-09-07T13:23:22.397Z"
         }
       },
-      "updatedAt": "2026-09-21T11:24:10.492Z"
+      "updatedAt": "2026-09-28T12:09:43.710Z"
     },
     "mahanagar-gas": {
       "cells": {
@@ -4782,21 +4782,21 @@
           "value": null,
           "unit": "% yoy",
           "sourceTag": null,
-          "note": "Q2 FY26: no single-quarter volume stated. Q3 FY26: no single-quarter volume stated. Q4 FY26: Q4 call states CNG 3.6 mmscmd with 12% yoy growth but does not give PNG volume or combined CNG+PNG growth. Q1 FY27: call states 'CNG volume of 3.76",
+          "note": "Q2 FY26: no single-quarter volume stated. Q3 FY26: no single-quarter volume stated. Q4 FY26: CNG 3.6 mmscmd (+12% yoy), PNG domestic 0.91 mmscmd, PNG industrial 4.19 mmscmd stated but total CNG+PNG growth not given. Q1 FY27: CNG 3.76 mmscmd",
           "origin": "model",
-          "fingerprint": "5766ae50b84d",
-          "attempts": 6,
-          "at": "2026-09-07T13:23:53.052Z"
+          "fingerprint": "c522e859e41d",
+          "attempts": 7,
+          "at": "2026-09-28T12:09:55.275Z"
         },
         "cng-png-volume-growth|Q3 FY26": {
           "value": null,
           "unit": "% yoy",
           "sourceTag": null,
-          "note": "Q2 FY26: no single-quarter volume stated. Q3 FY26: no single-quarter volume stated. Q4 FY26: Q4 call states CNG 3.6 mmscmd with 12% yoy growth but does not give PNG volume or combined CNG+PNG growth. Q1 FY27: call states 'CNG volume of 3.76",
+          "note": "Q2 FY26: no single-quarter volume stated. Q3 FY26: no single-quarter volume stated. Q4 FY26: CNG 3.6 mmscmd (+12% yoy), PNG domestic 0.91 mmscmd, PNG industrial 4.19 mmscmd stated but total CNG+PNG growth not given. Q1 FY27: CNG 3.76 mmscmd",
           "origin": "model",
-          "fingerprint": "5766ae50b84d",
-          "attempts": 6,
-          "at": "2026-09-07T13:23:53.052Z"
+          "fingerprint": "c522e859e41d",
+          "attempts": 7,
+          "at": "2026-09-28T12:09:55.275Z"
         },
         "cng-png-volume-growth|Q4 FY26": {
           "value": 12,
@@ -4824,41 +4824,41 @@
           "value": null,
           "unit": "₹/scm",
           "sourceTag": null,
-          "note": "Q2 FY26: EBITDA per scm not stated. Q3 FY26: EBITDA per scm not stated. Q4 FY26: EBITDA per scm not stated. Q1 FY27: EBITDA per scm not stated. The quarterly financials show EBITDA (Operating Profit) but do not provide volume in scm for the",
+          "note": "Q2 FY26: EBITDA ₹447 Cr stated, total volume 8.65 mmscmd from Screener; no per-scm figure stated. Q3 FY26: EBITDA ₹447 Cr, volume 8.37 mmscmd; no per-scm stated. Q4 FY26: EBITDA ₹609 Cr (or ₹943 Cr post-merger in Q1 FY27 PPT), volume 8.88 m",
           "origin": "model",
-          "fingerprint": "5766ae50b84d",
-          "attempts": 6,
-          "at": "2026-09-07T13:23:53.052Z"
+          "fingerprint": "c522e859e41d",
+          "attempts": 7,
+          "at": "2026-09-28T12:09:55.275Z"
         },
         "ebitda-per-scm|Q3 FY26": {
           "value": null,
           "unit": "₹/scm",
           "sourceTag": null,
-          "note": "Q2 FY26: EBITDA per scm not stated. Q3 FY26: EBITDA per scm not stated. Q4 FY26: EBITDA per scm not stated. Q1 FY27: EBITDA per scm not stated. The quarterly financials show EBITDA (Operating Profit) but do not provide volume in scm for the",
+          "note": "Q2 FY26: EBITDA ₹447 Cr stated, total volume 8.65 mmscmd from Screener; no per-scm figure stated. Q3 FY26: EBITDA ₹447 Cr, volume 8.37 mmscmd; no per-scm stated. Q4 FY26: EBITDA ₹609 Cr (or ₹943 Cr post-merger in Q1 FY27 PPT), volume 8.88 m",
           "origin": "model",
-          "fingerprint": "5766ae50b84d",
-          "attempts": 6,
-          "at": "2026-09-07T13:23:53.052Z"
+          "fingerprint": "c522e859e41d",
+          "attempts": 7,
+          "at": "2026-09-28T12:09:55.275Z"
         },
         "ebitda-per-scm|Q4 FY26": {
           "value": null,
           "unit": "₹/scm",
           "sourceTag": null,
-          "note": "Q2 FY26: EBITDA per scm not stated. Q3 FY26: EBITDA per scm not stated. Q4 FY26: EBITDA per scm not stated. Q1 FY27: EBITDA per scm not stated. The quarterly financials show EBITDA (Operating Profit) but do not provide volume in scm for the",
+          "note": "Q2 FY26: EBITDA ₹447 Cr stated, total volume 8.65 mmscmd from Screener; no per-scm figure stated. Q3 FY26: EBITDA ₹447 Cr, volume 8.37 mmscmd; no per-scm stated. Q4 FY26: EBITDA ₹609 Cr (or ₹943 Cr post-merger in Q1 FY27 PPT), volume 8.88 m",
           "origin": "model",
-          "fingerprint": "5766ae50b84d",
-          "attempts": 6,
-          "at": "2026-09-07T13:23:53.052Z"
+          "fingerprint": "c522e859e41d",
+          "attempts": 7,
+          "at": "2026-09-28T12:09:55.275Z"
         },
         "ebitda-per-scm|Q1 FY27": {
           "value": null,
           "unit": "₹/scm",
           "sourceTag": null,
-          "note": "Q2 FY26: EBITDA per scm not stated. Q3 FY26: EBITDA per scm not stated. Q4 FY26: EBITDA per scm not stated. Q1 FY27: EBITDA per scm not stated. The quarterly financials show EBITDA (Operating Profit) but do not provide volume in scm for the",
+          "note": "Q2 FY26: EBITDA ₹447 Cr stated, total volume 8.65 mmscmd from Screener; no per-scm figure stated. Q3 FY26: EBITDA ₹447 Cr, volume 8.37 mmscmd; no per-scm stated. Q4 FY26: EBITDA ₹609 Cr (or ₹943 Cr post-merger in Q1 FY27 PPT), volume 8.88 m",
           "origin": "model",
-          "fingerprint": "5766ae50b84d",
-          "attempts": 3,
-          "at": "2026-09-07T13:23:53.052Z"
+          "fingerprint": "c522e859e41d",
+          "attempts": 4,
+          "at": "2026-09-28T12:09:55.275Z"
         },
         "cng-png-volume-growth|Q1 FY26": {
           "value": 12,
@@ -4882,7 +4882,7 @@
           "at": "2026-08-12T08:23:26.500Z"
         }
       },
-      "updatedAt": "2026-09-07T13:23:53.052Z"
+      "updatedAt": "2026-09-28T12:09:55.275Z"
     },
     "aegis-logistics": {
       "cells": {
@@ -5333,8 +5333,8 @@
           "note": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 15 Jun 2026, page 6.",
           "origin": "insights",
           "fingerprint": "19c53dbfa714",
-          "attempts": 30,
-          "at": "2026-09-21T13:54:38.745Z"
+          "attempts": 31,
+          "at": "2026-09-28T12:09:55.291Z"
         },
         "terminal-utilisation|Q1 FY27": {
           "value": null,
@@ -5347,7 +5347,7 @@
           "at": "2026-09-07T13:24:13.025Z"
         }
       },
-      "updatedAt": "2026-09-21T13:54:38.745Z"
+      "updatedAt": "2026-09-28T12:09:55.291Z"
     },
     "supreme-petrochem": {
       "cells": {
@@ -5596,11 +5596,11 @@
           "note": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 09 Feb 2026, page 3.",
           "origin": "insights",
           "fingerprint": "5e1f9d42f10c",
-          "attempts": 46,
-          "at": "2026-09-21T13:54:38.762Z"
+          "attempts": 47,
+          "at": "2026-09-28T12:09:55.330Z"
         }
       },
-      "updatedAt": "2026-09-21T13:54:38.762Z"
+      "updatedAt": "2026-09-28T12:09:55.330Z"
     },
     "gandhar-oil": {
       "cells": {
@@ -5913,31 +5913,31 @@
           "value": null,
           "unit": "% yoy",
           "sourceTag": null,
-          "note": "No POL/LPG/LNG cargo throughput YoY growth figures found in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Q4 FY26 concall mentions 'handling LPG vessels' during disruptions but provides no throughput volume or YoY growt",
+          "note": "No POL/LPG/LNG cargo throughput YoY growth figures stated for any of the four quarters (Q2 FY26, Q3 FY26, Q4 FY26, Q1 FY27). The Q4 FY26 call mentions 'handling LPG vessels' during disruptions but gives no volume or YoY metric. The screener",
           "origin": "model",
-          "fingerprint": "6db98d8d7ad8",
-          "attempts": 47,
-          "at": "2026-09-14T13:41:34.568Z"
+          "fingerprint": "0f944bb87a3f",
+          "attempts": 48,
+          "at": "2026-09-28T12:10:00.904Z"
         },
         "pol-lpg-lng-throughput|Q3 FY26": {
           "value": null,
           "unit": "% yoy",
           "sourceTag": null,
-          "note": "No POL/LPG/LNG cargo throughput YoY growth figures found in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Q4 FY26 concall mentions 'handling LPG vessels' during disruptions but provides no throughput volume or YoY growt",
+          "note": "No POL/LPG/LNG cargo throughput YoY growth figures stated for any of the four quarters (Q2 FY26, Q3 FY26, Q4 FY26, Q1 FY27). The Q4 FY26 call mentions 'handling LPG vessels' during disruptions but gives no volume or YoY metric. The screener",
           "origin": "model",
-          "fingerprint": "6db98d8d7ad8",
-          "attempts": 47,
-          "at": "2026-09-14T13:41:34.568Z"
+          "fingerprint": "0f944bb87a3f",
+          "attempts": 48,
+          "at": "2026-09-28T12:10:00.904Z"
         },
         "pol-lpg-lng-throughput|Q4 FY26": {
           "value": null,
           "unit": "% yoy",
           "sourceTag": null,
-          "note": "No POL/LPG/LNG cargo throughput YoY growth figures found in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Q4 FY26 concall mentions 'handling LPG vessels' during disruptions but provides no throughput volume or YoY growt",
+          "note": "No POL/LPG/LNG cargo throughput YoY growth figures stated for any of the four quarters (Q2 FY26, Q3 FY26, Q4 FY26, Q1 FY27). The Q4 FY26 call mentions 'handling LPG vessels' during disruptions but gives no volume or YoY metric. The screener",
           "origin": "model",
-          "fingerprint": "6db98d8d7ad8",
-          "attempts": 47,
-          "at": "2026-09-14T13:41:34.568Z"
+          "fingerprint": "0f944bb87a3f",
+          "attempts": 48,
+          "at": "2026-09-28T12:10:00.904Z"
         },
         "total-cargo-volume|Q4 FY25": {
           "value": 117.9,
@@ -6018,14 +6018,14 @@
           "value": null,
           "unit": "% yoy",
           "sourceTag": null,
-          "note": "No POL/LPG/LNG cargo throughput YoY growth figures found in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Q4 FY26 concall mentions 'handling LPG vessels' during disruptions but provides no throughput volume or YoY growt",
+          "note": "No POL/LPG/LNG cargo throughput YoY growth figures stated for any of the four quarters (Q2 FY26, Q3 FY26, Q4 FY26, Q1 FY27). The Q4 FY26 call mentions 'handling LPG vessels' during disruptions but gives no volume or YoY metric. The screener",
           "origin": "model",
-          "fingerprint": "6db98d8d7ad8",
-          "attempts": 4,
-          "at": "2026-09-14T13:41:34.568Z"
+          "fingerprint": "0f944bb87a3f",
+          "attempts": 5,
+          "at": "2026-09-28T12:10:00.904Z"
         }
       },
-      "updatedAt": "2026-09-14T13:41:34.568Z"
+      "updatedAt": "2026-09-28T12:10:00.904Z"
     },
     "ge-shipping": {
       "cells": {
@@ -6509,13 +6509,13 @@
         },
         "tanker-freight-rate|Q1 FY27": {
           "value": null,
-          "unit": "$/day (TCE)",
+          "unit": "USD/day",
           "sourceTag": null,
-          "note": "No single metric for 'tanker freight rate' found. Q1 FY27 concall mentions crude tankers at $90,000/day and product tankers at $45,000/day for Q2 (not Q1). Q4 FY26 and Q3 FY26 concalls do not state quarterly TCE figures. Q2 FY26 concall doe",
-          "origin": "model",
-          "fingerprint": "564eadbdf0ad",
-          "attempts": 44,
-          "at": "2026-09-21T11:24:36.056Z"
+          "note": "From Screener Insights row \"Average TCY - Crude Carriers\"; latest value cited to Presentation - 11 Dec 2025, page 13.",
+          "origin": "insights",
+          "fingerprint": "c4805d03c83a",
+          "attempts": 45,
+          "at": "2026-09-28T12:10:00.915Z"
         },
         "fleet-deployment|Q1 FY27": {
           "value": 46,
@@ -6554,34 +6554,34 @@
           "value": null,
           "unit": "USD/day",
           "sourceTag": null,
-          "note": "Screener Insights shows 'Average TCY - Dry Bulk Carriers' for full years only (FY25: 15,844; FY26: no data). No quarterly TCE figures stated in any concall for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27.",
-          "origin": "model",
-          "fingerprint": "564eadbdf0ad",
-          "attempts": 44,
-          "at": "2026-09-21T11:24:36.056Z"
+          "note": "From Screener Insights row \"Average TCY - Dry Bulk Carriers\"; latest value cited to Presentation - 11 Dec 2025, page 13.",
+          "origin": "insights",
+          "fingerprint": "c4805d03c83a",
+          "attempts": 45,
+          "at": "2026-09-28T12:10:00.915Z"
         },
         "revenue-days-owned|Q1 FY27": {
           "value": null,
           "unit": "Days",
           "sourceTag": null,
-          "note": "Revenue days (owned) not stated in any excerpt for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27.",
-          "origin": "model",
-          "fingerprint": "564eadbdf0ad",
-          "attempts": 44,
-          "at": "2026-09-21T11:24:36.056Z"
+          "note": "From Screener Insights row \"Revenue Days - Shipping (Owned)\"; latest value cited to Presentation - 11 Dec 2025, page 12.",
+          "origin": "insights",
+          "fingerprint": "c4805d03c83a",
+          "attempts": 45,
+          "at": "2026-09-28T12:10:00.915Z"
         },
         "jackup-utilisation|Q1 FY27": {
           "value": null,
           "unit": "%",
           "sourceTag": null,
-          "note": "Q1 FY27 concall mentions global jack-up utilisation 'remains where it was 3 to 6 months ago' but no figure stated. Q4 FY26 concall mentions 'marketed utilization' around 84-85% but does not specify if this is Q4 FY26 or a general statement.",
-          "origin": "model",
-          "fingerprint": "564eadbdf0ad",
-          "attempts": 44,
-          "at": "2026-09-21T11:24:36.056Z"
+          "note": "From Screener Insights row \"Jack-up Rig Utilization (Industry Under Contract)\"; latest value cited to Presentation - 11 Dec 2025, page 34.",
+          "origin": "insights",
+          "fingerprint": "c4805d03c83a",
+          "attempts": 45,
+          "at": "2026-09-28T12:10:00.915Z"
         }
       },
-      "updatedAt": "2026-09-21T11:24:36.056Z"
+      "updatedAt": "2026-09-28T12:10:00.915Z"
     },
     "shipping-corp": {
       "cells": {

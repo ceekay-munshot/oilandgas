@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-09-21T13:47:58.828Z",
+  "generatedAt": "2026-09-28T12:07:42.222Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -241,33 +241,37 @@
     "engineers-india": {
       "name": "Engineers India",
       "slug": "ENGINERSIN",
-      "view": "yearly",
+      "view": "quarterly",
       "url": "https://www.screener.in/company/ENGINERSIN/consolidated/#shareholding",
-      "via": "annual-fallback",
+      "via": "quarterly-fragment",
       "toggled": "/insights/company/935/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Mar 2017",
-        "Mar 2018",
-        "Mar 2019",
-        "Mar 2020",
-        "Mar 2021",
-        "Mar 2022",
-        "Mar 2023",
+        "Jun 2023",
+        "Sep 2023",
+        "Dec 2023",
         "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
         "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
         "Mar 2026"
       ],
       "periodsIso": [
-        "2017-03",
-        "2018-03",
-        "2019-03",
-        "2020-03",
-        "2021-03",
-        "2022-03",
-        "2023-03",
+        "2023-06",
+        "2023-09",
+        "2023-12",
         "2024-03",
+        "2024-06",
+        "2024-09",
+        "2024-12",
         "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12",
         "2026-03"
       ],
       "rows": [
@@ -276,47 +280,29 @@
           "unit": "INR mn",
           "scope": "Standalone data",
           "values": [
-            40208,
-            41739,
-            43124,
-            44561,
-            45816,
-            48983,
-            48296,
+            49792,
+            48531,
+            47513,
             46367,
+            55223,
+            64957,
+            55538,
             66482,
+            68133,
+            76856,
+            75012,
             108648
           ],
           "citations": [
             {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy 46,170 48,940 38,610 41,739 40,208 30,100 24,543",
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy 47513 48531 49,792 47,935 45,994 45,046 48296",
               "page": 15
             },
             {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy 46,170 48,940 38,610 41,739 40,208 30,100 24,543",
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy 47513 48531 49,792 47,935 45,994 45,046 48296",
               "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy 46,170 48,940 38,610 41,739 40,208 30,100 24,543",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Consultancy 50,383 52,980 44,984 42,314 44,304 42,357 45,816",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Consultancy 50,383 52,980 44,984 42,314 44,304 42,357 45,816",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 05 Aug 2022",
-              "quote": "Consultancy 47,935 44,984 52,980 50,383 48,983",
-              "page": 11
             },
             {
               "doc": "Presentation - 02 Feb 2024",
@@ -326,12 +312,42 @@
             {
               "doc": "Presentation - 02 Feb 2024",
               "quote": "Consultancy 47513 48531 49,792 47,935 45,994 45,046 48296",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy 55538 64,957 55,223 49,792 48,531 47,513 46,367",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy 55538 64,957 55,223 49,792 48,531 47,513 46,367",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy 55538 64,957 55,223 49,792 48,531 47,513 46,367",
               "page": 15
             },
             {
               "doc": "Presentation - 13 Aug 2025",
               "quote": "Consultancy 68,133 55,223 64,957 55,538 66,482",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Consultancy 68,133 55,223 64,957 55,538 66,482",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Consultancy 76,856 68,133 55,223 64,957 55,538 66,482",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Consultancy 75,012 76,856 68,133 55,223 64,957 55,538 66,482",
+              "page": 15
             },
             {
               "doc": "Presentation - 22 May 2026",
@@ -341,124 +357,37 @@
           ]
         },
         {
-          "label": "Consultancy Order Inflow",
-          "unit": "INR mn",
-          "scope": "Standalone data",
-          "values": [
-            22963,
-            16608,
-            15853,
-            16172,
-            15562,
-            16871,
-            12615,
-            12949,
-            45764,
-            60095
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy Total 14,811 778 13,201 832 938 13,675 1,161 835",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy Total 14,811 778 13,201 832 938 13,675 1,161 835",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy Total 14,811 778 13,201 832 938 13,675 1,161 835",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Consultancy Total 15,062 564 11,672 2,826 680 5,940 1,886 7,056",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Consultancy Total 15,062 564 11,672 2,826 680 5,940 1,886 7,056",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 05 Aug 2022",
-              "quote": "Consultancy Total 2,250 2,826 11,672 564 1,809",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 13 Aug 2025",
-              "quote": "Consultancy Total 6,083 11,723 16,905 2,683 14,453",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Consultancy Total 60,095 45,764 12,949 12,615 16,871",
-              "page": 28
-            }
-          ]
-        },
-        {
           "label": "Order Book Consultancy Share",
           "unit": "%",
           "scope": "Standalone data",
           "values": [
-            51.8,
-            53,
-            38.5,
-            46.6,
-            57.4,
-            64,
-            62.8,
+            61.5,
             59.3,
+            59.5,
+            59.3,
+            57.2,
+            58.2,
+            48.9,
             56.7,
+            56.1,
+            58.5,
+            59.8,
             71.9
           ],
           "citations": [
             {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy 40,208 of Total Order Book 77,619 (52%)",
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy 49,792 of Total Order Book 81,025 (61%)",
               "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy 41,739 of Total Order Book 78,731 (53%)",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy 43,124 of Total Order Book 1,11,887 (39%)",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Consultancy 44,561 of Total Order Book 95,554 (47%)",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Consultancy 45,816 of Total Order Book 79,819 (57%)",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 05 Aug 2022",
-              "quote": "Consultancy 48,983 of Total Order Book 76,549 (64%)",
-              "page": 11
             },
             {
               "doc": "Presentation - 02 Feb 2024",
-              "quote": "Consultancy 48,296 of Total Order Book 76,946 (63%)",
+              "quote": "Consultancy 48,531 of Total Order Book 81,883 (59%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy 47,513 of Total Order Book 79,906 (59%)",
               "page": 15
             },
             {
@@ -467,9 +396,39 @@
               "page": 15
             },
             {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy 55,223 of Total Order Book 96,581 (57%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy 64,957 of Total Order Book 1,11,553 (58%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy 55,538 of Total Order Book 1,13,524 (49%)",
+              "page": 15
+            },
+            {
               "doc": "Presentation - 13 Aug 2025",
               "quote": "Consultancy 66,482 of Total Order Book 117,173 (57%)",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Consultancy 68,133 of Total Order Book 121,443 (56%)",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Consultancy 76,856 of Total Order Book 131,311 (59%)",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Consultancy 75,012 of Total Order Book 125,379 (60%)",
+              "page": 15
             },
             {
               "doc": "Presentation - 22 May 2026",
@@ -479,120 +438,33 @@
           ]
         },
         {
-          "label": "Order Inflow / Business Secured Total",
-          "unit": "INR mn",
-          "scope": "Standalone data",
-          "values": [
-            57081,
-            21405,
-            58905,
-            16172,
-            15692,
-            16871,
-            47078,
-            34062,
-            82141,
-            79781
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Total Business secured 57,863 908 56,123 832 3,385 16,025 1,161 835",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Total Business secured 57,863 908 56,123 832 3,385 16,025 1,161 835",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Total Business secured 57,863 908 56,123 832 3,385 16,025 1,161 835",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Total Business secured 15,062 564 11,672 2,826 810 5,940 1,886 7,056",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Total Business secured 15,062 564 11,672 2,826 810 5,940 1,886 7,056",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 05 Aug 2022",
-              "quote": "Total Business secured 2,250 2,826 11,672 564 1,809",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 13 Aug 2025",
-              "quote": "Total Business secured 14,292 23,791 27,577 18,784 11,989",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Total Business secured 79,781 82,141 34,062 47,078 16,871",
-              "page": 28
-            }
-          ]
-        },
-        {
           "label": "Total Order Book",
           "unit": "INR mn",
           "scope": "Standalone data",
           "values": [
-            77619,
-            78731,
-            111887,
-            95554,
-            79819,
-            76549,
-            76946,
+            81025,
+            81883,
+            79906,
             78235,
+            96581,
+            111553,
+            113524,
             117173,
+            121443,
+            131311,
+            125379,
             151093
           ],
           "citations": [
             {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Total Order Book 107,870 114,640 72,290 78,731 77,619 37,887 36,409",
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Order Book 79,906 81,883 81,025 88,338 84,313 78,656 76,946",
               "page": 15
             },
             {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Total Order Book 107,870 114,640 72,290 78,731 77,619 37,887 36,409",
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Order Book 79,906 81,883 81,025 88,338 84,313 78,656 76,946",
               "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Total Order Book 107,870 114,640 72,290 78,731 77,619 37,887 36,409",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Total Order Book 82,121 80,292 75,304 91,168 89,780 82,972 79,819",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Total Order Book 82,121 80,292 75,304 91,168 89,780 82,972 79,819",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 05 Aug 2022",
-              "quote": "Total Order Book 88,338 75,304 80,292 82,121 76,549",
-              "page": 11
             },
             {
               "doc": "Presentation - 02 Feb 2024",
@@ -602,6 +474,21 @@
             {
               "doc": "Presentation - 02 Feb 2024",
               "quote": "Total Order Book 79,906 81,883 81,025 88,338 84,313 78,656 76,946",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Total Order Book 113524 1,11,553 96,581 81,025 81,883 79,906 78,235",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Total Order Book 113524 1,11,553 96,581 81,025 81,883 79,906 78,235",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Total Order Book 113524 1,11,553 96,581 81,025 81,883 79,906 78,235",
               "page": 15
             },
             {
@@ -610,9 +497,223 @@
               "page": 11
             },
             {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Total Order Book 121,443 96,581 1,11,553 1,13,524 1,17,173",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Total Order Book 131,311 121,443 96,581 1,11,553 1,13,524 1,17,173",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Total Order Book 125,379 131,311 121,443 96,581 1,11,553 1,13,524 1,17,173",
+              "page": 15
+            },
+            {
               "doc": "Presentation - 22 May 2026",
               "quote": "Total Order Book 151,093 117,173 78,235 76,946 76,549",
               "page": 28
+            }
+          ]
+        },
+        {
+          "label": "Order Inflow / Business Secured Total",
+          "unit": "INR mn",
+          "scope": "Standalone data",
+          "values": [
+            12652,
+            11442,
+            6371,
+            3597,
+            23791,
+            27577,
+            18784,
+            11989,
+            14292,
+            23349,
+            5027,
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Total Business secured 70,152 18,784 27,577 23,791 12,652 11,442 6,371 3,597",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Total Business secured 70,152 18,784 27,577 23,791 12,652 11,442 6,371 3,597",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Total Business secured 70,152 18,784 27,577 23,791 12,652 11,442 6,371 3,597",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Total Business secured 14,292 23,791 27,577 18,784 11,989",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Total Business secured 14,292 23,791 27,577 18,784 11,989",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Total Business secured 37,641 23,349 14,292 23,791 27,577 18,784 11,989",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Total Business secured 42,668 5,027 23,349 14,292 23,791 27,577 18,784 11,989",
+              "page": 15
+            },
+            null
+          ]
+        },
+        {
+          "label": "Consultancy Order Inflow",
+          "unit": "INR mn",
+          "scope": "Standalone data",
+          "values": [
+            4439,
+            3087,
+            6371,
+            null,
+            11723,
+            16905,
+            2683,
+            14453,
+            6083,
+            13904,
+            3690,
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
+              "page": 15
+            },
+            null,
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy Total 31,311 2,683 16,905 11,723 4,439 3,087 2,871 2,552",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy Total 31,311 2,683 16,905 11,723 4,439 3,087 2,871 2,552",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy Total 31,311 2,683 16,905 11,723 4,439 3,087 2,871 2,552",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Consultancy Total 6,083 11,723 16,905 2,683 14,453",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Consultancy Total 6,083 11,723 16,905 2,683 14,453",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Consultancy Total 19,987 13,904 6,083 11,723 16,905 2,683 14,453",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Consultancy Total 23,677 3,690 13,904 6,083 11,723 16,905 2,683 14,453",
+              "page": 15
+            },
+            null
+          ]
+        },
+        {
+          "label": "Order Book Domestic Share",
+          "unit": "%",
+          "scope": "Standalone data",
+          "values": [
+            null,
+            null,
+            68,
+            null,
+            null,
+            null,
+            77,
+            null,
+            null,
+            null,
+            58,
+            57
+          ],
+          "citations": [
+            null,
+            null,
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "9M FY 23-24 Consultancy Domestic Vs Overseas 68% Domestic",
+              "page": 16
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "9M FY 24-25 Consultancy Domestic Vs Overseas 77% Domestic",
+              "page": 17
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Consultancy Domestic Vs Overseas 58% Domestic 42% Overseas",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 22 May 2026",
+              "quote": "OBP: Domestic Vs Overseas 57% Domestic 43% Overseas",
+              "page": 31
             }
           ]
         },
@@ -624,36 +725,36 @@
             null,
             null,
             null,
-            null,
-            null,
-            33,
-            null,
             47,
+            null,
+            null,
+            null,
             46,
+            null,
+            null,
+            null,
             58
           ],
           "citations": [
             null,
             null,
             null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 27 May 2022",
-              "quote": "In-house and collaborative R&D (33 active patents)",
-              "page": 5
-            },
-            null,
             {
               "doc": "Annual Report - 31 Mar 2024",
               "quote": "47 live Patents",
               "page": 60
             },
+            null,
+            null,
+            null,
             {
               "doc": "Credit Rating - 08 Dec 2025",
               "quote": "EIL holds 46 live patents for such process technologies",
               "page": 2
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 22 May 2026",
               "quote": "(58 active Patents, 74 pending grant)",
@@ -669,85 +770,40 @@
             null,
             null,
             null,
-            null,
-            null,
-            2710,
-            null,
             2658,
+            null,
+            null,
+            null,
             2700,
+            null,
+            null,
+            null,
             2735
           ],
           "citations": [
             null,
             null,
             null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 27 May 2022",
-              "quote": "Total 2710",
-              "page": 15
-            },
-            null,
             {
               "doc": "Annual Report - 31 Mar 2024",
               "quote": "2,658 employees (as of March 31, 2024)",
               "page": 96
             },
+            null,
+            null,
+            null,
             {
               "doc": "Credit Rating - 08 Dec 2025",
               "quote": "EIL has a strong management team and employs a workforce of 2,700 experienced professionals",
               "page": 2
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 22 May 2026",
               "quote": "Total 2735",
               "page": 11
-            }
-          ]
-        },
-        {
-          "label": "Order Book Domestic Share",
-          "unit": "%",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            89,
-            null,
-            68,
-            77,
-            57
-          ],
-          "citations": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 27 May 2022",
-              "quote": "OBP: Domestic Vs Overseas 89% Domestic 11% Overseas",
-              "page": 30
-            },
-            null,
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "9M FY 23-24 Consultancy Domestic Vs Overseas 68% Domestic",
-              "page": 16
-            },
-            {
-              "doc": "Presentation - 10 Feb 2025",
-              "quote": "9M FY 24-25 Consultancy Domestic Vs Overseas 77% Domestic",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "OBP: Domestic Vs Overseas 57% Domestic 43% Overseas",
-              "page": 31
             }
           ]
         }
@@ -3319,102 +3375,90 @@
     "lt": {
       "name": "L&T",
       "slug": "LT",
-      "view": "quarterly",
+      "view": "yearly",
       "url": "https://www.screener.in/company/LT/consolidated/",
-      "via": "quarterly-fragment",
+      "via": "annual-fallback",
       "toggled": "/insights/company/1870/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
         "Mar 2018",
         "Mar 2019",
+        "Mar 2020",
         "Mar 2021",
         "Mar 2022",
-        "Jun 2023",
+        "Mar 2023",
         "Mar 2024",
-        "Jun 2024",
-        "Sep 2024",
         "Mar 2025",
-        "Jun 2025",
-        "Sep 2025",
         "Mar 2026"
       ],
       "periodsIso": [
         "2018-03",
         "2019-03",
+        "2020-03",
         "2021-03",
         "2022-03",
-        "2023-06",
+        "2023-03",
         "2024-03",
-        "2024-06",
-        "2024-09",
         "2025-03",
-        "2025-06",
-        "2025-09",
         "2026-03"
       ],
       "rows": [
         {
-          "label": "Order Inflow",
+          "label": "L&T Finance Loan Book",
           "unit": "INR crore",
-          "scope": null,
+          "scope": "Standalone data",
           "values": [
+            82692,
+            99121,
             null,
-            null,
-            null,
-            null,
-            65520,
-            72150,
-            70936,
-            80045,
-            89613,
-            94453,
-            115784,
-            89772
+            94013,
+            88341,
+            80893,
+            85565,
+            97762,
+            121730
           ],
           "citations": [
-            null,
-            null,
-            null,
+            {
+              "doc": "Presentation - 29 Jan 2016",
+              "quote": "Asset Book in focused lending businesses: ₹ 82,692 crore",
+              "page": null
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Total Assets (Loan Book): ₹99,121 crore",
+              "page": 292
+            },
             null,
             {
-              "doc": "Presentation - 24 Jul 2024",
-              "quote": "Total 65520",
-              "page": 27
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2020-21: ₹ 94,013 crore",
+              "page": 95
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2021-22: ₹ 88,341 crore",
+              "page": 95
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2018",
+              "quote": "FY22–23 Loan Book: ₹ 80,893 crore",
+              "page": 108
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2018",
+              "quote": "FY23–24 Loan Book (as of March 31, 2024): ₹ 85,565 crore",
+              "page": 108
             },
             {
               "doc": "Presentation - 08 May 2025",
-              "quote": "Total 72150 35%",
-              "page": 37
-            },
-            {
-              "doc": "Presentation - 29 Jul 2025",
-              "quote": "Total 70936 46%",
-              "page": 31
-            },
-            {
-              "doc": "Presentation - 29 Oct 2025",
-              "quote": "Total 80045 63%",
-              "page": 33
+              "quote": "Book 977.6 14%",
+              "page": 20
             },
             {
               "doc": "Presentation - 05 May 2026",
-              "quote": "89613 70%",
-              "page": 45
-            },
-            {
-              "doc": "Presentation - 29 Jul 2025",
-              "quote": "Total 94453 51%",
-              "page": 31
-            },
-            {
-              "doc": "Presentation - 29 Oct 2025",
-              "quote": "Total 115784 65%",
-              "page": 33
-            },
-            {
-              "doc": "Presentation - 05 May 2026",
-              "quote": "89772 67%",
-              "page": 45
+              "quote": "Book 1217.3 25%",
+              "page": 20
             }
           ]
         },
@@ -3425,15 +3469,12 @@
           "values": [
             23.8,
             22,
+            null,
             21,
             27,
             null,
             38,
-            null,
-            null,
             46,
-            null,
-            null,
             52
           ],
           "citations": [
@@ -3447,6 +3488,7 @@
               "quote": "International order book declined to 22% as at March 31, 2019",
               "page": 286
             },
+            null,
             {
               "doc": "Annual Report - 31 Mar 2022",
               "quote": "FY 2020-21: 21%",
@@ -3463,15 +3505,11 @@
               "quote": "International: 38%",
               "page": 37
             },
-            null,
-            null,
             {
               "doc": "Presentation - 05 May 2026",
               "quote": "579137 46%",
               "page": 45
             },
-            null,
-            null,
             {
               "doc": "Presentation - 05 May 2026",
               "quote": "740327 52%",
@@ -3484,50 +3522,48 @@
           "unit": "INR crore",
           "scope": null,
           "values": [
+            263107,
+            293427,
             null,
+            262368,
+            357595,
             null,
-            null,
-            null,
-            412600,
-            null,
-            490900,
-            510400,
-            null,
-            612800,
-            667000,
+            475809,
+            579137,
             740300
           ],
           "citations": [
-            null,
-            null,
-            null,
-            null,
             {
-              "doc": "Presentation - 24 Jul 2024",
-              "quote": "4126 Order Book",
-              "page": 8
+              "doc": "Presentation - 29 Jan 2016",
+              "quote": "L&T Consolidated Order Book (as of Mar 31, FY18): ₹ 263,107 crore",
+              "page": null
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Order Book as at March 31, 2019: ₹293,427 crore",
+              "page": 286
             },
             null,
             {
-              "doc": "Presentation - 24 Jul 2024",
-              "quote": "4909 Order Book",
-              "page": 8
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2020-21: ₹ 262,368 crore (as at March 31, 2021)",
+              "page": 32
             },
             {
-              "doc": "Presentation - 29 Oct 2025",
-              "quote": "5104 Order Book",
-              "page": 8
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "Total Order Book (as of March 31, 2022): ₹ 357,595 crore",
+              "page": 32
             },
             null,
             {
-              "doc": "Presentation - 29 Jul 2025",
-              "quote": "6128 Order Book",
-              "page": 8
+              "doc": "Presentation - 08 May 2025",
+              "quote": "Total Order Book (as at March 31, 2025): ₹ 5,79,137 crore",
+              "page": 37
             },
             {
-              "doc": "Presentation - 29 Oct 2025",
-              "quote": "6670 Order Book",
-              "page": 8
+              "doc": "Presentation - 05 May 2026",
+              "quote": "579137 46%",
+              "page": 45
             },
             {
               "doc": "Presentation - 05 May 2026",
@@ -3537,7 +3573,58 @@
           ]
         },
         {
-          "label": "L&T Finance Loan Book",
+          "label": "Order Inflow",
+          "unit": "INR crore",
+          "scope": null,
+          "values": [
+            null,
+            176834,
+            175497,
+            null,
+            192997,
+            null,
+            302812,
+            356631,
+            435590
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "FY 2018-19 order inflow of ₹176,834 crore",
+              "page": 285
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "FY 2020-21: ₹ 175,497 crore",
+              "page": 31
+            },
+            null,
+            {
+              "doc": "Annual Report - 31 Mar 2022",
+              "quote": "Total Order Inflow: ₹ 192,997 crore",
+              "page": 31
+            },
+            null,
+            {
+              "doc": "Presentation - 08 May 2025",
+              "quote": "Total 302812 54%",
+              "page": 37
+            },
+            {
+              "doc": "Presentation - 05 May 2026",
+              "quote": "356631 58%",
+              "page": 45
+            },
+            {
+              "doc": "Presentation - 05 May 2026",
+              "quote": "435590 58%",
+              "page": 45
+            }
+          ]
+        },
+        {
+          "label": "L&T Realty Pre-sales",
           "unit": "INR crore",
           "scope": "Standalone data",
           "values": [
@@ -3545,48 +3632,34 @@
             null,
             null,
             null,
-            85560,
             null,
-            88720,
-            93020,
             null,
-            102310,
-            107100,
-            null
+            4520,
+            4680,
+            9440
           ],
           "citations": [
             null,
             null,
             null,
             null,
-            {
-              "doc": "Presentation - 24 Jul 2024",
-              "quote": "Book 855.6",
-              "page": 20
-            },
+            null,
             null,
             {
-              "doc": "Presentation - 29 Jul 2025",
-              "quote": "Book 887.2 15%",
-              "page": 20
+              "doc": "Presentation - 08 May 2025",
+              "quote": "Realty 16.7 17.5 5% Realty 45.2 46.8 4%",
+              "page": 37
             },
             {
-              "doc": "Presentation - 29 Oct 2025",
-              "quote": "Book 930.2 15%",
-              "page": 20
-            },
-            null,
-            {
-              "doc": "Presentation - 29 Jul 2025",
-              "quote": "Book 1023.1 15%",
-              "page": 20
+              "doc": "Presentation - 08 May 2025",
+              "quote": "Realty 45.2 46.8 4%",
+              "page": 37
             },
             {
-              "doc": "Presentation - 29 Oct 2025",
-              "quote": "Book 1071.0 15%",
-              "page": 20
-            },
-            null
+              "doc": "Presentation - 05 May 2026",
+              "quote": "Realty 17.5 19.8 13% Realty 46.8 94.4 >100%",
+              "page": 44
+            }
           ]
         }
       ]
@@ -4823,183 +4896,110 @@
     "iocl": {
       "name": "IOCL",
       "slug": "IOC",
-      "view": "quarterly",
+      "view": "yearly",
       "url": "https://www.screener.in/company/IOC/consolidated/",
-      "via": "quarterly-fragment",
+      "via": "annual-fallback",
       "toggled": "/insights/company/1448/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Jun 2023",
-        "Sep 2023",
-        "Dec 2023",
+        "Mar 2016",
+        "Mar 2017",
+        "Mar 2018",
+        "Mar 2019",
+        "Mar 2020",
+        "Mar 2021",
+        "Mar 2022",
+        "Mar 2023",
         "Mar 2024",
-        "Jun 2024",
-        "Sep 2024",
-        "Dec 2024",
         "Mar 2025",
-        "Jun 2025",
-        "Sep 2025",
-        "Dec 2025",
         "Mar 2026"
       ],
       "periodsIso": [
-        "2023-06",
-        "2023-09",
-        "2023-12",
+        "2016-03",
+        "2017-03",
+        "2018-03",
+        "2019-03",
+        "2020-03",
+        "2021-03",
+        "2022-03",
+        "2023-03",
         "2024-03",
-        "2024-06",
-        "2024-09",
-        "2024-12",
         "2025-03",
-        "2025-06",
-        "2025-09",
-        "2025-12",
         "2026-03"
       ],
       "rows": [
         {
-          "label": "Refinery Throughput",
+          "label": "Gas Sales",
           "unit": "MMT",
           "scope": "Standalone data",
           "values": [
-            17.6,
-            17.5,
-            18.5,
-            18.3,
-            18.7,
-            16.7,
-            18.1,
-            18.5,
-            18.7,
-            17.6,
-            19.4,
-            19.7
+            1.93,
+            1.92,
+            1.9,
+            1.95,
+            3.32,
+            3.28,
+            3.59,
+            4.14,
+            5.71,
+            6.94,
+            7.28
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 02 May 2025 Source",
-              "quote": null,
-              "page": null
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Gas Sales (Domestic) FY15-16: 1.929 MMT",
+              "page": 63
             },
             {
-              "doc": "Concall Transcript - 02 May 2025 Source",
-              "quote": null,
-              "page": null
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Gas Sales (Domestic) FY16-17: 1.920 MMT",
+              "page": 63
             },
             {
-              "doc": "Concall Transcript - 02 May 2025",
-              "quote": "throughput of 18.1 MMT and a capacity utilization of 102.3%. And also higher than the corresponding quarter FY '24, which was at 18.3 MMT",
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Gas Sales (Domestic) FY17-18: 1.904 MMT",
+              "page": 63
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Gas Sales (Domestic) FY18-19: 1.950 MMT",
+              "page": 63
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Gas Sales (Domestic) FY 2019-20: 3.318 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Gas Sales (Domestic) FY 2020-21: 3.279 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Gas Sales (Domestic) FY 2021-22: 3.592 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Gas Sales (Domestic) FY 2022-23: 4.145 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Gas Sales (Domestic) FY 2023-24: 5.714 MMT (49% YoY growth)",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Gas Sales (Product Sales) FY 2024-25: 6.938 MMT",
+              "page": 112
+            },
+            {
+              "doc": "Concall Transcript - 19 May 2026",
+              "quote": "For FY 2025-26, total gas sale was 7,276 TMT including CGD sale of 188 TMT",
               "page": 4
-            },
-            {
-              "doc": "Concall Transcript - 02 May 2025",
-              "quote": "The throughput during the quarter was 18.5 MMT, with a capacity utilization of 107.1%... corresponding quarter FY '24, which was at 18.3 MMT",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Refinery Operation: Throughput (MMT) 18.7",
-              "page": 4
-            },
-            {
-              "doc": "Concall Transcript - 28 Jan 2025",
-              "quote": "The throughput during the quarter was 18.1 MMT with a capacity utilization of 102.3%, which is higher than the preceding quarter, which is at 16.7 MMT of capacity utilization of 94.5%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 28 Jan 2025",
-              "quote": "The throughput during the quarter was 18.1 MMT with a capacity utilization of 102.3%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 02 May 2025",
-              "quote": "The throughput during the quarter was 18.5 MMT, with a capacity utilization of 107.1%",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Q1 2025-26: Refinery Throughput (MMT) 18.7",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 27 Oct 2025",
-              "quote": "Q2 2025-26: Refinery Throughput (MMT) 17.6",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 05 Feb 2026",
-              "quote": "Q3 2025-26: Refinery Throughput (MMT) 19.4",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 19 May 2026",
-              "quote": "Q4 2025-26: Refinery Throughput (MMT) 19.7",
-              "page": 5
-            }
-          ]
-        },
-        {
-          "label": "Refinery Capacity Utilization",
-          "unit": "%",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            null,
-            null,
-            null,
-            106.7,
-            94.5,
-            102.3,
-            107.1,
-            106.7,
-            99.5,
-            109.7,
-            113.9
-          ],
-          "citations": [
-            null,
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Refinery Operation: Capacity utilization (%) 106.7",
-              "page": 4
-            },
-            {
-              "doc": "Concall Transcript - 28 Jan 2025",
-              "quote": "preceding quarter, which is at 16.7 MMT of capacity utilization of 94.5%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 28 Jan 2025",
-              "quote": "The throughput during the quarter was 18.1 MMT with a capacity utilization of 102.3%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 02 May 2025",
-              "quote": "The throughput during the quarter was 18.5 MMT, with a capacity utilization of 107.1%",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Q1 2025-26: Refinery Capacity utilization (%) 106.7",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 27 Oct 2025",
-              "quote": "Q2 2025-26: Refinery Capacity utilization (%) 99.5",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 05 Feb 2026",
-              "quote": "Q3 2025-26: Refinery Capacity utilization (%) 109.7",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 19 May 2026",
-              "quote": "Q4 2025-26: Refinery Capacity utilization (%) 113.9",
-              "page": 5
             }
           ]
         },
@@ -5008,54 +5008,72 @@
           "unit": "MMT",
           "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            0.89,
-            0.83,
-            0.83,
-            0.77,
-            0.9,
-            0.9
+            2.53,
+            2.58,
+            2.37,
+            2.64,
+            2.22,
+            2.67,
+            2.87,
+            2.2,
+            3.06,
+            3.24,
+            3.4
           ],
           "citations": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
             {
-              "doc": "Concall Transcript - 28 Jan 2025",
-              "quote": "On the petrochemical side, the sale of petrochemical products during this quarter was 0.89 MMT as compared to 0.77 MMT in the preceding quarter",
-              "page": 6
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "Petrochemical Sales 2015-16: 2.528 MMT",
+              "page": 30
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "Petrochemical Sales 2016-17: 2.585 MMT (highest ever)",
+              "page": 30
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2018",
+              "quote": "Petrochemical Sales FY17-18: 2.37 MMT (domestic and exports)",
+              "page": 59
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "total petrochemical sales were 2.64 MMT in FY18-19, compared to 2.37 MMT in FY17-18",
+              "page": 71
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Petrochemicals Sales (Domestic) FY 2019-20: 2.224 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Petrochemicals Sales (Domestic) FY 2020-21: 2.675 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Petrochemicals Sales (Domestic) FY 2021-22: 2.871 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Petrochemicals Sales (Domestic) FY 2022-23: 2.202 MMT",
+              "page": 58
             },
             {
               "doc": "Concall Transcript - 02 May 2025",
-              "quote": "The sale of petrochemical products during this quarter was 0.83 MMT as compared to 0.89 MMT in the preceding quarter",
+              "quote": "For the full financial year, petchem sales were 3.236 MMT were more than the sales recorded in FY '24 which was at 3.063 MMT",
               "page": 5
             },
             {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Q1 2025-26: Petrochemicals Total 0.800 Domestic + 0.032 Exports = 0.832",
+              "doc": "Concall Transcript - 02 May 2025",
+              "quote": "For the full financial year, petchem sales were 3.236 MMT",
               "page": 5
             },
             {
-              "doc": "Concall Transcript - 28 Oct 2025",
-              "quote": "The sales of petrochemical products, including exports, during this quarter was 0.77 MMT",
-              "page": 4
-            },
-            {
               "doc": "Concall Transcript - 19 May 2026",
-              "quote": "For Q4 2025-26, sale of 0.901 MMT was achieved",
-              "page": 4
-            },
-            {
-              "doc": "Concall Transcript - 19 May 2026",
-              "quote": "For Q4 2025-26, sale of 0.901 MMT was achieved as compared to 0.893 MMT in the preceding quarter",
+              "quote": "For FY 2025 - 26, petrochemical reported highest-ever sales of 3.396 MMT",
               "page": 4
             }
           ]
@@ -5065,55 +5083,223 @@
           "unit": "MMT",
           "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            24.9,
-            25.8,
-            26.3,
-            24.1,
-            27.6,
-            27.7
+            79.82,
+            82.49,
+            85.67,
+            88.53,
+            85.35,
+            76.02,
+            85.52,
+            97.38,
+            98.63,
+            100.48,
+            105.6
           ],
           "citations": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
             {
-              "doc": "Concall Transcript - 28 Jan 2025",
-              "quote": "throughput of 24.9 MMT in the quarter 3 of FY '24-'25 vis-a-vis 24 MMT in the quarter 2 of FY '24-'25",
-              "page": 6
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Pipelines Throughput FY15-16: 79.824 MMT",
+              "page": 63
             },
             {
-              "doc": "Concall Transcript - 02 May 2025",
-              "quote": "Pipeline throughput during the quarter 4 '24, '25 is 25.8 MMT",
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Pipelines Throughput FY16-17: 82.490 MMT",
+              "page": 63
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Pipelines Throughput FY17-18: 85.675 MMT",
+              "page": 63
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Pipelines Throughput FY18-19: 88.527 MMT",
+              "page": 63
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Pipelines Throughput FY 2019-20: 85.349 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Pipelines Throughput FY 2020-21: 76.019 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Pipelines Throughput FY 2021-22: 85.520 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Pipelines Throughput FY 2022-23: 97.382 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Pipelines Throughput FY 2023-24: 98.626 MMT (Record throughput)",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Pipeline throughput crossed 100 MMT for the first time, reaching 100.477 MMT",
+              "page": 112
+            },
+            {
+              "doc": "Concall Transcript - 19 May 2026",
+              "quote": "Pipeline throughput reached a record 105.6 MMT with capacity utilization of 73.7%",
+              "page": 4
+            }
+          ]
+        },
+        {
+          "label": "Refinery Capacity Utilization",
+          "unit": "%",
+          "scope": "Standalone data",
+          "values": [
+            103.7,
+            105.1,
+            99.7,
+            103.8,
+            100,
+            90,
+            97,
+            103,
+            104.5,
+            101.9,
+            107.4
+          ],
+          "citations": [
+            {
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "Refineries (excluding Paradip): 2015-16: 103.7%",
+              "page": 28
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "Refineries (excluding Paradip): 2016-17: 105.1%",
+              "page": 28
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Capacity Utilization 2017-18: 99.7%",
+              "page": 67
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Capacity Utilization FY18-19: 103.8%",
+              "page": 67
+            },
+            {
+              "doc": "Presentation - 31 Mar 2021",
+              "quote": "Capacity Utilization FY 19-20: 100",
               "page": 5
             },
             {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Pipeline Operations: Throughput (MMT) 26.3",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 27 Oct 2025",
-              "quote": "Q2 2025-26: Pipeline Throughput (MMT) 24.1",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 05 Feb 2026",
-              "quote": "Q3 2025-26: Pipeline Throughput (MMT) 27.6",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 19 May 2026",
-              "quote": "Q4 2025-26: Pipeline Throughput (MMT) 27.7",
+              "doc": "Presentation - 31 Mar 2021",
+              "quote": "Capacity Utilization FY 20-21: 90",
               "page": 5
+            },
+            {
+              "doc": "Presentation - 31 Mar 2022",
+              "quote": "Capacity Utilization FY 21-22: 97",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 31 Mar 2023",
+              "quote": "Capacity Utilization FY 22-23: 103",
+              "page": 7
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Capacity Utilisation FY 2023-24: 104.5% (highest ever capacity utilisation)",
+              "page": 58
+            },
+            {
+              "doc": "Concall Transcript - 19 May 2026",
+              "quote": "comparison to throughput of 71.6 MMT and capacity utilization of 101.9% during FY 24-25",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 19 May 2026",
+              "quote": "Refineries achieved highest-ever crude throughput of 75.5 MMT with a capacity utilization of 107.4%",
+              "page": 4
+            }
+          ]
+        },
+        {
+          "label": "Refinery Throughput",
+          "unit": "MMT",
+          "scope": "Standalone data",
+          "values": [
+            56.69,
+            65.19,
+            69,
+            71.82,
+            69.42,
+            62.35,
+            67.67,
+            72.41,
+            73.31,
+            71.56,
+            75.5
+          ],
+          "citations": [
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Refinery Crude Throughput FY15-16: 56.694",
+              "page": 63
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Refinery Crude Throughput FY16-17: 65.191",
+              "page": 63
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Refinery Crude Throughput FY17-18: 69.001",
+              "page": 63
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Refinery Crude Throughput FY18-19: 71.816",
+              "page": 63
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Refineries Throughput FY 2019-20: 69.419 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Refineries Throughput FY 2020-21: 62.351 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Refineries Throughput FY 2021-22: 67.665 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Refineries Throughput FY 2022-23: 72.408 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Refineries Throughput FY 2023-24: 73.308 MMT (highest ever annual crude processing)",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2024-25 Standalone Refinery Throughput: 71.564 MMT",
+              "page": 112
+            },
+            {
+              "doc": "Concall Transcript - 19 May 2026",
+              "quote": "Refineries achieved highest-ever crude throughput of 75.5 MMT with a capacity utilization of 107.4%",
+              "page": 4
             }
           ]
         },
@@ -5122,57 +5308,146 @@
           "unit": "MMT",
           "scope": "Standalone data",
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            23.19,
-            26.33,
-            24.26,
-            27.18,
-            27.34
+            80.66,
+            83.49,
+            88.76,
+            89.89,
+            89.7,
+            81.03,
+            86.41,
+            95.71,
+            97.55,
+            100.29,
+            105.12
           ],
           "citations": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
             {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Q4 2024-25: Total Sales (a+b+c) 23.193 MMT",
-              "page": 5
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Total Sales Volume FY15-16: 80.664 MMT",
+              "page": 63
             },
             {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Q1 2025-26: Total Sales (a+b+c) 26.328 MMT (highest ever total quarterly sale)",
-              "page": 5
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Total Sales Volume FY16-17: 83.490 MMT",
+              "page": 63
             },
             {
-              "doc": "Presentation - 27 Oct 2025",
-              "quote": "Q2 2025-26: Total Sales (a+b+c) 24.262 MMT",
-              "page": 5
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Total Sales Volume FY17-18: 88.763 MMT",
+              "page": 63
             },
             {
-              "doc": "Presentation - 05 Feb 2026",
-              "quote": "Q3 2025-26: Total Sales (a+b+c) 27.184 MMT",
-              "page": 5
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "Total Sales Volume FY18-19: 89.894 MMT",
+              "page": 63
             },
             {
-              "doc": "Presentation - 19 May 2026",
-              "quote": "Q4 2025-26: Total Sales (a+b+c) 27.343 MMT",
-              "page": 6
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Total Sales (Domestic + Export) FY 2019-20: 89.696 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Total Sales (Domestic + Export) FY 2020-21: 81.027 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Total Sales (Domestic + Export) FY 2021-22: 86.407 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Total Sales (Domestic + Export) FY 2022-23: 95.714 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Total Sales (Domestic + Export) FY 2023-24: 97.551 MMT",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Total Sales Volume FY 2024-25: 100.292 MMT (record, crossing 100 MMT milestone)",
+              "page": 112
+            },
+            {
+              "doc": "Concall Transcript - 19 May 2026",
+              "quote": "Indian Oil has recorded highest ever total sales volume of 105.117 MMT recording growth of ~5%",
+              "page": 4
             }
           ]
         },
         {
-          "label": "Gas Sales",
-          "unit": "MMT",
+          "label": "Retail Outlets",
+          "unit": "count",
+          "scope": "Standalone data",
+          "values": [
+            null,
+            26212,
+            27089,
+            27702,
+            null,
+            32062,
+            34559,
+            36285,
+            37472,
+            40221,
+            42818
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Annual Report - 31 Mar 2017",
+              "quote": "Total retail outlets: 26,212 (as of 2016-17)",
+              "page": 30
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2018",
+              "quote": "Retail Outlets: 27,089 (includes Kisan Seva Kendra 7,529)",
+              "page": 56
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2019",
+              "quote": "648 new outlets were commissioned in FY18-19 alone, bringing the total to 27,702 by March 31, 2019",
+              "page": 68
+            },
+            null,
+            {
+              "doc": "Presentation - 31 Mar 2021",
+              "quote": "Retail Outlets: 32,062 (As of 31-Mar-21)",
+              "page": 9
+            },
+            {
+              "doc": "Presentation - 31 Mar 2022",
+              "quote": "Retail Outlets: 34,559 (As of 31-Mar-22)",
+              "page": 9
+            },
+            {
+              "doc": "Presentation - 31 Mar 2023",
+              "quote": "Retail Outlets: 36,285 (As of 31-Mar-23)",
+              "page": 9
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "Total retail outlets: 37,472 (as on March 31, 2024)",
+              "page": 58
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "As on March 31, 2025, the network comprised 40,221 Retail Outlets",
+              "page": 117
+            },
+            {
+              "doc": "Concall Transcript - 19 May 2026",
+              "quote": "During FY 25 - 26, 2597 retail outlets were commissioned, taking the total number to 42,818",
+              "page": 4
+            }
+          ]
+        },
+        {
+          "label": "Lubricant Sales (SERVO)",
+          "unit": "TMT",
           "scope": "Standalone data",
           "values": [
             null,
@@ -5180,13 +5455,12 @@
             null,
             null,
             null,
-            null,
-            null,
-            null,
-            1.69,
-            1.84,
-            1.94,
-            1.81
+            414,
+            513,
+            701,
+            728,
+            780,
+            905
           ],
           "citations": [
             null,
@@ -5194,27 +5468,34 @@
             null,
             null,
             null,
-            null,
-            null,
-            null,
             {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Q1 2025-26: Gas 1.685 (Domestic 0.800 + Exports 0.032 + CGD included)",
-              "page": 5
+              "doc": "Presentation - 31 Mar 2021",
+              "quote": "Lube Sales growth of 25% (including Exports)",
+              "page": 10
             },
             {
-              "doc": "Concall Transcript - 28 Oct 2025",
-              "quote": "During the year, we registered highest quarterly gas sales of 1.840 MMT, which includes CGD sales of 44 TMT",
-              "page": 5
+              "doc": "Presentation - 31 Mar 2022",
+              "quote": "Lube Sales growth of 24% (including Exports)",
+              "page": 10
             },
             {
-              "doc": "Presentation - 05 Feb 2026",
-              "quote": "Q3 2025-26: Gas 1.937 (Domestic 0.744 + Exports 0.026)",
-              "page": 5
+              "doc": "Presentation - 31 Mar 2023",
+              "quote": "Highest ever SERVO lube sales of 701 MT, registering a growth rate of 9.0%",
+              "page": 9
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2024",
+              "quote": "SERVO registered the highest ever sales volume of 728 TMT (Including exports) in FY 2023-24",
+              "page": 61
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Lubricant Sales: Registered a highest-ever sales volume of 780 TMT (including exports) in FY 2024-25",
+              "page": 118
             },
             {
               "doc": "Concall Transcript - 19 May 2026",
-              "quote": "During the quarter, we registered gas sales of 1,814 TMT which includes CGD sales of 54 TMT",
+              "quote": "Our Lube business achieved record sales of 905 TMT during the year, reflecting ~16% growth",
               "page": 4
             }
           ]
@@ -6348,37 +6629,31 @@
     "gail": {
       "name": "GAIL",
       "slug": "GAIL",
-      "view": "yearly",
+      "view": "quarterly",
       "url": "https://www.screener.in/company/GAIL/consolidated/#shareholding",
-      "via": "annual-fallback",
+      "via": "quarterly-fragment",
       "toggled": "/insights/company/1074/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Mar 2015",
-        "Mar 2016",
-        "Mar 2017",
-        "Mar 2018",
-        "Mar 2019",
-        "Mar 2020",
-        "Mar 2021",
-        "Mar 2022",
-        "Mar 2023",
-        "Mar 2024",
+        "Dec 2023",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
         "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
         "Mar 2026"
       ],
       "periodsIso": [
-        "2015-03",
-        "2016-03",
-        "2017-03",
-        "2018-03",
-        "2019-03",
-        "2020-03",
-        "2021-03",
-        "2022-03",
-        "2023-03",
-        "2024-03",
+        "2023-12",
+        "2024-06",
+        "2024-09",
+        "2024-12",
         "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12",
         "2026-03"
       ],
       "rows": [
@@ -6387,80 +6662,58 @@
           "unit": "TMT",
           "scope": "Standalone data",
           "values": [
-            1277,
-            1086,
-            1110,
-            1278,
-            1325,
-            1266,
-            1138,
-            1004,
-            929,
-            998,
-            951,
-            815
+            232,
+            243,
+            238,
+            249,
+            265,
+            199,
+            221,
+            199,
+            null
           ],
           "citations": [
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Liquid Hydrocarbon Sales (TMT) ... 1,086",
-              "page": 40
+              "doc": "Concall Transcript - 31 Jul 2023",
+              "quote": "LHC production increased to 243 TMT as against 232 TMT in previous quarter",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Liquid Hydrocarbon Sales (TMT) ... 1,082 ... 1,082",
-              "page": 40
+              "doc": "Concall Transcript - 31 Jul 2023",
+              "quote": "LHC production increased to 243 TMT",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Liquid Hydrocarbon Sales (TMT) ... 1,110",
-              "page": 40
+              "doc": "Concall Transcript - 31 Oct 2023",
+              "quote": "Liquid hydrocarbon production was also almost flat 238 TMT as against 243 TMT in previous quarter",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "LHC ... LPG Production 989 ... Propane 165 ... Pentane 30 ... SBP 94",
-              "page": 127
+              "doc": "Concall Transcript - 29 Jan 2024",
+              "quote": "Liquid hydrocarbon production was 249 TMT as against 238 TMT in previous quarter",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "LHC ... LPG 945 ... Propane 247 ... Pentane 36 ... SBP 97",
-              "page": 127
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "LHC production is stood at 265 TMT against 249 TMT in previous quarter",
+              "page": 3
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "LHC ... LPG 914 ... Propane 234 ... Pentane 31 ... SBP 87",
-              "page": 127
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "LHC production is almost flat, and it stood at 199 TMT as against 196 TMT in previous quarter",
+              "page": 3
             },
             {
-              "doc": "Presentation - 14 May 2025",
-              "quote": "Liquid Hydrocarbons Sales ... 1,138 ... 1,004 ... 929 ... 998 ... 951",
-              "page": 16
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "Liquid hydrocarbon production stood at 221 TMT as against 199 TMT in previous quarter",
+              "page": 3
             },
             {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Liquid Hydrocarbons Sales ... 1,004 ... 929 ... 998 ... 951 ... 815",
-              "page": 20
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "LHC production stood at 199 TMT as against 221 TMT in previous quarter",
+              "page": 4
             },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Liquid Hydrocarbons Sales ... 929",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Liquid Hydrocarbons Sales ... 998",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Liquid Hydrocarbons Sales ... 951",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Liquid Hydrocarbons Sales ... 815",
-              "page": 20
-            }
+            null
           ]
         },
         {
@@ -6468,80 +6721,58 @@
           "unit": "TMT",
           "scope": "Standalone data",
           "values": [
-            3093,
-            2819,
-            3362,
-            3721,
-            3975,
-            3909,
-            4163,
-            4199,
-            4335,
-            4396,
-            4478,
-            4600
+            1079,
+            1073,
+            1114,
+            1095,
+            1114,
+            1131,
+            1167,
+            1188,
+            null
           ],
           "citations": [
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "LPG Transmission (Throughput) ... 3,093 TMT",
-              "page": 97
+              "doc": "Concall Transcript - 31 Jul 2023",
+              "quote": "LPG transmission stood at 1073 TMT as against 1079 TMT in previous quarter",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "LPG Transmission (Throughput) ... 2,819 TMT",
-              "page": 97
+              "doc": "Concall Transcript - 31 Jul 2023",
+              "quote": "LPG transmission stood at 1073 TMT",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "LPG Transmission (Throughput) ... 3,362 TMT",
-              "page": 97
+              "doc": "Concall Transcript - 31 Oct 2023",
+              "quote": "LPG transmission was 1114 TMT as against 1073 TMT in previous quarter",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "LPG Transmission ... 3,721 ... 3,975 ... 3,909",
-              "page": 127
+              "doc": "Concall Transcript - 29 Jan 2024",
+              "quote": "LPG transmission was almost flat that is 1095 TMT as against 1114 TMT in previous quarter",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "LPG Transmission ... 3,721 ... 3,975 ... 3,909",
-              "page": 127
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "LPG transmission stood at 1114 TMT as against 1095 TMT in previous quarter",
+              "page": 3
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "LPG Transmission ... 3,721 ... 3,975 ... 3,909",
-              "page": 127
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "The LPG transmission was also flat, it was 1,131 TMT as against 1,132 TMT in Q4 FY'20",
+              "page": 3
             },
             {
-              "doc": "Presentation - 14 May 2025",
-              "quote": "LPG Transmission ... 4,163 ... 4,199 ... 4,335 ... 4,396 ... 4,478",
-              "page": 16
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "LPG transmission was 1,167 TMT as against 1,131 TMT in previous quarter",
+              "page": 3
             },
             {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "LPG Transmission ... 4,199 ... 4,335 ... 4,396 ... 4,478 ... 4,600",
-              "page": 21
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "LPG transmission was 1,188 TMT as against 1,167 TMT in previous quarter",
+              "page": 4
             },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "LPG Transmission ... 4,335",
-              "page": 21
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "LPG Transmission ... 4,396",
-              "page": 21
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "LPG Transmission ... 4,478",
-              "page": 21
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "LPG Transmission ... 4,600 ... Highest ever LPG Transmission in FY 2026",
-              "page": 21
-            }
+            null
           ]
         },
         {
@@ -6549,80 +6780,58 @@
           "unit": "MMSCMD",
           "scope": "Standalone data",
           "values": [
-            72.07,
-            73.67,
-            81.21,
-            85.01,
-            96.93,
-            96.26,
-            89,
-            96,
-            95,
-            98.45,
-            101.49,
-            104.21
+            96.46,
+            98.84,
+            96.96,
+            98.14,
+            99.99,
+            105.45,
+            105.49,
+            103.98,
+            null
           ],
           "citations": [
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Natural Gas Marketing (Sales) ... 72.07 ... 73.67 ... 81.21",
-              "page": 97
+              "doc": "Concall Transcript - 31 Jul 2023",
+              "quote": "Gas marketing volume increased to 98.84 MMSCMD in current quarter as against 96.46 MMSCMD in previous quarter",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Natural Gas Marketing (Sales) ... 72.07 ... 73.67 ... 81.21",
-              "page": 97
+              "doc": "Concall Transcript - 31 Jul 2023",
+              "quote": "Gas marketing volume increased to 98.84 MMSCMD in current quarter",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Natural Gas Marketing (Sales) ... 81.21",
-              "page": 97
+              "doc": "Concall Transcript - 31 Oct 2023",
+              "quote": "total gas marketing volume was 96.96 MMSCMD almost 97 MMSCMD in Q2 as against 98.84 MMSCMD in Q1",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Natural Gas Marketing ... 85.01 ... 96.93 ... 96.26",
-              "page": 127
+              "doc": "Concall Transcript - 29 Jan 2024",
+              "quote": "Physical numbers ... total gas marketing volume was 98.14 MMSCMD in Q3",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Natural Gas Marketing ... 85.01 ... 96.93 ... 96.26",
-              "page": 127
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "gas marketing volume stood at 99.99 MMSCMD in current quarter as against 98.14 MMSCMD previous quarter",
+              "page": 3
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Natural Gas Marketing ... 85.01 ... 96.93 ... 96.26",
-              "page": 127
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "Gas marketing volume during the quarter stood at 105.45 MMSCMD as against 106.53 MMSCMD in Q4 financial year '25",
+              "page": 2
             },
             {
-              "doc": "Presentation - 14 May 2025",
-              "quote": "Gas Marketing ... 89 ... 96 ... 95 ... 98 ... 101",
-              "page": 16
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "Gas marketing volume during the quarter stood at 105.49 MMSCMD as against 105.45 MMSCMD in Q1 Financial Year '26",
+              "page": 3
             },
             {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Natural Gas Marketing ... 96 ... 95 ... 98 ... 101 ... 104",
-              "page": 19
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "Gas marketing volume during the quarter stood at 103.98 MMSCMD as against 105.49 MMSCMD in Q2 FY26",
+              "page": 4
             },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Natural Gas Marketing ... 96 ... 95 ... 98 ... 101 ... 104",
-              "page": 19
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Natural Gas Marketing ... 96 ... 95 ... 98 ... 101 ... 104",
-              "page": 19
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Natural Gas Marketing ... 96 ... 95 ... 98 ... 101 ... 104",
-              "page": 19
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "~ 104.21 MMSCMD Natural gas sales during FY'26",
-              "page": 19
-            }
+            null
           ]
         },
         {
@@ -6630,80 +6839,58 @@
           "unit": "MMSCMD",
           "scope": "Standalone data",
           "values": [
-            92.1,
-            92.09,
-            100.38,
-            105.23,
-            107.43,
-            108.37,
-            104,
-            111,
-            107,
-            120.46,
-            127.32,
-            122.18
+            108.23,
+            116.33,
+            120.31,
+            121.54,
+            123.65,
+            120.62,
+            123.59,
+            125.45,
+            null
           ],
           "citations": [
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Natural Gas Transmission (Throughput) ... 92.10 ... 92.09 ... 100.38",
-              "page": 97
+              "doc": "Concall Transcript - 31 Jul 2023",
+              "quote": "Natural gas transmission volume increased by 8.1 MMSCMD to 116.33 MMSCMD in current quarter as against 108.23 MMSCMD in previous quarter",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Natural Gas Transmission (Throughput) ... 92.10 ... 92.09 ... 100.38",
-              "page": 97
+              "doc": "Concall Transcript - 31 Jul 2023",
+              "quote": "Natural gas transmission volume increased by 8.1 MMSCMD to 116.33 MMSCMD in current quarter",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Natural Gas Transmission (Throughput) ... 100.38",
-              "page": 97
+              "doc": "Concall Transcript - 31 Oct 2023",
+              "quote": "Natural gas transmission volume increased by 4 MMSCMD to 120.31 MMSCMD in Q2",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Natural Gas Transmission ... 105.23 ... 107.43 ... 108.37",
-              "page": 127
+              "doc": "Concall Transcript - 29 Jan 2024",
+              "quote": "Natural gas transmission volume was 121.54 MMSCMD in Q3 as against 120.31 MMSCMD in Q2",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Natural Gas Transmission ... 105.23 ... 107.43 ... 108.37",
-              "page": 127
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "Natural gas transmission volume stood at 123.65 MMSCMD in quarter four",
+              "page": 3
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Natural Gas Transmission ... 105.23 ... 107.43 ... 108.37",
-              "page": 127
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "the natural gas transmission volume was 120.62 MMSCMD in Q1",
+              "page": 2
             },
             {
-              "doc": "Presentation - 14 May 2025",
-              "quote": "Gas Transmission ... 104 ... 111 ... 107 ... 120 ... 127",
-              "page": 16
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "The natural gas transmission volume was 123.59 MMSCMD in Q2 Financial Year '26",
+              "page": 3
             },
             {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Natural Gas Transmission ... 111 ... 107 ... 120 ... 127 ... 122",
-              "page": 18
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "Natural gas transmission volume improved to 125.45 MMSCMD in Q3 FY26",
+              "page": 4
             },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Natural Gas Transmission ... 111 ... 107 ... 120 ... 127 ... 122",
-              "page": 18
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Natural Gas Transmission ... 111 ... 107 ... 120 ... 127 ... 122",
-              "page": 18
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Natural Gas Transmission ... 111 ... 107 ... 120 ... 127 ... 122",
-              "page": 18
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Natural Gas Transmission in FY'26 ... 122.18 MMSCMD",
-              "page": 18
-            }
+            null
           ]
         },
         {
@@ -6711,145 +6898,109 @@
           "unit": "TMT",
           "scope": "Standalone data",
           "values": [
-            441,
-            334,
-            577,
-            671,
-            751,
-            788,
-            871,
-            790,
-            399,
-            787,
-            845,
-            785
+            147,
+            164,
+            160,
+            205,
+            248,
+            177,
+            220,
+            219,
+            null
           ],
           "citations": [
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Polymers Sales (TMT) - 577 for FY17 and 674 for FY18",
-              "page": 40
+              "doc": "Concall Transcript - 31 Jul 2023",
+              "quote": "Polymer production increased to 164 TMT as against 147 TMT in last quarter",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Polymers Sales (TMT) ... 334",
-              "page": 40
+              "doc": "Concall Transcript - 31 Jul 2023",
+              "quote": "Polymer production increased to 164 TMT",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Polymers Sales (TMT) - 577 for FY17",
-              "page": 40
+              "doc": "Concall Transcript - 31 Oct 2023",
+              "quote": "Polymer production is almost flat 160 TMT in Q2 as against 164 TMT in Q1",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Polymer (HDPE & LLDPE) ... 671 ... 751 ... 788",
-              "page": 127
+              "doc": "Concall Transcript - 29 Jan 2024",
+              "quote": "Polymer production increased by 45 TMT to 205 TMT in Q3 FY2024",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Polymer (HDPE & LLDPE) ... 671 ... 751 ... 788",
-              "page": 127
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "Polymer production stood at 248 TMT as against 205 TMT last quarter",
+              "page": 3
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Polymer (HDPE & LLDPE) ... 671 ... 751 ... 788",
-              "page": 127
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "Polymer production is down to 177 TMT in Q1 as against 215 TMT in previous quarter",
+              "page": 2
             },
             {
-              "doc": "Presentation - 14 May 2025",
-              "quote": "Petrochemicals Sales ... 871 ... 790 ... 399 ... 787 ... 845",
-              "page": 16
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "Polymer production was back to normal level of 220 TMT in Q2",
+              "page": 3
             },
             {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Petrochemical Sales ... 790 ... 399 ... 787 ... 845 ... 785",
-              "page": 20
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "Polymer production was almost flat at 219 TMT in Q3 FY26",
+              "page": 4
             },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Petrochemical Sales ... 790 ... 399 ... 787 ... 845 ... 785",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Petrochemical Sales ... 790 ... 399 ... 787 ... 845 ... 785",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Petrochemical Sales ... 790 ... 399 ... 787 ... 845 ... 785",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Petrochemical Sales ... 785",
-              "page": 20
-            }
+            null
           ]
         },
         {
-          "label": "Polymer Plant Capacity Utilization",
-          "unit": "%",
-          "scope": "Standalone data",
+          "label": "GAIL Gas CGD Infrastructure - DPNG Connections",
+          "unit": "Number",
+          "scope": null,
           "values": [
-            55.76,
-            42.49,
-            74.58,
-            82.84,
-            92.75,
-            97.32,
             null,
+            870000,
+            890000,
+            906000,
+            976000,
             null,
-            null,
-            null,
-            102,
-            94
+            1174000,
+            1246000,
+            null
           ],
           "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Capacity Utilization (Production) ... 55.76%",
-              "page": 97
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Capacity Utilization (Production) ... 42.49%",
-              "page": 97
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Capacity Utilization (Production) ... 74.58%",
-              "page": 97
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Polymer ... Capacity Utilization ... 82.84%",
-              "page": 127
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Polymer ... Capacity Utilization ... 92.75%",
-              "page": 127
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Polymer ... Capacity Utilization ... 97.32%",
-              "page": 127
-            },
-            null,
-            null,
-            null,
             null,
             {
-              "doc": "Concall Transcript - 19 May 2025",
-              "quote": "Overall production of 827 TMT was achieved in FY '24-'25, which is 102% of the capacity utilization",
+              "doc": "Concall Transcript - 31 Jul 2023",
+              "quote": "GAIL Gas along with its JV subsidies has infrastructure of 870,000 DPNG collections and 456 CNG stations",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2023",
+              "quote": "GAIL gas along with its JV, subsidiaries has infrastructure of almost 8.9 lakh DPNG connections and 462 CNG stations",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 29 Jan 2024",
+              "quote": "GAIL Gas as a group company ... 9,06,000 DPNG connections",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 17 May 2024",
+              "quote": "GAIL Gas and its group companies DPNG connections 9,76,000 ... and 570 CNG stations",
+              "page": 4
+            },
+            null,
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "GAIL Gas with its JVs, subsidiaries, has an infrastructure of 11,74,000 DPNG connections and 665 CNG stations",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "GAIL Gas with its JVs/subsidiaries have an infrastructure of 12,46,000 DPNG connections and 674 CNG stations",
               "page": 5
             },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "94 % Plant capacity utilization",
-              "page": 20
-            }
+            null
           ]
         },
         {
@@ -6859,54 +7010,63 @@
           "values": [
             null,
             null,
-            11000,
-            12500,
-            null,
-            12500,
             null,
             null,
             null,
-            16240,
-            16420,
+            null,
+            null,
+            18000,
             18000
           ],
           "citations": [
             null,
             null,
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Natural Gas (NG) Pipeline Network: Approximately 11,000 km",
-              "page": 38
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Total pipeline infrastructure in the country is around 17,500 kilometers i.e. 12,500 kilometers by GAIL",
-              "page": 4
-            },
             null,
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "12,500 kilometers by GAIL and around 5,000 kilometers by other entities",
-              "page": 4
-            },
+            null,
             null,
             null,
             null,
             {
-              "doc": "Presentation - 17 May 2024",
-              "quote": "16,240 KM of NG Pipeline Network",
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "GAIL's operational natural gas pipeline length has crossed to 18,000 Kms",
               "page": 6
-            },
-            {
-              "doc": "Presentation - 14 May 2025",
-              "quote": "16,420 KM NG Pipeline Network",
-              "page": 8
             },
             {
               "doc": "Presentation - 22 May 2026",
               "quote": "18,000+ KM Pipeline Network",
               "page": 9
             }
+          ]
+        },
+        {
+          "label": "Polymer Plant Capacity Utilization",
+          "unit": "%",
+          "scope": "Standalone data",
+          "values": [
+            null,
+            null,
+            null,
+            101,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            {
+              "doc": "Concall Transcript - 29 Jan 2024",
+              "quote": "Capacity utilization in last quarter that is Q3 was 101%",
+              "page": 2
+            },
+            null,
+            null,
+            null,
+            null,
+            null
           ]
         }
       ]
@@ -7471,184 +7631,405 @@
     "gujarat-gas": {
       "name": "Gujarat Gas",
       "slug": "GUJENERGY",
-      "view": "yearly",
+      "view": "quarterly",
       "url": "https://www.screener.in/company/GUJENERGY/consolidated/#shareholding",
-      "via": "annual-fallback",
+      "via": "quarterly-fragment",
       "toggled": "/insights/company/1273048/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Mar 2016",
-        "Mar 2017",
-        "Mar 2018",
-        "Mar 2019",
-        "Mar 2020",
-        "Mar 2021",
-        "Mar 2022",
-        "Mar 2023",
+        "Jun 2023",
+        "Sep 2023",
+        "Dec 2023",
         "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
         "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
         "Mar 2026"
       ],
       "periodsIso": [
-        "2016-03",
-        "2017-03",
-        "2018-03",
-        "2019-03",
-        "2020-03",
-        "2021-03",
-        "2022-03",
-        "2023-03",
+        "2023-06",
+        "2023-09",
+        "2023-12",
         "2024-03",
+        "2024-06",
+        "2024-09",
+        "2024-12",
         "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12",
         "2026-03"
       ],
       "rows": [
+        {
+          "label": "CNG Gas Sales Volume",
+          "unit": "MMSCMD",
+          "scope": "Standalone data",
+          "values": [
+            2.61,
+            2.62,
+            2.78,
+            2.89,
+            2.98,
+            2.93,
+            3.12,
+            3.22,
+            3.33,
+            3.32,
+            3.45,
+            3.6
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 27 Sep 2023",
+              "quote": "CNG Q1 FY23 2.4, Q4 FY23 2.5, Q1 FY24 2.6",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 03 Nov 2023",
+              "quote": "CNG Q2 FY23 2.3, Q1 FY24 2.6, Q2 FY24 2.6",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 14 Feb 2024",
+              "quote": "CNG Q3 FY23 2.43, Q2 FY24 2.62, Q3 FY24 2.78",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "CNG Volume (MMSCMD) Q4 FY24 2.89, Q3 FY25 3.12, Q4 FY25 3.22",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "CNG Volume (MMSCMD) Q2 FY24 2.93, Q1 FY25 2.98, Q2 FY25 2.93",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "CNG Volume (MMSCMD) Q2 FY24 2.93, Q1 FY25 2.98, Q2 FY25 2.93",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "CNG Volume (MMSCMD) Q4 FY24 2.89, Q3 FY25 3.12, Q4 FY25 3.22",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "CNG Volume (MMSCMD) Q4 FY24 2.89, Q3 FY25 3.12, Q4 FY25 3.22",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Aug 2025",
+              "quote": "CNG Volume (MMSCMD) Q1 FY25 2.98, Q4 FY25 3.22, Q1 FY26 3.33",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 10 Nov 2025",
+              "quote": "CNG Volume (MMSCMD) Q2 FY25 2.93, Q1 FY26 3.33, Q2 FY26 3.32",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 Jan 2026",
+              "quote": "CNG Volume (MMSCMD) Q3 FY25 3.12, Q2 FY26 3.32, Q3 FY26 3.45",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "CNG Volume (MMSCMD) Q4 FY25 3.22, Q3 FY26 3.45, Q4 FY26 3.60",
+              "page": 16
+            }
+          ]
+        },
+        {
+          "label": "PNG Domestic Gas Sales Volume",
+          "unit": "MMSCMD",
+          "scope": "Standalone data",
+          "values": [
+            0.66,
+            0.76,
+            0.71,
+            0.85,
+            0.62,
+            0.76,
+            0.74,
+            0.89,
+            0.69,
+            0.83,
+            0.83,
+            0.91
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 27 Sep 2023",
+              "quote": "PNG - Domestic Q1 FY24 0.66",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 03 Nov 2023",
+              "quote": "PNG - Domestic Q2 FY24 0.76",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 14 Feb 2024",
+              "quote": "PNG - Domestic Q3 FY24 0.71",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q4 FY24 0.85, Q3 FY25 0.74, Q4 FY25 0.89",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q2 FY24 0.76, Q1 FY25 0.62, Q2 FY25 0.76",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q2 FY24 0.76, Q1 FY25 0.62, Q2 FY25 0.76",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q4 FY24 0.85, Q3 FY25 0.74, Q4 FY25 0.89",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q4 FY24 0.85, Q3 FY25 0.74, Q4 FY25 0.89",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Aug 2025",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q1 FY25 0.62, Q4 FY25 0.89, Q1 FY26 0.69",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 10 Nov 2025",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q2 FY25 0.76, Q1 FY26 0.69, Q2 FY26 0.83",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 Jan 2026",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q3 FY25 0.74, Q2 FY26 0.83, Q3 FY26 0.83",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "PNG - Domestic Volume (MMSCMD) Q4 FY25 0.89, Q3 FY26 0.83, Q4 FY26 0.91",
+              "page": 16
+            }
+          ]
+        },
+        {
+          "label": "PNG Industrial Gas Sales Volume",
+          "unit": "MMSCMD",
+          "scope": "Standalone data",
+          "values": [
+            5.8,
+            4.91,
+            5.8,
+            5.8,
+            7.25,
+            4.91,
+            5.45,
+            5.03,
+            4.71,
+            4.35,
+            3.93,
+            4.19
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 27 Sep 2023",
+              "quote": "PNG - Industrial Q1 FY24 5.80",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 03 Nov 2023",
+              "quote": "PNG - Industrial Q2 FY24 4.91",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 14 Feb 2024",
+              "quote": "PNG - Industrial Q3 FY24 5.80",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q4 FY24 5.80, Q3 FY25 5.45, Q4 FY25 5.03",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q2 FY24 4.91, Q1 FY25 7.25, Q2 FY25 4.91",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q2 FY24 4.91, Q1 FY25 7.25, Q2 FY25 4.91",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q4 FY24 5.80, Q3 FY25 5.45, Q4 FY25 5.03",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q4 FY24 5.80, Q3 FY25 5.45, Q4 FY25 5.03",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Aug 2025",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q1 FY25 7.25, Q4 FY25 5.03, Q1 FY26 4.71",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 10 Nov 2025",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q2 FY25 4.91, Q1 FY26 4.71, Q2 FY26 4.35",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 Jan 2026",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q3 FY25 5.45, Q2 FY26 4.35, Q3 FY26 3.93",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "PNG - Industrial Volume (MMSCMD) Q4 FY25 5.03, Q3 FY26 3.93, Q4 FY26 4.19",
+              "page": 16
+            }
+          ]
+        },
+        {
+          "label": "Total CGD Gas Sales Volume",
+          "unit": "MMSCMD",
+          "scope": "Standalone data",
+          "values": [
+            9.2,
+            7.6,
+            9.32,
+            9.69,
+            10.98,
+            8.75,
+            9.47,
+            9.31,
+            8.88,
+            8.65,
+            8.37,
+            8.88
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 27 Sep 2023",
+              "quote": "Total Volume Q1 FY23 9.7, Q4 FY23 8.9, Q1 FY24 9.2",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 03 Nov 2023",
+              "quote": "Total Volume Q2 FY23 9.2, Q1 FY24 9.2, Q2 FY24 7.6",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 14 Feb 2024",
+              "quote": "Total Volume Q3 FY23 9.2, Q2 FY24 9.3, Q3 FY24 9.3",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "Total Volume (MMSCMD) Q4 FY24 9.69, Q3 FY25 9.47, Q4 FY25 9.31",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "Total Volume (MMSCMD) Q2 FY24 8.75, Q1 FY25 10.98, Q2 FY25 8.75",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Nov 2024",
+              "quote": "Total Volume (MMSCMD) Q2 FY24 8.75, Q1 FY25 10.98, Q2 FY25 8.75",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "Total Volume (MMSCMD) Q4 FY24 9.69, Q3 FY25 9.47, Q4 FY25 9.31",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 May 2025",
+              "quote": "Total Volume (MMSCMD) Q4 FY24 9.69, Q3 FY25 9.47, Q4 FY25 9.31",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 06 Aug 2025",
+              "quote": "Total Volume (MMSCMD) Q1 FY25 10.98, Q4 FY25 9.31, Q1 FY26 8.88",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 10 Nov 2025",
+              "quote": "Total Volume (MMSCMD) Q2 FY25 8.75, Q1 FY26 8.88, Q2 FY26 8.65",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 20 Jan 2026",
+              "quote": "Total Volume (MMSCMD) Q3 FY25 9.47, Q2 FY26 8.65, Q3 FY26 8.37",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "Total Volume (MMSCMD) Q4 FY25 8.88, Q3 FY26 8.37, Q4 FY26 8.88",
+              "page": 16
+            }
+          ]
+        },
         {
           "label": "CNG Stations",
           "unit": "count",
           "scope": "Standalone data",
           "values": [
-            233,
-            252,
-            291,
-            344,
-            403,
-            559,
-            711,
+            null,
+            null,
+            null,
             808,
-            808,
+            null,
+            null,
+            null,
             828,
+            null,
+            null,
+            null,
             839
           ],
           "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "catering to 10,99,122 residential customers, 12,077 commercial customers, dispensing CNG from 233 operational CNG stations",
-              "page": 13
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "clean energy solutions to 3,067 industrial units... 12,341 commercial customers... 252 operational CNG stations",
-              "page": 18
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "46 new stations... 291 CNG stations",
-              "page": 13
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "CNG Stations 344",
-              "page": 30
-            },
-            {
-              "doc": "Credit Rating - 22 Dec 2020",
-              "quote": "user base comprised of more than 14.4 lakh domestic households, 3700 industrial units, 12,600 commercial establishments and 403 CNG stations, as on March 31, 2020",
-              "page": 1
-            },
-            {
-              "doc": "Presentation - 06 Aug 2025",
-              "quote": "CNG Stations (nos) FY21 559, FY22 711, FY23 808, FY24 808, FY25 828",
-              "page": 13
-            },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 01 Jun 2026",
               "quote": "CNG Stations (Nos.) FY22 711, FY23 808, FY24 808, FY25 828, FY26 839",
               "page": 20
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 01 Jun 2026",
               "quote": "CNG Stations (Nos.) FY22 711, FY23 808, FY24 808, FY25 828, FY26 839",
               "page": 20
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 01 Jun 2026",
               "quote": "CNG Stations (Nos.) FY22 711, FY23 808, FY24 808, FY25 828, FY26 839",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "CNG Stations (Nos.) FY22 711, FY23 808, FY24 808, FY25 828, FY26 839",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "CNG Stations (Nos.) FY22 711, FY23 808, FY24 808, FY25 828, FY26 839",
-              "page": 20
-            }
-          ]
-        },
-        {
-          "label": "PNG Domestic Connections",
-          "unit": "Lakhs",
-          "scope": "Standalone data",
-          "values": [
-            10.99,
-            11.64,
-            12.5,
-            13.5,
-            14.4,
-            15.5,
-            17.1,
-            19.3,
-            21.1,
-            22.7,
-            24.18
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "catering to 10,99,122 residential customers",
-              "page": 13
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "GGL connected around 85,441 household customers",
-              "page": 18
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Over 12.5 lakh residential consumers",
-              "page": 13
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Domestic customers 13.5 Lakhs",
-              "page": 30
-            },
-            {
-              "doc": "Credit Rating - 22 Dec 2020",
-              "quote": "user base comprised of more than 14.4 lakh domestic households... as on March 31, 2020",
-              "page": 1
-            },
-            {
-              "doc": "Presentation - 06 Aug 2025",
-              "quote": "Domestic Connections (in Lakhs) FY21 15.5, FY22 17.1, FY23 19.3, FY24 21.1, FY25 22.7",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Domestic Connections (IN LAKHS) FY22 17.1, FY23 19.3, FY24 21.1, FY25 22.7, FY26 24.2",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Domestic Connections (IN LAKHS) FY22 17.1, FY23 19.3, FY24 21.1, FY25 22.7, FY26 24.2",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Domestic Connections (IN LAKHS) FY22 17.1, FY23 19.3, FY24 21.1, FY25 22.7, FY26 24.2",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Domestic Connections (IN LAKHS) FY22 17.1, FY23 19.3, FY24 21.1, FY25 22.7, FY26 24.2",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Domestic Connections (IN LAKHS) FY22 17.1, FY23 19.3, FY24 21.1, FY25 22.7, FY26 24.2",
               "page": 20
             }
           ]
@@ -7658,61 +8039,39 @@
           "unit": "'000 KMs",
           "scope": "Standalone data",
           "values": [
-            17.12,
-            19.97,
-            21.64,
             null,
             null,
-            30.3,
-            32.8,
-            35.6,
+            null,
             39.3,
+            null,
+            null,
+            null,
             42.6,
+            null,
+            null,
+            null,
             45.3
           ],
           "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "spread of around 17,120 kilometers of pipeline network",
-              "page": 13
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "19,974 kilometers of pipeline",
-              "page": 18
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "21,640 Kilometres of pipeline network",
-              "page": 13
-            },
+            null,
             null,
             null,
             {
-              "doc": "Presentation - 06 Aug 2025",
-              "quote": "Gas Pipeline Network (kms in thousand) FY21 30.3, FY22 32.8, FY23 35.6, FY24 39.3, FY25 42.6",
-              "page": 13
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "Gas Pipeline Network ('000 KMs) FY22 32.8, FY23 35.6, FY24 39.3, FY25 42.6, FY26 45.3",
+              "page": 20
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 01 Jun 2026",
               "quote": "Gas Pipeline Network ('000 KMs) FY22 32.8, FY23 35.6, FY24 39.3, FY25 42.6, FY26 45.3",
               "page": 20
             },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Gas Pipeline Network ('000 KMs) FY22 32.8, FY23 35.6, FY24 39.3, FY25 42.6, FY26 45.3",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Gas Pipeline Network ('000 KMs) FY22 32.8, FY23 35.6, FY24 39.3, FY25 42.6, FY26 45.3",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Gas Pipeline Network ('000 KMs) FY22 32.8, FY23 35.6, FY24 39.3, FY25 42.6, FY26 45.3",
-              "page": 20
-            },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 01 Jun 2026",
               "quote": "Gas Pipeline Network ('000 KMs) FY22 32.8, FY23 35.6, FY24 39.3, FY25 42.6, FY26 45.3",
@@ -7721,305 +8080,47 @@
           ]
         },
         {
-          "label": "Total CGD Gas Sales Volume",
-          "unit": "MMSCMD",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            5.41,
-            null,
-            6.54,
-            9.44,
-            9.4,
-            10.7,
-            8.37,
-            9.35,
-            9.62,
-            8.69
-          ],
-          "citations": [
-            null,
-            {
-              "doc": "Presentation - 29 Sep 2021",
-              "quote": "Gas Sales (mmscmd) FY17 CNG 1.17, Domestic 0.47, Commercial 0.10, Industrial 3.68; Total 5.41",
-              "page": 7
-            },
-            null,
-            {
-              "doc": "Credit Rating - 04 Mar 2021",
-              "quote": "Average gas volumes sold grew by 44% to 9.44 mmscmd in fiscal 2020 (from 6.54 mmscmd in fiscal 2019)",
-              "page": 1
-            },
-            {
-              "doc": "Credit Rating - 04 Mar 2021",
-              "quote": "Average gas volumes sold grew by 44% to 9.44 mmscmd in fiscal 2020 (from 6.54 mmscmd in fiscal 2019)",
-              "page": 1
-            },
-            {
-              "doc": "Presentation - 06 Aug 2025",
-              "quote": "Total Volume FY21 9.40, FY22 10.70, FY23 8.37, FY24 9.35, FY25 9.62",
-              "page": 12
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Total Volume (MMSCMD) FY22 10.70, FY23 8.37, FY24 9.35, FY25 9.62, FY26 8.69",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Total Volume (MMSCMD) FY22 10.70, FY23 8.37, FY24 9.35, FY25 9.62, FY26 8.69",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Total Volume (MMSCMD) FY22 10.70, FY23 8.37, FY24 9.35, FY25 9.62, FY26 8.69",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Total Volume (MMSCMD) FY22 10.70, FY23 8.37, FY24 9.35, FY25 9.62, FY26 8.69",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Total Volume (MMSCMD) FY22 10.70, FY23 8.37, FY24 9.35, FY25 9.62, FY26 8.69",
-              "page": 17
-            }
-          ]
-        },
-        {
-          "label": "CNG Gas Sales Volume",
-          "unit": "MMSCMD",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            1.17,
-            null,
-            null,
-            1.3,
-            1.31,
-            1.99,
-            2.43,
-            2.72,
-            3.06,
-            3.43
-          ],
-          "citations": [
-            null,
-            {
-              "doc": "Presentation - 29 Sep 2021",
-              "quote": "Gas Sales (mmscmd) FY17 CNG 1.17, Domestic 0.47, Commercial 0.10, Industrial 3.68",
-              "page": 7
-            },
-            null,
-            null,
-            {
-              "doc": "Presentation - 29 Sep 2021",
-              "quote": "Gas Sales (mmscmd) FY17 CNG 1.17, Domestic 0.47, Commercial 0.10, Industrial 3.68; FY21 CNG 1.30, Domestic 0.65, Commercial 0.08, Industrial 7.36",
-              "page": 7
-            },
-            {
-              "doc": "Presentation - 06 Aug 2025",
-              "quote": "CNG Volume (MMSCMD) FY21 1.31, FY22 1.99, FY23 2.43, FY24 2.72, FY25 3.06",
-              "page": 12
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "CNG Volume (MMSCMD) FY22 1.99, FY23 2.43, FY24 2.72, FY25 3.06, FY26 3.43",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "CNG Volume (MMSCMD) FY22 1.99, FY23 2.43, FY24 2.72, FY25 3.06, FY26 3.43",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "CNG Volume (MMSCMD) FY22 1.99, FY23 2.43, FY24 2.72, FY25 3.06, FY26 3.43",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "CNG Volume (MMSCMD) FY22 1.99, FY23 2.43, FY24 2.72, FY25 3.06, FY26 3.43",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "CNG Volume (MMSCMD) FY22 1.99, FY23 2.43, FY24 2.72, FY25 3.06, FY26 3.43",
-              "page": 17
-            }
-          ]
-        },
-        {
-          "label": "PNG Industrial Gas Sales Volume",
-          "unit": "MMSCMD",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            3.68,
-            null,
-            null,
-            7.36,
-            7.36,
-            7.91,
-            5.12,
-            5.77,
-            5.66,
-            4.29
-          ],
-          "citations": [
-            null,
-            {
-              "doc": "Presentation - 29 Sep 2021",
-              "quote": "Gas Sales (mmscmd) FY17 CNG 1.17, Domestic 0.47, Commercial 0.10, Industrial 3.68",
-              "page": 7
-            },
-            null,
-            null,
-            {
-              "doc": "Presentation - 29 Sep 2021",
-              "quote": "FY21 CNG 1.30, Domestic 0.65, Commercial 0.08, Industrial 7.36",
-              "page": 7
-            },
-            {
-              "doc": "Presentation - 06 Aug 2025",
-              "quote": "PNG - Industrial FY21 7.36, FY22 7.91, FY23 5.12, FY24 5.77, FY25 5.66",
-              "page": 12
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "PNG - Industrial (MMSCMD) FY22 7.91, FY23 5.12, FY24 5.77, FY25 5.66, FY26 4.29",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "PNG - Industrial (MMSCMD) FY22 7.91, FY23 5.12, FY24 5.77, FY25 5.66, FY26 4.29",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "PNG - Industrial (MMSCMD) FY22 7.91, FY23 5.12, FY24 5.77, FY25 5.66, FY26 4.29",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "PNG - Industrial (MMSCMD) FY22 7.91, FY23 5.12, FY24 5.77, FY25 5.66, FY26 4.29",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "PNG - Industrial (MMSCMD) FY22 7.91, FY23 5.12, FY24 5.77, FY25 5.66, FY26 4.29",
-              "page": 17
-            }
-          ]
-        },
-        {
-          "label": "PNG Domestic Gas Sales Volume",
-          "unit": "MMSCMD",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            0.47,
-            null,
-            null,
-            null,
-            0.65,
-            0.68,
-            0.68,
-            0.71,
-            0.75,
-            0.82
-          ],
-          "citations": [
-            null,
-            {
-              "doc": "Presentation - 29 Sep 2021",
-              "quote": "Gas Sales (mmscmd) FY17 CNG 1.17, Domestic 0.47, Commercial 0.10, Industrial 3.68",
-              "page": 7
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 06 Aug 2025",
-              "quote": "PNG - Domestic FY21 0.65, FY22 0.68, FY23 0.68, FY24 0.71, FY25 0.75",
-              "page": 12
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "PNG - Domestic (MMSCMD) FY22 0.68, FY23 0.68, FY24 0.71, FY25 0.75, FY26 0.82",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "PNG - Domestic (MMSCMD) FY22 0.68, FY23 0.68, FY24 0.71, FY25 0.75, FY26 0.82",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "PNG - Domestic (MMSCMD) FY22 0.68, FY23 0.68, FY24 0.71, FY25 0.75, FY26 0.82",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "PNG - Domestic (MMSCMD) FY22 0.68, FY23 0.68, FY24 0.71, FY25 0.75, FY26 0.82",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "PNG - Domestic (MMSCMD) FY22 0.68, FY23 0.68, FY24 0.71, FY25 0.75, FY26 0.82",
-              "page": 17
-            }
-          ]
-        },
-        {
-          "label": "Gas Trading Volume",
-          "unit": "MMSCMD",
+          "label": "PNG Domestic Connections",
+          "unit": "Lakhs",
           "scope": "Standalone data",
           "values": [
             null,
             null,
             null,
+            21.1,
             null,
             null,
             null,
-            15.12,
-            11.53,
-            11.64,
-            12.64,
-            10.19
+            22.7,
+            null,
+            null,
+            null,
+            24.18
           ],
           "citations": [
             null,
             null,
             null,
+            {
+              "doc": "Presentation - 01 Jun 2026",
+              "quote": "Domestic Connections (IN LAKHS) FY22 17.1, FY23 19.3, FY24 21.1, FY25 22.7, FY26 24.2",
+              "page": 20
+            },
             null,
             null,
             null,
             {
               "doc": "Presentation - 01 Jun 2026",
-              "quote": "Trading Volume^(MMSCMD) FY22 15.12, FY23 11.53, FY24 11.64, FY25 12.64, FY26 10.19",
-              "page": 25
+              "quote": "Domestic Connections (IN LAKHS) FY22 17.1, FY23 19.3, FY24 21.1, FY25 22.7, FY26 24.2",
+              "page": 20
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 01 Jun 2026",
-              "quote": "Trading Volume^(MMSCMD) FY22 15.12, FY23 11.53, FY24 11.64, FY25 12.64, FY26 10.19",
-              "page": 25
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Trading Volume^(MMSCMD) FY22 15.12, FY23 11.53, FY24 11.64, FY25 12.64, FY26 10.19",
-              "page": 25
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Trading Volume^(MMSCMD) FY22 15.12, FY23 11.53, FY24 11.64, FY25 12.64, FY26 10.19",
-              "page": 25
-            },
-            {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Trading Volume^(MMSCMD) FY22 15.12, FY23 11.53, FY24 11.64, FY25 12.64, FY26 10.19",
-              "page": 25
+              "quote": "Domestic Connections (IN LAKHS) FY22 17.1, FY23 19.3, FY24 21.1, FY25 22.7, FY26 24.2",
+              "page": 20
             }
           ]
         }
@@ -10908,106 +11009,525 @@
     "ge-shipping": {
       "name": "GE Shipping",
       "slug": "GESHIP",
-      "view": "yearly",
+      "view": "quarterly",
       "url": "https://www.screener.in/company/GESHIP/consolidated/",
-      "via": "annual-fallback",
+      "via": "quarterly-fragment",
       "toggled": "/insights/company/1204/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Mar 2016",
-        "Mar 2017",
-        "Mar 2018",
-        "Mar 2019",
-        "Mar 2020",
-        "Mar 2021",
-        "Mar 2022",
         "Mar 2023",
+        "Sep 2023",
+        "Dec 2023",
         "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
         "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
         "Mar 2026"
       ],
       "periodsIso": [
-        "2016-03",
-        "2017-03",
-        "2018-03",
-        "2019-03",
-        "2020-03",
-        "2021-03",
-        "2022-03",
         "2023-03",
+        "2023-09",
+        "2023-12",
         "2024-03",
+        "2024-06",
+        "2024-09",
+        "2024-12",
         "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12",
         "2026-03"
       ],
       "rows": [
+        {
+          "label": "Average TCY - Crude Carriers",
+          "unit": "USD/day",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            53344,
+            40645,
+            45556,
+            53182,
+            46352,
+            28492,
+            47281,
+            61424
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 27 Oct 2023",
+              "quote": "Crude Carriers: Q1 FY24 53,344",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 27 Oct 2023",
+              "quote": "Crude Carriers: Q2 FY24 40,645",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 31 Jan 2024",
+              "quote": "Crude Carriers: Q3 FY24 45,556",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 09 May 2025",
+              "quote": "Crude Carriers: Q4 FY24 53,182",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 31 Jul 2025",
+              "quote": "Crude Carriers: Q1 FY25 46,352",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Crude Carriers: Q2 FY25 28,492",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 29 Jan 2026",
+              "quote": "Crude Carriers: Q3 FY26 47,281",
+              "page": 26
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Crude Carriers: Q4 FY26 61,424",
+              "page": 26
+            }
+          ]
+        },
+        {
+          "label": "Average TCY - Dry Bulk Carriers",
+          "unit": "USD/day",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            13608,
+            11720,
+            16478,
+            14921,
+            17976,
+            16686,
+            17983,
+            16678
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 27 Oct 2023",
+              "quote": "Dry Bulk: Q1 FY24 13,608",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 27 Oct 2023",
+              "quote": "Dry Bulk: Q2 FY24 11,720",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 31 Jan 2024",
+              "quote": "Dry Bulk: Q3 FY24 16,478",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 09 May 2025",
+              "quote": "Dry Bulk: Q4 FY24 14,921",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 31 Jul 2025",
+              "quote": "Dry Bulk: Q1 FY25 17,976",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Dry Bulk: Q2 FY25 16,686",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 29 Jan 2026",
+              "quote": "Dry Bulk: Q3 FY26 17,983",
+              "page": 26
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Dry Bulk: Q4 FY26 16,678",
+              "page": 26
+            }
+          ]
+        },
+        {
+          "label": "Average TCY - LPG Carriers",
+          "unit": "USD/day",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            28860,
+            31100,
+            31255,
+            35506,
+            36742,
+            43507,
+            43611,
+            45216
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 27 Oct 2023",
+              "quote": "LPG Carriers: Q1 FY24 28,860",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 27 Oct 2023",
+              "quote": "LPG Carriers: Q2 FY24 31,100",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 31 Jan 2024",
+              "quote": "LPG Carriers: Q3 FY24 31,255",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 09 May 2025",
+              "quote": "LPG Carriers: Q4 FY24 35,506",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 31 Jul 2025",
+              "quote": "LPG Carriers: Q1 FY25 36,742",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "LPG Carriers: Q2 FY25 43,507",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 29 Jan 2026",
+              "quote": "LPG Carriers: Q3 FY26 43,611",
+              "page": 26
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "LPG Carriers: Q4 FY26 45,216",
+              "page": 26
+            }
+          ]
+        },
+        {
+          "label": "Average TCY - Product Carriers",
+          "unit": "USD/day",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            33142,
+            27743,
+            28566,
+            37637,
+            37153,
+            28978,
+            25117,
+            30511
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 27 Oct 2023",
+              "quote": "Product Carriers: Q1 FY24 33,142",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 27 Oct 2023",
+              "quote": "Product Carriers: Q2 FY24 27,743",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 31 Jan 2024",
+              "quote": "Product Carriers: Q3 FY24 28,566",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 09 May 2025",
+              "quote": "Product Carriers: Q4 FY24 37,637",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 31 Jul 2025",
+              "quote": "Product Carriers: Q1 FY25 37,153",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Product Carriers: Q2 FY25 28,978",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 29 Jan 2026",
+              "quote": "Product Carriers: Q3 FY26 25,117",
+              "page": 26
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Product Carriers: Q4 FY26 30,511",
+              "page": 26
+            }
+          ]
+        },
+        {
+          "label": "Revenue Days - Shipping (Owned)",
+          "unit": "Days",
+          "scope": null,
+          "values": [
+            null,
+            3684,
+            3690,
+            3744,
+            null,
+            null,
+            null,
+            3366,
+            3325,
+            3494,
+            3581,
+            3345
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Presentation - 01 Feb 2023",
+              "quote": "Owned Tonnage: 3,684",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 31 Jan 2024",
+              "quote": "Owned Tonnage: 3,690",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 09 May 2025",
+              "quote": "Owned Tonnage: 3,744",
+              "page": 12
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 09 May 2025",
+              "quote": "Owned Tonnage: 3,366",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 31 Jul 2025",
+              "quote": "Owned Tonnage: 3,325",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Owned Tonnage: 3,494",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 29 Jan 2026",
+              "quote": "Owned Tonnage: 3,581",
+              "page": 25
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Owned Tonnage: 3,345",
+              "page": 25
+            }
+          ]
+        },
+        {
+          "label": "Revenue Days - Shipping (Total)",
+          "unit": "Days",
+          "scope": null,
+          "values": [
+            null,
+            3778,
+            3690,
+            3835,
+            null,
+            null,
+            null,
+            3546,
+            3507,
+            3678,
+            3765,
+            3525
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Presentation - 01 Feb 2023",
+              "quote": "Total Revenue Days: 3,778",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 31 Jan 2024",
+              "quote": "Total Revenue Days: 3,690",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 09 May 2025",
+              "quote": "Total Revenue Days: 3,835",
+              "page": 12
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 09 May 2025",
+              "quote": "Total Revenue Days: 3,546",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 31 Jul 2025",
+              "quote": "Total Revenue Days: 3,507",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Total Revenue Days: 3,678",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 29 Jan 2026",
+              "quote": "Total Revenue Days: 3,765",
+              "page": 25
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Total Revenue Days: 3,525",
+              "page": 25
+            }
+          ]
+        },
+        {
+          "label": "Jack-up Rig Utilization (Industry Under Contract)",
+          "unit": "%",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            84,
+            null,
+            null,
+            null,
+            84,
+            null,
+            null,
+            84,
+            84,
+            84
+          ],
+          "citations": [
+            null,
+            null,
+            {
+              "doc": "Presentation - 31 Jan 2024",
+              "quote": "Jack Up Utilisation: Gradual Improvement - from chart showing Under Contract ~84%",
+              "page": 33
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 09 May 2025",
+              "quote": "Jack Up Utilisation - from chart showing Under Contract ~84%",
+              "page": 34
+            },
+            null,
+            null,
+            {
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Jack Up Utilisation - from chart showing Under Contract ~84%",
+              "page": 34
+            },
+            {
+              "doc": "Presentation - 29 Jan 2026",
+              "quote": "Jack Up Utilisation - from chart showing Under Contract ~84%",
+              "page": 18
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "This is the simple utilization. We have another measure called marketed utilization, which is rigs which are being marketed actively for contracts. That utilization continues to be somewhere around the 84% to 85% mark",
+              "page": 19
+            }
+          ]
+        },
         {
           "label": "Fleet Count - Shipping",
           "unit": "Number of Vessels",
           "scope": null,
           "values": [
-            31,
-            44,
-            47,
-            48,
-            46,
-            45,
-            45,
             43,
+            null,
+            null,
             42,
+            null,
+            null,
+            null,
             38,
+            null,
+            null,
+            null,
             39
           ],
           "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "Total Fleet: 31 vessels (Source: Page 111, 'Fleet as on March 31, 2016')",
-              "page": 111
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Total Number of Vessels: 44 ships",
-              "page": 24
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Total Fleet: 47 ships (Total DWT: 3,880,809 MT)",
-              "page": 119
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Total Fleet: 48 vessels",
-              "page": 122
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Total Fleet Count: 46 ships",
-              "page": 122
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2021",
-              "quote": "Total Fleet: 45 vessels",
-              "page": 39
-            },
-            {
-              "doc": "Presentation - 06 May 2022",
-              "quote": "Total: 3,574,029 DWT, 45 vessels, Avg Age 12.65",
-              "page": 19
-            },
             {
               "doc": "Presentation - 01 Feb 2023",
               "quote": "Total: 3,436,601 DWT, 43 vessels, Avg Age 13.18",
               "page": 20
             },
+            null,
+            null,
             {
               "doc": "Presentation - 31 Jan 2024",
               "quote": "Total: 3,358,258 DWT, 42 vessels, Avg Age 13.78",
               "page": 20
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 09 May 2025",
               "quote": "Total: 30,43,455 DWT, 38 vessels, Avg Age 14.70",
               "page": 20
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 15 May 2026",
               "quote": "Total: 39 Vessels, 3,191,378 Deadweight Ton, Avg. Age 14.32",
@@ -11020,290 +11540,48 @@
           "unit": "MT",
           "scope": null,
           "values": [
-            2410444,
-            3696763,
-            3880809,
-            3895818,
-            3699373,
-            3635642,
-            3574029,
             3436601,
+            null,
+            null,
             3358258,
+            null,
+            null,
+            null,
             3043455,
+            null,
+            null,
+            null,
             3191378
           ],
           "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "Total Fleet DWT: 2,410,444 MT (approx. 2.41 Mn dwt)",
-              "page": 111
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Total Deadweight Tonnage (DWT): 3,696,763 MT (approximately 3.69 Mn DWT)",
-              "page": 24
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Total DWT: 3,880,809 MT (approx. 3.88 Mn dwt)",
-              "page": 119
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Total Fleet DWT: 3,895,818 MT",
-              "page": 122
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Total DWT (Deadweight Tonnage): 3.70 million DWT (approx. 3,699,373 MT)",
-              "page": 122
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2021",
-              "quote": "Total DWT: 3.64 million DWT (36,35,642 MT)",
-              "page": 39
-            },
-            {
-              "doc": "Presentation - 06 May 2022",
-              "quote": "Total: 3,574,029 DWT, 45 vessels, Avg Age 12.65",
-              "page": 19
-            },
             {
               "doc": "Presentation - 01 Feb 2023",
               "quote": "Total: 3,436,601 DWT, 43 vessels, Avg Age 13.18",
               "page": 20
             },
+            null,
+            null,
             {
               "doc": "Presentation - 31 Jan 2024",
               "quote": "Total: 3,358,258 DWT, 42 vessels, Avg Age 13.78",
               "page": 20
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 09 May 2025",
               "quote": "Total: 30,43,455 DWT, 38 vessels, Avg Age 14.70",
               "page": 20
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 15 May 2026",
               "quote": "Total: 39 Vessels, 3,191,378 Deadweight Ton, Avg. Age 14.32",
               "page": 24
             }
-          ]
-        },
-        {
-          "label": "Average TCY - Crude Carriers",
-          "unit": "USD/day",
-          "scope": null,
-          "values": [
-            31913,
-            21853,
-            null,
-            null,
-            null,
-            24695,
-            11661,
-            null,
-            48379,
-            36557,
-            null
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "Crude Carriers: $31,913/day (inclusive of 'spot' and 'period' markets)",
-              "page": 25
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Crude Tankers: $21,853",
-              "page": 24
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 06 May 2022",
-              "quote": "Crude Carriers: FY21 24,695",
-              "page": 12
-            },
-            {
-              "doc": "Presentation - 06 May 2022",
-              "quote": "Crude Carriers: FY22 11,661",
-              "page": 12
-            },
-            null,
-            {
-              "doc": "Presentation - 09 May 2025",
-              "quote": "Crude Carriers: FY24 48,379",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 09 May 2025",
-              "quote": "Crude Carriers: FY25 36,557",
-              "page": 13
-            },
-            null
-          ]
-        },
-        {
-          "label": "Average TCY - Dry Bulk Carriers",
-          "unit": "USD/day",
-          "scope": null,
-          "values": [
-            6638,
-            7051,
-            null,
-            null,
-            null,
-            10907,
-            26995,
-            null,
-            14150,
-            15844,
-            null
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "Dry Bulk Carriers: $6,638/day (inclusive of 'spot' and 'period' markets)",
-              "page": 25
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Dry Bulk Carriers: $7,051",
-              "page": 25
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 06 May 2022",
-              "quote": "Dry Bulk: FY21 10,907",
-              "page": 12
-            },
-            {
-              "doc": "Presentation - 06 May 2022",
-              "quote": "Dry Bulk: FY22 26,995",
-              "page": 12
-            },
-            null,
-            {
-              "doc": "Presentation - 09 May 2025",
-              "quote": "Dry Bulk: FY24 14,150",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 09 May 2025",
-              "quote": "Dry Bulk: FY25 15,844",
-              "page": 13
-            },
-            null
-          ]
-        },
-        {
-          "label": "Average TCY - Product Carriers",
-          "unit": "USD/day",
-          "scope": null,
-          "values": [
-            20155,
-            15707,
-            null,
-            null,
-            null,
-            14728,
-            9914,
-            null,
-            31864,
-            28802,
-            null
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "Product Carriers: $20,155/day (inclusive of 'spot' and 'period' markets)",
-              "page": 25
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Product Carriers: $15,707",
-              "page": 25
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 06 May 2022",
-              "quote": "Product Carriers: FY21 14,728",
-              "page": 12
-            },
-            {
-              "doc": "Presentation - 06 May 2022",
-              "quote": "Product Carriers: FY22 9,914",
-              "page": 12
-            },
-            null,
-            {
-              "doc": "Presentation - 09 May 2025",
-              "quote": "Product Carriers: FY24 31,864",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 09 May 2025",
-              "quote": "Product Carriers: FY25 28,802",
-              "page": 13
-            },
-            null
-          ]
-        },
-        {
-          "label": "Average TCY - LPG Carriers",
-          "unit": "USD/day",
-          "scope": null,
-          "values": [
-            null,
-            38114,
-            null,
-            null,
-            null,
-            28186,
-            27594,
-            null,
-            31606,
-            41188,
-            null
-          ],
-          "citations": [
-            null,
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "LPG Carriers: $38,114",
-              "page": 25
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 06 May 2022",
-              "quote": "LPG Carriers: FY21 28,186",
-              "page": 12
-            },
-            {
-              "doc": "Presentation - 06 May 2022",
-              "quote": "LPG Carriers: FY22 27,594",
-              "page": 12
-            },
-            null,
-            {
-              "doc": "Presentation - 09 May 2025",
-              "quote": "LPG Carriers: FY24 31,606",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 09 May 2025",
-              "quote": "LPG Carriers: FY25 41,188",
-              "page": 13
-            },
-            null
           ]
         }
       ]
