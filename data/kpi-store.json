@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Extracted KPI values, kept across runs",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-09-28T12:10:00.927Z",
+  "generatedAt": "2026-09-28T14:48:08.392Z",
   "note": "One entry per company/KPI/quarter, for every quarter ever extracted - not just the current window. A run only asks the model about cells it does not already have, and a null never overwrites a real value. Delete a cell (or run with --refresh) to force re-extraction.",
   "companies": {
     "deep-industries": {
@@ -549,8 +549,8 @@
           "note": "From Screener Insights row \"Consultancy Order Inflow\" (Standalone data); latest value cited to Presentation - 14 Nov 2025, page 14.",
           "origin": "insights",
           "fingerprint": "ee3e8eaf0d7e",
-          "attempts": 66,
-          "at": "2026-09-28T12:09:26.031Z"
+          "attempts": 67,
+          "at": "2026-09-28T14:48:00.035Z"
         },
         "consultancy-share|Q1 FY26": {
           "value": 56.1,
@@ -633,8 +633,8 @@
           "note": "From Screener Insights row \"Order Book Domestic Share\" (Standalone data); latest value cited to Presentation - 12 Feb 2026, page 17.",
           "origin": "insights",
           "fingerprint": "ee3e8eaf0d7e",
-          "attempts": 66,
-          "at": "2026-09-28T12:09:26.031Z"
+          "attempts": 67,
+          "at": "2026-09-28T14:48:00.035Z"
         },
         "domestic-share|Q3 FY26": {
           "value": 58,
@@ -745,7 +745,7 @@
           "at": "2026-09-28T12:09:30.874Z"
         }
       },
-      "updatedAt": "2026-09-28T12:09:30.874Z"
+      "updatedAt": "2026-09-28T14:48:00.035Z"
     },
     "petronet-lng": {
       "cells": {
@@ -2225,7 +2225,7 @@
           "at": "2026-09-07T13:21:39.138Z"
         }
       },
-      "updatedAt": "2026-09-28T12:09:30.891Z"
+      "updatedAt": "2026-09-28T14:48:00.059Z"
     },
     "welspun-corp": {
       "cells": {
@@ -2832,7 +2832,7 @@
           "at": "2026-07-30T08:00:49.896Z"
         }
       },
-      "updatedAt": "2026-09-28T12:09:30.910Z"
+      "updatedAt": "2026-09-28T14:48:00.082Z"
     },
     "iocl": {
       "cells": {
@@ -4363,7 +4363,7 @@
           "at": "2026-09-07T13:23:22.397Z"
         }
       },
-      "updatedAt": "2026-09-28T12:09:43.710Z"
+      "updatedAt": "2026-09-28T14:48:00.118Z"
     },
     "mahanagar-gas": {
       "cells": {
@@ -5333,8 +5333,8 @@
           "note": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 15 Jun 2026, page 6.",
           "origin": "insights",
           "fingerprint": "19c53dbfa714",
-          "attempts": 31,
-          "at": "2026-09-28T12:09:55.291Z"
+          "attempts": 32,
+          "at": "2026-09-28T14:48:00.181Z"
         },
         "terminal-utilisation|Q1 FY27": {
           "value": null,
@@ -5347,7 +5347,7 @@
           "at": "2026-09-07T13:24:13.025Z"
         }
       },
-      "updatedAt": "2026-09-28T12:09:55.291Z"
+      "updatedAt": "2026-09-28T14:48:00.181Z"
     },
     "supreme-petrochem": {
       "cells": {
@@ -5591,16 +5591,16 @@
         },
         "lubricant-volume|Q1 FY27": {
           "value": null,
-          "unit": "% YoY",
+          "unit": "% yoy",
           "sourceTag": null,
-          "note": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 09 Feb 2026, page 3.",
-          "origin": "insights",
-          "fingerprint": "5e1f9d42f10c",
-          "attempts": 47,
-          "at": "2026-09-28T12:09:55.330Z"
+          "note": "Q1 FY26: No YoY volume growth stated for Q1 FY26 (Apr-Jun 2025). Q2 FY26: No YoY volume growth stated for Q2 FY26 (Jul-Sep 2025). Q3 FY26: 7% YoY volume growth stated in Q3 FY26 concall (page 3: 'revenue came in at INR1,363 crores...primari",
+          "origin": "model",
+          "fingerprint": "5b457cfdd267",
+          "attempts": 48,
+          "at": "2026-09-28T14:48:08.338Z"
         }
       },
-      "updatedAt": "2026-09-28T12:09:55.330Z"
+      "updatedAt": "2026-09-28T14:48:08.338Z"
     },
     "gandhar-oil": {
       "cells": {
@@ -6453,11 +6453,11 @@
           "value": null,
           "unit": "%",
           "sourceTag": null,
-          "note": "Jack-up rig utilisation percentage not stated in any of the excerpts. Q1 FY27 concall mentions 'global utilization remains where it was' but no figure given. Q1 FY26 mentions contracts but no utilisation %.",
-          "origin": "model",
-          "fingerprint": "b4d6744224e5",
-          "attempts": 24,
-          "at": "2026-09-07T13:25:01.030Z"
+          "note": "From Screener Insights row \"Jack-up Rig Utilization (Industry Under Contract)\"; latest value cited to Presentation - 29 Jan 2026, page 18.",
+          "origin": "insights",
+          "fingerprint": "d3fcd2404209",
+          "attempts": 25,
+          "at": "2026-09-28T14:48:08.376Z"
         },
         "jackup-utilisation|Q2 FY26": {
           "value": 84,
@@ -6511,11 +6511,11 @@
           "value": null,
           "unit": "USD/day",
           "sourceTag": null,
-          "note": "From Screener Insights row \"Average TCY - Crude Carriers\"; latest value cited to Presentation - 11 Dec 2025, page 13.",
+          "note": "From Screener Insights row \"Average TCY - Crude Carriers\"; latest value cited to Presentation - 31 Jul 2025, page 14.",
           "origin": "insights",
-          "fingerprint": "c4805d03c83a",
-          "attempts": 45,
-          "at": "2026-09-28T12:10:00.915Z"
+          "fingerprint": "d3fcd2404209",
+          "attempts": 46,
+          "at": "2026-09-28T14:48:08.376Z"
         },
         "fleet-deployment|Q1 FY27": {
           "value": 46,
@@ -6554,34 +6554,34 @@
           "value": null,
           "unit": "USD/day",
           "sourceTag": null,
-          "note": "From Screener Insights row \"Average TCY - Dry Bulk Carriers\"; latest value cited to Presentation - 11 Dec 2025, page 13.",
+          "note": "From Screener Insights row \"Average TCY - Dry Bulk Carriers\"; latest value cited to Presentation - 31 Jul 2025, page 14.",
           "origin": "insights",
-          "fingerprint": "c4805d03c83a",
-          "attempts": 45,
-          "at": "2026-09-28T12:10:00.915Z"
+          "fingerprint": "d3fcd2404209",
+          "attempts": 46,
+          "at": "2026-09-28T14:48:08.376Z"
         },
         "revenue-days-owned|Q1 FY27": {
           "value": null,
           "unit": "Days",
           "sourceTag": null,
-          "note": "From Screener Insights row \"Revenue Days - Shipping (Owned)\"; latest value cited to Presentation - 11 Dec 2025, page 12.",
+          "note": "From Screener Insights row \"Revenue Days - Shipping (Owned)\"; latest value cited to Presentation - 31 Jul 2025, page 12.",
           "origin": "insights",
-          "fingerprint": "c4805d03c83a",
-          "attempts": 45,
-          "at": "2026-09-28T12:10:00.915Z"
+          "fingerprint": "d3fcd2404209",
+          "attempts": 46,
+          "at": "2026-09-28T14:48:08.376Z"
         },
         "jackup-utilisation|Q1 FY27": {
           "value": null,
           "unit": "%",
           "sourceTag": null,
-          "note": "From Screener Insights row \"Jack-up Rig Utilization (Industry Under Contract)\"; latest value cited to Presentation - 11 Dec 2025, page 34.",
+          "note": "From Screener Insights row \"Jack-up Rig Utilization (Industry Under Contract)\"; latest value cited to Presentation - 29 Jan 2026, page 18.",
           "origin": "insights",
-          "fingerprint": "c4805d03c83a",
-          "attempts": 45,
-          "at": "2026-09-28T12:10:00.915Z"
+          "fingerprint": "d3fcd2404209",
+          "attempts": 46,
+          "at": "2026-09-28T14:48:08.376Z"
         }
       },
-      "updatedAt": "2026-09-28T12:10:00.915Z"
+      "updatedAt": "2026-09-28T14:48:08.376Z"
     },
     "shipping-corp": {
       "cells": {
