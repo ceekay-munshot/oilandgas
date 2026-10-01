@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-09-28T14:47:59.964Z",
+  "generatedAt": "2026-10-01T11:58:03.496Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -32,7 +32,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34000,
+      "ctxChars": 33822,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -79,7 +79,7 @@
         {
           "id": "day-rate",
           "label": "Day-rate",
-          "unit": "₹/day or $/day",
+          "unit": "$/day or ₹/day",
           "flagBasis": "level",
           "values": [
             null,
@@ -112,7 +112,7 @@
             null
           ],
           "flag": null,
-          "notes": "No day-rate figures stated in any quarter. Q3 concall mentions growth was 'more of volume' rather than pricing/day-rate, but no numeric rate given."
+          "notes": "Day-rate not disclosed in any of the excerpts. The Q2 FY26 concall mentions management did not expect near-term pressure on market rates for offshore vessels and that rates for HF Hunter were 'in line with what we were earlier used to get,'"
         },
         {
           "id": "order-book",
@@ -170,7 +170,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34069,
+      "ctxChars": 34368,
       "kpis": [
         {
           "id": "order-inflow",
@@ -304,7 +304,7 @@
             null
           ],
           "flag": null,
-          "notes": "Bid pipeline not disclosed in any of the excerpts. The excerpts report order book (unexecuted orders already won) and order inflow (business secured), but do not state the value of the bid pipeline (opportunities under bidding or yet to be "
+          "notes": "Bid pipeline not disclosed in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27."
         },
         {
           "id": "consultancy-order-book",
@@ -453,7 +453,7 @@
           ],
           "flag": "steady",
           "beyondBrief": true,
-          "notes": "From Screener Insights row \"Order Book Domestic Share\" (Standalone data); latest value cited to Presentation - 12 Feb 2026, page 17."
+          "notes": "Q2 FY26: not stated. Q3 FY26: not stated. Q4 FY26: Screener Insights shows Order Book Domestic Share as of Mar 2026 (end of Q4 FY26) is 57%. Q1 FY27: not stated for Q1 FY27 end (Jun 2026); the Screener Insights table only goes to Mar 2026."
         }
       ]
     },
@@ -861,7 +861,7 @@
       "asOf": "Q2 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 22866,
+      "ctxChars": 28906,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -894,7 +894,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: No quarterly capex figure stated in excerpts (only full-year and multi-year program references). Q2 FY26: No quarterly capex figure stated. Q1 FY27: No quarterly capex figure stated. The concall summaries mention annual capex guida"
+          "notes": "Q4 FY25: No single-quarter capex stated; only 9M FY25 (₹45,335 cr including OPaL equity infusion of ₹18,365 cr) and FY26 planned capex (₹36,920 cr) given. Q2 FY26: No single-quarter capex stated. Q1 FY27: No capex figure stated."
         },
         {
           "id": "production-volume",
@@ -935,7 +935,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: No quarterly production volume stated (only FY25 full-year: 18.558 MMT crude standalone). Q2 FY26: Crude oil 4.630 MMT stated in Q2 FY26 concall summary. Q1 FY27: No quarterly production volume stated (only references to current ru"
+          "notes": "Q4 FY25: No single-quarter oil production stated; only FY25 full-year (18.558 MMT) and 9M FY25 (14.64 MMT) given. Q2 FY26: Screener Insights shows Mar 2025 (FY25 full year) crude oil production 19.6 MMT; Q2 FY26 quarterly filing shows 4.92 "
         },
         {
           "id": "new-well-count",
@@ -968,7 +968,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: Only full-year FY25 figure stated (578 wells drilled for the year), no Q4 alone. Q2 FY26: No quarterly well count stated. Q1 FY27: No quarterly well count stated. Screener Insights shows full-year totals only (578 for Mar 2025 = FY"
+          "notes": "Q4 FY25: Only FY25 full-year wells drilled (578) and 9M FY25 (413) stated; Q4 FY25 single quarter not stated. Q2 FY26: No quarterly well count stated. Q1 FY27: No quarterly well count stated."
         },
         {
           "id": "gas-production",
@@ -1005,7 +1005,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: Only full-year FY25 figure stated (19.654 BCM standalone for the year), no Q4 alone. Q2 FY26: No quarterly gas production figure stated (only YoY degrowth rate and full-year guidance). Q1 FY27: No quarterly gas production figure st"
+          "notes": "Q4 FY25: No single-quarter gas production stated; only FY25 full-year (19.654 BCM) and 9M FY25 (14.74 BCM) given. Q2 FY26: Screener Insights shows Mar 2025 (FY25 full year) natural gas production 19.65 BCM; no Q2 FY26 single-quarter figure "
         }
       ]
     },
@@ -2541,7 +2541,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 28618,
+      "ctxChars": 33940,
       "kpis": [
         {
           "id": "grm",
@@ -2587,7 +2587,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: $9.2/bbl stated in Q4 FY25 concall. Q1 FY26: $4.88/bbl stated in Q1 FY26 concall. Q4 FY26: only full-year FY26 GRM $11.74/bbl stated in Q4 FY26 concall; quarterly figure not provided. Q1 FY27: $41.41/bbl stated in Q1 FY27 concall ("
+          "notes": "From Screener Insights row \"Gross Refining Margin (GRM)\"; latest value cited to Concall Transcript - 02 May 2025, page 3."
         },
         {
           "id": "marketing-margin",
@@ -2625,7 +2625,7 @@
             null
           ],
           "flag": null,
-          "notes": "No quarterly marketing margin figures in ₹/l stated in any excerpt. Q1 FY27 concall mentions 'adverse marketing margins' and a retail price revision of ~₹7.5/litre but does not provide the actual margin level."
+          "notes": "Marketing margin in ₹/l not disclosed in any of the excerpts. Q4 FY25 concall mentions 'adverse marketing margins' and a ₹7.5/l retail price revision but does not state the actual marketing margin level. Q1 FY26 concall states 'Mainly retai"
         },
         {
           "id": "throughput",
@@ -2671,7 +2671,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": "Q4 FY25: 10.58 MMT stated in Q4 FY25 concall. Q1 FY26: 10.42 MMT stated in Q1 FY26 concall. Q4 FY26: only full-year FY26 throughput 41.15 MMT stated in Q4 FY26 concall; quarterly figure not provided. Q1 FY27: 10.15 MMT stated in Q1 FY27 con"
+          "notes": "From Screener Insights row \"Refinery Crude Throughput\"; latest value cited to Concall Transcript - 02 May 2025, page 3."
         },
         {
           "id": "refinery-utilisation",
@@ -2734,7 +2734,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34681,
+      "ctxChars": 34180,
       "kpis": [
         {
           "id": "grm",
@@ -2772,7 +2772,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": "Q2 FY26: $8.8/bbl stated in Q2 concall summary (management clarified ~$8/bbl ex-inventory). Q3 FY26: $8.85/bbl reported in Q3 concall summary, but management said ex-Mumbai contamination it would have been $10.24/bbl - this is a one-off dis"
+          "notes": "Q2 FY26: $8.8/bbl stated in Q2 FY26 concall AI summary (management clarified ~$8/bbl excluding inventory effects). Q3 FY26: $8.85/bbl stated in Q3 FY26 concall AI summary (management noted without Mumbai contamination it would have been $10"
         },
         {
           "id": "marketing-margin",
@@ -2810,7 +2810,7 @@
             null
           ],
           "flag": null,
-          "notes": "No marketing margin per litre stated in any quarter. LPG under-recoveries are disclosed (Q4 FY26 ~₹1,350 cr for the quarter, Q1 FY27 ~₹510/cylinder average) but these are not marketing margin per litre across all products."
+          "notes": "Marketing margin per liter not stated in any of the excerpts for any quarter. LPG under-recoveries were disclosed in absolute crore terms and per-cylinder terms, but no per-liter marketing margin for overall products was provided."
         },
         {
           "id": "throughput",
@@ -2876,7 +2876,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31837,
+      "ctxChars": 32297,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -2964,7 +2964,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not disclosed in any of the excerpts. Q1 FY26 concall mentions polymer segment loss of ₹130 cr and average landed gas price of $10.54/MMBtu with breakeven framing around $13-14 landed price and selling price ~₹130,000,"
+          "notes": "Q1 FY26: Not stated. Q2 FY26: Not stated. Q3 FY26: Not stated. Q1 FY27: Not stated. The excerpts discuss petrochemical segment losses, feedstock costs, breakeven pricing, and unit economics (gas price $10.54/MMBtu, breakeven ~$13-14/MMBtu l"
         },
         {
           "id": "gas-marketing-volume",
@@ -3479,7 +3479,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33891,
+      "ctxChars": 34458,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3517,7 +3517,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: no single-quarter volume stated. Q3 FY26: no single-quarter volume stated. Q4 FY26: CNG 3.6 mmscmd (+12% yoy), PNG domestic 0.91 mmscmd, PNG industrial 4.19 mmscmd stated but total CNG+PNG growth not given. Q1 FY27: CNG 3.76 mmscmd"
+          "notes": "Q2 FY26: no single-quarter volume stated. Q3 FY26: no single-quarter volume stated. Q4 FY26: Q4 call states CNG 3.6 mmscmd with 12% yoy growth but does not give PNG volume or combined CNG+PNG growth. Q1 FY27: call states 'CNG volume of 3.76"
         },
         {
           "id": "ebitda-per-scm",
@@ -3555,7 +3555,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: EBITDA ₹447 Cr stated, total volume 8.65 mmscmd from Screener; no per-scm figure stated. Q3 FY26: EBITDA ₹447 Cr, volume 8.37 mmscmd; no per-scm stated. Q4 FY26: EBITDA ₹609 Cr (or ₹943 Cr post-merger in Q1 FY27 PPT), volume 8.88 m"
+          "notes": "Q2 FY26: EBITDA per scm not stated in excerpts. Q3 FY26: EBITDA per scm not stated in excerpts. Q4 FY26: EBITDA per scm not stated in excerpts. Q1 FY27: EBITDA per scm not stated in excerpts. The quarterly financials show EBITDA (Operating "
         }
       ]
     },
@@ -3571,7 +3571,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34522,
+      "ctxChars": 34048,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3621,7 +3621,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": "No year-on-year throughput growth percentage stated for any of the four quarters. The Q1 FY27 call mentions logistics volume of 1,124k MT vs 1,161k MT in Q1 FY26 (a -3% change), but this is volume level, not throughput growth %."
+          "notes": "From Screener Insights row \"LPG Terminal Throughput Volume (Logistics)\"; latest value cited to Presentation - 30 May 2026, page 11."
         },
         {
           "id": "terminal-utilisation",
@@ -3659,7 +3659,7 @@
             null
           ],
           "flag": null,
-          "notes": "No specific terminal utilisation percentage stated for any quarter. Management mentions 'high utilization' and 'improved utilization' qualitatively but no numeric % given."
+          "notes": "Terminal utilisation % not stated in any of the excerpts. The concall transcripts mention 'high utilization levels', 'higher utilization levels', 'improved utilization levels' at various ports but no specific percentage figures are provided"
         }
       ]
     },
@@ -3675,7 +3675,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32814,
+      "ctxChars": 33121,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3725,7 +3725,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 15 Jun 2026, page 6."
+          "notes": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 11 Nov 2025, page 6."
         },
         {
           "id": "terminal-utilisation",
@@ -3763,7 +3763,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The excerpts mention 'high capacity utilization level' and 'improved utilization levels' qualitatively but no specific percentage figures ar"
+          "notes": "Terminal utilisation % not stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The screener insights table shows capacity figures (LPG static storage, liquid storage capacity) but no utilisation percentages. The concall"
         }
       ]
     },
@@ -3928,53 +3928,57 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31058,
+      "ctxChars": 31579,
       "kpis": [
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume (YoY)",
-          "unit": "% yoy",
+          "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            8,
             7,
+            7.5,
             7.5,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
+            "company-filing",
             null
           ],
           "origins": [
             "model",
             "model",
-            "model",
+            "insights",
             null
           ],
           "citations": [
             null,
             null,
-            null,
+            {
+              "doc": "Concall Transcript - 04 May 2026",
+              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
+              "page": 6
+            },
             null
           ],
           "oneOffs": [
-            null,
             "No Q2 FY26 data",
             "No Q3 FY26 data",
+            null,
             null
           ],
           "flag": null,
-          "notes": "Q1 FY26: No YoY volume growth stated for Q1 FY26 (Apr-Jun 2025). Q2 FY26: No YoY volume growth stated for Q2 FY26 (Jul-Sep 2025). Q3 FY26: 7% YoY volume growth stated in Q3 FY26 concall (page 3: 'revenue came in at INR1,363 crores...primari"
+          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
         },
         {
           "id": "base-oil-spread",
@@ -4291,7 +4295,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34580,
+      "ctxChars": 33738,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4329,7 +4333,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput YoY growth figures stated for any of the four quarters (Q2 FY26, Q3 FY26, Q4 FY26, Q1 FY27). The Q4 FY26 call mentions 'handling LPG vessels' during disruptions but gives no volume or YoY metric. The screener"
+          "notes": "Q2 FY26: No POL/LPG/LNG throughput YoY growth figure stated. Q3 FY26: No POL/LPG/LNG throughput YoY growth figure stated. Q4 FY26: No POL/LPG/LNG throughput YoY growth figure stated. Q1 FY27: No POL/LPG/LNG throughput YoY growth figure stat"
         },
         {
           "id": "total-cargo-volume",
@@ -4388,7 +4392,7 @@
       "name": "GE Shipping",
       "slug": "GESHIP",
       "quarters": [
-        "Q1 FY26",
+        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
@@ -4396,7 +4400,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34291,
+      "ctxChars": 34174,
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -4404,7 +4408,7 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            46352,
+            28492,
             47281,
             61424,
             null
@@ -4423,9 +4427,9 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Crude Carriers: Q1 FY25 46,352",
-              "page": 14
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Crude Carriers: Q2 FY25 28,492",
+              "page": 13
             },
             {
               "doc": "Presentation - 29 Jan 2026",
@@ -4445,8 +4449,8 @@
             null,
             null
           ],
-          "flag": "accelerating",
-          "notes": "From Screener Insights row \"Average TCY - Crude Carriers\"; latest value cited to Presentation - 31 Jul 2025, page 14."
+          "flag": "decelerating",
+          "notes": "No single metric for 'tanker freight rate' found. Q1 FY27 concall mentions crude tankers at $90,000/day and product tankers at $45,000/day for Q2 (not Q1). Q4 FY26 and Q3 FY26 concalls do not state quarterly TCE figures. Q2 FY26 concall doe"
         },
         {
           "id": "fleet-deployment",
@@ -4454,7 +4458,7 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3507,
+            3678,
             3765,
             3525,
             null
@@ -4473,8 +4477,8 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Total Revenue Days: 3,507",
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Total Revenue Days: 3,678",
               "page": 12
             },
             {
@@ -4504,7 +4508,7 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            37153,
+            28978,
             25117,
             30511,
             45000
@@ -4523,9 +4527,9 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Product Carriers: Q1 FY25 37,153",
-              "page": 14
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Product Carriers: Q2 FY25 28,978",
+              "page": 13
             },
             {
               "doc": "Presentation - 29 Jan 2026",
@@ -4554,7 +4558,7 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            36742,
+            43507,
             43611,
             45216,
             127330
@@ -4573,9 +4577,9 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "LPG Carriers: Q1 FY25 36,742",
-              "page": 14
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "LPG Carriers: Q2 FY25 43,507",
+              "page": 13
             },
             {
               "doc": "Presentation - 29 Jan 2026",
@@ -4605,7 +4609,7 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3325,
+            3494,
             3581,
             3345,
             null
@@ -4624,8 +4628,8 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Owned Tonnage: 3,325",
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Owned Tonnage: 3,494",
               "page": 12
             },
             {
@@ -4647,7 +4651,7 @@
             null
           ],
           "flag": "inflecting-down",
-          "notes": "From Screener Insights row \"Revenue Days - Shipping (Owned)\"; latest value cited to Presentation - 31 Jul 2025, page 12."
+          "notes": "Revenue days (owned) not stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27."
         }
       ]
     },
