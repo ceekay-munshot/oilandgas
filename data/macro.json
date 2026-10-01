@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-09-30T12:48:29.854Z",
+  "generatedAt": "2026-10-01T13:34:59.891Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -85,7 +85,7 @@
             },
             {
               "date": "2026-09-01",
-              "value": 112.96
+              "value": 114.08
             }
           ]
         },
@@ -146,7 +146,7 @@
             },
             {
               "date": "2026-09-01",
-              "value": 116.04
+              "value": 116.09
             }
           ]
         },
@@ -207,7 +207,7 @@
             },
             {
               "date": "2026-09-01",
-              "value": 92.27
+              "value": 92.68
             }
           ]
         }
@@ -286,7 +286,7 @@
             },
             {
               "date": "2026-09-01",
-              "value": 67.61
+              "value": 70.56
             }
           ]
         }
@@ -305,7 +305,7 @@
       "status": "live",
       "source": "Trading Economics - naphtha spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-09-29",
+      "asOf": "2026-09-30",
       "lines": [
         {
           "id": "naphtha",
@@ -317,11 +317,11 @@
           "source": "Trading Economics - naphtha spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-09-29",
+          "asOf": "2026-09-30",
           "series": [
             {
-              "date": "2026-09-29",
-              "value": 797.2,
+              "date": "2026-09-30",
+              "value": 794.74,
               "spot": true
             }
           ]
@@ -340,7 +340,7 @@
       "status": "live",
       "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-09-29",
+      "asOf": "2026-09-30",
       "lines": [
         {
           "id": "jkm",
@@ -352,11 +352,11 @@
           "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-09-29",
+          "asOf": "2026-09-30",
           "series": [
             {
-              "date": "2026-09-29",
-              "value": 25.44,
+              "date": "2026-09-30",
+              "value": 25.74,
               "spot": true
             }
           ]
@@ -407,7 +407,7 @@
           "series": [
             {
               "date": "2025-10-01",
-              "value": 88.42
+              "value": 88.72
             },
             {
               "date": "2025-11-01",
@@ -451,7 +451,7 @@
             },
             {
               "date": "2026-09-01",
-              "value": 95.45
+              "value": 95.47
             }
           ]
         }
@@ -469,7 +469,7 @@
       "status": "live",
       "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via firecrawl)",
       "sourceTag": "external",
-      "asOf": "2026-09-01",
+      "asOf": "2026-10-01",
       "lines": [
         {
           "id": "baltic-dirty",
@@ -480,10 +480,10 @@
           "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via firecrawl)",
           "sourceTag": "external",
           "notes": "Latest level only - the Baltic Exchange licenses the history, so this line has no 12-month trend.",
-          "asOf": "2026-09-01",
+          "asOf": "2026-10-01",
           "series": [
             {
-              "date": "2026-09-01",
+              "date": "2026-10-01",
               "value": 1107,
               "spot": true
             }
