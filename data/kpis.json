@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-01T14:07:14.733Z",
+  "generatedAt": "2026-10-02T11:26:42.764Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
-    "kpiCells": 377,
-    "realCells": 251,
-    "nullCells": 126,
-    "kpis": 97,
-    "kpisWithTrend": 59
+    "kpiCells": 381,
+    "realCells": 256,
+    "nullCells": 125,
+    "kpis": 98,
+    "kpisWithTrend": 60
   },
   "companies": {
     "deep-industries": {
@@ -170,7 +170,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34368,
+      "ctxChars": 34069,
       "kpis": [
         {
           "id": "order-inflow",
@@ -304,7 +304,7 @@
             null
           ],
           "flag": null,
-          "notes": "Bid pipeline not disclosed in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27."
+          "notes": "Bid pipeline not disclosed in any of the excerpts. The excerpts report order book (unexecuted orders already won) and order inflow (business secured), but do not state the value of the bid pipeline (opportunities under bidding or yet to be "
         },
         {
           "id": "consultancy-order-book",
@@ -453,7 +453,7 @@
           ],
           "flag": "steady",
           "beyondBrief": true,
-          "notes": "Q2 FY26: not stated. Q3 FY26: not stated. Q4 FY26: Screener Insights shows Order Book Domestic Share as of Mar 2026 (end of Q4 FY26) is 57%. Q1 FY27: not stated for Q1 FY27 end (Jun 2026); the Screener Insights table only goes to Mar 2026."
+          "notes": "From Screener Insights row \"Order Book Domestic Share\" (Standalone data); latest value cited to Presentation - 12 Feb 2026, page 17."
         }
       ]
     },
@@ -861,7 +861,7 @@
       "asOf": "Q2 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 28865,
+      "ctxChars": 27400,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -894,7 +894,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: Screener annual table shows FY25 full-year capex 45,335 cr (including OPaL equity infusion 18,365 cr), not Q4 alone. Investor PPT shows 9M FY25 capex 30,208 cr (also including OPaL infusion), implying Q4 ~15,127 cr, but this is der"
+          "notes": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 capex of ₹45,335 cr (including OPaL equity infusion of ₹18,365 cr) and planned FY26 capex of ₹36,920 cr, but does not state Q4 FY25 actual capex or budget vs actual. Q2 FY26 concall mentions cap"
         },
         {
           "id": "production-volume",
@@ -935,7 +935,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: no single-quarter oil production stated; FY25 full-year 19.6 MMT (Screener annual) and 9M 14.64 MMT (PPT) are given but Q4 alone not stated. Q2 FY26: concall AI summary states 'Q2 FY26 crude oil 4.630 MMT'. Q1 FY27: concall mention"
+          "notes": "From Screener Insights row \"Crude Oil Production (Standalone)\" (Standalone data); latest value cited to Presentation - 03 Feb 2025, page 7."
         },
         {
           "id": "new-well-count",
@@ -968,7 +968,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: Screener annual table shows FY24 full-year 544 wells and FY25 578 wells; Q4 FY25 concall mentions 'Record 578 wells drilled' for the full year, not Q4 alone. Investor PPT shows 9M FY25 413 wells, implying Q4 ~165, but single-quarte"
+          "notes": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 drilling of 413 wells (353 development + 60 exploratory) and FY24 full-year 544 wells (441 development + 103 exploratory), but does not state Q4 FY25 alone. Q4 FY25 concall mentions record 578 w"
         },
         {
           "id": "gas-production",
@@ -1005,7 +1005,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: Screener annual table shows FY25 full-year 19.65 BCM; Investor PPT shows 9M FY25 14.74 BCM, implying Q4 ~4.91 BCM, but single-quarter figure not stated. Q2 FY26: concall mentions 'YoY degrowth improved from -0.35% (Q1) to -0.04% (Q"
+          "notes": "From Screener Insights row \"Natural Gas Production (Standalone)\" (Standalone data); latest value cited to Presentation - 03 Feb 2025, page 7."
         }
       ]
     },
@@ -1021,7 +1021,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34236,
+      "ctxChars": 33647,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -1059,7 +1059,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q1 FY27: Q1 capex spend ~₹3,050 cr stated in Q1 FY27 concall summary. Q2-Q4 FY26: Only full-year FY26 capex of ₹13,026 cr mentioned (Q4 FY26 concall) and ₹13,025 cr (Q4 FY26 concall alternate reference); quarterly breakdown not provided."
+          "notes": "Q2 FY26: No single-quarter capex figure stated. Q3 FY26: No single-quarter capex figure stated. Q4 FY26: Only FY26 full-year capex stated (₹13,025 cr or ₹13,026 cr); Q4 alone not given. Q1 FY27: Q1 capex spend stated as ~₹3,050 cr but this "
         },
         {
           "id": "production-volume",
@@ -1151,7 +1151,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: 0.804 bcm stated in Q2 FY26 concall summary. Q3 FY26: 0.801 bcm stated in Q3 FY26 concall summary. Q4 FY26: Only full-year FY26 gas production of 3.15 BCM mentioned in Q4 FY26 concall; Q4 alone not stated. Q1 FY27: Q1 FY27 concall "
+          "notes": "From Screener Insights row \"Natural Gas Production\" (Standalone data); latest value cited to Concall Transcript - 21 Nov 2025, page 4."
         }
       ]
     },
@@ -1167,7 +1167,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33077,
+      "ctxChars": 32364,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -1205,7 +1205,7 @@
             null
           ],
           "flag": null,
-          "notes": "No rig utilisation percentage stated in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The excerpts discuss fleet deployment status (number of rigs operating, under refurbishment, etc.) but do not provide a utilisation perce"
+          "notes": "No offshore rig utilisation percentage data found in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The documents discuss rig deployment status (number operating, under refurbishment, etc.) but do not state a utilisation per"
         },
         {
           "id": "charter-day-rate",
@@ -1371,7 +1371,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34172,
+      "ctxChars": 33720,
       "kpis": [
         {
           "id": "hydrocarbon-order-inflow",
@@ -2964,7 +2964,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not disclosed in any of the excerpts. Q1 FY26 concall mentions delivered gas cost at Pata ~$10.5-10.6/MMBtu and a breakeven framing at $13-14 landed price with selling price ~INR130,000, but no per-tonne margin figure "
+          "notes": "Petchem margin in $/t not stated in any excerpt. Q1 FY26 concall mentions polymer segment loss of ₹249 cr and delivered gas cost ~$10.5-10.6/MMBtu, but no per-tonne margin. Q2 FY26 concall mentions loss of ₹299 cr and gas cost ~$10.5-10.6/M"
         },
         {
           "id": "gas-marketing-volume",
@@ -3771,7 +3771,7 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
-        "Q1 FY26",
+        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
@@ -3827,7 +3827,7 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
-            93853,
+            76962,
             91265,
             100664,
             70842
@@ -3846,9 +3846,9 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 30 Apr 2026",
-              "quote": "Company's sales volume of manufactured products in the 1st Quarter of FY '26 increased by 0.5% only on a year-on-year basis to 93,853 MT",
-              "page": 3
+              "doc": "Presentation - 24 Oct 2025",
+              "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
+              "page": 15
             },
             {
               "doc": "Concall Transcript - 26 Jan 2026",
@@ -3868,7 +3868,7 @@
             null,
             "negligible exports due to West Asia crisis"
           ],
-          "flag": "inflecting-up",
+          "flag": "decelerating",
           "notes": null
         },
         {
@@ -3877,25 +3877,29 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            null,
+            79,
             80,
             80,
             80
           ],
           "sourceTags": [
-            null,
+            "company-filing",
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            null,
+            "insights",
             "insights",
             "insights",
             "model"
           ],
           "citations": [
-            null,
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
+              "page": 5
+            },
             {
               "doc": "Concall Transcript - 26 Jan 2026",
               "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
@@ -3916,7 +3920,7 @@
           ],
           "flag": "steady",
           "beyondBrief": true,
-          "notes": "Q1 FY26: no quarterly figure stated. Q3 FY26: no quarterly figure stated. Q4 FY26: no quarterly figure stated. Q1 FY27: no quarterly figure stated. The Screener Insights table shows full-year capacity utilisation of 80% as of Mar 2026 (FY26"
+          "notes": null
         }
       ]
     },
@@ -3924,53 +3928,57 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31578,
+      "ctxChars": 31579,
       "kpis": [
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume (YoY)",
-          "unit": "% yoy",
+          "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            8,
             7,
+            7.5,
             7.5,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
+            "company-filing",
             null
           ],
           "origins": [
             "model",
             "model",
-            "model",
+            "insights",
             null
           ],
           "citations": [
             null,
             null,
-            null,
+            {
+              "doc": "Concall Transcript - 04 May 2026",
+              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
+              "page": 6
+            },
             null
           ],
           "oneOffs": [
-            null,
             "No Q2 FY26 data",
             "No Q3 FY26 data",
+            null,
             null
           ],
           "flag": null,
-          "notes": "Q1 FY26: 6% YoY stated in Q1 FY26 concall (page 3). Q2 FY26: 7% YoY stated in Q2 FY26 concall (page 3). Q3 FY26: 8% YoY stated in Q3 FY26 concall (page 3, 'volume grew 8% year-on-year'). Q1 FY27: The Q1 FY27 concall (page 7) asks about volu"
+          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
         },
         {
           "id": "base-oil-spread",
@@ -4778,11 +4786,51 @@
         "Q3 FY26",
         "Q4 FY26"
       ],
-      "asOf": null,
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33478,
-      "kpis": []
+      "ctxChars": 33987,
+      "kpis": [
+        {
+          "id": "order-book",
+          "label": "Order book",
+          "unit": "₹ cr",
+          "flagBasis": "qoq",
+          "values": [
+            1022,
+            2000,
+            1150,
+            1750
+          ],
+          "sourceTags": [
+            "company-filing",
+            "mgmt-claim",
+            "company-filing",
+            "mgmt-claim"
+          ],
+          "origins": [
+            "model",
+            "model",
+            "model",
+            "model"
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-up",
+          "beyondBrief": true,
+          "notes": null
+        }
+      ]
     }
   }
 }

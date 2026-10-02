@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-01T14:05:28.832Z",
+  "generatedAt": "2026-10-02T11:25:06.314Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -341,33 +341,37 @@
     "engineers-india": {
       "name": "Engineers India",
       "slug": "ENGINERSIN",
-      "view": "yearly",
+      "view": "quarterly",
       "url": "https://www.screener.in/company/ENGINERSIN/consolidated/#shareholding",
-      "via": "annual-fallback",
+      "via": "quarterly-fragment",
       "toggled": "/insights/company/935/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Mar 2017",
-        "Mar 2018",
-        "Mar 2019",
-        "Mar 2020",
-        "Mar 2021",
-        "Mar 2022",
-        "Mar 2023",
+        "Jun 2023",
+        "Sep 2023",
+        "Dec 2023",
         "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
         "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
         "Mar 2026"
       ],
       "periodsIso": [
-        "2017-03",
-        "2018-03",
-        "2019-03",
-        "2020-03",
-        "2021-03",
-        "2022-03",
-        "2023-03",
+        "2023-06",
+        "2023-09",
+        "2023-12",
         "2024-03",
+        "2024-06",
+        "2024-09",
+        "2024-12",
         "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12",
         "2026-03"
       ],
       "rows": [
@@ -376,47 +380,29 @@
           "unit": "INR mn",
           "scope": "Standalone data",
           "values": [
-            40208,
-            41739,
-            43124,
-            44561,
-            45816,
-            48983,
-            48296,
+            49792,
+            48531,
+            47513,
             46367,
+            55223,
+            64957,
+            55538,
             66482,
+            68133,
+            76856,
+            75012,
             108648
           ],
           "citations": [
             {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy 46,170 48,940 38,610 41,739 40,208 30,100 24,543",
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy 47513 48531 49,792 47,935 45,994 45,046 48296",
               "page": 15
             },
             {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy 46,170 48,940 38,610 41,739 40,208 30,100 24,543",
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy 47513 48531 49,792 47,935 45,994 45,046 48296",
               "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy 46,170 48,940 38,610 41,739 40,208 30,100 24,543",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Consultancy 50,383 52,980 44,984 42,314 44,304 42,357 45,816",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Consultancy 50,383 52,980 44,984 42,314 44,304 42,357 45,816",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 05 Aug 2022",
-              "quote": "Consultancy 47,935 44,984 52,980 50,383 48,983",
-              "page": 11
             },
             {
               "doc": "Presentation - 02 Feb 2024",
@@ -426,12 +412,42 @@
             {
               "doc": "Presentation - 02 Feb 2024",
               "quote": "Consultancy 47513 48531 49,792 47,935 45,994 45,046 48296",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy 55538 64,957 55,223 49,792 48,531 47,513 46,367",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy 55538 64,957 55,223 49,792 48,531 47,513 46,367",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy 55538 64,957 55,223 49,792 48,531 47,513 46,367",
               "page": 15
             },
             {
               "doc": "Presentation - 13 Aug 2025",
               "quote": "Consultancy 68,133 55,223 64,957 55,538 66,482",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Consultancy 68,133 55,223 64,957 55,538 66,482",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Consultancy 76,856 68,133 55,223 64,957 55,538 66,482",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Consultancy 75,012 76,856 68,133 55,223 64,957 55,538 66,482",
+              "page": 15
             },
             {
               "doc": "Presentation - 22 May 2026",
@@ -441,124 +457,37 @@
           ]
         },
         {
-          "label": "Consultancy Order Inflow",
-          "unit": "INR mn",
-          "scope": "Standalone data",
-          "values": [
-            22963,
-            16608,
-            15853,
-            16172,
-            15562,
-            16871,
-            12615,
-            12949,
-            45764,
-            60095
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy Total 14,811 778 13,201 832 938 13,675 1,161 835",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy Total 14,811 778 13,201 832 938 13,675 1,161 835",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy Total 14,811 778 13,201 832 938 13,675 1,161 835",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Consultancy Total 15,062 564 11,672 2,826 680 5,940 1,886 7,056",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Consultancy Total 15,062 564 11,672 2,826 680 5,940 1,886 7,056",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 05 Aug 2022",
-              "quote": "Consultancy Total 2,250 2,826 11,672 564 1,809",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 13 Aug 2025",
-              "quote": "Consultancy Total 6,083 11,723 16,905 2,683 14,453",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Consultancy Total 60,095 45,764 12,949 12,615 16,871",
-              "page": 28
-            }
-          ]
-        },
-        {
           "label": "Order Book Consultancy Share",
           "unit": "%",
           "scope": "Standalone data",
           "values": [
-            51.8,
-            53,
-            38.5,
-            46.6,
-            57.4,
-            64,
-            62.8,
+            61.5,
             59.3,
+            59.5,
+            59.3,
+            57.2,
+            58.2,
+            48.9,
             56.7,
+            56.1,
+            58.5,
+            59.8,
             71.9
           ],
           "citations": [
             {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy 40,208 of Total Order Book 77,619 (52%)",
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy 49,792 of Total Order Book 81,025 (61%)",
               "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy 41,739 of Total Order Book 78,731 (53%)",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Consultancy 43,124 of Total Order Book 1,11,887 (39%)",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Consultancy 44,561 of Total Order Book 95,554 (47%)",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Consultancy 45,816 of Total Order Book 79,819 (57%)",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 05 Aug 2022",
-              "quote": "Consultancy 48,983 of Total Order Book 76,549 (64%)",
-              "page": 11
             },
             {
               "doc": "Presentation - 02 Feb 2024",
-              "quote": "Consultancy 48,296 of Total Order Book 76,946 (63%)",
+              "quote": "Consultancy 48,531 of Total Order Book 81,883 (59%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy 47,513 of Total Order Book 79,906 (59%)",
               "page": 15
             },
             {
@@ -567,9 +496,39 @@
               "page": 15
             },
             {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy 55,223 of Total Order Book 96,581 (57%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy 64,957 of Total Order Book 1,11,553 (58%)",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy 55,538 of Total Order Book 1,13,524 (49%)",
+              "page": 15
+            },
+            {
               "doc": "Presentation - 13 Aug 2025",
               "quote": "Consultancy 66,482 of Total Order Book 117,173 (57%)",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Consultancy 68,133 of Total Order Book 121,443 (56%)",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Consultancy 76,856 of Total Order Book 131,311 (59%)",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Consultancy 75,012 of Total Order Book 125,379 (60%)",
+              "page": 15
             },
             {
               "doc": "Presentation - 22 May 2026",
@@ -579,120 +538,33 @@
           ]
         },
         {
-          "label": "Order Inflow / Business Secured Total",
-          "unit": "INR mn",
-          "scope": "Standalone data",
-          "values": [
-            57081,
-            21405,
-            58905,
-            16172,
-            15692,
-            16871,
-            47078,
-            34062,
-            82141,
-            79781
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Total Business secured 57,863 908 56,123 832 3,385 16,025 1,161 835",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Total Business secured 57,863 908 56,123 832 3,385 16,025 1,161 835",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Total Business secured 57,863 908 56,123 832 3,385 16,025 1,161 835",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Total Business secured 15,062 564 11,672 2,826 810 5,940 1,886 7,056",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Total Business secured 15,062 564 11,672 2,826 810 5,940 1,886 7,056",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 05 Aug 2022",
-              "quote": "Total Business secured 2,250 2,826 11,672 564 1,809",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 13 Aug 2025",
-              "quote": "Total Business secured 14,292 23,791 27,577 18,784 11,989",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Total Business secured 79,781 82,141 34,062 47,078 16,871",
-              "page": 28
-            }
-          ]
-        },
-        {
           "label": "Total Order Book",
           "unit": "INR mn",
           "scope": "Standalone data",
           "values": [
-            77619,
-            78731,
-            111887,
-            95554,
-            79819,
-            76549,
-            76946,
+            81025,
+            81883,
+            79906,
             78235,
+            96581,
+            111553,
+            113524,
             117173,
+            121443,
+            131311,
+            125379,
             151093
           ],
           "citations": [
             {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Total Order Book 107,870 114,640 72,290 78,731 77,619 37,887 36,409",
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Order Book 79,906 81,883 81,025 88,338 84,313 78,656 76,946",
               "page": 15
             },
             {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Total Order Book 107,870 114,640 72,290 78,731 77,619 37,887 36,409",
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Order Book 79,906 81,883 81,025 88,338 84,313 78,656 76,946",
               "page": 15
-            },
-            {
-              "doc": "Presentation - 08 Feb 2019",
-              "quote": "Total Order Book 107,870 114,640 72,290 78,731 77,619 37,887 36,409",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Total Order Book 82,121 80,292 75,304 91,168 89,780 82,972 79,819",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 10 Feb 2022",
-              "quote": "Total Order Book 82,121 80,292 75,304 91,168 89,780 82,972 79,819",
-              "page": 15
-            },
-            {
-              "doc": "Presentation - 05 Aug 2022",
-              "quote": "Total Order Book 88,338 75,304 80,292 82,121 76,549",
-              "page": 11
             },
             {
               "doc": "Presentation - 02 Feb 2024",
@@ -702,6 +574,21 @@
             {
               "doc": "Presentation - 02 Feb 2024",
               "quote": "Total Order Book 79,906 81,883 81,025 88,338 84,313 78,656 76,946",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Total Order Book 113524 1,11,553 96,581 81,025 81,883 79,906 78,235",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Total Order Book 113524 1,11,553 96,581 81,025 81,883 79,906 78,235",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Total Order Book 113524 1,11,553 96,581 81,025 81,883 79,906 78,235",
               "page": 15
             },
             {
@@ -710,9 +597,223 @@
               "page": 11
             },
             {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Total Order Book 121,443 96,581 1,11,553 1,13,524 1,17,173",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Total Order Book 131,311 121,443 96,581 1,11,553 1,13,524 1,17,173",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Total Order Book 125,379 131,311 121,443 96,581 1,11,553 1,13,524 1,17,173",
+              "page": 15
+            },
+            {
               "doc": "Presentation - 22 May 2026",
               "quote": "Total Order Book 151,093 117,173 78,235 76,946 76,549",
               "page": 28
+            }
+          ]
+        },
+        {
+          "label": "Order Inflow / Business Secured Total",
+          "unit": "INR mn",
+          "scope": "Standalone data",
+          "values": [
+            12652,
+            11442,
+            6371,
+            3597,
+            23791,
+            27577,
+            18784,
+            11989,
+            14292,
+            23349,
+            5027,
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Total Business secured 70,152 18,784 27,577 23,791 12,652 11,442 6,371 3,597",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Total Business secured 70,152 18,784 27,577 23,791 12,652 11,442 6,371 3,597",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Total Business secured 70,152 18,784 27,577 23,791 12,652 11,442 6,371 3,597",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Total Business secured 14,292 23,791 27,577 18,784 11,989",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Total Business secured 14,292 23,791 27,577 18,784 11,989",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Total Business secured 37,641 23,349 14,292 23,791 27,577 18,784 11,989",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Total Business secured 42,668 5,027 23,349 14,292 23,791 27,577 18,784 11,989",
+              "page": 15
+            },
+            null
+          ]
+        },
+        {
+          "label": "Consultancy Order Inflow",
+          "unit": "INR mn",
+          "scope": "Standalone data",
+          "values": [
+            4439,
+            3087,
+            6371,
+            null,
+            11723,
+            16905,
+            2683,
+            14453,
+            6083,
+            13904,
+            3690,
+            null
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
+              "page": 15
+            },
+            null,
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy Total 31,311 2,683 16,905 11,723 4,439 3,087 2,871 2,552",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy Total 31,311 2,683 16,905 11,723 4,439 3,087 2,871 2,552",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "Consultancy Total 31,311 2,683 16,905 11,723 4,439 3,087 2,871 2,552",
+              "page": 15
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Consultancy Total 6,083 11,723 16,905 2,683 14,453",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 13 Aug 2025",
+              "quote": "Consultancy Total 6,083 11,723 16,905 2,683 14,453",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Consultancy Total 19,987 13,904 6,083 11,723 16,905 2,683 14,453",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Consultancy Total 23,677 3,690 13,904 6,083 11,723 16,905 2,683 14,453",
+              "page": 15
+            },
+            null
+          ]
+        },
+        {
+          "label": "Order Book Domestic Share",
+          "unit": "%",
+          "scope": "Standalone data",
+          "values": [
+            null,
+            null,
+            68,
+            null,
+            null,
+            null,
+            77,
+            null,
+            null,
+            null,
+            58,
+            57
+          ],
+          "citations": [
+            null,
+            null,
+            {
+              "doc": "Presentation - 02 Feb 2024",
+              "quote": "9M FY 23-24 Consultancy Domestic Vs Overseas 68% Domestic",
+              "page": 16
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 10 Feb 2025",
+              "quote": "9M FY 24-25 Consultancy Domestic Vs Overseas 77% Domestic",
+              "page": 17
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 12 Feb 2026",
+              "quote": "Consultancy Domestic Vs Overseas 58% Domestic 42% Overseas",
+              "page": 17
+            },
+            {
+              "doc": "Presentation - 22 May 2026",
+              "quote": "OBP: Domestic Vs Overseas 57% Domestic 43% Overseas",
+              "page": 31
             }
           ]
         },
@@ -724,36 +825,36 @@
             null,
             null,
             null,
-            null,
-            null,
-            33,
-            null,
             47,
+            null,
+            null,
+            null,
             46,
+            null,
+            null,
+            null,
             58
           ],
           "citations": [
             null,
             null,
             null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 27 May 2022",
-              "quote": "In-house and collaborative R&D (33 active patents)",
-              "page": 5
-            },
-            null,
             {
               "doc": "Annual Report - 31 Mar 2024",
               "quote": "47 live Patents",
               "page": 60
             },
+            null,
+            null,
+            null,
             {
               "doc": "Credit Rating - 08 Dec 2025",
               "quote": "EIL holds 46 live patents for such process technologies",
               "page": 2
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 22 May 2026",
               "quote": "(58 active Patents, 74 pending grant)",
@@ -769,85 +870,40 @@
             null,
             null,
             null,
-            null,
-            null,
-            2710,
-            null,
             2658,
+            null,
+            null,
+            null,
             2700,
+            null,
+            null,
+            null,
             2735
           ],
           "citations": [
             null,
             null,
             null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 27 May 2022",
-              "quote": "Total 2710",
-              "page": 15
-            },
-            null,
             {
               "doc": "Annual Report - 31 Mar 2024",
               "quote": "2,658 employees (as of March 31, 2024)",
               "page": 96
             },
+            null,
+            null,
+            null,
             {
               "doc": "Credit Rating - 08 Dec 2025",
               "quote": "EIL has a strong management team and employs a workforce of 2,700 experienced professionals",
               "page": 2
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 22 May 2026",
               "quote": "Total 2735",
               "page": 11
-            }
-          ]
-        },
-        {
-          "label": "Order Book Domestic Share",
-          "unit": "%",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            89,
-            null,
-            68,
-            77,
-            57
-          ],
-          "citations": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 27 May 2022",
-              "quote": "OBP: Domestic Vs Overseas 89% Domestic 11% Overseas",
-              "page": 30
-            },
-            null,
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "9M FY 23-24 Consultancy Domestic Vs Overseas 68% Domestic",
-              "page": 16
-            },
-            {
-              "doc": "Presentation - 10 Feb 2025",
-              "quote": "9M FY 24-25 Consultancy Domestic Vs Overseas 77% Domestic",
-              "page": 17
-            },
-            {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "OBP: Domestic Vs Overseas 57% Domestic 43% Overseas",
-              "page": 31
             }
           ]
         }
@@ -2040,171 +2096,102 @@
     "ongc": {
       "name": "ONGC",
       "slug": "ONGC",
-      "view": "yearly",
+      "view": "quarterly",
       "url": "https://www.screener.in/company/ONGC/consolidated/",
-      "via": "annual-fallback",
+      "via": "quarterly-fragment",
       "toggled": "/insights/company/2320/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Mar 2016",
-        "Mar 2017",
-        "Mar 2018",
-        "Mar 2019",
-        "Mar 2020",
-        "Mar 2021",
-        "Mar 2022",
-        "Mar 2023",
+        "Jun 2023",
+        "Sep 2023",
+        "Dec 2023",
         "Mar 2024",
-        "Mar 2025"
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
+        "Mar 2025",
+        "Jun 2025",
+        "Sep 2025"
       ],
       "periodsIso": [
-        "2016-03",
-        "2017-03",
-        "2018-03",
-        "2019-03",
-        "2020-03",
-        "2021-03",
-        "2022-03",
-        "2023-03",
+        "2023-06",
+        "2023-09",
+        "2023-12",
         "2024-03",
-        "2025-03"
+        "2024-06",
+        "2024-09",
+        "2024-12",
+        "2025-03",
+        "2025-06",
+        "2025-09"
       ],
       "rows": [
-        {
-          "label": "1P Proved Reserves (Group)",
-          "unit": "MMTOE",
-          "scope": null,
-          "values": [
-            909.34,
-            928.16,
-            982.01,
-            991.37,
-            960.82,
-            870.44,
-            845.87,
-            806.9,
-            779.9,
-            775.42
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Estimated Net Proved O+OEG Reserves (MMTOE) FY'16: 909.34",
-              "page": 54
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Estimated Net Proved O+OEG Reserves (MMTOE) FY'17: 928.16",
-              "page": 54
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Estimated Net Proved O+OEG Reserves (MMTOE) FY'18: 982.01",
-              "page": 54
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Estimated Net Proved O+OEG Reserves (MMTOE) FY'19: 991.37",
-              "page": 54
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Estimated Net Proved O+OEG Reserves (MMTOE) FY'20: 960.82",
-              "page": 54
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Proved Reserves (1P) Group MMtoe FY'21: 870.44 (ONGC 580.52 + JV 16.33 + OVL 273.59)",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Proved Reserves (1P) Group MMtoe FY'22: 845.87 (ONGC 557.31 + JV 14.22 + OVL 274.34)",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Proved Reserves (1P) Group MMtoe FY'23: 806.90 (ONGC 530.71 + JV 12.10 + OVL 264.09)",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Proved Reserves (1P) Group MMtoe FY'24: 779.90 (ONGC 514.83 + JV 11.26 + OVL 253.81)",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Proved Reserves (1P) Group MMtoe FY'25: 775.42 (ONGC 515.17 + JV 10.75 + OVL 249.50)",
-              "page": 39
-            }
-          ]
-        },
         {
           "label": "Crude Oil Production (Standalone)",
           "unit": "MMT",
           "scope": "Standalone data",
           "values": [
-            22.36,
-            22.25,
-            22.31,
-            21.11,
-            20.71,
-            20.27,
-            19.55,
-            19.58,
-            19.47,
-            19.6
+            4.86,
+            4.81,
+            4.82,
+            4.98,
+            4.88,
+            4.83,
+            4.92,
+            4.96,
+            4.68,
+            4.63
           ],
           "citations": [
             {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Crude Oil Production (Domestic - ONGC Operated Fields): FY'18: 22.31 MMT, FY'17: 22.25 MMT, FY'16: 22.36 MMT",
-              "page": 33
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Crude Oil (MMT) FY'24: Q1: 4.86, Q2: 4.81, Q3: 4.82, 9M: 14.49",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Crude Oil Production (Domestic - ONGC Operated Fields): FY'17: 22.25 MMT",
-              "page": 33
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Crude Oil (MMT) FY'24: Q2: 4.81",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Crude Oil Production (Domestic - ONGC Operated Fields): FY'18: 22.31 MMT",
-              "page": 33
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Crude Oil (MMT) FY'24: Q3: 4.82",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Crude Oil Production (Domestic, Standalone): 21.11 MMT (decrease from 22.31 MMT in FY'18)",
-              "page": 33
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Crude Oil (MMT) FY'24 9M: 14.49; FY24 total standalone: 19.471",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Crude Oil (MMT): 2019-20: 21.34 (Sales) | Standalone Production FY20: 20.71 MMT",
-              "page": 36
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Crude Oil (MMT) FY'25: Q1: 4.88",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "ONGC Standalone: 20.273; JV: 2.260; Total: 22.533",
-              "page": 39
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Crude Oil (MMT) FY'25: Q2: 4.83",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "ONGC Standalone: 19.545; JV: 2.162; Total: 21.707",
-              "page": 39
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Crude Oil (MMT) FY'25: Q3: 4.92",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "ONGC Standalone: 19.584; JV: 1.901; Total: 21.485",
-              "page": 39
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Crude Oil (MMT) FY'25: 9M: 14.64; FY25 total standalone: 19.598",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "ONGC Standalone: 19.471; JV: 1.668; Total: 21.139",
-              "page": 39
+              "doc": "Concall Transcript - 11 Nov 2025",
+              "quote": "H1 FY26 were 4.630 million metric tons and 9.314 million metric tons",
+              "page": 2
             },
             {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "ONGC Standalone: 19.598; JV: 1.294; Total: 20.892",
-              "page": 39
+              "doc": "Concall Transcript - 11 Nov 2025",
+              "quote": "The standalone crude oil production during Q2 FY26 and H1 FY26 were 4.630 million metric tons and 9.314 million metric tons",
+              "page": 2
             }
           ]
         },
@@ -2213,377 +2200,60 @@
           "unit": "BCM",
           "scope": "Standalone data",
           "values": [
-            21.18,
-            22.09,
-            23.48,
-            24.75,
-            23.85,
-            22.1,
-            20.91,
-            20.63,
-            19.97,
-            19.65
+            5.04,
+            5.02,
+            4.96,
+            4.95,
+            4.86,
+            4.91,
+            4.97,
+            4.91,
+            null,
+            null
           ],
           "citations": [
             {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Natural Gas Production (Domestic - ONGC Operated Fields): FY'16: 21.18 BCM",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Natural Gas Production (Domestic - ONGC Operated Fields): FY'17: 22.09 BCM",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Natural Gas Production (Domestic - ONGC Operated Fields): FY'18: 23.48 BCM",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Natural Gas Production (Domestic, Standalone): 24.75 BCM (increase of 5.4% from 23.48 BCM in FY'18)",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "ONGC Domestic Natural Gas FY20: 23.85 BCM",
-              "page": 36
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "ONGC Standalone: 22.096; JV: 0.720; Total: 22.816",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "ONGC Standalone: 20.907; JV: 0.773; Total: 21.680",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "ONGC Standalone: 20.628; JV: 0.723; Total: 21.351",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "ONGC Standalone: 19.974; JV: 0.674; Total: 20.647",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "ONGC Standalone: 19.654; JV: 0.536; Total: 20.190",
-              "page": 39
-            }
-          ]
-        },
-        {
-          "label": "ONGC Videsh Production (O+OEG)",
-          "unit": "MMTOE",
-          "scope": null,
-          "values": [
-            8.92,
-            12.8,
-            14.16,
-            14.83,
-            14.98,
-            13.04,
-            12.32,
-            10.17,
-            10.52,
-            10.28
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "ONGC Videsh (Overseas) FY'16: Crude 5.51 MMT + Gas 3.41 BCM",
-              "page": 138
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "ONGC Videsh (Overseas) FY'17: Crude 8.43 MMT + Gas 4.37 BCM",
-              "page": 138
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Production from Overseas Assets (OVL): FY'18: 14.16 MMtoe (oil: 9.35 MMT; Gas: 4.81 BCM)",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Overseas Production (ONGC Videsh): 14.833 MMtoe (Oil: 10.097 MMT; Gas: 4.736 BCM)",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Overseas Production (ONGC Videsh Ltd): FY 2020: 14.981 MMTOE (Highest-ever production)",
-              "page": 51
-            },
-            {
-              "doc": "Presentation - 17 Apr 2023",
-              "quote": "ONGC Videsh: Performance FY'21: Oil 8.51 MMTOE + Gas 4.53 MMTOE = 13.04 MMTOE",
-              "page": 29
-            },
-            {
-              "doc": "Presentation - 17 Apr 2023",
-              "quote": "ONGC Videsh: Performance FY'22: Oil 8.09 + Gas 4.23 = 12.32 MMTOE",
-              "page": 29
-            },
-            {
-              "doc": "Presentation - 17 Apr 2023",
-              "quote": "ONGC Videsh: Performance FY'23: Oil 6.35 + Gas 3.83 = 10.17 MMTOE",
-              "page": 29
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Natural Gas (BCM) FY'24: Q1: 5.04",
+              "page": 7
             },
             {
               "doc": "Presentation - 03 Feb 2025",
-              "quote": "ONGC Videsh: Performance FY'24: Oil 7.18 + Gas 3.34 = 10.52 MMTOE",
-              "page": 31
+              "quote": "Natural Gas (BCM) FY'24: Q2: 5.02",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "ONGC Videsh (OVL) FY'25: Oil 7.27 MMT + Gas 3.01 BCM; 10.278 MMTOE total",
-              "page": 247
-            }
-          ]
-        },
-        {
-          "label": "Reserves Accretion (Domestic)",
-          "unit": "MMTOE",
-          "scope": "Standalone data",
-          "values": [
-            66.38,
-            64.54,
-            68.85,
-            74.47,
-            54.95,
-            20.21,
-            16.74,
-            12.47,
-            24.52,
-            39.5
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Reserve Accretion (2P - EUR) FY'16: 65.58 (Company Assets) + 0.80 (JV) = 66.38 MMTOE",
-              "page": 55
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Natural Gas (BCM) FY'24: Q3: 4.96",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Reserve Accretion (2P - EUR) FY'17: 64.32 (Company) + 0.22 (JV) = 64.54 MMTOE",
-              "page": 55
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Natural Gas (BCM) FY'24: 9M: 15.02; FY24 total standalone: 19.974",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Reserve Accretion (2P - EUR) FY'18: 67.83 (Company) + 1.02 (JV) = 68.85 MMTOE",
-              "page": 55
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Natural Gas (BCM) FY'25: Q1: 4.86",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Reserve Accretion (2P - EUR) FY'19: 63.02 (Company) + 11.45 (JV) = 74.47 MMTOE",
-              "page": 55
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Natural Gas (BCM) FY'25: Q2: 4.91",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Reserve Accretion (2P - EUR) FY'20: 53.21 (Company) + 1.74 (JV) = 54.95 MMTOE",
-              "page": 55
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Natural Gas (BCM) FY'25: Q3: 4.97",
+              "page": 7
             },
             {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Reserves Accretion (1P) FY'21: 20.21 MMTOE (ONGC Standalone 18.75 + JV 1.48)",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Reserves Accretion (1P) FY'22: 16.74 MMTOE (ONGC Standalone 15.91 + JV 0.83)",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Reserves Accretion (1P) FY'23: 12.47 MMTOE (ONGC Standalone 11.98 + JV 0.49)",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Reserves Accretion (1P) FY'24: 24.52 MMTOE (ONGC Standalone 23.01 + JV 1.50)",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Reserves Accretion (1P) FY'25: 39.50 MMTOE (ONGC Standalone 38.19 + JV 1.31)",
-              "page": 39
-            }
-          ]
-        },
-        {
-          "label": "Value Added Products (VAP) Production",
-          "unit": "KT",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            3240,
-            3390,
-            3640,
-            3548,
-            3120,
-            3089,
-            2598,
-            2519,
-            2596
-          ],
-          "citations": [
-            null,
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Value Added Products (VAP) FY'17: 3.24 MMT",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Production of Value Added Products increased by 4.7% in FY'18 (from 3.24 MMT in FY'17 to 3.39 MMT in FY'18)",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Value Added Products (VAP): 3.64 MMT (increase of 7.6% from 3.39 MMT in FY'18)",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "VAP production decreased by 2.6% in FY'20 primarily due to less receipt of condensate; Sub Total (VAP): 3,548",
-              "page": 51
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "VAP Production FY'21: 3,120 KT",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "VAP Production FY'22: 3,089 KT",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "VAP Production FY'23: 2,598 KT",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "VAP Production FY'24: 2,519 KT",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "VAP Production FY'25: 2,596 KT",
-              "page": 39
-            }
-          ]
-        },
-        {
-          "label": "Wells Drilled (Total)",
-          "unit": "Number",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            null,
-            503,
-            516,
-            500,
-            480,
-            434,
-            461,
-            544,
-            578
-          ],
-          "citations": [
-            null,
-            null,
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Drilled more than 500 wells in last three consecutive years; FY'18: 503 wells",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Wells Drilled: 516 total (105 exploratory, 411 development). This was the highest in 28 years",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "500 Wells in FY 2020 (Fourth consecutive year > 500). Exploratory: 106 Wells, Development & Side Tracks: 394 Wells",
-              "page": 51
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Wells Drilled FY'21: 480 (100 Exploration, 380 Development)",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Wells Drilled FY'22: 434 (78 Exploration, 356 Development)",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Wells Drilled FY'23: 461 (85 Exploration, 376 Development)",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Wells Drilled FY'24: 544 (103 Exploration, 441 Development)",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Wells Drilled FY'25: 578 (109 Exploration, 469 Development). This is the highest in last 35 years",
-              "page": 39
-            }
-          ]
-        },
-        {
-          "label": "Reserve Replacement Ratio (RRR)",
-          "unit": "Ratio",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            null,
-            1.48,
-            1.41,
-            1.19,
-            null,
-            null,
-            null,
-            null,
-            1.35
-          ],
-          "citations": [
-            null,
-            null,
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Reserves Replacement Ratio (RRR): 1.48 on 2P basis for FY'18 (maintained above 1 for 12 consecutive years)",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Reserve Replacement Ratio (RRR): 1.41 (2P basis) for domestic fields (13th consecutive year >1)",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "FY'20 saw a Reserve Replacement Ratio of 1.19 (2P reserves)",
-              "page": 52
+              "doc": "Presentation - 03 Feb 2025",
+              "quote": "Natural Gas (BCM) FY'25: 9M: 14.74; FY25 total standalone: 19.654",
+              "page": 7
             },
             null,
-            null,
-            null,
-            null,
-            {
-              "doc": "Concall Transcript - 22 May 2025",
-              "quote": "Reserve replacement ratio (2P) from domestic fields excluding JV share was 1.35. ONGC has achieved reserve replacement ratio of more than one for the 19th consecutive year",
-              "page": 4
-            }
+            null
           ]
         }
       ]
@@ -2591,27 +2261,37 @@
     "oil-india": {
       "name": "Oil India",
       "slug": "OIL",
-      "view": "yearly",
+      "view": "quarterly",
       "url": "https://www.screener.in/company/OIL/consolidated/",
-      "via": "annual-fallback",
+      "via": "quarterly-fragment",
       "toggled": "/insights/company/2322/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Mar 2020",
-        "Mar 2021",
-        "Mar 2022",
-        "Mar 2023",
+        "Jun 2023",
+        "Sep 2023",
+        "Dec 2023",
         "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
         "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
         "Mar 2026"
       ],
       "periodsIso": [
-        "2020-03",
-        "2021-03",
-        "2022-03",
-        "2023-03",
+        "2023-06",
+        "2023-09",
+        "2023-12",
         "2024-03",
+        "2024-06",
+        "2024-09",
+        "2024-12",
         "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12",
         "2026-03"
       ],
       "rows": [
@@ -2620,50 +2300,76 @@
           "unit": "MMT",
           "scope": "Standalone data",
           "values": [
-            3.13,
-            2.96,
-            3.01,
-            3.18,
-            3.36,
-            3.46,
-            3.45
+            0.82,
+            0.83,
+            0.86,
+            0.85,
+            0.87,
+            0.88,
+            0.87,
+            0.84,
+            0.85,
+            0.85,
+            0.86,
+            null
           ],
           "citations": [
             {
-              "doc": "Presentation - 29 Jul 2017",
-              "quote": "3.13 2.96 3.01 3.18 3.36 Oil Gas 2019-20 2020-21 2021-22 2022-23 2023-24",
-              "page": 20
+              "doc": "Concall Transcript - 09 Nov 2023",
+              "quote": "Crude oil production which is higher by 5.7% in quarter ended September 30, 2023 at 0.835 MMT vis-à-vis 0.790 MMT in the quarter ended September 30, 2022",
+              "page": 2
             },
             {
-              "doc": "Presentation - 29 Jul 2017",
-              "quote": "Crude Oil Production (MMT) 2.96 FY21",
-              "page": 20
+              "doc": "Concall Transcript - 09 Nov 2023",
+              "quote": "Crude oil production for the half year ended September 30, 2023 has also increased by 5.48% to 1.655 MMT",
+              "page": 2
             },
             {
-              "doc": "Presentation - 29 Jul 2017",
-              "quote": "Crude Oil Production (MMT) 3.01 FY22",
-              "page": 20
+              "doc": "Concall Transcript - 12 Feb 2025",
+              "quote": "crude oil production, which is higher by 1.4 percentage in quarter ended 31st December 2024 as 0.868 MMT vis-a-vis 0.856 MMT in quarter ended 31st December 2023",
+              "page": 3
             },
             {
-              "doc": "Presentation - 29 Jul 2017",
-              "quote": "Crude Oil Production (MMT) 3.18 FY23",
-              "page": 20
+              "doc": "Concall Transcript - 14 Aug 2024",
+              "quote": "the fourth quarter the total crude oil production was 0.848 MMT",
+              "page": 6
             },
             {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Crude Oil 3.36 MMT (3.359 MMT in actual figures) FY 2023-24",
-              "page": 39
+              "doc": "Concall Transcript - 14 Aug 2024",
+              "quote": "crude oil production, which is higher by 6.22% in quarter ended 30th June 2024 at 0.871 MMT",
+              "page": 3
             },
             {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Crude Oil Production FY 2024-25 3.46 MMT (Text on page 53 specifies 3.458)",
-              "page": 53
+              "doc": "Concall Transcript - 08 Nov 2024",
+              "quote": "company has continued to improve its crude oil production, which is higher by 4.79% in quarter ended 30 September 2024, at 0.875 MMT",
+              "page": 4
             },
             {
-              "doc": "Presentation - 25 May 2026",
-              "quote": "Crude Oil 2.96 3.01 3.18 3.36 3.46 3.45 FY21 FY22 FY23 FY24 FY25 FY26",
-              "page": 27
-            }
+              "doc": "Concall Transcript - 12 Feb 2025",
+              "quote": "crude oil production, which is higher by 1.4 percentage in quarter ended 31st December 2024 as 0.868 MMT",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 19 Aug 2025",
+              "quote": "The crude oil production for the quarter stood 0.85 million metric tons. There has been a marginal decrease of 2% on year-to-year, but we have been achieving 1.07% on quarter-to-quarter basis increase",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 19 Aug 2025",
+              "quote": "The crude oil production for the quarter stood 0.85 million metric tons",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 21 Nov 2025",
+              "quote": "The crude oil production for the quarter stood at 0.848 million metric tons, a minor decrease of 0.6% on quarter-to-quarter",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 17 Feb 2026",
+              "quote": "The crude oil production for the quarter is 0.858 MMT, which is increased by 1.18% on quarter-to-quarter",
+              "page": 5
+            },
+            null
           ]
         },
         {
@@ -2671,230 +2377,72 @@
           "unit": "BCM",
           "scope": "Standalone data",
           "values": [
-            2.8,
-            2.64,
-            3.04,
-            3.18,
-            3.18,
-            3.25,
-            3.19
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 29 Jul 2017",
-              "quote": "2.80 2.64 3.05 3.18 3.18 Gas 2019-20 2020-21 2021-22 2022-23 2023-24",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 29 Jul 2017",
-              "quote": "Natural Gas Production (MMT) 2.642 FY21",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 29 Jul 2017",
-              "quote": "Natural Gas Production 3.05 FY22",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 29 Jul 2017",
-              "quote": "Natural Gas Production 3.18 FY23",
-              "page": 20
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Natural Gas 3,182 MMSCM FY 2023-24",
-              "page": 39
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Natural Gas Production FY 2024-25 3,252 MMSCM",
-              "page": 50
-            },
-            {
-              "doc": "Presentation - 25 May 2026",
-              "quote": "Gas 2.64 3.05 3.18 3.18 3.25 3.19 FY21 FY22 FY23 FY24 FY25 FY26",
-              "page": 27
-            }
-          ]
-        },
-        {
-          "label": "Wells Drilled",
-          "unit": "Number",
-          "scope": "Standalone data",
-          "values": [
-            36,
-            36,
-            38,
-            45,
-            61,
-            57,
-            74
+            0.74,
+            0.81,
+            0.82,
+            0.81,
+            0.82,
+            0.8,
+            0.83,
+            null,
+            0.83,
+            0.8,
+            0.8,
+            null
           ],
           "citations": [
             {
               "doc": "Concall Transcript - 14 Aug 2024",
-              "quote": "2019-'20, we drilled 36 wells; 2020-'21, we drilled 36 wells; 2021-'22, we drilled 38 wells; 2022-'23 we drilled 45 wells; and last year, '23-'24, we drilled 61 wells",
-              "page": 8
+              "quote": "Natural gas production during Q1 FY '25 is at 0.818 BCM increased by 9.8% over production in Q1 FY '24, which was at 0.745 BCM",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 09 Nov 2023",
+              "quote": "Natural gas production for the half year ended September 30, 2023 is lower by 2.45% at 1555 MMSCM",
+              "page": 2
+            },
+            {
+              "doc": "Concall Transcript - 12 Feb 2025",
+              "quote": "Natural gas production for quarter ended 31st December 2024 is marginally higher by 0.85 percentage at 0.829 BCM vis-a-vis 0.822 BCM for quarter ended 31st December 2023",
+              "page": 3
             },
             {
               "doc": "Concall Transcript - 14 Aug 2024",
-              "quote": "2019-'20, we drilled 36 wells; 2020-'21, we drilled 36 wells",
-              "page": 8
+              "quote": "Natural gas production is 0.805 BCM and sales is 0.618",
+              "page": 6
             },
             {
               "doc": "Concall Transcript - 14 Aug 2024",
-              "quote": "2021-'22, we drilled 38 wells",
-              "page": 8
+              "quote": "Natural gas production during Q1 FY '25 is at 0.818 BCM",
+              "page": 3
             },
             {
-              "doc": "Concall Transcript - 14 Aug 2024",
-              "quote": "2022-'23 we drilled 45 wells",
-              "page": 8
+              "doc": "Concall Transcript - 08 Nov 2024",
+              "quote": "natural gas production for the quarter ended 30 September 2024 is marginally lower by 1.36% at 0.799 BCM",
+              "page": 4
             },
             {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Wells Drilled: 61 wells total – 17 exploratory wells + 44 development wells (all-time high since inception)",
-              "page": 45
+              "doc": "Concall Transcript - 12 Feb 2025",
+              "quote": "Natural gas production for quarter ended 31st December 2024 is marginally higher by 0.85 percentage at 0.829 BCM",
+              "page": 3
             },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Total wells drilled: 57 wells Exploratory wells: 22 Development wells: 35",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 25 May 2026",
-              "quote": "74 Wells Highest-ever drilling performance in a year",
-              "page": 10
-            }
-          ]
-        },
-        {
-          "label": "NRL Capacity Utilization",
-          "unit": "%",
-          "scope": null,
-          "values": [
-            null,
-            null,
-            87.48,
-            103,
-            84,
-            102,
-            103.75
-          ],
-          "citations": [
-            null,
             null,
             {
-              "doc": "Presentation - 03 Jun 2022",
-              "quote": "2021-22 CAPACITY UTILISATION (%) 90.20%",
-              "page": 21
+              "doc": "Concall Transcript - 19 Aug 2025",
+              "quote": "The natural gas production for the quarter has reached 0.83 bcm. On quarter-to-quarter, it has increased by 2.61%",
+              "page": 4
             },
             {
-              "doc": "Presentation - 02 Jun 2023",
-              "quote": "Capacity Utilization (%) 84% 103% 87.48% FY24 FY23 FY22",
-              "page": 30
+              "doc": "Concall Transcript - 21 Nov 2025",
+              "quote": "The natural gas production for the quarter stood at 0.804 bcm at marginal decrease of minus 2.8% on quarter-to-quarter",
+              "page": 4
             },
             {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Capacity Utilization (%) 84% FY24",
-              "page": 33
+              "doc": "Concall Transcript - 17 Feb 2026",
+              "quote": "The natural gas production for the quarter is 0.801 bcm, which is almost at par with the previous quarter",
+              "page": 5
             },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Capacity Utilization: Over 100% The refinery processed 3,066 TMT against a design capacity of 3,000 TMTPA",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 25 May 2026",
-              "quote": "103.75% Capacity Utilization (FY26)",
-              "page": 10
-            }
-          ]
-        },
-        {
-          "label": "NRL Crude Throughput",
-          "unit": "TMT",
-          "scope": null,
-          "values": [
-            null,
-            null,
-            2624,
-            3091,
-            2510,
-            3066,
-            3113
-          ],
-          "citations": [
-            null,
-            null,
-            {
-              "doc": "Presentation - 03 Jun 2022",
-              "quote": "2020-21 CRUDE THROUGHPUT (TMT) 2624.41",
-              "page": 21
-            },
-            {
-              "doc": "Presentation - 02 Jun 2023",
-              "quote": "Crude Throughput (TMT) 2,510 3,091 2,624 FY24 FY23 FY22",
-              "page": 30
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Throughput: Processed 2,510 TMT of crude oil during FY2023-24",
-              "page": 44
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Crude oil processed 3,066 TMT (Thousand Metric Tonnes) of crude oil processed",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 25 May 2026",
-              "quote": "3,113 TMT Highest-ever crude processing by NRL",
-              "page": 10
-            }
-          ]
-        },
-        {
-          "label": "NRL Distillate Yield",
-          "unit": "%",
-          "scope": null,
-          "values": [
-            null,
-            null,
-            85.69,
-            87.69,
-            86.54,
-            86.7,
-            87.25
-          ],
-          "citations": [
-            null,
-            null,
-            {
-              "doc": "Presentation - 03 Jun 2022",
-              "quote": "LIGHT DISTILLATES (%) 24.36% MIDDLE DISTILLATES (%) 71.73% HEAVY ENDS (%) 3.87% 2020-21",
-              "page": 21
-            },
-            {
-              "doc": "Presentation - 02 Jun 2023",
-              "quote": "Distillate Yield (%) 86.54% 87.69% 85.69% FY24 FY23 FY22",
-              "page": 30
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "Distillate Yield (%) 86.54% FY24",
-              "page": 33
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Distillate yield: 86.7% Highest among PSU refineries in India for FY2025",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 25 May 2026",
-              "quote": "87.25% (highest ever) Distillate Yield (FY26)",
-              "page": 10
-            }
+            null
           ]
         },
         {
@@ -2902,20 +2450,20 @@
           "unit": "MMTOE",
           "scope": "Standalone data",
           "values": [
-            191.57,
             null,
             null,
             null,
             234.29,
+            null,
+            null,
+            null,
             231.15,
+            null,
+            null,
+            null,
             231
           ],
           "citations": [
-            {
-              "doc": "Credit Rating - 11 Feb 2021",
-              "quote": "domestic reserves (2P) of 74.69 million metric tonnes (MMT) and 60.07 billion cubic metres (BCM) of crude oil and natural gas with exploration rights over 60 blocks overseas reserves (2P) of 34.44 million metric tonnes (MMT) and 22.37 billion cubic metres (BCM)",
-              "page": 1
-            },
             null,
             null,
             null,
@@ -2924,11 +2472,17 @@
               "quote": "Domestic 2P Reserves (as of 1st April 2024): 190.3455 MMTOE Overseas 2P Reserves (as of 1st April 2024): 43.9472 MMTOE Total combined 2P reserves (Domestic + Overseas): 234.2927 MMTOE",
               "page": 45
             },
+            null,
+            null,
+            null,
             {
               "doc": "Annual Report - 31 Mar 2025",
               "quote": "Domestic 2P Reserves: 190.2508 MMTOE Overseas 2P Reserves: 40.9024 MMTOE Total 2P Reserves (FY25): 231.1532 MMTOE",
               "page": 62
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 25 May 2026",
               "quote": "Domestic 2P Crude 69 MMT, Gas 121 MMTOE Overseas 2P Crude 21 MMT, Gas 20 MMTOE Total 231 MMTOE",
@@ -2943,36 +2497,79 @@
           "values": [
             null,
             null,
-            64186,
             null,
             58564,
+            null,
+            null,
+            null,
             52298,
+            null,
+            null,
+            null,
             93061
           ],
           "citations": [
             null,
             null,
-            {
-              "doc": "Presentation - 03 Jun 2022",
-              "quote": "Domestic: 66 blocks 64,186 sq. km",
-              "page": 6
-            },
             null,
             {
               "doc": "Annual Report - 31 Mar 2024",
               "quote": "Total Domestic Operating Acreage: 58,564.2 sq km (as on 31st March 2024)",
               "page": 44
             },
+            null,
+            null,
+            null,
             {
               "doc": "Annual Report - 31 Mar 2025",
               "quote": "The total operating acreage covers an area of 52,298 Sq. Km across 56 nos. of Blocks as on 31st March, 2025",
               "page": 59
             },
+            null,
+            null,
+            null,
             {
               "doc": "Presentation - 25 May 2026",
               "quote": "Domestic Acreage (Sq. km) 93,061 63 Operated blocks India: Acreage of ~93K Sq. Km, 94% OALP",
               "page": 7
             }
+          ]
+        },
+        {
+          "label": "NRL Crude Throughput",
+          "unit": "TMT",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            799,
+            null,
+            null,
+            null
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Concall Transcript - 19 Aug 2025",
+              "quote": "We had a crude throughput of 799 TMT as compared to 764 TMT in the previous financial year",
+              "page": 5
+            },
+            null,
+            null,
+            null
           ]
         }
       ]
@@ -2980,324 +2577,92 @@
     "jindal-drilling": {
       "name": "Jindal Drilling",
       "slug": "JINDRILL",
-      "view": "yearly",
+      "view": "quarterly",
       "url": "https://www.screener.in/company/JINDRILL/consolidated/#shareholding",
-      "via": "annual-fallback",
+      "via": "quarterly-fragment",
       "toggled": "/insights/company/1620/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Mar 2016",
-        "Mar 2017",
-        "Mar 2018",
-        "Mar 2019",
-        "Mar 2020",
-        "Mar 2021",
-        "Mar 2022",
-        "Mar 2023",
+        "Jan 2024",
         "Mar 2024",
-        "Mar 2025"
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
+        "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025"
       ],
       "periodsIso": [
-        "2016-03",
-        "2017-03",
-        "2018-03",
-        "2019-03",
-        "2020-03",
-        "2021-03",
-        "2022-03",
-        "2023-03",
+        "2024-01",
         "2024-03",
-        "2025-03"
+        "2024-06",
+        "2024-09",
+        "2024-12",
+        "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12"
       ],
       "rows": [
-        {
-          "label": "Directional Drilling sets operated",
-          "unit": "count",
-          "scope": null,
-          "values": [
-            16,
-            16,
-            8,
-            6,
-            6,
-            6,
-            6,
-            8,
-            8,
-            8
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "16 Directional Drilling units (along with split units on call)",
-              "page": 11
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "the Company was operating Sixteen Directional Drilling units along with split units on call and eleven Mud logging units",
-              "page": 8
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "Eight Directional Drilling units",
-              "page": 7
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "During the year Company operated 2 Jackup Rigs, 6 Directional Drilling sets (on average basis) and 22 Mud Logging units",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "5 Jackup Rigs... 6 Directional Drilling sets on average basis and 22 Mud Logging units",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2021",
-              "quote": "During the year Company operated 5 Jackup Rigs, 6 Directional Drilling sets (on average basis) and 22 Mud Logging units",
-              "page": 8
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "During the year Company operated 5 Jackup Rigs, 6 Directional Drilling sets (on average basis) and 22 Mud Logging units",
-              "page": 8
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2023",
-              "quote": "8 Directional Drilling sets operated (on average basis)",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "8 Directional Drilling Sets operated on average basis",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "8 Directional Drilling Sets operated on average basis",
-              "page": 9
-            }
-          ]
-        },
-        {
-          "label": "Mud Logging units operated",
-          "unit": "count",
-          "scope": null,
-          "values": [
-            11,
-            11,
-            11,
-            22,
-            22,
-            22,
-            22,
-            16,
-            16,
-            6
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "11 Mud Logging units",
-              "page": 11
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "the Company was operating Sixteen Directional Drilling units along with split units on call and eleven Mud logging units",
-              "page": 8
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "eleven Mud logging units",
-              "page": 7
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "During the year Company operated 2 Jackup Rigs, 6 Directional Drilling sets (on average basis) and 22 Mud Logging units",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "5 Jackup Rigs... 6 Directional Drilling sets on average basis and 22 Mud Logging units",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2021",
-              "quote": "During the year Company operated 5 Jackup Rigs, 6 Directional Drilling sets (on average basis) and 22 Mud Logging units",
-              "page": 8
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "During the year Company operated 5 Jackup Rigs, 6 Directional Drilling sets (on average basis) and 22 Mud Logging units",
-              "page": 8
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2023",
-              "quote": "16 Mud Logging units operated (on average basis)",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "16 Mud Logging Sets operated on average basis",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "6 Mud Logging Sets operated on average basis",
-              "page": 9
-            }
-          ]
-        },
-        {
-          "label": "Number of rigs in fleet",
-          "unit": "count",
-          "scope": null,
-          "values": [
-            2,
-            2,
-            1,
-            2,
-            5,
-            5,
-            5,
-            5,
-            5,
-            6
-          ],
-          "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2016",
-              "quote": "1 Jack up Rig (along with the recently commenced Rowan Louisiana rig)",
-              "page": 11
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2017",
-              "quote": "Rig 'Rowan Louisiana' under contract with ONGC for a period of 3 years, which commenced its operations in May, 2016. Further, Rig 'Discovery 1' has been dehired on 30th January, 2017 on the expiry of contract period of five years with ONGC",
-              "page": 8
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "the Company was operating one Jack up Rig during the year 2017-18",
-              "page": 7
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "During the year Company operated 2 Jackup Rigs, 6 Directional Drilling sets (on average basis) and 22 Mud Logging units",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "5 Jackup Rigs during the year",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2021",
-              "quote": "During the year Company operated 5 Jackup Rigs, 6 Directional Drilling sets (on average basis) and 22 Mud Logging units",
-              "page": 8
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "During the year Company operated 5 Jackup Rigs, 6 Directional Drilling sets (on average basis) and 22 Mud Logging units",
-              "page": 8
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2023",
-              "quote": "3 Jackup Rigs operated for the full year, 2 Jackup Rigs operated for nine months",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "operated 2 Jackup Rigs for the full year, 1 Jackup Rig for ten months, 1 Jackup Rig for 8 months, and 1 Jackup Rig for five months",
-              "page": 9
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "6 Jack-up Rigs in total, but the utilization varied: 4 Jack-up Rigs operated for the full year. 1 Jack-up Rig operated for 6 months. 1 Jack-up Rig operated for 1 month",
-              "page": 9
-            }
-          ]
-        },
-        {
-          "label": "Number of owned rigs",
-          "unit": "count",
-          "scope": null,
-          "values": [
-            null,
-            null,
-            null,
-            null,
-            1,
-            1,
-            null,
-            2,
-            2,
-            3
-          ],
-          "citations": [
-            null,
-            null,
-            null,
-            null,
-            {
-              "doc": "Credit Rating - 27 Jan 2020",
-              "quote": "One of the rigs is owned by the company; the rest are owned by group companies and are currently sub-contracted to JDIL",
-              "page": 1
-            },
-            {
-              "doc": "Credit Rating - 02 Jun 2021",
-              "quote": "As on March 31, 2021, one of the rigs is owned by the company. The rest are owned by group companies and are currently sub-contracted to JDIL",
-              "page": 1
-            },
-            null,
-            {
-              "doc": "Credit Rating - 22 Aug 2023",
-              "quote": "As on March 31, 2023, two of the five rigs are owned by the company",
-              "page": 1
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2024",
-              "quote": "2 Jackup Rigs for the full year, 1 Jackup Rig for ten months, 1 Jackup Rig for 8 months, and 1 Jackup Rig for five months",
-              "page": 9
-            },
-            {
-              "doc": "Credit Rating - 24 Sep 2025",
-              "quote": "As on March 31, 2025, three of the six rigs are owned by the company",
-              "page": 1
-            }
-          ]
-        },
         {
           "label": "Day rate - Discovery-I (USD per operating day)",
           "unit": "USD/day",
           "scope": null,
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            48324,
+            48324,
+            48324,
+            48324,
+            48324,
+            48324,
+            48324,
             48324,
             48324
           ],
           "citations": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            {
+              "doc": "Presentation - 29 Jan 2024",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 5
+            },
             {
               "doc": "Presentation - 21 May 2024",
               "quote": "Discovery-I May 23 - May 26 48,324",
               "page": 6
             },
             {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
               "doc": "Presentation - 26 May 2025",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
               "quote": "Discovery-I May 23 - May 26 48,324",
               "page": 6
             }
@@ -3308,33 +2673,59 @@
           "unit": "USD/day",
           "scope": null,
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
             40700,
+            40700,
+            40700,
+            40700,
+            88859,
+            88859,
+            88859,
+            88859,
             88859
           ],
           "citations": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            {
+              "doc": "Presentation - 29 Jan 2024",
+              "quote": "Jindal Supreme October 20 - January 24 40,700",
+              "page": 5
+            },
             {
               "doc": "Presentation - 21 May 2024",
               "quote": "Jindal Supreme (upcoming contract) November 24 - November 27 88,859",
               "page": 6
             },
             {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Jindal Supreme (upcoming contract) November 24 - November 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
               "doc": "Presentation - 26 May 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
               "quote": "Jindal Supreme October 24 - October 27 88,859",
               "page": 6
             }
@@ -3345,34 +2736,60 @@
           "unit": "Rs. crore",
           "scope": null,
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            2293,
             2108,
-            1791
+            1956,
+            1805,
+            1636,
+            1791,
+            1538,
+            1369,
+            1183
           ],
           "citations": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            {
+              "doc": "Presentation - 29 Jan 2024",
+              "quote": "Total 273 2293",
+              "page": 6
+            },
             {
               "doc": "Presentation - 21 May 2024",
               "quote": "Total 251 2108",
               "page": 6
             },
             {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Total 232 1956",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Total 214 1805",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Total 190 1636",
+              "page": 6
+            },
+            {
               "doc": "Presentation - 26 May 2025",
               "quote": "Total 208 1791",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Total 180 1538",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Total 155 1369",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Total 130 1183",
               "page": 6
             }
           ]
@@ -3382,34 +2799,170 @@
           "unit": "count",
           "scope": null,
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
             1,
-            1
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
           ],
           "citations": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            {
+              "doc": "Presentation - 29 Jan 2024",
+              "quote": "JV company deployed 1 offshore jack-up rig with Saimexicana in Mexico",
+              "page": 4
+            },
             {
               "doc": "Presentation - 21 May 2024",
               "quote": "JV company deployed 1 offshore jack-up rig Jindal Pioneer with Saimexicana in Mexico",
               "page": 4
             },
             {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "JV company deployed 1 offshore jack-up rig Jindal Pioneer with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "JV company deployed 1 offshore jack-up rig Jindal Pioneer with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "JV company deployed 1 offshore jack-up rig Jindal Pioneer with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
               "doc": "Presentation - 26 May 2025",
               "quote": "Jindal Pioneer continues to operate with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "1 offshore jack-up rig is under refurbishment for next ONGC contract & 1 is engaged overseas",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "1 offshore jack-up rig is under refurbishment in UAE",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "1 offshore jack-up rig is under refurbishment in UAE",
+              "page": 4
+            }
+          ]
+        },
+        {
+          "label": "Number of owned rigs",
+          "unit": "count",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3
+          ],
+          "citations": [
+            null,
+            null,
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Owns 3 offshore jack-up rigs",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            }
+          ]
+        },
+        {
+          "label": "Number of rigs in fleet",
+          "unit": "count",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            5,
+            5,
+            5,
+            5,
+            6,
+            6,
+            6
+          ],
+          "citations": [
+            null,
+            null,
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Owns 3 offshore jack-up rigs; Operates 5 offshore jack-up rigs with ONGC in India",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
               "page": 4
             }
           ]
@@ -3419,90 +2972,102 @@
     "lt": {
       "name": "L&T",
       "slug": "LT",
-      "view": "yearly",
+      "view": "quarterly",
       "url": "https://www.screener.in/company/LT/consolidated/",
-      "via": "annual-fallback",
+      "via": "quarterly-fragment",
       "toggled": "/insights/company/1870/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
         "Mar 2018",
         "Mar 2019",
-        "Mar 2020",
         "Mar 2021",
         "Mar 2022",
-        "Mar 2023",
+        "Jun 2023",
         "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
         "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
         "Mar 2026"
       ],
       "periodsIso": [
         "2018-03",
         "2019-03",
-        "2020-03",
         "2021-03",
         "2022-03",
-        "2023-03",
+        "2023-06",
         "2024-03",
+        "2024-06",
+        "2024-09",
         "2025-03",
+        "2025-06",
+        "2025-09",
         "2026-03"
       ],
       "rows": [
         {
-          "label": "L&T Finance Loan Book",
+          "label": "Order Inflow",
           "unit": "INR crore",
-          "scope": "Standalone data",
+          "scope": null,
           "values": [
-            82692,
-            99121,
             null,
-            94013,
-            88341,
-            80893,
-            85565,
-            97762,
-            121730
+            null,
+            null,
+            null,
+            65520,
+            72150,
+            70936,
+            80045,
+            89613,
+            94453,
+            115784,
+            89772
           ],
           "citations": [
-            {
-              "doc": "Presentation - 29 Jan 2016",
-              "quote": "Asset Book in focused lending businesses: ₹ 82,692 crore",
-              "page": null
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Total Assets (Loan Book): ₹99,121 crore",
-              "page": 292
-            },
+            null,
+            null,
+            null,
             null,
             {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "FY 2020-21: ₹ 94,013 crore",
-              "page": 95
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "FY 2021-22: ₹ 88,341 crore",
-              "page": 95
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "FY22–23 Loan Book: ₹ 80,893 crore",
-              "page": 108
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2018",
-              "quote": "FY23–24 Loan Book (as of March 31, 2024): ₹ 85,565 crore",
-              "page": 108
+              "doc": "Presentation - 24 Jul 2024",
+              "quote": "Total 65520",
+              "page": 27
             },
             {
               "doc": "Presentation - 08 May 2025",
-              "quote": "Book 977.6 14%",
-              "page": 20
+              "quote": "Total 72150 35%",
+              "page": 37
+            },
+            {
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "Total 70936 46%",
+              "page": 31
+            },
+            {
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "Total 80045 63%",
+              "page": 33
             },
             {
               "doc": "Presentation - 05 May 2026",
-              "quote": "Book 1217.3 25%",
-              "page": 20
+              "quote": "89613 70%",
+              "page": 45
+            },
+            {
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "Total 94453 51%",
+              "page": 31
+            },
+            {
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "Total 115784 65%",
+              "page": 33
+            },
+            {
+              "doc": "Presentation - 05 May 2026",
+              "quote": "89772 67%",
+              "page": 45
             }
           ]
         },
@@ -3513,12 +3078,15 @@
           "values": [
             23.8,
             22,
-            null,
             21,
             27,
             null,
             38,
+            null,
+            null,
             46,
+            null,
+            null,
             52
           ],
           "citations": [
@@ -3532,7 +3100,6 @@
               "quote": "International order book declined to 22% as at March 31, 2019",
               "page": 286
             },
-            null,
             {
               "doc": "Annual Report - 31 Mar 2022",
               "quote": "FY 2020-21: 21%",
@@ -3549,11 +3116,15 @@
               "quote": "International: 38%",
               "page": 37
             },
+            null,
+            null,
             {
               "doc": "Presentation - 05 May 2026",
               "quote": "579137 46%",
               "page": 45
             },
+            null,
+            null,
             {
               "doc": "Presentation - 05 May 2026",
               "quote": "740327 52%",
@@ -3566,48 +3137,50 @@
           "unit": "INR crore",
           "scope": null,
           "values": [
-            263107,
-            293427,
             null,
-            262368,
-            357595,
             null,
-            475809,
-            579137,
+            null,
+            null,
+            412600,
+            null,
+            490900,
+            510400,
+            null,
+            612800,
+            667000,
             740300
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null,
             {
-              "doc": "Presentation - 29 Jan 2016",
-              "quote": "L&T Consolidated Order Book (as of Mar 31, FY18): ₹ 263,107 crore",
-              "page": null
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "Order Book as at March 31, 2019: ₹293,427 crore",
-              "page": 286
+              "doc": "Presentation - 24 Jul 2024",
+              "quote": "4126 Order Book",
+              "page": 8
             },
             null,
             {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "FY 2020-21: ₹ 262,368 crore (as at March 31, 2021)",
-              "page": 32
+              "doc": "Presentation - 24 Jul 2024",
+              "quote": "4909 Order Book",
+              "page": 8
             },
             {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "Total Order Book (as of March 31, 2022): ₹ 357,595 crore",
-              "page": 32
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "5104 Order Book",
+              "page": 8
             },
             null,
             {
-              "doc": "Presentation - 08 May 2025",
-              "quote": "Total Order Book (as at March 31, 2025): ₹ 5,79,137 crore",
-              "page": 37
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "6128 Order Book",
+              "page": 8
             },
             {
-              "doc": "Presentation - 05 May 2026",
-              "quote": "579137 46%",
-              "page": 45
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "6670 Order Book",
+              "page": 8
             },
             {
               "doc": "Presentation - 05 May 2026",
@@ -3617,58 +3190,7 @@
           ]
         },
         {
-          "label": "Order Inflow",
-          "unit": "INR crore",
-          "scope": null,
-          "values": [
-            null,
-            176834,
-            175497,
-            null,
-            192997,
-            null,
-            302812,
-            356631,
-            435590
-          ],
-          "citations": [
-            null,
-            {
-              "doc": "Annual Report - 31 Mar 2019",
-              "quote": "FY 2018-19 order inflow of ₹176,834 crore",
-              "page": 285
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "FY 2020-21: ₹ 175,497 crore",
-              "page": 31
-            },
-            null,
-            {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "Total Order Inflow: ₹ 192,997 crore",
-              "page": 31
-            },
-            null,
-            {
-              "doc": "Presentation - 08 May 2025",
-              "quote": "Total 302812 54%",
-              "page": 37
-            },
-            {
-              "doc": "Presentation - 05 May 2026",
-              "quote": "356631 58%",
-              "page": 45
-            },
-            {
-              "doc": "Presentation - 05 May 2026",
-              "quote": "435590 58%",
-              "page": 45
-            }
-          ]
-        },
-        {
-          "label": "L&T Realty Pre-sales",
+          "label": "L&T Finance Loan Book",
           "unit": "INR crore",
           "scope": "Standalone data",
           "values": [
@@ -3676,34 +3198,48 @@
             null,
             null,
             null,
+            85560,
             null,
+            88720,
+            93020,
             null,
-            4520,
-            4680,
-            9440
+            102310,
+            107100,
+            null
           ],
           "citations": [
             null,
             null,
             null,
             null,
-            null,
+            {
+              "doc": "Presentation - 24 Jul 2024",
+              "quote": "Book 855.6",
+              "page": 20
+            },
             null,
             {
-              "doc": "Presentation - 08 May 2025",
-              "quote": "Realty 16.7 17.5 5% Realty 45.2 46.8 4%",
-              "page": 37
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "Book 887.2 15%",
+              "page": 20
             },
             {
-              "doc": "Presentation - 08 May 2025",
-              "quote": "Realty 45.2 46.8 4%",
-              "page": 37
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "Book 930.2 15%",
+              "page": 20
+            },
+            null,
+            {
+              "doc": "Presentation - 29 Jul 2025",
+              "quote": "Book 1023.1 15%",
+              "page": 20
             },
             {
-              "doc": "Presentation - 05 May 2026",
-              "quote": "Realty 17.5 19.8 13% Realty 46.8 94.4 >100%",
-              "page": 44
-            }
+              "doc": "Presentation - 29 Oct 2025",
+              "quote": "Book 1071.0 15%",
+              "page": 20
+            },
+            null
           ]
         }
       ]
@@ -12473,22 +12009,36 @@
       "slug": "ASIANENE",
       "view": "quarterly",
       "url": "https://www.screener.in/company/ASIANENE/consolidated/#shareholding",
-      "via": "annual-fallback",
+      "via": "quarterly-fragment",
       "toggled": "/insights/company/294/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Mar 2019",
-        "Mar 2020",
+        "Dec 2019",
+        "Jul 2020",
         "Jun 2021",
+        "Dec 2022",
         "Jul 2023",
-        "Nov 2025"
+        "Dec 2023",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
+        "Aug 2025",
+        "Nov 2025",
+        "May 2026"
       ],
       "periodsIso": [
-        "2019-03",
-        "2020-03",
+        "2019-12",
+        "2020-07",
         "2021-06",
+        "2022-12",
         "2023-07",
-        "2025-11"
+        "2023-12",
+        "2024-06",
+        "2024-09",
+        "2024-12",
+        "2025-08",
+        "2025-11",
+        "2026-05"
       ],
       "rows": [
         {
@@ -12496,32 +12046,70 @@
           "unit": "Rs Crore",
           "scope": null,
           "values": [
-            850,
-            910,
+            997,
             null,
+            null,
+            683,
             949,
-            2005
+            832,
+            1022,
+            997,
+            1150,
+            1688,
+            2005,
+            1750
           ],
           "citations": [
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Order Book (Rs in Lacs) 2018-19: 85,000",
-              "page": 10
-            },
-            {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Order Book (Rs in Lacs) 2019-20: 91,000",
-              "page": 10
+              "doc": "Presentation - 26 Dec 2019",
+              "quote": "Total Outstanding Order Book ~Rs. 997 Cr (ex. GST) as on 31st December 2019",
+              "page": 7
             },
             null,
+            null,
+            {
+              "doc": "Credit Rating - 09 Feb 2023",
+              "quote": "AESL had an order book of around INR6,829.8 million",
+              "page": 1
+            },
             {
               "doc": "Credit Rating - 17 Aug 2023",
               "quote": "AESL had an order book of around INR9,490 million",
               "page": 1
             },
             {
+              "doc": "Presentation - 30 Jan 2024",
+              "quote": "Total Order Book worth ~ Rs 832 Crs (third party contracts)",
+              "page": 21
+            },
+            {
+              "doc": "Presentation - 12 Aug 2024",
+              "quote": "The total order book as of now is ~Rs 1,022 crores",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 12 Nov 2024",
+              "quote": "The total order book as of now is ~Rs 997 crores",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 12 Feb 2025",
+              "quote": "The total order book as of now is ~Rs 1,150 crores",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 12 Aug 2025",
+              "quote": "The total order book stands at ~ Rs 1,688 crore (as on 12th August 2025)",
+              "page": 6
+            },
+            {
               "doc": "Presentation - 14 Nov 2025",
               "quote": "The total order book stands at ~ Rs 2,005 crore* (as on 14th November 2025)",
+              "page": 6
+            },
+            {
+              "doc": "Concall Transcript - 26 May 2026",
+              "quote": "robust, well-diversified order book of approximately INR 1,750 crores",
               "page": 6
             }
           ]
@@ -12531,30 +12119,64 @@
           "unit": "% of Order Book",
           "scope": null,
           "values": [
-            null,
             21,
             null,
+            null,
+            57,
             39,
-            33
+            null,
+            61,
+            56,
+            43,
+            19,
+            33,
+            null
           ],
           "citations": [
-            null,
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Production assets: 21%",
-              "page": 10
+              "doc": "Presentation - 26 Dec 2019",
+              "quote": "Production Assets constitutes 21%",
+              "page": 8
             },
             null,
+            null,
+            {
+              "doc": "Credit Rating - 09 Feb 2023",
+              "quote": "INR3,888.6 million from the engineering procurement and construction (EPC) segment",
+              "page": 1
+            },
             {
               "doc": "Credit Rating - 17 Aug 2023",
               "quote": "INR3,720 million from EPC segment",
               "page": 1
             },
+            null,
+            {
+              "doc": "Presentation - 12 Aug 2024",
+              "quote": "61% Order Book ~Rs 628 Crs Order Value",
+              "page": 34
+            },
+            {
+              "doc": "Presentation - 12 Nov 2024",
+              "quote": "56% Order Book ~Rs 554 Crs Order Value",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2025",
+              "quote": "43% Order Book ~Rs 498 Crs Order Value",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 12 Aug 2025",
+              "quote": "19% Order Book ~Rs 327 Crs Order Value",
+              "page": 12
+            },
             {
               "doc": "Presentation - 14 Nov 2025",
               "quote": "33.2% Order Book ~Rs 667 Crs Order Value",
               "page": 13
-            }
+            },
+            null
           ]
         },
         {
@@ -12562,30 +12184,64 @@
           "unit": "% of Order Book",
           "scope": null,
           "values": [
-            null,
             16,
             null,
+            null,
+            41,
             43,
-            62
+            null,
+            34,
+            33,
+            46,
+            75,
+            62,
+            null
           ],
           "citations": [
-            null,
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Seismic: 63%, Production assets: 21%, O&M: 16%",
-              "page": 10
+              "doc": "Presentation - 26 Dec 2019",
+              "quote": "balance 16% is comprised of O&M projects",
+              "page": 8
             },
             null,
+            null,
+            {
+              "doc": "Credit Rating - 09 Feb 2023",
+              "quote": "INR2,785.7 million of O&M work",
+              "page": 1
+            },
             {
               "doc": "Credit Rating - 17 Aug 2023",
               "quote": "INR4,080 million of O&M work",
               "page": 1
             },
+            null,
+            {
+              "doc": "Presentation - 12 Aug 2024",
+              "quote": "34% Order Book ~Rs 347 Crs Order Value",
+              "page": 34
+            },
+            {
+              "doc": "Presentation - 12 Nov 2024",
+              "quote": "33% Order Book ~Rs 333 Crs Order Value",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2025",
+              "quote": "46% Order Book ~Rs 527 Crs Order Value",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 12 Aug 2025",
+              "quote": "75% Order Book ~Rs 1,270 Crs Order Value",
+              "page": 12
+            },
             {
               "doc": "Presentation - 14 Nov 2025",
               "quote": "62% Order Book ~Rs 1,251 Crs Order Value",
               "page": 13
-            }
+            },
+            null
           ]
         },
         {
@@ -12593,30 +12249,117 @@
           "unit": "% of Order Book",
           "scope": null,
           "values": [
-            null,
             63,
             null,
+            null,
+            2,
             18,
-            4
+            null,
+            5,
+            11,
+            11,
+            5,
+            4,
+            null
           ],
           "citations": [
-            null,
             {
-              "doc": "Annual Report - 31 Mar 2020",
-              "quote": "Seismic: 63%",
-              "page": 10
+              "doc": "Presentation - 26 Dec 2019",
+              "quote": "seismic constitutes 63%",
+              "page": 8
             },
             null,
+            null,
+            {
+              "doc": "Credit Rating - 09 Feb 2023",
+              "quote": "INR155.5 million from the seismic data acquisition segment",
+              "page": 1
+            },
             {
               "doc": "Credit Rating - 17 Aug 2023",
               "quote": "INR1,690 million from the seismic data acquisition segment",
               "page": 1
             },
+            null,
+            {
+              "doc": "Presentation - 12 Aug 2024",
+              "quote": "5% Order Book ~Rs 48 Crs Order Value",
+              "page": 34
+            },
+            {
+              "doc": "Presentation - 12 Nov 2024",
+              "quote": "11% Order Book ~Rs 110 Crs Order Value",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2025",
+              "quote": "11% Order Book ~Rs 125 Crs Order Value",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 12 Aug 2025",
+              "quote": "5% Order Book ~Rs 92 Crs Order Value",
+              "page": 12
+            },
             {
               "doc": "Presentation - 14 Nov 2025",
               "quote": "4.4% Order Book ~Rs 88 Crs Order Value",
               "page": 13
-            }
+            },
+            null
+          ]
+        },
+        {
+          "label": "Total Active Service Contracts",
+          "unit": "count",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            12,
+            14,
+            15,
+            13,
+            16,
+            null
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 12 Aug 2024",
+              "quote": "O&M 4 contracts (Suvali, Amguri, PY-3, AGCL); Infra/CHP 6 contracts (Gevra, Hura, Singreni, Tamil Nadu, PKOCP, Rajmahal); Seismic 2 contracts (Gujarat, Baradih)",
+              "page": 34
+            },
+            {
+              "doc": "Presentation - 12 Nov 2024",
+              "quote": "O&M Suvali, Amguri, PY-3, AGCL; INFRA/CHP Gevra, Hura, Singreni, Tamil Nadu, Karo, PKOCP, Rajmahal; Seismic Gujarat, Baradih, Rajasthan Basin",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 12 Feb 2025",
+              "quote": "O&M Suvali, Amguri, PY-3, AGCL; INFRA/CHP Gevra, Hura, Singreni, Tamil Nadu, Karo, PKOCP, Rajmahal; Seismic Gujarat, Baradih, Rajasthan Basin, Baramura",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 12 Aug 2025",
+              "quote": "O&M Suvali, Amguri, PY-3, AGCL, Rajasthan; INFRA/CHP Gevra, Hura, Singreni, Karo, PKOCP, Rajmahal; Seismic Gujarat, Rajasthan Basin",
+              "page": 12
+            },
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "O&M Suvali, Amguri, PY-3, AGCL, Rajasthan; INFRA/CHP Gevra, Hura, Singreni, Karo, PKOCP, Rajmahal, Odisha; Seismic Gujarat, Rajasthan Basin, Chattisgarh, Jharkhand",
+              "page": 13
+            },
+            null
           ]
         },
         {
@@ -12624,18 +12367,29 @@
           "unit": "channels",
           "scope": null,
           "values": [
-            null,
+            16000,
             16000,
             30000,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null,
             null
           ],
           "citations": [
-            null,
             {
               "doc": "Presentation - 20 Nov 2019",
               "quote": "~16,000 Wireless and Cabled channels",
               "page": 15
+            },
+            {
+              "doc": "Presentation - 29 Jul 2020",
+              "quote": "~16,000 Wireless and Cabled channels",
+              "page": 18
             },
             {
               "doc": "Presentation - 21 Jun 2021",
@@ -12643,6 +12397,50 @@
               "page": 15
             },
             null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "Kuiper Monthly Revenue Run-Rate",
+          "unit": "Rs Crore per month",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            40,
+            null
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 14 Nov 2025",
+              "quote": "Kuiper is operating at a monthly run rate of Rs 40 crores",
+              "page": 15
+            },
             null
           ]
         },
@@ -12655,9 +12453,22 @@
             null,
             null,
             null,
-            3000
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            3000,
+            null
           ],
           "citations": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -12666,30 +12477,8 @@
               "doc": "Presentation - 14 Nov 2025",
               "quote": "Amguri Assam ON 50% Producing 15 500 3000 FY 26-27",
               "page": 18
-            }
-          ]
-        },
-        {
-          "label": "Total Active Service Contracts",
-          "unit": "count",
-          "scope": null,
-          "values": [
-            null,
-            null,
-            null,
-            null,
-            16
-          ],
-          "citations": [
-            null,
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 14 Nov 2025",
-              "quote": "O&M Suvali, Amguri, PY-3, AGCL, Rajasthan; INFRA/CHP Gevra, Hura, Singreni, Karo, PKOCP, Rajmahal, Odisha; Seismic Gujarat, Rajasthan Basin, Chattisgarh, Jharkhand",
-              "page": 13
-            }
+            },
+            null
           ]
         }
       ]
