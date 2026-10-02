@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-10-01T13:34:59.891Z",
+  "generatedAt": "2026-10-02T12:53:20.248Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -305,7 +305,7 @@
       "status": "live",
       "source": "Trading Economics - naphtha spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-01",
       "lines": [
         {
           "id": "naphtha",
@@ -317,11 +317,11 @@
           "source": "Trading Economics - naphtha spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-09-30",
+          "asOf": "2026-10-01",
           "series": [
             {
-              "date": "2026-09-30",
-              "value": 794.74,
+              "date": "2026-10-01",
+              "value": 828.92,
               "spot": true
             }
           ]
@@ -340,7 +340,7 @@
       "status": "live",
       "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-01",
       "lines": [
         {
           "id": "jkm",
@@ -352,11 +352,11 @@
           "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-09-30",
+          "asOf": "2026-10-01",
           "series": [
             {
-              "date": "2026-09-30",
-              "value": 25.74,
+              "date": "2026-10-01",
+              "value": 25.79,
               "spot": true
             }
           ]
@@ -393,7 +393,7 @@
       "status": "live",
       "source": "Frankfurter / European Central Bank reference rates, monthly mean of daily",
       "sourceTag": "official",
-      "asOf": "2026-09-01",
+      "asOf": "2026-10-01",
       "lines": [
         {
           "id": "inr-usd",
@@ -403,12 +403,8 @@
           "status": "live",
           "source": "Frankfurter / European Central Bank reference rates, monthly mean of daily",
           "sourceTag": "official",
-          "asOf": "2026-09-01",
+          "asOf": "2026-10-01",
           "series": [
-            {
-              "date": "2025-10-01",
-              "value": 88.72
-            },
             {
               "date": "2025-11-01",
               "value": 88.85
@@ -452,6 +448,11 @@
             {
               "date": "2026-09-01",
               "value": 95.47
+            },
+            {
+              "date": "2026-10-01",
+              "value": 96.33,
+              "partial": true
             }
           ]
         }
