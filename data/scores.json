@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-02T11:27:51.538Z",
+  "generatedAt": "2026-10-02T13:24:48.245Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -316,7 +316,7 @@
         "id": "inr-usd",
         "label": "USD/INR",
         "direction": "flat",
-        "percentile": 82,
+        "percentile": 100,
         "supports": "down",
         "vote": "silent"
       },
@@ -523,7 +523,7 @@
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude rising (100th pctile); Crack spread rising (100th pctile); USD/INR flat (82th pctile). Flagged for manual review: the backdrop and the scores disagree."
+      "text": "Crude rising (100th pctile); Crack spread rising (100th pctile); USD/INR flat (100th pctile). Flagged for manual review: the backdrop and the scores disagree."
     },
     {
       "id": "divergence",
@@ -1012,18 +1012,18 @@
   ],
   "changes": [
     {
-      "kind": "alert",
-      "text": "New alert: Castrol India moved 3 tone steps up (cautious → confident) in Q1 FY27."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-01T14:08:20.928Z",
+    "generatedAt": "2026-10-02T11:27:51.538Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 27,
-      "coincident": -11,
+      "coincident": -15,
       "lagging": -11
     },
     "alertIds": [
@@ -1031,6 +1031,7 @@
       "coverage-lagging",
       "divergence",
       "macro-conflict",
+      "tone-castrol-india",
       "tone-gandhar-oil",
       "tone-gujarat-gas",
       "tone-ongc",
