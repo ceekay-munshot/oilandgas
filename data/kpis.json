@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-02T13:24:23.016Z",
+  "generatedAt": "2026-10-03T10:44:39.072Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -469,7 +469,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 28465,
+      "ctxChars": 27790,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -657,7 +657,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: No quarterly throughput stated in Q2 call. Q3 FY26: No quarterly throughput stated in Q3 call. Q4 FY26: No quarterly throughput stated in Q4 call; management mentioned Kochi achieved highest ever annual volume of 68 TBTU for FY26 ("
+          "notes": "From Screener Insights row \"Kochi Terminal LNG Throughput\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
         },
         {
           "id": "kochi-utilisation",
@@ -703,7 +703,7 @@
             null
           ],
           "flag": "inflecting-down",
-          "notes": "Q2 FY26: 27% stated in Q2 call as 'highest ever capacity utilization'. Q3 FY26: 29% stated in Q3 call as 'highest ever capacity utilization'. Q4 FY26: Q4 call mentions March utilization was 'slightly more than 20%' but does not give the ful"
+          "notes": "From Screener Insights row \"Kochi Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 14 Nov 2025, page 3."
         }
       ]
     },
@@ -719,7 +719,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 28271,
+      "ctxChars": 27700,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -1560,7 +1560,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33887,
+      "ctxChars": 33027,
       "kpis": [
         {
           "id": "order-book",
@@ -1640,7 +1640,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY25: No single-quarter order inflow figure stated. Q2 FY25 concall mentions INR 750 cr carbon steel domestic order booking 'in the quarter' but does not provide total pipe order inflow for the quarter. Q4 FY25: No single-quarter order i"
+          "notes": "Q2 FY25: No single-quarter order inflow figure stated. Q2 concall mentions INR 750 cr carbon steel domestic order booking in the quarter, but this is only one segment, not total pipe order inflow. Q4 FY25: No single-quarter order inflow sta"
         }
       ]
     },
@@ -1656,7 +1656,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34040,
+      "ctxChars": 34099,
       "kpis": [
         {
           "id": "order-book",
@@ -1744,7 +1744,7 @@
             null
           ],
           "flag": null,
-          "notes": "No quarterly line-pipe order inflow figures stated in any excerpt. Concalls mention large US orders (>$715 million in Q2 FY26, another large order in Q1 FY27) but these are not quantified as quarterly inflow in ₹ cr for the specific quarter"
+          "notes": "Order inflow (new orders received during the quarter) is not stated in any of the excerpts. The excerpts report order book (stock measure) at various quarter-ends: Q2 FY26 ₹23,500 cr, Q3 FY26 ₹23,600 cr, Q4 FY26 ₹25,350 cr, Q1 FY27 ₹24,750 "
         },
         {
           "id": "line-pipe-volume",
@@ -1968,7 +1968,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34952,
+      "ctxChars": 34307,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -2006,7 +2006,7 @@
             null
           ],
           "flag": null,
-          "notes": "O2C EBITDA per tonne not stated in any excerpt. Q1 FY27 PPT reports O2C EBITDA ₹17,010 crore but no throughput or per-tonne metric for that quarter. Screener annual data shows FY26 throughput 80 MMT (full year) but no quarterly breakdown."
+          "notes": "O2C EBITDA per tonne not disclosed in any of the excerpts. Q2 FY26 EBITDA was ₹17,010 crore (Q1 FY27 per investor PPT page 6 and page 10), but throughput data is missing for that quarter in the Screener Insights table (shows '-' for Dec 202"
         },
         {
           "id": "petchem-margin",
@@ -2044,7 +2044,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated for any quarter. Q1 FY27 concall mentions 'downstream chemical deltas at 3-4 year high' and discusses ethane advantage but gives no $/t figure. Q4 FY26 and Q3 FY26 concalls discuss deltas qualitatively (PE d"
+          "notes": "Petchem margin in $/t not disclosed for any quarter. The excerpts discuss petchem deltas and crack spreads qualitatively (e.g., Q1 FY27 'downstream chemical deltas at 3-4 year high', Q2 FY26 naphtha at $903/ton with premiums) but do not sta"
         },
         {
           "id": "retail-fuel-margin",
@@ -2082,7 +2082,7 @@
             null
           ],
           "flag": null,
-          "notes": "Retail fuel margin per litre not stated in any excerpt. Q1 FY27 concall mentions 'under-recovery in domestic fuel retail' and Q4 FY26 mentions 'under-recoveries in fuel retail' but no ₹/l figure given. Screener annual data shows Jio-bp outl"
+          "notes": "Retail fuel margin per litre not disclosed for any quarter. The excerpts mention 'under-recovery in domestic fuel retail' (Q1 FY27, Q4 FY26) and 'SAED related costs and under-recovery' but do not provide a ₹/l margin figure for Q2, Q3, Q4 F"
         },
         {
           "id": "kgd6-gas-production",
@@ -2128,7 +2128,7 @@
             null
           ],
           "flag": null,
-          "notes": "Quarterly KG-D6 gas production not stated. Screener annual data shows FY26 full-year 248.8 BCFe and FY25 270.9 BCFe (RIL share), but these are full-year totals. Q1 FY27 concall mentions 'lower production' and 'decline lower than expected' b"
+          "notes": "From Screener Insights row \"KG D6 Gas Production (RIL Share)\"; latest value cited to Presentation - 17 Oct 2025, page 44."
         }
       ]
     },
@@ -2144,7 +2144,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31915,
+      "ctxChars": 31112,
       "kpis": [
         {
           "id": "grm",
@@ -2220,7 +2220,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin per litre not disclosed in any of the excerpts. Management discussed 'marketing margins on retail fuels' under pressure in Q1 FY27 and LPG under-recoveries in multiple quarters, but no per-litre marketing margin figure was "
+          "notes": "Marketing margin per litre not disclosed in any of the excerpts. Q1 FY26 concall mentions 'integrated margin' approach for aviation and discusses LPG under-recoveries (₹100/cyl in Q2, ₹40/cyl current as of Q2 call, ₹665/cyl in June as of Q1"
         },
         {
           "id": "throughput",
@@ -2876,7 +2876,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32298,
+      "ctxChars": 31838,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -2964,7 +2964,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated in any excerpt. Q1 FY26 concall mentions polymer segment loss of ₹249 cr and delivered gas cost ~$10.5-10.6/MMBtu, but no per-tonne margin. Q2 FY26 concall mentions loss of ₹299 cr and gas cost ~$10.5-10.6/M"
+          "notes": "Petchem margin in $/t not stated in any excerpt. Q1 FY26 concall mentions polymer segment loss of ₹249 crore and delivered gas cost ~$10.5-10.6/MMBtu, but no per-tonne margin. Q2 FY26 mentions loss of ₹299 crore and gas cost ~$10.5-10.6/MMB"
         },
         {
           "id": "gas-marketing-volume",
@@ -3184,7 +3184,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32235,
+      "ctxChars": 34038,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3479,7 +3479,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34458,
+      "ctxChars": 33891,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3517,7 +3517,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: no single-quarter volume stated. Q3 FY26: no single-quarter volume stated. Q4 FY26: Q4 call states CNG 3.6 mmscmd with 12% yoy growth but does not give PNG volume or combined CNG+PNG growth. Q1 FY27: call states 'CNG volume of 3.76"
+          "notes": "Q2 FY26: no single-quarter volume stated. Q3 FY26: no single-quarter volume stated. Q4 FY26: CNG 3.6 mmscmd (+12% yoy) and PNG domestic 0.91 mmscmd stated but no combined CNG+PNG growth % given. Q1 FY27: management stated CNG 3.76 mmscmd vs"
         },
         {
           "id": "ebitda-per-scm",
@@ -3555,7 +3555,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: EBITDA per scm not stated in excerpts. Q3 FY26: EBITDA per scm not stated in excerpts. Q4 FY26: EBITDA per scm not stated in excerpts. Q1 FY27: EBITDA per scm not stated in excerpts. The quarterly financials show EBITDA (Operating "
+          "notes": "Q2 FY26: EBITDA ₹447 Cr stated (Screener), total volume 8.65 mmscmd stated (Screener Insights), but no per-scm metric given. Q3 FY26: EBITDA ₹447 Cr, volume 8.37 mmscmd, no per-scm stated. Q4 FY26: EBITDA ₹609 Cr (or ₹943 Cr post-merger per"
         }
       ]
     },
@@ -3779,7 +3779,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33413,
+      "ctxChars": 32913,
       "kpis": [
         {
           "id": "sps-spread",
@@ -4034,7 +4034,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33679,
+      "ctxChars": 33126,
       "kpis": [
         {
           "id": "base-oil-spread",
@@ -4124,7 +4124,7 @@
             null
           ],
           "flag": "inflecting-down",
-          "notes": "No white-oil volume data found in any of the excerpts. The documents report PHPO (Personal care, Healthcare & Performance Oils) volumes and total manufacturing volumes, but do not break out white-oil specifically in MT."
+          "notes": "From Screener Insights row \"PHPO Sales Volume\"; latest value cited to Presentation - 12 Nov 2025, page 23."
         },
         {
           "id": "mfg-gross-spread",
@@ -4400,7 +4400,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34174,
+      "ctxChars": 34291,
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -4450,7 +4450,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": "No single metric for 'tanker freight rate' found. Q1 FY27 concall mentions crude tankers at $90,000/day and product tankers at $45,000/day for Q2 (not Q1). Q4 FY26 and Q3 FY26 concalls do not state quarterly TCE figures. Q2 FY26 concall doe"
+          "notes": "From Screener Insights row \"Average TCY - Crude Carriers\"; latest value cited to Presentation - 11 Dec 2025, page 13."
         },
         {
           "id": "fleet-deployment",
@@ -4651,7 +4651,7 @@
             null
           ],
           "flag": "inflecting-down",
-          "notes": "Revenue days (owned) not stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27."
+          "notes": "From Screener Insights row \"Revenue Days - Shipping (Owned)\"; latest value cited to Presentation - 11 Dec 2025, page 12."
         }
       ]
     },
@@ -4665,7 +4665,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21980,
+      "ctxChars": 21382,
       "kpis": [
         {
           "id": "freight-rate",
@@ -4750,7 +4750,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 16350,
+      "ctxChars": 15961,
       "kpis": [
         {
           "id": "order-book",
