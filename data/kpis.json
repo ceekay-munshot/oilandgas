@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-03T12:15:24.166Z",
+  "generatedAt": "2026-10-04T11:27:19.489Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -1167,7 +1167,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32364,
+      "ctxChars": 31212,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -1205,7 +1205,7 @@
             null
           ],
           "flag": null,
-          "notes": "No offshore rig utilisation percentage data found in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The documents discuss rig deployment status (number operating, under refurbishment, etc.) but do not state a utilisation per"
+          "notes": "Rig utilisation percentage not explicitly stated in any of the excerpts. Q1 FY26 concall mentions 4 rigs operating with ONGC and 1 dehired (Jindal Explorer) plus 1 overseas, but no utilisation % given. Q2 FY26 concall mentions 4 rigs operat"
         },
         {
           "id": "charter-day-rate",
@@ -3928,53 +3928,57 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q3 FY26",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31578,
+      "ctxChars": 31579,
       "kpis": [
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume (YoY)",
-          "unit": "% yoy",
+          "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            8,
             7,
+            7.5,
             7.5,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
+            "company-filing",
             null
           ],
           "origins": [
             "model",
             "model",
-            "model",
+            "insights",
             null
           ],
           "citations": [
             null,
             null,
-            null,
+            {
+              "doc": "Concall Transcript - 04 May 2026",
+              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
+              "page": 6
+            },
             null
           ],
           "oneOffs": [
-            null,
             "No Q2 FY26 data",
             "No Q3 FY26 data",
+            null,
             null
           ],
           "flag": null,
-          "notes": "Q1 FY26: No YoY volume growth figure stated for Q1 FY26 (Apr-Jun 2025). Q2 FY26: Screener Insights table shows 'Volume Growth YoY [% YoY]: 7' for Nov 2025, which corresponds to Q3 FY26 (not Q2). The Q2 FY26 concall (6 Nov 2025) states 'volu"
+          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
         },
         {
           "id": "base-oil-spread",
@@ -4291,7 +4295,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33738,
+      "ctxChars": 32880,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4329,7 +4333,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: No POL/LPG/LNG throughput YoY growth figure stated. Q3 FY26: No POL/LPG/LNG throughput YoY growth figure stated. Q4 FY26: No POL/LPG/LNG throughput YoY growth figure stated. Q1 FY27: No POL/LPG/LNG throughput YoY growth figure stat"
+          "notes": "No POL/LPG/LNG cargo throughput or YoY growth data found in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The documents discuss various cargo types (containers, coal, fertilizers, iron ore, coking coal) but do not provide s"
         },
         {
           "id": "total-cargo-volume",
