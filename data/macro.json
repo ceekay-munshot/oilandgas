@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-10-03T11:51:35.749Z",
+  "generatedAt": "2026-10-05T15:00:22.672Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -98,12 +98,8 @@
           "status": "live",
           "source": "PPAC, Ministry of Petroleum & Natural Gas - Indian Crude Basket, monthly average",
           "sourceTag": "official",
-          "asOf": "2026-09-01",
+          "asOf": "2026-10-01",
           "series": [
-            {
-              "date": "2025-10-01",
-              "value": 65.08
-            },
             {
               "date": "2025-11-01",
               "value": 64.31
@@ -147,6 +143,11 @@
             {
               "date": "2026-09-01",
               "value": 116.09
+            },
+            {
+              "date": "2026-10-01",
+              "value": 120.55,
+              "partial": true
             }
           ]
         },
@@ -451,7 +452,7 @@
             },
             {
               "date": "2026-10-01",
-              "value": 96.33,
+              "value": 96.32,
               "partial": true
             }
           ]
