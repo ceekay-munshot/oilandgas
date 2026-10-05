@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-04T13:04:48.183Z",
+  "generatedAt": "2026-10-05T12:43:03.992Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -19,7 +19,7 @@
       "url": "https://www.screener.in/company/ONGC/consolidated/",
       "analysis": {
         "pros": 2,
-        "cons": 2
+        "cons": 1
       },
       "summariesAvailable": 12,
       "transcriptsFound": 12,
@@ -1850,9 +1850,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 95882,
+          "pages": 31,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -2205,11 +2205,12 @@
         "periodIso": "2026-07",
         "url": "https://www.bharatpetroleum.in/images/files/investor-presentation-q1-2026-27-upload.pdf",
         "source": "bharatpetroleum.in",
-        "status": "ok",
-        "chars": 43413,
+        "status": "http_403",
+        "chars": 0,
         "pages": null,
-        "via": "firecrawl",
-        "cache": "pipeline/cache/docs/BPCL/ppt-2026-07.txt"
+        "via": "browser",
+        "cache": "pipeline/cache/docs/BPCL/ppt-2026-07.txt",
+        "error": "Every scraper failed for https://www.bharatpetroleum.in/images/files/investor-presentation-q1-2026-27-upload.pdf (firecrawl: Request failed for https://api.fire"
       },
       "transcripts": [
         {
@@ -3924,9 +3925,9 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b2502bf8-680b-48ed-a5f0-5409b7938365.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 40455,
-          "pages": 14,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-05.txt"
         },
@@ -4646,11 +4647,12 @@
           "periodIso": "2026-05",
           "url": "https://www.shipindia.com/upload/investorsubpage/transcript.pdf",
           "source": "shipindia.com",
-          "status": "ok",
-          "chars": 55234,
-          "pages": 21,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/SCI/transcript-2026-05.txt"
+          "cache": "pipeline/cache/docs/SCI/transcript-2026-05.txt",
+          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND www.shipindia.com\nCall log:\n  - → GET https://www.shipindia.com/upload/investorsubpage/transcript.pdf\n    - user-ag"
         },
         {
           "type": "transcript",
@@ -4659,11 +4661,12 @@
           "periodIso": "2025-11",
           "url": "https://www.shipindia.com/upload/investorsubpage/Transcript_Antique-ShippingCorp-Nov10-2025.pdf",
           "source": "shipindia.com",
-          "status": "ok",
-          "chars": 96434,
-          "pages": 21,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/SCI/transcript-2025-11.txt"
+          "cache": "pipeline/cache/docs/SCI/transcript-2025-11.txt",
+          "error": "apiRequestContext.get: getaddrinfo ENOTFOUND www.shipindia.com\nCall log:\n  - → GET https://www.shipindia.com/upload/investorsubpage/Transcript_Antique-ShippingC"
         }
       ]
     },
@@ -4674,7 +4677,7 @@
       "url": "https://www.screener.in/company/THERMAX/consolidated/",
       "analysis": {
         "pros": 0,
-        "cons": 3
+        "cons": 2
       },
       "summariesAvailable": 43,
       "transcriptsFound": 42,

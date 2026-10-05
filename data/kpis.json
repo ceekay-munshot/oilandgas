@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-04T13:05:01.087Z",
+  "generatedAt": "2026-10-05T12:43:10.175Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,9 +13,9 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
-    "kpiCells": 381,
+    "kpiCells": 385,
     "realCells": 256,
-    "nullCells": 125,
+    "nullCells": 129,
     "kpis": 98,
     "kpisWithTrend": 60
   },
@@ -861,7 +861,7 @@
       "asOf": "Q2 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27400,
+      "ctxChars": 27359,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -894,7 +894,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 capex of ₹45,335 cr (including OPaL equity infusion of ₹18,365 cr) and planned FY26 capex of ₹36,920 cr, but does not state Q4 FY25 actual capex or budget vs actual. Q2 FY26 concall mentions cap"
+          "notes": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 capex of ₹45,335 cr (including OPaL equity infusion of ₹18,365 cr), but does not state Q4 FY25 alone. Planned capex FY26 is ₹36,920 cr but no quarterly budget or actual spend vs budget is disclo"
         },
         {
           "id": "production-volume",
@@ -968,7 +968,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 drilling of 413 wells (353 development + 60 exploratory) and FY24 full-year 544 wells (441 development + 103 exploratory), but does not state Q4 FY25 alone. Q4 FY25 concall mentions record 578 w"
+          "notes": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 total wells drilled as 413 (353 development + 60 exploratory) and FY24 full year as 544 wells, but does not state Q4 FY25 alone. Concall summary mentions 'record 578 wells drilled in FY25' but t"
         },
         {
           "id": "gas-production",
@@ -2541,7 +2541,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33940,
+      "ctxChars": 27940,
       "kpis": [
         {
           "id": "grm",
@@ -2625,7 +2625,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin in ₹/l not disclosed in any of the excerpts. Q4 FY25 concall mentions 'adverse marketing margins' and a ₹7.5/l retail price revision but does not state the actual marketing margin level. Q1 FY26 concall states 'Mainly retai"
+          "notes": "Marketing margin in ₹/l not stated in any excerpt. Q4 FY25 concall mentions 'adverse marketing margins' and a '₹7.5/litre retail price revision' but does not report the actual marketing margin level. Q1 FY26 concall states 'Mainly retail fu"
         },
         {
           "id": "throughput",
@@ -3928,57 +3928,53 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q3 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31579,
+      "ctxChars": 31578,
       "kpis": [
         {
           "id": "lubricant-volume",
           "label": "Lubricant volume (YoY)",
-          "unit": "% YoY",
+          "unit": "% yoy",
           "flagBasis": "yoy",
           "values": [
+            8,
             7,
-            7.5,
             7.5,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "company-filing",
+            "mgmt-claim",
             null
           ],
           "origins": [
             "model",
             "model",
-            "insights",
+            "model",
             null
           ],
           "citations": [
             null,
             null,
-            {
-              "doc": "Concall Transcript - 04 May 2026",
-              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
-              "page": 6
-            },
-            null
-          ],
-          "oneOffs": [
-            "No Q2 FY26 data",
-            "No Q3 FY26 data",
             null,
             null
           ],
+          "oneOffs": [
+            null,
+            "No Q2 FY26 data",
+            "No Q3 FY26 data",
+            null
+          ],
           "flag": null,
-          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
+          "notes": "Q1 FY26 (Apr-Jun 2025): Not stated in Q1 FY26 call. Q2 FY26 (Jul-Sep 2025): Screener Insights table shows 'Volume Growth YoY [% YoY]: 7' for Nov 2025 period, which corresponds to Q3 FY26, not Q2. The Q2 FY26 call (Nov 6, 2025) states 'volum"
         },
         {
           "id": "base-oil-spread",
@@ -4295,7 +4291,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32761,
+      "ctxChars": 33738,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4333,7 +4329,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: No POL/LPG/LNG throughput YoY growth figure stated for Q2 FY26. Q3 FY26: No POL/LPG/LNG throughput YoY growth figure stated for Q3 FY26. Q4 FY26: No POL/LPG/LNG throughput YoY growth figure stated for Q4 FY26. Q1 FY27: No POL/LPG/L"
+          "notes": "Q2 FY26: No POL/LPG/LNG throughput YoY growth figure stated. Q3 FY26: No POL/LPG/LNG throughput YoY growth figure stated. Q4 FY26: No POL/LPG/LNG throughput YoY growth figure stated. Q1 FY27: No POL/LPG/LNG throughput YoY growth figure stat"
         },
         {
           "id": "total-cargo-volume",
@@ -4660,12 +4656,14 @@
       "slug": "SCI",
       "quarters": [
         "Q2 FY26",
-        "Q4 FY26"
+        "Q3 FY26",
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21382,
+      "ctxChars": 9383,
       "kpis": [
         {
           "id": "freight-rate",
@@ -4674,15 +4672,21 @@
           "flagBasis": "level",
           "values": [
             47817,
-            216387
+            null,
+            216387,
+            null
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing"
+            null,
+            "company-filing",
+            null
           ],
           "origins": [
             "insights",
-            "insights"
+            null,
+            "insights",
+            null
           ],
           "citations": [
             {
@@ -4690,18 +4694,22 @@
               "quote": "VLCC MEG-CHINA 270,000 MT TD3C TCE Qtr-II 47,817.44",
               "page": 19
             },
+            null,
             {
               "doc": "Presentation - 11 May 2026",
               "quote": "VLCC MEG-CHINA 270,000 MT TD3C TCE Qtr-IV 216,387",
               "page": 17
-            }
+            },
+            null
           ],
           "oneOffs": [
+            null,
+            null,
             null,
             null
           ],
           "flag": null,
-          "notes": null
+          "notes": "From Screener Insights row \"VLCC TD3C (MEG-China) average TCE rate\"; latest value cited to Presentation - 07 Nov 2025, page 19."
         },
         {
           "id": "aframax-rate",
@@ -4710,15 +4718,21 @@
           "flagBasis": "level",
           "values": [
             32709,
-            80914
+            null,
+            80914,
+            null
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing"
+            null,
+            "company-filing",
+            null
           ],
           "origins": [
             "insights",
-            "insights"
+            null,
+            "insights",
+            null
           ],
           "citations": [
             {
@@ -4726,18 +4740,22 @@
               "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-II 32,708.75",
               "page": 19
             },
+            null,
             {
               "doc": "Presentation - 11 May 2026",
               "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-IV 80,914",
               "page": 17
-            }
+            },
+            null
           ],
           "oneOffs": [
+            null,
+            null,
             null,
             null
           ],
           "flag": null,
-          "notes": null
+          "notes": "From Screener Insights row \"Aframax TD8 (Kuwait-Singapore) average TCE rate\"; latest value cited to Presentation - 07 Nov 2025, page 19."
         }
       ]
     },
@@ -4750,7 +4768,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15961,
+      "ctxChars": 15914,
       "kpis": [
         {
           "id": "order-book",
