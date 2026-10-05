@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-05T12:43:03.992Z",
+  "generatedAt": "2026-10-05T15:29:31.231Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -1099,9 +1099,9 @@
           "periodIso": "2025-11",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e255411f-390f-4ecb-ba56-3c01eb590ee8.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 28975,
-          "pages": 17,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/JINDRILL/transcript-2025-11.txt"
         },
@@ -2205,12 +2205,11 @@
         "periodIso": "2026-07",
         "url": "https://www.bharatpetroleum.in/images/files/investor-presentation-q1-2026-27-upload.pdf",
         "source": "bharatpetroleum.in",
-        "status": "http_403",
-        "chars": 0,
+        "status": "ok",
+        "chars": 43413,
         "pages": null,
-        "via": "browser",
-        "cache": "pipeline/cache/docs/BPCL/ppt-2026-07.txt",
-        "error": "Every scraper failed for https://www.bharatpetroleum.in/images/files/investor-presentation-q1-2026-27-upload.pdf (firecrawl: Request failed for https://api.fire"
+        "via": "firecrawl",
+        "cache": "pipeline/cache/docs/BPCL/ppt-2026-07.txt"
       },
       "transcripts": [
         {
@@ -3925,9 +3924,9 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b2502bf8-680b-48ed-a5f0-5409b7938365.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 40455,
+          "pages": 14,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-05.txt"
         },
