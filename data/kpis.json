@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-05T15:29:37.000Z",
+  "generatedAt": "2026-10-06T12:24:48.131Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,9 +13,9 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
-    "kpiCells": 385,
+    "kpiCells": 381,
     "realCells": 256,
-    "nullCells": 129,
+    "nullCells": 125,
     "kpis": 98,
     "kpisWithTrend": 60
   },
@@ -4660,14 +4660,12 @@
       "slug": "SCI",
       "quarters": [
         "Q2 FY26",
-        "Q3 FY26",
-        "Q4 FY26",
-        "Q1 FY27"
+        "Q4 FY26"
       ],
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 9383,
+      "ctxChars": 21382,
       "kpis": [
         {
           "id": "freight-rate",
@@ -4676,21 +4674,15 @@
           "flagBasis": "level",
           "values": [
             47817,
-            null,
-            216387,
-            null
+            216387
           ],
           "sourceTags": [
             "company-filing",
-            null,
-            "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
-            null,
-            "insights",
-            null
+            "insights"
           ],
           "citations": [
             {
@@ -4698,22 +4690,18 @@
               "quote": "VLCC MEG-CHINA 270,000 MT TD3C TCE Qtr-II 47,817.44",
               "page": 19
             },
-            null,
             {
               "doc": "Presentation - 11 May 2026",
               "quote": "VLCC MEG-CHINA 270,000 MT TD3C TCE Qtr-IV 216,387",
               "page": 17
-            },
-            null
+            }
           ],
           "oneOffs": [
-            null,
-            null,
             null,
             null
           ],
           "flag": null,
-          "notes": "From Screener Insights row \"VLCC TD3C (MEG-China) average TCE rate\"; latest value cited to Presentation - 07 Nov 2025, page 19."
+          "notes": null
         },
         {
           "id": "aframax-rate",
@@ -4722,21 +4710,15 @@
           "flagBasis": "level",
           "values": [
             32709,
-            null,
-            80914,
-            null
+            80914
           ],
           "sourceTags": [
             "company-filing",
-            null,
-            "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
-            null,
-            "insights",
-            null
+            "insights"
           ],
           "citations": [
             {
@@ -4744,22 +4726,18 @@
               "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-II 32,708.75",
               "page": 19
             },
-            null,
             {
               "doc": "Presentation - 11 May 2026",
               "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-IV 80,914",
               "page": 17
-            },
-            null
+            }
           ],
           "oneOffs": [
-            null,
-            null,
             null,
             null
           ],
           "flag": null,
-          "notes": "From Screener Insights row \"Aframax TD8 (Kuwait-Singapore) average TCE rate\"; latest value cited to Presentation - 07 Nov 2025, page 19."
+          "notes": null
         }
       ]
     },
@@ -4772,7 +4750,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15408,
+      "ctxChars": 15914,
       "kpis": [
         {
           "id": "order-book",
