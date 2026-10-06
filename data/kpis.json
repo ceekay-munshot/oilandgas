@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-06T12:24:48.131Z",
+  "generatedAt": "2026-10-06T13:52:11.167Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
-    "kpiCells": 381,
-    "realCells": 256,
-    "nullCells": 125,
-    "kpis": 98,
-    "kpisWithTrend": 60
+    "kpiCells": 389,
+    "realCells": 265,
+    "nullCells": 124,
+    "kpis": 100,
+    "kpisWithTrend": 62
   },
   "companies": {
     "deep-industries": {
@@ -3563,10 +3563,10 @@
       "name": "Aegis Logistics",
       "slug": "AEGISLOG",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
-        "Q1 FY27"
+        "Q4 FY26"
       ],
       "asOf": "Q4 FY26",
       "provider": "claude",
@@ -3579,24 +3579,29 @@
           "unit": "'000 MT",
           "flagBasis": "yoy",
           "values": [
+            1161,
             1407,
             1361,
-            1223,
-            null
+            1223
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "insights"
           ],
           "citations": [
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "1,013 1,161 Q1FY25 Q1FY26",
+              "page": 11
+            },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "1,064 1,407 Q2FY25 Q2FY26",
@@ -3611,8 +3616,7 @@
               "doc": "Presentation - 30 May 2026",
               "quote": "1,225 1,223 Q4FY25 Q4FY26",
               "page": 11
-            },
-            null
+            }
           ],
           "oneOffs": [
             null,
@@ -3621,7 +3625,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": "From Screener Insights row \"LPG Terminal Throughput Volume (Logistics)\"; latest value cited to Presentation - 30 May 2026, page 11."
+          "notes": null
         },
         {
           "id": "terminal-utilisation",
@@ -3659,7 +3663,117 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not stated in any of the excerpts. The concall transcripts mention 'high utilization levels', 'higher utilization levels', 'improved utilization levels' at various ports but no specific percentage figures are provided"
+          "notes": "No terminal utilisation percentage figures stated for any quarter in FY26. Management repeatedly mentions 'high utilisation', 'higher utilisation levels', 'improved utilization' qualitatively across Q1, Q2, Q3, and Q4 calls, but no numeric "
+        },
+        {
+          "id": "lpg-distribution-volume",
+          "label": "LPG distribution volume",
+          "unit": "'000 MT",
+          "flagBasis": "level",
+          "values": [
+            145,
+            192,
+            183,
+            234
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "128 145 Q1FY25 Q1FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "129 192 Q2FY25 Q2FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "127 183 Q3FY25 Q3FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "136 234 Q4FY25 Q4FY26",
+              "page": 11
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-up",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "lpg-sourcing-volume",
+          "label": "LPG sourcing volume",
+          "unit": "'000 MT",
+          "flagBasis": "level",
+          "values": [
+            119,
+            208,
+            151,
+            129
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "124 119 Q1FY25 Q1FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "194 208 Q2FY25 Q2FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "140 151 Q3FY25 Q3FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "139 129 Q4FY25 Q4FY26",
+              "page": 11
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
+          "beyondBrief": true,
+          "notes": null
         }
       ]
     },
