@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-10-07T13:38:29.875Z",
+  "generatedAt": "2026-10-08T13:45:58.362Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -26,7 +26,7 @@
       "status": "live",
       "source": "FRED / U.S. EIA, Europe Brent spot FOB (DCOILBRENTEU), monthly mean of daily",
       "sourceTag": "official",
-      "asOf": "2026-09-01",
+      "asOf": "2026-10-01",
       "lines": [
         {
           "id": "brent",
@@ -37,12 +37,8 @@
           "status": "live",
           "source": "FRED / U.S. EIA, Europe Brent spot FOB (DCOILBRENTEU), monthly mean of daily",
           "sourceTag": "official",
-          "asOf": "2026-09-01",
+          "asOf": "2026-10-01",
           "series": [
-            {
-              "date": "2025-10-01",
-              "value": 64.54
-            },
             {
               "date": "2025-11-01",
               "value": 63.8
@@ -85,7 +81,12 @@
             },
             {
               "date": "2026-09-01",
-              "value": 114.08
+              "value": 114.16
+            },
+            {
+              "date": "2026-10-01",
+              "value": 125.32,
+              "partial": true
             }
           ]
         },
@@ -146,7 +147,7 @@
             },
             {
               "date": "2026-10-01",
-              "value": 120.16,
+              "value": 120.34,
               "partial": true
             }
           ]
@@ -160,12 +161,8 @@
           "status": "live",
           "source": "FRED / U.S. EIA, WTI spot Cushing (DCOILWTICO), monthly mean of daily",
           "sourceTag": "official",
-          "asOf": "2026-09-01",
+          "asOf": "2026-10-01",
           "series": [
-            {
-              "date": "2025-10-01",
-              "value": 58.25
-            },
             {
               "date": "2025-11-01",
               "value": 54.06
@@ -208,7 +205,12 @@
             },
             {
               "date": "2026-09-01",
-              "value": 92.68
+              "value": 92.89
+            },
+            {
+              "date": "2026-10-01",
+              "value": 97.51,
+              "partial": true
             }
           ]
         }
@@ -227,7 +229,7 @@
       "standIn": "US Gulf Coast crack spread, standing in for Singapore GRM (a paywalled Platts assessment)",
       "source": "Derived 3-2-1 crack spread from FRED / U.S. EIA spot prices (US Gulf gasoline, NY Harbor heating oil, WTI), monthly mean of daily",
       "sourceTag": "derived",
-      "asOf": "2026-09-01",
+      "asOf": "2026-10-01",
       "lines": [
         {
           "id": "crack-321",
@@ -239,12 +241,8 @@
           "source": "Derived 3-2-1 crack spread from FRED / U.S. EIA spot prices (US Gulf gasoline, NY Harbor heating oil, WTI), monthly mean of daily",
           "sourceTag": "derived",
           "standIn": "US Gulf Coast crack spread, standing in for Singapore GRM (a paywalled Platts assessment)",
-          "asOf": "2026-09-01",
+          "asOf": "2026-10-01",
           "series": [
-            {
-              "date": "2025-10-01",
-              "value": 22.53
-            },
             {
               "date": "2025-11-01",
               "value": 24.9
@@ -287,7 +285,12 @@
             },
             {
               "date": "2026-09-01",
-              "value": 70.56
+              "value": 70.77
+            },
+            {
+              "date": "2026-10-01",
+              "value": 65.73,
+              "partial": true
             }
           ]
         }
@@ -306,7 +309,7 @@
       "status": "live",
       "source": "Trading Economics - naphtha spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-10-06",
+      "asOf": "2026-10-07",
       "lines": [
         {
           "id": "naphtha",
@@ -318,11 +321,11 @@
           "source": "Trading Economics - naphtha spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-10-06",
+          "asOf": "2026-10-07",
           "series": [
             {
-              "date": "2026-10-06",
-              "value": 828.19,
+              "date": "2026-10-07",
+              "value": 834.28,
               "spot": true
             }
           ]
@@ -341,7 +344,7 @@
       "status": "live",
       "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-10-06",
+      "asOf": "2026-10-07",
       "lines": [
         {
           "id": "jkm",
@@ -353,10 +356,10 @@
           "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-10-06",
+          "asOf": "2026-10-07",
           "series": [
             {
-              "date": "2026-10-06",
+              "date": "2026-10-07",
               "value": 25.88,
               "spot": true
             }
@@ -452,7 +455,7 @@
             },
             {
               "date": "2026-10-01",
-              "value": 96.34,
+              "value": 96.42,
               "partial": true
             }
           ]
