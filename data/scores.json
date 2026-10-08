@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-08T12:23:59.352Z",
+  "generatedAt": "2026-10-08T14:19:10.192Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -292,7 +292,7 @@
         "id": "crack-spread",
         "label": "Crack spread",
         "direction": "rising",
-        "percentile": 100,
+        "percentile": 82,
         "supports": "up",
         "vote": "supports"
       },
@@ -523,7 +523,7 @@
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude rising (100th pctile); Crack spread rising (100th pctile); USD/INR flat (100th pctile). Flagged for manual review: the backdrop and the scores disagree."
+      "text": "Crude rising (100th pctile); Crack spread rising (82th pctile); USD/INR flat (100th pctile). Flagged for manual review: the backdrop and the scores disagree."
     },
     {
       "id": "divergence",
@@ -1017,7 +1017,7 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-07T14:10:03.539Z",
+    "generatedAt": "2026-10-08T12:23:59.352Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
