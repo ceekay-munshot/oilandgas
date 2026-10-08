@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-07T14:09:19.310Z",
+  "generatedAt": "2026-10-08T12:23:19.128Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -32,7 +32,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33869,
+      "ctxChars": 33822,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -79,7 +79,7 @@
         {
           "id": "day-rate",
           "label": "Day-rate",
-          "unit": "₹/day or $/day",
+          "unit": "$/day or ₹/day",
           "flagBasis": "level",
           "values": [
             null,
@@ -112,7 +112,7 @@
             null
           ],
           "flag": null,
-          "notes": "Day-rate not disclosed in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Q2 FY26 concall mentions growth was 'more of volume' rather than pricing/day-rate, but no numeric day-rate is stated. No other excerpts provide day"
+          "notes": "Day-rate not disclosed in any of the excerpts. The Q2 FY26 concall mentions management did not expect near-term pressure on market rates for offshore vessels and that rates for HF Hunter were 'in line with what we were earlier used to get,'"
         },
         {
           "id": "order-book",
@@ -1167,7 +1167,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31212,
+      "ctxChars": 32364,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -1205,7 +1205,7 @@
             null
           ],
           "flag": null,
-          "notes": "No offshore rig utilisation percentage figures stated in any of the excerpts. The Q1 FY27 concall mentions 5 rigs deployed and 1 under refurbishment, and the investor PPT shows 5 rigs on long-term contracts with 1 under refurbishment, but n"
+          "notes": "No offshore rig utilisation percentage data found in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The documents discuss rig deployment status (number operating, under refurbishment, etc.) but do not state a utilisation per"
         },
         {
           "id": "charter-day-rate",
