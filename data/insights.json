@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-08T14:16:10.892Z",
+  "generatedAt": "2026-10-09T12:13:14.091Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -5482,7 +5482,8 @@
         "Jun 2025",
         "Sep 2025",
         "Dec 2025",
-        "Mar 2026"
+        "Mar 2026",
+        "Jun 2026"
       ],
       "periodsIso": [
         "2023-12",
@@ -5493,7 +5494,8 @@
         "2025-06",
         "2025-09",
         "2025-12",
-        "2026-03"
+        "2026-03",
+        "2026-06"
       ],
       "rows": [
         {
@@ -5509,7 +5511,8 @@
             199,
             221,
             199,
-            null
+            194,
+            232
           ],
           "citations": [
             {
@@ -5552,7 +5555,16 @@
               "quote": "LHC production stood at 199 TMT as against 221 TMT in previous quarter",
               "page": 4
             },
-            null
+            {
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "the Company increased production by around 20% during the quarter, from 194 TMT to 232 TMT",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "the Company increased production by around 20% during the quarter, from 194 TMT to 232 TMT",
+              "page": 3
+            }
           ]
         },
         {
@@ -5568,7 +5580,8 @@
             1131,
             1167,
             1188,
-            null
+            1114,
+            1077
           ],
           "citations": [
             {
@@ -5611,7 +5624,16 @@
               "quote": "LPG transmission was 1,188 TMT as against 1,167 TMT in previous quarter",
               "page": 4
             },
-            null
+            {
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "In the LPG Transmission segment, volume stood at 1,077 TMT as against 1,114 TMT in Q4 FY'26",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "In the LPG Transmission segment, volume stood at 1,077 TMT as against 1,114 TMT in Q4 FY'26",
+              "page": 3
+            }
           ]
         },
         {
@@ -5623,11 +5645,12 @@
             98.84,
             96.96,
             98.14,
-            99.99,
+            106.53,
             105.45,
             105.49,
             103.98,
-            null
+            101.88,
+            93.82
           ],
           "citations": [
             {
@@ -5651,9 +5674,9 @@
               "page": 2
             },
             {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "gas marketing volume stood at 99.99 MMSCMD in current quarter as against 98.14 MMSCMD previous quarter",
-              "page": 3
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "Gas marketing volume during the quarter stood at 105.45 MMSCMD as against 106.53 MMSCMD in Q4",
+              "page": 2
             },
             {
               "doc": "Concall Transcript - 31 Jul 2025",
@@ -5670,7 +5693,16 @@
               "quote": "Gas marketing volume during the quarter stood at 103.98 MMSCMD as against 105.49 MMSCMD in Q2 FY26",
               "page": 4
             },
-            null
+            {
+              "doc": "Presentation - 31 Jul 2026",
+              "quote": "(Q4 FY’26 - 101.88 MMSCMD)",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "Our Gas Marketing volumes stood at 93.82 MMSCMD",
+              "page": 2
+            }
           ]
         },
         {
@@ -5686,7 +5718,8 @@
             120.62,
             123.59,
             125.45,
-            null
+            118.99,
+            122.36
           ],
           "citations": [
             {
@@ -5729,7 +5762,16 @@
               "quote": "Natural gas transmission volume improved to 125.45 MMSCMD in Q3 FY26",
               "page": 4
             },
-            null
+            {
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "Natural Gas Transmission volume for Q1 FY'27 stood at 122.36 MMSCMD as against 118.99 MMSCMD in the previous quarter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "Natural Gas Transmission volume for Q1 FY'27 stood at 122.36 MMSCMD as against 118.99 MMSCMD in the previous quarter",
+              "page": 3
+            }
           ]
         },
         {
@@ -5745,7 +5787,8 @@
             177,
             220,
             219,
-            null
+            null,
+            51
           ],
           "citations": [
             {
@@ -5788,58 +5831,12 @@
               "quote": "Polymer production was almost flat at 219 TMT in Q3 FY26",
               "page": 4
             },
-            null
-          ]
-        },
-        {
-          "label": "GAIL Gas CGD Infrastructure - DPNG Connections",
-          "unit": "Number",
-          "scope": null,
-          "values": [
-            null,
-            870000,
-            890000,
-            906000,
-            976000,
-            null,
-            1174000,
-            1246000,
-            null
-          ],
-          "citations": [
             null,
             {
-              "doc": "Concall Transcript - 31 Jul 2023",
-              "quote": "GAIL Gas along with its JV subsidies has infrastructure of 870,000 DPNG collections and 456 CNG stations",
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "Polymer production during Q1 FY'27 stood at 51 TMT.",
               "page": 3
-            },
-            {
-              "doc": "Concall Transcript - 31 Oct 2023",
-              "quote": "GAIL gas along with its JV, subsidiaries has infrastructure of almost 8.9 lakh DPNG connections and 462 CNG stations",
-              "page": 3
-            },
-            {
-              "doc": "Concall Transcript - 29 Jan 2024",
-              "quote": "GAIL Gas as a group company ... 9,06,000 DPNG connections",
-              "page": 3
-            },
-            {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "GAIL Gas and its group companies DPNG connections 9,76,000 ... and 570 CNG stations",
-              "page": 4
-            },
-            null,
-            {
-              "doc": "Concall Transcript - 31 Oct 2025",
-              "quote": "GAIL Gas with its JVs, subsidiaries, has an infrastructure of 11,74,000 DPNG connections and 665 CNG stations",
-              "page": 4
-            },
-            {
-              "doc": "Concall Transcript - 05 Feb 2026",
-              "quote": "GAIL Gas with its JVs/subsidiaries have an infrastructure of 12,46,000 DPNG connections and 674 CNG stations",
-              "page": 5
-            },
-            null
+            }
           ]
         },
         {
@@ -5855,7 +5852,8 @@
             null,
             null,
             18000,
-            18000
+            18000,
+            null
           ],
           "citations": [
             null,
@@ -5874,6 +5872,40 @@
               "doc": "Presentation - 22 May 2026",
               "quote": "18,000+ KM Pipeline Network",
               "page": 9
+            },
+            null
+          ]
+        },
+        {
+          "label": "GAIL Gas Limited DPNG Connections",
+          "unit": "Number",
+          "scope": "Standalone data",
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            793684
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "As on 30th June 2026, GAIL Gas held a network of 592 CNG Stations and 7,93,684 DPNG Connections",
+              "page": 3
             }
           ]
         },
@@ -5886,6 +5918,7 @@
             null,
             null,
             101,
+            null,
             null,
             null,
             null,
@@ -5905,6 +5938,7 @@
             null,
             null,
             null,
+            null,
             null
           ]
         }
@@ -5919,7 +5953,6 @@
       "toggled": "/insights/company/1273407/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Jun 2023",
         "Sep 2023",
         "Dec 2023",
         "Mar 2024",
@@ -5930,10 +5963,10 @@
         "Jun 2025",
         "Sep 2025",
         "Dec 2025",
-        "Mar 2026"
+        "Mar 2026",
+        "Jun 2026"
       ],
       "periodsIso": [
-        "2023-06",
         "2023-09",
         "2023-12",
         "2024-03",
@@ -5944,7 +5977,8 @@
         "2025-06",
         "2025-09",
         "2025-12",
-        "2026-03"
+        "2026-03",
+        "2026-06"
       ],
       "rows": [
         {
@@ -5952,7 +5986,6 @@
           "unit": "MMSCMD",
           "scope": null,
           "values": [
-            2.48,
             2.58,
             2.63,
             2.67,
@@ -5963,14 +5996,10 @@
             3.19,
             3.25,
             3.28,
-            3.35
+            3.35,
+            3.5
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 10 Aug 2023",
-              "quote": "CNG volumes of 2.481 mmscmd",
-              "page": 4
-            },
             {
               "doc": "Concall Transcript - 03 Nov 2023",
               "quote": "CNG volume of 2.583 MMSCMD",
@@ -6025,6 +6054,11 @@
               "doc": "Presentation - 08 May 2026",
               "quote": "Q4 FY 25-26: CNG 3.349",
               "page": 13
+            },
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "Sales volume of the CNG has increased from 3.185 mmscmd to 3.496 mmscmd",
+              "page": 4
             }
           ]
         },
@@ -6033,7 +6067,6 @@
           "unit": "count",
           "scope": null,
           "values": [
-            312,
             319,
             320,
             347,
@@ -6043,15 +6076,11 @@
             385,
             385,
             485,
-            504,
-            518
+            491,
+            518,
+            519
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 10 Aug 2023",
-              "quote": "We have 312 stations operating as on 30th June",
-              "page": 4
-            },
             {
               "doc": "Concall Transcript - 03 Nov 2023",
               "quote": "We have added 7 CNG stations and with this we have 319 CNG stations as on 30th September 2023",
@@ -6098,14 +6127,19 @@
               "page": 3
             },
             {
-              "doc": "Concall Transcript - 14 May 2026",
-              "quote": "we added 28 CNG stations during this quarter... 518 as of 31st March 2026",
+              "doc": "Concall Transcript - 16 Feb 2026",
+              "quote": "We have added 6 CNG stations during this quarter. And with this, we have 491 stations as on 31 December '25.",
               "page": 3
             },
             {
               "doc": "Concall Transcript - 14 May 2026",
               "quote": "we have 518 stations as on 31st March 2026",
               "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "We added 1 CNG station during this quarter. And with this, we have 519 stations as on 30th June 2026.",
+              "page": 4
             }
           ]
         },
@@ -6115,7 +6149,6 @@
           "scope": null,
           "values": [
             953729,
-            953729,
             950000,
             996215,
             1190938,
@@ -6124,15 +6157,11 @@
             1167000,
             1190000,
             1218088,
-            1220000,
-            1284828
+            1249983,
+            1284828,
+            1311105
           ],
           "citations": [
-            {
-              "doc": "Presentation - 16 May 2024",
-              "quote": "CNG Vehicles GA1 6,47,266 GA2 2,99,260 GA3 7,203 Q1 FY24 cumulative",
-              "page": 5
-            },
             {
               "doc": "Presentation - 23 Sep 2023",
               "quote": "CNG Vehicles Total 9,53,729 MGL as of 30 Sep 2023",
@@ -6179,14 +6208,19 @@
               "page": 6
             },
             {
-              "doc": "Concall Transcript - 14 May 2026",
-              "quote": "more than 1.22 million CNG vehicles registered in our geographies as of 30 Sep '25",
-              "page": 3
+              "doc": "Presentation - 09 Feb 2026",
+              "quote": "12,49,983",
+              "page": 6
             },
             {
               "doc": "Concall Transcript - 14 May 2026",
               "quote": "now we have more than 1.28 million CNG vehicles registered in our geographies as of 31st March 2026",
               "page": 3
+            },
+            {
+              "doc": "Presentation - 31 Jul 2026",
+              "quote": "13,11,105",
+              "page": 6
             }
           ]
         },
@@ -6195,7 +6229,6 @@
           "unit": "MMSCMD",
           "scope": null,
           "values": [
-            0.5,
             0.49,
             0.53,
             0.56,
@@ -6206,14 +6239,10 @@
             0.57,
             0.58,
             0.6,
-            0.6
+            0.6,
+            0.62
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 10 Aug 2023",
-              "quote": "domestic CNG volume of 0.496 mmscmd",
-              "page": 4
-            },
             {
               "doc": "Concall Transcript - 03 Nov 2023",
               "quote": "domestic PNG of 0.491 MMSCMD",
@@ -6268,6 +6297,11 @@
               "doc": "Presentation - 08 May 2026",
               "quote": "Q4 FY 25-26: Domestic 0.605",
               "page": 13
+            },
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "Sales for domestic DPNG has increased from 0.571 mmscmd to 0.623 mmscmd",
+              "page": 4
             }
           ]
         },
@@ -6276,7 +6310,6 @@
           "unit": "MMSCMD",
           "scope": null,
           "values": [
-            0.43,
             0.5,
             0.51,
             0.55,
@@ -6287,14 +6320,10 @@
             0.7,
             0.76,
             0.73,
-            0.72
+            0.72,
+            0.65
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 10 Aug 2023",
-              "quote": "industrial and commercial segment's volume is 0.435 mmscmd",
-              "page": 4
-            },
             {
               "doc": "Concall Transcript - 03 Nov 2023",
               "quote": "0.501 of gas was supplied to industrial and commercial",
@@ -6349,6 +6378,11 @@
               "doc": "Presentation - 08 May 2026",
               "quote": "Q4 FY 25-26: I&C 0.719",
               "page": 13
+            },
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "In case of industrial and commercial, sales volume has decreased from 0.698 mmscmd to 0.648 mmscmd",
+              "page": 4
             }
           ]
         },
@@ -6357,7 +6391,6 @@
           "unit": "km",
           "scope": null,
           "values": [
-            6612,
             6653,
             6742,
             6968,
@@ -6367,15 +6400,11 @@
             7822,
             7539,
             8062,
-            8219,
-            8320
+            8182,
+            8320,
+            8477
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 10 Aug 2023",
-              "quote": "the aggregate length of 6,612 kilometers",
-              "page": 4
-            },
             {
               "doc": "Concall Transcript - 03 Nov 2023",
               "quote": "taking the aggregated length of pipelines to over 6,653 km",
@@ -6422,13 +6451,18 @@
               "page": 3
             },
             {
-              "doc": "Concall Transcript - 14 May 2026",
-              "quote": "8,062 kilometers cumulative after Q2 FY26; Q3 FY26 additions - taking the total length to 8,219 km",
+              "doc": "Concall Transcript - 16 Feb 2026",
+              "quote": "We have laid 120.3 kilometers of steel and PE pipeline, taking the total length to over 8,182 kilometers.",
               "page": 3
             },
             {
               "doc": "Concall Transcript - 14 May 2026",
               "quote": "we have laid 138.48 kilometers of steel and PE pipeline, taking the total length to over 8,320.43 kilometers",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "We have laid 156.57 kilometers of steel and PE pipeline, taking the total length to over 8,477.01 kilometres.",
               "page": 3
             }
           ]
@@ -6438,7 +6472,6 @@
           "unit": "count",
           "scope": null,
           "values": [
-            2200000,
             2250000,
             2370000,
             2490000,
@@ -6448,15 +6481,11 @@
             2871747,
             2850000,
             2940000,
-            2950000,
-            3213904
+            3069907,
+            3213904,
+            3241195
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 10 Aug 2023",
-              "quote": "we have established connectivity for nearly 2.2 million households",
-              "page": 4
-            },
             {
               "doc": "Concall Transcript - 03 Nov 2023",
               "quote": "we have established connectivity for nearly 2.25 million households",
@@ -6503,14 +6532,19 @@
               "page": 3
             },
             {
-              "doc": "Concall Transcript - 14 May 2026",
-              "quote": "established connectivity for nearly 2.95 million households cumulative",
-              "page": 3
+              "doc": "Presentation - 09 Feb 2026",
+              "quote": "30,69,907",
+              "page": 6
             },
             {
               "doc": "Concall Transcript - 14 May 2026",
               "quote": "we have established connectivity for nearly 3.21 million households",
               "page": 3
+            },
+            {
+              "doc": "Presentation - 31 Jul 2026",
+              "quote": "32,41,195",
+              "page": 6
             }
           ]
         },
@@ -6519,7 +6553,6 @@
           "unit": "MMSCMD",
           "scope": null,
           "values": [
-            3.41,
             3.58,
             3.67,
             3.78,
@@ -6530,14 +6563,10 @@
             4.45,
             4.59,
             4.62,
-            4.67
+            4.67,
+            4.77
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 10 Aug 2023",
-              "quote": "we have achieved overall average sale volume of 3.412 mmscmd",
-              "page": 4
-            },
             {
               "doc": "Concall Transcript - 03 Nov 2023",
               "quote": "we achieved overall average sales volume of 3.575 MMSCMD",
@@ -6592,6 +6621,11 @@
               "doc": "Presentation - 08 May 2026",
               "quote": "Q4 FY 25-26: CNG 3.349, Domestic 0.605, I&C 0.719, Total 4.672",
               "page": 13
+            },
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "we achieved overall average sales volume of 4.766 mmscmd as against 4.672 mmscmd in the previous quarter",
+              "page": 4
             }
           ]
         }

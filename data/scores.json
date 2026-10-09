@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-08T14:19:10.192Z",
+  "generatedAt": "2026-10-09T12:15:24.201Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -101,9 +101,9 @@
       ]
     },
     "coincident": {
-      "score": -15,
+      "score": -19,
       "prev": -37,
-      "delta": -11,
+      "delta": -17,
       "deltaBasis": "kpi-only",
       "level": "negative",
       "direction": "falling",
@@ -113,7 +113,7 @@
       "tonesScored": 15,
       "companiesScored": 11,
       "staleKpis": 8,
-      "oneOffKpis": 8,
+      "oneOffKpis": 6,
       "unknownKpis": 0,
       "lowCoverage": true,
       "weakestTag": "derived",
@@ -124,6 +124,13 @@
           "companyId": "iocl",
           "company": "IOCL",
           "label": "Throughput",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "gail",
+          "company": "GAIL",
+          "label": "Gas transmission volume",
           "flag": "inflecting-down"
         },
         {
@@ -249,7 +256,7 @@
     }
   },
   "divergence": {
-    "value": 42,
+    "value": 46,
     "leadingSign": 1,
     "coincidentSign": -1,
     "signsDiffer": true
@@ -258,16 +265,16 @@
     null,
     null,
     47,
-    73
+    79
   ],
   "stage": {
     "stageId": "early-upcycle",
-    "position": 31,
+    "position": 30,
     "ruleId": "early-upcycle",
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 27 (positive, rising), coincident -15 (negative, falling), lagging -11 (negative).",
+      "Leading 27 (positive, rising), coincident -19 (negative, falling), lagging -11 (negative).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -422,7 +429,7 @@
     {
       "groupId": "coincident",
       "kind": "low-coverage",
-      "text": "Moving now: 16 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 14 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "groupId": "lagging",
@@ -447,7 +454,7 @@
       "id": "coverage-coincident",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moving now: 16 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 14 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "coverage-lagging",
@@ -518,7 +525,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are negative and falling — IOCL Throughput, Petronet LNG Regas utilisation %, Petronet LNG Volume."
+      "text": "Coincident indicators are negative and falling — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Regas utilisation %."
     },
     {
       "id": "macro",
@@ -528,7 +535,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +42. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
+      "text": "Leading minus coincident is +46. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
     },
     {
       "id": "watchlist",
@@ -1017,7 +1024,7 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-08T12:23:59.352Z",
+    "generatedAt": "2026-10-08T14:19:10.192Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",

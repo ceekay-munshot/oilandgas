@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-08T14:18:43.427Z",
+  "generatedAt": "2026-10-09T12:14:48.687Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -2876,7 +2876,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31838,
+      "ctxChars": 31882,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -2893,13 +2893,13 @@
             "company-filing",
             "company-filing",
             "company-filing",
-            "mgmt-claim"
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             {
@@ -2917,15 +2917,19 @@
               "quote": "Natural gas transmission volume improved to 125.45 MMSCMD in Q3 FY26",
               "page": 4
             },
-            null
+            {
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "Natural Gas Transmission volume for Q1 FY'27 stood at 122.36 MMSCMD as against 118.99 MMSCMD in the previous quarter",
+              "page": 3
+            }
           ],
           "oneOffs": [
             null,
             null,
             null,
-            "Qatar LNG force majeure; 7 other cargoes affected"
+            null
           ],
-          "flag": "decelerating",
+          "flag": "inflecting-down",
           "notes": null
         },
         {
@@ -2964,7 +2968,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated in any excerpt. Q1 FY26 concall mentions polymer segment loss of ₹249 crore and delivered gas cost ~$10.5-10.6/MMBtu, but no per-tonne margin. Q2 FY26 mentions loss of ₹299 crore and gas cost ~$10.5-10.6/MMB"
+          "notes": "Petchem margin in $/t not stated in any excerpt. Q1 FY26 concall mentions Pata segment loss of ₹249 cr and polymer production 177 TMT, Q2 FY26 mentions loss ₹299 cr on 220 TMT, Q3 FY26 mentions loss ₹483 cr on 219 TMT, Q1 FY27 mentions loss"
         },
         {
           "id": "gas-marketing-volume",
@@ -2981,13 +2985,13 @@
             "company-filing",
             "company-filing",
             "company-filing",
-            "mgmt-claim"
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             {
@@ -3005,15 +3009,19 @@
               "quote": "Gas marketing volume during the quarter stood at 103.98 MMSCMD as against 105.49 MMSCMD in Q2 FY26",
               "page": 4
             },
-            null
+            {
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "Our Gas Marketing volumes stood at 93.82 MMSCMD",
+              "page": 2
+            }
           ],
           "oneOffs": [
             null,
             null,
             null,
-            "Qatar LNG force majeure; 7 other cargoes affected; spot sour"
+            null
           ],
-          "flag": "steady",
+          "flag": "decelerating",
           "beyondBrief": true,
           "notes": null
         },
@@ -3032,13 +3040,13 @@
             "company-filing",
             "company-filing",
             "company-filing",
-            "mgmt-claim"
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             {
@@ -3056,15 +3064,19 @@
               "quote": "LPG transmission was 1,188 TMT as against 1,167 TMT in previous quarter",
               "page": 4
             },
-            null
+            {
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "In the LPG Transmission segment, volume stood at 1,077 TMT as against 1,114 TMT in Q4 FY'26",
+              "page": 3
+            }
           ],
           "oneOffs": [
             null,
             null,
             null,
-            "LNG/LPG disruptions from West Asia crisis"
+            null
           ],
-          "flag": "decelerating",
+          "flag": "inflecting-down",
           "beyondBrief": true,
           "notes": null
         },
@@ -3083,13 +3095,13 @@
             "company-filing",
             "company-filing",
             "company-filing",
-            "mgmt-claim"
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             {
@@ -3107,15 +3119,19 @@
               "quote": "Polymer production was almost flat at 219 TMT in Q3 FY26",
               "page": 4
             },
-            null
+            {
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "Polymer production during Q1 FY'27 stood at 51 TMT.",
+              "page": 3
+            }
           ],
           "oneOffs": [
             null,
             null,
             null,
-            "Feedstock diversion to priority sectors post gazette"
+            null
           ],
-          "flag": "steady",
+          "flag": "decelerating",
           "beyondBrief": true,
           "notes": null
         },
@@ -3128,7 +3144,7 @@
             199,
             221,
             199,
-            225
+            232
           ],
           "sourceTags": [
             "company-filing",
@@ -3140,7 +3156,7 @@
             "insights",
             "insights",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             {
@@ -3158,7 +3174,11 @@
               "quote": "LHC production stood at 199 TMT as against 221 TMT in previous quarter",
               "page": 4
             },
-            null
+            {
+              "doc": "Concall Transcript - 31 Jul 2026",
+              "quote": "the Company increased production by around 20% during the quarter, from 194 TMT to 232 TMT",
+              "page": 3
+            }
           ],
           "oneOffs": [
             null,
@@ -3184,7 +3204,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34038,
+      "ctxChars": 34039,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3271,7 +3291,7 @@
             4.59,
             4.62,
             4.67,
-            4.766
+            4.77
           ],
           "sourceTags": [
             "company-filing",
@@ -3283,7 +3303,7 @@
             "insights",
             "insights",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             {
@@ -3301,7 +3321,11 @@
               "quote": "Q4 FY 25-26: CNG 3.349, Domestic 0.605, I&C 0.719, Total 4.672",
               "page": 13
             },
-            null
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "we achieved overall average sales volume of 4.766 mmscmd as against 4.672 mmscmd in the previous quarter",
+              "page": 4
+            }
           ],
           "oneOffs": [
             null,
@@ -3322,7 +3346,7 @@
             3.25,
             3.28,
             3.35,
-            3.496
+            3.5
           ],
           "sourceTags": [
             "company-filing",
@@ -3334,7 +3358,7 @@
             "insights",
             "insights",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             {
@@ -3352,7 +3376,11 @@
               "quote": "Q4 FY 25-26: CNG 3.349",
               "page": 13
             },
-            null
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "Sales volume of the CNG has increased from 3.185 mmscmd to 3.496 mmscmd",
+              "page": 4
+            }
           ],
           "oneOffs": [
             null,
@@ -3373,7 +3401,7 @@
             0.58,
             0.6,
             0.6,
-            0.623
+            0.62
           ],
           "sourceTags": [
             "company-filing",
@@ -3385,7 +3413,7 @@
             "insights",
             "insights",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             {
@@ -3403,7 +3431,11 @@
               "quote": "Q4 FY 25-26: Domestic 0.605",
               "page": 13
             },
-            null
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "Sales for domestic DPNG has increased from 0.571 mmscmd to 0.623 mmscmd",
+              "page": 4
+            }
           ],
           "oneOffs": [
             null,
@@ -3424,7 +3456,7 @@
             0.76,
             0.73,
             0.72,
-            0.648
+            0.65
           ],
           "sourceTags": [
             "company-filing",
@@ -3436,7 +3468,7 @@
             "insights",
             "insights",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             {
@@ -3454,15 +3486,19 @@
               "quote": "Q4 FY 25-26: I&C 0.719",
               "page": 13
             },
-            null
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "In case of industrial and commercial, sales volume has decreased from 0.698 mmscmd to 0.648 mmscmd",
+              "page": 4
+            }
           ],
           "oneOffs": [
             null,
             null,
             null,
-            "20% cut per govt directive due to West Asia crisis"
+            null
           ],
-          "flag": "steady",
+          "flag": "decelerating",
           "notes": null
         }
       ]
