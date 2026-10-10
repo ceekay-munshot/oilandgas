@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-09T13:58:30.078Z",
+  "generatedAt": "2026-10-10T11:33:25.740Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,17 +38,17 @@
   "asOf": "Q1 FY27",
   "scores": {
     "leading": {
-      "score": 27,
-      "prev": 10,
-      "delta": 15,
+      "score": 4,
+      "prev": 25,
+      "delta": -38,
       "deltaBasis": "kpi-only",
-      "level": "positive",
-      "direction": "rising",
-      "kpisScored": 8,
+      "level": "flat",
+      "direction": "falling",
+      "kpisScored": 10,
       "kpisTotal": 23,
-      "kpisBeyondBrief": 10,
+      "kpisBeyondBrief": 11,
       "tonesScored": 8,
-      "companiesScored": 5,
+      "companiesScored": 6,
       "staleKpis": 6,
       "oneOffKpis": 0,
       "unknownKpis": 0,
@@ -67,8 +67,15 @@
           "kind": "kpi",
           "companyId": "engineers-india",
           "company": "Engineers India",
+          "label": "Order inflow",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "engineers-india",
+          "company": "Engineers India",
           "label": "Order book",
-          "flag": "inflecting-up"
+          "flag": "inflecting-down"
         },
         {
           "kind": "kpi",
@@ -101,21 +108,21 @@
       ]
     },
     "coincident": {
-      "score": -19,
+      "score": -10,
       "prev": -37,
-      "delta": -17,
+      "delta": -1,
       "deltaBasis": "kpi-only",
       "level": "negative",
-      "direction": "falling",
-      "kpisScored": 20,
+      "direction": "flat",
+      "kpisScored": 21,
       "kpisTotal": 40,
-      "kpisBeyondBrief": 17,
+      "kpisBeyondBrief": 21,
       "tonesScored": 15,
-      "companiesScored": 11,
-      "staleKpis": 8,
-      "oneOffKpis": 6,
+      "companiesScored": 12,
+      "staleKpis": 2,
+      "oneOffKpis": 1,
       "unknownKpis": 0,
-      "lowCoverage": true,
+      "lowCoverage": false,
       "weakestTag": "derived",
       "reducedConfidence": true,
       "signals": [
@@ -131,20 +138,6 @@
           "companyId": "gail",
           "company": "GAIL",
           "label": "Gas transmission volume",
-          "flag": "inflecting-down"
-        },
-        {
-          "kind": "kpi",
-          "companyId": "petronet-lng",
-          "company": "Petronet LNG",
-          "label": "Regas utilisation %",
-          "flag": "inflecting-down"
-        },
-        {
-          "kind": "kpi",
-          "companyId": "petronet-lng",
-          "company": "Petronet LNG",
-          "label": "Volume",
           "flag": "inflecting-down"
         },
         {
@@ -170,10 +163,24 @@
         },
         {
           "kind": "kpi",
+          "companyId": "aegis-vopak",
+          "company": "Aegis Vopak",
+          "label": "LPG throughput",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "supreme-petrochem",
+          "company": "Supreme Petrochem",
+          "label": "Volume",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
           "companyId": "gandhar-oil",
           "company": "Gandhar Oil",
           "label": "White-oil volume",
-          "flag": "inflecting-down"
+          "flag": "inflecting-up"
         },
         {
           "kind": "tone",
@@ -213,22 +220,22 @@
       ]
     },
     "lagging": {
-      "score": -11,
+      "score": 100,
       "prev": -43,
-      "delta": -24,
+      "delta": 143,
       "deltaBasis": "kpi-only",
-      "level": "negative",
-      "direction": "falling",
+      "level": "strong-positive",
+      "direction": "rising",
       "kpisScored": 4,
       "kpisTotal": 7,
-      "kpisBeyondBrief": 1,
+      "kpisBeyondBrief": 2,
       "tonesScored": 2,
       "companiesScored": 1,
       "staleKpis": 3,
       "oneOffKpis": 0,
       "unknownKpis": 0,
       "lowCoverage": true,
-      "weakestTag": "mgmt-claim",
+      "weakestTag": "company-filing",
       "reducedConfidence": false,
       "signals": [
         {
@@ -236,14 +243,14 @@
           "companyId": "ge-shipping",
           "company": "GE Shipping",
           "label": "Fleet deployment",
-          "flag": "inflecting-down"
+          "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
           "companyId": "ge-shipping",
           "company": "GE Shipping",
           "label": "Revenue days (owned)",
-          "flag": "inflecting-down"
+          "flag": "inflecting-up"
         },
         {
           "kind": "tone",
@@ -256,26 +263,26 @@
     }
   },
   "divergence": {
-    "value": 46,
-    "leadingSign": 1,
+    "value": 14,
+    "leadingSign": 0,
     "coincidentSign": -1,
-    "signsDiffer": true
+    "signsDiffer": false
   },
   "divergenceSeries": [
     null,
     null,
-    47,
-    79
+    62,
+    25
   ],
   "stage": {
-    "stageId": "early-upcycle",
-    "position": 30,
-    "ruleId": "early-upcycle",
-    "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
-    "confidence": "normal",
+    "stageId": null,
+    "position": null,
+    "ruleId": "no-clear-signal",
+    "ruleLabel": "No bucket far enough from zero to place the cycle",
+    "confidence": "low",
     "because": [
-      "Leading 27 (positive, rising), coincident -19 (negative, falling), lagging -11 (negative).",
-      "Leading turning positive off a low base, coincident not yet following."
+      "Leading 4 (flat), coincident -10 (negative), lagging 100 (strong-positive).",
+      "No bucket far enough from zero to place the cycle."
     ]
   },
   "macro": {
@@ -283,9 +290,9 @@
     "opposing": 0,
     "silent": 4,
     "macroBias": "up",
-    "scoreBias": "down",
-    "agree": false,
-    "conflict": true,
+    "scoreBias": "up",
+    "agree": true,
+    "conflict": false,
     "tiles": [
       {
         "id": "brent",
@@ -337,12 +344,7 @@
       }
     ]
   },
-  "stageMacro": {
-    "stageId": "early-upcycle",
-    "expected": "crude recovering",
-    "observed": "crude rising",
-    "agrees": true
-  },
+  "stageMacro": null,
   "toneDrift": [
     {
       "companyId": "petronet-lng",
@@ -427,35 +429,12 @@
   ],
   "coverageWarnings": [
     {
-      "groupId": "coincident",
-      "kind": "low-coverage",
-      "text": "Moving now: 14 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
-    },
-    {
       "groupId": "lagging",
       "kind": "low-coverage",
       "text": "Moves last: 3 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     }
   ],
   "alerts": [
-    {
-      "id": "divergence",
-      "severity": "high",
-      "kind": "divergence",
-      "text": "Leading and coincident have split: the front of the chain has turned up while the middle has not."
-    },
-    {
-      "id": "macro-conflict",
-      "severity": "review",
-      "kind": "macro-conflict",
-      "text": "Flagged for review: the market backdrop points up while the scores are moving down."
-    },
-    {
-      "id": "coverage-coincident",
-      "severity": "info",
-      "kind": "low-coverage",
-      "text": "Moving now: 14 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
-    },
     {
       "id": "coverage-lagging",
       "severity": "info",
@@ -515,27 +494,27 @@
     {
       "id": "call",
       "label": "Cycle call",
-      "text": "Early Upcycle (Just turning up)."
+      "text": "not called."
     },
     {
       "id": "leading",
       "label": "Leading indicators",
-      "text": "Leading indicators are positive and rising — driven by Jindal Drilling Order book, Engineers India Order book, Ratnamani Metals Order book."
+      "text": "Leading indicators are flat and falling — driven by Jindal Drilling Order book, Engineers India Order inflow, Engineers India Order book."
     },
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are negative and falling — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Regas utilisation %."
+      "text": "Coincident indicators are negative — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
     },
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude rising (100th pctile); Crack spread rising (82th pctile); USD/INR flat (100th pctile). Flagged for manual review: the backdrop and the scores disagree."
+      "text": "Crude rising (100th pctile); Crack spread rising (82th pctile); USD/INR flat (100th pctile)."
     },
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +46. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
+      "text": "Leading minus coincident is +14. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -545,41 +524,10 @@
     {
       "id": "implication",
       "label": "Implication for the next 1–2 quarters",
-      "text": "First new orders are landing. Only the early movers feel it."
+      "text": "No stage has been called, so no implication is drawn."
     }
   ],
-  "actions": {
-    "stageId": "early-upcycle",
-    "stageLabel": "Early Upcycle",
-    "stagePlainLabel": "Just turning up",
-    "why": "Oilfield services and first-line capex enablers have the most operating leverage to a capex turn; order books inflect here first and hardest",
-    "research": [
-      {
-        "label": "Deep Industries",
-        "companyId": "deep-industries"
-      },
-      {
-        "label": "Jindal Drilling",
-        "companyId": "jindal-drilling"
-      },
-      {
-        "label": "Engineers India",
-        "companyId": "engineers-india"
-      },
-      {
-        "label": "Ratnamani",
-        "companyId": "ratnamani"
-      },
-      {
-        "label": "Welspun",
-        "companyId": "welspun-corp"
-      },
-      {
-        "label": "Man Industries",
-        "companyId": null
-      }
-    ]
-  },
+  "actions": null,
   "themes": [
     {
       "id": "upstream-capex",
@@ -1019,12 +967,24 @@
   ],
   "changes": [
     {
-      "kind": "none",
-      "text": "Nothing material moved since the last refresh."
+      "kind": "stage-call",
+      "text": "The cycle call moved from Just turning up to no call."
+    },
+    {
+      "kind": "score",
+      "text": "Moves first moved down 23 points to 4."
+    },
+    {
+      "kind": "score",
+      "text": "Moving now moved up 9 points to -10."
+    },
+    {
+      "kind": "score",
+      "text": "Moves last moved up 111 points to 100."
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-09T12:15:24.201Z",
+    "generatedAt": "2026-10-09T13:58:30.078Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
