@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-13T14:48:18.787Z",
+  "generatedAt": "2026-10-14T10:40:33.521Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -961,7 +961,7 @@
       "asOf": "Q2 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27400,
+      "ctxChars": 27359,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -994,7 +994,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 capex of ₹45,335 cr (including OPaL equity infusion of ₹18,365 cr) and planned FY26 capex of ₹36,920 cr, but does not state Q4 FY25 actual capex or budget vs actual. Q2 FY26 concall mentions cap"
+          "notes": "Q4 FY25: No capex vs budget metric stated; only full-year FY25 capex (45,335 cr including OPaL equity infusion of 18,365 cr) and planned FY26 capex (36,920 cr) mentioned. Q2 FY26: No capex vs budget figure stated. Q1 FY27: No capex vs budge"
         },
         {
           "id": "production-volume",
@@ -1068,7 +1068,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 drilling of 413 wells (353 development + 60 exploratory) and FY24 full-year 544 wells (441 development + 103 exploratory), but does not state Q4 FY25 alone. Q4 FY25 concall mentions FY25 full-ye"
+          "notes": "Q4 FY25: Only full-year FY25 well count stated (578 wells: 109 exploratory + 469 development); Q4 alone not disclosed. Q2 FY26: No quarterly well count stated. Q1 FY27: No quarterly well count stated. The 9M FY25 figure (413 wells: 353 deve"
         },
         {
           "id": "gas-production",
@@ -4044,7 +4044,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32956,
+      "ctxChars": 32954,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -4136,7 +4136,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The excerpts mention 'high capacity utilization level' and 'improved utilization levels' qualitatively but no specific percentage figures ar"
+          "notes": "Terminal utilisation % not stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The excerpts mention 'high capacity utilization' and 'improved utilization levels' qualitatively but no specific percentage figures are prov"
         }
       ]
     },
@@ -4305,15 +4305,15 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31596,
+      "ctxChars": 31597,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -4321,27 +4321,31 @@
           "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            8,
             7,
+            7.5,
             7.5,
             5
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
+            "company-filing",
             "company-filing"
           ],
           "origins": [
             "model",
             "model",
-            "model",
+            "insights",
             "insights"
           ],
           "citations": [
             null,
             null,
-            null,
+            {
+              "doc": "Concall Transcript - 04 May 2026",
+              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
+              "page": 6
+            },
             {
               "doc": "Presentation - 21 Aug 2026",
               "quote": "Average growth in volume sold vs 2Q 2025",
@@ -4349,9 +4353,9 @@
             }
           ],
           "oneOffs": [
-            null,
             "No Q2 FY26 data",
             "No Q3 FY26 data",
+            null,
             null
           ],
           "flag": null,
