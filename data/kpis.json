@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-14T12:34:49.075Z",
+  "generatedAt": "2026-10-15T10:24:57.648Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,10 +14,10 @@
   "coverage": {
     "companies": 28,
     "kpiCells": 405,
-    "realCells": 291,
-    "nullCells": 114,
+    "realCells": 289,
+    "nullCells": 116,
     "kpis": 104,
-    "kpisWithTrend": 69
+    "kpisWithTrend": 70
   },
   "companies": {
     "deep-industries": {
@@ -1121,7 +1121,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34082,
+      "ctxChars": 32578,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -1159,7 +1159,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: no single-quarter capex stated. Q3 FY26: no single-quarter capex stated. Q4 FY26: no single-quarter capex stated; FY26 full-year capex ₹13,026 cr mentioned but not Q4 alone. Q1 FY27: Q1 capex spend ~₹3,050 cr stated in concall AI s"
+          "notes": "Q2 FY26: no single-quarter capex stated. Q3 FY26: no single-quarter capex stated. Q4 FY26: no single-quarter capex stated; FY26 full-year capex ₹13,026 cr mentioned but not Q4 alone. Q1 FY27: ~₹3,050 cr stated in concall summary breakdown ("
         },
         {
           "id": "production-volume",
@@ -1220,19 +1220,19 @@
             0.8,
             0.8,
             null,
-            null
+            0.4
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             null,
-            null
+            "inference"
           ],
           "origins": [
             "insights",
             "insights",
             null,
-            null
+            "model"
           ],
           "citations": [
             {
@@ -1254,8 +1254,8 @@
             null,
             null
           ],
-          "flag": null,
-          "notes": "From Screener Insights row \"Natural Gas Production\" (Standalone data); latest value cited to Concall Transcript - 21 Nov 2025, page 4."
+          "flag": "decelerating",
+          "notes": "Q2 FY26: 0.804 bcm stated in Q2 concall summary. Q3 FY26: 0.801 bcm stated in Q3 concall summary. Q4 FY26: no single-quarter gas production stated; FY26 total 3.15 BCM mentioned but not Q4 alone. Q1 FY27: concall summary states '+0.4% QoQ' "
         }
       ]
     },
@@ -4407,8 +4407,8 @@
       "name": "Gandhar Oil",
       "slug": "GANDHAR",
       "quarters": [
+        "Q4 FY25",
         "Q2 FY26",
-        "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
       ],
@@ -4463,31 +4463,27 @@
           "unit": "kL",
           "flagBasis": "level",
           "values": [
+            null,
             72404,
-            74938,
             55155,
             68815
           ],
           "sourceTags": [
-            "company-filing",
+            null,
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            "insights",
+            null,
             "insights",
             "insights",
             "insights"
           ],
           "citations": [
+            null,
             {
               "doc": "Presentation - 12 Nov 2025",
-              "quote": "PHPO (kl)",
-              "page": 23
-            },
-            {
-              "doc": "Presentation - 23 Jan 2026",
               "quote": "PHPO (kl)",
               "page": 23
             },
@@ -4509,7 +4505,7 @@
             null
           ],
           "flag": "inflecting-up",
-          "notes": null
+          "notes": "From Screener Insights row \"PHPO Sales Volume\"; latest value cited to Presentation - 12 Nov 2025, page 23."
         },
         {
           "id": "mfg-gross-spread",
@@ -4517,8 +4513,8 @@
           "unit": "INR/kL",
           "flagBasis": "level",
           "values": [
+            9248,
             8274,
-            9146,
             9351,
             28145
           ],
@@ -4571,31 +4567,27 @@
           "unit": "kL",
           "flagBasis": "level",
           "values": [
+            null,
             33366,
-            31949,
             33697,
             30073
           ],
           "sourceTags": [
-            "company-filing",
+            null,
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            "insights",
+            null,
             "insights",
             "insights",
             "insights"
           ],
           "citations": [
+            null,
             {
               "doc": "Presentation - 12 Nov 2025",
-              "quote": "Lubricants (kl)",
-              "page": 23
-            },
-            {
-              "doc": "Presentation - 23 Jan 2026",
               "quote": "Lubricants (kl)",
               "page": 23
             },
@@ -4616,9 +4608,9 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": "decelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Lubricants Sales Volume\"; latest value cited to Presentation - 12 Nov 2025, page 23."
         },
         {
           "id": "mfg-volume",
@@ -4626,31 +4618,27 @@
           "unit": "kL",
           "flagBasis": "level",
           "values": [
+            null,
             139791,
-            148450,
             135781,
             131247
           ],
           "sourceTags": [
-            "company-filing",
+            null,
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            "insights",
+            null,
             "insights",
             "insights",
             "insights"
           ],
           "citations": [
+            null,
             {
               "doc": "Presentation - 12 Nov 2025",
-              "quote": "Total Sales Manufacturing Volumes (kl)",
-              "page": 23
-            },
-            {
-              "doc": "Presentation - 23 Jan 2026",
               "quote": "Total Sales Manufacturing Volumes (kl)",
               "page": 23
             },
@@ -4673,7 +4661,7 @@
           ],
           "flag": "decelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Total Sales Manufacturing Volume\"; latest value cited to Presentation - 12 Nov 2025, page 23."
         }
       ]
     },
@@ -5277,7 +5265,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15961,
+      "ctxChars": 15914,
       "kpis": [
         {
           "id": "order-book",

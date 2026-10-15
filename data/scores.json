@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-14T12:35:15.079Z",
+  "generatedAt": "2026-10-15T10:25:44.753Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,13 +38,13 @@
   "asOf": "Q1 FY27",
   "scores": {
     "leading": {
-      "score": 4,
+      "score": 0,
       "prev": 25,
-      "delta": -38,
+      "delta": -44,
       "deltaBasis": "kpi-only",
       "level": "flat",
       "direction": "falling",
-      "kpisScored": 10,
+      "kpisScored": 11,
       "kpisTotal": 23,
       "kpisBeyondBrief": 11,
       "tonesScored": 8,
@@ -109,11 +109,11 @@
     },
     "coincident": {
       "score": -10,
-      "prev": -37,
-      "delta": -1,
+      "prev": -17,
+      "delta": -21,
       "deltaBasis": "kpi-only",
       "level": "negative",
-      "direction": "flat",
+      "direction": "falling",
       "kpisScored": 21,
       "kpisTotal": 40,
       "kpisBeyondBrief": 21,
@@ -263,7 +263,7 @@
     }
   },
   "divergence": {
-    "value": 14,
+    "value": 10,
     "leadingSign": 0,
     "coincidentSign": -1,
     "signsDiffer": false
@@ -271,8 +271,8 @@
   "divergenceSeries": [
     null,
     null,
-    62,
-    25
+    42,
+    19
   ],
   "stage": {
     "stageId": null,
@@ -281,7 +281,7 @@
     "ruleLabel": "No bucket far enough from zero to place the cycle",
     "confidence": "low",
     "because": [
-      "Leading 4 (flat), coincident -10 (negative), lagging 100 (strong-positive).",
+      "Leading 0 (flat), coincident -10 (negative), lagging 100 (strong-positive).",
       "No bucket far enough from zero to place the cycle."
     ]
   },
@@ -504,7 +504,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are negative — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
+      "text": "Coincident indicators are negative and falling — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
     },
     {
       "id": "macro",
@@ -514,7 +514,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +14. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +10. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -972,7 +972,7 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-14T10:41:14.372Z",
+    "generatedAt": "2026-10-14T12:35:15.079Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": null,
