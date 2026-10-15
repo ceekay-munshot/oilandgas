@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-15T10:25:44.753Z",
+  "generatedAt": "2026-10-15T12:20:10.738Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -109,11 +109,11 @@
     },
     "coincident": {
       "score": -10,
-      "prev": -17,
-      "delta": -21,
+      "prev": -37,
+      "delta": -1,
       "deltaBasis": "kpi-only",
       "level": "negative",
-      "direction": "falling",
+      "direction": "flat",
       "kpisScored": 21,
       "kpisTotal": 40,
       "kpisBeyondBrief": 21,
@@ -271,7 +271,7 @@
   "divergenceSeries": [
     null,
     null,
-    42,
+    62,
     19
   ],
   "stage": {
@@ -504,7 +504,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are negative and falling — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
+      "text": "Coincident indicators are negative — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
     },
     {
       "id": "macro",
@@ -972,12 +972,12 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-14T12:35:15.079Z",
+    "generatedAt": "2026-10-15T10:25:44.753Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": null,
     "scores": {
-      "leading": 4,
+      "leading": 0,
       "coincident": -10,
       "lagging": 100
     },
