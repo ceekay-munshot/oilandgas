@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Extracted KPI values, kept across runs",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-16T10:16:12.154Z",
+  "generatedAt": "2026-10-16T12:09:27.139Z",
   "note": "One entry per company/KPI/quarter, for every quarter ever extracted - not just the current window. A run only asks the model about cells it does not already have, and a null never overwrites a real value. Delete a cell (or run with --refresh) to force re-extraction.",
   "companies": {
     "deep-industries": {
@@ -222,8 +222,8 @@
           "note": "From Screener Insights row \"Bidding Pipeline\"; latest value cited to Concall Transcript - 12 Feb 2026, page 5.",
           "origin": "insights",
           "fingerprint": "7c00a3066542",
-          "attempts": 93,
-          "at": "2026-10-16T10:16:07.096Z"
+          "attempts": 94,
+          "at": "2026-10-16T12:09:26.875Z"
         },
         "day-rate|Q1 FY27": {
           "value": null,
@@ -236,7 +236,7 @@
           "at": "2026-10-10T11:31:13.691Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.096Z"
+      "updatedAt": "2026-10-16T12:09:26.875Z"
     },
     "engineers-india": {
       "cells": {
@@ -649,8 +649,8 @@
           "note": "From Screener Insights row \"Order Book Domestic Share\" (Standalone data); latest value cited to Presentation - 12 Feb 2026, page 17.",
           "origin": "insights",
           "fingerprint": "080b478394ec",
-          "attempts": 97,
-          "at": "2026-10-16T10:16:07.133Z"
+          "attempts": 98,
+          "at": "2026-10-16T12:09:26.911Z"
         },
         "domestic-share|Q3 FY26": {
           "value": 58,
@@ -815,7 +815,7 @@
           "at": "2026-10-10T11:31:32.520Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.133Z"
+      "updatedAt": "2026-10-16T12:09:26.911Z"
     },
     "petronet-lng": {
       "cells": {
@@ -1006,8 +1006,8 @@
           "note": "From Screener Insights row \"Kochi Terminal LNG Throughput\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3.",
           "origin": "insights",
           "fingerprint": "a09573e3a45a",
-          "attempts": 93,
-          "at": "2026-10-16T10:16:07.211Z"
+          "attempts": 94,
+          "at": "2026-10-16T12:09:27.010Z"
         },
         "kochi-throughput|Q3 FY26": {
           "value": 19,
@@ -1090,8 +1090,8 @@
           "note": "From Screener Insights row \"Kochi Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 14 Nov 2025, page 3.",
           "origin": "insights",
           "fingerprint": "a09573e3a45a",
-          "attempts": 93,
-          "at": "2026-10-16T10:16:07.211Z"
+          "attempts": 94,
+          "at": "2026-10-16T12:09:27.010Z"
         },
         "regas-utilisation|Q2 FY26": {
           "value": 92,
@@ -1163,8 +1163,8 @@
           "note": "From Screener Insights row \"Kochi Terminal LNG Throughput\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3.",
           "origin": "insights",
           "fingerprint": "a09573e3a45a",
-          "attempts": 52,
-          "at": "2026-10-16T10:16:07.211Z"
+          "attempts": 53,
+          "at": "2026-10-16T12:09:27.010Z"
         },
         "kochi-utilisation|Q1 FY27": {
           "value": 23.27,
@@ -1183,7 +1183,7 @@
           "at": "2026-10-10T11:32:18.758Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.211Z"
+      "updatedAt": "2026-10-16T12:09:27.010Z"
     },
     "igl": {
       "cells": {
@@ -1365,7 +1365,7 @@
           "at": "2026-08-29T13:09:09.208Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.219Z"
+      "updatedAt": "2026-10-16T12:09:27.027Z"
     },
     "ongc": {
       "cells": {
@@ -1383,21 +1383,21 @@
           "value": null,
           "unit": "₹ cr",
           "sourceTag": null,
-          "note": "Q4 FY25: No capex vs budget metric stated; only full-year FY25 capex (45,335 cr including OPaL equity infusion of 18,365 cr) and planned FY26 capex (36,920 cr) mentioned. Q2 FY26: No capex vs budget figure stated. Q1 FY27: No capex vs budge",
+          "note": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 capex of ₹45,335 cr (including OPaL equity infusion of ₹18,365 cr) and planned FY26 capex of ₹36,920 cr, but does not state Q4 FY25 actual capex or budget vs actual. Q2 FY26 and Q1 FY27: No cape",
           "origin": "model",
-          "fingerprint": "639afe02634e",
-          "attempts": 14,
-          "at": "2026-10-14T10:40:41.458Z"
+          "fingerprint": "d94aebe08153",
+          "attempts": 15,
+          "at": "2026-10-16T12:09:26.850Z"
         },
         "capex-vs-budget|Q2 FY26": {
           "value": null,
           "unit": "₹ cr",
           "sourceTag": null,
-          "note": "Q4 FY25: No capex vs budget metric stated; only full-year FY25 capex (45,335 cr including OPaL equity infusion of 18,365 cr) and planned FY26 capex (36,920 cr) mentioned. Q2 FY26: No capex vs budget figure stated. Q1 FY27: No capex vs budge",
+          "note": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 capex of ₹45,335 cr (including OPaL equity infusion of ₹18,365 cr) and planned FY26 capex of ₹36,920 cr, but does not state Q4 FY25 actual capex or budget vs actual. Q2 FY26 and Q1 FY27: No cape",
           "origin": "model",
-          "fingerprint": "639afe02634e",
-          "attempts": 14,
-          "at": "2026-10-14T10:40:41.458Z"
+          "fingerprint": "d94aebe08153",
+          "attempts": 15,
+          "at": "2026-10-16T12:09:26.850Z"
         },
         "production-volume|Q3 FY25": {
           "value": 4.92,
@@ -1461,21 +1461,21 @@
           "value": null,
           "unit": "wells",
           "sourceTag": null,
-          "note": "Q4 FY25: Only full-year FY25 well count stated (578 wells: 109 exploratory + 469 development); Q4 alone not disclosed. Q2 FY26: No quarterly well count stated. Q1 FY27: No quarterly well count stated. The 9M FY25 figure (413 wells: 353 deve",
+          "note": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 drilling of 413 wells (353 development + 60 exploratory) and FY24 full-year of 544 wells (441 development + 103 exploratory). Q4 FY25 concall mentions 'record 578 wells drilled' for FY25 full ye",
           "origin": "model",
-          "fingerprint": "639afe02634e",
-          "attempts": 14,
-          "at": "2026-10-14T10:40:41.458Z"
+          "fingerprint": "d94aebe08153",
+          "attempts": 15,
+          "at": "2026-10-16T12:09:26.850Z"
         },
         "new-well-count|Q2 FY26": {
           "value": null,
           "unit": "wells",
           "sourceTag": null,
-          "note": "Q4 FY25: Only full-year FY25 well count stated (578 wells: 109 exploratory + 469 development); Q4 alone not disclosed. Q2 FY26: No quarterly well count stated. Q1 FY27: No quarterly well count stated. The 9M FY25 figure (413 wells: 353 deve",
+          "note": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 drilling of 413 wells (353 development + 60 exploratory) and FY24 full-year of 544 wells (441 development + 103 exploratory). Q4 FY25 concall mentions 'record 578 wells drilled' for FY25 full ye",
           "origin": "model",
-          "fingerprint": "639afe02634e",
-          "attempts": 14,
-          "at": "2026-10-14T10:40:41.458Z"
+          "fingerprint": "d94aebe08153",
+          "attempts": 15,
+          "at": "2026-10-16T12:09:26.850Z"
         },
         "gas-production|Q3 FY25": {
           "value": 4.97,
@@ -1515,9 +1515,9 @@
           "sourceTag": null,
           "note": "From Screener Insights row \"Natural Gas Production (Standalone)\" (Standalone data); latest value cited to Presentation - 03 Feb 2025, page 7.",
           "origin": "insights",
-          "fingerprint": "639afe02634e",
-          "attempts": 96,
-          "at": "2026-10-16T10:16:07.073Z"
+          "fingerprint": "d94aebe08153",
+          "attempts": 97,
+          "at": "2026-10-16T12:09:18.132Z"
         },
         "production-volume|Q1 FY27": {
           "value": null,
@@ -1525,9 +1525,9 @@
           "sourceTag": null,
           "note": "From Screener Insights row \"Crude Oil Production (Standalone)\" (Standalone data); latest value cited to Presentation - 03 Feb 2025, page 7.",
           "origin": "insights",
-          "fingerprint": "639afe02634e",
-          "attempts": 82,
-          "at": "2026-10-16T10:16:07.073Z"
+          "fingerprint": "d94aebe08153",
+          "attempts": 83,
+          "at": "2026-10-16T12:09:18.132Z"
         },
         "gas-production|Q1 FY27": {
           "value": null,
@@ -1535,32 +1535,32 @@
           "sourceTag": null,
           "note": "From Screener Insights row \"Natural Gas Production (Standalone)\" (Standalone data); latest value cited to Presentation - 03 Feb 2025, page 7.",
           "origin": "insights",
-          "fingerprint": "639afe02634e",
-          "attempts": 82,
-          "at": "2026-10-16T10:16:07.073Z"
+          "fingerprint": "d94aebe08153",
+          "attempts": 83,
+          "at": "2026-10-16T12:09:18.132Z"
         },
         "capex-vs-budget|Q1 FY27": {
           "value": null,
           "unit": "₹ cr",
           "sourceTag": null,
-          "note": "Q4 FY25: No capex vs budget metric stated; only full-year FY25 capex (45,335 cr including OPaL equity infusion of 18,365 cr) and planned FY26 capex (36,920 cr) mentioned. Q2 FY26: No capex vs budget figure stated. Q1 FY27: No capex vs budge",
+          "note": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 capex of ₹45,335 cr (including OPaL equity infusion of ₹18,365 cr) and planned FY26 capex of ₹36,920 cr, but does not state Q4 FY25 actual capex or budget vs actual. Q2 FY26 and Q1 FY27: No cape",
           "origin": "model",
-          "fingerprint": "639afe02634e",
-          "attempts": 9,
-          "at": "2026-10-14T10:40:41.458Z"
+          "fingerprint": "d94aebe08153",
+          "attempts": 10,
+          "at": "2026-10-16T12:09:26.850Z"
         },
         "new-well-count|Q1 FY27": {
           "value": null,
           "unit": "wells",
           "sourceTag": null,
-          "note": "Q4 FY25: Only full-year FY25 well count stated (578 wells: 109 exploratory + 469 development); Q4 alone not disclosed. Q2 FY26: No quarterly well count stated. Q1 FY27: No quarterly well count stated. The 9M FY25 figure (413 wells: 353 deve",
+          "note": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 drilling of 413 wells (353 development + 60 exploratory) and FY24 full-year of 544 wells (441 development + 103 exploratory). Q4 FY25 concall mentions 'record 578 wells drilled' for FY25 full ye",
           "origin": "model",
-          "fingerprint": "639afe02634e",
-          "attempts": 9,
-          "at": "2026-10-14T10:40:41.458Z"
+          "fingerprint": "d94aebe08153",
+          "attempts": 10,
+          "at": "2026-10-16T12:09:26.850Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.073Z"
+      "updatedAt": "2026-10-16T12:09:26.850Z"
     },
     "oil-india": {
       "cells": {
@@ -1731,8 +1731,8 @@
           "note": "From Screener Insights row \"Natural Gas Production\" (Standalone data); latest value cited to Concall Transcript - 21 Nov 2025, page 4.",
           "origin": "insights",
           "fingerprint": "28a7c68b73bb",
-          "attempts": 94,
-          "at": "2026-10-16T10:16:07.085Z"
+          "attempts": 95,
+          "at": "2026-10-16T12:09:26.865Z"
         },
         "nrl-throughput|Q1 FY26": {
           "value": 799,
@@ -1834,7 +1834,7 @@
           "at": "2026-08-13T07:13:14.450Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.085Z"
+      "updatedAt": "2026-10-16T12:09:26.865Z"
     },
     "jindal-drilling": {
       "cells": {
@@ -2145,7 +2145,7 @@
           "at": "2026-10-10T11:31:18.857Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.112Z"
+      "updatedAt": "2026-10-16T12:09:26.885Z"
     },
     "lt": {
       "cells": {
@@ -2268,7 +2268,7 @@
           "at": "2026-10-10T11:31:32.526Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.147Z"
+      "updatedAt": "2026-10-16T12:09:26.920Z"
     },
     "ratnamani": {
       "cells": {
@@ -2746,7 +2746,7 @@
           "at": "2026-09-07T13:21:57.636Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.161Z"
+      "updatedAt": "2026-10-16T12:09:26.939Z"
     },
     "reliance": {
       "cells": {
@@ -2894,8 +2894,8 @@
           "note": "From Screener Insights row \"O2C Refinery Throughput\"; latest value cited to Presentation - 17 Oct 2025, page 49.",
           "origin": "insights",
           "fingerprint": "16e63fe05f89",
-          "attempts": 92,
-          "at": "2026-10-16T10:16:07.173Z"
+          "attempts": 93,
+          "at": "2026-10-16T12:09:26.958Z"
         },
         "throughput|Q4 FY26": {
           "value": 19.5,
@@ -2952,8 +2952,8 @@
           "note": "From Screener Insights row \"KG D6 Gas Production (RIL Share)\"; latest value cited to Presentation - 17 Oct 2025, page 44.",
           "origin": "insights",
           "fingerprint": "16e63fe05f89",
-          "attempts": 92,
-          "at": "2026-10-16T10:16:07.173Z"
+          "attempts": 93,
+          "at": "2026-10-16T12:09:26.958Z"
         },
         "kgd6-gas-production|Q4 FY26": {
           "value": 59.6,
@@ -2999,7 +2999,7 @@
           "at": "2026-07-30T08:00:49.896Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.175Z"
+      "updatedAt": "2026-10-16T12:09:26.960Z"
     },
     "iocl": {
       "cells": {
@@ -3587,7 +3587,7 @@
           "at": "2026-10-10T11:31:59.502Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.183Z"
+      "updatedAt": "2026-10-16T12:09:26.970Z"
     },
     "bpcl": {
       "cells": {
@@ -3895,8 +3895,8 @@
           "note": "From Screener Insights row \"Gross Refining Margin (GRM)\"; latest value cited to Concall Transcript - 02 May 2025, page 3.",
           "origin": "insights",
           "fingerprint": "fc0f5a601a0d",
-          "attempts": 32,
-          "at": "2026-10-16T10:16:07.189Z"
+          "attempts": 33,
+          "at": "2026-10-16T12:09:26.979Z"
         },
         "marketing-margin|Q4 FY26": {
           "value": null,
@@ -3915,8 +3915,8 @@
           "note": "From Screener Insights row \"Refinery Crude Throughput\"; latest value cited to Concall Transcript - 02 May 2025, page 3.",
           "origin": "insights",
           "fingerprint": "fc0f5a601a0d",
-          "attempts": 32,
-          "at": "2026-10-16T10:16:07.189Z"
+          "attempts": 33,
+          "at": "2026-10-16T12:09:26.979Z"
         },
         "market-sales|Q4 FY26": {
           "value": null,
@@ -3925,8 +3925,8 @@
           "note": "From Screener Insights row \"Market Sales\"; latest value cited to Concall Transcript - 02 May 2025, page 3.",
           "origin": "insights",
           "fingerprint": "fc0f5a601a0d",
-          "attempts": 32,
-          "at": "2026-10-16T10:16:07.189Z"
+          "attempts": 33,
+          "at": "2026-10-16T12:09:26.979Z"
         },
         "refinery-utilisation|Q4 FY26": {
           "value": 116,
@@ -3940,7 +3940,7 @@
           "at": "2026-09-21T11:24:04.165Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.189Z"
+      "updatedAt": "2026-10-16T12:09:26.979Z"
     },
     "hpcl": {
       "cells": {
@@ -4090,8 +4090,8 @@
           "note": "From Screener Insights row \"Refining Capacity Utilization\" (Standalone data); latest value cited to Presentation - 21 Jan 2026, page 21.",
           "origin": "insights",
           "fingerprint": "54a83462f828",
-          "attempts": 96,
-          "at": "2026-10-16T10:16:07.197Z"
+          "attempts": 97,
+          "at": "2026-10-16T12:09:26.991Z"
         },
         "refinery-utilisation|Q3 FY26": {
           "value": 108,
@@ -4116,8 +4116,8 @@
           "note": "From Screener Insights row \"Refining Capacity Utilization\" (Standalone data); latest value cited to Presentation - 21 Jan 2026, page 21.",
           "origin": "insights",
           "fingerprint": "54a83462f828",
-          "attempts": 96,
-          "at": "2026-10-16T10:16:07.197Z"
+          "attempts": 97,
+          "at": "2026-10-16T12:09:26.991Z"
         },
         "refinery-utilisation|Q1 FY27": {
           "value": null,
@@ -4126,11 +4126,11 @@
           "note": "From Screener Insights row \"Refining Capacity Utilization\" (Standalone data); latest value cited to Presentation - 21 Jan 2026, page 21.",
           "origin": "insights",
           "fingerprint": "54a83462f828",
-          "attempts": 96,
-          "at": "2026-10-16T10:16:07.197Z"
+          "attempts": 97,
+          "at": "2026-10-16T12:09:26.991Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.197Z"
+      "updatedAt": "2026-10-16T12:09:26.991Z"
     },
     "gail": {
       "cells": {
@@ -4609,7 +4609,7 @@
           "at": "2026-10-09T12:14:48.854Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.204Z"
+      "updatedAt": "2026-10-16T12:09:27.001Z"
     },
     "mahanagar-gas": {
       "cells": {
@@ -5055,7 +5055,7 @@
           "at": "2026-08-08T06:23:31.700Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:07.227Z"
+      "updatedAt": "2026-10-16T12:09:27.038Z"
     },
     "gujarat-gas": {
       "cells": {
@@ -5416,8 +5416,8 @@
           "note": "From Screener Insights row \"LPG Throughput Capacity\"; latest value cited to Presentation - 30 May 2026, page 23.",
           "origin": "insights",
           "fingerprint": "747fa9d3e927",
-          "attempts": 95,
-          "at": "2026-10-16T10:16:07.241Z"
+          "attempts": 96,
+          "at": "2026-10-16T12:09:27.059Z"
         },
         "lpg-throughput-capacity|Q3 FY26": {
           "value": null,
@@ -5426,8 +5426,8 @@
           "note": "From Screener Insights row \"LPG Throughput Capacity\"; latest value cited to Presentation - 30 May 2026, page 23.",
           "origin": "insights",
           "fingerprint": "747fa9d3e927",
-          "attempts": 96,
-          "at": "2026-10-16T10:16:07.241Z"
+          "attempts": 97,
+          "at": "2026-10-16T12:09:27.059Z"
         },
         "lpg-throughput-capacity|Q4 FY26": {
           "value": 19600,
@@ -5515,7 +5515,7 @@
           "at": "2026-10-16T10:16:12.067Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:12.067Z"
+      "updatedAt": "2026-10-16T12:09:27.059Z"
     },
     "aegis-vopak": {
       "cells": {
@@ -5650,7 +5650,7 @@
           "at": "2026-10-14T10:40:47.517Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:12.079Z"
+      "updatedAt": "2026-10-16T12:09:27.070Z"
     },
     "supreme-petrochem": {
       "cells": {
@@ -5830,7 +5830,7 @@
           "at": "2026-09-14T13:41:18.399Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:12.092Z"
+      "updatedAt": "2026-10-16T12:09:27.078Z"
     },
     "castrol-india": {
       "cells": {
@@ -5913,7 +5913,7 @@
           "at": "2026-10-10T11:32:36.704Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:12.105Z"
+      "updatedAt": "2026-10-16T12:09:27.086Z"
     },
     "gandhar-oil": {
       "cells": {
@@ -6224,7 +6224,7 @@
           "at": "2026-10-15T10:25:17.227Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:12.118Z"
+      "updatedAt": "2026-10-16T12:09:27.095Z"
     },
     "linde-india": {
       "cells": {
@@ -6408,7 +6408,7 @@
           "at": "2026-10-11T11:45:04.886Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:12.132Z"
+      "updatedAt": "2026-10-16T12:09:27.111Z"
     },
     "ge-shipping": {
       "cells": {
@@ -7009,7 +7009,7 @@
           "at": "2026-10-10T11:32:59.448Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:12.142Z"
+      "updatedAt": "2026-10-16T12:09:27.123Z"
     },
     "shipping-corp": {
       "cells": {
@@ -7126,7 +7126,7 @@
           "at": "2026-10-05T15:29:46.316Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:12.148Z"
+      "updatedAt": "2026-10-16T12:09:27.132Z"
     },
     "thermax": {
       "cells": {
@@ -7221,7 +7221,7 @@
           "at": "2026-07-29T09:25:17.274Z"
         }
       },
-      "updatedAt": "2026-10-16T10:16:12.153Z"
+      "updatedAt": "2026-10-16T12:09:27.139Z"
     },
     "asian-energy": {
       "cells": {

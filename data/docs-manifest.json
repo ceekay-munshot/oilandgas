@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-16T10:16:01.137Z",
+  "generatedAt": "2026-10-16T12:08:52.385Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -19,7 +19,7 @@
       "url": "https://www.screener.in/company/ONGC/consolidated/",
       "analysis": {
         "pros": 2,
-        "cons": 1
+        "cons": 2
       },
       "summariesAvailable": 12,
       "transcriptsFound": 12,
@@ -117,9 +117,9 @@
         "url": "https://ongcindia.com/documents/77751/2660534/InvestorPresentation_Q3-FY25.pdf/551ceb5b-6e93-7f8b-16e6-85b057d0e079",
         "source": "ongcindia.com",
         "status": "ok",
-        "chars": 17803,
-        "pages": null,
-        "via": "firecrawl",
+        "chars": 17552,
+        "pages": 40,
+        "via": "browser",
         "cache": "pipeline/cache/docs/ONGC/ppt-2025-02.txt"
       },
       "transcripts": [
@@ -373,11 +373,12 @@
           "periodIso": "2025-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5a0fd0bf-4d5b-45ce-8d07-d7ddb54c36bb.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 46014,
-          "pages": 19,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2025-08.txt"
+          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2025-08.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5a0fd0bf-4d5b-45ce-8d07-d7ddb54c36"
         },
         {
           "type": "transcript",
@@ -386,11 +387,12 @@
           "periodIso": "2025-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5a0fd0bf-4d5b-45ce-8d07-d7ddb54c36bb.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 46014,
-          "pages": 19,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2025-08.txt"
+          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2025-08.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5a0fd0bf-4d5b-45ce-8d07-d7ddb54c36"
         }
       ]
     },
@@ -1850,9 +1852,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 95882,
+          "pages": 31,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -4674,7 +4676,7 @@
       "url": "https://www.screener.in/company/THERMAX/consolidated/",
       "analysis": {
         "pros": 0,
-        "cons": 2
+        "cons": 3
       },
       "summariesAvailable": 43,
       "transcriptsFound": 42,
