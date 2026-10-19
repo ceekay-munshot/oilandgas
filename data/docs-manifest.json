@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-18T11:54:46.424Z",
+  "generatedAt": "2026-10-19T11:15:29.821Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -19,7 +19,7 @@
       "url": "https://www.screener.in/company/ONGC/consolidated/",
       "analysis": {
         "pros": 2,
-        "cons": 2
+        "cons": 1
       },
       "summariesAvailable": 12,
       "transcriptsFound": 12,
@@ -321,9 +321,9 @@
           "periodIso": "2026-07",
           "url": "https://www.deepindustries.com/docs/TranscriptQ1.pdf",
           "source": "deepindustries.com",
-          "status": "http_429",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 54080,
+          "pages": 20,
           "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt"
         },
@@ -4963,9 +4963,9 @@
         "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=be95fa4c-8d7f-479a-8c3a-d3bbc98a1cb8.pdf",
         "source": "bseindia.com",
         "status": "ok",
-        "chars": 23282,
-        "pages": 34,
-        "via": "browser",
+        "chars": 24095,
+        "pages": null,
+        "via": "firecrawl",
         "cache": "pipeline/cache/docs/ASIANENE/ppt-2026-08.txt"
       },
       "transcripts": [
