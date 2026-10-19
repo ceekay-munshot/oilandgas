@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-10-17T10:58:51.630Z",
+  "generatedAt": "2026-10-19T13:44:14.879Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -147,7 +147,7 @@
             },
             {
               "date": "2026-10-01",
-              "value": 122.01,
+              "value": 121.25,
               "partial": true
             }
           ]
@@ -309,7 +309,7 @@
       "status": "live",
       "source": "Trading Economics - naphtha spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-10-15",
+      "asOf": "2026-10-16",
       "lines": [
         {
           "id": "naphtha",
@@ -321,11 +321,11 @@
           "source": "Trading Economics - naphtha spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-10-15",
+          "asOf": "2026-10-16",
           "series": [
             {
-              "date": "2026-10-15",
-              "value": 877.9,
+              "date": "2026-10-16",
+              "value": 912.78,
               "spot": true
             }
           ]
@@ -372,7 +372,7 @@
           "color": "#0891B2",
           "primary": false,
           "status": "live",
-          "source": "PPAC, Ministry of Petroleum & Natural Gas - domestic gas notification for 1 October 2026 to 31 October 2026, issued 2026-09-30 (https://ppac.gov.in/download.php?file=importantnews/1790767940_Domestic_Natural_Gas_Price_October_2026.pdf)",
+          "source": "PPAC, Ministry of Petroleum & Natural Gas - domestic gas notification for 1 October 2026 to 31 October 2026, issued 2026-09-30 (https://ppac.gov.in/download.php?file=gasprice/1790767900_Domestic_Natural_Gas_Price_October_2026.pdf)",
           "sourceTag": "official",
           "notes": "ONGC/OIL nomination-gas ceiling of $7.00/mmbtu, below the notified price of $11.22. This month only - PPAC publishes each month as a separate scanned notification.",
           "asOf": "2026-10-01",
