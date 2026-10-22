@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-22T10:38:47.231Z",
+  "generatedAt": "2026-10-22T12:38:19.488Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -321,12 +321,11 @@
           "periodIso": "2026-07",
           "url": "https://www.deepindustries.com/docs/TranscriptQ1.pdf",
           "source": "deepindustries.com",
-          "status": "error",
+          "status": "http_429",
           "chars": 0,
           "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.deepindustries.com/docs/TranscriptQ1.pdf\n    - user-agent: Mozilla/5.0 (X11; Li"
+          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt"
         },
         {
           "type": "transcript",
@@ -3925,9 +3924,9 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b2502bf8-680b-48ed-a5f0-5409b7938365.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 40455,
-          "pages": 14,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-05.txt"
         },

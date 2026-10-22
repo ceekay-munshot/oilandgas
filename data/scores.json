@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-22T10:39:19.426Z",
+  "generatedAt": "2026-10-22T12:39:01.337Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -108,7 +108,7 @@
       ]
     },
     "coincident": {
-      "score": -10,
+      "score": -12,
       "prev": -37,
       "delta": -1,
       "deltaBasis": "kpi-only",
@@ -205,13 +205,6 @@
         },
         {
           "kind": "tone",
-          "companyId": "castrol-india",
-          "company": "Castrol India",
-          "label": "Spread / demand commentary",
-          "flag": "tone-up"
-        },
-        {
-          "kind": "tone",
           "companyId": "gandhar-oil",
           "company": "Gandhar Oil",
           "label": "Spread / demand commentary",
@@ -263,7 +256,7 @@
     }
   },
   "divergence": {
-    "value": 10,
+    "value": 12,
     "leadingSign": 0,
     "coincidentSign": -1,
     "signsDiffer": false
@@ -281,14 +274,14 @@
     "ruleLabel": "No bucket far enough from zero to place the cycle",
     "confidence": "low",
     "because": [
-      "Leading 0 (flat), coincident -10 (negative), lagging 100 (strong-positive).",
+      "Leading 0 (flat), coincident -12 (negative), lagging 100 (strong-positive).",
       "No bucket far enough from zero to place the cycle."
     ]
   },
   "macro": {
-    "supporting": 2,
+    "supporting": 1,
     "opposing": 0,
-    "silent": 4,
+    "silent": 5,
     "macroBias": "up",
     "scoreBias": "up",
     "agree": true,
@@ -305,10 +298,10 @@
       {
         "id": "crack-spread",
         "label": "Crack spread",
-        "direction": "rising",
+        "direction": "flat",
         "percentile": 82,
         "supports": "up",
-        "vote": "supports"
+        "vote": "silent"
       },
       {
         "id": "naphtha",
@@ -330,7 +323,7 @@
         "id": "inr-usd",
         "label": "USD/INR",
         "direction": "flat",
-        "percentile": 100,
+        "percentile": 91,
         "supports": "down",
         "vote": "silent"
       },
@@ -362,16 +355,6 @@
       "from": "cautious",
       "to": "confident",
       "fromQuarter": "Q2 FY26",
-      "quarter": "Q1 FY27",
-      "steps": 3,
-      "direction": "up"
-    },
-    {
-      "companyId": "castrol-india",
-      "name": "Castrol India",
-      "from": "cautious",
-      "to": "confident",
-      "fromQuarter": "Q4 FY26",
       "quarter": "Q1 FY27",
       "steps": 3,
       "direction": "up"
@@ -454,12 +437,6 @@
       "text": "ONGC moved 3 tone steps up (cautious → confident) in Q1 FY27."
     },
     {
-      "id": "tone-castrol-india",
-      "severity": "info",
-      "kind": "tone-drift",
-      "text": "Castrol India moved 3 tone steps up (cautious → confident) in Q1 FY27."
-    },
-    {
       "id": "tone-gandhar-oil",
       "severity": "info",
       "kind": "tone-drift",
@@ -509,17 +486,17 @@
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude rising (100th pctile); Crack spread rising (82th pctile); USD/INR flat (100th pctile)."
+      "text": "Crude rising (100th pctile); Crack spread flat (82th pctile); USD/INR flat (91th pctile)."
     },
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +10. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +12. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); Castrol India (cautious → confident); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 2 more."
+      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); Gujarat Gas (neutral → confident); and 1 more."
     },
     {
       "id": "implication",
@@ -912,7 +889,7 @@
       "label": "Spread / demand commentary",
       "bucket": "coincident",
       "listenFor": "Auto/industrial offtake trend - tracks broad economic activity, not just crude",
-      "state": "3 companies heard, leaning positive (3 positive, 0 negative); Castrol India moved 3 steps up, Gandhar Oil moved 3 steps up.",
+      "state": "3 companies heard, leaning positive (3 positive, 0 negative); Gandhar Oil moved 3 steps up.",
       "mood": "positive",
       "members": [
         {
@@ -931,7 +908,7 @@
           "quarter": "Q1 FY27",
           "direction": "positive",
           "driver": "broad-based volume growth",
-          "drift": 3
+          "drift": 0
         },
         {
           "companyId": "gandhar-oil",
@@ -945,15 +922,6 @@
       ],
       "drivers": [
         {
-          "companyId": "castrol-india",
-          "name": "Castrol India",
-          "toneId": "confident",
-          "quarter": "Q1 FY27",
-          "direction": "positive",
-          "driver": "broad-based volume growth",
-          "drift": 3
-        },
-        {
           "companyId": "gandhar-oil",
           "name": "Gandhar Oil",
           "toneId": "confident",
@@ -961,28 +929,38 @@
           "direction": "positive",
           "driver": "profitability",
           "drift": 3
+        },
+        {
+          "companyId": "supreme-petrochem",
+          "name": "Supreme Petrochem",
+          "toneId": "confident",
+          "quarter": "Q1 FY27",
+          "direction": "positive",
+          "driver": "styrene-polystyrene margin spread",
+          "drift": 1
         }
       ]
     }
   ],
   "changes": [
     {
-      "kind": "alert",
-      "text": "New alert: Castrol India moved 3 tone steps up (cautious → confident) in Q1 FY27."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-21T12:38:15.351Z",
+    "generatedAt": "2026-10-22T10:39:19.426Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": null,
     "scores": {
       "leading": 0,
-      "coincident": -12,
+      "coincident": -10,
       "lagging": 100
     },
     "alertIds": [
       "coverage-lagging",
+      "tone-castrol-india",
       "tone-gandhar-oil",
       "tone-gujarat-gas",
       "tone-ongc",
