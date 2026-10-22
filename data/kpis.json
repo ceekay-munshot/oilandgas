@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-21T12:37:49.578Z",
+  "generatedAt": "2026-10-22T10:38:53.006Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -4305,15 +4305,15 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31596,
+      "ctxChars": 31597,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -4321,27 +4321,31 @@
           "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            8,
             7,
+            7.5,
             7.5,
             5
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
+            "company-filing",
             "company-filing"
           ],
           "origins": [
             "model",
             "model",
-            "model",
+            "insights",
             "insights"
           ],
           "citations": [
             null,
             null,
-            null,
+            {
+              "doc": "Concall Transcript - 04 May 2026",
+              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
+              "page": 6
+            },
             {
               "doc": "Presentation - 21 Aug 2026",
               "quote": "Average growth in volume sold vs 2Q 2025",
@@ -4349,9 +4353,9 @@
             }
           ],
           "oneOffs": [
-            null,
             "No Q2 FY26 data",
             "No Q3 FY26 data",
+            null,
             null
           ],
           "flag": null,
