@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-23T10:32:34.717Z",
+  "generatedAt": "2026-10-23T12:23:30.165Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -321,12 +321,11 @@
           "periodIso": "2026-07",
           "url": "https://www.deepindustries.com/docs/TranscriptQ1.pdf",
           "source": "deepindustries.com",
-          "status": "error",
+          "status": "http_429",
           "chars": 0,
           "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.deepindustries.com/docs/TranscriptQ1.pdf\n    - user-agent: Mozilla/5.0 (X11; Li"
+          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt"
         },
         {
           "type": "transcript",
@@ -1536,7 +1535,7 @@
       "url": "https://www.screener.in/company/WELCORP/consolidated/",
       "analysis": {
         "pros": 1,
-        "cons": 3
+        "cons": 2
       },
       "summariesAvailable": 24,
       "transcriptsFound": 23,
@@ -2490,7 +2489,7 @@
       "view": "consolidated",
       "url": "https://www.screener.in/company/GAIL/consolidated/",
       "analysis": {
-        "pros": 2,
+        "pros": 1,
         "cons": 1
       },
       "summariesAvailable": 25,

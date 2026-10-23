@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-23T10:32:40.040Z",
+  "generatedAt": "2026-10-23T12:23:35.732Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -1271,7 +1271,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32465,
+      "ctxChars": 31212,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -1309,7 +1309,7 @@
             null
           ],
           "flag": null,
-          "notes": "No offshore rig utilisation percentage data found in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The excerpts provide rig counts (operating vs total fleet), contract status, and dehire/refurbishment schedules, but do not "
+          "notes": "Rig utilisation percentage not explicitly stated in any of the excerpts. Q1 FY26 concall mentions '4 rigs operating' and '1 rig under refurbishment' but no utilisation % given. Q2 FY26 concall mentions '4 rigs operating with ONGC' and refur"
         },
         {
           "id": "charter-day-rate",
@@ -1780,7 +1780,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34150,
+      "ctxChars": 34103,
       "kpis": [
         {
           "id": "order-book",
@@ -1872,7 +1872,7 @@
             null
           ],
           "flag": null,
-          "notes": "No line-pipe order inflow figures stated for any of the four quarters (Q2 FY26, Q3 FY26, Q4 FY26, Q1 FY27). The excerpts report order book (stock measure) at various quarter-ends: ₹23,500 cr at Q2 FY26 end, ₹23,600 cr at Q3 FY26 end, ₹25,35"
+          "notes": "Order inflow (new orders received in the quarter) is not stated in any excerpt. The excerpts report order book (stock measure) at various quarter-ends: Q2 FY26 ₹23,500 cr, Q3 FY26 ₹23,600 cr, Q4 FY26 ₹25,350 cr, Q1 FY27 ₹24,750 cr. The Q2 F"
         },
         {
           "id": "line-pipe-volume",
@@ -3095,7 +3095,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31929,
+      "ctxChars": 31882,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -3187,7 +3187,7 @@
             null
           ],
           "flag": null,
-          "notes": "No petchem margin in $/t stated in any excerpt. Q1 FY26 concall mentions Pata segment loss of ₹249 cr and polymer price decline ~₹1,000/MT QoQ, plus delivered gas cost ~$10.5-10.6/MMBtu, but no margin per tonne. Q2 FY26 concall mentions los"
+          "notes": "Petchem margin in $/t not stated in any excerpt. Q1 FY26 concall mentions Pata segment loss of ₹249 cr and polymer production 177 TMT, Q2 FY26 mentions loss ₹299 cr on 220 TMT, Q3 FY26 mentions loss ₹483 cr on 219 TMT, Q1 FY27 mentions loss"
         },
         {
           "id": "gas-marketing-volume",
