@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-22T12:38:35.247Z",
+  "generatedAt": "2026-10-23T10:32:40.040Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -2953,7 +2953,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34182,
+      "ctxChars": 34107,
       "kpis": [
         {
           "id": "grm",
@@ -2991,7 +2991,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": "Q2 FY26: $8.8/bbl reported GRM from Q2 concall AI summary; management clarified excluding inventory it was ~$8/bbl. Q3 FY26: No GRM figure stated in Q3 excerpts. Q4 FY26: Q3 concall AI summary (reporting Q3 FY26) states 'Reported GRM: $8.85"
+          "notes": "Q2 FY26: $8.8/bbl stated in Q2 AI summary (management clarified ~$8/bbl ex-inventory). Q3 FY26: $8.85/bbl stated in Q3 AI summary, but management noted Mumbai contamination impact; ex-contamination would have been $10.24/bbl - this is a one"
         },
         {
           "id": "marketing-margin",
@@ -3029,7 +3029,7 @@
             null
           ],
           "flag": null,
-          "notes": "No marketing margin per liter figures stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. LPG under-recoveries per cylinder were mentioned (Q1 FY27: ₹510/cylinder average; Q4 FY26: ~₹170/cylinder April, ~₹670/cylinder M"
+          "notes": "No marketing margin per liter figures stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. LPG under-recoveries are mentioned (Q4 FY26: ~₹1,350 cr; Q1 FY27: ₹510/cylinder average) but these are absolute amounts or per-cy"
         },
         {
           "id": "throughput",
@@ -3095,7 +3095,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31882,
+      "ctxChars": 31929,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -3187,7 +3187,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated in any excerpt. Q1 FY26 concall mentions Pata segment loss of ₹249 cr and polymer production 177 TMT, Q2 FY26 mentions loss ₹299 cr on 220 TMT, Q3 FY26 mentions loss ₹483 cr on 219 TMT, Q1 FY27 mentions loss"
+          "notes": "No petchem margin in $/t stated in any excerpt. Q1 FY26 concall mentions Pata segment loss of ₹249 cr and polymer price decline ~₹1,000/MT QoQ, plus delivered gas cost ~$10.5-10.6/MMBtu, but no margin per tonne. Q2 FY26 concall mentions los"
         },
         {
           "id": "gas-marketing-volume",
@@ -4305,15 +4305,15 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31596,
+      "ctxChars": 31597,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -4321,27 +4321,31 @@
           "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            8,
             7,
+            7.5,
             7.5,
             5
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
+            "company-filing",
             "company-filing"
           ],
           "origins": [
             "model",
             "model",
-            "model",
+            "insights",
             "insights"
           ],
           "citations": [
             null,
             null,
-            null,
+            {
+              "doc": "Concall Transcript - 04 May 2026",
+              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
+              "page": 6
+            },
             {
               "doc": "Presentation - 21 Aug 2026",
               "quote": "Average growth in volume sold vs 2Q 2025",
@@ -4349,9 +4353,9 @@
             }
           ],
           "oneOffs": [
-            null,
             "No Q2 FY26 data",
             "No Q3 FY26 data",
+            null,
             null
           ],
           "flag": null,
@@ -5188,7 +5192,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21382,
+      "ctxChars": 21434,
       "kpis": [
         {
           "id": "freight-rate",

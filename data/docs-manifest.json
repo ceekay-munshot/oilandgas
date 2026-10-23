@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-22T12:38:19.488Z",
+  "generatedAt": "2026-10-23T10:32:34.717Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -321,11 +321,12 @@
           "periodIso": "2026-07",
           "url": "https://www.deepindustries.com/docs/TranscriptQ1.pdf",
           "source": "deepindustries.com",
-          "status": "http_429",
+          "status": "error",
           "chars": 0,
           "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt"
+          "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.deepindustries.com/docs/TranscriptQ1.pdf\n    - user-agent: Mozilla/5.0 (X11; Li"
         },
         {
           "type": "transcript",
@@ -2298,12 +2299,26 @@
       "view": "consolidated",
       "url": "https://www.screener.in/company/HINDPETRO/consolidated/",
       "analysis": {
-        "pros": 5,
+        "pros": 3,
         "cons": 2
       },
-      "summariesAvailable": 12,
+      "summariesAvailable": 13,
       "transcriptsFound": 9,
       "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Oct 2026",
+          "periodIso": "2026-10",
+          "url": "https://www.screener.in/concalls/summary/23339697/",
+          "source": "screener.in",
+          "status": "gated",
+          "chars": 72,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/HINDPETRO/summary-2026-10.txt",
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
+        },
         {
           "type": "summary",
           "role": "summary",
@@ -2373,20 +2388,6 @@
           "via": "browser",
           "cache": "pipeline/cache/docs/HINDPETRO/summary-2025-10.txt",
           "sample": "Q2 FY26: Earnings quality, operating momentum and balance-sheet trajectory Profitability and consistency H1 PAT: INR 8,201 cr ( +731% YoY ), with management not"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Aug 2025",
-          "periodIso": "2025-08",
-          "url": "https://www.screener.in/concalls/summary/23030679/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 10052,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/HINDPETRO/summary-2025-08.txt",
-          "sample": "Q1 FY26 performance snapshot (what drove the quarter) Refining throughput surged: 6.6 MMT (+ 15.6% YoY ) with 109% capacity utilization , aided by prior capacit"
         }
       ],
       "ppt": {
@@ -2489,7 +2490,7 @@
       "view": "consolidated",
       "url": "https://www.screener.in/company/GAIL/consolidated/",
       "analysis": {
-        "pros": 1,
+        "pros": 2,
         "cons": 1
       },
       "summariesAvailable": 25,
@@ -3924,9 +3925,9 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b2502bf8-680b-48ed-a5f0-5409b7938365.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 40455,
+          "pages": 14,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-05.txt"
         },
@@ -4590,7 +4591,7 @@
       "view": "consolidated",
       "url": "https://www.screener.in/company/SCI/consolidated/",
       "analysis": {
-        "pros": 1,
+        "pros": 2,
         "cons": 5
       },
       "summariesAvailable": 2,
