@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-23T12:22:01.479Z",
+  "generatedAt": "2026-10-24T09:53:18.541Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -22,10 +22,10 @@
         "Sep 2024",
         "Dec 2024",
         "Mar 2025",
-        "Aug 2025",
+        "Jun 2025",
         "Nov 2025",
         "Mar 2026",
-        "Jul 2026"
+        "Jun 2026"
       ],
       "periodsIso": [
         "2023-06",
@@ -36,10 +36,10 @@
         "2024-09",
         "2024-12",
         "2025-03",
-        "2025-08",
+        "2025-06",
         "2025-11",
         "2026-03",
-        "2026-07"
+        "2026-06"
       ],
       "rows": [
         {
@@ -55,7 +55,7 @@
             1195,
             1200,
             1210,
-            1246,
+            3050,
             2960,
             3007,
             3047
@@ -102,9 +102,9 @@
               "page": 22
             },
             {
-              "doc": "Presentation - 30 Jan 2025",
-              "quote": "Order Book (Rs in Cr.) 976 1078 1160 1195 1200 1210 1246",
-              "page": 22
+              "doc": "Credit Rating - 09 Oct 2026",
+              "quote": "DIL has healthy orderbook of ₹3,047 (₹3,050 crore as on June 30, 2025)",
+              "page": 2
             },
             {
               "doc": "Presentation - 02 May 2025",
@@ -136,7 +136,7 @@
             null,
             14,
             null,
-            18,
+            null,
             18,
             null,
             20
@@ -158,11 +158,7 @@
               "page": 37
             },
             null,
-            {
-              "doc": "Presentation - 04 Aug 2025",
-              "quote": "Owns & operates 12 Workover Rigs with capacity ranging from 30T to 150T, 6 Drilling Rigs with capacity of 1000Hp.",
-              "page": 35
-            },
+            null,
             {
               "doc": "Presentation - 08 Nov 2025",
               "quote": "Owns & operates 12 Workover Rigs with capacity ranging from 30T to 150T, 6 Drilling Rigs with capacity of 1000Hp.",
@@ -192,7 +188,7 @@
             null,
             700,
             800,
-            750
+            550
           ],
           "citations": [
             null,
@@ -215,8 +211,8 @@
               "page": 5
             },
             {
-              "doc": "Concall Transcript - 29 Jul 2026",
-              "quote": "the bidding pipeline would be continuously hovering around INR700 crores to INR800 crores",
+              "doc": "Concall Transcript - 21 May 2026",
+              "quote": "It's close to around INR500 crores, INR600-odd crores",
               "page": 10
             }
           ]
@@ -237,7 +233,7 @@
             null,
             null,
             100,
-            100
+            90
           ],
           "citations": [
             {
@@ -260,9 +256,9 @@
               "page": 12
             },
             {
-              "doc": "Concall Transcript - 29 Jul 2026",
-              "quote": "Our fleet utilization is 100% in the segment as on date.",
-              "page": 5
+              "doc": "Credit Rating - 09 Oct 2026",
+              "quote": "As on June 30, 2026, asset deployment was strong at 90% for rigs",
+              "page": 2
             }
           ]
         },
@@ -279,7 +275,7 @@
             null,
             null,
             null,
-            null,
+            87000,
             null,
             null,
             87000
@@ -297,7 +293,11 @@
             null,
             null,
             null,
-            null,
+            {
+              "doc": "Presentation - 02 May 2025",
+              "quote": "Natural Gas Compressors packages ranging from 180 HP to 1,680 HP Compression capability with total capacity of ~87,000 HP.",
+              "page": 30
+            },
             null,
             null,
             {
@@ -2465,13 +2465,453 @@
     "jindal-drilling": {
       "name": "Jindal Drilling",
       "slug": "JINDRILL",
-      "view": "unknown",
+      "view": "quarterly",
       "url": "https://www.screener.in/company/JINDRILL/consolidated/#shareholding",
-      "via": null,
-      "toggled": null,
-      "periods": [],
-      "rows": [],
-      "note": "apiRequestContext.post: socket hang up\nCall log:\n  - → POST https://www.screener.in/insights/company/1620/quarter/?is_consolidated=1\n    - user-agent: Mozilla/5"
+      "via": "quarterly-fragment",
+      "toggled": "/insights/company/1620/quarter/?is_consolidated=1",
+      "note": null,
+      "periods": [
+        "Jan 2024",
+        "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
+        "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
+        "Mar 2026",
+        "Jun 2026"
+      ],
+      "periodsIso": [
+        "2024-01",
+        "2024-03",
+        "2024-06",
+        "2024-09",
+        "2024-12",
+        "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12",
+        "2026-03",
+        "2026-06"
+      ],
+      "rows": [
+        {
+          "label": "Rigs operating overseas (not with ONGC in India)",
+          "unit": "count",
+          "scope": null,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 29 Jan 2024",
+              "quote": "JV company deployed 1 offshore jack-up rig with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 21 May 2024",
+              "quote": "JV company deployed 1 offshore jack-up rig Jindal Pioneer with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "JV company deployed 1 offshore jack-up rig Jindal Pioneer with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "JV company deployed 1 offshore jack-up rig Jindal Pioneer with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "JV company deployed 1 offshore jack-up rig Jindal Pioneer with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Jindal Pioneer continues to operate with Saimexicana in Mexico",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "1 offshore jack-up rig is under refurbishment for next ONGC contract & 1 is engaged overseas",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "1 offshore jack-up rig is under refurbishment in UAE",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "1 offshore jack-up rig is under refurbishment in UAE",
+              "page": 4
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2026",
+              "quote": "is under Refurbishment in UAE and will be imported to India after completion of Refurbishment work",
+              "page": 110
+            },
+            {
+              "doc": "Presentation - 10 Aug 2026",
+              "quote": "1 offshore jack-up rig is under refurbishment in UAE",
+              "page": 4
+            }
+          ]
+        },
+        {
+          "label": "Day rate - Discovery-I (USD per operating day)",
+          "unit": "USD/day",
+          "scope": null,
+          "values": [
+            48324,
+            48324,
+            48324,
+            48324,
+            48324,
+            48324,
+            48324,
+            48324,
+            48324,
+            null,
+            48324
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 29 Jan 2024",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 21 May 2024",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Discovery-I May 23 - May 26 48,324",
+              "page": 6
+            },
+            null,
+            {
+              "doc": "Presentation - 10 Aug 2026",
+              "quote": "Discovery-I May 23 - October 26 48,324",
+              "page": 6
+            }
+          ]
+        },
+        {
+          "label": "Day rate - Jindal Supreme (USD per operating day)",
+          "unit": "USD/day",
+          "scope": null,
+          "values": [
+            40700,
+            40700,
+            40700,
+            40700,
+            88859,
+            88859,
+            88859,
+            88859,
+            88859,
+            null,
+            88859
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 29 Jan 2024",
+              "quote": "Jindal Supreme October 20 - January 24 40,700",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 21 May 2024",
+              "quote": "Jindal Supreme (upcoming contract) November 24 - November 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Jindal Supreme (upcoming contract) November 24 - November 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            },
+            null,
+            {
+              "doc": "Presentation - 10 Aug 2026",
+              "quote": "Jindal Supreme October 24 - October 27 88,859",
+              "page": 6
+            }
+          ]
+        },
+        {
+          "label": "Rig order book",
+          "unit": "Rs. crore",
+          "scope": null,
+          "values": [
+            2293,
+            2108,
+            1956,
+            1805,
+            1636,
+            1791,
+            1538,
+            1369,
+            1183,
+            null,
+            1310
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 29 Jan 2024",
+              "quote": "Total 273 2293",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 21 May 2024",
+              "quote": "Total 251 2108",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Total 232 1956",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Total 214 1805",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Total 190 1636",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Total 208 1791",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Total 180 1538",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Total 155 1369",
+              "page": 6
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Total 130 1183",
+              "page": 6
+            },
+            null,
+            {
+              "doc": "Presentation - 10 Aug 2026",
+              "quote": "Total 136 1310",
+              "page": 6
+            }
+          ]
+        },
+        {
+          "label": "Number of owned rigs",
+          "unit": "count",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            null,
+            3
+          ],
+          "citations": [
+            null,
+            null,
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Owns 3 offshore jack-up rigs",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            null,
+            {
+              "doc": "Presentation - 10 Aug 2026",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            }
+          ]
+        },
+        {
+          "label": "Number of rigs in fleet",
+          "unit": "count",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            5,
+            5,
+            5,
+            5,
+            6,
+            6,
+            6,
+            null,
+            6
+          ],
+          "citations": [
+            null,
+            null,
+            {
+              "doc": "Presentation - 30 Jul 2024",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 28 Oct 2024",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 27 Jan 2025",
+              "quote": "Operates 5 offshore jack-up rigs with ONGC in India of which 2 are owned",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 26 May 2025",
+              "quote": "Owns 3 offshore jack-up rigs; Operates 5 offshore jack-up rigs with ONGC in India",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jul 2025",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 04 Nov 2025",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            },
+            null,
+            {
+              "doc": "Presentation - 10 Aug 2026",
+              "quote": "Offshore jack up rigs – 3 owned & 3 rented",
+              "page": 4
+            }
+          ]
+        }
+      ]
     },
     "lt": {
       "name": "L&T",
@@ -3425,7 +3865,7 @@
             null,
             700,
             null,
-            1320
+            700
           ],
           "citations": [
             null,
@@ -3444,8 +3884,8 @@
             },
             null,
             {
-              "doc": "Credit Rating - 05 Aug 2026",
-              "quote": "aggregate capacity of 1.32 MTPA at three locations across India",
+              "doc": "Credit Rating - 15 Oct 2026",
+              "quote": "with an aggregate capacity of 1.32 MTPA at three locations across India and 0.70 MTPA capacity in the US.",
               "page": 2
             }
           ]
@@ -7402,7 +7842,7 @@
             null,
             null,
             2008,
-            null
+            2008
           ],
           "citations": [
             null,
@@ -7428,7 +7868,11 @@
               "quote": "9,52,000 KL 1,17,000 KL 3,34,000 KL 1,93,000 KL 83,000 KL 2,27,000 KL 1,02,000 KL Kandla Pipavav Mumbai Mangalore Kochi Haldia JNPT",
               "page": 27
             },
-            null
+            {
+              "doc": "Presentation - 16 Oct 2026",
+              "quote": "Total 2,008k 526k c.246k 165k",
+              "page": 11
+            }
           ]
         },
         {
@@ -7446,8 +7890,8 @@
             null,
             null,
             null,
-            247,
-            null
+            246,
+            245.8
           ],
           "citations": [
             null,
@@ -7469,11 +7913,15 @@
             null,
             null,
             {
-              "doc": "Presentation - 30 May 2026",
-              "quote": "247 FY19 FY20 FY21 FY22 FY23 FY24 FY25 FY26",
-              "page": 23
+              "doc": "Presentation - 16 Oct 2026",
+              "quote": "246",
+              "page": 9
             },
-            null
+            {
+              "doc": "Presentation - 16 Oct 2026",
+              "quote": "2,45,800MT",
+              "page": 11
+            }
           ]
         },
         {
@@ -7492,7 +7940,7 @@
             null,
             null,
             19600,
-            null
+            19600
           ],
           "citations": [
             null,
@@ -7518,7 +7966,11 @@
               "quote": "19,600 FY19 FY20 FY21 FY22 FY23 FY24 FY25 FY26",
               "page": 23
             },
-            null
+            {
+              "doc": "Presentation - 16 Oct 2026",
+              "quote": "19,600 19,600",
+              "page": 9
+            }
           ]
         },
         {

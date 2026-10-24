@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-23T12:23:35.732Z",
+  "generatedAt": "2026-10-24T09:55:02.342Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
-    "kpiCells": 405,
-    "realCells": 292,
+    "kpiCells": 409,
+    "realCells": 296,
     "nullCells": 113,
-    "kpis": 104,
-    "kpisWithTrend": 70
+    "kpis": 105,
+    "kpisWithTrend": 71
   },
   "companies": {
     "deep-industries": {
@@ -32,7 +32,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33819,
+      "ctxChars": 33840,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -43,19 +43,19 @@
             100,
             100,
             100,
-            100
+            90
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
             "company-filing",
-            "mgmt-claim"
+            "company-filing"
           ],
           "origins": [
             "model",
             "model",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             null,
@@ -65,7 +65,11 @@
               "quote": "with regards to rig segment, our assets are 100% utilized",
               "page": 12
             },
-            null
+            {
+              "doc": "Credit Rating - 09 Oct 2026",
+              "quote": "As on June 30, 2026, asset deployment was strong at 90% for rigs",
+              "page": 2
+            }
           ],
           "oneOffs": [
             null,
@@ -73,7 +77,7 @@
             null,
             null
           ],
-          "flag": "steady",
+          "flag": "decelerating",
           "notes": null
         },
         {
@@ -112,7 +116,7 @@
             null
           ],
           "flag": null,
-          "notes": "Day-rate not disclosed in any of the excerpts. The Q2 FY26 concall mentions management expects growth 'more of volume' rather than pricing/day-rate, but no numeric day-rate is stated. Q3 FY26, Q4 FY26, and Q1 FY27 excerpts contain no day-ra"
+          "notes": "Day-rate not disclosed in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Q3 FY26 concall mentions growth was 'more of volume' rather than pricing/day-rate, but no numeric day-rate is stated. No other excerpts provide day"
         },
         {
           "id": "order-book",
@@ -129,13 +133,13 @@
             "mgmt-claim",
             "mgmt-claim",
             "company-filing",
-            "mgmt-claim"
+            "company-filing"
           ],
           "origins": [
             "model",
             "model",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             null,
@@ -145,7 +149,11 @@
               "quote": "Order Book (Rs in Cr.) FY24 FY25 As on date 1210 2960 3007",
               "page": 20
             },
-            null
+            {
+              "doc": "Concall Transcript - 29 Jul 2026",
+              "quote": "As on June 30, our order book stood at INR3,047 crores.",
+              "page": 7
+            }
           ],
           "oneOffs": [
             null,
@@ -154,6 +162,53 @@
             null
           ],
           "flag": "decelerating",
+          "notes": null
+        },
+        {
+          "id": "bid-pipeline",
+          "label": "Bidding pipeline",
+          "unit": "Rs Crore",
+          "flagBasis": "level",
+          "values": [
+            700,
+            800,
+            800,
+            550
+          ],
+          "sourceTags": [
+            "mgmt-claim",
+            "mgmt-claim",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "model",
+            "model",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            null,
+            null,
+            {
+              "doc": "Concall Transcript - 12 Feb 2026",
+              "quote": "So our current bidding pipeline is somewhere around INR800 crores tentatively",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 21 May 2026",
+              "quote": "It's close to around INR500 crores, INR600-odd crores",
+              "page": 10
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
+          "beyondBrief": true,
           "notes": null
         }
       ]
@@ -1271,7 +1326,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31212,
+      "ctxChars": 32465,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -1309,7 +1364,7 @@
             null
           ],
           "flag": null,
-          "notes": "Rig utilisation percentage not explicitly stated in any of the excerpts. Q1 FY26 concall mentions '4 rigs operating' and '1 rig under refurbishment' but no utilisation % given. Q2 FY26 concall mentions '4 rigs operating with ONGC' and refur"
+          "notes": "No offshore rig utilisation percentage data found in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The excerpts provide rig counts (operating vs total fleet), contract status, and dehire/refurbishment timelines, but no expl"
         },
         {
           "id": "charter-day-rate",
@@ -1780,7 +1835,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34103,
+      "ctxChars": 34102,
       "kpis": [
         {
           "id": "order-book",
@@ -1872,7 +1927,7 @@
             null
           ],
           "flag": null,
-          "notes": "Order inflow (new orders received in the quarter) is not stated in any excerpt. The excerpts report order book (stock measure) at various quarter-ends: Q2 FY26 ₹23,500 cr, Q3 FY26 ₹23,600 cr, Q4 FY26 ₹25,350 cr, Q1 FY27 ₹24,750 cr. The Q2 F"
+          "notes": "Order inflow (new orders received in the quarter) is not stated in any excerpt. The excerpts report order book (stock measure) at various quarter-ends: Q2 FY26 ₹23,500 cr, Q3 FY26 ₹23,600 cr, Q4 FY26 ₹25,350 cr, Q1 FY27 ₹24,750 cr. The conc"
         },
         {
           "id": "line-pipe-volume",
@@ -2756,7 +2811,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33952,
+      "ctxChars": 33981,
       "kpis": [
         {
           "id": "grm",
@@ -3826,7 +3881,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34049,
+      "ctxChars": 34060,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3918,7 +3973,7 @@
             null
           ],
           "flag": null,
-          "notes": "No terminal utilisation percentage stated for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The transcripts mention 'high utilisation levels', 'higher utilization levels', 'improved utilization levels' at various ports but no specific percentage f"
+          "notes": "Terminal utilisation % not explicitly stated in any of the excerpts. The documents mention terminals operating at 'high utilisation levels', 'higher utilization levels', 'improved utilization levels' but no specific percentage figures are p"
         },
         {
           "id": "lpg-distribution-volume",
@@ -4152,7 +4207,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32932,
+      "ctxChars": 33071,
       "kpis": [
         {
           "id": "sps-spread",

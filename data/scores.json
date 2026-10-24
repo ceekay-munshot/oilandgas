@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-23T12:24:30.710Z",
+  "generatedAt": "2026-10-24T09:55:59.138Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,15 +38,15 @@
   "asOf": "Q1 FY27",
   "scores": {
     "leading": {
-      "score": 0,
+      "score": -4,
       "prev": 25,
-      "delta": -44,
+      "delta": -50,
       "deltaBasis": "kpi-only",
       "level": "flat",
       "direction": "falling",
       "kpisScored": 11,
       "kpisTotal": 23,
-      "kpisBeyondBrief": 11,
+      "kpisBeyondBrief": 12,
       "tonesScored": 8,
       "companiesScored": 6,
       "staleKpis": 6,
@@ -263,7 +263,7 @@
     }
   },
   "divergence": {
-    "value": 10,
+    "value": 6,
     "leadingSign": 0,
     "coincidentSign": -1,
     "signsDiffer": false
@@ -272,7 +272,7 @@
     null,
     null,
     62,
-    19
+    13
   ],
   "stage": {
     "stageId": null,
@@ -281,7 +281,7 @@
     "ruleLabel": "No bucket far enough from zero to place the cycle",
     "confidence": "low",
     "because": [
-      "Leading 0 (flat), coincident -10 (negative), lagging 100 (strong-positive).",
+      "Leading -4 (flat), coincident -10 (negative), lagging 100 (strong-positive).",
       "No bucket far enough from zero to place the cycle."
     ]
   },
@@ -514,7 +514,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +10. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +6. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -972,7 +972,7 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-23T10:33:27.393Z",
+    "generatedAt": "2026-10-23T12:24:30.710Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": null,
