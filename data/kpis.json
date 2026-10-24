@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-24T09:55:02.342Z",
+  "generatedAt": "2026-10-24T11:49:46.960Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -32,7 +32,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33840,
+      "ctxChars": 33841,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -83,7 +83,7 @@
         {
           "id": "day-rate",
           "label": "Day-rate",
-          "unit": "₹/day or $/day",
+          "unit": "$/day or ₹/day",
           "flagBasis": "level",
           "values": [
             null,
@@ -116,7 +116,7 @@
             null
           ],
           "flag": null,
-          "notes": "Day-rate not disclosed in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Q3 FY26 concall mentions growth was 'more of volume' rather than pricing/day-rate, but no numeric day-rate is stated. No other excerpts provide day"
+          "notes": "Day-rate not disclosed in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The documents discuss asset utilization (100% for rigs, high for offshore), revenue growth, and profitability, but do not state specific day-rates in $"
         },
         {
           "id": "order-book",
