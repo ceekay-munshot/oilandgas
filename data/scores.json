@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-25T10:13:08.655Z",
+  "generatedAt": "2026-10-25T12:12:22.006Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -108,18 +108,18 @@
       ]
     },
     "coincident": {
-      "score": -22,
-      "prev": -9,
-      "delta": -33,
+      "score": -10,
+      "prev": -37,
+      "delta": -1,
       "deltaBasis": "kpi-only",
       "level": "negative",
-      "direction": "falling",
+      "direction": "flat",
       "kpisScored": 21,
       "kpisTotal": 40,
       "kpisBeyondBrief": 21,
       "tonesScored": 15,
       "companiesScored": 12,
-      "staleKpis": 7,
+      "staleKpis": 2,
       "oneOffKpis": 1,
       "unknownKpis": 0,
       "lowCoverage": false,
@@ -144,21 +144,7 @@
           "kind": "kpi",
           "companyId": "petronet-lng",
           "company": "Petronet LNG",
-          "label": "Regas utilisation %",
-          "flag": "inflecting-down"
-        },
-        {
-          "kind": "kpi",
-          "companyId": "petronet-lng",
-          "company": "Petronet LNG",
-          "label": "Volume",
-          "flag": "inflecting-down"
-        },
-        {
-          "kind": "kpi",
-          "companyId": "petronet-lng",
-          "company": "Petronet LNG",
-          "label": "Kochi throughput",
+          "label": "Kochi utilisation",
           "flag": "inflecting-down"
         },
         {
@@ -208,7 +194,7 @@
           "companyId": "petronet-lng",
           "company": "Petronet LNG",
           "label": "Gas demand trajectory",
-          "flag": "tone-down"
+          "flag": "tone-up"
         },
         {
           "kind": "tone",
@@ -277,7 +263,7 @@
     }
   },
   "divergence": {
-    "value": 18,
+    "value": 6,
     "leadingSign": 0,
     "coincidentSign": -1,
     "signsDiffer": false
@@ -285,8 +271,8 @@
   "divergenceSeries": [
     null,
     null,
-    34,
-    17
+    62,
+    13
   ],
   "stage": {
     "stageId": null,
@@ -295,7 +281,7 @@
     "ruleLabel": "No bucket far enough from zero to place the cycle",
     "confidence": "low",
     "because": [
-      "Leading -4 (flat), coincident -22 (negative), lagging 100 (strong-positive).",
+      "Leading -4 (flat), coincident -10 (negative), lagging 100 (strong-positive).",
       "No bucket far enough from zero to place the cycle."
     ]
   },
@@ -361,6 +347,16 @@
   "stageMacro": null,
   "toneDrift": [
     {
+      "companyId": "petronet-lng",
+      "name": "Petronet LNG",
+      "from": "defensive",
+      "to": "confident",
+      "fromQuarter": "Q4 FY26",
+      "quarter": "Q1 FY27",
+      "steps": 4,
+      "direction": "up"
+    },
+    {
       "companyId": "ongc",
       "name": "ONGC",
       "from": "cautious",
@@ -369,16 +365,6 @@
       "quarter": "Q1 FY27",
       "steps": 3,
       "direction": "up"
-    },
-    {
-      "companyId": "petronet-lng",
-      "name": "Petronet LNG",
-      "from": "constructive",
-      "to": "defensive",
-      "fromQuarter": "Q3 FY26",
-      "quarter": "Q4 FY26",
-      "steps": -3,
-      "direction": "down"
     },
     {
       "companyId": "castrol-india",
@@ -456,16 +442,16 @@
       "text": "Moves last: 3 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
+      "id": "tone-petronet-lng",
+      "severity": "info",
+      "kind": "tone-drift",
+      "text": "Petronet LNG moved 4 tone steps up (defensive → confident) in Q1 FY27."
+    },
+    {
       "id": "tone-ongc",
       "severity": "info",
       "kind": "tone-drift",
       "text": "ONGC moved 3 tone steps up (cautious → confident) in Q1 FY27."
-    },
-    {
-      "id": "tone-petronet-lng",
-      "severity": "warn",
-      "kind": "tone-drift",
-      "text": "Petronet LNG moved 3 tone steps down (constructive → defensive) in Q4 FY26."
     },
     {
       "id": "tone-castrol-india",
@@ -518,7 +504,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are negative and falling — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Regas utilisation %."
+      "text": "Coincident indicators are negative — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
     },
     {
       "id": "macro",
@@ -528,12 +514,12 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +18. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +6. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "ONGC (cautious → confident); Petronet LNG (constructive → defensive); Castrol India (cautious → confident); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 2 more."
+      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); Castrol India (cautious → confident); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 2 more."
     },
     {
       "id": "implication",
@@ -803,7 +789,7 @@
       "label": "Gas demand trajectory",
       "bucket": "coincident",
       "listenFor": "Volume growth guidance, new geographic-area rollout pace, industrial vs. domestic PNG mix shift, spot vs. term LNG contracting stance",
-      "state": "5 companies heard, leaning positive (3 positive, 2 negative); Petronet LNG moved 3 steps down, Gujarat Gas moved 2 steps up.",
+      "state": "5 companies heard, leaning positive (4 positive, 1 negative); Petronet LNG moved 4 steps up, Gujarat Gas moved 2 steps up.",
       "mood": "positive",
       "members": [
         {
@@ -818,11 +804,11 @@
         {
           "companyId": "petronet-lng",
           "name": "Petronet LNG",
-          "toneId": "defensive",
-          "quarter": "Q4 FY26",
-          "direction": "negative",
-          "driver": "Qatar supply disruption",
-          "drift": -3
+          "toneId": "confident",
+          "quarter": "Q1 FY27",
+          "direction": "positive",
+          "driver": "operational efficiency and profitability",
+          "drift": 4
         },
         {
           "companyId": "igl",
@@ -856,11 +842,11 @@
         {
           "companyId": "petronet-lng",
           "name": "Petronet LNG",
-          "toneId": "defensive",
-          "quarter": "Q4 FY26",
-          "direction": "negative",
-          "driver": "Qatar supply disruption",
-          "drift": -3
+          "toneId": "confident",
+          "quarter": "Q1 FY27",
+          "direction": "positive",
+          "driver": "operational efficiency and profitability",
+          "drift": 4
         },
         {
           "companyId": "gujarat-gas",
@@ -982,17 +968,17 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moving now moved down 12 points to -22."
+      "text": "Moving now moved up 12 points to -10."
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-24T11:50:17.764Z",
+    "generatedAt": "2026-10-25T10:13:08.655Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": null,
     "scores": {
       "leading": -4,
-      "coincident": -10,
+      "coincident": -22,
       "lagging": 100
     },
     "alertIds": [
