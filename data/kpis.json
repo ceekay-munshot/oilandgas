@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-24T11:49:46.960Z",
+  "generatedAt": "2026-10-25T10:12:42.548Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 28,
     "kpiCells": 409,
-    "realCells": 296,
-    "nullCells": 113,
+    "realCells": 295,
+    "nullCells": 114,
     "kpis": 105,
     "kpisWithTrend": 71
   },
@@ -596,15 +596,15 @@
       "name": "Petronet LNG",
       "slug": "PETRONET",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
-        "Q1 FY27"
+        "Q4 FY26"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27795,
+      "ctxChars": 27796,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -612,24 +612,25 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
+            null,
             92,
             94,
-            90.1,
-            65.6
+            90.1
           ],
           "sourceTags": [
+            null,
             "mgmt-claim",
-            "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
+            null,
             "model",
-            "insights",
             "insights",
             "insights"
           ],
           "citations": [
+            null,
             null,
             {
               "doc": "Concall Transcript - 20 Feb 2026",
@@ -640,11 +641,6 @@
               "doc": "Concall Transcript - 11 May 2026",
               "quote": "capacity utilization at 90.1% during the current quarter",
               "page": 3
-            },
-            {
-              "doc": "Concall Transcript - 19 Aug 2026",
-              "quote": "the capacity utilization for Dahej was 65.6%",
-              "page": 5
             }
           ],
           "oneOffs": [
@@ -653,8 +649,8 @@
             null,
             null
           ],
-          "flag": "decelerating",
-          "notes": null
+          "flag": "inflecting-down",
+          "notes": "From Screener Insights row \"Dahej Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
         },
         {
           "id": "volume",
@@ -662,24 +658,29 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
+            220,
             211,
             233,
-            219,
-            207
+            219
           ],
           "sourceTags": [
-            "mgmt-claim",
             "company-filing",
+            "mgmt-claim",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            "model",
             "insights",
+            "model",
             "insights",
             "insights"
           ],
           "citations": [
+            {
+              "doc": "Concall Transcript - 04 Aug 2025",
+              "quote": "Overall volume processed during the quarter was 220 TBTU",
+              "page": 3
+            },
             null,
             {
               "doc": "Concall Transcript - 20 Feb 2026",
@@ -690,11 +691,6 @@
               "doc": "Concall Transcript - 11 May 2026",
               "quote": "the overall LNG volume processed by the company stood at 219 TBTU",
               "page": 3
-            },
-            {
-              "doc": "Concall Transcript - 19 Aug 2026",
-              "quote": "the overall LNG volume processed was 207 TBTU compared to 220 TBTU in the corresponding quarter",
-              "page": 3
             }
           ],
           "oneOffs": [
@@ -703,7 +699,7 @@
             null,
             null
           ],
-          "flag": "decelerating",
+          "flag": "inflecting-down",
           "notes": null
         },
         {
@@ -712,10 +708,10 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
+            207,
             211,
             214,
-            201,
-            192
+            201
           ],
           "sourceTags": [
             "company-filing",
@@ -730,6 +726,11 @@
             "insights"
           ],
           "citations": [
+            {
+              "doc": "Concall Transcript - 04 Aug 2025",
+              "quote": "Dahej terminal, our flagship terminal, processed 207 TBTU",
+              "page": 3
+            },
             {
               "doc": "Concall Transcript - 14 Nov 2025",
               "quote": "Dahej terminal processed 211 TBTU",
@@ -743,11 +744,6 @@
             {
               "doc": "Concall Transcript - 11 May 2026",
               "quote": "At the Dahej terminal, LNG throughput during the quarter stood at 201 TBTU",
-              "page": 3
-            },
-            {
-              "doc": "Concall Transcript - 19 Aug 2026",
-              "quote": "Dahej, our flagship terminal, processed 192 TBTU of LNG during the quarter",
               "page": 3
             }
           ],
@@ -766,9 +762,59 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
+            13,
             null,
             19,
-            18,
+            18
+          ],
+          "sourceTags": [
+            "company-filing",
+            null,
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            null,
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 04 Aug 2025",
+              "quote": "Overall volume processed during the quarter was 220 TBTU",
+              "page": 3
+            },
+            null,
+            {
+              "doc": "Concall Transcript - 20 Feb 2026",
+              "quote": "the overall LNG volume processed by the company stood at 233 TBTU",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 11 May 2026",
+              "quote": "the overall LNG volume processed by the company stood at 219 TBTU",
+              "page": 3
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-down",
+          "notes": "From Screener Insights row \"Kochi Terminal LNG Throughput\"; latest value cited to Concall Transcript - 04 Aug 2025, page 3."
+        },
+        {
+          "id": "kochi-utilisation",
+          "label": "Kochi utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            null,
+            27,
+            29,
             null
           ],
           "sourceTags": [
@@ -786,13 +832,13 @@
           "citations": [
             null,
             {
-              "doc": "Concall Transcript - 20 Feb 2026",
-              "quote": "the overall LNG volume processed by the company stood at 233 TBTU",
+              "doc": "Concall Transcript - 14 Nov 2025",
+              "quote": "highest ever capacity utilization of Kochi terminal in the current quarter, which stands at -- stood at 27%",
               "page": 3
             },
             {
-              "doc": "Concall Transcript - 11 May 2026",
-              "quote": "the overall LNG volume processed by the company stood at 219 TBTU",
+              "doc": "Concall Transcript - 20 Feb 2026",
+              "quote": "At Kochi Terminal, PLL achieved the highest ever capacity utilization of 29% during the current quarter",
               "page": 3
             },
             null
@@ -804,56 +850,6 @@
             null
           ],
           "flag": null,
-          "notes": "From Screener Insights row \"Kochi Terminal LNG Throughput\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
-        },
-        {
-          "id": "kochi-utilisation",
-          "label": "Kochi utilisation",
-          "unit": "%",
-          "flagBasis": "level",
-          "values": [
-            27,
-            29,
-            null,
-            23.27
-          ],
-          "sourceTags": [
-            "company-filing",
-            "company-filing",
-            null,
-            "company-filing"
-          ],
-          "origins": [
-            "insights",
-            "insights",
-            null,
-            "insights"
-          ],
-          "citations": [
-            {
-              "doc": "Concall Transcript - 14 Nov 2025",
-              "quote": "highest ever capacity utilization of Kochi terminal in the current quarter, which stands at -- stood at 27%",
-              "page": 3
-            },
-            {
-              "doc": "Concall Transcript - 20 Feb 2026",
-              "quote": "At Kochi Terminal, PLL achieved the highest ever capacity utilization of 29% during the current quarter",
-              "page": 3
-            },
-            null,
-            {
-              "doc": "Concall Transcript - 19 Aug 2026",
-              "quote": "and Kochi was 23.27%.",
-              "page": 5
-            }
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": "inflecting-down",
           "notes": "From Screener Insights row \"Kochi Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 14 Nov 2025, page 3."
         }
       ]
