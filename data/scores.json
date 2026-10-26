@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-26T11:36:32.761Z",
+  "generatedAt": "2026-10-26T13:48:42.716Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -108,17 +108,17 @@
       ]
     },
     "coincident": {
-      "score": -10,
+      "score": -11,
       "prev": -37,
-      "delta": -1,
+      "delta": 1,
       "deltaBasis": "kpi-only",
       "level": "negative",
       "direction": "flat",
-      "kpisScored": 21,
+      "kpisScored": 20,
       "kpisTotal": 40,
       "kpisBeyondBrief": 21,
       "tonesScored": 15,
-      "companiesScored": 12,
+      "companiesScored": 11,
       "staleKpis": 2,
       "oneOffKpis": 1,
       "unknownKpis": 0,
@@ -205,13 +205,6 @@
         },
         {
           "kind": "tone",
-          "companyId": "castrol-india",
-          "company": "Castrol India",
-          "label": "Spread / demand commentary",
-          "flag": "tone-up"
-        },
-        {
-          "kind": "tone",
           "companyId": "gandhar-oil",
           "company": "Gandhar Oil",
           "label": "Spread / demand commentary",
@@ -220,11 +213,11 @@
       ]
     },
     "lagging": {
-      "score": 20,
-      "prev": -20,
-      "delta": 6,
+      "score": 100,
+      "prev": -43,
+      "delta": 143,
       "deltaBasis": "kpi-only",
-      "level": "positive",
+      "level": "strong-positive",
       "direction": "rising",
       "kpisScored": 4,
       "kpisTotal": 7,
@@ -243,13 +236,6 @@
           "companyId": "ge-shipping",
           "company": "GE Shipping",
           "label": "Fleet deployment",
-          "flag": "inflecting-down"
-        },
-        {
-          "kind": "kpi",
-          "companyId": "ge-shipping",
-          "company": "GE Shipping",
-          "label": "TCY - product carriers",
           "flag": "inflecting-up"
         },
         {
@@ -257,7 +243,7 @@
           "companyId": "ge-shipping",
           "company": "GE Shipping",
           "label": "Revenue days (owned)",
-          "flag": "inflecting-down"
+          "flag": "inflecting-up"
         },
         {
           "kind": "tone",
@@ -270,7 +256,7 @@
     }
   },
   "divergence": {
-    "value": 6,
+    "value": 7,
     "leadingSign": 0,
     "coincidentSign": -1,
     "signsDiffer": false
@@ -279,7 +265,7 @@
     null,
     null,
     62,
-    13
+    11
   ],
   "stage": {
     "stageId": null,
@@ -288,7 +274,7 @@
     "ruleLabel": "No bucket far enough from zero to place the cycle",
     "confidence": "low",
     "because": [
-      "Leading -4 (flat), coincident -10 (negative), lagging 20 (positive).",
+      "Leading -4 (flat), coincident -11 (negative), lagging 100 (strong-positive).",
       "No bucket far enough from zero to place the cycle."
     ]
   },
@@ -297,9 +283,9 @@
     "opposing": 0,
     "silent": 5,
     "macroBias": "up",
-    "scoreBias": "down",
-    "agree": false,
-    "conflict": true,
+    "scoreBias": "up",
+    "agree": true,
+    "conflict": false,
     "tiles": [
       {
         "id": "brent",
@@ -374,16 +360,6 @@
       "direction": "up"
     },
     {
-      "companyId": "castrol-india",
-      "name": "Castrol India",
-      "from": "cautious",
-      "to": "confident",
-      "fromQuarter": "Q4 FY26",
-      "quarter": "Q1 FY27",
-      "steps": 3,
-      "direction": "up"
-    },
-    {
       "companyId": "gandhar-oil",
       "name": "Gandhar Oil",
       "from": "cautious",
@@ -443,12 +419,6 @@
   ],
   "alerts": [
     {
-      "id": "macro-conflict",
-      "severity": "review",
-      "kind": "macro-conflict",
-      "text": "Flagged for review: the market backdrop points up while the scores are moving down."
-    },
-    {
       "id": "coverage-lagging",
       "severity": "info",
       "kind": "low-coverage",
@@ -465,12 +435,6 @@
       "severity": "info",
       "kind": "tone-drift",
       "text": "ONGC moved 3 tone steps up (cautious → confident) in Q1 FY27."
-    },
-    {
-      "id": "tone-castrol-india",
-      "severity": "info",
-      "kind": "tone-drift",
-      "text": "Castrol India moved 3 tone steps up (cautious → confident) in Q1 FY27."
     },
     {
       "id": "tone-gandhar-oil",
@@ -522,17 +486,17 @@
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude rising (100th pctile); Crack spread flat (82th pctile); USD/INR flat (91th pctile). Flagged for manual review: the backdrop and the scores disagree."
+      "text": "Crude rising (100th pctile); Crack spread flat (82th pctile); USD/INR flat (91th pctile)."
     },
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +6. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +7. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); Castrol India (cautious → confident); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 2 more."
+      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); Gujarat Gas (neutral → confident); and 1 more."
     },
     {
       "id": "implication",
@@ -703,11 +667,11 @@
         {
           "companyId": "bpcl",
           "name": "BPCL",
-          "toneId": "defensive",
-          "quarter": "Q1 FY27",
+          "toneId": "cautious",
+          "quarter": "Q2 FY27",
           "direction": "negative",
-          "driver": "crude sourcing",
-          "drift": -1
+          "driver": "crude freight and premium costs",
+          "drift": 1
         },
         {
           "companyId": "hpcl",
@@ -732,11 +696,11 @@
         {
           "companyId": "bpcl",
           "name": "BPCL",
-          "toneId": "defensive",
-          "quarter": "Q1 FY27",
+          "toneId": "cautious",
+          "quarter": "Q2 FY27",
           "direction": "negative",
-          "driver": "crude sourcing",
-          "drift": -1
+          "driver": "crude freight and premium costs",
+          "drift": 1
         }
       ]
     },
@@ -760,11 +724,11 @@
         {
           "companyId": "bpcl",
           "name": "BPCL",
-          "toneId": "defensive",
-          "quarter": "Q1 FY27",
+          "toneId": "cautious",
+          "quarter": "Q2 FY27",
           "direction": "negative",
-          "driver": "crude sourcing",
-          "drift": -1
+          "driver": "crude freight and premium costs",
+          "drift": 1
         },
         {
           "companyId": "hpcl",
@@ -780,11 +744,11 @@
         {
           "companyId": "bpcl",
           "name": "BPCL",
-          "toneId": "defensive",
-          "quarter": "Q1 FY27",
+          "toneId": "cautious",
+          "quarter": "Q2 FY27",
           "direction": "negative",
-          "driver": "crude sourcing",
-          "drift": -1
+          "driver": "crude freight and premium costs",
+          "drift": 1
         },
         {
           "companyId": "hpcl",
@@ -887,7 +851,7 @@
           "quarter": "Q1 FY27",
           "direction": "positive",
           "driver": "tanker freight rates",
-          "drift": 1
+          "drift": 0
         },
         {
           "companyId": "shipping-corp",
@@ -916,7 +880,7 @@
           "quarter": "Q1 FY27",
           "direction": "positive",
           "driver": "tanker freight rates",
-          "drift": 1
+          "drift": 0
         }
       ]
     },
@@ -925,7 +889,7 @@
       "label": "Spread / demand commentary",
       "bucket": "coincident",
       "listenFor": "Auto/industrial offtake trend - tracks broad economic activity, not just crude",
-      "state": "3 companies heard, leaning positive (3 positive, 0 negative); Castrol India moved 3 steps up, Gandhar Oil moved 3 steps up.",
+      "state": "3 companies heard, leaning positive (3 positive, 0 negative); Gandhar Oil moved 3 steps up.",
       "mood": "positive",
       "members": [
         {
@@ -944,7 +908,7 @@
           "quarter": "Q1 FY27",
           "direction": "positive",
           "driver": "broad-based volume growth",
-          "drift": 3
+          "drift": 0
         },
         {
           "companyId": "gandhar-oil",
@@ -958,15 +922,6 @@
       ],
       "drivers": [
         {
-          "companyId": "castrol-india",
-          "name": "Castrol India",
-          "toneId": "confident",
-          "quarter": "Q1 FY27",
-          "direction": "positive",
-          "driver": "broad-based volume growth",
-          "drift": 3
-        },
-        {
           "companyId": "gandhar-oil",
           "name": "Gandhar Oil",
           "toneId": "confident",
@@ -974,6 +929,15 @@
           "direction": "positive",
           "driver": "profitability",
           "drift": 3
+        },
+        {
+          "companyId": "supreme-petrochem",
+          "name": "Supreme Petrochem",
+          "toneId": "confident",
+          "quarter": "Q1 FY27",
+          "direction": "positive",
+          "driver": "styrene-polystyrene margin spread",
+          "drift": 1
         }
       ]
     }
@@ -981,25 +945,22 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moves last moved down 80 points to 20."
-    },
-    {
-      "kind": "alert",
-      "text": "New alert: Flagged for review: the market backdrop points up while the scores are moving down."
+      "text": "Moves last moved up 80 points to 100."
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-25T12:12:22.006Z",
+    "generatedAt": "2026-10-26T11:36:32.761Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": null,
     "scores": {
       "leading": -4,
       "coincident": -10,
-      "lagging": 100
+      "lagging": 20
     },
     "alertIds": [
       "coverage-lagging",
+      "macro-conflict",
       "tone-castrol-india",
       "tone-gandhar-oil",
       "tone-gujarat-gas",

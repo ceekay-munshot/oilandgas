@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-10-26T11:36:32.714Z",
+  "generatedAt": "2026-10-26T13:48:42.663Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -1104,9 +1104,32 @@
           "attempts": 1,
           "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
           "at": "2026-09-21T11:25:01.891Z"
+        },
+        "Q2 FY27": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "crude freight… significantly increased compared to Q1… we don't get any discounts… we have to buy either at the premium",
+          "rationale": "Management focused on elevated cost pressures (freight, premiums, geopolitical volatility) squeezing refining economics despite securing supplies.",
+          "driver": "crude freight and premium costs",
+          "direction": "negative",
+          "signal": "Refining margins compressed by logistics premia that offset strong product cracks; turnarounds will further pressure H2 utilization; marketing margins under pressure with no near-term relief expected.",
+          "mgmtDataPoints": [
+            "Brent averaged: ~$116/bbl in Sep",
+            "Crude inventory: ~22 days",
+            "LPG inventory: 32 days",
+            "Throughput: 10.4 MMT",
+            "Utilization: 117%",
+            "GRM: $32.53/bbl gross"
+          ],
+          "implication": "Planned turnarounds will reduce Q3 throughput and utilization; margin recovery depends on freight normalization and geopolitical de-escalation, both uncertain in the near term.",
+          "doc": "Concall AI summary (Q2 FY27)",
+          "fingerprint": "cd42cd0be5d3",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-10-26T13:48:33.521Z"
         }
       },
-      "updatedAt": "2026-09-21T11:25:01.891Z"
+      "updatedAt": "2026-10-26T13:48:33.521Z"
     },
     "hpcl": {
       "cells": {

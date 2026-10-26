@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-26T11:35:56.774Z",
+  "generatedAt": "2026-10-26T13:47:48.662Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,10 +14,10 @@
   "coverage": {
     "companies": 28,
     "kpiCells": 409,
-    "realCells": 296,
-    "nullCells": 113,
+    "realCells": 293,
+    "nullCells": 116,
     "kpis": 105,
-    "kpisWithTrend": 71
+    "kpisWithTrend": 70
   },
   "companies": {
     "deep-industries": {
@@ -2803,10 +2803,10 @@
       "name": "BPCL",
       "slug": "BPCL",
       "quarters": [
-        "Q4 FY25",
         "Q1 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
@@ -2819,34 +2819,30 @@
           "unit": "$/barrel",
           "flagBasis": "level",
           "values": [
-            9.2,
             4.88,
+            null,
             null,
             null
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing",
+            null,
             null,
             null
           ],
           "origins": [
             "insights",
-            "insights",
+            null,
             null,
             null
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 02 May 2025",
-              "quote": "our refineries recorded a GRM of $9.2 per barrel in the current quarter",
-              "page": 3
-            },
-            {
               "doc": "Concall Transcript - 14 Aug 2025",
               "quote": "our refineries recorded a GRM of $4.88 per barrel in the current quarter",
               "page": 3
             },
+            null,
             null,
             null
           ],
@@ -2857,7 +2853,7 @@
             null
           ],
           "flag": null,
-          "notes": "From Screener Insights row \"Gross Refining Margin (GRM)\"; latest value cited to Concall Transcript - 02 May 2025, page 3."
+          "notes": "From Screener Insights row \"Gross Refining Margin (GRM)\"; latest value cited to Concall Transcript - 14 Aug 2025, page 3."
         },
         {
           "id": "marketing-margin",
@@ -2895,7 +2891,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin in ₹/l not explicitly stated in any of the excerpts. Q4 FY25 concall mentions 'adverse marketing margins' and a ₹7.5/l retail price revision but does not quantify the margin itself. Q1 FY26 concall states 'Mainly retail fue"
+          "notes": "Marketing margin in ₹/l not disclosed in any of the excerpts. Q1 FY26 concall mentions 'adverse marketing margins' and ₹7.5/l retail price revision but does not state the actual margin level. Q4 FY26 concall states 'no further discussions o"
         },
         {
           "id": "throughput",
@@ -2903,34 +2899,30 @@
           "unit": "MMT",
           "flagBasis": "level",
           "values": [
-            10.58,
             10.42,
             null,
-            10.2
+            10.2,
+            null
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing",
             null,
-            "official"
+            "official",
+            null
           ],
           "origins": [
             "insights",
-            "insights",
             null,
-            "ppac"
+            "ppac",
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 02 May 2025",
-              "quote": "Our refineries processed 10.58 million metric tons of crude, achieving 121% of nameplate capacity",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 14 Aug 2025",
               "quote": "our refineries processed 10.42 million metric tons of crude, achieving 118% of nameplate capacity",
               "page": 3
             },
+            null,
             null,
             null
           ],
@@ -2940,8 +2932,8 @@
             null,
             null
           ],
-          "flag": "decelerating",
-          "notes": "From Screener Insights row \"Refinery Crude Throughput\"; latest value cited to Concall Transcript - 02 May 2025, page 3."
+          "flag": null,
+          "notes": "From Screener Insights row \"Refinery Crude Throughput\"; latest value cited to Concall Transcript - 14 Aug 2025, page 3."
         },
         {
           "id": "refinery-utilisation",
@@ -2949,29 +2941,24 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            121,
             118,
             116,
-            116
+            116,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
-            "insights",
             "model",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 02 May 2025",
-              "quote": "Our refineries processed 10.58 million metric tons of crude, achieving 121% of nameplate capacity",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 14 Aug 2025",
               "quote": "our refineries processed 10.42 million metric tons of crude, achieving 118% of nameplate capacity",
@@ -2982,7 +2969,8 @@
               "doc": "Presentation - 28 Jul 2026",
               "quote": "116% utilization in Q1 FY27",
               "page": 21
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2992,7 +2980,7 @@
           ],
           "flag": "steady",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Refinery Capacity Utilization\"; latest value cited to Concall Transcript - 14 Aug 2025, page 3."
         }
       ]
     },
@@ -4360,15 +4348,15 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31597,
+      "ctxChars": 31596,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -4376,31 +4364,27 @@
           "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
+            8,
             7,
-            7.5,
             7.5,
             5
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "company-filing",
+            "mgmt-claim",
             "company-filing"
           ],
           "origins": [
             "model",
             "model",
-            "insights",
+            "model",
             "insights"
           ],
           "citations": [
             null,
             null,
-            {
-              "doc": "Concall Transcript - 04 May 2026",
-              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
-              "page": 6
-            },
+            null,
             {
               "doc": "Presentation - 21 Aug 2026",
               "quote": "Average growth in volume sold vs 2Q 2025",
@@ -4408,9 +4392,9 @@
             }
           ],
           "oneOffs": [
+            null,
             "No Q2 FY26 data",
             "No Q3 FY26 data",
-            null,
             null
           ],
           "flag": null,
@@ -4899,15 +4883,15 @@
       "name": "GE Shipping",
       "slug": "GESHIP",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34294,
+      "ctxChars": 34292,
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -4915,9 +4899,9 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            46352,
             28492,
             47281,
+            61424,
             93026
           ],
           "sourceTags": [
@@ -4934,11 +4918,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Crude Carriers: Q1 FY25 46,352",
-              "page": 14
-            },
-            {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Crude Carriers: Q2 FY25 28,492",
               "page": 13
@@ -4946,6 +4925,11 @@
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "Crude Carriers: Q3 FY26 47,281",
+              "page": 26
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Crude Carriers: Q4 FY26 61,424",
               "page": 26
             },
             {
@@ -4969,9 +4953,9 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3507,
             3678,
             3765,
+            3525,
             3679
           ],
           "sourceTags": [
@@ -4988,11 +4972,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Total Revenue Days: 3,507",
-              "page": 12
-            },
-            {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Total Revenue Days: 3,678",
               "page": 12
@@ -5000,6 +4979,11 @@
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "Total Revenue Days: 3,765",
+              "page": 25
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Total Revenue Days: 3,525",
               "page": 25
             },
             {
@@ -5014,7 +4998,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": "inflecting-up",
           "notes": null
         },
         {
@@ -5023,9 +5007,9 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            37153,
             28978,
             25117,
+            30511,
             45471
           ],
           "sourceTags": [
@@ -5042,11 +5026,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Product Carriers: Q1 FY25 37,153",
-              "page": 14
-            },
-            {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Product Carriers: Q2 FY25 28,978",
               "page": 13
@@ -5054,6 +5033,11 @@
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "Product Carriers: Q3 FY26 25,117",
+              "page": 26
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Product Carriers: Q4 FY26 30,511",
               "page": 26
             },
             {
@@ -5068,7 +5052,7 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "accelerating",
           "notes": null
         },
         {
@@ -5077,9 +5061,9 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            36742,
             43507,
             43611,
+            45216,
             41528
           ],
           "sourceTags": [
@@ -5096,11 +5080,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "LPG Carriers: Q1 FY25 36,742",
-              "page": 14
-            },
-            {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "LPG Carriers: Q2 FY25 43,507",
               "page": 13
@@ -5108,6 +5087,11 @@
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "LPG Carriers: Q3 FY26 43,611",
+              "page": 26
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "LPG Carriers: Q4 FY26 45,216",
               "page": 26
             },
             {
@@ -5122,7 +5106,7 @@
             null,
             null
           ],
-          "flag": "decelerating",
+          "flag": "inflecting-down",
           "beyondBrief": true,
           "notes": null
         },
@@ -5132,9 +5116,9 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            17976,
             16686,
             17983,
+            16678,
             22601
           ],
           "sourceTags": [
@@ -5151,11 +5135,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Dry Bulk: Q1 FY25 17,976",
-              "page": 14
-            },
-            {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Dry Bulk: Q2 FY25 16,686",
               "page": 13
@@ -5163,6 +5142,11 @@
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "Dry Bulk: Q3 FY26 17,983",
+              "page": 26
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Dry Bulk: Q4 FY26 16,678",
               "page": 26
             },
             {
@@ -5177,7 +5161,7 @@
             null,
             null
           ],
-          "flag": "accelerating",
+          "flag": "inflecting-up",
           "beyondBrief": true,
           "notes": null
         },
@@ -5187,9 +5171,9 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3325,
             3494,
             3581,
+            3345,
             3497
           ],
           "sourceTags": [
@@ -5206,11 +5190,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Owned Tonnage: 3,325",
-              "page": 12
-            },
-            {
               "doc": "Presentation - 11 Dec 2025",
               "quote": "Owned Tonnage: 3,494",
               "page": 12
@@ -5218,6 +5197,11 @@
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "Owned Tonnage: 3,581",
+              "page": 25
+            },
+            {
+              "doc": "Presentation - 15 May 2026",
+              "quote": "Owned Tonnage: 3,345",
               "page": 25
             },
             {
@@ -5232,7 +5216,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": "inflecting-up",
           "notes": null
         }
       ]
