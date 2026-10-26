@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-25T12:12:22.006Z",
+  "generatedAt": "2026-10-26T11:36:32.761Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -220,11 +220,11 @@
       ]
     },
     "lagging": {
-      "score": 100,
-      "prev": -43,
-      "delta": 143,
+      "score": 20,
+      "prev": -20,
+      "delta": 6,
       "deltaBasis": "kpi-only",
-      "level": "strong-positive",
+      "level": "positive",
       "direction": "rising",
       "kpisScored": 4,
       "kpisTotal": 7,
@@ -243,6 +243,13 @@
           "companyId": "ge-shipping",
           "company": "GE Shipping",
           "label": "Fleet deployment",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "ge-shipping",
+          "company": "GE Shipping",
+          "label": "TCY - product carriers",
           "flag": "inflecting-up"
         },
         {
@@ -250,7 +257,7 @@
           "companyId": "ge-shipping",
           "company": "GE Shipping",
           "label": "Revenue days (owned)",
-          "flag": "inflecting-up"
+          "flag": "inflecting-down"
         },
         {
           "kind": "tone",
@@ -281,7 +288,7 @@
     "ruleLabel": "No bucket far enough from zero to place the cycle",
     "confidence": "low",
     "because": [
-      "Leading -4 (flat), coincident -10 (negative), lagging 100 (strong-positive).",
+      "Leading -4 (flat), coincident -10 (negative), lagging 20 (positive).",
       "No bucket far enough from zero to place the cycle."
     ]
   },
@@ -290,9 +297,9 @@
     "opposing": 0,
     "silent": 5,
     "macroBias": "up",
-    "scoreBias": "up",
-    "agree": true,
-    "conflict": false,
+    "scoreBias": "down",
+    "agree": false,
+    "conflict": true,
     "tiles": [
       {
         "id": "brent",
@@ -436,6 +443,12 @@
   ],
   "alerts": [
     {
+      "id": "macro-conflict",
+      "severity": "review",
+      "kind": "macro-conflict",
+      "text": "Flagged for review: the market backdrop points up while the scores are moving down."
+    },
+    {
       "id": "coverage-lagging",
       "severity": "info",
       "kind": "low-coverage",
@@ -509,7 +522,7 @@
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude rising (100th pctile); Crack spread flat (82th pctile); USD/INR flat (91th pctile)."
+      "text": "Crude rising (100th pctile); Crack spread flat (82th pctile); USD/INR flat (91th pctile). Flagged for manual review: the backdrop and the scores disagree."
     },
     {
       "id": "divergence",
@@ -874,7 +887,7 @@
           "quarter": "Q1 FY27",
           "direction": "positive",
           "driver": "tanker freight rates",
-          "drift": 0
+          "drift": 1
         },
         {
           "companyId": "shipping-corp",
@@ -903,7 +916,7 @@
           "quarter": "Q1 FY27",
           "direction": "positive",
           "driver": "tanker freight rates",
-          "drift": 0
+          "drift": 1
         }
       ]
     },
@@ -968,17 +981,21 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moving now moved up 12 points to -10."
+      "text": "Moves last moved down 80 points to 20."
+    },
+    {
+      "kind": "alert",
+      "text": "New alert: Flagged for review: the market backdrop points up while the scores are moving down."
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-25T10:13:08.655Z",
+    "generatedAt": "2026-10-25T12:12:22.006Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": null,
     "scores": {
       "leading": -4,
-      "coincident": -22,
+      "coincident": -10,
       "lagging": 100
     },
     "alertIds": [

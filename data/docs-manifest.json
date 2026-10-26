@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-25T12:11:49.314Z",
+  "generatedAt": "2026-10-26T11:35:51.115Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -1850,9 +1850,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 95882,
+          "pages": 31,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -2110,9 +2110,23 @@
         "pros": 4,
         "cons": 0
       },
-      "summariesAvailable": 10,
+      "summariesAvailable": 11,
       "transcriptsFound": 9,
       "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Oct 2026",
+          "periodIso": "2026-10",
+          "url": "https://www.screener.in/concalls/summary/23342100/",
+          "source": "screener.in",
+          "status": "gated",
+          "chars": 72,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/BPCL/summary-2026-10.txt",
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
+        },
         {
           "type": "summary",
           "role": "summary",
@@ -2182,20 +2196,6 @@
           "via": "browser",
           "cache": "pipeline/cache/docs/BPCL/summary-2025-01.txt",
           "sample": "Bharat Petroleum Q3 FY25 Earnings Call – Key Takeaways Macro & Industry Backdrop Management highlighted that global oil markets are “expected to remain adequate"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Nov 2024",
-          "periodIso": "2024-11",
-          "url": "https://www.screener.in/concalls/summary/22958547/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 11124,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/BPCL/summary-2024-11.txt",
-          "sample": "BPCL Q2 FY25 Earnings – Investor Summary Snapshot & Key Messages PAT of INR 2,397 cr in Q2 FY25 after absorbing : LPG under‑recovery of ~INR 2,104 cr , and Mark"
         }
       ],
       "ppt": {
@@ -3802,9 +3802,23 @@
         "pros": 0,
         "cons": 0
       },
-      "summariesAvailable": 18,
+      "summariesAvailable": 19,
       "transcriptsFound": 18,
       "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Oct 2026",
+          "periodIso": "2026-10",
+          "url": "https://www.screener.in/concalls/summary/23342113/",
+          "source": "screener.in",
+          "status": "gated",
+          "chars": 72,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/CASTROLIND/summary-2026-10.txt",
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
+        },
         {
           "type": "summary",
           "role": "summary",
@@ -3873,20 +3887,6 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/summary-2025-08.txt",
-          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "May 2025",
-          "periodIso": "2025-05",
-          "url": "https://www.screener.in/concalls/summary/22995885/",
-          "source": "screener.in",
-          "status": "gated",
-          "chars": 72,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/CASTROLIND/summary-2025-05.txt",
           "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
@@ -4524,9 +4524,9 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=ceb8c526-89cd-4ec0-b3a2-00258e7fb63b.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 65351,
-          "pages": 24,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GESHIP/transcript-2026-05.txt"
         },
