@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-26T13:47:48.662Z",
+  "generatedAt": "2026-10-27T10:59:41.107Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -1835,7 +1835,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34102,
+      "ctxChars": 34149,
       "kpis": [
         {
           "id": "order-book",
@@ -1927,7 +1927,7 @@
             null
           ],
           "flag": null,
-          "notes": "Order inflow (new orders received in the quarter) is not stated in any excerpt. The excerpts report order book (stock measure) at various quarter-ends: Q2 FY26 ₹23,500 cr, Q3 FY26 ₹23,600 cr, Q4 FY26 ₹25,350 cr, Q1 FY27 ₹24,750 cr. The conc"
+          "notes": "No line-pipe order inflow figures stated for any of the four quarters (Q2 FY26, Q3 FY26, Q4 FY26, Q1 FY27). The excerpts report order book (stock measure) at various quarter-ends: ₹23,500 cr at Q2 FY26 end, ₹23,600 cr at Q3 FY26 end, ₹25,35"
         },
         {
           "id": "line-pipe-volume",
@@ -3869,7 +3869,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34060,
+      "ctxChars": 34020,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3961,7 +3961,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not explicitly stated in any of the excerpts. The documents mention terminals operating at 'high utilisation levels', 'higher utilization levels', 'improved utilization levels' but no specific percentage figures are p"
+          "notes": "Terminal utilisation % not explicitly stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The excerpts mention 'high utilization levels', 'higher utilization levels', 'improved utilization levels' at various ports but n"
         },
         {
           "id": "lpg-distribution-volume",
@@ -4348,15 +4348,15 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31596,
+      "ctxChars": 31597,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -4364,27 +4364,31 @@
           "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            8,
             7,
+            7.5,
             7.5,
             5
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
+            "company-filing",
             "company-filing"
           ],
           "origins": [
             "model",
             "model",
-            "model",
+            "insights",
             "insights"
           ],
           "citations": [
             null,
             null,
-            null,
+            {
+              "doc": "Concall Transcript - 04 May 2026",
+              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
+              "page": 6
+            },
             {
               "doc": "Presentation - 21 Aug 2026",
               "quote": "Average growth in volume sold vs 2Q 2025",
@@ -4392,9 +4396,9 @@
             }
           ],
           "oneOffs": [
-            null,
             "No Q2 FY26 data",
             "No Q3 FY26 data",
+            null,
             null
           ],
           "flag": null,
@@ -5231,7 +5235,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21434,
+      "ctxChars": 21382,
       "kpis": [
         {
           "id": "freight-rate",
