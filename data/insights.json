@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-27T12:58:00.807Z",
+  "generatedAt": "2026-10-28T11:43:54.137Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -5024,6 +5024,71 @@
           ]
         },
         {
+          "label": "Gross Refining Margin (GRM)",
+          "unit": "$/barrel",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            12.48,
+            7.86,
+            6.12,
+            5.95,
+            9.2,
+            4.88,
+            13.25,
+            null,
+            17
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 01 May 2024",
+              "quote": "Q4 FY24: $12.48/bbl Refinery GRM",
+              "page": 20
+            },
+            {
+              "doc": "Presentation - 05 Aug 2024",
+              "quote": "Q1 FY25: $7.86/bbl Refinery GRM",
+              "page": 20
+            },
+            {
+              "doc": "Presentation - 05 Nov 2024",
+              "quote": "H1 FY25: $6.12/bbl Refinery GRM",
+              "page": 20
+            },
+            {
+              "doc": "Presentation - 02 May 2025",
+              "quote": "9M FY25: $5.95/bbl Refinery GRM",
+              "page": 20
+            },
+            {
+              "doc": "Concall Transcript - 02 May 2025",
+              "quote": "our refineries recorded a GRM of $9.2 per barrel in the current quarter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 14 Aug 2025",
+              "quote": "our refineries recorded a GRM of $4.88 per barrel in the current quarter",
+              "page": 3
+            },
+            {
+              "doc": "Presentation - 31 Jan 2026",
+              "quote": "Q3 FY26: $13.25/bbl Refinery GRM",
+              "page": 21
+            },
+            null,
+            {
+              "doc": "Credit Rating - 26 Oct 2026",
+              "quote": "despite robust GRMs of around $17/bbl",
+              "page": 1
+            }
+          ]
+        },
+        {
           "label": "Market Sales",
           "unit": "MMT",
           "scope": null,
@@ -5281,67 +5346,6 @@
               "quote": "157 KL/ month throughput per outlets, highest among OMCs",
               "page": 21
             }
-          ]
-        },
-        {
-          "label": "Gross Refining Margin (GRM)",
-          "unit": "$/barrel",
-          "scope": null,
-          "values": [
-            null,
-            null,
-            null,
-            12.48,
-            7.86,
-            6.12,
-            5.95,
-            9.2,
-            4.88,
-            13.25,
-            null,
-            null
-          ],
-          "citations": [
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 01 May 2024",
-              "quote": "Q4 FY24: $12.48/bbl Refinery GRM",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 05 Aug 2024",
-              "quote": "Q1 FY25: $7.86/bbl Refinery GRM",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 05 Nov 2024",
-              "quote": "H1 FY25: $6.12/bbl Refinery GRM",
-              "page": 20
-            },
-            {
-              "doc": "Presentation - 02 May 2025",
-              "quote": "9M FY25: $5.95/bbl Refinery GRM",
-              "page": 20
-            },
-            {
-              "doc": "Concall Transcript - 02 May 2025",
-              "quote": "our refineries recorded a GRM of $9.2 per barrel in the current quarter",
-              "page": 3
-            },
-            {
-              "doc": "Concall Transcript - 14 Aug 2025",
-              "quote": "our refineries recorded a GRM of $4.88 per barrel in the current quarter",
-              "page": 3
-            },
-            {
-              "doc": "Presentation - 31 Jan 2026",
-              "quote": "Q3 FY26: $13.25/bbl Refinery GRM",
-              "page": 21
-            },
-            null,
-            null
           ]
         }
       ]
@@ -8064,28 +8068,17 @@
     "aegis-vopak": {
       "name": "Aegis Vopak",
       "slug": "AEGISVOPAK",
-      "view": "unknown",
-      "url": "https://www.screener.in/company/AEGISVOPAK/consolidated/#shareholding",
-      "via": null,
-      "toggled": null,
-      "periods": [],
-      "rows": [],
-      "note": "apiRequestContext.post: socket hang up\nCall log:\n  - → POST https://www.screener.in/insights/company/1285467/quarter/?is_consolidated=1\n    - user-agent: Mozill"
-    },
-    "supreme-petrochem": {
-      "name": "Supreme Petrochem",
-      "slug": "SPLPETRO",
       "view": "quarterly",
-      "url": "https://www.screener.in/company/SPLPETRO/consolidated/#shareholding",
+      "url": "https://www.screener.in/company/AEGISVOPAK/consolidated/#shareholding",
       "via": "quarterly-fragment",
-      "toggled": "/insights/company/3281/quarter/?is_consolidated=1",
+      "toggled": "/insights/company/1285467/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Sep 2023",
-        "Dec 2023",
+        "Nov 2021",
+        "Jan 2023",
+        "Aug 2023",
         "Mar 2024",
         "Jun 2024",
-        "Sep 2024",
         "Dec 2024",
         "Mar 2025",
         "Jun 2025",
@@ -8095,11 +8088,11 @@
         "Jun 2026"
       ],
       "periodsIso": [
-        "2023-09",
-        "2023-12",
+        "2021-11",
+        "2023-01",
+        "2023-08",
         "2024-03",
         "2024-06",
-        "2024-09",
         "2024-12",
         "2025-03",
         "2025-06",
@@ -8110,11 +8103,456 @@
       ],
       "rows": [
         {
+          "label": "LPG Static Storage Capacity",
+          "unit": "'000 MT",
+          "scope": null,
+          "values": [
+            23,
+            70,
+            null,
+            70.8,
+            null,
+            70.8,
+            70.8,
+            200.8,
+            200.8,
+            200.8,
+            225.8,
+            225.8
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "LPG Static Capacity Ramp-up... Pre JV Capacities (Nov-21): 19 (Pipavav) + 4 (Mangalore) = 23",
+              "page": 21
+            },
+            {
+              "doc": "Credit Rating - 23 Jan 2023",
+              "quote": "cumulative 70 thousand metric tonne of gas terminalling capacity and 1,330 thousand KL of liquid terminalling capacity",
+              "page": 1
+            },
+            null,
+            {
+              "doc": "Prospectus - 25 Nov 2024",
+              "quote": "Static Capacity for Gas Terminal Division (MT)",
+              "page": 193
+            },
+            null,
+            {
+              "doc": "Prospectus - 28 May 2025",
+              "quote": "Total LPG Static Capacity: 70,800 MT (48,000 MT Kandla + 22,800 MT Pipavav)",
+              "page": null
+            },
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "overall static capacity of 70,800 MT",
+              "page": null
+            },
+            {
+              "doc": "Presentation - 07 Aug 2025",
+              "quote": "200.8k MT Static Capacity for LPG",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 07 Nov 2025",
+              "quote": "200.8k MT Static Capacity for LPG",
+              "page": 7
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "200.8k MT Static Capacity for LPG",
+              "page": 10
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "225.8k MT Static Capacity for LPG",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 07 Aug 2026",
+              "quote": "225.8k MT",
+              "page": 9
+            }
+          ]
+        },
+        {
+          "label": "Liquid Storage Capacity",
+          "unit": "million cbm",
+          "scope": null,
+          "values": [
+            0.51,
+            1.33,
+            null,
+            1.5,
+            null,
+            1.5,
+            null,
+            1.7,
+            1.7,
+            1.7,
+            1.7,
+            1.7
+          ],
+          "citations": [
+            {
+              "doc": "Prospectus - 28 May 2025",
+              "quote": "Kandla: Liquid 140,000 CBM, Pipavav: Liquid 120,000 CBM, Mangalore: Liquid 75,000 CBM, Haldia: Liquid 173,500 CBM",
+              "page": null
+            },
+            {
+              "doc": "Credit Rating - 23 Jan 2023",
+              "quote": "AVTL is 51% owned by AELL and 49% by Vopak... cumulative 70 thousand metric tonne of gas terminalling capacity and 1,330 thousand KL of liquid terminalling capacity",
+              "page": 1
+            },
+            null,
+            {
+              "doc": "Prospectus - 25 Nov 2024",
+              "quote": "Static Capacity for Liquid Terminal Division (CBM)",
+              "page": 193
+            },
+            null,
+            {
+              "doc": "Prospectus - 28 May 2025",
+              "quote": "Total Liquid Storage Capacity: Approximately 1.60 million CBM (1,599,383 CBM including JNPA). Composition: Kandla (952,276) + Pipavav (116,620) + Mangalore (119,152) + Haldia (226,890) + Kochi (82,545) + JNPA (101,900)",
+              "page": null
+            },
+            null,
+            {
+              "doc": "Presentation - 07 Aug 2025",
+              "quote": "1.7 mn cbm Liquid Storage Capacity",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 07 Nov 2025",
+              "quote": "1.7 mn cbm Liquid Storage Capacity",
+              "page": 7
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "1.7 mn cbm Liquid Storage Capacity",
+              "page": 10
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "1.7 mn cbm Liquid Storage Capacity",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 07 Aug 2026",
+              "quote": "1.7 mn cbm Liquid Storage Capacity",
+              "page": 9
+            }
+          ]
+        },
+        {
+          "label": "Number of Operating Ports",
+          "unit": "count",
+          "scope": null,
+          "values": [
+            4,
+            null,
+            5,
+            null,
+            null,
+            null,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          "citations": [
+            {
+              "doc": "Prospectus - 28 May 2025",
+              "quote": "At Time of JV Formation (Nov 2021): Kandla, Pipavav, Mangalore, Haldia (4 ports). Kochi and JNPA were not part of this initial JV formation",
+              "page": null
+            },
+            null,
+            {
+              "doc": "Presentation - 19 Jun 2025",
+              "quote": "Transfer of Konkan Storage (Kochi) from Aegis Logistics to AVTL (Aug 2023)",
+              "page": 12
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 19 Jun 2025",
+              "quote": "6 Ports (Kandla, Haldia, Pipavav, Kochi, Mangalore, JNPA added in March 2025)",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 07 Aug 2025",
+              "quote": "6 Ports",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 07 Nov 2025",
+              "quote": "6 Ports",
+              "page": 7
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "6 Ports",
+              "page": 10
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "6 Ports",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 07 Aug 2026",
+              "quote": "22 Terminals across 6 Ports",
+              "page": 12
+            }
+          ]
+        },
+        {
+          "label": "Number of Operating Tank Terminals",
+          "unit": "count",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            20,
+            22,
+            22,
+            22,
+            22,
+            22
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 19 Jun 2025",
+              "quote": "20 Tank Terminals (8 Pipavav + 2 Haldia + 3 Kandla + 3 Mangalore + 3 Kochi + 1 JNPA)",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 07 Aug 2025",
+              "quote": "22 Tank Terminals",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 07 Nov 2025",
+              "quote": "22 Tank Terminals",
+              "page": 7
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "22 Tank Terminals",
+              "page": 10
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "22 Operating Tank Terminals",
+              "page": 13
+            },
+            {
+              "doc": "Presentation - 07 Aug 2026",
+              "quote": "22 Terminals across 6 Ports",
+              "page": 12
+            }
+          ]
+        },
+        {
+          "label": "LPG/Gas Throughput",
+          "unit": "million MT",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            0.38,
+            null,
+            null,
+            0.52,
+            0.68,
+            0.67,
+            null,
+            0.9
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Prospectus - 25 Nov 2024",
+              "quote": "Throughput for Gas Terminal Division (MT)",
+              "page": 193
+            },
+            null,
+            null,
+            {
+              "doc": "Concall Transcript - 13 Aug 2025",
+              "quote": "the throughput for the quarter, which is 522,000 metric tons that we did from Kandla and Pipavav",
+              "page": 9
+            },
+            {
+              "doc": "Concall Transcript - 11 Nov 2025",
+              "quote": "Gas report for the quarter was INR 0.68 million metric tons",
+              "page": 6
+            },
+            {
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "gas throughput was 0.67 million metric tons",
+              "page": 7
+            },
+            null,
+            {
+              "doc": "Concall Transcript - 19 Aug 2026",
+              "quote": "On the gas side, quarterly throughput stood at approximately 0.9 million metric tons.",
+              "page": 7
+            }
+          ]
+        },
+        {
+          "label": "Liquid Terminalling Revenue Share",
+          "unit": "%",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            59.1,
+            56.5,
+            59,
+            null,
+            54.1
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 07 Aug 2025",
+              "quote": "Revenue Share of Liquid and Gas Terminalling Segments: 40.9% Gas, 59.1% Liquid (Q1 FY26 Revenue)",
+              "page": 25
+            },
+            {
+              "doc": "Presentation - 07 Nov 2025",
+              "quote": "Revenue Share of Liquid and Gas Terminalling Segments: 43.5% Gas, 56.5% Liquid (Q2 FY26 Revenue)",
+              "page": 27
+            },
+            {
+              "doc": "Presentation - 30 Jan 2026",
+              "quote": "Revenue Share of Liquid and Gas Terminalling Segments: 41.0% Gas, 59.0% Liquid (3Q FY26)",
+              "page": 7
+            },
+            null,
+            {
+              "doc": "Concall Transcript - 19 Aug 2026",
+              "quote": "liquid terminaling contributed 54.1%, while gas terminaling contributed 45.9% during the quarter",
+              "page": 7
+            }
+          ]
+        },
+        {
+          "label": "Ammonia Static Storage Capacity",
+          "unit": "'000 MT",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            0,
+            36
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "36,000 MT Static Capacity Ammonia Storage Terminal; India's first independent Ammonia Terminal at Pipavav, expected to be completed before Q1 of the next fiscal year",
+              "page": 16
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "36,000 MT Static Capacity Ammonia Storage Terminal; Completion by Q1 FY27",
+              "page": 16
+            }
+          ]
+        }
+      ]
+    },
+    "supreme-petrochem": {
+      "name": "Supreme Petrochem",
+      "slug": "SPLPETRO",
+      "view": "quarterly",
+      "url": "https://www.screener.in/company/SPLPETRO/consolidated/#shareholding",
+      "via": "quarterly-fragment",
+      "toggled": "/insights/company/3281/quarter/?is_consolidated=1",
+      "note": null,
+      "periods": [
+        "Dec 2023",
+        "Mar 2024",
+        "Jun 2024",
+        "Sep 2024",
+        "Dec 2024",
+        "Mar 2025",
+        "Jun 2025",
+        "Sep 2025",
+        "Dec 2025",
+        "Mar 2026",
+        "Jun 2026",
+        "Sep 2026"
+      ],
+      "periodsIso": [
+        "2023-12",
+        "2024-03",
+        "2024-06",
+        "2024-09",
+        "2024-12",
+        "2025-03",
+        "2025-06",
+        "2025-09",
+        "2025-12",
+        "2026-03",
+        "2026-06",
+        "2026-09"
+      ],
+      "rows": [
+        {
           "label": "Sales Volume (Manufactured Products)",
           "unit": "MT",
           "scope": "Standalone data",
           "values": [
-            81131,
             70623,
             96255,
             93323,
@@ -8125,14 +8563,10 @@
             76962,
             91265,
             100664,
-            70842
+            70842,
+            95242
           ],
           "citations": [
-            {
-              "doc": "Presentation - 21 Oct 2024",
-              "quote": "81,131 81,152 Q2-FY24 Q2-FY25",
-              "page": 18
-            },
             {
               "doc": "Presentation - 17 Jan 2025",
               "quote": "70,623 85,537 Q3-FY24 Q3-FY25",
@@ -8187,6 +8621,11 @@
               "doc": "Presentation - 27 Jul 2026",
               "quote": "Total Sales Volume of the manufactured products in Q1FY27 was 70,842 MT",
               "page": 18
+            },
+            {
+              "doc": "Presentation - 23 Oct 2026",
+              "quote": "Quantities Sold in MT",
+              "page": 29
             }
           ]
         },
@@ -8197,7 +8636,6 @@
           "values": [
             null,
             null,
-            null,
             80,
             null,
             null,
@@ -8206,10 +8644,10 @@
             78,
             80,
             82,
-            82
+            82,
+            null
           ],
           "citations": [
-            null,
             null,
             null,
             {
@@ -8240,105 +8678,8 @@
               "doc": "Concall Transcript - 04 Aug 2026",
               "quote": "around 17-I8% of the top line",
               "page": 6
-            }
-          ]
-        },
-        {
-          "label": "Capacity Utilization",
-          "unit": "%",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            null,
-            null,
-            80,
-            null,
-            null,
-            null,
-            null,
-            79,
-            80,
-            80,
-            null
-          ],
-          "citations": [
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 19 Jul 2024",
-              "quote": "Capacity Utilisation for June 2024 quarter increased to 80%",
-              "page": 16
-            },
-            null,
-            null,
-            null,
-            null,
-            {
-              "doc": "Concall Transcript - 31 Oct 2025",
-              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 26 Jan 2026",
-              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 30 Apr 2026",
-              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
-              "page": 3
             },
             null
-          ]
-        },
-        {
-          "label": "Expandable Polystyrene (EPS) Installed Capacity",
-          "unit": "MTPA",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            null,
-            110000,
-            null,
-            null,
-            null,
-            110000,
-            null,
-            null,
-            null,
-            110000,
-            143000
-          ],
-          "citations": [
-            null,
-            null,
-            {
-              "doc": "Presentation - 23 Apr 2025",
-              "quote": "Installed Effective Capacities EPS 1,10,000 MTPA",
-              "page": 6
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 23 Apr 2025",
-              "quote": "Installed Effective Capacities EPS 1,10,000 MTPA",
-              "page": 6
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Installed Effective Capacities EPS 1,10,000 MTPA",
-              "page": 6
-            },
-            {
-              "doc": "Concall Transcript - 04 Aug 2026",
-              "quote": "So, now we have expanded the capacity to 1,43,000.",
-              "page": 8
-            }
           ]
         },
         {
@@ -8347,7 +8688,6 @@
           "scope": "Standalone data",
           "values": [
             null,
-            null,
             60000,
             null,
             null,
@@ -8357,10 +8697,10 @@
             null,
             null,
             60000,
+            50000,
             50000
           ],
           "citations": [
-            null,
             null,
             {
               "doc": "Presentation - 23 Apr 2025",
@@ -8387,6 +8727,11 @@
               "doc": "Presentation - 27 Jul 2026",
               "quote": "Compounding production capacity from 50,000 TPA to 80,000 TPA initiated.",
               "page": 18
+            },
+            {
+              "doc": "Presentation - 23 Oct 2026",
+              "quote": "Installed Operating Capacity : 50,000 MTPA",
+              "page": 14
             }
           ]
         },
@@ -8396,7 +8741,6 @@
           "scope": "Standalone data",
           "values": [
             null,
-            null,
             300000,
             null,
             null,
@@ -8405,11 +8749,11 @@
             null,
             null,
             null,
+            300000,
             300000,
             300000
           ],
           "citations": [
-            null,
             null,
             {
               "doc": "Presentation - 23 Apr 2025",
@@ -8436,7 +8780,110 @@
               "doc": "Presentation - 27 Jul 2026",
               "quote": "3,00,000 TPA",
               "page": 6
+            },
+            {
+              "doc": "Presentation - 23 Oct 2026",
+              "quote": "Polystyrene – 300,000 TPA",
+              "page": 7
             }
+          ]
+        },
+        {
+          "label": "Capacity Utilization",
+          "unit": "%",
+          "scope": "Standalone data",
+          "values": [
+            null,
+            null,
+            80,
+            null,
+            null,
+            null,
+            null,
+            79,
+            80,
+            80,
+            null,
+            null
+          ],
+          "citations": [
+            null,
+            null,
+            {
+              "doc": "Presentation - 19 Jul 2024",
+              "quote": "Capacity Utilisation for June 2024 quarter increased to 80%",
+              "page": 16
+            },
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 26 Jan 2026",
+              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 30 Apr 2026",
+              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
+              "page": 3
+            },
+            null,
+            null
+          ]
+        },
+        {
+          "label": "Expandable Polystyrene (EPS) Installed Capacity",
+          "unit": "MTPA",
+          "scope": "Standalone data",
+          "values": [
+            null,
+            110000,
+            null,
+            null,
+            null,
+            110000,
+            null,
+            null,
+            null,
+            110000,
+            143000,
+            null
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Presentation - 23 Apr 2025",
+              "quote": "Installed Effective Capacities EPS 1,10,000 MTPA",
+              "page": 6
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 23 Apr 2025",
+              "quote": "Installed Effective Capacities EPS 1,10,000 MTPA",
+              "page": 6
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 24 Apr 2026",
+              "quote": "Installed Effective Capacities EPS 1,10,000 MTPA",
+              "page": 6
+            },
+            {
+              "doc": "Concall Transcript - 04 Aug 2026",
+              "quote": "So, now we have expanded the capacity to 1,43,000.",
+              "page": 8
+            },
+            null
           ]
         },
         {
@@ -8444,7 +8891,6 @@
           "unit": "%",
           "scope": "Standalone data",
           "values": [
-            null,
             null,
             null,
             9,
@@ -8455,10 +8901,10 @@
             null,
             null,
             null,
+            null,
             null
           ],
           "citations": [
-            null,
             null,
             null,
             {
@@ -8481,6 +8927,7 @@
             null,
             null,
             null,
+            null,
             null
           ]
         },
@@ -8491,7 +8938,6 @@
           "values": [
             null,
             null,
-            null,
             50,
             null,
             null,
@@ -8500,10 +8946,10 @@
             null,
             null,
             null,
-            50
+            50,
+            null
           ],
           "citations": [
-            null,
             null,
             null,
             {
@@ -8526,7 +8972,8 @@
               "doc": "Concall Transcript - 30 Apr 2026",
               "quote": "for both categories, you can take around 50-50 or 45% for OEM and 55% for non-OEM",
               "page": 7
-            }
+            },
+            null
           ]
         },
         {
@@ -8535,7 +8982,6 @@
           "scope": "Standalone data",
           "values": [
             null,
-            null,
             50,
             null,
             null,
@@ -8545,10 +8991,10 @@
             null,
             null,
             50,
+            null,
             null
           ],
           "citations": [
-            null,
             null,
             {
               "doc": "Presentation - 23 Apr 2025",
@@ -8571,6 +9017,7 @@
               "quote": "Market Leader in Polystyrene and Expanded Polystyrene with market share exceeding 50%",
               "page": 3
             },
+            null,
             null
           ]
         }
@@ -9140,7 +9587,6 @@
       "toggled": "/insights/company/1284569/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Sep 2023",
         "Dec 2023",
         "Mar 2024",
         "Jun 2024",
@@ -9151,10 +9597,10 @@
         "Sep 2025",
         "Dec 2025",
         "Mar 2026",
-        "Jun 2026"
+        "Jun 2026",
+        "Sep 2026"
       ],
       "periodsIso": [
-        "2023-09",
         "2023-12",
         "2024-03",
         "2024-06",
@@ -9165,7 +9611,8 @@
         "2025-09",
         "2025-12",
         "2026-03",
-        "2026-06"
+        "2026-06",
+        "2026-09"
       ],
       "rows": [
         {
@@ -9173,25 +9620,20 @@
           "unit": "INR/kL",
           "scope": null,
           "values": [
-            10060,
             10223,
             null,
             8815,
             10060,
-            10223,
+            8299,
             9248,
             7923,
             8274,
             9146,
             9351,
-            28145
+            28145,
+            29128
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 31 Jan 2024",
-              "quote": "The manufacturing gross margin spread stood at INR10,223 per KL, compared to INR10,060 per KL in the previous quarter",
-              "page": 5
-            },
             {
               "doc": "Concall Transcript - 31 Jan 2024",
               "quote": "The manufacturing gross margin spread stood at INR10,223 per KL, compared to INR10,060 per KL in the previous quarter",
@@ -9209,9 +9651,9 @@
               "page": 5
             },
             {
-              "doc": "Concall Transcript - 31 Jan 2024",
-              "quote": "The manufacturing gross margin spread stood at INR10,223 per KL, compared to INR10,060 per KL in the previous quarter",
-              "page": 5
+              "doc": "Presentation - 22 May 2025",
+              "quote": "Manufacturing Gross Margin Spread (INR/kL)",
+              "page": 18
             },
             {
               "doc": "Presentation - 26 May 2026",
@@ -9242,6 +9684,64 @@
               "doc": "Presentation - 22 Jul 2026",
               "quote": "Gross Margin Spread expanded 3.4x year-on-year to ₹28,145 per kl compared to Q1 FY26",
               "page": 5
+            },
+            {
+              "doc": "Presentation - 27 Oct 2026",
+              "quote": "Gross Margin Spread sustained at ₹29,128 per kl",
+              "page": 5
+            }
+          ]
+        },
+        {
+          "label": "Installed Capacity",
+          "unit": "kL",
+          "scope": null,
+          "values": [
+            null,
+            522403,
+            null,
+            null,
+            null,
+            597403,
+            null,
+            null,
+            null,
+            597403,
+            597403,
+            838637
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Concall Transcript - 03 Jun 2024",
+              "quote": "the total capacity of our Sharjah plant is 2,35,000 KL",
+              "page": 10
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "Installed Capacity: 597,403 kL (Total capacity as of FY25)",
+              "page": 14
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 26 May 2026",
+              "quote": "Total Capacity 597,403 kL",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 22 Jul 2026",
+              "quote": "597,403 kL",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 27 Oct 2026",
+              "quote": "838,637 kL",
+              "page": 8
             }
           ]
         },
@@ -9256,15 +9756,14 @@
             null,
             null,
             null,
-            null,
             30482,
             33366,
             31949,
             33697,
-            30073
+            30073,
+            null
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -9295,7 +9794,8 @@
               "doc": "Presentation - 22 Jul 2026",
               "quote": "Lubricants (kl)",
               "page": 11
-            }
+            },
+            null
           ]
         },
         {
@@ -9309,15 +9809,14 @@
             null,
             null,
             null,
-            null,
             58379,
             72404,
             74938,
             55155,
-            68815
+            68815,
+            null
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -9348,7 +9847,8 @@
               "doc": "Presentation - 22 Jul 2026",
               "quote": "PHPO (kl)",
               "page": 11
-            }
+            },
+            null
           ]
         },
         {
@@ -9362,15 +9862,14 @@
             null,
             null,
             null,
-            null,
             121733,
             139791,
             148450,
             135781,
-            131247
+            131247,
+            null
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -9401,56 +9900,8 @@
               "doc": "Presentation - 22 Jul 2026",
               "quote": "Total Sales Manufacturing Volumes",
               "page": 11
-            }
-          ]
-        },
-        {
-          "label": "Installed Capacity",
-          "unit": "kL",
-          "scope": null,
-          "values": [
-            null,
-            null,
-            522403,
-            null,
-            null,
-            null,
-            597403,
-            null,
-            null,
-            null,
-            597403,
-            597403
-          ],
-          "citations": [
-            null,
-            null,
-            {
-              "doc": "Concall Transcript - 03 Jun 2024",
-              "quote": "the total capacity of our Sharjah plant is 2,35,000 KL",
-              "page": 10
             },
-            null,
-            null,
-            null,
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "Installed Capacity: 597,403 kL (Total capacity as of FY25)",
-              "page": 14
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 26 May 2026",
-              "quote": "Total Capacity 597,403 kL",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 22 Jul 2026",
-              "quote": "597,403 kL",
-              "page": 8
-            }
+            null
           ]
         },
         {
@@ -9464,15 +9915,14 @@
             null,
             null,
             null,
-            null,
             37,
             null,
             null,
             null,
-            51
+            51,
+            null
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -9491,7 +9941,8 @@
               "doc": "Concall Transcript - 28 Jul 2026",
               "quote": "Exports contributed approximately 51% of consolidated revenue compared with around 37% in the corresponding quarter last year",
               "page": 5
-            }
+            },
+            null
           ]
         },
         {
@@ -9509,11 +9960,10 @@
             null,
             null,
             null,
-            null,
-            97
+            97,
+            null
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -9528,7 +9978,8 @@
               "doc": "Concall Transcript - 28 Jul 2026",
               "quote": "On a company level, all 3 plants taken together, it's around 97%.",
               "page": 14
-            }
+            },
+            null
           ]
         }
       ]
