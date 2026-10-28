@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-28T11:46:19.528Z",
+  "generatedAt": "2026-10-28T13:49:45.922Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,7 +38,7 @@
   "asOf": "Q1 FY27",
   "scores": {
     "leading": {
-      "score": -4,
+      "score": 4,
       "prev": 25,
       "delta": -50,
       "deltaBasis": "kpi-only",
@@ -100,6 +100,13 @@
         },
         {
           "kind": "tone",
+          "companyId": "lt",
+          "company": "L&T",
+          "label": "Refining/petchem capex pipeline",
+          "flag": "tone-up"
+        },
+        {
+          "kind": "tone",
           "companyId": "ratnamani",
           "company": "Ratnamani Metals",
           "label": "Refining/petchem capex pipeline",
@@ -108,11 +115,11 @@
       ]
     },
     "coincident": {
-      "score": -8,
-      "prev": -37,
-      "delta": 1,
+      "score": -11,
+      "prev": -40,
+      "delta": 4,
       "deltaBasis": "kpi-only",
-      "level": "flat",
+      "level": "negative",
       "direction": "flat",
       "kpisScored": 20,
       "kpisTotal": 40,
@@ -144,7 +151,7 @@
           "kind": "kpi",
           "companyId": "petronet-lng",
           "company": "Petronet LNG",
-          "label": "Kochi utilisation",
+          "label": "Kochi throughput",
           "flag": "inflecting-down"
         },
         {
@@ -205,13 +212,6 @@
         },
         {
           "kind": "tone",
-          "companyId": "castrol-india",
-          "company": "Castrol India",
-          "label": "Spread / demand commentary",
-          "flag": "tone-up"
-        },
-        {
-          "kind": "tone",
           "companyId": "gandhar-oil",
           "company": "Gandhar Oil",
           "label": "Spread / demand commentary",
@@ -263,15 +263,15 @@
     }
   },
   "divergence": {
-    "value": 4,
+    "value": 15,
     "leadingSign": 0,
-    "coincidentSign": 0,
+    "coincidentSign": -1,
     "signsDiffer": false
   },
   "divergenceSeries": [
     null,
     null,
-    62,
+    65,
     11
   ],
   "stage": {
@@ -281,7 +281,7 @@
     "ruleLabel": "No bucket far enough from zero to place the cycle",
     "confidence": "low",
     "because": [
-      "Leading -4 (flat), coincident -8 (flat), lagging 100 (strong-positive).",
+      "Leading 4 (flat), coincident -11 (negative), lagging 100 (strong-positive).",
       "No bucket far enough from zero to place the cycle."
     ]
   },
@@ -367,8 +367,8 @@
       "direction": "up"
     },
     {
-      "companyId": "castrol-india",
-      "name": "Castrol India",
+      "companyId": "gandhar-oil",
+      "name": "Gandhar Oil",
       "from": "cautious",
       "to": "confident",
       "fromQuarter": "Q4 FY26",
@@ -377,13 +377,13 @@
       "direction": "up"
     },
     {
-      "companyId": "gandhar-oil",
-      "name": "Gandhar Oil",
-      "from": "cautious",
+      "companyId": "lt",
+      "name": "L&T",
+      "from": "neutral",
       "to": "confident",
-      "fromQuarter": "Q4 FY26",
-      "quarter": "Q1 FY27",
-      "steps": 3,
+      "fromQuarter": "Q1 FY27",
+      "quarter": "Q2 FY27",
+      "steps": 2,
       "direction": "up"
     },
     {
@@ -454,16 +454,16 @@
       "text": "ONGC moved 3 tone steps up (cautious → confident) in Q1 FY27."
     },
     {
-      "id": "tone-castrol-india",
-      "severity": "info",
-      "kind": "tone-drift",
-      "text": "Castrol India moved 3 tone steps up (cautious → confident) in Q1 FY27."
-    },
-    {
       "id": "tone-gandhar-oil",
       "severity": "info",
       "kind": "tone-drift",
       "text": "Gandhar Oil moved 3 tone steps up (cautious → confident) in Q1 FY27."
+    },
+    {
+      "id": "tone-lt",
+      "severity": "info",
+      "kind": "tone-drift",
+      "text": "L&T moved 2 tone steps up (neutral → confident) in Q2 FY27."
     },
     {
       "id": "tone-ratnamani",
@@ -504,7 +504,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are flat — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
+      "text": "Coincident indicators are negative — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi throughput."
     },
     {
       "id": "macro",
@@ -514,12 +514,12 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +4. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +15. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); Castrol India (cautious → confident); Gandhar Oil (cautious → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 2 more."
+      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); Gandhar Oil (cautious → confident); L&T (neutral → confident); Ratnamani Metals (neutral → defensive); Reliance (cautious → constructive); and 2 more."
     },
     {
       "id": "implication",
@@ -600,7 +600,7 @@
       "label": "Refining/petchem capex pipeline",
       "bucket": "leading",
       "listenFor": "Tone on bid pipeline and tendering - healthy / muted / delayed awards; specific large projects named (refinery expansion, new pipeline, LNG terminal)",
-      "state": "4 companies heard, leaning positive (2 positive, 1 negative); Ratnamani Metals moved 2 steps down.",
+      "state": "4 companies heard, leaning positive (3 positive, 1 negative); L&T moved 2 steps up, Ratnamani Metals moved 2 steps down.",
       "mood": "positive",
       "members": [
         {
@@ -615,11 +615,11 @@
         {
           "companyId": "lt",
           "name": "L&T",
-          "toneId": "neutral",
-          "quarter": "Q1 FY27",
-          "direction": "neutral",
-          "driver": "domestic demand",
-          "drift": 1
+          "toneId": "confident",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "order inflow and new business wins",
+          "drift": 2
         },
         {
           "companyId": "ratnamani",
@@ -642,6 +642,15 @@
       ],
       "drivers": [
         {
+          "companyId": "lt",
+          "name": "L&T",
+          "toneId": "confident",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "order inflow and new business wins",
+          "drift": 2
+        },
+        {
           "companyId": "ratnamani",
           "name": "Ratnamani Metals",
           "toneId": "defensive",
@@ -649,15 +658,6 @@
           "direction": "negative",
           "driver": "demand conditions",
           "drift": -2
-        },
-        {
-          "companyId": "engineers-india",
-          "name": "Engineers India",
-          "toneId": "confident",
-          "quarter": "Q1 FY27",
-          "direction": "positive",
-          "driver": "consultancy mix shift",
-          "drift": 1
         }
       ]
     },
@@ -912,7 +912,7 @@
       "label": "Spread / demand commentary",
       "bucket": "coincident",
       "listenFor": "Auto/industrial offtake trend - tracks broad economic activity, not just crude",
-      "state": "3 companies heard, leaning positive (3 positive, 0 negative); Castrol India moved 3 steps up, Gandhar Oil moved 3 steps up.",
+      "state": "3 companies heard, leaning positive (3 positive, 0 negative); Gandhar Oil moved 3 steps up.",
       "mood": "positive",
       "members": [
         {
@@ -931,7 +931,7 @@
           "quarter": "Q1 FY27",
           "direction": "positive",
           "driver": "broad-based volume growth",
-          "drift": 3
+          "drift": 0
         },
         {
           "companyId": "gandhar-oil",
@@ -945,15 +945,6 @@
       ],
       "drivers": [
         {
-          "companyId": "castrol-india",
-          "name": "Castrol India",
-          "toneId": "confident",
-          "quarter": "Q1 FY27",
-          "direction": "positive",
-          "driver": "broad-based volume growth",
-          "drift": 3
-        },
-        {
           "companyId": "gandhar-oil",
           "name": "Gandhar Oil",
           "toneId": "confident",
@@ -961,18 +952,31 @@
           "direction": "positive",
           "driver": "profitability",
           "drift": 3
+        },
+        {
+          "companyId": "supreme-petrochem",
+          "name": "Supreme Petrochem",
+          "toneId": "confident",
+          "quarter": "Q1 FY27",
+          "direction": "positive",
+          "driver": "styrene-polystyrene margin spread",
+          "drift": 1
         }
       ]
     }
   ],
   "changes": [
     {
-      "kind": "none",
-      "text": "Nothing material moved since the last refresh."
+      "kind": "score",
+      "text": "Moves first moved up 8 points to 4."
+    },
+    {
+      "kind": "alert",
+      "text": "New alert: L&T moved 2 tone steps up (neutral → confident) in Q2 FY27."
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-27T13:00:38.553Z",
+    "generatedAt": "2026-10-28T11:46:19.528Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": null,

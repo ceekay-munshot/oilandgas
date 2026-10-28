@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-28T11:45:35.670Z",
+  "generatedAt": "2026-10-28T13:49:09.421Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 28,
     "kpiCells": 409,
-    "realCells": 294,
-    "nullCells": 115,
+    "realCells": 291,
+    "nullCells": 118,
     "kpis": 105,
     "kpisWithTrend": 70
   },
@@ -596,7 +596,7 @@
       "name": "Petronet LNG",
       "slug": "PETRONET",
       "quarters": [
-        "Q2 FY26",
+        "Q1 FY26",
         "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
@@ -612,19 +612,19 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            92,
+            null,
             94,
             90.1,
             65.6
           ],
           "sourceTags": [
-            "mgmt-claim",
+            null,
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            "model",
+            null,
             "insights",
             "insights",
             "insights"
@@ -654,7 +654,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Dahej Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
         },
         {
           "id": "volume",
@@ -662,25 +662,29 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
-            211,
+            220,
             233,
             219,
             207
           ],
           "sourceTags": [
-            "mgmt-claim",
+            "company-filing",
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            "model",
+            "insights",
             "insights",
             "insights",
             "insights"
           ],
           "citations": [
-            null,
+            {
+              "doc": "Concall Transcript - 04 Aug 2025",
+              "quote": "Overall volume processed during the quarter was 220 TBTU",
+              "page": 3
+            },
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "the overall LNG volume processed by the company stood at 233 TBTU",
@@ -712,7 +716,7 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
-            211,
+            207,
             214,
             201,
             192
@@ -731,8 +735,8 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 14 Nov 2025",
-              "quote": "Dahej terminal processed 211 TBTU",
+              "doc": "Concall Transcript - 04 Aug 2025",
+              "quote": "Dahej terminal, our flagship terminal, processed 207 TBTU",
               "page": 3
             },
             {
@@ -766,25 +770,29 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
-            null,
+            13,
             19,
             18,
             null
           ],
           "sourceTags": [
-            null,
+            "company-filing",
             "company-filing",
             "company-filing",
             null
           ],
           "origins": [
-            null,
+            "insights",
             "insights",
             "insights",
             null
           ],
           "citations": [
-            null,
+            {
+              "doc": "Concall Transcript - 04 Aug 2025",
+              "quote": "Overall volume processed during the quarter was 220 TBTU",
+              "page": 3
+            },
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "the overall LNG volume processed by the company stood at 233 TBTU",
@@ -803,8 +811,8 @@
             null,
             null
           ],
-          "flag": null,
-          "notes": "From Screener Insights row \"Kochi Terminal LNG Throughput\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
+          "flag": "inflecting-down",
+          "notes": "From Screener Insights row \"Kochi Terminal LNG Throughput\"; latest value cited to Concall Transcript - 04 Aug 2025, page 3."
         },
         {
           "id": "kochi-utilisation",
@@ -812,29 +820,25 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            27,
+            null,
             29,
             null,
             23.27
           ],
           "sourceTags": [
-            "company-filing",
+            null,
             "company-filing",
             null,
             "company-filing"
           ],
           "origins": [
-            "insights",
+            null,
             "insights",
             null,
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 14 Nov 2025",
-              "quote": "highest ever capacity utilization of Kochi terminal in the current quarter, which stands at -- stood at 27%",
-              "page": 3
-            },
+            null,
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "At Kochi Terminal, PLL achieved the highest ever capacity utilization of 29% during the current quarter",
@@ -853,8 +857,8 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
-          "notes": "From Screener Insights row \"Kochi Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 14 Nov 2025, page 3."
+          "flag": null,
+          "notes": "From Screener Insights row \"Kochi Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
         }
       ]
     },
@@ -1534,15 +1538,15 @@
       "name": "L&T",
       "slug": "LT",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33898,
+      "ctxChars": 33899,
       "kpis": [
         {
           "id": "hydrocarbon-order-inflow",
@@ -1628,29 +1632,24 @@
           "unit": "INR crore",
           "flagBasis": "level",
           "values": [
-            115784,
             135600,
             89772,
-            108000
+            108000,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
-            "insights",
             "model",
             "insights",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 29 Oct 2025",
-              "quote": "Total 115784 65%",
-              "page": 33
-            },
             null,
             {
               "doc": "Presentation - 05 May 2026",
@@ -1661,7 +1660,8 @@
               "doc": "Presentation - 28 Jul 2026",
               "quote": "₹ 1080 bn",
               "page": 7
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -1672,7 +1672,7 @@
           "flag": "inflecting-up",
           "beyondBrief": true,
           "cycleRole": "leading",
-          "notes": null
+          "notes": "From Screener Insights row \"Order Inflow\"; latest value cited to Presentation - 05 May 2026, page 45."
         },
         {
           "id": "group-order-book",
@@ -1680,29 +1680,24 @@
           "unit": "INR crore",
           "flagBasis": "qoq",
           "values": [
-            667000,
             733000,
             740300,
-            779000
+            779000,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
-            "insights",
             "model",
             "insights",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 29 Oct 2025",
-              "quote": "6670 Order Book",
-              "page": 8
-            },
             null,
             {
               "doc": "Presentation - 05 May 2026",
@@ -1713,7 +1708,8 @@
               "doc": "Presentation - 28 Jul 2026",
               "quote": "₹ 7790 bn",
               "page": 7
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -1723,7 +1719,7 @@
           ],
           "flag": "inflecting-up",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Order Book\"; latest value cited to Presentation - 05 May 2026, page 5."
         }
       ]
     },
@@ -4352,15 +4348,15 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31597,
+      "ctxChars": 31596,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -4368,31 +4364,27 @@
           "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
+            8,
             7,
-            7.5,
             7.5,
             5
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "company-filing",
+            "mgmt-claim",
             "company-filing"
           ],
           "origins": [
             "model",
             "model",
-            "insights",
+            "model",
             "insights"
           ],
           "citations": [
             null,
             null,
-            {
-              "doc": "Concall Transcript - 04 May 2026",
-              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
-              "page": 6
-            },
+            null,
             {
               "doc": "Presentation - 21 Aug 2026",
               "quote": "Average growth in volume sold vs 2Q 2025",
@@ -4400,9 +4392,9 @@
             }
           ],
           "oneOffs": [
+            null,
             "No Q2 FY26 data",
             "No Q3 FY26 data",
-            null,
             null
           ],
           "flag": null,

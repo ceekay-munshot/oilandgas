@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-10-28T11:46:19.469Z",
+  "generatedAt": "2026-10-28T13:49:45.879Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -623,9 +623,32 @@
           "attempts": 1,
           "model": "gpt-4o",
           "at": "2026-07-28T18:19:35.519Z"
+        },
+        "Q2 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Highest-ever quarterly order inflow: ₹1.48 trillion (+28% YoY), driven by ultra mega and mega orders across offshore, onshore hydrocarbons, and carbon light businesses.",
+          "rationale": "Management delivered record orders, announced major multi-billion dollar framework wins (Oman PDO), and detailed aggressive expansion plans for AI/data centers with large capex commitments.",
+          "driver": "order inflow and new business wins",
+          "direction": "positive",
+          "signal": "Management is committing substantial capex to AI compute infrastructure (targeting 100+ MW and $750m in GPUs over 18-24 months) while maintaining margin discipline on large hydrocarbon framework opportunities, signaling confidence in both t",
+          "mgmtDataPoints": [
+            "Q2 FY27 order inflow: ₹1.48 trillion, +28% YoY",
+            "PPM order inflow: ₹1.26 trillion, +32% YoY",
+            "Oman PDO framework addressable spend: $6-7 billion over 3-4 years",
+            "AI factory Chennai: 10,000 Nvidia B300 GPUs planned",
+            "GPU investment: ~$750 million",
+            "Data center expansion target: 100+ MW over 1.5-2 years"
+          ],
+          "implication": "The record order book and aggressive AI/data center capex deployment suggest strong revenue conversion and margin expansion potential over the next two quarters, though geopolitical risks in Middle East could temper renewables execution tim",
+          "doc": "Concall AI summary (Q2 FY27)",
+          "fingerprint": "12d055d74d93",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-10-28T13:49:35.800Z"
         }
       },
-      "updatedAt": "2026-07-28T18:19:35.519Z"
+      "updatedAt": "2026-10-28T13:49:35.800Z"
     },
     "ratnamani": {
       "cells": {

@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-28T11:45:23.954Z",
+  "generatedAt": "2026-10-28T13:49:03.981Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -321,9 +321,9 @@
           "periodIso": "2026-07",
           "url": "https://www.deepindustries.com/docs/TranscriptQ1.pdf",
           "source": "deepindustries.com",
-          "status": "http_429",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 54080,
+          "pages": 20,
           "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt"
         },
@@ -730,11 +730,12 @@
           "periodIso": "2025-11",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6a452d1f-2aef-47fe-a744-4411444ad183.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 40053,
-          "pages": 18,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/PETRONET/transcript-2025-11.txt"
+          "cache": "pipeline/cache/docs/PETRONET/transcript-2025-11.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6a452d1f-2aef-47fe-a744-4411444ad1"
         },
         {
           "type": "transcript",
@@ -1165,12 +1166,12 @@
           "periodIso": "2026-10",
           "url": "https://www.screener.in/concalls/summary/23343697/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 72,
+          "status": "ok",
+          "chars": 11843,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/LT/summary-2026-10.txt",
-          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
+          "sample": "Macro & Operating Backdrop (management framing) Policy stance described as macro-stability focused , but outcomes depend on external developments —notably the “"
         },
         {
           "type": "summary",
@@ -1850,9 +1851,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 95882,
-          "pages": 31,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -3924,9 +3925,9 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b2502bf8-680b-48ed-a5f0-5409b7938365.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 40455,
-          "pages": 14,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-05.txt"
         },
