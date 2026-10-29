@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-28T13:49:03.981Z",
+  "generatedAt": "2026-10-29T11:52:27.092Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -321,9 +321,9 @@
           "periodIso": "2026-07",
           "url": "https://www.deepindustries.com/docs/TranscriptQ1.pdf",
           "source": "deepindustries.com",
-          "status": "ok",
-          "chars": 54080,
-          "pages": 20,
+          "status": "http_429",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt"
         },
@@ -730,12 +730,11 @@
           "periodIso": "2025-11",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6a452d1f-2aef-47fe-a744-4411444ad183.pdf",
           "source": "bseindia.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 40053,
+          "pages": 18,
           "via": "browser",
-          "cache": "pipeline/cache/docs/PETRONET/transcript-2025-11.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6a452d1f-2aef-47fe-a744-4411444ad1"
+          "cache": "pipeline/cache/docs/PETRONET/transcript-2025-11.txt"
         },
         {
           "type": "transcript",
@@ -1629,15 +1628,15 @@
       "ppt": {
         "type": "ppt",
         "role": "ppt",
-        "period": "Jul 2026",
-        "periodIso": "2026-07",
-        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b5e4e9df-dcfb-4ec7-87cf-e0960b89f5a0.pdf",
+        "period": "Oct 2026",
+        "periodIso": "2026-10",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=8b379781-b35f-4b21-86b8-81f2fd6f95be.pdf",
         "source": "bseindia.com",
         "status": "ok",
-        "chars": 13704,
-        "pages": 19,
+        "chars": 16355,
+        "pages": 23,
         "via": "browser",
-        "cache": "pipeline/cache/docs/WELCORP/ppt-2026-07.txt"
+        "cache": "pipeline/cache/docs/WELCORP/ppt-2026-10.txt"
       },
       "transcripts": [
         {
@@ -3925,9 +3924,9 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b2502bf8-680b-48ed-a5f0-5409b7938365.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 40455,
+          "pages": 14,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-05.txt"
         },
@@ -4212,9 +4211,23 @@
         "pros": 2,
         "cons": 2
       },
-      "summariesAvailable": 42,
+      "summariesAvailable": 43,
       "transcriptsFound": 41,
       "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Oct 2026",
+          "periodIso": "2026-10",
+          "url": "https://www.screener.in/concalls/summary/23345175/",
+          "source": "screener.in",
+          "status": "gated",
+          "chars": 72,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ADANIPORTS/summary-2026-10.txt",
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
+        },
         {
           "type": "summary",
           "role": "summary",
@@ -4283,20 +4296,6 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/ADANIPORTS/summary-2025-08.txt",
-          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "May 2025",
-          "periodIso": "2025-05",
-          "url": "https://www.screener.in/concalls/summary/22999830/",
-          "source": "screener.in",
-          "status": "gated",
-          "chars": 72,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/ADANIPORTS/summary-2025-05.txt",
           "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
@@ -4591,7 +4590,7 @@
       "view": "consolidated",
       "url": "https://www.screener.in/company/SCI/consolidated/",
       "analysis": {
-        "pros": 2,
+        "pros": 1,
         "cons": 5
       },
       "summariesAvailable": 2,
