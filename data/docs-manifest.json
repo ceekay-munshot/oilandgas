@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-29T11:52:27.092Z",
+  "generatedAt": "2026-10-29T14:06:27.752Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -1535,7 +1535,7 @@
       "url": "https://www.screener.in/company/WELCORP/consolidated/",
       "analysis": {
         "pros": 1,
-        "cons": 3
+        "cons": 2
       },
       "summariesAvailable": 24,
       "transcriptsFound": 23,
@@ -1850,9 +1850,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 95882,
+          "pages": 31,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -3035,11 +3035,12 @@
           "periodIso": "2025-07",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=89d0e8de-99ff-4a91-8c06-b077724a2ba0.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 45066,
-          "pages": 20,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/MGL/transcript-2025-07.txt"
+          "cache": "pipeline/cache/docs/MGL/transcript-2025-07.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=89d0e8de-99ff-4a91-8c06-b077724a2b"
         },
         {
           "type": "transcript",
@@ -3430,11 +3431,12 @@
           "periodIso": "2024-11",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=65eba500-2091-45e4-803b-b6b3d3bd1264.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 24219,
-          "pages": 12,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/AEGISLOG/transcript-2024-11.txt"
+          "cache": "pipeline/cache/docs/AEGISLOG/transcript-2024-11.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=65eba500-2091-45e4-803b-b6b3d3bd12"
         }
       ]
     },
@@ -3581,11 +3583,12 @@
           "periodIso": "2025-11",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f821c543-5736-46c9-82de-a187bf5a824b.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 29541,
-          "pages": 12,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/AEGISVOPAK/transcript-2025-11.txt"
+          "cache": "pipeline/cache/docs/AEGISVOPAK/transcript-2025-11.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f821c543-5736-46c9-82de-a187bf5a82"
         },
         {
           "type": "transcript",
@@ -3803,14 +3806,14 @@
         "cons": 0
       },
       "summariesAvailable": 19,
-      "transcriptsFound": 18,
+      "transcriptsFound": 19,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Oct 2026",
           "periodIso": "2026-10",
-          "url": "https://www.screener.in/concalls/summary/23342113/",
+          "url": "https://www.screener.in/concalls/summary/23346852/",
           "source": "screener.in",
           "status": "gated",
           "chars": 72,
@@ -3907,6 +3910,19 @@
         {
           "type": "transcript",
           "role": "transcript",
+          "period": "Oct 2026",
+          "periodIso": "2026-10",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=cf4f9d4f-4420-4973-bb45-d48a7429526c.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 42391,
+          "pages": 16,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-10.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
           "period": "Aug 2026",
           "periodIso": "2026-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=502d723a-f53f-4cda-945d-f817254831f7.pdf",
@@ -3968,19 +3984,6 @@
           "pages": 14,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2025-08.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "May 2025",
-          "periodIso": "2025-05",
-          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2011432e-3fea-44f0-9517-23b34d69d234.pdf",
-          "source": "bseindia.com",
-          "status": "ok",
-          "chars": 40174,
-          "pages": 15,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/CASTROLIND/transcript-2025-05.txt"
         }
       ]
     },
@@ -4141,11 +4144,12 @@
           "periodIso": "2025-11",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7673f256-56d3-40d8-bcab-489612c6ed01.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 29120,
-          "pages": 12,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GANDHAR/transcript-2025-11.txt"
+          "cache": "pipeline/cache/docs/GANDHAR/transcript-2025-11.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7673f256-56d3-40d8-bcab-489612c6ed"
         },
         {
           "type": "transcript",
@@ -4498,9 +4502,9 @@
         "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=8243e328-7ff5-459a-8e47-34de534a89ad.pdf",
         "source": "bseindia.com",
         "status": "ok",
-        "chars": 34760,
-        "pages": 46,
-        "via": "browser",
+        "chars": 38573,
+        "pages": null,
+        "via": "firecrawl",
         "cache": "pipeline/cache/docs/GESHIP/ppt-2026-08.txt"
       },
       "transcripts": [
@@ -4550,11 +4554,12 @@
           "periodIso": "2025-12",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=bdfeb886-263a-40bf-accb-79e8073435e8.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 51380,
-          "pages": 21,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GESHIP/transcript-2025-12.txt"
+          "cache": "pipeline/cache/docs/GESHIP/transcript-2025-12.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=bdfeb886-263a-40bf-accb-79e8073435"
         },
         {
           "type": "transcript",
@@ -4772,9 +4777,9 @@
         "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=11476949-33a2-4fec-9066-d24d9f45f030.pdf",
         "source": "bseindia.com",
         "status": "ok",
-        "chars": 17368,
-        "pages": 19,
-        "via": "browser",
+        "chars": 16139,
+        "pages": null,
+        "via": "firecrawl",
         "cache": "pipeline/cache/docs/THERMAX/ppt-2026-07.txt"
       },
       "transcripts": [
