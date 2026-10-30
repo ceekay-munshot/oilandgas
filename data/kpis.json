@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-29T14:06:33.160Z",
+  "generatedAt": "2026-10-30T11:43:47.811Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 28,
     "kpiCells": 409,
-    "realCells": 288,
-    "nullCells": 121,
+    "realCells": 291,
+    "nullCells": 118,
     "kpis": 105,
     "kpisWithTrend": 70
   },
@@ -371,7 +371,7 @@
             null
           ],
           "flag": null,
-          "notes": "Bid pipeline is not reported in any of the excerpts. The excerpts report order book (unexecuted orders already won) and order inflow (business secured), but do not disclose the value of bids under evaluation or the pipeline of opportunities"
+          "notes": "Bid pipeline not disclosed in any of the excerpts. The excerpts report order book, order inflow, and business secured, but no forward-looking bid pipeline or tender pipeline figure was stated for any quarter."
         },
         {
           "id": "consultancy-order-book",
@@ -1176,7 +1176,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34082,
+      "ctxChars": 32578,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -1214,7 +1214,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: no single-quarter capex stated. Q3 FY26: no single-quarter capex stated. Q4 FY26: no single-quarter capex stated; FY26 full-year capex ₹13,026 cr mentioned but not Q4 alone. Q1 FY27: Q1 capex spend ~₹3,050 cr stated in concall AI s"
+          "notes": "Q1 FY27: Q1 capex spend ~₹3,050 cr stated in Q1 FY27 concall. Q2 FY26, Q3 FY26, Q4 FY26: no single-quarter capex figures stated; FY26 full-year capex of ₹13,025-13,026 cr mentioned in Q4 and Q1 concalls but not broken down by quarter."
         },
         {
           "id": "production-volume",
@@ -1310,7 +1310,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": "From Screener Insights row \"Natural Gas Production\" (Standalone data); latest value cited to Concall Transcript - 21 Nov 2025, page 4."
+          "notes": "Q2 FY26: 0.804 bcm stated in Q2 concall. Q3 FY26: 0.801 bcm stated in Q3 concall. Q4 FY26: no single-quarter figure stated; FY26 full-year 3.15 BCM mentioned in Q4 concall but not the Q4 quarter alone. Q1 FY27: no BCM figure stated; concall"
         }
       ]
     },
@@ -3134,7 +3134,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31882,
+      "ctxChars": 31875,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -3226,7 +3226,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated in any excerpt. Q1 FY26 concall mentions Pata segment loss of ₹249 cr and polymer production 177 TMT, Q2 FY26 mentions loss ₹299 cr on 220 TMT, Q3 FY26 mentions loss ₹483 cr on 219 TMT, Q1 FY27 mentions loss"
+          "notes": "No petchem margin data found in any excerpt. The documents report petchem segment losses in rupees (Q1 FY26: ₹249 cr loss, Q2 FY26: ₹299 cr loss, Q3 FY26: ₹483 cr loss, Q1 FY27: ₹130 cr loss) and feedstock costs (~$10.5-10.6/MMBtu gas), but"
         },
         {
           "id": "gas-marketing-volume",
@@ -4075,7 +4075,7 @@
       "name": "Aegis Vopak",
       "slug": "AEGISVOPAK",
       "quarters": [
-        "Q1 FY26",
+        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
@@ -4083,7 +4083,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33094,
+      "ctxChars": 33092,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -4091,7 +4091,7 @@
           "unit": "million MT",
           "flagBasis": "yoy",
           "values": [
-            0.52,
+            0.68,
             0.67,
             3.9,
             0.9
@@ -4110,9 +4110,9 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 13 Aug 2025",
-              "quote": "the throughput for the quarter, which is 522,000 metric tons that we did from Kandla and Pipavav",
-              "page": 9
+              "doc": "Concall Transcript - 11 Nov 2025",
+              "quote": "Gas report for the quarter was INR 0.68 million metric tons",
+              "page": 6
             },
             {
               "doc": "Concall Transcript - 05 Feb 2026",
@@ -4175,7 +4175,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not stated in any of the excerpts for Q1 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The screener insights table does not include this metric, and none of the concall transcripts mention utilisation percentages."
+          "notes": "Terminal utilisation % not disclosed in any of the provided excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The screener insights table does not include this metric, and the concall transcripts mention 'high capacity utilization' or 'im"
         }
       ]
     },
@@ -4352,7 +4352,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31596,
+      "ctxChars": 31613,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -4446,7 +4446,7 @@
       "name": "Gandhar Oil",
       "slug": "GANDHAR",
       "quarters": [
-        "Q4 FY25",
+        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
@@ -4454,7 +4454,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33774,
+      "ctxChars": 33773,
       "kpis": [
         {
           "id": "base-oil-spread",
@@ -4502,25 +4502,29 @@
           "unit": "kL",
           "flagBasis": "level",
           "values": [
-            null,
+            72404,
             74938,
             55155,
             68815
           ],
           "sourceTags": [
-            null,
+            "company-filing",
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            null,
+            "insights",
             "insights",
             "insights",
             "insights"
           ],
           "citations": [
-            null,
+            {
+              "doc": "Presentation - 12 Nov 2025",
+              "quote": "PHPO (kl)",
+              "page": 23
+            },
             {
               "doc": "Presentation - 23 Jan 2026",
               "quote": "PHPO (kl)",
@@ -4544,7 +4548,7 @@
             null
           ],
           "flag": "inflecting-up",
-          "notes": "From Screener Insights row \"PHPO Sales Volume\"; latest value cited to Presentation - 23 Jan 2026, page 23."
+          "notes": null
         },
         {
           "id": "mfg-gross-spread",
@@ -4552,7 +4556,7 @@
           "unit": "INR/kL",
           "flagBasis": "level",
           "values": [
-            9248,
+            8274,
             9146,
             9351,
             28145
@@ -4606,25 +4610,29 @@
           "unit": "kL",
           "flagBasis": "level",
           "values": [
-            null,
+            33366,
             31949,
             33697,
             30073
           ],
           "sourceTags": [
-            null,
+            "company-filing",
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            null,
+            "insights",
             "insights",
             "insights",
             "insights"
           ],
           "citations": [
-            null,
+            {
+              "doc": "Presentation - 12 Nov 2025",
+              "quote": "Lubricants (kl)",
+              "page": 23
+            },
             {
               "doc": "Presentation - 23 Jan 2026",
               "quote": "Lubricants (kl)",
@@ -4649,7 +4657,7 @@
           ],
           "flag": "inflecting-down",
           "beyondBrief": true,
-          "notes": "From Screener Insights row \"Lubricants Sales Volume\"; latest value cited to Presentation - 23 Jan 2026, page 23."
+          "notes": null
         },
         {
           "id": "mfg-volume",
@@ -4657,25 +4665,29 @@
           "unit": "kL",
           "flagBasis": "level",
           "values": [
-            null,
+            139791,
             148450,
             135781,
             131247
           ],
           "sourceTags": [
-            null,
+            "company-filing",
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            null,
+            "insights",
             "insights",
             "insights",
             "insights"
           ],
           "citations": [
-            null,
+            {
+              "doc": "Presentation - 12 Nov 2025",
+              "quote": "Total Sales Manufacturing Volumes (kl)",
+              "page": 23
+            },
             {
               "doc": "Presentation - 23 Jan 2026",
               "quote": "Total Sales Manufacturing Volumes (kl)",
@@ -4700,7 +4712,7 @@
           ],
           "flag": "decelerating",
           "beyondBrief": true,
-          "notes": "From Screener Insights row \"Total Sales Manufacturing Volume\"; latest value cited to Presentation - 23 Jan 2026, page 23."
+          "notes": null
         }
       ]
     },
@@ -4871,7 +4883,7 @@
       "name": "GE Shipping",
       "slug": "GESHIP",
       "quarters": [
-        "Q1 FY26",
+        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
@@ -4887,7 +4899,7 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            46352,
+            28492,
             47281,
             61424,
             93026
@@ -4906,9 +4918,9 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Crude Carriers: Q1 FY25 46,352",
-              "page": 14
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Crude Carriers: Q2 FY25 28,492",
+              "page": 13
             },
             {
               "doc": "Presentation - 29 Jan 2026",
@@ -4941,7 +4953,7 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3507,
+            3678,
             3765,
             3525,
             3679
@@ -4960,8 +4972,8 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Total Revenue Days: 3,507",
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Total Revenue Days: 3,678",
               "page": 12
             },
             {
@@ -4995,7 +5007,7 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            37153,
+            28978,
             25117,
             30511,
             45471
@@ -5014,9 +5026,9 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Product Carriers: Q1 FY25 37,153",
-              "page": 14
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Product Carriers: Q2 FY25 28,978",
+              "page": 13
             },
             {
               "doc": "Presentation - 29 Jan 2026",
@@ -5049,7 +5061,7 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            36742,
+            43507,
             43611,
             45216,
             41528
@@ -5068,9 +5080,9 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "LPG Carriers: Q1 FY25 36,742",
-              "page": 14
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "LPG Carriers: Q2 FY25 43,507",
+              "page": 13
             },
             {
               "doc": "Presentation - 29 Jan 2026",
@@ -5104,7 +5116,7 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            17976,
+            16686,
             17983,
             16678,
             22601
@@ -5123,9 +5135,9 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Dry Bulk: Q1 FY25 17,976",
-              "page": 14
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Dry Bulk: Q2 FY25 16,686",
+              "page": 13
             },
             {
               "doc": "Presentation - 29 Jan 2026",
@@ -5159,7 +5171,7 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3325,
+            3494,
             3581,
             3345,
             3497
@@ -5178,8 +5190,8 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Owned Tonnage: 3,325",
+              "doc": "Presentation - 11 Dec 2025",
+              "quote": "Owned Tonnage: 3,494",
               "page": 12
             },
             {
@@ -5219,7 +5231,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21382,
+      "ctxChars": 21434,
       "kpis": [
         {
           "id": "freight-rate",

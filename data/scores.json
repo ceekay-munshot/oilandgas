@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-29T14:07:25.958Z",
+  "generatedAt": "2026-10-30T11:45:05.204Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -116,11 +116,11 @@
     },
     "coincident": {
       "score": -17,
-      "prev": -23,
-      "delta": -13,
+      "prev": -37,
+      "delta": 1,
       "deltaBasis": "kpi-only",
       "level": "negative",
-      "direction": "falling",
+      "direction": "flat",
       "kpisScored": 20,
       "kpisTotal": 40,
       "kpisBeyondBrief": 21,
@@ -228,8 +228,8 @@
     },
     "lagging": {
       "score": 100,
-      "prev": -14,
-      "delta": 114,
+      "prev": -43,
+      "delta": 143,
       "deltaBasis": "kpi-only",
       "level": "strong-positive",
       "direction": "rising",
@@ -278,7 +278,7 @@
   "divergenceSeries": [
     null,
     null,
-    48,
+    62,
     11
   ],
   "stage": {
@@ -527,7 +527,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are negative and falling — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
+      "text": "Coincident indicators are negative — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
     },
     {
       "id": "macro",
@@ -990,18 +990,18 @@
   ],
   "changes": [
     {
-      "kind": "score",
-      "text": "Moving now moved down 9 points to -17."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-29T11:53:33.461Z",
+    "generatedAt": "2026-10-29T14:07:25.958Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": null,
     "scores": {
       "leading": 4,
-      "coincident": -8,
+      "coincident": -17,
       "lagging": 100
     },
     "alertIds": [
