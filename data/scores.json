@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-31T11:26:11.274Z",
+  "generatedAt": "2026-10-31T13:18:29.133Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,12 +38,12 @@
   "asOf": "Q1 FY27",
   "scores": {
     "leading": {
-      "score": 4,
-      "prev": 25,
-      "delta": -50,
+      "score": 33,
+      "prev": -42,
+      "delta": 67,
       "deltaBasis": "kpi-only",
-      "level": "flat",
-      "direction": "falling",
+      "level": "positive",
+      "direction": "rising",
       "kpisScored": 11,
       "kpisTotal": 23,
       "kpisBeyondBrief": 12,
@@ -68,14 +68,14 @@
           "companyId": "engineers-india",
           "company": "Engineers India",
           "label": "Order inflow",
-          "flag": "inflecting-down"
+          "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
           "companyId": "engineers-india",
           "company": "Engineers India",
           "label": "Order book",
-          "flag": "inflecting-down"
+          "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
@@ -116,11 +116,11 @@
     },
     "coincident": {
       "score": -17,
-      "prev": -42,
-      "delta": 6,
+      "prev": -37,
+      "delta": 1,
       "deltaBasis": "kpi-only",
       "level": "negative",
-      "direction": "rising",
+      "direction": "flat",
       "kpisScored": 20,
       "kpisTotal": 40,
       "kpisBeyondBrief": 21,
@@ -151,7 +151,7 @@
           "kind": "kpi",
           "companyId": "petronet-lng",
           "company": "Petronet LNG",
-          "label": "Kochi throughput",
+          "label": "Kochi utilisation",
           "flag": "inflecting-down"
         },
         {
@@ -270,26 +270,26 @@
     }
   },
   "divergence": {
-    "value": 21,
-    "leadingSign": 0,
+    "value": 50,
+    "leadingSign": 1,
     "coincidentSign": -1,
-    "signsDiffer": false
+    "signsDiffer": true
   },
   "divergenceSeries": [
     null,
     null,
-    67,
-    11
+    -5,
+    61
   ],
   "stage": {
-    "stageId": null,
-    "position": null,
-    "ruleId": "no-clear-signal",
-    "ruleLabel": "No bucket far enough from zero to place the cycle",
-    "confidence": "low",
+    "stageId": "early-upcycle",
+    "position": 35,
+    "ruleId": "early-upcycle",
+    "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
+    "confidence": "normal",
     "because": [
-      "Leading 4 (flat), coincident -17 (negative), lagging 100 (strong-positive).",
-      "No bucket far enough from zero to place the cycle."
+      "Leading 33 (positive, rising), coincident -17 (negative, flat), lagging 100 (strong-positive).",
+      "Leading turning positive off a low base, coincident not yet following."
     ]
   },
   "macro": {
@@ -337,7 +337,7 @@
         "id": "inr-usd",
         "label": "USD/INR",
         "direction": "flat",
-        "percentile": 91,
+        "percentile": 82,
         "supports": "down",
         "vote": "silent"
       },
@@ -351,7 +351,12 @@
       }
     ]
   },
-  "stageMacro": null,
+  "stageMacro": {
+    "stageId": "early-upcycle",
+    "expected": "crude recovering",
+    "observed": "crude rising",
+    "agrees": true
+  },
   "toneDrift": [
     {
       "companyId": "petronet-lng",
@@ -453,6 +458,12 @@
   ],
   "alerts": [
     {
+      "id": "divergence",
+      "severity": "high",
+      "kind": "divergence",
+      "text": "Leading and coincident have split: the front of the chain has turned up while the middle has not."
+    },
+    {
       "id": "coverage-lagging",
       "severity": "info",
       "kind": "low-coverage",
@@ -517,27 +528,27 @@
     {
       "id": "call",
       "label": "Cycle call",
-      "text": "not called."
+      "text": "Early Upcycle (Just turning up)."
     },
     {
       "id": "leading",
       "label": "Leading indicators",
-      "text": "Leading indicators are flat and falling — driven by Jindal Drilling Order book, Engineers India Order inflow, Engineers India Order book."
+      "text": "Leading indicators are positive and rising — driven by Jindal Drilling Order book, Engineers India Order inflow, Engineers India Order book."
     },
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are negative and rising — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi throughput."
+      "text": "Coincident indicators are negative — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
     },
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude rising (100th pctile); Crack spread falling (73th pctile); USD/INR flat (91th pctile)."
+      "text": "Crude rising (100th pctile); Crack spread falling (73th pctile); USD/INR flat (82th pctile)."
     },
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +21. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +50. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
     },
     {
       "id": "watchlist",
@@ -547,10 +558,41 @@
     {
       "id": "implication",
       "label": "Implication for the next 1–2 quarters",
-      "text": "No stage has been called, so no implication is drawn."
+      "text": "First new orders are landing. Only the early movers feel it."
     }
   ],
-  "actions": null,
+  "actions": {
+    "stageId": "early-upcycle",
+    "stageLabel": "Early Upcycle",
+    "stagePlainLabel": "Just turning up",
+    "why": "Oilfield services and first-line capex enablers have the most operating leverage to a capex turn; order books inflect here first and hardest",
+    "research": [
+      {
+        "label": "Deep Industries",
+        "companyId": "deep-industries"
+      },
+      {
+        "label": "Jindal Drilling",
+        "companyId": "jindal-drilling"
+      },
+      {
+        "label": "Engineers India",
+        "companyId": "engineers-india"
+      },
+      {
+        "label": "Ratnamani",
+        "companyId": "ratnamani"
+      },
+      {
+        "label": "Welspun",
+        "companyId": "welspun-corp"
+      },
+      {
+        "label": "Man Industries",
+        "companyId": null
+      }
+    ]
+  },
   "themes": [
     {
       "id": "upstream-capex",
@@ -630,10 +672,10 @@
           "companyId": "engineers-india",
           "name": "Engineers India",
           "toneId": "confident",
-          "quarter": "Q1 FY27",
+          "quarter": "Q2 FY27",
           "direction": "positive",
-          "driver": "consultancy mix shift",
-          "drift": 1
+          "driver": "order inflow and consultancy mix shift",
+          "drift": 0
         },
         {
           "companyId": "lt",
@@ -990,12 +1032,20 @@
   ],
   "changes": [
     {
-      "kind": "none",
-      "text": "Nothing material moved since the last refresh."
+      "kind": "stage-call",
+      "text": "The cycle call moved from no call to Just turning up."
+    },
+    {
+      "kind": "score",
+      "text": "Moves first moved up 29 points to 33."
+    },
+    {
+      "kind": "alert",
+      "text": "New alert: Leading and coincident have split: the front of the chain has turned up while the middle has not."
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-30T13:49:40.549Z",
+    "generatedAt": "2026-10-31T11:26:11.274Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": null,

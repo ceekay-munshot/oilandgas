@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-31T11:25:13.861Z",
+  "generatedAt": "2026-10-31T13:17:14.614Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 28,
     "kpiCells": 409,
-    "realCells": 291,
-    "nullCells": 118,
+    "realCells": 293,
+    "nullCells": 116,
     "kpis": 105,
     "kpisWithTrend": 70
   },
@@ -217,15 +217,15 @@
       "name": "Engineers India",
       "slug": "ENGINERSIN",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34082,
+      "ctxChars": 34081,
       "kpis": [
         {
           "id": "order-inflow",
@@ -233,10 +233,10 @@
           "unit": "INR mn",
           "flagBasis": "level",
           "values": [
-            23349,
             5027,
             37113,
-            5136
+            5136,
+            69147
           ],
           "sourceTags": [
             "company-filing",
@@ -251,11 +251,6 @@
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Presentation - 14 Nov 2025",
-              "quote": "Total Business secured 37,641 23,349 14,292 23,791 27,577 18,784 11,989",
-              "page": 14
-            },
             {
               "doc": "Presentation - 12 Feb 2026",
               "quote": "Total Business secured 42,668 5,027 23,349 14,292 23,791 27,577 18,784 11,989",
@@ -270,6 +265,11 @@
               "doc": "Presentation - 14 Aug 2026",
               "quote": "Total Business secured",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 30 Oct 2026",
+              "quote": "Total Business secured 74,283 69,147 5,136 14,292 23,349 5,027 37,113",
+              "page": 14
             }
           ],
           "oneOffs": [
@@ -278,7 +278,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": "inflecting-up",
           "notes": null
         },
         {
@@ -287,10 +287,10 @@
           "unit": "INR mn",
           "flagBasis": "qoq",
           "values": [
-            131311,
             125379,
             151093,
-            144242
+            144242,
+            204205
           ],
           "sourceTags": [
             "company-filing",
@@ -306,11 +306,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 14 Nov 2025",
-              "quote": "Total Order Book 131,311 121,443 96,581 1,11,553 1,13,524 1,17,173",
-              "page": 14
-            },
-            {
               "doc": "Presentation - 12 Feb 2026",
               "quote": "Total Order Book 125,379 131,311 121,443 96,581 1,11,553 1,13,524 1,17,173",
               "page": 15
@@ -324,6 +319,11 @@
               "doc": "Presentation - 14 Aug 2026",
               "quote": "Total Order Book",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 30 Oct 2026",
+              "quote": "Total Order Book 204205",
+              "page": 14
             }
           ],
           "oneOffs": [
@@ -332,7 +332,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": "inflecting-up",
           "notes": null
         },
         {
@@ -371,7 +371,7 @@
             null
           ],
           "flag": null,
-          "notes": "Bid pipeline is not reported in any of the excerpts. The excerpts report order book (unexecuted orders already won) and order inflow (business secured), but do not disclose the value of bids under evaluation or the pipeline of opportunities"
+          "notes": "Bid pipeline not disclosed in any of the excerpts. The documents report order book (unexecuted orders already won) and order inflow (new orders secured), but do not state the value of bids under evaluation or the pipeline of opportunities b"
         },
         {
           "id": "consultancy-order-book",
@@ -379,10 +379,10 @@
           "unit": "INR mn",
           "flagBasis": "qoq",
           "values": [
-            76856,
             75012,
             108648,
-            104981
+            104981,
+            153120
           ],
           "sourceTags": [
             "company-filing",
@@ -397,11 +397,6 @@
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Presentation - 14 Nov 2025",
-              "quote": "Consultancy 76,856 68,133 55,223 64,957 55,538 66,482",
-              "page": 14
-            },
             {
               "doc": "Presentation - 12 Feb 2026",
               "quote": "Consultancy 75,012 76,856 68,133 55,223 64,957 55,538 66,482",
@@ -416,6 +411,11 @@
               "doc": "Presentation - 14 Aug 2026",
               "quote": "Consultancy (Overseas) 64518",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 30 Oct 2026",
+              "quote": "Consultancy (Overseas) 114176",
+              "page": 14
             }
           ],
           "oneOffs": [
@@ -424,7 +424,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": "inflecting-up",
           "beyondBrief": true,
           "notes": null
         },
@@ -434,10 +434,10 @@
           "unit": "INR mn",
           "flagBasis": "level",
           "values": [
-            13904,
             3690,
             36418,
-            3672
+            3672,
+            53947
           ],
           "sourceTags": [
             "company-filing",
@@ -452,11 +452,6 @@
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Presentation - 14 Nov 2025",
-              "quote": "Consultancy Total 19,987 13,904 6,083 11,723 16,905 2,683 14,453",
-              "page": 14
-            },
             {
               "doc": "Presentation - 12 Feb 2026",
               "quote": "Consultancy Total 23,677 3,690 13,904 6,083 11,723 16,905 2,683 14,453",
@@ -471,6 +466,11 @@
               "doc": "Presentation - 14 Aug 2026",
               "quote": "Consultancy Total",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 30 Oct 2026",
+              "quote": "Consultancy Total 57,619 53,947 3,672 6,083 13,904 3,690 36,418",
+              "page": 14
             }
           ],
           "oneOffs": [
@@ -479,7 +479,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": "inflecting-up",
           "beyondBrief": true,
           "cycleRole": "leading",
           "notes": null
@@ -490,10 +490,10 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            58.5,
             59.8,
             71.9,
-            72.8
+            72.8,
+            75
           ],
           "sourceTags": [
             "company-filing",
@@ -508,11 +508,6 @@
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Presentation - 14 Nov 2025",
-              "quote": "Consultancy 76,856 of Total Order Book 131,311 (59%)",
-              "page": 14
-            },
             {
               "doc": "Presentation - 12 Feb 2026",
               "quote": "Consultancy 75,012 of Total Order Book 125,379 (60%)",
@@ -527,6 +522,11 @@
               "doc": "Presentation - 14 Aug 2026",
               "quote": "Consultancy % 73% 56% 59% 60% 72%",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 30 Oct 2026",
+              "quote": "Consultancy % 75% 73% 56% 59% 60% 72%",
+              "page": 14
             }
           ],
           "oneOffs": [
@@ -535,7 +535,7 @@
             null,
             null
           ],
-          "flag": "steady",
+          "flag": "accelerating",
           "beyondBrief": true,
           "notes": null
         },
@@ -545,25 +545,24 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            null,
             58,
             57,
-            55.3
+            55.3,
+            44
           ],
           "sourceTags": [
-            null,
+            "company-filing",
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            null,
+            "insights",
             "insights",
             "insights",
             "insights"
           ],
           "citations": [
-            null,
             {
               "doc": "Presentation - 12 Feb 2026",
               "quote": "Consultancy Domestic Vs Overseas 58% Domestic 42% Overseas",
@@ -578,6 +577,11 @@
               "doc": "Presentation - 14 Aug 2026",
               "quote": "Quarterly Order Book Break up – Standalone",
               "page": 13
+            },
+            {
+              "doc": "Presentation - 30 Oct 2026",
+              "quote": "Quarterly Order Book Break up – Standalone",
+              "page": 16
             }
           ],
           "oneOffs": [
@@ -588,7 +592,7 @@
           ],
           "flag": "decelerating",
           "beyondBrief": true,
-          "notes": "From Screener Insights row \"Order Book Domestic Share\" (Standalone data); latest value cited to Presentation - 12 Feb 2026, page 17."
+          "notes": null
         }
       ]
     },
@@ -596,7 +600,7 @@
       "name": "Petronet LNG",
       "slug": "PETRONET",
       "quarters": [
-        "Q1 FY26",
+        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
@@ -612,19 +616,19 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            null,
+            92,
             94,
             90.1,
             65.6
           ],
           "sourceTags": [
-            null,
+            "mgmt-claim",
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            null,
+            "model",
             "insights",
             "insights",
             "insights"
@@ -654,7 +658,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": "From Screener Insights row \"Dahej Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
+          "notes": null
         },
         {
           "id": "volume",
@@ -662,29 +666,25 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
-            220,
+            211,
             233,
             219,
             207
           ],
           "sourceTags": [
-            "company-filing",
+            "mgmt-claim",
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            "insights",
+            "model",
             "insights",
             "insights",
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 04 Aug 2025",
-              "quote": "Overall volume processed during the quarter was 220 TBTU",
-              "page": 3
-            },
+            null,
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "the overall LNG volume processed by the company stood at 233 TBTU",
@@ -716,7 +716,7 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
-            207,
+            211,
             214,
             201,
             192
@@ -735,8 +735,8 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 04 Aug 2025",
-              "quote": "Dahej terminal, our flagship terminal, processed 207 TBTU",
+              "doc": "Concall Transcript - 14 Nov 2025",
+              "quote": "Dahej terminal processed 211 TBTU",
               "page": 3
             },
             {
@@ -770,29 +770,25 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
-            13,
+            null,
             19,
             18,
             null
           ],
           "sourceTags": [
-            "company-filing",
+            null,
             "company-filing",
             "company-filing",
             null
           ],
           "origins": [
-            "insights",
+            null,
             "insights",
             "insights",
             null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 04 Aug 2025",
-              "quote": "Overall volume processed during the quarter was 220 TBTU",
-              "page": 3
-            },
+            null,
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "the overall LNG volume processed by the company stood at 233 TBTU",
@@ -811,8 +807,8 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
-          "notes": "From Screener Insights row \"Kochi Terminal LNG Throughput\"; latest value cited to Concall Transcript - 04 Aug 2025, page 3."
+          "flag": null,
+          "notes": "From Screener Insights row \"Kochi Terminal LNG Throughput\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
         },
         {
           "id": "kochi-utilisation",
@@ -820,25 +816,29 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            null,
+            27,
             29,
             null,
             23.27
           ],
           "sourceTags": [
-            null,
+            "company-filing",
             "company-filing",
             null,
             "company-filing"
           ],
           "origins": [
-            null,
+            "insights",
             "insights",
             null,
             "insights"
           ],
           "citations": [
-            null,
+            {
+              "doc": "Concall Transcript - 14 Nov 2025",
+              "quote": "highest ever capacity utilization of Kochi terminal in the current quarter, which stands at -- stood at 27%",
+              "page": 3
+            },
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "At Kochi Terminal, PLL achieved the highest ever capacity utilization of 29% during the current quarter",
@@ -857,8 +857,8 @@
             null,
             null
           ],
-          "flag": null,
-          "notes": "From Screener Insights row \"Kochi Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
+          "flag": "inflecting-down",
+          "notes": "From Screener Insights row \"Kochi Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 14 Nov 2025, page 3."
         }
       ]
     },
@@ -1180,7 +1180,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34081,
+      "ctxChars": 34082,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -1218,7 +1218,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: No single-quarter capex stated. Q3 FY26: No single-quarter capex stated. Q4 FY26: No single-quarter capex stated; FY26 full-year capex ₹13,026 cr mentioned but not Q4 alone. Q1 FY27: Q1 capex spend ~₹3,050 cr stated in concall AI s"
+          "notes": "Q2 FY26: no single-quarter capex stated. Q3 FY26: no single-quarter capex stated. Q4 FY26: no single-quarter capex stated; FY26 full-year capex ₹13,026 cr mentioned but not Q4 alone. Q1 FY27: Q1 capex spend ~₹3,050 cr stated in concall AI s"
         },
         {
           "id": "production-volume",
@@ -3861,9 +3861,9 @@
       "name": "Aegis Logistics",
       "slug": "AEGISLOG",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
@@ -3877,9 +3877,9 @@
           "unit": "'000 MT",
           "flagBasis": "yoy",
           "values": [
-            1161,
             1407,
             1361,
+            1223,
             1124
           ],
           "sourceTags": [
@@ -3897,17 +3897,17 @@
           "citations": [
             {
               "doc": "Presentation - 30 May 2026",
-              "quote": "1,013 1,161 Q1FY25 Q1FY26",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 30 May 2026",
               "quote": "1,064 1,407 Q2FY25 Q2FY26",
               "page": 11
             },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "1,221 1,361 Q3FY25 Q3FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "1,225 1,223 Q4FY25 Q4FY26",
               "page": 11
             },
             {
@@ -3961,7 +3961,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not explicitly stated in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. Management mentions 'higher utilization levels', 'improved utilization', and 'high utilization' at various ports but no specific "
+          "notes": "Terminal utilisation % not stated for any of the four quarters (Q2 FY26, Q3 FY26, Q4 FY26, Q1 FY27). The concall transcripts mention 'high utilisation levels', 'higher utilization levels', 'improved utilization levels' at various ports but "
         },
         {
           "id": "lpg-distribution-volume",
@@ -3969,9 +3969,9 @@
           "unit": "'000 MT",
           "flagBasis": "level",
           "values": [
-            145,
             192,
             183,
+            234,
             277
           ],
           "sourceTags": [
@@ -3989,17 +3989,17 @@
           "citations": [
             {
               "doc": "Presentation - 30 May 2026",
-              "quote": "128 145 Q1FY25 Q1FY26",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 30 May 2026",
               "quote": "129 192 Q2FY25 Q2FY26",
               "page": 11
             },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "127 183 Q3FY25 Q3FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "136 234 Q4FY25 Q4FY26",
               "page": 11
             },
             {
@@ -4014,7 +4014,7 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "decelerating",
           "beyondBrief": true,
           "notes": null
         },
@@ -4024,9 +4024,9 @@
           "unit": "'000 MT",
           "flagBasis": "level",
           "values": [
-            119,
             208,
             151,
+            129,
             121
           ],
           "sourceTags": [
@@ -4044,17 +4044,17 @@
           "citations": [
             {
               "doc": "Presentation - 30 May 2026",
-              "quote": "124 119 Q1FY25 Q1FY26",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 30 May 2026",
               "quote": "194 208 Q2FY25 Q2FY26",
               "page": 11
             },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "140 151 Q3FY25 Q3FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
+              "quote": "139 129 Q4FY25 Q4FY26",
               "page": 11
             },
             {
@@ -4786,7 +4786,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34152,
+      "ctxChars": 32607,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4824,7 +4824,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput YoY growth data found in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The documents discuss various cargo types (containers, coal, fertilizers, liquid) but do not provide specific YoY growth"
+          "notes": "No POL/LPG/LNG cargo throughput or YoY growth figures stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Q4 FY26 transcript mentions 'handling LPG vessels' during the year as part of disruption response, but no spe"
         },
         {
           "id": "total-cargo-volume",
@@ -5351,15 +5351,15 @@
       "name": "Asian Energy",
       "slug": "ASIANENE",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q2 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33799,
+      "ctxChars": 33800,
       "kpis": [
         {
           "id": "order-book",
@@ -5367,16 +5367,16 @@
           "unit": "₹ cr",
           "flagBasis": "qoq",
           "values": [
-            1022,
             2000,
             1150,
-            1750
+            1750,
+            1754
           ],
           "sourceTags": [
-            "company-filing",
             "mgmt-claim",
             "company-filing",
-            "mgmt-claim"
+            "mgmt-claim",
+            "company-filing"
           ],
           "origins": [
             "model",
@@ -5396,7 +5396,7 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "decelerating",
           "beyondBrief": true,
           "notes": null
         }

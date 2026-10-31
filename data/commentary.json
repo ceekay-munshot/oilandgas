@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-10-31T11:25:45.545Z",
+  "generatedAt": "2026-10-31T13:17:53.594Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
@@ -341,33 +341,15 @@
       "name": "Engineers India",
       "slug": "ENGINERSIN",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q2 FY26",
-          "toneId": "confident",
-          "score": 5,
-          "quote": "Upgraded growth stance vs earlier perception: When asked about earlier ~20%+ growth commentary, management guided “turnover… 25% plus” for FY26 (standalone).",
-          "rationale": "Management's guidance of over 25% turnover growth reflects a strong confidence in their business outlook.",
-          "driver": "turnover growth",
-          "direction": "positive",
-          "signal": "Management is confident in achieving over 25% turnover growth for FY26, driven by strong order inflows and execution.",
-          "mgmtDataPoints": [
-            "Order book: ₹13,131 cr",
-            "Turnover growth: 25%+",
-            "Consultancy margin: ~25%",
-            "LSTK margin: 6-7%"
-          ],
-          "implication": "The company is expected to continue its strong growth trajectory, with robust order inflows supporting higher turnover.",
-          "doc": "Concall AI summary (Q2 FY26)"
-        },
         {
           "quarter": "Q3 FY26",
           "toneId": "confident",
@@ -423,6 +405,26 @@
           ],
           "implication": "Expect continued margin expansion and revenue recovery in Q2-Q3 as consultancy share rises and turnkey projects ramp, though Middle East new order flow remains a watch-point.",
           "doc": "Concall AI summary (Q1 FY27)"
+        },
+        {
+          "quarter": "Q2 FY27",
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Order book hit an all‑time high: ₹20,421 cr... we'll be achieving a revenue of around 4200 during the current financial year",
+          "rationale": "Management celebrated record order book, 58% QoQ PBT growth, margin expansion to 27%, and affirmed FY27 revenue target with 10% forward growth guidance.",
+          "driver": "order inflow and consultancy mix shift",
+          "direction": "positive",
+          "signal": "Management expects consultancy to remain dominant at ~60% of revenue in FY27, driving sustainable margins of 24–25% overall, with turnkey margins recovering as new projects ramp in H2.",
+          "mgmtDataPoints": [
+            "Order book: ₹20,421 cr as of 30 Sep 2026",
+            "H1 FY27 order inflow: ₹7,428 cr (updated to ~₹8,100 cr)",
+            "FY27 revenue target: ~₹4,200 cr",
+            "Forward revenue growth: ~10%",
+            "Consultancy margin guidance: 24–25% yearly",
+            "FY27 consultancy revenue share: ~60%"
+          ],
+          "implication": "Record order book and strong consultancy inflow position the company for sustained revenue growth and margin stability through H2 FY27 and into FY28, with turnkey execution expected to accelerate.",
+          "doc": "Concall AI summary (Q2 FY27)"
         }
       ]
     },
@@ -1103,7 +1105,7 @@
       "name": "Petronet LNG",
       "slug": "PETRONET",
       "quarters": [
-        "Q1 FY26",
+        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
@@ -1113,22 +1115,24 @@
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
         {
-          "quarter": "Q1 FY26",
-          "toneId": "neutral",
-          "score": 3,
-          "quote": "we don't see any risk or any challenge from the geopolitical side",
-          "rationale": "Management's commentary was balanced, acknowledging both stable operations and demand softness.",
-          "driver": "throughput",
-          "direction": "neutral",
-          "signal": "Management expects LNG supply to improve from CY26, but current demand is soft due to sectoral weakness.",
+          "quarter": "Q2 FY26",
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "there has been some delay",
+          "rationale": "Management acknowledged delays and constraints affecting operations and expansion.",
+          "driver": "Kochi utilization",
+          "direction": "positive",
+          "signal": "Kochi utilization improved but remains constrained by pipeline connectivity, expected to resolve by FY end.",
           "mgmtDataPoints": [
-            "net worth: INR 20,233 cr",
-            "Dahej throughput: 207 TBTU",
-            "total throughput: 220 TBTU",
-            "Gorgon supply: 1.2 MMTPA"
+            "PAT: INR 805.75 cr",
+            "revenue: INR 11,009 cr",
+            "EBITDA: INR 1,117 cr",
+            "Dahej throughput: 211 TBTU",
+            "Kochi utilization: 27%",
+            "Dahej expansion capex: INR 450 cr"
           ],
-          "implication": "Throughput may remain stable but not grow significantly until demand conditions improve.",
-          "doc": "Concall AI summary (Q1 FY26)"
+          "implication": "Kochi's utilization may improve further once pipeline connectivity is achieved, boosting overall throughput.",
+          "doc": "Concall AI summary (Q2 FY26)"
         },
         {
           "quarter": "Q3 FY26",
@@ -1431,33 +1435,15 @@
       "name": "Aegis Logistics",
       "slug": "AEGISLOG",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
+        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q1 FY26",
-          "toneId": "confident",
-          "score": 5,
-          "quote": "We are pleased to share that our subsidiary AVTL was successfully listed in June, 2025.",
-          "rationale": "Management highlighted successful listing and ongoing projects, indicating confidence in growth.",
-          "driver": "subsidiary listing",
-          "direction": "positive",
-          "signal": "Management is optimistic about growth with new projects underway and successful subsidiary listing.",
-          "mgmtDataPoints": [
-            "Mumbai liquid capacity: 275,000 KL",
-            "LPG static capacity: 21,000 MT",
-            "Upcoming liquid capacity: 125,000 KL",
-            "JNPT CAPEX: INR 1,675 crores"
-          ],
-          "implication": "Expect continued investment and expansion efforts to drive growth in the coming quarters.",
-          "doc": "Concall transcript (Q1 FY26)"
-        },
         {
           "quarter": "Q2 FY26",
           "toneId": "confident",
@@ -1492,6 +1478,23 @@
           ],
           "implication": "Expect continued strong performance with focus on cost optimization and high utilization.",
           "doc": "Concall transcript (Q3 FY26)"
+        },
+        {
+          "quarter": "Q4 FY26",
+          "toneId": "confident",
+          "score": 5,
+          "quote": "It was an outstanding year, a breakout year for us.",
+          "rationale": "Management highlighted exceptional annual performance, showing strong confidence.",
+          "driver": "annual performance",
+          "direction": "positive",
+          "signal": "Management is executing well on diversified operations, leading to strong financial results.",
+          "mgmtDataPoints": [
+            "FY26 revenue: INR 8,333 crores",
+            "FY26 EBITDA: INR 1,599 crores",
+            "Cash and investments: INR 6,000 crores"
+          ],
+          "implication": "Expect continued strong financial performance and shareholder returns in the near term.",
+          "doc": "Concall transcript (Q4 FY26)"
         },
         {
           "quarter": "Q1 FY27",
@@ -2142,29 +2145,16 @@
       "name": "Asian Energy",
       "slug": "ASIANENE",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q2 FY27"
       ],
       "asOf": null,
       "provider": null,
       "model": null,
       "note": "classification failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "tones": [
-        {
-          "quarter": "Q1 FY26",
-          "toneId": null,
-          "score": null,
-          "quote": null,
-          "rationale": null,
-          "driver": null,
-          "direction": null,
-          "signal": null,
-          "mgmtDataPoints": [],
-          "implication": null,
-          "doc": null
-        },
         {
           "quarter": "Q2 FY26",
           "toneId": null,
@@ -2193,6 +2183,19 @@
         },
         {
           "quarter": "Q4 FY26",
+          "toneId": null,
+          "score": null,
+          "quote": null,
+          "rationale": null,
+          "driver": null,
+          "direction": null,
+          "signal": null,
+          "mgmtDataPoints": [],
+          "implication": null,
+          "doc": null
+        },
+        {
+          "quarter": "Q2 FY27",
           "toneId": null,
           "score": null,
           "quote": null,

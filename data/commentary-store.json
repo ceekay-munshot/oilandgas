@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-10-31T11:26:11.215Z",
+  "generatedAt": "2026-10-31T13:18:29.086Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -530,9 +530,32 @@
           "attempts": 1,
           "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
           "at": "2026-08-15T06:07:59.746Z"
+        },
+        "Q2 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "Order book hit an all‑time high: ₹20,421 cr... we'll be achieving a revenue of around 4200 during the current financial year",
+          "rationale": "Management celebrated record order book, 58% QoQ PBT growth, margin expansion to 27%, and affirmed FY27 revenue target with 10% forward growth guidance.",
+          "driver": "order inflow and consultancy mix shift",
+          "direction": "positive",
+          "signal": "Management expects consultancy to remain dominant at ~60% of revenue in FY27, driving sustainable margins of 24–25% overall, with turnkey margins recovering as new projects ramp in H2.",
+          "mgmtDataPoints": [
+            "Order book: ₹20,421 cr as of 30 Sep 2026",
+            "H1 FY27 order inflow: ₹7,428 cr (updated to ~₹8,100 cr)",
+            "FY27 revenue target: ~₹4,200 cr",
+            "Forward revenue growth: ~10%",
+            "Consultancy margin guidance: 24–25% yearly",
+            "FY27 consultancy revenue share: ~60%"
+          ],
+          "implication": "Record order book and strong consultancy inflow position the company for sustained revenue growth and margin stability through H2 FY27 and into FY28, with turnkey execution expected to accelerate.",
+          "doc": "Concall AI summary (Q2 FY27)",
+          "fingerprint": "dd36ca180c20",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-10-31T13:18:20.204Z"
         }
       },
-      "updatedAt": "2026-08-15T06:07:59.746Z"
+      "updatedAt": "2026-10-31T13:18:20.204Z"
     },
     "lt": {
       "cells": {
