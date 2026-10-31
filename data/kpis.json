@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-10-30T13:48:32.509Z",
+  "generatedAt": "2026-10-31T11:25:13.861Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -225,7 +225,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34080,
+      "ctxChars": 34082,
       "kpis": [
         {
           "id": "order-inflow",
@@ -371,7 +371,7 @@
             null
           ],
           "flag": null,
-          "notes": "Bid pipeline not disclosed in any of the excerpts. The excerpts report order book, order inflow, and business secured, but no forward-looking bid pipeline or tender pipeline figure was stated for any quarter."
+          "notes": "Bid pipeline is not reported in any of the excerpts. The excerpts report order book (unexecuted orders already won) and order inflow (business secured), but do not disclose the value of bids under evaluation or the pipeline of opportunities"
         },
         {
           "id": "consultancy-order-book",
@@ -596,7 +596,7 @@
       "name": "Petronet LNG",
       "slug": "PETRONET",
       "quarters": [
-        "Q2 FY26",
+        "Q1 FY26",
         "Q3 FY26",
         "Q4 FY26",
         "Q1 FY27"
@@ -612,19 +612,19 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            92,
+            null,
             94,
             90.1,
             65.6
           ],
           "sourceTags": [
-            "mgmt-claim",
+            null,
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            "model",
+            null,
             "insights",
             "insights",
             "insights"
@@ -654,7 +654,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Dahej Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
         },
         {
           "id": "volume",
@@ -662,25 +662,29 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
-            211,
+            220,
             233,
             219,
             207
           ],
           "sourceTags": [
-            "mgmt-claim",
+            "company-filing",
             "company-filing",
             "company-filing",
             "company-filing"
           ],
           "origins": [
-            "model",
+            "insights",
             "insights",
             "insights",
             "insights"
           ],
           "citations": [
-            null,
+            {
+              "doc": "Concall Transcript - 04 Aug 2025",
+              "quote": "Overall volume processed during the quarter was 220 TBTU",
+              "page": 3
+            },
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "the overall LNG volume processed by the company stood at 233 TBTU",
@@ -712,7 +716,7 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
-            211,
+            207,
             214,
             201,
             192
@@ -731,8 +735,8 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 14 Nov 2025",
-              "quote": "Dahej terminal processed 211 TBTU",
+              "doc": "Concall Transcript - 04 Aug 2025",
+              "quote": "Dahej terminal, our flagship terminal, processed 207 TBTU",
               "page": 3
             },
             {
@@ -766,25 +770,29 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
-            null,
+            13,
             19,
             18,
             null
           ],
           "sourceTags": [
-            null,
+            "company-filing",
             "company-filing",
             "company-filing",
             null
           ],
           "origins": [
-            null,
+            "insights",
             "insights",
             "insights",
             null
           ],
           "citations": [
-            null,
+            {
+              "doc": "Concall Transcript - 04 Aug 2025",
+              "quote": "Overall volume processed during the quarter was 220 TBTU",
+              "page": 3
+            },
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "the overall LNG volume processed by the company stood at 233 TBTU",
@@ -803,8 +811,8 @@
             null,
             null
           ],
-          "flag": null,
-          "notes": "From Screener Insights row \"Kochi Terminal LNG Throughput\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
+          "flag": "inflecting-down",
+          "notes": "From Screener Insights row \"Kochi Terminal LNG Throughput\"; latest value cited to Concall Transcript - 04 Aug 2025, page 3."
         },
         {
           "id": "kochi-utilisation",
@@ -812,29 +820,25 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            27,
+            null,
             29,
             null,
             23.27
           ],
           "sourceTags": [
-            "company-filing",
+            null,
             "company-filing",
             null,
             "company-filing"
           ],
           "origins": [
-            "insights",
+            null,
             "insights",
             null,
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 14 Nov 2025",
-              "quote": "highest ever capacity utilization of Kochi terminal in the current quarter, which stands at -- stood at 27%",
-              "page": 3
-            },
+            null,
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "At Kochi Terminal, PLL achieved the highest ever capacity utilization of 29% during the current quarter",
@@ -853,8 +857,8 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
-          "notes": "From Screener Insights row \"Kochi Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 14 Nov 2025, page 3."
+          "flag": null,
+          "notes": "From Screener Insights row \"Kochi Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
         }
       ]
     },
@@ -870,7 +874,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27841,
+      "ctxChars": 27843,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -1176,7 +1180,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34082,
+      "ctxChars": 34081,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -1214,7 +1218,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: no single-quarter capex stated. Q3 FY26: no single-quarter capex stated. Q4 FY26: no single-quarter capex stated; FY26 full-year capex ₹13,026 cr mentioned but not Q4 alone. Q1 FY27: Q1 capex spend ~₹3,050 cr stated in concall AI s"
+          "notes": "Q2 FY26: No single-quarter capex stated. Q3 FY26: No single-quarter capex stated. Q4 FY26: No single-quarter capex stated; FY26 full-year capex ₹13,026 cr mentioned but not Q4 alone. Q1 FY27: Q1 capex spend ~₹3,050 cr stated in concall AI s"
         },
         {
           "id": "production-volume",
@@ -2155,7 +2159,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34386,
+      "ctxChars": 34387,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -2163,19 +2167,19 @@
           "unit": "₹/t",
           "flagBasis": "level",
           "values": [
-            null,
+            7215,
             null,
             null,
             9398
           ],
           "sourceTags": [
-            null,
+            "company-filing",
             null,
             null,
             "company-filing"
           ],
           "origins": [
-            null,
+            "filing",
             null,
             null,
             "filing"
@@ -2193,7 +2197,7 @@
             null
           ],
           "flag": null,
-          "notes": "O2C EBITDA per tonne not disclosed in any of the excerpts. Q2 FY26 concall mentions O2C EBITDA of ₹17,874 crore but no throughput for that quarter. Q3 FY26 concall does not provide O2C EBITDA per tonne. Q4 FY26 concall does not provide O2C "
+          "notes": "O2C EBITDA per tonne not stated in any excerpt. Q2 FY26 O2C EBITDA was ₹15,008 cr (Screener segment table), Q3 FY26 O2C EBITDA not broken out in Q3 transcript (only 15% YoY growth mentioned for 9-month period), Q4 FY26 O2C EBITDA stated as "
         },
         {
           "id": "petchem-margin",
@@ -2231,7 +2235,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not disclosed in any of the excerpts. Q2 FY26 concall discusses petchem deltas qualitatively (PE deltas, PP firm, PVC delta fell ~10%) but no aggregate margin figure. Q3 FY26 concall does not provide petchem margin. Q4"
+          "notes": "Petchem margin in $/t not stated in any excerpt. Q2 FY26 summary mentions 'fairly muted downstream petrochemical performance' and Q1 FY27 summary describes 'heavy friction costs' and demand down 22%, but no $/t margin figure given for any q"
         },
         {
           "id": "retail-fuel-margin",
@@ -2269,7 +2273,7 @@
             null
           ],
           "flag": null,
-          "notes": "Retail fuel margin in ₹/l not disclosed in any of the excerpts. Q2 FY26 concall does not mention retail fuel margin. Q3 FY26 concall does not mention retail fuel margin. Q4 FY26 concall mentions 'under-recoveries in fuel retail' and 'SAED' "
+          "notes": "Retail fuel margin in ₹/l not stated in any excerpt. Q2 FY26 summary mentions Jio-bp 24% volume growth; Q4 FY26 summary mentions 'under-recoveries in fuel retail' and SAED drag; Q1 FY27 summary mentions SAED drag and domestic under-recoveri"
         },
         {
           "id": "throughput",
@@ -3857,9 +3861,9 @@
       "name": "Aegis Logistics",
       "slug": "AEGISLOG",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
@@ -3873,9 +3877,9 @@
           "unit": "'000 MT",
           "flagBasis": "yoy",
           "values": [
+            1161,
             1407,
             1361,
-            1223,
             1124
           ],
           "sourceTags": [
@@ -3893,17 +3897,17 @@
           "citations": [
             {
               "doc": "Presentation - 30 May 2026",
+              "quote": "1,013 1,161 Q1FY25 Q1FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
               "quote": "1,064 1,407 Q2FY25 Q2FY26",
               "page": 11
             },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "1,221 1,361 Q3FY25 Q3FY26",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 30 May 2026",
-              "quote": "1,225 1,223 Q4FY25 Q4FY26",
               "page": 11
             },
             {
@@ -3957,7 +3961,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not explicitly stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The excerpts mention 'high utilization levels', 'higher utilization levels', 'improved utilization levels' at various ports but n"
+          "notes": "Terminal utilisation % not explicitly stated in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. Management mentions 'higher utilization levels', 'improved utilization', and 'high utilization' at various ports but no specific "
         },
         {
           "id": "lpg-distribution-volume",
@@ -3965,9 +3969,9 @@
           "unit": "'000 MT",
           "flagBasis": "level",
           "values": [
+            145,
             192,
             183,
-            234,
             277
           ],
           "sourceTags": [
@@ -3985,17 +3989,17 @@
           "citations": [
             {
               "doc": "Presentation - 30 May 2026",
+              "quote": "128 145 Q1FY25 Q1FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
               "quote": "129 192 Q2FY25 Q2FY26",
               "page": 11
             },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "127 183 Q3FY25 Q3FY26",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 30 May 2026",
-              "quote": "136 234 Q4FY25 Q4FY26",
               "page": 11
             },
             {
@@ -4010,7 +4014,7 @@
             null,
             null
           ],
-          "flag": "decelerating",
+          "flag": "inflecting-up",
           "beyondBrief": true,
           "notes": null
         },
@@ -4020,9 +4024,9 @@
           "unit": "'000 MT",
           "flagBasis": "level",
           "values": [
+            119,
             208,
             151,
-            129,
             121
           ],
           "sourceTags": [
@@ -4040,17 +4044,17 @@
           "citations": [
             {
               "doc": "Presentation - 30 May 2026",
+              "quote": "124 119 Q1FY25 Q1FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
               "quote": "194 208 Q2FY25 Q2FY26",
               "page": 11
             },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "140 151 Q3FY25 Q3FY26",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 30 May 2026",
-              "quote": "139 129 Q4FY25 Q4FY26",
               "page": 11
             },
             {

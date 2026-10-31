@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-10-30T13:46:51.557Z",
+  "generatedAt": "2026-10-31T11:23:38.221Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -355,7 +355,6 @@
       "toggled": "/insights/company/935/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Sep 2023",
         "Dec 2023",
         "Mar 2024",
         "Jun 2024",
@@ -366,10 +365,10 @@
         "Sep 2025",
         "Dec 2025",
         "Mar 2026",
-        "Jun 2026"
+        "Jun 2026",
+        "Sep 2026"
       ],
       "periodsIso": [
-        "2023-09",
         "2023-12",
         "2024-03",
         "2024-06",
@@ -380,7 +379,8 @@
         "2025-09",
         "2025-12",
         "2026-03",
-        "2026-06"
+        "2026-06",
+        "2026-09"
       ],
       "rows": [
         {
@@ -388,7 +388,6 @@
           "unit": "INR mn",
           "scope": "Standalone data",
           "values": [
-            48531,
             47513,
             46367,
             55223,
@@ -399,14 +398,10 @@
             76856,
             75012,
             108648,
-            104981
+            104981,
+            153120
           ],
           "citations": [
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "Consultancy 47513 48531 49,792 47,935 45,994 45,046 48296",
-              "page": 15
-            },
             {
               "doc": "Presentation - 02 Feb 2024",
               "quote": "Consultancy 47513 48531 49,792 47,935 45,994 45,046 48296",
@@ -461,6 +456,11 @@
               "doc": "Presentation - 14 Aug 2026",
               "quote": "Consultancy (Overseas) 64518",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 30 Oct 2026",
+              "quote": "Consultancy (Overseas) 114176",
+              "page": 14
             }
           ]
         },
@@ -469,7 +469,6 @@
           "unit": "%",
           "scope": "Standalone data",
           "values": [
-            59.3,
             59.5,
             59.3,
             57.2,
@@ -480,14 +479,10 @@
             58.5,
             59.8,
             71.9,
-            72.8
+            72.8,
+            75
           ],
           "citations": [
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "Consultancy 48,531 of Total Order Book 81,883 (59%)",
-              "page": 15
-            },
             {
               "doc": "Presentation - 02 Feb 2024",
               "quote": "Consultancy 47,513 of Total Order Book 79,906 (59%)",
@@ -542,6 +537,11 @@
               "doc": "Presentation - 14 Aug 2026",
               "quote": "Consultancy % 73% 56% 59% 60% 72%",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 30 Oct 2026",
+              "quote": "Consultancy % 75% 73% 56% 59% 60% 72%",
+              "page": 14
             }
           ]
         },
@@ -550,7 +550,6 @@
           "unit": "INR mn",
           "scope": "Standalone data",
           "values": [
-            11442,
             6371,
             3597,
             23791,
@@ -561,14 +560,10 @@
             23349,
             5027,
             37113,
-            5136
+            5136,
+            69147
           ],
           "citations": [
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
-              "page": 15
-            },
             {
               "doc": "Presentation - 02 Feb 2024",
               "quote": "Total Business secured 30,465 6,371 11,442 12,652 2,250 3,405 2,304 39,119",
@@ -623,6 +618,11 @@
               "doc": "Presentation - 14 Aug 2026",
               "quote": "Total Business secured",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 30 Oct 2026",
+              "quote": "Total Business secured 74,283 69,147 5,136 14,292 23,349 5,027 37,113",
+              "page": 14
             }
           ]
         },
@@ -631,7 +631,6 @@
           "unit": "INR mn",
           "scope": "Standalone data",
           "values": [
-            81883,
             79906,
             78235,
             96581,
@@ -642,14 +641,10 @@
             131311,
             125379,
             151093,
-            144242
+            144242,
+            204205
           ],
           "citations": [
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "Total Order Book 79,906 81,883 81,025 88,338 84,313 78,656 76,946",
-              "page": 15
-            },
             {
               "doc": "Presentation - 02 Feb 2024",
               "quote": "Total Order Book 79,906 81,883 81,025 88,338 84,313 78,656 76,946",
@@ -704,6 +699,11 @@
               "doc": "Presentation - 14 Aug 2026",
               "quote": "Total Order Book",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 30 Oct 2026",
+              "quote": "Total Order Book 204205",
+              "page": 14
             }
           ]
         },
@@ -712,7 +712,6 @@
           "unit": "INR mn",
           "scope": "Standalone data",
           "values": [
-            3087,
             6371,
             null,
             11723,
@@ -723,14 +722,10 @@
             13904,
             3690,
             36418,
-            3672
+            3672,
+            53947
           ],
           "citations": [
-            {
-              "doc": "Presentation - 02 Feb 2024",
-              "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
-              "page": 15
-            },
             {
               "doc": "Presentation - 02 Feb 2024",
               "quote": "Consultancy Total 13,897 6,371 3,087 4,439 2,250 911 2,371 7,083",
@@ -781,6 +776,11 @@
               "doc": "Presentation - 14 Aug 2026",
               "quote": "Consultancy Total",
               "page": 11
+            },
+            {
+              "doc": "Presentation - 30 Oct 2026",
+              "quote": "Consultancy Total 57,619 53,947 3,672 6,083 13,904 3,690 36,418",
+              "page": 14
             }
           ]
         },
@@ -789,7 +789,6 @@
           "unit": "%",
           "scope": "Standalone data",
           "values": [
-            null,
             68,
             null,
             null,
@@ -800,10 +799,10 @@
             null,
             58,
             57,
-            55.3
+            55.3,
+            44
           ],
           "citations": [
-            null,
             {
               "doc": "Presentation - 02 Feb 2024",
               "quote": "9M FY 23-24 Consultancy Domestic Vs Overseas 68% Domestic",
@@ -834,6 +833,11 @@
               "doc": "Presentation - 14 Aug 2026",
               "quote": "Quarterly Order Book Break up – Standalone",
               "page": 13
+            },
+            {
+              "doc": "Presentation - 30 Oct 2026",
+              "quote": "Quarterly Order Book Break up – Standalone",
+              "page": 16
             }
           ]
         },
@@ -842,7 +846,6 @@
           "unit": "count",
           "scope": "Standalone data",
           "values": [
-            null,
             null,
             47,
             null,
@@ -853,10 +856,10 @@
             null,
             null,
             58,
+            null,
             null
           ],
           "citations": [
-            null,
             null,
             {
               "doc": "Annual Report - 31 Mar 2024",
@@ -879,6 +882,7 @@
               "quote": "(58 active Patents, 74 pending grant)",
               "page": 13
             },
+            null,
             null
           ]
         },
@@ -888,7 +892,6 @@
           "scope": "Standalone data",
           "values": [
             null,
-            null,
             2658,
             null,
             null,
@@ -897,11 +900,11 @@
             null,
             null,
             null,
-            2735,
+            2764,
+            null,
             null
           ],
           "citations": [
-            null,
             null,
             {
               "doc": "Annual Report - 31 Mar 2024",
@@ -920,10 +923,11 @@
             null,
             null,
             {
-              "doc": "Presentation - 22 May 2026",
-              "quote": "Total 2735",
-              "page": 11
+              "doc": "Annual Report - 31 Mar 2026",
+              "quote": "3. Total employees (D + E) 2,764 2,435 88.09% 329 11.90%",
+              "page": 175
             },
+            null,
             null
           ]
         }

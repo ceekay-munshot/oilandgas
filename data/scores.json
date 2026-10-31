@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-30T13:49:40.549Z",
+  "generatedAt": "2026-10-31T11:26:11.274Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -116,11 +116,11 @@
     },
     "coincident": {
       "score": -17,
-      "prev": -37,
-      "delta": 1,
+      "prev": -42,
+      "delta": 6,
       "deltaBasis": "kpi-only",
       "level": "negative",
-      "direction": "flat",
+      "direction": "rising",
       "kpisScored": 20,
       "kpisTotal": 40,
       "kpisBeyondBrief": 21,
@@ -151,7 +151,7 @@
           "kind": "kpi",
           "companyId": "petronet-lng",
           "company": "Petronet LNG",
-          "label": "Kochi utilisation",
+          "label": "Kochi throughput",
           "flag": "inflecting-down"
         },
         {
@@ -278,7 +278,7 @@
   "divergenceSeries": [
     null,
     null,
-    62,
+    67,
     11
   ],
   "stage": {
@@ -527,7 +527,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are negative — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
+      "text": "Coincident indicators are negative and rising — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi throughput."
     },
     {
       "id": "macro",
@@ -995,7 +995,7 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-30T11:45:05.204Z",
+    "generatedAt": "2026-10-30T13:49:40.549Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": null,
