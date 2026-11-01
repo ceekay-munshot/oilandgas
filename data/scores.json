@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-10-31T13:18:29.133Z",
+  "generatedAt": "2026-11-01T12:15:56.541Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -1032,30 +1032,23 @@
   ],
   "changes": [
     {
-      "kind": "stage-call",
-      "text": "The cycle call moved from no call to Just turning up."
-    },
-    {
-      "kind": "score",
-      "text": "Moves first moved up 29 points to 33."
-    },
-    {
-      "kind": "alert",
-      "text": "New alert: Leading and coincident have split: the front of the chain has turned up while the middle has not."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-10-31T11:26:11.274Z",
+    "generatedAt": "2026-10-31T13:18:29.133Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
-    "stageId": null,
+    "stageId": "early-upcycle",
     "scores": {
-      "leading": 4,
+      "leading": 33,
       "coincident": -17,
       "lagging": 100
     },
     "alertIds": [
       "coverage-lagging",
+      "divergence",
       "tone-castrol-india",
       "tone-gandhar-oil",
       "tone-gujarat-gas",
