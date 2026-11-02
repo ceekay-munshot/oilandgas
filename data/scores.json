@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-02T14:06:44.062Z",
+  "generatedAt": "2026-11-02T16:46:44.997Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -116,8 +116,8 @@
     },
     "coincident": {
       "score": 2,
-      "prev": -44,
-      "delta": 22,
+      "prev": -42,
+      "delta": 20,
       "deltaBasis": "kpi-only",
       "level": "flat",
       "direction": "rising",
@@ -285,7 +285,7 @@
   "divergenceSeries": [
     null,
     null,
-    2,
+    0,
     47
   ],
   "stage": {
@@ -344,7 +344,7 @@
         "id": "inr-usd",
         "label": "USD/INR",
         "direction": "flat",
-        "percentile": 80,
+        "percentile": 45,
         "supports": "down",
         "vote": "silent"
       },
@@ -544,7 +544,7 @@
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude rising (100th pctile); Crack spread falling (73th pctile); USD/INR flat (80th pctile)."
+      "text": "Crude rising (100th pctile); Crack spread falling (73th pctile); USD/INR flat (45th pctile)."
     },
     {
       "id": "divergence",
@@ -1033,35 +1033,30 @@
   ],
   "changes": [
     {
-      "kind": "score",
-      "text": "Moving now moved up 19 points to 2."
-    },
-    {
-      "kind": "alert",
-      "text": "New alert: HPCL moved 3 tone steps up (defensive → constructive) in Q2 FY27."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-01T14:10:00.215Z",
+    "generatedAt": "2026-11-02T14:06:44.062Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 33,
-      "coincident": -17,
+      "coincident": 2,
       "lagging": 100
     },
     "alertIds": [
       "coverage-lagging",
-      "divergence",
       "tone-castrol-india",
       "tone-gandhar-oil",
       "tone-gujarat-gas",
+      "tone-hpcl",
       "tone-lt",
       "tone-ongc",
       "tone-petronet-lng",
       "tone-ratnamani",
-      "tone-reliance",
       "tone-shipping-corp"
     ]
   }
