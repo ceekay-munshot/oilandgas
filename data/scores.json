@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-01T14:10:00.215Z",
+  "generatedAt": "2026-11-02T14:06:44.062Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -115,17 +115,17 @@
       ]
     },
     "coincident": {
-      "score": -17,
-      "prev": -37,
-      "delta": 1,
+      "score": 2,
+      "prev": -44,
+      "delta": 22,
       "deltaBasis": "kpi-only",
-      "level": "negative",
-      "direction": "flat",
-      "kpisScored": 20,
+      "level": "flat",
+      "direction": "rising",
+      "kpisScored": 19,
       "kpisTotal": 40,
-      "kpisBeyondBrief": 21,
+      "kpisBeyondBrief": 19,
       "tonesScored": 15,
-      "companiesScored": 11,
+      "companiesScored": 10,
       "staleKpis": 2,
       "oneOffKpis": 1,
       "unknownKpis": 0,
@@ -180,7 +180,7 @@
           "companyId": "supreme-petrochem",
           "company": "Supreme Petrochem",
           "label": "Volume",
-          "flag": "inflecting-down"
+          "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
@@ -191,9 +191,16 @@
         },
         {
           "kind": "tone",
-          "companyId": "reliance",
-          "company": "Reliance",
+          "companyId": "hpcl",
+          "company": "HPCL",
           "label": "Refining margin outlook",
+          "flag": "tone-up"
+        },
+        {
+          "kind": "tone",
+          "companyId": "hpcl",
+          "company": "HPCL",
+          "label": "Marketing margin normalization",
           "flag": "tone-up"
         },
         {
@@ -270,16 +277,16 @@
     }
   },
   "divergence": {
-    "value": 50,
+    "value": 31,
     "leadingSign": 1,
-    "coincidentSign": -1,
-    "signsDiffer": true
+    "coincidentSign": 0,
+    "signsDiffer": false
   },
   "divergenceSeries": [
     null,
     null,
-    -5,
-    61
+    2,
+    47
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -288,7 +295,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 33 (positive, rising), coincident -17 (negative, flat), lagging 100 (strong-positive).",
+      "Leading 33 (positive, rising), coincident 2 (flat, rising), lagging 100 (strong-positive).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -379,6 +386,16 @@
       "direction": "up"
     },
     {
+      "companyId": "hpcl",
+      "name": "HPCL",
+      "from": "defensive",
+      "to": "constructive",
+      "fromQuarter": "Q1 FY27",
+      "quarter": "Q2 FY27",
+      "steps": 3,
+      "direction": "up"
+    },
+    {
       "companyId": "castrol-india",
       "name": "Castrol India",
       "from": "confident",
@@ -419,16 +436,6 @@
       "direction": "down"
     },
     {
-      "companyId": "reliance",
-      "name": "Reliance",
-      "from": "cautious",
-      "to": "constructive",
-      "fromQuarter": "Q4 FY26",
-      "quarter": "Q1 FY27",
-      "steps": 2,
-      "direction": "up"
-    },
-    {
       "companyId": "gujarat-gas",
       "name": "Gujarat Gas",
       "from": "neutral",
@@ -458,12 +465,6 @@
   ],
   "alerts": [
     {
-      "id": "divergence",
-      "severity": "high",
-      "kind": "divergence",
-      "text": "Leading and coincident have split: the front of the chain has turned up while the middle has not."
-    },
-    {
       "id": "coverage-lagging",
       "severity": "info",
       "kind": "low-coverage",
@@ -480,6 +481,12 @@
       "severity": "info",
       "kind": "tone-drift",
       "text": "ONGC moved 3 tone steps up (cautious → confident) in Q1 FY27."
+    },
+    {
+      "id": "tone-hpcl",
+      "severity": "info",
+      "kind": "tone-drift",
+      "text": "HPCL moved 3 tone steps up (defensive → constructive) in Q2 FY27."
     },
     {
       "id": "tone-castrol-india",
@@ -504,12 +511,6 @@
       "severity": "warn",
       "kind": "tone-drift",
       "text": "Ratnamani Metals moved 2 tone steps down (neutral → defensive) in Q4 FY26."
-    },
-    {
-      "id": "tone-reliance",
-      "severity": "info",
-      "kind": "tone-drift",
-      "text": "Reliance moved 2 tone steps up (cautious → constructive) in Q1 FY27."
     },
     {
       "id": "tone-gujarat-gas",
@@ -538,7 +539,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are negative — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
+      "text": "Coincident indicators are flat and rising — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
     },
     {
       "id": "macro",
@@ -548,12 +549,12 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +50. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
+      "text": "Leading minus coincident is +31. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); Castrol India (confident → cautious); Gandhar Oil (cautious → confident); L&T (neutral → confident); Ratnamani Metals (neutral → defensive); and 3 more."
+      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); HPCL (defensive → constructive); Castrol India (confident → cautious); Gandhar Oil (cautious → confident); L&T (neutral → confident); and 3 more."
     },
     {
       "id": "implication",
@@ -731,17 +732,17 @@
       "label": "Refining margin outlook",
       "bucket": "coincident",
       "listenFor": "Management's own GRM outlook vs. benchmark; planned shutdowns/turnarounds (temporary distortion); new capacity coming online (structural cap)",
-      "state": "4 companies heard, leaning negative (0 positive, 2 negative); Reliance moved 2 steps up.",
-      "mood": "negative",
+      "state": "4 companies heard, split (2 positive, 2 negative); HPCL moved 3 steps up.",
+      "mood": "mixed",
       "members": [
         {
           "companyId": "reliance",
           "name": "Reliance",
-          "toneId": "constructive",
-          "quarter": "Q1 FY27",
-          "direction": "neutral",
-          "driver": "macro volatility",
-          "drift": 2
+          "toneId": "confident",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "O2C margin expansion",
+          "drift": 1
         },
         {
           "companyId": "iocl",
@@ -764,30 +765,30 @@
         {
           "companyId": "hpcl",
           "name": "HPCL",
-          "toneId": "defensive",
-          "quarter": "Q1 FY27",
-          "direction": "neutral",
-          "driver": "crisis management",
-          "drift": -1
+          "toneId": "constructive",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "refining margin recovery and HRRL commissioning",
+          "drift": 3
         }
       ],
       "drivers": [
         {
-          "companyId": "reliance",
-          "name": "Reliance",
+          "companyId": "hpcl",
+          "name": "HPCL",
           "toneId": "constructive",
-          "quarter": "Q1 FY27",
-          "direction": "neutral",
-          "driver": "macro volatility",
-          "drift": 2
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "refining margin recovery and HRRL commissioning",
+          "drift": 3
         },
         {
-          "companyId": "bpcl",
-          "name": "BPCL",
-          "toneId": "cautious",
+          "companyId": "reliance",
+          "name": "Reliance",
+          "toneId": "confident",
           "quarter": "Q2 FY27",
-          "direction": "negative",
-          "driver": "crude freight and premium costs",
+          "direction": "positive",
+          "driver": "O2C margin expansion",
           "drift": 1
         }
       ]
@@ -797,7 +798,7 @@
       "label": "Marketing margin normalization",
       "bucket": "coincident",
       "listenFor": "Retail fuel pricing signals, under-recovery risk - politically driven, moves independent of GRM",
-      "state": "3 companies heard, leaning negative (0 positive, 2 negative); no two-step move this quarter.",
+      "state": "3 companies heard, leaning negative (1 positive, 2 negative); HPCL moved 3 steps up.",
       "mood": "negative",
       "members": [
         {
@@ -821,14 +822,23 @@
         {
           "companyId": "hpcl",
           "name": "HPCL",
-          "toneId": "defensive",
-          "quarter": "Q1 FY27",
-          "direction": "neutral",
-          "driver": "crisis management",
-          "drift": -1
+          "toneId": "constructive",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "refining margin recovery and HRRL commissioning",
+          "drift": 3
         }
       ],
       "drivers": [
+        {
+          "companyId": "hpcl",
+          "name": "HPCL",
+          "toneId": "constructive",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "refining margin recovery and HRRL commissioning",
+          "drift": 3
+        },
         {
           "companyId": "bpcl",
           "name": "BPCL",
@@ -837,15 +847,6 @@
           "direction": "negative",
           "driver": "crude freight and premium costs",
           "drift": 1
-        },
-        {
-          "companyId": "hpcl",
-          "name": "HPCL",
-          "toneId": "defensive",
-          "quarter": "Q1 FY27",
-          "direction": "neutral",
-          "driver": "crisis management",
-          "drift": -1
         }
       ]
     },
@@ -984,10 +985,10 @@
           "companyId": "supreme-petrochem",
           "name": "Supreme Petrochem",
           "toneId": "confident",
-          "quarter": "Q1 FY27",
+          "quarter": "Q2 FY27",
           "direction": "positive",
-          "driver": "styrene-polystyrene margin spread",
-          "drift": 1
+          "driver": "volume growth and pricing realization",
+          "drift": 0
         },
         {
           "companyId": "castrol-india",
@@ -1032,12 +1033,16 @@
   ],
   "changes": [
     {
-      "kind": "none",
-      "text": "Nothing material moved since the last refresh."
+      "kind": "score",
+      "text": "Moving now moved up 19 points to 2."
+    },
+    {
+      "kind": "alert",
+      "text": "New alert: HPCL moved 3 tone steps up (defensive → constructive) in Q2 FY27."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-01T12:15:56.541Z",
+    "generatedAt": "2026-11-01T14:10:00.215Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",

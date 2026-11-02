@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-01T14:09:33.040Z",
+  "generatedAt": "2026-11-02T14:05:19.999Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
-    "kpiCells": 409,
-    "realCells": 293,
-    "nullCells": 116,
-    "kpis": 105,
-    "kpisWithTrend": 70
+    "kpiCells": 401,
+    "realCells": 284,
+    "nullCells": 117,
+    "kpis": 103,
+    "kpisWithTrend": 67
   },
   "companies": {
     "deep-industries": {
@@ -608,7 +608,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27795,
+      "ctxChars": 27892,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -2151,12 +2151,12 @@
       "name": "Reliance",
       "slug": "RELIANCE",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 34387,
@@ -2167,21 +2167,21 @@
           "unit": "₹/t",
           "flagBasis": "level",
           "values": [
-            7215,
             null,
             null,
-            9398
+            9398,
+            12234
           ],
           "sourceTags": [
+            null,
+            null,
             "company-filing",
-            null,
-            null,
             "company-filing"
           ],
           "origins": [
+            null,
+            null,
             "filing",
-            null,
-            null,
             "filing"
           ],
           "citations": [
@@ -2197,7 +2197,7 @@
             null
           ],
           "flag": null,
-          "notes": "O2C EBITDA per tonne not stated in any excerpt. Q2 FY26 O2C EBITDA was ₹15,008 cr (Screener segment table), Q3 FY26 O2C EBITDA not broken out in Q3 transcript (only 15% YoY growth mentioned for 9-month period), Q4 FY26 O2C EBITDA stated as "
+          "notes": "O2C EBITDA per tonne not stated in any excerpt. Q3 FY26 concall and Q4 FY26 summary mention O2C EBITDA in absolute terms and discuss margin drivers (cracks, premiums, logistics) but do not quote EBITDA per tonne. Q1 FY27 summary and Q2 FY27"
         },
         {
           "id": "petchem-margin",
@@ -2235,7 +2235,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated in any excerpt. Q2 FY26 summary mentions 'fairly muted downstream petrochemical performance' and Q1 FY27 summary describes 'heavy friction costs' and demand down 22%, but no $/t margin figure given for any q"
+          "notes": "Petchem margin in $/t not stated. Q3 FY26 concall discusses petchem deltas qualitatively (PE deltas surged, PP firm, PVC delta fell ~10%, polyester deltas rose) but gives no single consolidated margin figure. Q4 FY26 and Q1 FY27 summaries m"
         },
         {
           "id": "retail-fuel-margin",
@@ -2273,58 +2273,7 @@
             null
           ],
           "flag": null,
-          "notes": "Retail fuel margin in ₹/l not stated in any excerpt. Q2 FY26 summary mentions Jio-bp 24% volume growth; Q4 FY26 summary mentions 'under-recoveries in fuel retail' and SAED drag; Q1 FY27 summary mentions SAED drag and domestic under-recoveri"
-        },
-        {
-          "id": "throughput",
-          "label": "O2C refinery throughput",
-          "unit": "MMT",
-          "flagBasis": "level",
-          "values": [
-            20.8,
-            null,
-            19.5,
-            18.1
-          ],
-          "sourceTags": [
-            "company-filing",
-            null,
-            "company-filing",
-            "company-filing"
-          ],
-          "origins": [
-            "insights",
-            null,
-            "insights",
-            "insights"
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 17 Oct 2025",
-              "quote": "Throughput: 20.8",
-              "page": 49
-            },
-            null,
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Throughput: 19.5",
-              "page": 53
-            },
-            {
-              "doc": "Presentation - 17 Jul 2026",
-              "quote": "Throughput 19.1 18.1",
-              "page": 51
-            }
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": "decelerating",
-          "beyondBrief": true,
-          "notes": "From Screener Insights row \"O2C Refinery Throughput\"; latest value cited to Presentation - 17 Oct 2025, page 49."
+          "notes": "Retail fuel margin per litre not stated. Q3 FY26 concall mentions Jio-bp 24% volume growth and strong fuel cracks but no margin per litre. Q4 FY26 summary flags under-recoveries and SAED drag on O2C but no retail fuel margin figure. Q1 FY27"
         },
         {
           "id": "kgd6-gas-production",
@@ -2332,29 +2281,24 @@
           "unit": "BCFe",
           "flagBasis": "level",
           "values": [
-            63.5,
             null,
             59.6,
-            59.2
+            59.2,
+            null
           ],
           "sourceTags": [
-            "company-filing",
             null,
             "company-filing",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
-            "insights",
             null,
             "insights",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 17 Oct 2025",
-              "quote": "KGD6: 63.5 (-8.4% YoY)",
-              "page": 44
-            },
             null,
             {
               "doc": "Presentation - 24 Apr 2026",
@@ -2365,7 +2309,8 @@
               "doc": "Presentation - 17 Jul 2026",
               "quote": "59.2",
               "page": 65
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2373,8 +2318,8 @@
             null,
             null
           ],
-          "flag": "steady",
-          "notes": "From Screener Insights row \"KG D6 Gas Production (RIL Share)\"; latest value cited to Presentation - 17 Oct 2025, page 44."
+          "flag": null,
+          "notes": "From Screener Insights row \"KG D6 Gas Production (RIL Share)\"; latest value cited to Presentation - 24 Apr 2026, page 67."
         }
       ]
     },
@@ -2988,12 +2933,12 @@
       "name": "HPCL",
       "slug": "HINDPETRO",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 34101,
@@ -3004,22 +2949,22 @@
           "unit": "$/bbl",
           "flagBasis": "level",
           "values": [
-            8.8,
             8.85,
             17,
-            null
+            null,
+            32.15
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
-            null
+            null,
+            "mgmt-claim"
           ],
           "origins": [
             "model",
             "model",
-            "model",
-            null
+            null,
+            "model"
           ],
           "citations": [
             null,
@@ -3034,7 +2979,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": "Q2 FY26: $8.8/bbl stated in Q2 AI summary (management clarified ~$8/bbl excluding inventory effects). Q3 FY26: $8.85/bbl stated in Q3 AI summary (management noted Mumbai contamination impact; without it would have been $10.24/bbl). Q4 FY26:"
+          "notes": "Q3 FY26: not stated in excerpts. Q4 FY26: not stated in excerpts. Q1 FY27: not stated in excerpts. Q2 FY27: AI summary states 'Q2 GRM ₹32.15/bbl (pre-SAD)' - this appears to be a typo mixing currency symbols; the unit should be $/bbl based "
         },
         {
           "id": "marketing-margin",
@@ -3072,7 +3017,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin per liter not stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. Excerpts discuss LPG under-recoveries per cylinder and overall segment performance but do not provide a per-liter marketing margin figur"
+          "notes": "Q3 FY26: no numeric marketing margin stated. Q4 FY26: no numeric marketing margin stated. Q1 FY27: no numeric marketing margin stated. Q2 FY27: AI summary mentions 'marketing margins were decent' but no numeric value provided."
         },
         {
           "id": "throughput",
@@ -3080,29 +3025,24 @@
           "unit": "MMT",
           "flagBasis": "level",
           "values": [
-            6.57,
             6.38,
             6.39,
-            6.5
+            6.5,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
-            "company-filing",
-            "official"
+            "official",
+            null
           ],
           "origins": [
             "insights",
             "insights",
-            "insights",
-            "ppac"
+            "ppac",
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 31 Oct 2025",
-              "quote": "In quarter 2 of this year, it is 6.57 MMT",
-              "page": 3
-            },
             {
               "doc": "Presentation - 21 Jan 2026",
               "quote": "Highest Ever Refinery Crude Thruput of 19.61 MMT (9M); Q3 implied 19.61-13.23",
@@ -3113,6 +3053,7 @@
               "quote": "Highest Ever Refinery Thruput 26.0 MMT (FY); Q4 implied 26.0-19.61",
               "page": 20
             },
+            null,
             null
           ],
           "oneOffs": [
@@ -3122,7 +3063,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Refining Throughput (HPCL Standalone)\" (Standalone data); latest value cited to Presentation - 21 Jan 2026, page 21."
         }
       ]
     },
@@ -3138,7 +3079,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31923,
+      "ctxChars": 31876,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -3230,7 +3171,7 @@
             null
           ],
           "flag": null,
-          "notes": "No petchem margin in $/t stated in any excerpt. Q1 FY26 concall mentions Pata segment loss of ₹249 cr and polymer price decline ~₹1,000/MT QoQ, but no margin per tonne. Q2 FY26 concall mentions loss of ₹299 cr and delivered gas cost ~$10.5-"
+          "notes": "No petchem margin in $/t stated in any excerpt. Q1 FY26 concall mentions delivered gas cost at Pata ~$10.5-10.6/MMBtu and breakeven framing at $13-14 landed price with polymer selling price ~INR130,000/MT, but no margin per tonne figure giv"
         },
         {
           "id": "gas-marketing-volume",
@@ -3861,9 +3802,9 @@
       "name": "Aegis Logistics",
       "slug": "AEGISLOG",
       "quarters": [
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27"
       ],
       "asOf": "Q1 FY27",
@@ -3877,9 +3818,9 @@
           "unit": "'000 MT",
           "flagBasis": "yoy",
           "values": [
+            1161,
             1407,
             1361,
-            1223,
             1124
           ],
           "sourceTags": [
@@ -3897,17 +3838,17 @@
           "citations": [
             {
               "doc": "Presentation - 30 May 2026",
+              "quote": "1,013 1,161 Q1FY25 Q1FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
               "quote": "1,064 1,407 Q2FY25 Q2FY26",
               "page": 11
             },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "1,221 1,361 Q3FY25 Q3FY26",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 30 May 2026",
-              "quote": "1,225 1,223 Q4FY25 Q4FY26",
               "page": 11
             },
             {
@@ -3961,7 +3902,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not stated for any of the four quarters (Q2 FY26, Q3 FY26, Q4 FY26, Q1 FY27). The concall transcripts mention 'high utilisation levels', 'higher utilization levels', 'improved utilization levels' at various ports but "
+          "notes": "Terminal utilisation % not explicitly stated in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. Management mentions 'higher utilization levels', 'improved utilization', and 'high utilization' at various ports but no specific "
         },
         {
           "id": "lpg-distribution-volume",
@@ -3969,9 +3910,9 @@
           "unit": "'000 MT",
           "flagBasis": "level",
           "values": [
+            145,
             192,
             183,
-            234,
             277
           ],
           "sourceTags": [
@@ -3989,17 +3930,17 @@
           "citations": [
             {
               "doc": "Presentation - 30 May 2026",
+              "quote": "128 145 Q1FY25 Q1FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
               "quote": "129 192 Q2FY25 Q2FY26",
               "page": 11
             },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "127 183 Q3FY25 Q3FY26",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 30 May 2026",
-              "quote": "136 234 Q4FY25 Q4FY26",
               "page": 11
             },
             {
@@ -4014,7 +3955,7 @@
             null,
             null
           ],
-          "flag": "decelerating",
+          "flag": "inflecting-up",
           "beyondBrief": true,
           "notes": null
         },
@@ -4024,9 +3965,9 @@
           "unit": "'000 MT",
           "flagBasis": "level",
           "values": [
+            119,
             208,
             151,
-            129,
             121
           ],
           "sourceTags": [
@@ -4044,17 +3985,17 @@
           "citations": [
             {
               "doc": "Presentation - 30 May 2026",
+              "quote": "124 119 Q1FY25 Q1FY26",
+              "page": 11
+            },
+            {
+              "doc": "Presentation - 30 May 2026",
               "quote": "194 208 Q2FY25 Q2FY26",
               "page": 11
             },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "140 151 Q3FY25 Q3FY26",
-              "page": 11
-            },
-            {
-              "doc": "Presentation - 30 May 2026",
-              "quote": "139 129 Q4FY25 Q4FY26",
               "page": 11
             },
             {
@@ -4187,12 +4128,12 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 33081,
@@ -4243,10 +4184,10 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
-            76962,
             91265,
             100664,
-            70842
+            70842,
+            95242
           ],
           "sourceTags": [
             "company-filing",
@@ -4262,11 +4203,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 24 Oct 2025",
-              "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
-              "page": 15
-            },
-            {
               "doc": "Concall Transcript - 26 Jan 2026",
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
               "page": 3
@@ -4280,6 +4216,11 @@
               "doc": "Presentation - 27 Jul 2026",
               "quote": "Total Sales Volume of the manufactured products in Q1FY27 was 70,842 MT",
               "page": 18
+            },
+            {
+              "doc": "Presentation - 23 Oct 2026",
+              "quote": "Quantities Sold in MT",
+              "page": 29
             }
           ],
           "oneOffs": [
@@ -4288,58 +4229,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
-          "notes": null
-        },
-        {
-          "id": "capacity-utilisation",
-          "label": "Capacity utilisation",
-          "unit": "%",
-          "flagBasis": "level",
-          "values": [
-            79,
-            80,
-            80,
-            80
-          ],
-          "sourceTags": [
-            "company-filing",
-            "company-filing",
-            "company-filing",
-            "company-filing"
-          ],
-          "origins": [
-            "insights",
-            "insights",
-            "insights",
-            "model"
-          ],
-          "citations": [
-            {
-              "doc": "Concall Transcript - 31 Oct 2025",
-              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 26 Jan 2026",
-              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 30 Apr 2026",
-              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
-              "page": 3
-            },
-            null
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": "steady",
-          "beyondBrief": true,
+          "flag": "inflecting-up",
           "notes": null
         }
       ]
@@ -5235,7 +5125,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21434,
+      "ctxChars": 21382,
       "kpis": [
         {
           "id": "freight-rate",

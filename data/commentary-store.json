@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-11-01T14:10:00.162Z",
+  "generatedAt": "2026-11-02T14:06:44.014Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -944,9 +944,30 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:19:48.843Z"
+        },
+        "Q2 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "exceptionally strong quarter in a turbulent world...highest EBITDA...all time high...O2C led the charge with EBITDA up 68%",
+          "rationale": "Management emphasizes record-breaking results with superlatives (highest, all-time high) and validates their structural positive view on O2C despite macro turbulence.",
+          "driver": "O2C margin expansion",
+          "direction": "positive",
+          "signal": "Management sees structural tailwinds in energy markets continuing and highlights operational excellence driving unprecedented margin performance in downstream refining.",
+          "mgmtDataPoints": [
+            "Consolidated EBITDA: Rs.62,409 Crores, up 24% YoY",
+            "PAT: Rs.30,000 Crores, up 34% YoY",
+            "O2C EBITDA: up 68% YoY",
+            "Jio IPO listing value: $137 billion"
+          ],
+          "implication": "Strong O2C momentum and successful Jio IPO suggest continued earnings strength and potential for increased capital deployment across both digital and energy platforms in coming quarters.",
+          "doc": "Concall transcript (Q2 FY27)",
+          "fingerprint": "fd631f2048f0",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-02T14:06:21.086Z"
         }
       },
-      "updatedAt": "2026-07-28T18:19:48.843Z"
+      "updatedAt": "2026-11-02T14:06:21.086Z"
     },
     "iocl": {
       "cells": {
@@ -1258,9 +1279,32 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:20:02.742Z"
+        },
+        "Q2 FY27": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "at least the positive side is we are able to swing it",
+          "rationale": "Management is upbeat about the sharp turnaround from Q1 losses to Q2 profit, emphasizing operational performance, refining strength, and successful HRRL ramp-up progress.",
+          "driver": "refining margin recovery and HRRL commissioning",
+          "direction": "positive",
+          "signal": "Management expects HRRL to reach full run-rate by December and anticipates GRM uplift to $20+ in Q4 as the refinery stabilizes and shifts to high-sulfur crude; deleveraging and cost discipline remain priorities.",
+          "mgmtDataPoints": [
+            "Q2 standalone EBITDA: ₹9,822 cr",
+            "Q2 GRM: ₹32.15/bbl (pre-SAD)",
+            "Standalone leverage improved: 1.38x (from 1.52x)",
+            "HRRL running at ~60% utilization",
+            "HRRL full run-rate: 8–9 MMTPA by end Q3 (December)",
+            "HRRL GRM expected: $20+ in Q4"
+          ],
+          "implication": "The strong Q2 rebound and HRRL ramp-up suggest improving consolidated earnings in Q3–Q4 as the new refinery stabilizes and reaches full throughput, though near-term HRRL losses and working capital needs may temper the pace of deleveraging.",
+          "doc": "Concall AI summary (Q2 FY27)",
+          "fingerprint": "56a5d0f5b7db",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-02T14:06:27.994Z"
         }
       },
-      "updatedAt": "2026-07-28T18:20:02.742Z"
+      "updatedAt": "2026-11-02T14:06:27.994Z"
     },
     "gail": {
       "cells": {
@@ -2106,9 +2150,30 @@
           "attempts": 1,
           "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
           "at": "2026-08-04T08:23:32.360Z"
+        },
+        "Q2 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "The EBITDA increased to Rs. 160 crores with a margin of 8.12%. Profit after tax almost doubled to Rs. 95 crores.",
+          "rationale": "Management highlights strong financial performance with doubled PAT and improved EBITDA, attributing growth to both volume increases and favorable pricing.",
+          "driver": "volume growth and pricing realization",
+          "direction": "positive",
+          "signal": "Management conveyed strong operational momentum with both volume expansion and pricing power supporting profitability improvements.",
+          "mgmtDataPoints": [
+            "Q2 FY27 operating income: Rs. 1,957 crores",
+            "Q2 FY27 EBITDA: Rs. 160 crores",
+            "Q2 FY27 EBITDA margin: 8.12%",
+            "Q2 FY27 PAT: Rs. 95 crores"
+          ],
+          "implication": "The combination of volume growth and pricing strength suggests continued margin expansion and profitability momentum into the next quarter, barring raw material volatility.",
+          "doc": "Concall transcript (Q2 FY27)",
+          "fingerprint": "8b7e0ae83f45",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-02T14:06:38.622Z"
         }
       },
-      "updatedAt": "2026-08-04T08:23:32.360Z"
+      "updatedAt": "2026-11-02T14:06:38.622Z"
     },
     "castrol-india": {
       "cells": {
