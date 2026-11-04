@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-04T13:30:19.270Z",
+  "generatedAt": "2026-11-04T15:07:56.557Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -115,15 +115,15 @@
       ]
     },
     "coincident": {
-      "score": -6,
-      "prev": -39,
-      "delta": 2,
+      "score": 2,
+      "prev": -42,
+      "delta": 20,
       "deltaBasis": "kpi-only",
       "level": "flat",
-      "direction": "flat",
+      "direction": "rising",
       "kpisScored": 19,
       "kpisTotal": 40,
-      "kpisBeyondBrief": 20,
+      "kpisBeyondBrief": 19,
       "tonesScored": 15,
       "companiesScored": 10,
       "staleKpis": 2,
@@ -180,7 +180,7 @@
           "companyId": "supreme-petrochem",
           "company": "Supreme Petrochem",
           "label": "Volume",
-          "flag": "inflecting-down"
+          "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
@@ -277,7 +277,7 @@
     }
   },
   "divergence": {
-    "value": 39,
+    "value": 31,
     "leadingSign": 1,
     "coincidentSign": 0,
     "signsDiffer": false
@@ -285,8 +285,8 @@
   "divergenceSeries": [
     null,
     null,
-    -3,
-    62
+    0,
+    47
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -295,7 +295,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 33 (positive, rising), coincident -6 (flat, flat), lagging 100 (strong-positive).",
+      "Leading 33 (positive, rising), coincident 2 (flat, rising), lagging 100 (strong-positive).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -539,7 +539,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are flat — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
+      "text": "Coincident indicators are flat and rising — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
     },
     {
       "id": "macro",
@@ -549,7 +549,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +39. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +31. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -985,10 +985,10 @@
           "companyId": "supreme-petrochem",
           "name": "Supreme Petrochem",
           "toneId": "confident",
-          "quarter": "Q1 FY27",
+          "quarter": "Q2 FY27",
           "direction": "positive",
-          "driver": "styrene-polystyrene margin spread",
-          "drift": 1
+          "driver": "volume growth and pricing realization",
+          "drift": 0
         },
         {
           "companyId": "castrol-india",
@@ -1034,17 +1034,17 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moving now moved down 8 points to -6."
+      "text": "Moving now moved up 8 points to 2."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-03T14:53:34.329Z",
+    "generatedAt": "2026-11-04T13:30:19.270Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 33,
-      "coincident": 2,
+      "coincident": -6,
       "lagging": 100
     },
     "alertIds": [

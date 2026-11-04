@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-04T13:27:30.261Z",
+  "generatedAt": "2026-11-04T15:07:28.881Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
-    "kpiCells": 405,
-    "realCells": 288,
+    "kpiCells": 401,
+    "realCells": 284,
     "nullCells": 117,
-    "kpis": 104,
-    "kpisWithTrend": 68
+    "kpis": 103,
+    "kpisWithTrend": 67
   },
   "companies": {
     "deep-industries": {
@@ -4128,12 +4128,12 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 33109,
@@ -4184,10 +4184,10 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
-            76962,
             91265,
             100664,
-            70842
+            70842,
+            95242
           ],
           "sourceTags": [
             "company-filing",
@@ -4203,11 +4203,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 24 Oct 2025",
-              "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
-              "page": 15
-            },
-            {
               "doc": "Concall Transcript - 26 Jan 2026",
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
               "page": 3
@@ -4221,6 +4216,11 @@
               "doc": "Presentation - 27 Jul 2026",
               "quote": "Total Sales Volume of the manufactured products in Q1FY27 was 70,842 MT",
               "page": 18
+            },
+            {
+              "doc": "Presentation - 23 Oct 2026",
+              "quote": "Quantities Sold in MT",
+              "page": 29
             }
           ],
           "oneOffs": [
@@ -4229,58 +4229,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
-          "notes": null
-        },
-        {
-          "id": "capacity-utilisation",
-          "label": "Capacity utilisation",
-          "unit": "%",
-          "flagBasis": "level",
-          "values": [
-            79,
-            80,
-            80,
-            80
-          ],
-          "sourceTags": [
-            "company-filing",
-            "company-filing",
-            "company-filing",
-            "company-filing"
-          ],
-          "origins": [
-            "insights",
-            "insights",
-            "insights",
-            "model"
-          ],
-          "citations": [
-            {
-              "doc": "Concall Transcript - 31 Oct 2025",
-              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 26 Jan 2026",
-              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 30 Apr 2026",
-              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
-              "page": 3
-            },
-            null
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": "steady",
-          "beyondBrief": true,
+          "flag": "inflecting-up",
           "notes": null
         }
       ]
