@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-03T14:53:02.146Z",
+  "generatedAt": "2026-11-04T13:27:30.261Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
-    "kpiCells": 401,
-    "realCells": 284,
+    "kpiCells": 405,
+    "realCells": 288,
     "nullCells": 117,
-    "kpis": 103,
-    "kpisWithTrend": 67
+    "kpis": 104,
+    "kpisWithTrend": 68
   },
   "companies": {
     "deep-industries": {
@@ -32,7 +32,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33759,
+      "ctxChars": 33763,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -116,7 +116,7 @@
             null
           ],
           "flag": null,
-          "notes": "Day-rate not disclosed in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Q3 FY26 concall mentions growth was 'more of volume' rather than pricing/day-rate, but no numeric day-rate is stated. The Q2 FY26 concall discusses"
+          "notes": "Day-rate figures are not disclosed in any of the provided excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The documents discuss asset utilization (100% for rigs, 90% for gas compression) and revenue contributions from various segments, "
         },
         {
           "id": "order-book",
@@ -225,7 +225,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34000,
+      "ctxChars": 34004,
       "kpis": [
         {
           "id": "order-inflow",
@@ -371,7 +371,7 @@
             null
           ],
           "flag": null,
-          "notes": "No bid pipeline figure stated in any of the excerpts for Q3 FY26, Q4 FY26, Q1 FY27, or Q2 FY27. The excerpts discuss order book (unexecuted orders already won) and order inflow (new orders secured), but do not disclose a bid pipeline (value"
+          "notes": "No bid pipeline figure stated in any excerpt for Q3 FY26, Q4 FY26, Q1 FY27, or Q2 FY27. The excerpts report order book (unexecuted orders already won) and order inflow (new orders secured), but do not disclose the value of bids under evalua"
         },
         {
           "id": "consultancy-order-book",
@@ -608,7 +608,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27900,
+      "ctxChars": 27904,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -874,7 +874,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27850,
+      "ctxChars": 27854,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -1020,7 +1020,7 @@
       "asOf": "Q2 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27366,
+      "ctxChars": 27370,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -1180,7 +1180,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34050,
+      "ctxChars": 34054,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -1330,7 +1330,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32431,
+      "ctxChars": 32435,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -1546,7 +1546,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33810,
+      "ctxChars": 33814,
       "kpis": [
         {
           "id": "hydrocarbon-order-inflow",
@@ -1735,7 +1735,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33030,
+      "ctxChars": 33034,
       "kpis": [
         {
           "id": "order-book",
@@ -1815,7 +1815,7 @@
             null
           ],
           "flag": null,
-          "notes": "Order inflow is not stated in any of the excerpts. The documents report order book (a stock measure) at various points in time: ~₹2,900 cr as of Nov 2024 (Q2 FY26), ~₹2,100 cr as of Mar 2025 (Q4 FY25), ~₹2,050 cr as of Nov 2025 (Q2 FY26), a"
+          "notes": "Q2 FY25: Only order book (stock) of ~₹2,900 cr stated; no quarterly inflow figure given. Q4 FY25: Only order book of ~₹2,100 cr stated; no quarterly inflow figure given. Q2 FY26: Carbon steel order intake of ₹750 cr mentioned for the quarte"
         }
       ]
     },
@@ -1831,7 +1831,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34101,
+      "ctxChars": 34105,
       "kpis": [
         {
           "id": "order-book",
@@ -2159,7 +2159,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34388,
+      "ctxChars": 34392,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -2197,7 +2197,7 @@
             null
           ],
           "flag": null,
-          "notes": "O2C EBITDA per tonne not stated in any excerpt. Q3 FY26 concall mentions O2C EBITDA growth and throughput but no per-tonne figure. Q4 FY26 summary mentions O2C EBITDA decline but no per-tonne metric. Q1 FY27 summary mentions O2C EBITDA and "
+          "notes": "O2C EBITDA per tonne not stated in any excerpt. Q3 FY26 concall mentions O2C EBITDA up 15% YoY but no per-tonne figure. Q4 FY26 summary mentions O2C EBITDA -4% YoY with one-offs (crude premiums, logistics, under-recoveries, SAED, planned tu"
         },
         {
           "id": "petchem-margin",
@@ -2235,7 +2235,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated in any excerpt. Q3 FY26 concall discusses petchem deltas and market conditions qualitatively but no single margin figure. Q4 FY26 summary mentions petchem volatility but no margin. Q1 FY27 summary discusses "
+          "notes": "Petchem margin in $/t not stated in any excerpt. Q3 FY26 concall mentions 'fairly muted downstream petrochemical performance' but no margin figure. Q4 FY26 summary discusses PE/PP/PVC/polyester deltas and demand shock (polymer demand down 2"
         },
         {
           "id": "retail-fuel-margin",
@@ -2273,7 +2273,7 @@
             null
           ],
           "flag": null,
-          "notes": "Retail fuel margin per litre not stated in any excerpt. Q3 FY26 concall does not discuss retail fuel margins. Q4 FY26 summary mentions under-recoveries and SAED drag but no margin figure. Q1 FY27 summary mentions Jio-bp volume growth 24% bu"
+          "notes": "Retail fuel margin per litre not stated in any excerpt. Q3 FY26 concall mentions Jio-bp 'continues to do well with 24% growth in volumes' but no margin. Q4 FY26 summary mentions 'under-recoveries in fuel retail' and 'SAED' as headwinds but "
         },
         {
           "id": "kgd6-gas-production",
@@ -2335,7 +2335,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31326,
+      "ctxChars": 31330,
       "kpis": [
         {
           "id": "grm",
@@ -2752,7 +2752,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33988,
+      "ctxChars": 33992,
       "kpis": [
         {
           "id": "grm",
@@ -2836,7 +2836,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin in ₹/l not explicitly stated in any of the excerpts. Q1 FY26 concall mentions 'adverse marketing margins' and a '₹7.5/litre retail price revision' but this is a price change, not the margin itself. Q4 FY26 concall discusses"
+          "notes": "Marketing margin in ₹/l not explicitly stated in any of the excerpts. Q1 FY26 concall mentions 'adverse marketing margins' and a ₹7.5/l retail price revision to mitigate losses, but does not state the actual margin level. Q4 FY26 concall st"
         },
         {
           "id": "throughput",
@@ -2941,7 +2941,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34108,
+      "ctxChars": 34112,
       "kpis": [
         {
           "id": "grm",
@@ -3079,7 +3079,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31881,
+      "ctxChars": 31885,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -3171,7 +3171,7 @@
             null
           ],
           "flag": null,
-          "notes": "No petchem margin in $/t stated in any excerpt. Q1 FY26 concall mentions Pata segment loss of ₹249 cr and polymer production 177 TMT (turnaround shutdown). Q2 FY26 concall mentions loss of ₹299 cr, polymer production 220 TMT, delivered gas "
+          "notes": "Petchem margin in $/t not stated in any excerpt. Q1 FY26 concall mentions polymer segment loss of ₹249 crore and feedstock cost ~$10.5-10.6/MMBtu but no per-tonne margin. Q2 FY26 concall mentions loss of ₹299 crore and feedstock ~$10.5-10.6"
         },
         {
           "id": "gas-marketing-volume",
@@ -3407,7 +3407,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34197,
+      "ctxChars": 34201,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3718,7 +3718,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34097,
+      "ctxChars": 34101,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3756,7 +3756,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: no yoy growth figure stated for CNG+PNG combined. Q3 FY26: no yoy growth figure stated for CNG+PNG combined. Q4 FY26: CNG grew 12% yoy (3.6 vs 3.22 mmscmd); PNG domestic volume not given yoy comparison; no combined CNG+PNG growth s"
+          "notes": "Q2 FY26: no yoy growth stated. Q3 FY26: no yoy growth stated. Q4 FY26: CNG yoy growth 12% stated but not total CNG+PNG. Q1 FY27: mgmt stated CNG 13% yoy (3.76 vs 3.33 mmscmd); PNG domestic 0.7 vs 0.69 mmscmd is ~1% yoy; PNG industrial 7.71 "
         },
         {
           "id": "ebitda-per-scm",
@@ -3794,7 +3794,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: EBITDA not stated in excerpts; volume 8.65 mmscmd (Screener table). Q3 FY26: EBITDA not stated; volume 8.37 mmscmd. Q4 FY26: EBITDA not stated; volume 8.88 mmscmd. Q1 FY27: EBITDA Rs 1,482 Cr stated in PPT and concall for the merge"
+          "notes": "Q2 FY26: EBITDA per scm not stated. Q3 FY26: EBITDA per scm not stated. Q4 FY26: EBITDA per scm not stated. Q1 FY27: EBITDA per scm not stated. The screener and transcripts provide EBITDA in crores and volumes in MMSCMD but no explicit per-"
         }
       ]
     },
@@ -3810,7 +3810,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34024,
+      "ctxChars": 34028,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3902,7 +3902,7 @@
             null
           ],
           "flag": null,
-          "notes": "No terminal utilisation percentage data found in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The concall transcripts mention 'high utilisation levels', 'higher utilization levels', 'improved utilization levels', and 'oper"
+          "notes": "Terminal utilisation % not stated in any of the excerpts. The Q2 FY26 concall mentions 'higher utilization levels' and 'improved utilization levels' at various ports but no specific percentage figure is given. Q3 FY26 concall similarly ment"
         },
         {
           "id": "lpg-distribution-volume",
@@ -4028,7 +4028,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33090,
+      "ctxChars": 33094,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -4120,7 +4120,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not stated in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The screener insights table does not include this metric, and the concall transcripts and investor presentation do not provide terminal util"
+          "notes": "Terminal utilisation % not disclosed in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The screener insights table shows capacity figures but no utilisation percentages. The concall transcripts mention 'high capacity utiliza"
         }
       ]
     },
@@ -4128,15 +4128,15 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
+        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27",
-        "Q2 FY27"
+        "Q1 FY27"
       ],
-      "asOf": "Q2 FY27",
+      "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33105,
+      "ctxChars": 33109,
       "kpis": [
         {
           "id": "sps-spread",
@@ -4184,10 +4184,10 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
+            76962,
             91265,
             100664,
-            70842,
-            95242
+            70842
           ],
           "sourceTags": [
             "company-filing",
@@ -4203,6 +4203,11 @@
           ],
           "citations": [
             {
+              "doc": "Presentation - 24 Oct 2025",
+              "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
+              "page": 15
+            },
+            {
               "doc": "Concall Transcript - 26 Jan 2026",
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
               "page": 3
@@ -4216,11 +4221,6 @@
               "doc": "Presentation - 27 Jul 2026",
               "quote": "Total Sales Volume of the manufactured products in Q1FY27 was 70,842 MT",
               "page": 18
-            },
-            {
-              "doc": "Presentation - 23 Oct 2026",
-              "quote": "Quantities Sold in MT",
-              "page": 29
             }
           ],
           "oneOffs": [
@@ -4229,7 +4229,58 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "inflecting-down",
+          "notes": null
+        },
+        {
+          "id": "capacity-utilisation",
+          "label": "Capacity utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            79,
+            80,
+            80,
+            80
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "model"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 31 Oct 2025",
+              "quote": "As far as capacity utilization is concerned in the first half of the year, we have operated at almost close to 79%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 26 Jan 2026",
+              "quote": "Our polystyrene plant operated at 80% in this quarter. Our EPS plant operated at almost 87%, 88%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 30 Apr 2026",
+              "quote": "Capacity utilization for the year for all products based on available effective expanded capacity was over 80%",
+              "page": 3
+            },
+            null
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "steady",
+          "beyondBrief": true,
           "notes": null
         }
       ]
@@ -4348,7 +4399,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33815,
+      "ctxChars": 33819,
       "kpis": [
         {
           "id": "base-oil-spread",
@@ -4622,7 +4673,7 @@
       "asOf": null,
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 9501,
+      "ctxChars": 9453,
       "kpis": [
         {
           "id": "industrial-gas-volume",
@@ -4660,7 +4711,7 @@
             null
           ],
           "flag": null,
-          "notes": "No industrial gas volume data found in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The Screener Insights table shows various operational metrics but does not include a volume index or industrial gas volume measure for the"
+          "notes": "No industrial gas volume data found in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The SCREENER INSIGHTS section shows historical operational metrics but does not include a volume index or industrial gas volume metric for"
         }
       ]
     },
@@ -4676,7 +4727,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34128,
+      "ctxChars": 34132,
       "kpis": [
         {
           "id": "pol-lpg-lng-throughput",
@@ -4714,7 +4765,7 @@
             null
           ],
           "flag": null,
-          "notes": "No POL/LPG/LNG cargo throughput YoY growth data found in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The documents discuss various cargo types (containers, coal, fertilizers, liquid) but do not provide specific YoY growth"
+          "notes": "No POL/LPG/LNG cargo throughput YoY growth data found in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The excerpts discuss various cargo types (containers, coal, fertilizers, iron ore) but do not provide specific YoY growt"
         },
         {
           "id": "total-cargo-volume",
@@ -4785,7 +4836,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34369,
+      "ctxChars": 34301,
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -5125,7 +5176,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21354,
+      "ctxChars": 21358,
       "kpis": [
         {
           "id": "freight-rate",
@@ -5210,7 +5261,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15903,
+      "ctxChars": 15954,
       "kpis": [
         {
           "id": "order-book",
@@ -5249,7 +5300,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33763,
+      "ctxChars": 33767,
       "kpis": [
         {
           "id": "order-book",
