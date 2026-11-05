@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-11-05T13:38:45.473Z",
+  "generatedAt": "2026-11-05T15:12:59.271Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -850,9 +850,32 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:19:45.053Z"
+        },
+        "Q2 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "record all-time high EBITDA, ROCE well above our guidance of more than 20%, order book ~₹50,000 cr with strong growth visibility",
+          "rationale": "Management celebrated record profitability, returns exceeding guidance, and announced three major expansions backed by firm demand visibility through FY29 and beyond.",
+          "driver": "order book and capacity expansion",
+          "direction": "positive",
+          "signal": "Management is committing over US$240m in new capacity across US, Jordan, and India, signaling confidence in multi-year structural demand and intent to capture bundled export tenders.",
+          "mgmtDataPoints": [
+            "Q2 FY27 EBITDA: ₹782 cr, +25% YoY",
+            "H1 FY27 EBITDA: ₹1,538 cr, +30% YoY",
+            "Annualized ROCE H1 FY27: 22.7%",
+            "Order book: ~₹50,000 cr (~US$5.2bn)",
+            "Net cash: ₹3,887 cr",
+            "H1 capex: ~₹1,500 cr"
+          ],
+          "implication": "Expect continued strong order intake and margin resilience in the next two quarters, with management focused on executing the US and Jordan expansions and ramping Saudi operations by Q3/Q4.",
+          "doc": "Concall AI summary (Q2 FY27)",
+          "fingerprint": "56a5d0f5b7db",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-05T15:12:49.866Z"
         }
       },
-      "updatedAt": "2026-07-28T18:19:45.053Z"
+      "updatedAt": "2026-11-05T15:12:49.866Z"
     },
     "reliance": {
       "cells": {

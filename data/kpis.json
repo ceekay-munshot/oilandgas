@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-05T13:38:03.789Z",
+  "generatedAt": "2026-11-05T15:12:11.970Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 28,
     "kpiCells": 393,
-    "realCells": 277,
-    "nullCells": 116,
+    "realCells": 272,
+    "nullCells": 121,
     "kpis": 101,
     "kpisWithTrend": 65
   },
@@ -1831,15 +1831,15 @@
       "name": "Welspun Corp",
       "slug": "WELCORP",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34105,
+      "ctxChars": 34107,
       "kpis": [
         {
           "id": "order-book",
@@ -1847,29 +1847,24 @@
           "unit": "INR Crore",
           "flagBasis": "qoq",
           "values": [
-            23500,
             23600,
             25350,
-            24750
+            24750,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Oct 2025",
-              "quote": "Total Order Book Value stands at ~INR 23,500 Cr",
-              "page": 6
-            },
             {
               "doc": "Presentation - 30 Jan 2026",
               "quote": "Total Order Book Value stands at ~INR 23,600 Cr",
@@ -1884,7 +1879,8 @@
               "doc": "Presentation - 24 Jul 2026",
               "quote": "GLOBAL ORDER BOOK",
               "page": 12
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -1893,7 +1889,7 @@
             null
           ],
           "flag": "inflecting-down",
-          "notes": null
+          "notes": "From Screener Insights row \"Total Order Book Value\"; latest value cited to Presentation - 30 Jan 2026, page 6."
         },
         {
           "id": "line-pipe-order-inflow",
@@ -1931,7 +1927,7 @@
             null
           ],
           "flag": null,
-          "notes": "No line-pipe order inflow figures stated for any of the four quarters (Q2 FY26, Q3 FY26, Q4 FY26, Q1 FY27). The excerpts report order book (stock measure) at various quarter-ends and describe large order wins (e.g., ~USD 1.8 bn, ~USD 412.5 "
+          "notes": "Order inflow (new orders received in the quarter) is not reported. The excerpts provide order book (stock) at quarter-end and describe three large order wins during H1 FY27, but do not break out the inflow by quarter or state the value of o"
         },
         {
           "id": "line-pipe-volume",
@@ -1939,29 +1935,24 @@
           "unit": "KMT",
           "flagBasis": "level",
           "values": [
-            252,
             265,
             255,
-            193
+            193,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Oct 2025",
-              "quote": "Line Pipes (India + USA) 252 206 22% 182 38%",
-              "page": 6
-            },
             {
               "doc": "Presentation - 30 Jan 2026",
               "quote": "Line Pipes (India + USA) 265 235 +13% 252 +5%",
@@ -1976,7 +1967,8 @@
               "doc": "Presentation - 24 Jul 2026",
               "quote": "Line Pipes (India + USA)",
               "page": 7
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -1987,7 +1979,7 @@
           "flag": "decelerating",
           "beyondBrief": true,
           "cycleRole": "coincident",
-          "notes": null
+          "notes": "From Screener Insights row \"Line Pipes Sales Volume (India + USA)\"; latest value cited to Presentation - 30 Jan 2026, page 7."
         },
         {
           "id": "di-pipe-volume",
@@ -1995,29 +1987,24 @@
           "unit": "KMT",
           "flagBasis": "level",
           "values": [
-            79,
             92,
             105,
-            69
+            69,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Oct 2025",
-              "quote": "DI Pipes 79 65 22% 65 22%",
-              "page": 6
-            },
             {
               "doc": "Presentation - 30 Jan 2026",
               "quote": "DI Pipes 92 67 +39% 79 +16%",
@@ -2032,7 +2019,8 @@
               "doc": "Presentation - 24 Jul 2026",
               "quote": "DI Pipes",
               "page": 7
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2043,7 +2031,7 @@
           "flag": "inflecting-down",
           "beyondBrief": true,
           "cycleRole": "coincident",
-          "notes": null
+          "notes": "From Screener Insights row \"DI Pipes Sales Volume\"; latest value cited to Presentation - 30 Jan 2026, page 7."
         },
         {
           "id": "tmt-rebar-volume",
@@ -2051,29 +2039,24 @@
           "unit": "KMT",
           "flagBasis": "level",
           "values": [
-            34,
             50,
             60,
-            47
+            47,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Oct 2025",
-              "quote": "TMT Rebars 34 41 (17%) 40 (15%)",
-              "page": 6
-            },
             {
               "doc": "Presentation - 30 Jan 2026",
               "quote": "TMT Rebars 50 62 -19% 34 +46%",
@@ -2088,7 +2071,8 @@
               "doc": "Presentation - 24 Jul 2026",
               "quote": "TMT Rebars",
               "page": 7
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -2099,7 +2083,7 @@
           "flag": "inflecting-down",
           "beyondBrief": true,
           "cycleRole": "coincident",
-          "notes": null
+          "notes": "From Screener Insights row \"TMT Rebars Sales Volume\"; latest value cited to Presentation - 30 Jan 2026, page 7."
         },
         {
           "id": "ss-bar-volume",
@@ -2107,29 +2091,24 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
-            7100,
             6100,
             6600,
-            6300
+            6300,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
-            "insights",
-            "model"
+            "model",
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Oct 2025",
-              "quote": "Stainless Steel Bars 7.1 3.9 81% 7.4 (4%)",
-              "page": 6
-            },
             {
               "doc": "Presentation - 30 Jan 2026",
               "quote": "Stainless Steel Bars 6.1 5.0 +22% 7.1 -13%",
@@ -2140,6 +2119,7 @@
               "quote": "Stainless Steel Bars 6.6 5.2 28%",
               "page": 8
             },
+            null,
             null
           ],
           "oneOffs": [
@@ -2151,7 +2131,7 @@
           "flag": "inflecting-down",
           "beyondBrief": true,
           "cycleRole": "coincident",
-          "notes": null
+          "notes": "Q3 FY26: Screener Insights states 'Stainless Steel Bars & Pipes Sales Volume [MT]: ... | - | - | - | 8300 | - | - | - | 6300' with the 6000 figure appearing in the Dec 2025 (Q3 FY26) column (the table shows 8300 for Q1 FY26 and 6300 for Q1 "
         }
       ]
     },

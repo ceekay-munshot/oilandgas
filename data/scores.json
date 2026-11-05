@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-05T13:38:45.534Z",
+  "generatedAt": "2026-11-05T15:12:59.331Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -39,8 +39,8 @@
   "scores": {
     "leading": {
       "score": 33,
-      "prev": -42,
-      "delta": 67,
+      "prev": -75,
+      "delta": 100,
       "deltaBasis": "kpi-only",
       "level": "positive",
       "direction": "rising",
@@ -278,7 +278,7 @@
   "divergenceSeries": [
     null,
     null,
-    -25,
+    -58,
     55
   ],
   "stage": {
@@ -305,7 +305,7 @@
         "id": "brent",
         "label": "Crude",
         "direction": "rising",
-        "percentile": 100,
+        "percentile": 82,
         "supports": "up",
         "vote": "supports"
       },
@@ -313,7 +313,7 @@
         "id": "crack-spread",
         "label": "Crack spread",
         "direction": "falling",
-        "percentile": 73,
+        "percentile": 45,
         "supports": "up",
         "vote": "opposes"
       },
@@ -521,7 +521,7 @@
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude rising (100th pctile); Crack spread falling (73th pctile); USD/INR flat (45th pctile)."
+      "text": "Crude rising (82th pctile); Crack spread falling (45th pctile); USD/INR flat (45th pctile)."
     },
     {
       "id": "divergence",
@@ -676,11 +676,11 @@
         {
           "companyId": "welspun-corp",
           "name": "Welspun Corp",
-          "toneId": "constructive",
-          "quarter": "Q1 FY27",
+          "toneId": "confident",
+          "quarter": "Q2 FY27",
           "direction": "positive",
-          "driver": "US demand",
-          "drift": -1
+          "driver": "order book and capacity expansion",
+          "drift": 1
         }
       ],
       "drivers": [
@@ -1010,24 +1010,23 @@
   ],
   "changes": [
     {
-      "kind": "score",
-      "text": "Moving now moved down 6 points to -4."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-04T15:07:56.557Z",
+    "generatedAt": "2026-11-05T13:38:45.534Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 33,
-      "coincident": 2,
+      "coincident": -4,
       "lagging": 100
     },
     "alertIds": [
       "coverage-lagging",
       "tone-castrol-india",
-      "tone-gandhar-oil",
       "tone-gujarat-gas",
       "tone-hpcl",
       "tone-lt",
