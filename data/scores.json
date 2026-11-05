@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-04T15:07:56.557Z",
+  "generatedAt": "2026-11-05T13:38:45.534Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -115,15 +115,15 @@
       ]
     },
     "coincident": {
-      "score": 2,
-      "prev": -42,
-      "delta": 20,
+      "score": -4,
+      "prev": -17,
+      "delta": -13,
       "deltaBasis": "kpi-only",
       "level": "flat",
-      "direction": "rising",
+      "direction": "falling",
       "kpisScored": 19,
       "kpisTotal": 40,
-      "kpisBeyondBrief": 19,
+      "kpisBeyondBrief": 17,
       "tonesScored": 15,
       "companiesScored": 10,
       "staleKpis": 2,
@@ -223,13 +223,6 @@
           "company": "Castrol India",
           "label": "Spread / demand commentary",
           "flag": "tone-down"
-        },
-        {
-          "kind": "tone",
-          "companyId": "gandhar-oil",
-          "company": "Gandhar Oil",
-          "label": "Spread / demand commentary",
-          "flag": "tone-up"
         }
       ]
     },
@@ -277,7 +270,7 @@
     }
   },
   "divergence": {
-    "value": 31,
+    "value": 37,
     "leadingSign": 1,
     "coincidentSign": 0,
     "signsDiffer": false
@@ -285,8 +278,8 @@
   "divergenceSeries": [
     null,
     null,
-    0,
-    47
+    -25,
+    55
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -295,7 +288,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 33 (positive, rising), coincident 2 (flat, rising), lagging 100 (strong-positive).",
+      "Leading 33 (positive, rising), coincident -4 (flat, falling), lagging 100 (strong-positive).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -406,16 +399,6 @@
       "direction": "down"
     },
     {
-      "companyId": "gandhar-oil",
-      "name": "Gandhar Oil",
-      "from": "cautious",
-      "to": "confident",
-      "fromQuarter": "Q4 FY26",
-      "quarter": "Q1 FY27",
-      "steps": 3,
-      "direction": "up"
-    },
-    {
       "companyId": "lt",
       "name": "L&T",
       "from": "neutral",
@@ -495,12 +478,6 @@
       "text": "Castrol India moved 3 tone steps down (confident → cautious) in Q2 FY27."
     },
     {
-      "id": "tone-gandhar-oil",
-      "severity": "info",
-      "kind": "tone-drift",
-      "text": "Gandhar Oil moved 3 tone steps up (cautious → confident) in Q1 FY27."
-    },
-    {
       "id": "tone-lt",
       "severity": "info",
       "kind": "tone-drift",
@@ -539,7 +516,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are flat and rising — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
+      "text": "Coincident indicators are flat and falling — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
     },
     {
       "id": "macro",
@@ -549,12 +526,12 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +31. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +37. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); HPCL (defensive → constructive); Castrol India (confident → cautious); Gandhar Oil (cautious → confident); L&T (neutral → confident); and 3 more."
+      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); HPCL (defensive → constructive); Castrol India (confident → cautious); L&T (neutral → confident); Ratnamani Metals (neutral → defensive); and 2 more."
     },
     {
       "id": "implication",
@@ -978,7 +955,7 @@
       "label": "Spread / demand commentary",
       "bucket": "coincident",
       "listenFor": "Auto/industrial offtake trend - tracks broad economic activity, not just crude",
-      "state": "3 companies heard, leaning positive (2 positive, 1 negative); Castrol India moved 3 steps down, Gandhar Oil moved 3 steps up.",
+      "state": "3 companies heard, leaning positive (2 positive, 1 negative); Castrol India moved 3 steps down.",
       "mood": "positive",
       "members": [
         {
@@ -1003,10 +980,10 @@
           "companyId": "gandhar-oil",
           "name": "Gandhar Oil",
           "toneId": "confident",
-          "quarter": "Q1 FY27",
+          "quarter": "Q2 FY27",
           "direction": "positive",
-          "driver": "profitability",
-          "drift": 3
+          "driver": "margin spreads and revenue growth",
+          "drift": 0
         }
       ],
       "drivers": [
@@ -1020,13 +997,13 @@
           "drift": -3
         },
         {
-          "companyId": "gandhar-oil",
-          "name": "Gandhar Oil",
+          "companyId": "supreme-petrochem",
+          "name": "Supreme Petrochem",
           "toneId": "confident",
-          "quarter": "Q1 FY27",
+          "quarter": "Q2 FY27",
           "direction": "positive",
-          "driver": "profitability",
-          "drift": 3
+          "driver": "volume growth and pricing realization",
+          "drift": 0
         }
       ]
     }
@@ -1034,17 +1011,17 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moving now moved up 8 points to 2."
+      "text": "Moving now moved down 6 points to -4."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-04T13:30:19.270Z",
+    "generatedAt": "2026-11-04T15:07:56.557Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 33,
-      "coincident": -6,
+      "coincident": 2,
       "lagging": 100
     },
     "alertIds": [

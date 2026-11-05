@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-04T15:07:28.881Z",
+  "generatedAt": "2026-11-05T13:38:03.789Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
-    "kpiCells": 401,
-    "realCells": 284,
-    "nullCells": 117,
-    "kpis": 103,
-    "kpisWithTrend": 67
+    "kpiCells": 393,
+    "realCells": 277,
+    "nullCells": 116,
+    "kpis": 101,
+    "kpisWithTrend": 65
   },
   "companies": {
     "deep-industries": {
@@ -1543,10 +1543,10 @@
         "Q1 FY27",
         "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33814,
+      "ctxChars": 33831,
       "kpis": [
         {
           "id": "hydrocarbon-order-inflow",
@@ -1635,19 +1635,19 @@
             135600,
             89772,
             108000,
-            null
+            147665
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "model",
             "insights",
             "insights",
-            null
+            "insights"
           ],
           "citations": [
             null,
@@ -1661,7 +1661,11 @@
               "quote": "₹ 1080 bn",
               "page": 7
             },
-            null
+            {
+              "doc": "Presentation - 27 Oct 2026",
+              "quote": "147665 63%",
+              "page": 34
+            }
           ],
           "oneOffs": [
             null,
@@ -1669,10 +1673,10 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "accelerating",
           "beyondBrief": true,
           "cycleRole": "leading",
-          "notes": "From Screener Insights row \"Order Inflow\"; latest value cited to Presentation - 05 May 2026, page 45."
+          "notes": null
         },
         {
           "id": "group-order-book",
@@ -1683,19 +1687,19 @@
             733000,
             740300,
             779000,
-            null
+            853514
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "model",
             "insights",
             "insights",
-            null
+            "insights"
           ],
           "citations": [
             null,
@@ -1709,7 +1713,11 @@
               "quote": "₹ 7790 bn",
               "page": 7
             },
-            null
+            {
+              "doc": "Presentation - 27 Oct 2026",
+              "quote": "853514 54%",
+              "page": 34
+            }
           ],
           "oneOffs": [
             null,
@@ -1717,9 +1725,9 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "accelerating",
           "beyondBrief": true,
-          "notes": "From Screener Insights row \"Order Book\"; latest value cited to Presentation - 05 May 2026, page 5."
+          "notes": null
         }
       ]
     },
@@ -2941,7 +2949,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34112,
+      "ctxChars": 34111,
       "kpis": [
         {
           "id": "grm",
@@ -2979,7 +2987,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": "Q3 FY26: not stated in excerpts. Q4 FY26: not stated in excerpts. Q1 FY27: not stated in excerpts. Q2 FY27: AI summary states 'Q2 GRM ₹32.15/bbl (pre-SAD)' - this appears to be a typo mixing currency symbols; the context and historical patt"
+          "notes": "Q3 FY26: No data found in excerpts. Q4 FY26: No data found in excerpts. Q1 FY27: No data found in excerpts. Q2 FY27: Management stated 'refinery GRMs in quarter 2 were... 32.15 pre-SAED' on the Q2 FY27 call."
         },
         {
           "id": "marketing-margin",
@@ -3017,7 +3025,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q3 FY26: not stated numerically. Q4 FY26: not stated numerically. Q1 FY27: not stated numerically; AI summary mentions 'significant adverse in Q1' but no figure given. Q2 FY27: not stated numerically; AI summary mentions 'marketing margins "
+          "notes": "Q3 FY26: No numeric marketing margin per liter stated. Q4 FY26: No numeric marketing margin per liter stated. Q1 FY27: No numeric marketing margin per liter stated. Q2 FY27: Management said 'marketing margins were decent as compared to sign"
         },
         {
           "id": "throughput",
@@ -4340,15 +4348,15 @@
       "name": "Gandhar Oil",
       "slug": "GANDHAR",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33819,
+      "ctxChars": 33820,
       "kpis": [
         {
           "id": "base-oil-spread",
@@ -4396,29 +4404,24 @@
           "unit": "kL",
           "flagBasis": "level",
           "values": [
-            72404,
             74938,
             55155,
-            68815
+            68815,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 12 Nov 2025",
-              "quote": "PHPO (kl)",
-              "page": 23
-            },
             {
               "doc": "Presentation - 23 Jan 2026",
               "quote": "PHPO (kl)",
@@ -4433,7 +4436,8 @@
               "doc": "Presentation - 22 Jul 2026",
               "quote": "PHPO (kl)",
               "page": 11
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -4442,7 +4446,7 @@
             null
           ],
           "flag": "inflecting-up",
-          "notes": null
+          "notes": "From Screener Insights row \"PHPO Sales Volume\"; latest value cited to Presentation - 23 Jan 2026, page 23."
         },
         {
           "id": "mfg-gross-spread",
@@ -4450,10 +4454,10 @@
           "unit": "INR/kL",
           "flagBasis": "level",
           "values": [
-            8274,
             9146,
             9351,
-            28145
+            28145,
+            29128
           ],
           "sourceTags": [
             "company-filing",
@@ -4468,11 +4472,6 @@
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Presentation - 26 May 2026",
-              "quote": "Manufacturing Gross Margin Spread (INR/kL)",
-              "page": 19
-            },
             {
               "doc": "Presentation - 26 May 2026",
               "quote": "Manufacturing Gross Margin Spread (INR/kL)",
@@ -4487,115 +4486,11 @@
               "doc": "Presentation - 22 Jul 2026",
               "quote": "Gross Margin Spread expanded 3.4x year-on-year to ₹28,145 per kl compared to Q1 FY26",
               "page": 5
-            }
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": "accelerating",
-          "notes": null
-        },
-        {
-          "id": "lubricant-volume",
-          "label": "Lubricants volume",
-          "unit": "kL",
-          "flagBasis": "level",
-          "values": [
-            33366,
-            31949,
-            33697,
-            30073
-          ],
-          "sourceTags": [
-            "company-filing",
-            "company-filing",
-            "company-filing",
-            "company-filing"
-          ],
-          "origins": [
-            "insights",
-            "insights",
-            "insights",
-            "insights"
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 12 Nov 2025",
-              "quote": "Lubricants (kl)",
-              "page": 23
             },
             {
-              "doc": "Presentation - 23 Jan 2026",
-              "quote": "Lubricants (kl)",
-              "page": 23
-            },
-            {
-              "doc": "Presentation - 26 May 2026",
-              "quote": "Lubricants (kl)",
-              "page": 24
-            },
-            {
-              "doc": "Presentation - 22 Jul 2026",
-              "quote": "Lubricants (kl)",
-              "page": 11
-            }
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": "inflecting-down",
-          "beyondBrief": true,
-          "notes": null
-        },
-        {
-          "id": "mfg-volume",
-          "label": "Manufacturing sales volume",
-          "unit": "kL",
-          "flagBasis": "level",
-          "values": [
-            139791,
-            148450,
-            135781,
-            131247
-          ],
-          "sourceTags": [
-            "company-filing",
-            "company-filing",
-            "company-filing",
-            "company-filing"
-          ],
-          "origins": [
-            "insights",
-            "insights",
-            "insights",
-            "insights"
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 12 Nov 2025",
-              "quote": "Total Sales Manufacturing Volumes (kl)",
-              "page": 23
-            },
-            {
-              "doc": "Presentation - 23 Jan 2026",
-              "quote": "Total Sales Manufacturing Volumes (kl)",
-              "page": 23
-            },
-            {
-              "doc": "Presentation - 26 May 2026",
-              "quote": "Total Sales Manufacturing Volumes (kl)",
-              "page": 24
-            },
-            {
-              "doc": "Presentation - 22 Jul 2026",
-              "quote": "Total Sales Manufacturing Volumes",
-              "page": 11
+              "doc": "Presentation - 27 Oct 2026",
+              "quote": "Gross Margin Spread sustained at ₹29,128 per kl",
+              "page": 5
             }
           ],
           "oneOffs": [
@@ -4605,7 +4500,6 @@
             null
           ],
           "flag": "decelerating",
-          "beyondBrief": true,
           "notes": null
         }
       ]
@@ -5125,7 +5019,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21358,
+      "ctxChars": 21447,
       "kpis": [
         {
           "id": "freight-rate",
@@ -5210,7 +5104,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15954,
+      "ctxChars": 15953,
       "kpis": [
         {
           "id": "order-book",

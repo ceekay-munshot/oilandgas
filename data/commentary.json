@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-11-04T15:07:29.369Z",
+  "generatedAt": "2026-11-05T13:38:11.838Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
@@ -1761,28 +1761,15 @@
       "name": "Gandhar Oil",
       "slug": "GANDHAR",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
-      "provider": "openai",
-      "model": "gpt-4o",
+      "asOf": "Q2 FY27",
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q2 FY26",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "These dynamics align well with Gandhar's strategic focus on PHPO",
-          "rationale": "Management is optimistic about aligning with industry growth trends.",
-          "driver": "white oil market",
-          "direction": "positive",
-          "signal": "Management is optimistic about growth in the white oil market, particularly in Asia Pacific, and plans to focus on PHPO products.",
-          "mgmtDataPoints": [],
-          "implication": "The company is likely to see growth in revenues from PHPO products in the coming quarters.",
-          "doc": "Concall transcript (Q2 FY26)"
-        },
         {
           "quarter": "Q3 FY26",
           "toneId": "neutral",
@@ -1821,6 +1808,21 @@
           "mgmtDataPoints": [],
           "implication": "The company is likely to continue strong financial performance in the upcoming quarters.",
           "doc": "Concall transcript (Q1 FY27)"
+        },
+        {
+          "quarter": "Q2 FY27",
+          "toneId": "confident",
+          "score": 5,
+          "quote": "we achieved our highest ever quarterly revenue and for the second consecutive quarter, maintaining our gross margin spreads at elevated levels",
+          "rationale": "Management highlights record revenue, sustained elevated margins, and H1 profit already near 3x full prior year despite challenging environment",
+          "driver": "margin spreads and revenue growth",
+          "direction": "positive",
+          "signal": "Management is sustaining strong performance momentum with diversified businesses and value-added product focus driving exceptional results despite raw material and freight headwinds.",
+          "mgmtDataPoints": [
+            "H1 FY27 profit: near 3x FY26 full year profit"
+          ],
+          "implication": "The company is likely to continue strong performance in H2 if it can maintain elevated margin spreads and leverage its diversified portfolio, though raw material and freight volatility remain risks.",
+          "doc": "Concall transcript (Q2 FY27)"
         }
       ]
     },

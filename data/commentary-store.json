@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-11-04T15:07:56.512Z",
+  "generatedAt": "2026-11-05T13:38:45.473Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -2381,9 +2381,27 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:20:54.296Z"
+        },
+        "Q2 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "we achieved our highest ever quarterly revenue and for the second consecutive quarter, maintaining our gross margin spreads at elevated levels",
+          "rationale": "Management highlights record revenue, sustained elevated margins, and H1 profit already near 3x full prior year despite challenging environment",
+          "driver": "margin spreads and revenue growth",
+          "direction": "positive",
+          "signal": "Management is sustaining strong performance momentum with diversified businesses and value-added product focus driving exceptional results despite raw material and freight headwinds.",
+          "mgmtDataPoints": [
+            "H1 FY27 profit: near 3x FY26 full year profit"
+          ],
+          "implication": "The company is likely to continue strong performance in H2 if it can maintain elevated margin spreads and leverage its diversified portfolio, though raw material and freight volatility remain risks.",
+          "doc": "Concall transcript (Q2 FY27)",
+          "fingerprint": "8b7e0ae83f45",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-05T13:38:39.553Z"
         }
       },
-      "updatedAt": "2026-07-28T18:20:54.296Z"
+      "updatedAt": "2026-11-05T13:38:39.553Z"
     },
     "linde-india": {
       "cells": {

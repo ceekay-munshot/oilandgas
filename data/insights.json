@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-04T15:05:54.084Z",
+  "generatedAt": "2026-11-05T13:36:20.015Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -2926,7 +2926,6 @@
       "toggled": "/insights/company/1870/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Mar 2021",
         "Mar 2022",
         "Mar 2023",
         "Jun 2023",
@@ -2937,10 +2936,10 @@
         "Jun 2025",
         "Sep 2025",
         "Mar 2026",
-        "Jun 2026"
+        "Jun 2026",
+        "Sep 2026"
       ],
       "periodsIso": [
-        "2021-03",
         "2022-03",
         "2023-03",
         "2023-06",
@@ -2951,7 +2950,8 @@
         "2025-06",
         "2025-09",
         "2026-03",
-        "2026-06"
+        "2026-06",
+        "2026-09"
       ],
       "rows": [
         {
@@ -2959,7 +2959,6 @@
           "unit": "INR crore",
           "scope": null,
           "values": [
-            null,
             null,
             null,
             65520,
@@ -2970,10 +2969,10 @@
             94453,
             115784,
             89772,
-            108000
+            108000,
+            147665
           ],
           "citations": [
-            null,
             null,
             null,
             {
@@ -3020,6 +3019,11 @@
               "doc": "Presentation - 28 Jul 2026",
               "quote": "₹ 1080 bn",
               "page": 7
+            },
+            {
+              "doc": "Presentation - 27 Oct 2026",
+              "quote": "147665 63%",
+              "page": 34
             }
           ]
         },
@@ -3028,7 +3032,6 @@
           "unit": "%",
           "scope": null,
           "values": [
-            21,
             27,
             28,
             null,
@@ -3037,16 +3040,12 @@
             null,
             46,
             null,
-            null,
+            49,
             52,
-            52
+            52,
+            54
           ],
           "citations": [
-            {
-              "doc": "Annual Report - 31 Mar 2022",
-              "quote": "FY 2020-21: 21%",
-              "page": 32
-            },
             {
               "doc": "Annual Report - 31 Mar 2022",
               "quote": "FY 2021-22: 27%",
@@ -3071,7 +3070,11 @@
               "page": 45
             },
             null,
-            null,
+            {
+              "doc": "Presentation - 27 Oct 2026",
+              "quote": "667047 49%",
+              "page": 34
+            },
             {
               "doc": "Presentation - 05 May 2026",
               "quote": "740327 52%",
@@ -3081,6 +3084,11 @@
               "doc": "Presentation - 28 Jul 2026",
               "quote": "International orders constitute 52% of the Order Book",
               "page": 10
+            },
+            {
+              "doc": "Presentation - 27 Oct 2026",
+              "quote": "International orders constitute 54% of the Order Book",
+              "page": 8
             }
           ]
         },
@@ -3091,7 +3099,6 @@
           "values": [
             null,
             null,
-            null,
             412600,
             null,
             490900,
@@ -3100,10 +3107,10 @@
             612800,
             667000,
             740300,
-            779000
+            779000,
+            853514
           ],
           "citations": [
-            null,
             null,
             null,
             {
@@ -3142,6 +3149,11 @@
               "doc": "Presentation - 28 Jul 2026",
               "quote": "₹ 7790 bn",
               "page": 7
+            },
+            {
+              "doc": "Presentation - 27 Oct 2026",
+              "quote": "853514 54%",
+              "page": 34
             }
           ]
         },
@@ -3152,7 +3164,6 @@
           "values": [
             null,
             null,
-            null,
             85560,
             null,
             88720,
@@ -3161,10 +3172,10 @@
             102310,
             107100,
             null,
-            129630
+            129630,
+            136640
           ],
           "citations": [
-            null,
             null,
             null,
             {
@@ -3199,6 +3210,11 @@
               "doc": "Presentation - 28 Jul 2026",
               "quote": "1296.3",
               "page": 23
+            },
+            {
+              "doc": "Presentation - 27 Oct 2026",
+              "quote": "Book 1071.0 1366.4 28%",
+              "page": 21
             }
           ]
         },
@@ -3215,10 +3231,10 @@
             null,
             null,
             null,
+            1469,
             null,
-            null,
-            null,
-            1300
+            1300,
+            1292
           ],
           "citations": [
             null,
@@ -3229,13 +3245,21 @@
             null,
             null,
             null,
-            null,
-            null,
+            {
+              "doc": "Presentation - 27 Oct 2026",
+              "quote": "1469",
+              "page": 34
+            },
             null,
             {
               "doc": "Concall Transcript - 28 Jul 2026",
               "quote": "The order inflows for Q1 FY '27, which mainly represents L&T's share of pre-sales stood at Rs. 13 billion",
               "page": 9
+            },
+            {
+              "doc": "Presentation - 27 Oct 2026",
+              "quote": "1292",
+              "page": 34
             }
           ]
         }
