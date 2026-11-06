@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-11-06T13:22:35.925Z",
+  "generatedAt": "2026-11-06T14:51:31.046Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -316,9 +316,25 @@
           "attempts": 1,
           "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
           "at": "2026-08-03T09:04:14.153Z"
+        },
+        "Q2 FY27": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "uncertainty is likely to stay with us for some time...we believe it would be prudent to prepare for the challenging operating environment",
+          "rationale": "Management emphasizes ongoing uncertainty, elevated costs, supply disruptions, and explicitly states the need to prepare for a challenging operating environment ahead.",
+          "driver": "global energy supply uncertainty",
+          "direction": "negative",
+          "signal": "Management sees continued pressure from elevated crude prices and supply volatility requiring prudent preparation, with no indication of near-term improvement in operating conditions.",
+          "mgmtDataPoints": [],
+          "implication": "The company is likely to maintain a defensive posture with cautious spending and focus on managing cost pressures over the next two quarters.",
+          "doc": "Concall transcript (Q2 FY27)",
+          "fingerprint": "4d16bf8b6dae",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-06T14:50:53.182Z"
         }
       },
-      "updatedAt": "2026-08-03T09:04:14.153Z"
+      "updatedAt": "2026-11-06T14:50:53.182Z"
     },
     "jindal-drilling": {
       "cells": {
@@ -1758,9 +1774,25 @@
           "attempts": 1,
           "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
           "at": "2026-08-08T06:23:43.336Z"
+        },
+        "Q2 FY27": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "Gas supplies to industrial and commercial customers are partly curtailed. Gas prices may remain volatile in the near term",
+          "rationale": "Management acknowledges ongoing supply curtailments and near-term price volatility due to geopolitical tensions, though they emphasize domestic supply security.",
+          "driver": "LNG supply disruption and gas price volatility",
+          "direction": "negative",
+          "signal": "Management is navigating supply constraints by prioritizing domestic PNG and CNG customers while curtailing industrial/commercial supply, expecting gradual improvement as geopolitical tensions ease.",
+          "mgmtDataPoints": [],
+          "implication": "Continued curtailment of higher-margin industrial/commercial volumes will likely pressure margins in the near term until LNG supply normalizes and geopolitical risks subside.",
+          "doc": "Concall transcript (Q2 FY27)",
+          "fingerprint": "8b7e0ae83f45",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-06T14:51:25.373Z"
         }
       },
-      "updatedAt": "2026-08-08T06:23:43.336Z"
+      "updatedAt": "2026-11-06T14:51:25.373Z"
     },
     "gujarat-gas": {
       "cells": {

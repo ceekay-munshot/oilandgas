@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-06T13:22:35.976Z",
+  "generatedAt": "2026-11-06T14:51:31.098Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -30,17 +30,17 @@
     }
   },
   "quarters": [
-    "Q2 FY26",
     "Q3 FY26",
     "Q4 FY26",
-    "Q1 FY27"
+    "Q1 FY27",
+    "Q2 FY27"
   ],
-  "asOf": "Q1 FY27",
+  "asOf": "Q2 FY27",
   "scores": {
     "leading": {
-      "score": 33,
-      "prev": -75,
-      "delta": 100,
+      "score": 21,
+      "prev": -83,
+      "delta": 108,
       "deltaBasis": "kpi-only",
       "level": "positive",
       "direction": "rising",
@@ -49,10 +49,10 @@
       "kpisBeyondBrief": 12,
       "tonesScored": 8,
       "companiesScored": 6,
-      "staleKpis": 6,
+      "staleKpis": 18,
       "oneOffKpis": 0,
       "unknownKpis": 0,
-      "lowCoverage": false,
+      "lowCoverage": true,
       "weakestTag": "mgmt-claim",
       "reducedConfidence": false,
       "signals": [
@@ -100,6 +100,13 @@
         },
         {
           "kind": "tone",
+          "companyId": "deep-industries",
+          "company": "Deep Industries",
+          "label": "Upstream capex intent",
+          "flag": "tone-down"
+        },
+        {
+          "kind": "tone",
           "companyId": "lt",
           "company": "L&T",
           "label": "Refining/petchem capex pipeline",
@@ -115,21 +122,21 @@
       ]
     },
     "coincident": {
-      "score": -4,
-      "prev": -17,
-      "delta": -13,
+      "score": -2,
+      "prev": 0,
+      "delta": -27,
       "deltaBasis": "kpi-only",
       "level": "flat",
       "direction": "falling",
-      "kpisScored": 19,
+      "kpisScored": 18,
       "kpisTotal": 40,
       "kpisBeyondBrief": 17,
       "tonesScored": 15,
       "companiesScored": 10,
-      "staleKpis": 2,
+      "staleKpis": 27,
       "oneOffKpis": 1,
       "unknownKpis": 0,
-      "lowCoverage": false,
+      "lowCoverage": true,
       "weakestTag": "derived",
       "reducedConfidence": true,
       "signals": [
@@ -238,7 +245,7 @@
       "kpisBeyondBrief": 2,
       "tonesScored": 2,
       "companiesScored": 1,
-      "staleKpis": 3,
+      "staleKpis": 7,
       "oneOffKpis": 0,
       "unknownKpis": 0,
       "lowCoverage": true,
@@ -270,7 +277,7 @@
     }
   },
   "divergence": {
-    "value": 37,
+    "value": 23,
     "leadingSign": 1,
     "coincidentSign": 0,
     "signsDiffer": false
@@ -278,8 +285,8 @@
   "divergenceSeries": [
     null,
     null,
-    -58,
-    55
+    -83,
+    52
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -288,7 +295,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 33 (positive, rising), coincident -4 (flat, falling), lagging 100 (strong-positive).",
+      "Leading 21 (positive, rising), coincident -2 (flat, falling), lagging 100 (strong-positive).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -379,6 +386,16 @@
       "direction": "up"
     },
     {
+      "companyId": "deep-industries",
+      "name": "Deep Industries",
+      "from": "confident",
+      "to": "cautious",
+      "fromQuarter": "Q1 FY27",
+      "quarter": "Q2 FY27",
+      "steps": -3,
+      "direction": "down"
+    },
+    {
       "companyId": "hpcl",
       "name": "HPCL",
       "from": "defensive",
@@ -441,17 +458,39 @@
   ],
   "coverageWarnings": [
     {
+      "groupId": "leading",
+      "kind": "low-coverage",
+      "text": "Moves first: 18 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    },
+    {
+      "groupId": "coincident",
+      "kind": "low-coverage",
+      "text": "Moving now: 28 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    },
+    {
       "groupId": "lagging",
       "kind": "low-coverage",
-      "text": "Moves last: 3 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves last: 7 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     }
   ],
   "alerts": [
     {
+      "id": "coverage-leading",
+      "severity": "info",
+      "kind": "low-coverage",
+      "text": "Moves first: 18 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    },
+    {
+      "id": "coverage-coincident",
+      "severity": "info",
+      "kind": "low-coverage",
+      "text": "Moving now: 28 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    },
+    {
       "id": "coverage-lagging",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moves last: 3 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves last: 7 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "tone-petronet-lng",
@@ -464,6 +503,12 @@
       "severity": "info",
       "kind": "tone-drift",
       "text": "ONGC moved 3 tone steps up (cautious → confident) in Q1 FY27."
+    },
+    {
+      "id": "tone-deep-industries",
+      "severity": "warn",
+      "kind": "tone-drift",
+      "text": "Deep Industries moved 3 tone steps down (confident → cautious) in Q2 FY27."
     },
     {
       "id": "tone-hpcl",
@@ -526,12 +571,12 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +37. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +23. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); HPCL (defensive → constructive); Castrol India (confident → cautious); L&T (neutral → confident); Ratnamani Metals (neutral → defensive); and 2 more."
+      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); Deep Industries (confident → cautious); HPCL (defensive → constructive); Castrol India (confident → cautious); L&T (neutral → confident); and 3 more."
     },
     {
       "id": "implication",
@@ -577,8 +622,8 @@
       "label": "Upstream capex intent",
       "bucket": "leading",
       "listenFor": "Capex/drilling guidance up, flat or down; new block awards; rig additions or deferrals; tendering activity from ONGC/OIL",
-      "state": "4 companies heard, leaning positive (3 positive, 1 negative); ONGC moved 3 steps up.",
-      "mood": "positive",
+      "state": "4 companies heard, split (2 positive, 2 negative); ONGC moved 3 steps up, Deep Industries moved 3 steps down.",
+      "mood": "mixed",
       "members": [
         {
           "companyId": "ongc",
@@ -601,11 +646,11 @@
         {
           "companyId": "deep-industries",
           "name": "Deep Industries",
-          "toneId": "confident",
-          "quarter": "Q1 FY27",
-          "direction": "positive",
-          "driver": "upstream policy pivot and E&P acceleration",
-          "drift": 1
+          "toneId": "cautious",
+          "quarter": "Q2 FY27",
+          "direction": "negative",
+          "driver": "global energy supply uncertainty",
+          "drift": -3
         },
         {
           "companyId": "jindal-drilling",
@@ -630,11 +675,11 @@
         {
           "companyId": "deep-industries",
           "name": "Deep Industries",
-          "toneId": "confident",
-          "quarter": "Q1 FY27",
-          "direction": "positive",
-          "driver": "upstream policy pivot and E&P acceleration",
-          "drift": 1
+          "toneId": "cautious",
+          "quarter": "Q2 FY27",
+          "direction": "negative",
+          "driver": "global energy supply uncertainty",
+          "drift": -3
         }
       ]
     },
@@ -866,9 +911,9 @@
           "companyId": "mahanagar-gas",
           "name": "Mahanagar Gas",
           "toneId": "cautious",
-          "quarter": "Q1 FY27",
+          "quarter": "Q2 FY27",
           "direction": "negative",
-          "driver": "geopolitical supply disruption",
+          "driver": "LNG supply disruption and gas price volatility",
           "drift": 0
         },
         {
@@ -1010,12 +1055,24 @@
   ],
   "changes": [
     {
-      "kind": "none",
-      "text": "Nothing material moved since the last refresh."
+      "kind": "score",
+      "text": "Moves first moved down 12 points to 21."
+    },
+    {
+      "kind": "alert",
+      "text": "New alert: Moves first: 18 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    },
+    {
+      "kind": "alert",
+      "text": "New alert: Moving now: 28 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+    },
+    {
+      "kind": "alert",
+      "text": "New alert: Deep Industries moved 3 tone steps down (confident → cautious) in Q2 FY27."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-05T15:12:59.331Z",
+    "generatedAt": "2026-11-06T13:22:35.976Z",
     "asOf": "Q1 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",

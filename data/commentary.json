@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-11-06T13:22:10.316Z",
+  "generatedAt": "2026-11-06T14:50:53.162Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
@@ -175,33 +175,15 @@
       "name": "Deep Industries",
       "slug": "DEEPINDS",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q2 FY26",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "Value-added service for us has become a margin-assertive opportunity",
-          "rationale": "Management is positive about margin improvements and strategic positioning in a growing market.",
-          "driver": "EBITDA margin",
-          "direction": "positive",
-          "signal": "Management expects EBITDA margins to improve beyond 45% due to higher contributions from new contracts.",
-          "mgmtDataPoints": [
-            "Order book: ~₹3,050 cr",
-            "PEC revenue H2 FY26: >₹40–45 cr",
-            "PEC full FY26 revenue: ~₹60 cr",
-            "Dolphin FY26 revenue: ~₹100 cr"
-          ],
-          "implication": "Expect margin improvements and revenue growth as new contracts ramp up and strategic initiatives take effect.",
-          "doc": "Concall AI summary (Q2 FY26)"
-        },
         {
           "quarter": "Q3 FY26",
           "toneId": "neutral",
@@ -255,6 +237,19 @@
           ],
           "implication": "Expect continued strong execution through H1 FY27 driven by high rig utilization and order-book conversion, with incremental PEC revenue kicking in from Q3 FY27 onward as production ramps post-incident recovery.",
           "doc": "Concall AI summary (Q1 FY27)"
+        },
+        {
+          "quarter": "Q2 FY27",
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "uncertainty is likely to stay with us for some time...we believe it would be prudent to prepare for the challenging operating environment",
+          "rationale": "Management emphasizes ongoing uncertainty, elevated costs, supply disruptions, and explicitly states the need to prepare for a challenging operating environment ahead.",
+          "driver": "global energy supply uncertainty",
+          "direction": "negative",
+          "signal": "Management sees continued pressure from elevated crude prices and supply volatility requiring prudent preparation, with no indication of near-term improvement in operating conditions.",
+          "mgmtDataPoints": [],
+          "implication": "The company is likely to maintain a defensive posture with cautious spending and focus on managing cost pressures over the next two quarters.",
+          "doc": "Concall transcript (Q2 FY27)"
         }
       ]
     },
@@ -1292,32 +1287,15 @@
       "name": "Mahanagar Gas",
       "slug": "MGL",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q2 FY26",
-          "toneId": "confident",
-          "score": 5,
-          "quote": "MGL continues to create infrastructure across its business segments",
-          "rationale": "The focus on infrastructure expansion and customer growth reflects confidence.",
-          "driver": "infrastructure expansion",
-          "direction": "positive",
-          "signal": "Management is aggressively expanding infrastructure, indicating strong growth plans.",
-          "mgmtDataPoints": [
-            "domestic households connected: 53,566",
-            "pipeline length: 8,061.62 km",
-            "CNG stations: 485"
-          ],
-          "implication": "Ongoing expansion efforts are likely to drive further growth in customer base and service reach.",
-          "doc": "Concall transcript (Q2 FY26)"
-        },
         {
           "quarter": "Q3 FY26",
           "toneId": "confident",
@@ -1366,6 +1344,19 @@
           "mgmtDataPoints": [],
           "implication": "Continued supply constraints to industrial/commercial segments and price pressure will likely weigh on volumes and margins until geopolitical tensions ease, though residential PNG growth may partially offset weakness.",
           "doc": "Concall transcript (Q1 FY27)"
+        },
+        {
+          "quarter": "Q2 FY27",
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "Gas supplies to industrial and commercial customers are partly curtailed. Gas prices may remain volatile in the near term",
+          "rationale": "Management acknowledges ongoing supply curtailments and near-term price volatility due to geopolitical tensions, though they emphasize domestic supply security.",
+          "driver": "LNG supply disruption and gas price volatility",
+          "direction": "negative",
+          "signal": "Management is navigating supply constraints by prioritizing domestic PNG and CNG customers while curtailing industrial/commercial supply, expecting gradual improvement as geopolitical tensions ease.",
+          "mgmtDataPoints": [],
+          "implication": "Continued curtailment of higher-margin industrial/commercial volumes will likely pressure margins in the near term until LNG supply normalizes and geopolitical risks subside.",
+          "doc": "Concall transcript (Q2 FY27)"
         }
       ]
     },
@@ -2159,8 +2150,8 @@
         "Q2 FY27"
       ],
       "asOf": null,
-      "provider": null,
-      "model": null,
+      "provider": "claude",
+      "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "note": "classification failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "tones": [
         {
@@ -2219,9 +2210,9 @@
     }
   },
   "quarters": [
-    "Q2 FY26",
     "Q3 FY26",
     "Q4 FY26",
-    "Q1 FY27"
+    "Q1 FY27",
+    "Q2 FY27"
   ]
 }

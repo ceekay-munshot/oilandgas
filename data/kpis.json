@@ -2,32 +2,32 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-06T13:21:01.101Z",
+  "generatedAt": "2026-11-06T14:50:07.602Z",
   "quarters": [
-    "Q2 FY26",
     "Q3 FY26",
     "Q4 FY26",
-    "Q1 FY27"
+    "Q1 FY27",
+    "Q2 FY27"
   ],
   "flatBandPct": 1.5,
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
     "kpiCells": 393,
-    "realCells": 272,
-    "nullCells": 121,
+    "realCells": 265,
+    "nullCells": 128,
     "kpis": 101,
-    "kpisWithTrend": 65
+    "kpisWithTrend": 64
   },
   "companies": {
     "deep-industries": {
       "name": "Deep Industries",
       "slug": "DEEPINDS",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
@@ -42,23 +42,22 @@
           "values": [
             100,
             100,
-            100,
-            90
+            90,
+            null
           ],
           "sourceTags": [
             "mgmt-claim",
-            "mgmt-claim",
             "company-filing",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
             "model",
-            "model",
             "insights",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            null,
             null,
             {
               "doc": "Concall Transcript - 21 May 2026",
@@ -69,7 +68,8 @@
               "doc": "Credit Rating - 09 Oct 2026",
               "quote": "As on June 30, 2026, asset deployment was strong at 90% for rigs",
               "page": 2
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -78,7 +78,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Capacity Utilization - Workover & Drilling Rigs\"; latest value cited to Concall Transcript - 21 May 2026, page 12."
         },
         {
           "id": "day-rate",
@@ -116,7 +116,7 @@
             null
           ],
           "flag": null,
-          "notes": "Day-rate figures are not disclosed in any of the provided excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The documents discuss asset utilization (100% for rigs, 90% for gas compression) and revenue contributions from various segments, "
+          "notes": "No day-rate figures stated in any of the excerpts for Q3 FY26, Q4 FY26, Q1 FY27, or Q2 FY27. The Q3 FY26 concall summary mentions growth was 'more of volume' rather than pricing/day-rate, but no numeric day-rate is disclosed. The Q4 FY26 an"
         },
         {
           "id": "order-book",
@@ -124,25 +124,24 @@
           "unit": "Rs Crore",
           "flagBasis": "qoq",
           "values": [
-            3050,
             2967,
             3007,
-            3047
+            3047,
+            null
           ],
           "sourceTags": [
             "mgmt-claim",
-            "mgmt-claim",
             "company-filing",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
             "model",
-            "model",
             "insights",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            null,
             null,
             {
               "doc": "Presentation - 14 May 2026",
@@ -153,7 +152,8 @@
               "doc": "Concall Transcript - 29 Jul 2026",
               "quote": "As on June 30, our order book stood at INR3,047 crores.",
               "page": 7
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -162,7 +162,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Order Book\"; latest value cited to Presentation - 14 May 2026, page 20."
         },
         {
           "id": "bid-pipeline",
@@ -170,25 +170,24 @@
           "unit": "Rs Crore",
           "flagBasis": "level",
           "values": [
-            700,
             800,
             800,
-            550
+            550,
+            null
           ],
           "sourceTags": [
             "mgmt-claim",
-            "mgmt-claim",
             "company-filing",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
             "model",
-            "model",
             "insights",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            null,
             null,
             {
               "doc": "Concall Transcript - 12 Feb 2026",
@@ -199,7 +198,8 @@
               "doc": "Concall Transcript - 21 May 2026",
               "quote": "It's close to around INR500 crores, INR600-odd crores",
               "page": 10
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -209,7 +209,7 @@
           ],
           "flag": "decelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Bidding Pipeline\"; latest value cited to Concall Transcript - 12 Feb 2026, page 5."
         }
       ]
     },
@@ -1743,7 +1743,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33034,
+      "ctxChars": 33039,
       "kpis": [
         {
           "id": "order-book",
@@ -1823,7 +1823,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY25: No single-quarter order inflow figure stated. Q2 FY26 concall mentions 'carbon steel domestic order booking in the quarter was INR 750 cr' but this is only carbon steel domestic, not total pipe order inflow. Q4 FY25: No single-quar"
+          "notes": "Q2 FY25: Order inflow not stated; only order book levels and some order booking amounts mentioned (e.g., ₹750 cr carbon steel domestic orders in Q2 FY26) but no single-quarter inflow figure for Q2 FY25. Q4 FY25: Order inflow not stated; onl"
         }
       ]
     },
@@ -3387,10 +3387,10 @@
       "name": "Mahanagar Gas",
       "slug": "MGL",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
@@ -3403,21 +3403,21 @@
           "unit": "percent",
           "flagBasis": "yoy",
           "values": [
-            9.22,
             7.19,
             6.15,
+            null,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
             "mgmt-claim",
-            "mgmt-claim",
+            null,
             null
           ],
           "origins": [
             "model",
             "model",
-            "model",
+            null,
             null
           ],
           "citations": [
@@ -3432,7 +3432,7 @@
             null,
             null
           ],
-          "flag": "decelerating",
+          "flag": null,
           "notes": "7.01 % yoy (model) withheld: does not match this row's unit percent"
         },
         {
@@ -3441,22 +3441,22 @@
           "unit": "₹/scm",
           "flagBasis": "level",
           "values": [
-            7.96,
             8.26,
             6.19,
-            7.91
+            7.91,
+            null
           ],
           "sourceTags": [
             "derived",
-            "derived",
             "company-filing",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
             "derived",
-            "derived",
             "model",
-            "model"
+            "model",
+            null
           ],
           "citations": [
             null,
@@ -3479,29 +3479,24 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
-            4.59,
             4.62,
             4.67,
-            4.77
+            4.77,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Oct 2025",
-              "quote": "MGL+Erstwhile UEPL Q2 FY 26: CNG 3.255, Domestic 0.582, I&C 0.757, Total 4.593",
-              "page": 14
-            },
             {
               "doc": "Presentation - 08 May 2026",
               "quote": "Q3 FY 25-26: CNG 3.281, Domestic 0.604, I&C 0.735, Total 4.620",
@@ -3516,7 +3511,8 @@
               "doc": "Concall Transcript - 07 Aug 2026",
               "quote": "we achieved overall average sales volume of 4.766 mmscmd as against 4.672 mmscmd in the previous quarter",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -3526,7 +3522,7 @@
           ],
           "flag": "accelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Total Sales Volume\"; latest value cited to Presentation - 08 May 2026, page 13."
         },
         {
           "id": "cng-volume",
@@ -3534,29 +3530,24 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
-            3.25,
             3.28,
             3.35,
-            3.5
+            3.5,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Oct 2025",
-              "quote": "MGL+Erstwhile UEPL Q2 FY 26: CNG 3.255",
-              "page": 14
-            },
             {
               "doc": "Presentation - 08 May 2026",
               "quote": "Q3 FY 25-26: CNG 3.281",
@@ -3571,7 +3562,8 @@
               "doc": "Concall Transcript - 07 Aug 2026",
               "quote": "Sales volume of the CNG has increased from 3.185 mmscmd to 3.496 mmscmd",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -3581,7 +3573,7 @@
           ],
           "flag": "accelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"CNG Sales Volume\"; latest value cited to Presentation - 08 May 2026, page 13."
         },
         {
           "id": "png-domestic-volume",
@@ -3589,29 +3581,24 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
-            0.58,
             0.6,
             0.6,
-            0.62
+            0.62,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Oct 2025",
-              "quote": "MGL+Erstwhile UEPL Q2 FY 26: Domestic 0.582",
-              "page": 14
-            },
             {
               "doc": "Presentation - 08 May 2026",
               "quote": "Q3 FY 25-26: Domestic 0.604",
@@ -3626,7 +3613,8 @@
               "doc": "Concall Transcript - 07 Aug 2026",
               "quote": "Sales for domestic DPNG has increased from 0.571 mmscmd to 0.623 mmscmd",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -3636,7 +3624,7 @@
           ],
           "flag": "accelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"DPNG (Domestic PNG) Sales Volume\"; latest value cited to Presentation - 08 May 2026, page 13."
         },
         {
           "id": "ic-volume",
@@ -3644,29 +3632,24 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
-            0.76,
             0.73,
             0.72,
-            0.65
+            0.65,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Oct 2025",
-              "quote": "MGL+Erstwhile UEPL Q2 FY 26: I&C 0.757",
-              "page": 14
-            },
             {
               "doc": "Presentation - 08 May 2026",
               "quote": "Q3 FY 25-26: I&C 0.735",
@@ -3681,7 +3664,8 @@
               "doc": "Concall Transcript - 07 Aug 2026",
               "quote": "In case of industrial and commercial, sales volume has decreased from 0.698 mmscmd to 0.648 mmscmd",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -3690,7 +3674,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Industrial & Commercial Sales Volume\"; latest value cited to Presentation - 08 May 2026, page 13."
         }
       ]
     },
@@ -3703,11 +3687,10 @@
         "Q4 FY26",
         "Q1 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 34106,
-      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3745,7 +3728,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: no yoy growth stated. Q3 FY26: no yoy growth stated. Q4 FY26: CNG yoy growth 12% stated but not total CNG+PNG. Q1 FY27: mgmt stated CNG 13% yoy (3.76 vs 3.33 mmscmd); PNG domestic 0.7 vs 0.69 mmscmd is ~1% yoy; PNG industrial 7.71 "
+          "notes": "Q2 FY26: no yoy growth figure stated for combined CNG+PNG. Q3 FY26: no yoy growth figure stated for combined CNG+PNG. Q4 FY26: CNG volume grew 12% yoy stated, but no combined CNG+PNG growth figure given. Q1 FY27: management stated 'CNG volu"
         },
         {
           "id": "ebitda-per-scm",
@@ -3753,22 +3736,22 @@
           "unit": "₹/scm",
           "flagBasis": "level",
           "values": [
+            5.95,
             null,
             null,
-            null,
-            null
+            4.7
           ],
           "sourceTags": [
+            "company-filing",
             null,
             null,
-            null,
-            null
+            "company-filing"
           ],
           "origins": [
+            "model",
             null,
             null,
-            null,
-            null
+            "model"
           ],
           "citations": [
             null,
@@ -3783,7 +3766,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: EBITDA per scm not stated. Q3 FY26: EBITDA per scm not stated. Q4 FY26: EBITDA per scm not stated. Q1 FY27: EBITDA per scm not stated. The screener and transcripts provide EBITDA in crores and volumes in MMSCMD but no explicit per-"
+          "notes": "Q2 FY26: Investor PPT Q2 FY27 (page 7) shows segmental highlights with CGD EBITDA margin labeled '5.95 per scm' for Q2FY26. Q3 FY26: no EBITDA/scm figure stated. Q4 FY26: no EBITDA/scm figure stated. Q1 FY27: Investor PPT Q2 FY27 (page 7) s"
         }
       ]
     },
@@ -4660,7 +4643,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34301,
+      "ctxChars": 34355,
       "kpis": [
         {
           "id": "tanker-freight-rate",
