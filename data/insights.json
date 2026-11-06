@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-05T15:10:37.652Z",
+  "generatedAt": "2026-11-06T13:19:27.083Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -11635,7 +11635,6 @@
       "toggled": "/insights/company/3412/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Sep 2023",
         "Dec 2023",
         "Mar 2024",
         "Jun 2024",
@@ -11646,10 +11645,10 @@
         "Sep 2025",
         "Dec 2025",
         "Mar 2026",
-        "Jun 2026"
+        "Jun 2026",
+        "Sep 2026"
       ],
       "periodsIso": [
-        "2023-09",
         "2023-12",
         "2024-03",
         "2024-06",
@@ -11660,7 +11659,8 @@
         "2025-09",
         "2025-12",
         "2026-03",
-        "2026-06"
+        "2026-06",
+        "2026-09"
       ],
       "rows": [
         {
@@ -11668,25 +11668,20 @@
           "unit": "Rs Crore",
           "scope": null,
           "values": [
-            1973,
             2506,
             2309,
             2569,
             3353,
             2296,
             2119,
-            2749,
+            2748,
             3551,
             3080,
             4490,
-            2809
+            2809,
+            3259
           ],
           "citations": [
-            {
-              "doc": "Presentation - 03 Nov 2023",
-              "quote": "Order Booking 1,973 2,015",
-              "page": 12
-            },
             {
               "doc": "Presentation - 08 Feb 2024",
               "quote": "Order Booking 2,506 2,204",
@@ -11718,8 +11713,8 @@
               "page": 13
             },
             {
-              "doc": "Presentation - 31 Jul 2026",
-              "quote": "Order Booking 2,809 2,749",
+              "doc": "Presentation - 31 Jul 2025",
+              "quote": "Order Booking 2,748 2,569",
               "page": 12
             },
             {
@@ -11741,87 +11736,11 @@
               "doc": "Presentation - 31 Jul 2026",
               "quote": "Order Booking 2,809 2,749",
               "page": 12
-            }
-          ]
-        },
-        {
-          "label": "Green Solutions Order Booking",
-          "unit": "Rs Crore",
-          "scope": null,
-          "values": [
-            58,
-            96,
-            3,
-            100,
-            57,
-            47,
-            21,
-            128,
-            295,
-            173,
-            317,
-            382
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 03 Nov 2023",
-              "quote": "Green Solutions 58 25% 713 120%",
-              "page": 13
             },
             {
-              "doc": "Presentation - 08 Feb 2024",
-              "quote": "Green Solutions 96 37% 835 48%",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 09 May 2025",
-              "quote": "Green Solutions ... FY 24 ... 84 58 96 3 ... FY 25 ... 100 57 47 21",
-              "page": 16
-            },
-            {
-              "doc": "Presentation - 01 Aug 2024",
-              "quote": "Green Solutions 100 19% 906 36%",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 13 Nov 2024",
-              "quote": "Green Solutions 57 -2% 894 25%",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 04 Feb 2025",
-              "quote": "Green Solutions 47 -51% 894 7%",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 09 May 2025",
-              "quote": "Green Solutions ... FY 25 ... 100 57 47 21",
-              "page": 16
-            },
-            {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Green Solutions 128 28% 977 8%",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 11 Nov 2025",
-              "quote": "Green Solutions 295 415% 973 9%",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 02 Feb 2026",
-              "quote": "Green Solutions 173 268% 965 8%",
-              "page": 13
-            },
-            {
-              "doc": "Presentation - 07 May 2026",
-              "quote": "Green Solutions 317 1398% 1,055 20%",
-              "page": 14
-            },
-            {
-              "doc": "Presentation - 31 Jul 2026",
-              "quote": "Green Solutions 382 149% 1,568 17%",
-              "page": 13
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "2,809 Order Booking 3,259 3,551",
+              "page": 11
             }
           ]
         },
@@ -11830,25 +11749,20 @@
           "unit": "Rs Crore",
           "scope": null,
           "values": [
-            655,
             1246,
             1072,
             991,
             1748,
             668,
             903,
-            1155,
-            1459,
-            1120,
-            2433,
-            863
+            1130,
+            1448,
+            1065,
+            2273,
+            863,
+            1523
           ],
           "citations": [
-            {
-              "doc": "Presentation - 03 Nov 2023",
-              "quote": "Industrial Infra 655 -19% 5,939 -6%",
-              "page": 13
-            },
             {
               "doc": "Presentation - 08 Feb 2024",
               "quote": "Industrial Infra 1,246 12% 6,243 -2%",
@@ -11880,29 +11794,34 @@
               "page": 16
             },
             {
-              "doc": "Presentation - 31 Jul 2025",
-              "quote": "Industrial Infra 1,155 17% 5,625 -2%",
-              "page": 13
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 668 887 1,130 1,448 1,065 2,273 863 1,523",
+              "page": 14
             },
             {
-              "doc": "Presentation - 11 Nov 2025",
-              "quote": "Industrial Infra 1,459 -16% 6,226 -1%",
-              "page": 13
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 668 887 1,130 1,448 1,065 2,273 863 1,523",
+              "page": 14
             },
             {
-              "doc": "Presentation - 02 Feb 2026",
-              "quote": "Industrial Infra 1,120 68% 6,278 9%",
-              "page": 13
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 668 887 1,130 1,448 1,065 2,273 863 1,523",
+              "page": 14
             },
             {
-              "doc": "Presentation - 07 May 2026",
-              "quote": "Industrial Infra 2,433 152% 7,439 37%",
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 668 887 1,130 1,448 1,065 2,273 863 1,523",
               "page": 14
             },
             {
               "doc": "Presentation - 31 Jul 2026",
               "quote": "Industrial Infra 863 24% 6,887 31%",
               "page": 13
+            },
+            {
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 668 887 1,130 1,448 1,065 2,273 863 1,523",
+              "page": 14
             }
           ]
         },
@@ -11911,7 +11830,6 @@
           "unit": "Rs Crore",
           "scope": null,
           "values": [
-            1080,
             990,
             1061,
             1265,
@@ -11922,14 +11840,10 @@
             1598,
             1580,
             1512,
-            1394
+            1394,
+            1237
           ],
           "citations": [
-            {
-              "doc": "Presentation - 03 Nov 2023",
-              "quote": "Industrial Products 1,080 12% 3,499 27%",
-              "page": 13
-            },
             {
               "doc": "Presentation - 08 Feb 2024",
               "quote": "Industrial Products 990 13% 3,510 24%",
@@ -11984,6 +11898,11 @@
               "doc": "Presentation - 31 Jul 2026",
               "quote": "Industrial Products 1,394 8% 5,370 16%",
               "page": 13
+            },
+            {
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 1,389 1,010 1,295 1,598 1,580 1,512 1,394 1,237",
+              "page": 14
             }
           ]
         },
@@ -11992,7 +11911,6 @@
           "unit": "Rs Crore",
           "scope": null,
           "values": [
-            10264,
             10717,
             null,
             10681,
@@ -12003,14 +11921,10 @@
             12300,
             12641,
             null,
-            14045
+            14045,
+            14250
           ],
           "citations": [
-            {
-              "doc": "Presentation - 03 Nov 2023",
-              "quote": "Order Balance 10,264 9,485",
-              "page": 12
-            },
             {
               "doc": "Presentation - 08 Feb 2024",
               "quote": "Order Balance 10,717 9,859",
@@ -12053,6 +11967,76 @@
               "doc": "Presentation - 31 Jul 2026",
               "quote": "Order Balance 14,045 11,376",
               "page": 12
+            },
+            {
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "14,018 Order Balance 14,250 12,300",
+              "page": 11
+            }
+          ]
+        },
+        {
+          "label": "Green Solutions Order Booking (Rolling 12-Month Basis)",
+          "unit": "Rs Crore",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            47,
+            38,
+            153,
+            306,
+            229,
+            477,
+            382,
+            279
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 47 38 153 306 229 477 382 279",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 47 38 153 306 229 477 382 279",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 47 38 153 306 229 477 382 279",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 47 38 153 306 229 477 382 279",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 47 38 153 306 229 477 382 279",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 47 38 153 306 229 477 382 279",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 47 38 153 306 229 477 382 279",
+              "page": 14
+            },
+            {
+              "doc": "Presentation - 05 Nov 2026",
+              "quote": "OB 47 38 153 306 229 477 382 279",
+              "page": 14
             }
           ]
         },
@@ -12068,14 +12052,13 @@
             null,
             null,
             null,
-            null,
             2700,
             null,
             8000,
+            null,
             null
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -12094,6 +12077,7 @@
               "quote": "Achieved ~8,000 tonnes of CBG production in Q4 FY '26 (19,400+ tonnes YTD)",
               "page": 7
             },
+            null,
             null
           ]
         },
@@ -12107,16 +12091,15 @@
             null,
             null,
             null,
-            null,
             213.5,
             null,
             null,
             null,
             250,
+            null,
             null
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -12135,6 +12118,7 @@
               "quote": "we are thereabouts of about 250 megawatt on ground with two, three large, one which has been commissioned as on 31st of March and two, three other large projects",
               "page": 4
             },
+            null,
             null
           ]
         }

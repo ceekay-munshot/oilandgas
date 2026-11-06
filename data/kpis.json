@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-05T15:12:11.970Z",
+  "generatedAt": "2026-11-06T13:21:01.101Z",
   "quarters": [
     "Q2 FY26",
     "Q3 FY26",
@@ -1020,7 +1020,7 @@
       "asOf": "Q2 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27370,
+      "ctxChars": 27375,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -1053,7 +1053,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 capex of ₹45,335 cr (including OPaL equity infusion of ₹18,365 cr), but does not state Q4 FY25 alone. Q4 FY25 concall mentions planned capex FY26 of ₹36,920 cr but no Q4 spend vs budget. Q2 FY26"
+          "notes": "Q4 FY25: The investor PPT (Q3 FY25) shows 9M FY25 capex of ₹45,335 cr (including OPaL equity infusion of ₹18,365 cr), but does not state Q4 FY25 alone. The Q4 FY25 concall mentions full-year FY25 capex of ~₹62,000 cr but not Q4 alone or bud"
         },
         {
           "id": "production-volume",
@@ -1127,7 +1127,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 total wells drilled = 413 (353 development + 60 exploratory), and Q4 FY25 concall mentions FY25 total = 578 wells (469 development + 109 exploratory), but neither states Q4 FY25 alone. Q2 FY26: "
+          "notes": "Q4 FY25: The concall mentions full-year FY25 total of 578 wells (109 exploratory + 469 development) but does not break out Q4 alone. The investor PPT shows 9M FY25 total of 413 wells (353 development + 60 exploratory), implying Q4 = 165 wel"
         },
         {
           "id": "gas-production",
@@ -1823,7 +1823,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY25: Only order book (stock) of ~₹2,900 cr stated; no quarterly inflow figure given. Q4 FY25: Only order book of ~₹2,100 cr stated; no quarterly inflow figure given. Q2 FY26: Carbon steel order intake of ₹750 cr mentioned for the quarte"
+          "notes": "Q2 FY25: No single-quarter order inflow figure stated. Q2 FY26 concall mentions 'carbon steel domestic order booking in the quarter was INR 750 cr' but this is only carbon steel domestic, not total pipe order inflow. Q4 FY25: No single-quar"
         }
       ]
     },
@@ -3706,7 +3706,8 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34101,
+      "ctxChars": 34106,
+      "note": "extraction failed: 403 Forbidden for https://api.mistral.ai/v1/chat/completions",
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -5084,7 +5085,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 15953,
+      "ctxChars": 15930,
       "kpis": [
         {
           "id": "order-book",
