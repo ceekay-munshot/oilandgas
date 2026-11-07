@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-06T14:48:28.537Z",
+  "generatedAt": "2026-11-07T12:04:09.824Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -3274,7 +3274,6 @@
       "toggled": "/insights/company/2693/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Feb 2020",
         "Jul 2020",
         "May 2021",
         "Aug 2021",
@@ -3285,10 +3284,10 @@
         "Nov 2024",
         "Jun 2025",
         "Nov 2025",
-        "May 2026"
+        "May 2026",
+        "Sep 2026"
       ],
       "periodsIso": [
-        "2020-02",
         "2020-07",
         "2021-05",
         "2021-08",
@@ -3299,7 +3298,8 @@
         "2024-11",
         "2025-06",
         "2025-11",
-        "2026-05"
+        "2026-05",
+        "2026-09"
       ],
       "rows": [
         {
@@ -3307,7 +3307,6 @@
           "unit": "INR Crores",
           "scope": "Standalone data",
           "values": [
-            1561,
             null,
             1498,
             1600,
@@ -3318,14 +3317,10 @@
             2900,
             null,
             2050,
-            2162
+            2160,
+            2600
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 10 Feb 2020",
-              "quote": "Order in hand about 1561 crores",
-              "page": 3
-            },
             null,
             {
               "doc": "Concall Transcript - 07 Jun 2021",
@@ -3365,9 +3360,14 @@
               "page": 8
             },
             {
-              "doc": "Concall Transcript - 20 May 2026",
-              "quote": "order book has continued to be around INR2,000 crores during the previous year and as on 1st May 2026 was around INR2,160 crores, while export contributing around INR700 crores",
-              "page": 3
+              "doc": "Annual Report - 31 Mar 2026",
+              "quote": "₹2,160 Crores Order Book",
+              "page": 8
+            },
+            {
+              "doc": "Presentation - 06 Nov 2026",
+              "quote": "Order book increased to INR 2600+ crores (30% from previous quarter)",
+              "page": 6
             }
           ]
         },
@@ -3376,7 +3376,6 @@
           "unit": "Tonnes Per Annum (TPA)",
           "scope": "Standalone data",
           "values": [
-            null,
             510000,
             null,
             null,
@@ -3386,11 +3385,11 @@
             null,
             null,
             510000,
+            null,
             null,
             null
           ],
           "citations": [
-            null,
             {
               "doc": "Credit Rating - 22 Jul 2020",
               "quote": "carbon steel pipes (installed capacity of 5,10,000 tpa [3,60,000 available and 1,50,000 in pipeline] of LSAW, HSAW, circumferential seam submerged arc welded [CSAW], and ERW pipes)",
@@ -3413,6 +3412,7 @@
               "page": 1
             },
             null,
+            null,
             null
           ]
         },
@@ -3421,7 +3421,6 @@
           "unit": "Tonnes Per Annum (TPA)",
           "scope": "Standalone data",
           "values": [
-            null,
             61500,
             null,
             null,
@@ -3431,11 +3430,11 @@
             null,
             null,
             61500,
+            null,
             null,
             null
           ],
           "citations": [
-            null,
             {
               "doc": "Credit Rating - 22 Jul 2020",
               "quote": "manufactures a wide range of welded and seamless SSTP (installed capacity of 61,500 tpa [31,500 available and 30,000 in pipeline])",
@@ -3457,6 +3456,7 @@
               "quote": "manufactures a wide range of welded and seamless SSTP (installed capacity of 61,500 tonne per annum (TPA))",
               "page": 1
             },
+            null,
             null,
             null
           ]
@@ -7024,7 +7024,6 @@
       "toggled": "/insights/company/1273048/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Sep 2023",
         "Dec 2023",
         "Mar 2024",
         "Jun 2024",
@@ -7035,10 +7034,10 @@
         "Sep 2025",
         "Dec 2025",
         "Mar 2026",
-        "Jun 2026"
+        "Jun 2026",
+        "Sep 2026"
       ],
       "periodsIso": [
-        "2023-09",
         "2023-12",
         "2024-03",
         "2024-06",
@@ -7049,7 +7048,8 @@
         "2025-09",
         "2025-12",
         "2026-03",
-        "2026-06"
+        "2026-06",
+        "2026-09"
       ],
       "rows": [
         {
@@ -7057,7 +7057,6 @@
           "unit": "MMSCMD",
           "scope": "Standalone data",
           "values": [
-            2.62,
             2.78,
             2.89,
             2.98,
@@ -7068,14 +7067,10 @@
             3.32,
             3.45,
             3.6,
-            3.76
+            3.76,
+            3.67
           ],
           "citations": [
-            {
-              "doc": "Presentation - 03 Nov 2023",
-              "quote": "CNG Q2 FY23 2.3, Q1 FY24 2.6, Q2 FY24 2.6",
-              "page": 8
-            },
             {
               "doc": "Presentation - 14 Feb 2024",
               "quote": "CNG Q3 FY23 2.43, Q2 FY24 2.62, Q3 FY24 2.78",
@@ -7130,6 +7125,11 @@
               "doc": "Presentation - 12 Aug 2026",
               "quote": "Achieved highest ever CNG volume of 3.76 mmscmd in Q1 FY27, as compared to 3.33 mmscmd to Q1 FY26",
               "page": 4
+            },
+            {
+              "doc": "Presentation - 06 Nov 2026",
+              "quote": "3.67 mmscmd",
+              "page": 19
             }
           ]
         },
@@ -7138,7 +7138,6 @@
           "unit": "MMSCMD",
           "scope": "Standalone data",
           "values": [
-            0.76,
             0.71,
             0.85,
             0.62,
@@ -7149,14 +7148,10 @@
             0.83,
             0.83,
             0.91,
-            0.7
+            0.7,
+            0.8
           ],
           "citations": [
-            {
-              "doc": "Presentation - 03 Nov 2023",
-              "quote": "PNG - Domestic Q2 FY24 0.76",
-              "page": 8
-            },
             {
               "doc": "Presentation - 14 Feb 2024",
               "quote": "PNG - Domestic Q3 FY24 0.71",
@@ -7211,6 +7206,11 @@
               "doc": "Presentation - 12 Aug 2026",
               "quote": "0.70 mmscmd",
               "page": 17
+            },
+            {
+              "doc": "Presentation - 06 Nov 2026",
+              "quote": "0.80 mmscmd",
+              "page": 19
             }
           ]
         },
@@ -7219,7 +7219,6 @@
           "unit": "MMSCMD",
           "scope": "Standalone data",
           "values": [
-            4.91,
             5.8,
             5.8,
             7.25,
@@ -7230,14 +7229,10 @@
             4.35,
             3.93,
             4.19,
-            7.71
+            7.71,
+            6.05
           ],
           "citations": [
-            {
-              "doc": "Presentation - 03 Nov 2023",
-              "quote": "PNG - Industrial Q2 FY24 4.91",
-              "page": 8
-            },
             {
               "doc": "Presentation - 14 Feb 2024",
               "quote": "PNG - Industrial Q3 FY24 5.80",
@@ -7292,6 +7287,11 @@
               "doc": "Presentation - 12 Aug 2026",
               "quote": "7.71 mmscmd",
               "page": 17
+            },
+            {
+              "doc": "Presentation - 06 Nov 2026",
+              "quote": "6.05 mmscmd",
+              "page": 19
             }
           ]
         },
@@ -7300,7 +7300,6 @@
           "unit": "MMSCMD",
           "scope": "Standalone data",
           "values": [
-            7.6,
             9.32,
             9.69,
             10.98,
@@ -7311,14 +7310,10 @@
             8.65,
             8.37,
             8.88,
-            12.34
+            12.34,
+            10.71
           ],
           "citations": [
-            {
-              "doc": "Presentation - 03 Nov 2023",
-              "quote": "Total Volume Q2 FY23 9.2, Q1 FY24 9.2, Q2 FY24 7.6",
-              "page": 8
-            },
             {
               "doc": "Presentation - 14 Feb 2024",
               "quote": "Total Volume Q3 FY23 9.2, Q2 FY24 9.3, Q3 FY24 9.3",
@@ -7373,6 +7368,11 @@
               "doc": "Presentation - 12 Aug 2026",
               "quote": "12.34 mmscmd",
               "page": 17
+            },
+            {
+              "doc": "Presentation - 06 Nov 2026",
+              "quote": "10.71 mmscmd",
+              "page": 19
             }
           ]
         },
@@ -7381,7 +7381,6 @@
           "unit": "count",
           "scope": "Standalone data",
           "values": [
-            null,
             null,
             808,
             null,
@@ -7392,10 +7391,10 @@
             null,
             null,
             839,
-            844
+            844,
+            857
           ],
           "citations": [
-            null,
             null,
             {
               "doc": "Presentation - 01 Jun 2026",
@@ -7422,6 +7421,11 @@
               "doc": "Presentation - 12 Aug 2026",
               "quote": "resulting into total CNG stations of 844 till Q1 FY 2027",
               "page": 4
+            },
+            {
+              "doc": "Presentation - 06 Nov 2026",
+              "quote": "Taking total to 857 stations as on H1FY27",
+              "page": 6
             }
           ]
         },
@@ -7430,7 +7434,6 @@
           "unit": "'000 KMs",
           "scope": "Standalone data",
           "values": [
-            null,
             null,
             39.3,
             null,
@@ -7441,10 +7444,10 @@
             null,
             null,
             45.3,
-            45.9
+            45.9,
+            46.69
           ],
           "citations": [
-            null,
             null,
             {
               "doc": "Presentation - 01 Jun 2026",
@@ -7471,6 +7474,11 @@
               "doc": "Presentation - 12 Aug 2026",
               "quote": "~45,900 KMs",
               "page": 15
+            },
+            {
+              "doc": "Presentation - 06 Nov 2026",
+              "quote": "~46,690 km Pipeline network",
+              "page": 15
             }
           ]
         },
@@ -7480,8 +7488,7 @@
           "scope": "Standalone data",
           "values": [
             null,
-            null,
-            21.1,
+            21.2,
             null,
             null,
             null,
@@ -7490,15 +7497,15 @@
             null,
             null,
             24.18,
-            24.77
+            24.77,
+            25.3
           ],
           "citations": [
             null,
-            null,
             {
-              "doc": "Presentation - 01 Jun 2026",
-              "quote": "Domestic Connections (IN LAKHS) FY22 17.1, FY23 19.3, FY24 21.1, FY25 22.7, FY26 24.2",
-              "page": 20
+              "doc": "Presentation - 06 Nov 2026",
+              "quote": "Domestic connections",
+              "page": 17
             },
             null,
             null,
@@ -7520,11 +7527,16 @@
               "doc": "Presentation - 12 Aug 2026",
               "quote": "24.77+ Lakh",
               "page": 15
+            },
+            {
+              "doc": "Presentation - 06 Nov 2026",
+              "quote": "Domestic PNG customer base reached 25.3 lakh",
+              "page": 6
             }
           ]
         },
         {
-          "label": "Gas Trading Volume",
+          "label": "External Gas Trading Volume",
           "unit": "MMSCMD",
           "scope": "Standalone data",
           "values": [
@@ -7535,11 +7547,11 @@
             null,
             null,
             null,
-            9.33,
+            5.2,
             null,
             null,
-            10.2,
-            12.22
+            3.3,
+            4.7
           ],
           "citations": [
             null,
@@ -7550,21 +7562,21 @@
             null,
             null,
             {
-              "doc": "Presentation - 12 Aug 2026",
-              "quote": "Trading Volume^",
-              "page": 24
+              "doc": "Presentation - 06 Nov 2026",
+              "quote": "External Trading Volume^",
+              "page": 25
             },
             null,
             null,
             {
-              "doc": "Presentation - 12 Aug 2026",
-              "quote": "Trading Volume^",
-              "page": 24
+              "doc": "Presentation - 06 Nov 2026",
+              "quote": "External Trading Volume^",
+              "page": 25
             },
             {
-              "doc": "Concall Transcript - 17 Aug 2026",
-              "quote": "sales volumes reaching 12.22 mmscmd",
-              "page": 5
+              "doc": "Presentation - 06 Nov 2026",
+              "quote": "External Trading Volume^",
+              "page": 25
             }
           ]
         }

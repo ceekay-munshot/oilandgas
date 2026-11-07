@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-11-06T14:50:53.162Z",
+  "generatedAt": "2026-11-07T12:06:15.546Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
     "companies": 28,
-    "quarterCells": 106,
-    "tonedQuarters": 98,
+    "quarterCells": 107,
+    "tonedQuarters": 99,
     "nullQuarters": 8
   },
   "companies": {
@@ -18,9 +18,10 @@
       "quarters": [
         "Q4 FY25",
         "Q2 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
@@ -79,6 +80,26 @@
           ],
           "implication": "Expect continued strong gas revenue growth and margin expansion as New Well gas volumes ramp and KG-DWN 98/2 gas production doubles by year-end, though consolidated earnings will remain sensitive to downstream refining volatility at HPCL.",
           "doc": "Concall AI summary (Q1 FY27)"
+        },
+        {
+          "quarter": "Q2 FY27",
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "green shoots visible and significant gain… especially in gas front… expecting gradual improvement and confidence to recover lost ground",
+          "rationale": "Management acknowledged near-term production headwinds from supply chain and weather disruptions but emphasized recovery actions underway, early TSP gains, and confidence in gradual improvement ahead.",
+          "driver": "production recovery and TSP program ramp-up",
+          "direction": "positive",
+          "signal": "Management expects production to gradually improve as critical materials arrive and new wells come online, with TSP programs beginning to show early gains especially in gas; capex deployment continues on deepwater and offshore projects desp",
+          "mgmtDataPoints": [
+            "FY27 production guidance: close to 39 MMT oil and oil equivalent",
+            "FY28 production guidance: 0.5 to 1 million ton extra vs FY27",
+            "Crude price realization Q2: US$ 92.33",
+            "Interim dividend: 160% (₹8 per share), payout ~₹10,000 cr",
+            "KG-DWN-98/2 current oil rate: ~19,000 bbl/day",
+            "KG-DWN-98/2 gas: ~2 mmscmd current, additional ~1.5 mmscmd expected Q4 from thre"
+          ],
+          "implication": "Production should stabilize and begin recovering sequentially as supply chain constraints ease, new wells connect in KG deepwater by Q3/Q4, and TSP interventions gain traction, supporting modest volume growth into FY28.",
+          "doc": "Concall AI summary (Q2 FY27)"
         }
       ]
     },

@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-06T14:50:07.602Z",
+  "generatedAt": "2026-11-07T12:05:44.704Z",
   "quarters": [
     "Q3 FY26",
     "Q4 FY26",
@@ -13,9 +13,9 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
-    "kpiCells": 393,
+    "kpiCells": 397,
     "realCells": 265,
-    "nullCells": 128,
+    "nullCells": 132,
     "kpis": 101,
     "kpisWithTrend": 64
   },
@@ -1015,12 +1015,13 @@
       "quarters": [
         "Q4 FY25",
         "Q2 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
       "asOf": "Q2 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27375,
+      "ctxChars": 33375,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -1030,9 +1031,11 @@
           "values": [
             null,
             null,
+            null,
             null
           ],
           "sourceTags": [
+            null,
             null,
             null,
             null
@@ -1040,9 +1043,11 @@
           "origins": [
             null,
             null,
+            null,
             null
           ],
           "citations": [
+            null,
             null,
             null,
             null
@@ -1050,10 +1055,11 @@
           "oneOffs": [
             null,
             null,
+            null,
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: The investor PPT (Q3 FY25) shows 9M FY25 capex of ₹45,335 cr (including OPaL equity infusion of ₹18,365 cr), but does not state Q4 FY25 alone. The Q4 FY25 concall mentions full-year FY25 capex of ~₹62,000 cr but not Q4 alone or bud"
+          "notes": "Q4 FY25: Investor PPT (Q3 FY25) shows 9M FY25 capex of ₹45,335 cr (including OPaL equity infusion of ₹18,365 cr), but does not break out Q4 alone. Concall transcript mentions FY25 full-year capex ~₹62,000 cr, but no Q4 figure stated. No bud"
         },
         {
           "id": "production-volume",
@@ -1063,16 +1069,19 @@
           "values": [
             4.96,
             4.63,
+            null,
             null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
+            null,
             null
           ],
           "origins": [
             "insights",
             "insights",
+            null,
             null
           ],
           "citations": [
@@ -1086,9 +1095,11 @@
               "quote": "The standalone crude oil production during Q2 FY26 and H1 FY26 were 4.630 million metric tons and 9.314 million metric tons",
               "page": 2
             },
+            null,
             null
           ],
           "oneOffs": [
+            null,
             null,
             null,
             null
@@ -1104,9 +1115,11 @@
           "values": [
             null,
             null,
+            null,
             null
           ],
           "sourceTags": [
+            null,
             null,
             null,
             null
@@ -1114,9 +1127,11 @@
           "origins": [
             null,
             null,
+            null,
             null
           ],
           "citations": [
+            null,
             null,
             null,
             null
@@ -1124,10 +1139,11 @@
           "oneOffs": [
             null,
             null,
+            null,
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: The concall mentions full-year FY25 total of 578 wells (109 exploratory + 469 development) but does not break out Q4 alone. The investor PPT shows 9M FY25 total of 413 wells (353 development + 60 exploratory), implying Q4 = 165 wel"
+          "notes": "Q4 FY25: Concall transcript states FY25 full year drilled 578 wells (109 exploratory + 469 development), highest in 35 years, but does not break out Q4 alone. Investor PPT shows 9M FY25 drilled 413 wells (353 development + 60 exploratory), "
         },
         {
           "id": "gas-production",
@@ -1137,15 +1153,18 @@
           "values": [
             4.91,
             null,
+            null,
             null
           ],
           "sourceTags": [
             "company-filing",
             null,
+            null,
             null
           ],
           "origins": [
             "insights",
+            null,
             null,
             null
           ],
@@ -1156,9 +1175,11 @@
               "page": 7
             },
             null,
+            null,
             null
           ],
           "oneOffs": [
+            null,
             null,
             null,
             null
@@ -1743,7 +1764,7 @@
       "asOf": "Q4 FY26",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33039,
+      "ctxChars": 33049,
       "kpis": [
         {
           "id": "order-book",
@@ -1823,7 +1844,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY25: Order inflow not stated; only order book levels and some order booking amounts mentioned (e.g., ₹750 cr carbon steel domestic orders in Q2 FY26) but no single-quarter inflow figure for Q2 FY25. Q4 FY25: Order inflow not stated; onl"
+          "notes": "Q2 FY25: Order inflow not stated; only order book levels and some order booking amounts mentioned (e.g., ₹750 cr carbon steel domestic orders in Q2 FY26). Q4 FY25: Order inflow not stated; only order book levels provided. Q2 FY26: Order inf"
         }
       ]
     },
@@ -3690,7 +3711,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34106,
+      "ctxChars": 34121,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3728,7 +3749,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: no yoy growth figure stated for combined CNG+PNG. Q3 FY26: no yoy growth figure stated for combined CNG+PNG. Q4 FY26: CNG volume grew 12% yoy stated, but no combined CNG+PNG growth figure given. Q1 FY27: management stated 'CNG volu"
+          "notes": "Q2 FY26: no data found. Q3 FY26: no data found. Q4 FY26: no data found. Q1 FY27: management stated 'CNG volume of 3.76 mmscmd during this quarter compared to 3.33 mmscmd in the previous year same quarter, registering a growth of 13%'. For t"
         },
         {
           "id": "ebitda-per-scm",
@@ -3766,7 +3787,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: Investor PPT Q2 FY27 (page 7) shows segmental highlights with CGD EBITDA margin labeled '5.95 per scm' for Q2FY26. Q3 FY26: no EBITDA/scm figure stated. Q4 FY26: no EBITDA/scm figure stated. Q1 FY27: Investor PPT Q2 FY27 (page 7) s"
+          "notes": "Q2 FY26: no EBITDA/scm figure stated. Q3 FY26: no EBITDA/scm figure stated. Q4 FY26: no EBITDA/scm figure stated. Q1 FY27: no EBITDA/scm figure stated. The Q2 FY27 investor presentation (page 7) shows segmental EBITDA for CGD with '5.95 per"
         }
       ]
     },

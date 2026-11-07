@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-06T14:51:31.098Z",
+  "generatedAt": "2026-11-07T12:06:54.195Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,7 +38,7 @@
   "asOf": "Q2 FY27",
   "scores": {
     "leading": {
-      "score": 21,
+      "score": 19,
       "prev": -83,
       "delta": 108,
       "deltaBasis": "kpi-only",
@@ -90,13 +90,6 @@
           "company": "Welspun Corp",
           "label": "Order book",
           "flag": "inflecting-down"
-        },
-        {
-          "kind": "tone",
-          "companyId": "ongc",
-          "company": "ONGC",
-          "label": "Upstream capex intent",
-          "flag": "tone-up"
         },
         {
           "kind": "tone",
@@ -277,7 +270,7 @@
     }
   },
   "divergence": {
-    "value": 23,
+    "value": 21,
     "leadingSign": 1,
     "coincidentSign": 0,
     "signsDiffer": false
@@ -295,7 +288,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 21 (positive, rising), coincident -2 (flat, falling), lagging 100 (strong-positive).",
+      "Leading 19 (positive, rising), coincident -2 (flat, falling), lagging 100 (strong-positive).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -373,16 +366,6 @@
       "fromQuarter": "Q4 FY26",
       "quarter": "Q1 FY27",
       "steps": 4,
-      "direction": "up"
-    },
-    {
-      "companyId": "ongc",
-      "name": "ONGC",
-      "from": "cautious",
-      "to": "confident",
-      "fromQuarter": "Q2 FY26",
-      "quarter": "Q1 FY27",
-      "steps": 3,
       "direction": "up"
     },
     {
@@ -499,12 +482,6 @@
       "text": "Petronet LNG moved 4 tone steps up (defensive → confident) in Q1 FY27."
     },
     {
-      "id": "tone-ongc",
-      "severity": "info",
-      "kind": "tone-drift",
-      "text": "ONGC moved 3 tone steps up (cautious → confident) in Q1 FY27."
-    },
-    {
       "id": "tone-deep-industries",
       "severity": "warn",
       "kind": "tone-drift",
@@ -571,12 +548,12 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +23. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +21. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "Petronet LNG (defensive → confident); ONGC (cautious → confident); Deep Industries (confident → cautious); HPCL (defensive → constructive); Castrol India (confident → cautious); L&T (neutral → confident); and 3 more."
+      "text": "Petronet LNG (defensive → confident); Deep Industries (confident → cautious); HPCL (defensive → constructive); Castrol India (confident → cautious); L&T (neutral → confident); Ratnamani Metals (neutral → defensive); and 2 more."
     },
     {
       "id": "implication",
@@ -622,17 +599,17 @@
       "label": "Upstream capex intent",
       "bucket": "leading",
       "listenFor": "Capex/drilling guidance up, flat or down; new block awards; rig additions or deferrals; tendering activity from ONGC/OIL",
-      "state": "4 companies heard, split (2 positive, 2 negative); ONGC moved 3 steps up, Deep Industries moved 3 steps down.",
+      "state": "4 companies heard, split (2 positive, 2 negative); Deep Industries moved 3 steps down.",
       "mood": "mixed",
       "members": [
         {
           "companyId": "ongc",
           "name": "ONGC",
-          "toneId": "confident",
-          "quarter": "Q1 FY27",
+          "toneId": "constructive",
+          "quarter": "Q2 FY27",
           "direction": "positive",
-          "driver": "gas portfolio transformation",
-          "drift": 3
+          "driver": "production recovery and TSP program ramp-up",
+          "drift": -1
         },
         {
           "companyId": "oil-india",
@@ -664,15 +641,6 @@
       ],
       "drivers": [
         {
-          "companyId": "ongc",
-          "name": "ONGC",
-          "toneId": "confident",
-          "quarter": "Q1 FY27",
-          "direction": "positive",
-          "driver": "gas portfolio transformation",
-          "drift": 3
-        },
-        {
           "companyId": "deep-industries",
           "name": "Deep Industries",
           "toneId": "cautious",
@@ -680,6 +648,15 @@
           "direction": "negative",
           "driver": "global energy supply uncertainty",
           "drift": -3
+        },
+        {
+          "companyId": "ongc",
+          "name": "ONGC",
+          "toneId": "constructive",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "production recovery and TSP program ramp-up",
+          "drift": -1
         }
       ]
     },
@@ -1055,35 +1032,26 @@
   ],
   "changes": [
     {
-      "kind": "score",
-      "text": "Moves first moved down 12 points to 21."
-    },
-    {
-      "kind": "alert",
-      "text": "New alert: Moves first: 18 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
-    },
-    {
-      "kind": "alert",
-      "text": "New alert: Moving now: 28 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
-    },
-    {
-      "kind": "alert",
-      "text": "New alert: Deep Industries moved 3 tone steps down (confident → cautious) in Q2 FY27."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-06T13:22:35.976Z",
-    "asOf": "Q1 FY27",
+    "generatedAt": "2026-11-06T14:51:31.098Z",
+    "asOf": "Q2 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
-      "leading": 33,
-      "coincident": -4,
+      "leading": 21,
+      "coincident": -2,
       "lagging": 100
     },
     "alertIds": [
+      "coverage-coincident",
       "coverage-lagging",
+      "coverage-leading",
       "tone-castrol-india",
+      "tone-deep-industries",
       "tone-gujarat-gas",
       "tone-hpcl",
       "tone-lt",
