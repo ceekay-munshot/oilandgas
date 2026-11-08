@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-07T13:46:15.041Z",
+  "generatedAt": "2026-11-08T12:18:39.832Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,24 +38,31 @@
   "asOf": "Q2 FY27",
   "scores": {
     "leading": {
-      "score": 19,
+      "score": 43,
       "prev": -83,
-      "delta": 108,
+      "delta": 148,
       "deltaBasis": "kpi-only",
-      "level": "positive",
+      "level": "strong-positive",
       "direction": "rising",
       "kpisScored": 11,
       "kpisTotal": 23,
       "kpisBeyondBrief": 12,
       "tonesScored": 8,
       "companiesScored": 6,
-      "staleKpis": 18,
+      "staleKpis": 13,
       "oneOffKpis": 0,
       "unknownKpis": 0,
       "lowCoverage": true,
       "weakestTag": "mgmt-claim",
       "reducedConfidence": false,
       "signals": [
+        {
+          "kind": "kpi",
+          "companyId": "deep-industries",
+          "company": "Deep Industries",
+          "label": "Rig / asset utilisation %",
+          "flag": "inflecting-up"
+        },
         {
           "kind": "kpi",
           "companyId": "jindal-drilling",
@@ -89,7 +96,7 @@
           "companyId": "welspun-corp",
           "company": "Welspun Corp",
           "label": "Order book",
-          "flag": "inflecting-down"
+          "flag": "inflecting-up"
         },
         {
           "kind": "tone",
@@ -115,17 +122,17 @@
       ]
     },
     "coincident": {
-      "score": -2,
+      "score": -4,
       "prev": 0,
-      "delta": -27,
+      "delta": -30,
       "deltaBasis": "kpi-only",
       "level": "flat",
       "direction": "falling",
-      "kpisScored": 18,
+      "kpisScored": 19,
       "kpisTotal": 40,
-      "kpisBeyondBrief": 17,
+      "kpisBeyondBrief": 18,
       "tonesScored": 15,
-      "companiesScored": 10,
+      "companiesScored": 11,
       "staleKpis": 27,
       "oneOffKpis": 1,
       "unknownKpis": 0,
@@ -270,7 +277,7 @@
     }
   },
   "divergence": {
-    "value": 21,
+    "value": 47,
     "leadingSign": 1,
     "coincidentSign": 0,
     "signsDiffer": false
@@ -279,7 +286,7 @@
     null,
     null,
     -83,
-    52
+    95
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -288,7 +295,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 19 (positive, rising), coincident -2 (flat, falling), lagging 100 (strong-positive).",
+      "Leading 43 (strong-positive, rising), coincident -4 (flat, falling), lagging 100 (strong-positive).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -443,7 +450,7 @@
     {
       "groupId": "leading",
       "kind": "low-coverage",
-      "text": "Moves first: 18 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves first: 13 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "groupId": "coincident",
@@ -461,7 +468,7 @@
       "id": "coverage-leading",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moves first: 18 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves first: 13 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "coverage-coincident",
@@ -533,7 +540,7 @@
     {
       "id": "leading",
       "label": "Leading indicators",
-      "text": "Leading indicators are positive and rising — driven by Jindal Drilling Order book, Engineers India Order inflow, Engineers India Order book."
+      "text": "Leading indicators are strongly positive and rising — driven by Deep Industries Rig / asset utilisation %, Jindal Drilling Order book, Engineers India Order inflow."
     },
     {
       "id": "coincident",
@@ -548,7 +555,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +21. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +47. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -1032,12 +1039,12 @@
   ],
   "changes": [
     {
-      "kind": "none",
-      "text": "Nothing material moved since the last refresh."
+      "kind": "score",
+      "text": "Moves first moved up 24 points to 43."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-07T12:06:54.195Z",
+    "generatedAt": "2026-11-07T13:46:15.041Z",
     "asOf": "Q2 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
