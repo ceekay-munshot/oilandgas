@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-08T12:17:39.141Z",
+  "generatedAt": "2026-11-08T14:04:47.603Z",
   "quarters": [
     "Q3 FY26",
     "Q4 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 28,
     "kpiCells": 401,
-    "realCells": 277,
-    "nullCells": 124,
+    "realCells": 282,
+    "nullCells": 119,
     "kpis": 102,
     "kpisWithTrend": 66
   },
@@ -3496,10 +3496,10 @@
         "Q1 FY27",
         "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34201,
+      "ctxChars": 32397,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3548,19 +3548,19 @@
             8.26,
             6.19,
             7.91,
-            null
+            6.77
           ],
           "sourceTags": [
             "derived",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "derived",
             "model",
             "model",
-            null
+            "model"
           ],
           "citations": [
             null,
@@ -3574,7 +3574,7 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "inflecting-down",
           "notes": "Derived: EBITDA (Screener quarterly Operating Profit, ₹ cr) ÷ quarterly gas volume (Insights \"Total Sales Volume\" MMSCMD × days in quarter), in ₹/scm."
         },
         {
@@ -3586,19 +3586,19 @@
             4.62,
             4.67,
             4.77,
-            null
+            4.892
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "mgmt-claim"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "model"
           ],
           "citations": [
             {
@@ -3626,7 +3626,7 @@
           ],
           "flag": "accelerating",
           "beyondBrief": true,
-          "notes": "From Screener Insights row \"Total Sales Volume\"; latest value cited to Presentation - 08 May 2026, page 13."
+          "notes": null
         },
         {
           "id": "cng-volume",
@@ -3637,19 +3637,19 @@
             3.28,
             3.35,
             3.5,
-            null
+            3.552
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "mgmt-claim"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "model"
           ],
           "citations": [
             {
@@ -3675,9 +3675,9 @@
             null,
             null
           ],
-          "flag": "accelerating",
+          "flag": "decelerating",
           "beyondBrief": true,
-          "notes": "From Screener Insights row \"CNG Sales Volume\"; latest value cited to Presentation - 08 May 2026, page 13."
+          "notes": null
         },
         {
           "id": "png-domestic-volume",
@@ -3688,19 +3688,19 @@
             0.6,
             0.6,
             0.62,
-            null
+            0.639
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "mgmt-claim"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "model"
           ],
           "citations": [
             {
@@ -3726,9 +3726,9 @@
             null,
             null
           ],
-          "flag": "accelerating",
+          "flag": "decelerating",
           "beyondBrief": true,
-          "notes": "From Screener Insights row \"DPNG (Domestic PNG) Sales Volume\"; latest value cited to Presentation - 08 May 2026, page 13."
+          "notes": null
         },
         {
           "id": "ic-volume",
@@ -3739,19 +3739,19 @@
             0.73,
             0.72,
             0.65,
-            null
+            0.7
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "mgmt-claim"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "model"
           ],
           "citations": [
             {
@@ -3775,10 +3775,10 @@
             null,
             null,
             null,
-            null
+            "Supply restrictions + higher Brent"
           ],
           "flag": "decelerating",
-          "notes": "From Screener Insights row \"Industrial & Commercial Sales Volume\"; latest value cited to Presentation - 08 May 2026, page 13."
+          "notes": null
         }
       ]
     },

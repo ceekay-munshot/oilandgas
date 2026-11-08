@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-08T12:18:39.832Z",
+  "generatedAt": "2026-11-08T14:05:30.164Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -122,19 +122,19 @@
       ]
     },
     "coincident": {
-      "score": -4,
+      "score": -13,
       "prev": 0,
-      "delta": -30,
+      "delta": -44,
       "deltaBasis": "kpi-only",
-      "level": "flat",
+      "level": "negative",
       "direction": "falling",
       "kpisScored": 19,
       "kpisTotal": 40,
       "kpisBeyondBrief": 18,
       "tonesScored": 15,
       "companiesScored": 11,
-      "staleKpis": 27,
-      "oneOffKpis": 1,
+      "staleKpis": 24,
+      "oneOffKpis": 2,
       "unknownKpis": 0,
       "lowCoverage": true,
       "weakestTag": "derived",
@@ -173,7 +173,7 @@
           "companyId": "mahanagar-gas",
           "company": "Mahanagar Gas",
           "label": "EBITDA / scm",
-          "flag": "inflecting-up"
+          "flag": "inflecting-down"
         },
         {
           "kind": "kpi",
@@ -277,16 +277,16 @@
     }
   },
   "divergence": {
-    "value": 47,
+    "value": 56,
     "leadingSign": 1,
-    "coincidentSign": 0,
-    "signsDiffer": false
+    "coincidentSign": -1,
+    "signsDiffer": true
   },
   "divergenceSeries": [
     null,
     null,
     -83,
-    95
+    109
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -295,7 +295,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 43 (strong-positive, rising), coincident -4 (flat, falling), lagging 100 (strong-positive).",
+      "Leading 43 (strong-positive, rising), coincident -13 (negative, falling), lagging 100 (strong-positive).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -455,7 +455,7 @@
     {
       "groupId": "coincident",
       "kind": "low-coverage",
-      "text": "Moving now: 28 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 26 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "groupId": "lagging",
@@ -464,6 +464,12 @@
     }
   ],
   "alerts": [
+    {
+      "id": "divergence",
+      "severity": "high",
+      "kind": "divergence",
+      "text": "Leading and coincident have split: the front of the chain has turned up while the middle has not."
+    },
     {
       "id": "coverage-leading",
       "severity": "info",
@@ -474,7 +480,7 @@
       "id": "coverage-coincident",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moving now: 28 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 26 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "coverage-lagging",
@@ -545,7 +551,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are flat and falling — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
+      "text": "Coincident indicators are negative and falling — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
     },
     {
       "id": "macro",
@@ -555,7 +561,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +47. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +56. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
     },
     {
       "id": "watchlist",
@@ -1040,17 +1046,21 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moves first moved up 24 points to 43."
+      "text": "Moving now moved down 9 points to -13."
+    },
+    {
+      "kind": "alert",
+      "text": "New alert: Leading and coincident have split: the front of the chain has turned up while the middle has not."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-07T13:46:15.041Z",
+    "generatedAt": "2026-11-08T12:18:39.832Z",
     "asOf": "Q2 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
-      "leading": 19,
-      "coincident": -2,
+      "leading": 43,
+      "coincident": -4,
       "lagging": 100
     },
     "alertIds": [
