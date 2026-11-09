@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-08T14:05:30.164Z",
+  "generatedAt": "2026-11-09T17:07:23.590Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,9 +38,9 @@
   "asOf": "Q2 FY27",
   "scores": {
     "leading": {
-      "score": 43,
-      "prev": -83,
-      "delta": 148,
+      "score": 56,
+      "prev": -54,
+      "delta": 117,
       "deltaBasis": "kpi-only",
       "level": "strong-positive",
       "direction": "rising",
@@ -49,7 +49,7 @@
       "kpisBeyondBrief": 12,
       "tonesScored": 8,
       "companiesScored": 6,
-      "staleKpis": 13,
+      "staleKpis": 11,
       "oneOffKpis": 0,
       "unknownKpis": 0,
       "lowCoverage": true,
@@ -86,13 +86,6 @@
         },
         {
           "kind": "kpi",
-          "companyId": "ratnamani",
-          "company": "Ratnamani Metals",
-          "label": "Order book",
-          "flag": "inflecting-up"
-        },
-        {
-          "kind": "kpi",
           "companyId": "welspun-corp",
           "company": "Welspun Corp",
           "label": "Order book",
@@ -117,23 +110,23 @@
           "companyId": "ratnamani",
           "company": "Ratnamani Metals",
           "label": "Refining/petchem capex pipeline",
-          "flag": "tone-down"
+          "flag": "tone-up"
         }
       ]
     },
     "coincident": {
-      "score": -13,
-      "prev": 0,
-      "delta": -44,
+      "score": 9,
+      "prev": -5,
+      "delta": -22,
       "deltaBasis": "kpi-only",
-      "level": "negative",
+      "level": "flat",
       "direction": "falling",
-      "kpisScored": 19,
+      "kpisScored": 18,
       "kpisTotal": 40,
-      "kpisBeyondBrief": 18,
+      "kpisBeyondBrief": 13,
       "tonesScored": 15,
       "companiesScored": 11,
-      "staleKpis": 24,
+      "staleKpis": 21,
       "oneOffKpis": 2,
       "unknownKpis": 0,
       "lowCoverage": true,
@@ -156,13 +149,6 @@
         },
         {
           "kind": "kpi",
-          "companyId": "petronet-lng",
-          "company": "Petronet LNG",
-          "label": "Kochi utilisation",
-          "flag": "inflecting-down"
-        },
-        {
-          "kind": "kpi",
           "companyId": "igl",
           "company": "IGL",
           "label": "EBITDA / scm",
@@ -174,6 +160,13 @@
           "company": "Mahanagar Gas",
           "label": "EBITDA / scm",
           "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "mahanagar-gas",
+          "company": "Mahanagar Gas",
+          "label": "Industrial & commercial volume",
+          "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
@@ -198,8 +191,8 @@
         },
         {
           "kind": "tone",
-          "companyId": "hpcl",
-          "company": "HPCL",
+          "companyId": "iocl",
+          "company": "IOCL",
           "label": "Refining margin outlook",
           "flag": "tone-up"
         },
@@ -207,14 +200,21 @@
           "kind": "tone",
           "companyId": "hpcl",
           "company": "HPCL",
+          "label": "Refining margin outlook",
+          "flag": "tone-up"
+        },
+        {
+          "kind": "tone",
+          "companyId": "iocl",
+          "company": "IOCL",
           "label": "Marketing margin normalization",
           "flag": "tone-up"
         },
         {
           "kind": "tone",
-          "companyId": "petronet-lng",
-          "company": "Petronet LNG",
-          "label": "Gas demand trajectory",
+          "companyId": "hpcl",
+          "company": "HPCL",
+          "label": "Marketing margin normalization",
           "flag": "tone-up"
         },
         {
@@ -277,16 +277,16 @@
     }
   },
   "divergence": {
-    "value": 56,
+    "value": 47,
     "leadingSign": 1,
-    "coincidentSign": -1,
-    "signsDiffer": true
+    "coincidentSign": 0,
+    "signsDiffer": false
   },
   "divergenceSeries": [
     null,
     null,
-    -83,
-    109
+    -49,
+    90
   ],
   "stage": {
     "stageId": "early-upcycle",
@@ -295,7 +295,7 @@
     "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
     "confidence": "normal",
     "because": [
-      "Leading 43 (strong-positive, rising), coincident -13 (negative, falling), lagging 100 (strong-positive).",
+      "Leading 56 (strong-positive, rising), coincident 9 (flat, falling), lagging 100 (strong-positive).",
       "Leading turning positive off a low base, coincident not yet following."
     ]
   },
@@ -366,16 +366,6 @@
   },
   "toneDrift": [
     {
-      "companyId": "petronet-lng",
-      "name": "Petronet LNG",
-      "from": "defensive",
-      "to": "confident",
-      "fromQuarter": "Q4 FY26",
-      "quarter": "Q1 FY27",
-      "steps": 4,
-      "direction": "up"
-    },
-    {
       "companyId": "deep-industries",
       "name": "Deep Industries",
       "from": "confident",
@@ -384,6 +374,26 @@
       "quarter": "Q2 FY27",
       "steps": -3,
       "direction": "down"
+    },
+    {
+      "companyId": "ratnamani",
+      "name": "Ratnamani Metals",
+      "from": "defensive",
+      "to": "constructive",
+      "fromQuarter": "Q4 FY26",
+      "quarter": "Q2 FY27",
+      "steps": 3,
+      "direction": "up"
+    },
+    {
+      "companyId": "iocl",
+      "name": "IOCL",
+      "from": "cautious",
+      "to": "confident",
+      "fromQuarter": "Q1 FY27",
+      "quarter": "Q2 FY27",
+      "steps": 3,
+      "direction": "up"
     },
     {
       "companyId": "hpcl",
@@ -416,16 +426,6 @@
       "direction": "up"
     },
     {
-      "companyId": "ratnamani",
-      "name": "Ratnamani Metals",
-      "from": "neutral",
-      "to": "defensive",
-      "fromQuarter": "Q2 FY26",
-      "quarter": "Q4 FY26",
-      "steps": -2,
-      "direction": "down"
-    },
-    {
       "companyId": "gujarat-gas",
       "name": "Gujarat Gas",
       "from": "neutral",
@@ -450,12 +450,12 @@
     {
       "groupId": "leading",
       "kind": "low-coverage",
-      "text": "Moves first: 13 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves first: 11 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "groupId": "coincident",
       "kind": "low-coverage",
-      "text": "Moving now: 26 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 23 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "groupId": "lagging",
@@ -465,22 +465,16 @@
   ],
   "alerts": [
     {
-      "id": "divergence",
-      "severity": "high",
-      "kind": "divergence",
-      "text": "Leading and coincident have split: the front of the chain has turned up while the middle has not."
-    },
-    {
       "id": "coverage-leading",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moves first: 13 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves first: 11 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "coverage-coincident",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moving now: 26 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 23 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "coverage-lagging",
@@ -489,16 +483,22 @@
       "text": "Moves last: 7 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
-      "id": "tone-petronet-lng",
-      "severity": "info",
-      "kind": "tone-drift",
-      "text": "Petronet LNG moved 4 tone steps up (defensive → confident) in Q1 FY27."
-    },
-    {
       "id": "tone-deep-industries",
       "severity": "warn",
       "kind": "tone-drift",
       "text": "Deep Industries moved 3 tone steps down (confident → cautious) in Q2 FY27."
+    },
+    {
+      "id": "tone-ratnamani",
+      "severity": "info",
+      "kind": "tone-drift",
+      "text": "Ratnamani Metals moved 3 tone steps up (defensive → constructive) in Q2 FY27."
+    },
+    {
+      "id": "tone-iocl",
+      "severity": "info",
+      "kind": "tone-drift",
+      "text": "IOCL moved 3 tone steps up (cautious → confident) in Q2 FY27."
     },
     {
       "id": "tone-hpcl",
@@ -517,12 +517,6 @@
       "severity": "info",
       "kind": "tone-drift",
       "text": "L&T moved 2 tone steps up (neutral → confident) in Q2 FY27."
-    },
-    {
-      "id": "tone-ratnamani",
-      "severity": "warn",
-      "kind": "tone-drift",
-      "text": "Ratnamani Metals moved 2 tone steps down (neutral → defensive) in Q4 FY26."
     },
     {
       "id": "tone-gujarat-gas",
@@ -551,7 +545,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are negative and falling — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Kochi utilisation."
+      "text": "Coincident indicators are flat and falling — IOCL Throughput, GAIL Gas transmission volume, IGL EBITDA / scm."
     },
     {
       "id": "macro",
@@ -561,12 +555,12 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +56. The two buckets are on opposite sides of zero with leading ahead — the early-upcycle entry signal."
+      "text": "Leading minus coincident is +47. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "Petronet LNG (defensive → confident); Deep Industries (confident → cautious); HPCL (defensive → constructive); Castrol India (confident → cautious); L&T (neutral → confident); Ratnamani Metals (neutral → defensive); and 2 more."
+      "text": "Deep Industries (confident → cautious); Ratnamani Metals (defensive → constructive); IOCL (cautious → confident); HPCL (defensive → constructive); Castrol India (confident → cautious); L&T (neutral → confident); and 2 more."
     },
     {
       "id": "implication",
@@ -678,7 +672,7 @@
       "label": "Refining/petchem capex pipeline",
       "bucket": "leading",
       "listenFor": "Tone on bid pipeline and tendering - healthy / muted / delayed awards; specific large projects named (refinery expansion, new pipeline, LNG terminal)",
-      "state": "4 companies heard, leaning positive (3 positive, 1 negative); L&T moved 2 steps up, Ratnamani Metals moved 2 steps down.",
+      "state": "4 companies heard, leaning positive (4 positive, 0 negative); L&T moved 2 steps up, Ratnamani Metals moved 3 steps up.",
       "mood": "positive",
       "members": [
         {
@@ -702,11 +696,11 @@
         {
           "companyId": "ratnamani",
           "name": "Ratnamani Metals",
-          "toneId": "defensive",
-          "quarter": "Q4 FY26",
-          "direction": "negative",
-          "driver": "demand conditions",
-          "drift": -2
+          "toneId": "constructive",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "order book recovery",
+          "drift": 3
         },
         {
           "companyId": "welspun-corp",
@@ -720,6 +714,15 @@
       ],
       "drivers": [
         {
+          "companyId": "ratnamani",
+          "name": "Ratnamani Metals",
+          "toneId": "constructive",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "order book recovery",
+          "drift": 3
+        },
+        {
           "companyId": "lt",
           "name": "L&T",
           "toneId": "confident",
@@ -727,15 +730,6 @@
           "direction": "positive",
           "driver": "order inflow and new business wins",
           "drift": 2
-        },
-        {
-          "companyId": "ratnamani",
-          "name": "Ratnamani Metals",
-          "toneId": "defensive",
-          "quarter": "Q4 FY26",
-          "direction": "negative",
-          "driver": "demand conditions",
-          "drift": -2
         }
       ]
     },
@@ -744,8 +738,8 @@
       "label": "Refining margin outlook",
       "bucket": "coincident",
       "listenFor": "Management's own GRM outlook vs. benchmark; planned shutdowns/turnarounds (temporary distortion); new capacity coming online (structural cap)",
-      "state": "4 companies heard, split (2 positive, 2 negative); HPCL moved 3 steps up.",
-      "mood": "mixed",
+      "state": "4 companies heard, leaning positive (3 positive, 1 negative); IOCL moved 3 steps up, HPCL moved 3 steps up.",
+      "mood": "positive",
       "members": [
         {
           "companyId": "reliance",
@@ -759,11 +753,11 @@
         {
           "companyId": "iocl",
           "name": "IOCL",
-          "toneId": "cautious",
-          "quarter": "Q1 FY27",
-          "direction": "negative",
-          "driver": "geopolitical volatility and crude sourcing",
-          "drift": 0
+          "toneId": "confident",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "inventory gains and integrated margin offsets",
+          "drift": 3
         },
         {
           "companyId": "bpcl",
@@ -786,6 +780,15 @@
       ],
       "drivers": [
         {
+          "companyId": "iocl",
+          "name": "IOCL",
+          "toneId": "confident",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "inventory gains and integrated margin offsets",
+          "drift": 3
+        },
+        {
           "companyId": "hpcl",
           "name": "HPCL",
           "toneId": "constructive",
@@ -793,15 +796,6 @@
           "direction": "positive",
           "driver": "refining margin recovery and HRRL commissioning",
           "drift": 3
-        },
-        {
-          "companyId": "reliance",
-          "name": "Reliance",
-          "toneId": "confident",
-          "quarter": "Q2 FY27",
-          "direction": "positive",
-          "driver": "O2C margin expansion",
-          "drift": 1
         }
       ]
     },
@@ -810,17 +804,17 @@
       "label": "Marketing margin normalization",
       "bucket": "coincident",
       "listenFor": "Retail fuel pricing signals, under-recovery risk - politically driven, moves independent of GRM",
-      "state": "3 companies heard, leaning negative (1 positive, 2 negative); HPCL moved 3 steps up.",
-      "mood": "negative",
+      "state": "3 companies heard, leaning positive (2 positive, 1 negative); IOCL moved 3 steps up, HPCL moved 3 steps up.",
+      "mood": "positive",
       "members": [
         {
           "companyId": "iocl",
           "name": "IOCL",
-          "toneId": "cautious",
-          "quarter": "Q1 FY27",
-          "direction": "negative",
-          "driver": "geopolitical volatility and crude sourcing",
-          "drift": 0
+          "toneId": "confident",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "inventory gains and integrated margin offsets",
+          "drift": 3
         },
         {
           "companyId": "bpcl",
@@ -843,6 +837,15 @@
       ],
       "drivers": [
         {
+          "companyId": "iocl",
+          "name": "IOCL",
+          "toneId": "confident",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "inventory gains and integrated margin offsets",
+          "drift": 3
+        },
+        {
           "companyId": "hpcl",
           "name": "HPCL",
           "toneId": "constructive",
@@ -850,15 +853,6 @@
           "direction": "positive",
           "driver": "refining margin recovery and HRRL commissioning",
           "drift": 3
-        },
-        {
-          "companyId": "bpcl",
-          "name": "BPCL",
-          "toneId": "cautious",
-          "quarter": "Q2 FY27",
-          "direction": "negative",
-          "driver": "crude freight and premium costs",
-          "drift": 1
         }
       ]
     },
@@ -867,7 +861,7 @@
       "label": "Gas demand trajectory",
       "bucket": "coincident",
       "listenFor": "Volume growth guidance, new geographic-area rollout pace, industrial vs. domestic PNG mix shift, spot vs. term LNG contracting stance",
-      "state": "5 companies heard, leaning positive (4 positive, 1 negative); Petronet LNG moved 4 steps up, Gujarat Gas moved 2 steps up.",
+      "state": "5 companies heard, leaning positive (4 positive, 1 negative); Gujarat Gas moved 2 steps up.",
       "mood": "positive",
       "members": [
         {
@@ -883,10 +877,10 @@
           "companyId": "petronet-lng",
           "name": "Petronet LNG",
           "toneId": "confident",
-          "quarter": "Q1 FY27",
+          "quarter": "Q2 FY27",
           "direction": "positive",
-          "driver": "operational efficiency and profitability",
-          "drift": 4
+          "driver": "LNG throughput volume",
+          "drift": 0
         },
         {
           "companyId": "igl",
@@ -918,15 +912,6 @@
       ],
       "drivers": [
         {
-          "companyId": "petronet-lng",
-          "name": "Petronet LNG",
-          "toneId": "confident",
-          "quarter": "Q1 FY27",
-          "direction": "positive",
-          "driver": "operational efficiency and profitability",
-          "drift": 4
-        },
-        {
           "companyId": "gujarat-gas",
           "name": "Gujarat Gas",
           "toneId": "confident",
@@ -934,6 +919,15 @@
           "direction": "positive",
           "driver": "post-merger integration and business model strength",
           "drift": 2
+        },
+        {
+          "companyId": "gail",
+          "name": "GAIL",
+          "toneId": "confident",
+          "quarter": "Q1 FY27",
+          "direction": "positive",
+          "driver": "portfolio diversification and infrastructure expansion",
+          "drift": 1
         }
       ]
     },
@@ -1046,27 +1040,32 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moving now moved down 9 points to -13."
+      "text": "Moves first moved up 13 points to 56."
+    },
+    {
+      "kind": "score",
+      "text": "Moving now moved up 22 points to 9."
     },
     {
       "kind": "alert",
-      "text": "New alert: Leading and coincident have split: the front of the chain has turned up while the middle has not."
+      "text": "New alert: IOCL moved 3 tone steps up (cautious → confident) in Q2 FY27."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-08T12:18:39.832Z",
+    "generatedAt": "2026-11-08T14:05:30.164Z",
     "asOf": "Q2 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
       "leading": 43,
-      "coincident": -4,
+      "coincident": -13,
       "lagging": 100
     },
     "alertIds": [
       "coverage-coincident",
       "coverage-lagging",
       "coverage-leading",
+      "divergence",
       "tone-castrol-india",
       "tone-deep-industries",
       "tone-gujarat-gas",

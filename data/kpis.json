@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-08T14:04:47.603Z",
+  "generatedAt": "2026-11-09T17:05:33.186Z",
   "quarters": [
     "Q3 FY26",
     "Q4 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
-    "kpiCells": 401,
-    "realCells": 282,
-    "nullCells": 119,
-    "kpis": 102,
-    "kpisWithTrend": 66
+    "kpiCells": 381,
+    "realCells": 257,
+    "nullCells": 124,
+    "kpis": 97,
+    "kpisWithTrend": 60
   },
   "companies": {
     "deep-industries": {
@@ -32,7 +32,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33612,
+      "ctxChars": 33611,
       "kpis": [
         {
           "id": "asset-utilisation",
@@ -120,7 +120,7 @@
             null
           ],
           "flag": null,
-          "notes": "No day-rate figures stated in any excerpt for Q3 FY26, Q4 FY26, Q1 FY27, or Q2 FY27. The Q3 FY26 AI summary mentions 'Q3 growth was said to be more of volume rather than pricing/day-rate' but does not provide a numeric day-rate. The Q4 FY26"
+          "notes": "No day-rate figures stated in any excerpt for Q3 FY26, Q4 FY26, Q1 FY27, or Q2 FY27. The Q3 FY26 concall mentions growth was 'more of volume' rather than pricing/day-rate, but no numeric day-rate is disclosed. The Q4 FY26 concall discusses "
         },
         {
           "id": "order-book",
@@ -612,15 +612,15 @@
       "name": "Petronet LNG",
       "slug": "PETRONET",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27904,
+      "ctxChars": 27903,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -628,25 +628,24 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            92,
             94,
             90.1,
-            65.6
+            65.6,
+            null
           ],
           "sourceTags": [
-            "mgmt-claim",
             "company-filing",
             "company-filing",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
-            "model",
             "insights",
             "insights",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            null,
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "Capacity utilization at Dahej improved to 94%, up from 92% in the previous quarter",
@@ -661,7 +660,8 @@
               "doc": "Concall Transcript - 19 Aug 2026",
               "quote": "the capacity utilization for Dahej was 65.6%",
               "page": 5
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -670,7 +670,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Dahej Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
         },
         {
           "id": "volume",
@@ -678,25 +678,24 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
-            211,
             233,
             219,
-            207
+            207,
+            null
           ],
           "sourceTags": [
-            "mgmt-claim",
             "company-filing",
             "company-filing",
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
-            "model",
             "insights",
             "insights",
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            null,
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "the overall LNG volume processed by the company stood at 233 TBTU",
@@ -711,7 +710,8 @@
               "doc": "Concall Transcript - 19 Aug 2026",
               "quote": "the overall LNG volume processed was 207 TBTU compared to 220 TBTU in the corresponding quarter",
               "page": 3
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -720,7 +720,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Total LNG Throughput\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
         },
         {
           "id": "dahej-throughput",
@@ -728,29 +728,24 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
-            211,
             214,
             201,
-            192
+            192,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 14 Nov 2025",
-              "quote": "Dahej terminal processed 211 TBTU",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "At the Dahej terminal, volume throughput during the current quarter was 214 TBTU",
@@ -765,7 +760,8 @@
               "doc": "Concall Transcript - 19 Aug 2026",
               "quote": "Dahej, our flagship terminal, processed 192 TBTU of LNG during the quarter",
               "page": 3
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -774,7 +770,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"Dahej Terminal LNG Throughput\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
         },
         {
           "id": "kochi-throughput",
@@ -782,25 +778,24 @@
           "unit": "TBTU",
           "flagBasis": "level",
           "values": [
-            null,
             19,
             18,
+            null,
             null
           ],
           "sourceTags": [
+            "company-filing",
+            "company-filing",
             null,
-            "company-filing",
-            "company-filing",
             null
           ],
           "origins": [
+            "insights",
+            "insights",
             null,
-            "insights",
-            "insights",
             null
           ],
           "citations": [
-            null,
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "the overall LNG volume processed by the company stood at 233 TBTU",
@@ -811,6 +806,7 @@
               "quote": "the overall LNG volume processed by the company stood at 219 TBTU",
               "page": 3
             },
+            null,
             null
           ],
           "oneOffs": [
@@ -828,29 +824,24 @@
           "unit": "%",
           "flagBasis": "level",
           "values": [
-            27,
             29,
             null,
-            23.27
+            23.27,
+            null
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing",
             null,
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
             "insights",
-            "insights",
             null,
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 14 Nov 2025",
-              "quote": "highest ever capacity utilization of Kochi terminal in the current quarter, which stands at -- stood at 27%",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "At Kochi Terminal, PLL achieved the highest ever capacity utilization of 29% during the current quarter",
@@ -861,7 +852,8 @@
               "doc": "Concall Transcript - 19 Aug 2026",
               "quote": "and Kochi was 23.27%.",
               "page": 5
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -869,8 +861,8 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
-          "notes": "From Screener Insights row \"Kochi Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 14 Nov 2025, page 3."
+          "flag": null,
+          "notes": "From Screener Insights row \"Kochi Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
         }
       ]
     },
@@ -1768,15 +1760,15 @@
       "name": "Ratnamani Metals",
       "slug": "RATNAMANI",
       "quarters": [
-        "Q2 FY25",
         "Q4 FY25",
         "Q2 FY26",
-        "Q4 FY26"
+        "Q4 FY26",
+        "Q2 FY27"
       ],
-      "asOf": "Q4 FY26",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33049,
+      "ctxChars": 33048,
       "kpis": [
         {
           "id": "order-book",
@@ -1784,32 +1776,36 @@
           "unit": "INR Crores",
           "flagBasis": "qoq",
           "values": [
-            2900,
             2100,
             2050,
-            2162
+            2162,
+            2600
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing",
             "mgmt-claim",
-            "mgmt-claim"
+            "mgmt-claim",
+            "company-filing"
           ],
           "origins": [
-            "model",
             "insights",
             "model",
-            "model"
+            "model",
+            "insights"
           ],
           "citations": [
-            null,
             {
               "doc": "Annual Report - 31 Mar 2025",
               "quote": "The Company ended the year with an order book of approximately 2,100 crore (55% exports, 45% domestic).",
               "page": 29
             },
             null,
-            null
+            null,
+            {
+              "doc": "Presentation - 06 Nov 2026",
+              "quote": "Order book increased to INR 2600+ crores (30% from previous quarter)",
+              "page": 6
+            }
           ],
           "oneOffs": [
             null,
@@ -1817,7 +1813,7 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "accelerating",
           "notes": null
         },
         {
@@ -1827,20 +1823,20 @@
           "flagBasis": "level",
           "values": [
             null,
-            null,
             750,
+            null,
             null
           ],
           "sourceTags": [
             null,
-            null,
             "mgmt-claim",
+            null,
             null
           ],
           "origins": [
             null,
-            null,
             "model",
+            null,
             null
           ],
           "citations": [
@@ -1856,7 +1852,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY25: Order inflow not stated; only order book levels and some order booking amounts mentioned (e.g., ₹750 cr carbon steel domestic orders in Q2 FY26). Q4 FY25: Order inflow not stated; only order book levels provided. Q2 FY26: Order inf"
+          "notes": "Q4 FY25: No order inflow figure stated for the quarter. Q2 FY26: Management mentioned carbon steel domestic order booking in the quarter was ₹750 cr, but this is only one segment (carbon steel domestic), not total pipe order inflow for the "
         }
       ]
     },
@@ -2196,7 +2192,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34471,
+      "ctxChars": 34470,
       "kpis": [
         {
           "id": "o2c-ebitda-per-tonne",
@@ -2234,7 +2230,7 @@
             null
           ],
           "flag": null,
-          "notes": "O2C EBITDA per tonne not stated in any excerpt. The SCREENER INSIGHTS table shows O2C Refinery Throughput in MMT for Q3 FY26 (Dec 2025) as missing/dash, Q4 FY26 (Mar 2026) 19.5 MMT, Q1 FY27 (Jun 2026) 18.1 MMT, Q2 FY27 (Sep 2026) 20.6 MMT. "
+          "notes": "O2C EBITDA per tonne not stated in any excerpt. Q3 FY26 concall mentions O2C EBITDA ₹17,000 cr (approx) but no throughput or per-tonne figure. Q4 FY26 concall mentions O2C EBITDA -4% YoY but no per-tonne metric. Q1 FY27 concall mentions O2C"
         },
         {
           "id": "petchem-margin",
@@ -2272,7 +2268,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated in any excerpt. The Q2 FY27 CONCALL TRANSCRIPT (Amit Chaturvedi 01:07:02–01:17:25) discusses petrochemical deltas and feedstock advantage qualitatively (ethane vs naphtha cracking advantage, PE/PP/PVC deltas"
+          "notes": "Petchem margin in $/t not stated in any excerpt. Q3 FY26 concall discusses petchem deltas and demand but no aggregate margin figure. Q4 FY26 concall mentions energy shock and petchem volatility but no margin metric. Q1 FY27 concall discusse"
         },
         {
           "id": "retail-fuel-margin",
@@ -2310,7 +2306,7 @@
             null
           ],
           "flag": null,
-          "notes": "Retail fuel margin in ₹/litre not stated in any excerpt. The SCREENER INSIGHTS table shows Jio-bp Retail Fuel Outlets count rising (Q3 FY26 missing, Q4 FY26 2,199, Q1 FY27 2,221, Q2 FY27 2,304) but no margin. The Q3 FY26 CONCALL mentions 'J"
+          "notes": "Retail fuel margin per litre not stated in any excerpt. Q3 FY26, Q4 FY26, Q1 FY27, and Q2 FY27 concalls all discuss fuel retail operations (Jio-bp outlets count in Screener Insights) and mention under-recoveries and SAED constraints in Q1 F"
         },
         {
           "id": "throughput",
@@ -2419,12 +2415,12 @@
       "name": "IOCL",
       "slug": "IOC",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "ctxChars": 31330,
@@ -2435,16 +2431,16 @@
           "unit": "$/bbl",
           "flagBasis": "level",
           "values": [
-            2.15,
             10.66,
             15.59,
-            15.59
+            15.59,
+            18.52
           ],
           "sourceTags": [
-            "company-filing",
             "mgmt-claim",
             "company-filing",
-            "company-filing"
+            "company-filing",
+            "mgmt-claim"
           ],
           "origins": [
             "model",
@@ -2462,7 +2458,7 @@
             null,
             null,
             null,
-            null
+            "inventory gain ₹6,948 cr refining + marketing combined"
           ],
           "flag": "steady",
           "notes": null
@@ -2503,7 +2499,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin per litre not disclosed in any of the excerpts. The Q1 FY27 concall summary mentions 'significant volatility in international crude and product prices that exerted considerable pressure on marketing margins on retail fuels'"
+          "notes": "Marketing margin per litre not disclosed in any of the excerpts. Q2 FY26 concall mentions LPG under-recovery ~₹100/cylinder and current ~₹40/cylinder, but no aggregate marketing margin per litre. Q1 FY27 concall references 'considerable pre"
         },
         {
           "id": "throughput",
@@ -2511,29 +2507,24 @@
           "unit": "MMT",
           "flagBasis": "level",
           "values": [
-            18.7,
             17.6,
             19.7,
-            19.2
+            19.2,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
-            "company-filing",
-            "official"
+            "official",
+            null
           ],
           "origins": [
             "insights",
             "insights",
-            "insights",
-            "ppac"
+            "ppac",
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Q1 2025-26: Refinery Throughput (MMT) 18.7",
-              "page": 4
-            },
             {
               "doc": "Presentation - 27 Oct 2025",
               "quote": "Q2 2025-26: Refinery Throughput (MMT) 17.6",
@@ -2544,6 +2535,7 @@
               "quote": "Q4 2025-26: Refinery Throughput (MMT) 19.7",
               "page": 5
             },
+            null,
             null
           ],
           "oneOffs": [
@@ -2553,282 +2545,7 @@
             null
           ],
           "flag": "inflecting-down",
-          "notes": null
-        },
-        {
-          "id": "refinery-utilisation",
-          "label": "Refinery utilisation",
-          "unit": "%",
-          "flagBasis": "level",
-          "values": [
-            106.7,
-            99.5,
-            113.9,
-            109.4
-          ],
-          "sourceTags": [
-            "company-filing",
-            "company-filing",
-            "company-filing",
-            "company-filing"
-          ],
-          "origins": [
-            "insights",
-            "insights",
-            "insights",
-            "insights"
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Q1 2025-26: Refinery Capacity utilization (%) 106.7",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 27 Oct 2025",
-              "quote": "Q2 2025-26: Refinery Capacity utilization (%) 99.5",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 19 May 2026",
-              "quote": "Q4 2025-26: Refinery Capacity utilization (%) 113.9",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 07 Aug 2026",
-              "quote": "Refineries achieved crude throughput of 19.2 MMT with a capacity utilisation of 109.4%",
-              "page": 4
-            }
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": "inflecting-down",
-          "beyondBrief": true,
-          "notes": null
-        },
-        {
-          "id": "petchem-sales",
-          "label": "Petchem sales",
-          "unit": "MMT",
-          "flagBasis": "level",
-          "values": [
-            0.83,
-            0.77,
-            0.9,
-            0.77
-          ],
-          "sourceTags": [
-            "company-filing",
-            "company-filing",
-            "company-filing",
-            "company-filing"
-          ],
-          "origins": [
-            "insights",
-            "insights",
-            "insights",
-            "insights"
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Q1 2025-26: Petrochemicals Total 0.800 Domestic + 0.032 Exports = 0.832",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 28 Oct 2025",
-              "quote": "The sales of petrochemical products, including exports, during this quarter was 0.77 MMT",
-              "page": 4
-            },
-            {
-              "doc": "Concall Transcript - 19 May 2026",
-              "quote": "For Q4 2025-26, sale of 0.901 MMT was achieved as compared to 0.893 MMT in the preceding quarter",
-              "page": 4
-            },
-            {
-              "doc": "Concall Transcript - 07 Aug 2026",
-              "quote": "The sale of petrochemical products, including exports during this quarter was 0.768 MMT",
-              "page": 5
-            }
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": "inflecting-down",
-          "beyondBrief": true,
-          "notes": null
-        },
-        {
-          "id": "pipeline-throughput",
-          "label": "Pipeline throughput",
-          "unit": "MMT",
-          "flagBasis": "level",
-          "values": [
-            26.3,
-            24.1,
-            27.7,
-            28.5
-          ],
-          "sourceTags": [
-            "company-filing",
-            "company-filing",
-            "company-filing",
-            "company-filing"
-          ],
-          "origins": [
-            "insights",
-            "insights",
-            "insights",
-            "insights"
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Pipeline Operations: Throughput (MMT) 26.3",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 27 Oct 2025",
-              "quote": "Q2 2025-26: Pipeline Throughput (MMT) 24.1",
-              "page": 4
-            },
-            {
-              "doc": "Presentation - 19 May 2026",
-              "quote": "Q4 2025-26: Pipeline Throughput (MMT) 27.7",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 07 Aug 2026",
-              "quote": "highest ever quarterly throughput of 28.5 MMT with capacity utilization of 79.9%",
-              "page": 4
-            }
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": "decelerating",
-          "beyondBrief": true,
-          "notes": null
-        },
-        {
-          "id": "total-sales-volume",
-          "label": "Total sales volume",
-          "unit": "MMT",
-          "flagBasis": "level",
-          "values": [
-            26.33,
-            24.26,
-            27.34,
-            26.21
-          ],
-          "sourceTags": [
-            "company-filing",
-            "company-filing",
-            "company-filing",
-            "company-filing"
-          ],
-          "origins": [
-            "insights",
-            "insights",
-            "insights",
-            "insights"
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Q1 2025-26: Total Sales (a+b+c) 26.328 MMT (highest ever total quarterly sale)",
-              "page": 5
-            },
-            {
-              "doc": "Presentation - 27 Oct 2025",
-              "quote": "Q2 2025-26: Total Sales (a+b+c) 24.262 MMT",
-              "page": 5
-            },
-            {
-              "doc": "Presentation - 19 May 2026",
-              "quote": "Q4 2025-26: Total Sales (a+b+c) 27.343 MMT",
-              "page": 6
-            },
-            {
-              "doc": "Concall Transcript - 07 Aug 2026",
-              "quote": "The total sales volume during the quarter was 26.211 MMT",
-              "page": 5
-            }
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": "inflecting-down",
-          "beyondBrief": true,
-          "notes": null
-        },
-        {
-          "id": "gas-sales",
-          "label": "Gas sales",
-          "unit": "MMT",
-          "flagBasis": "level",
-          "values": [
-            1.69,
-            1.84,
-            1.81,
-            1.87
-          ],
-          "sourceTags": [
-            "company-filing",
-            "company-filing",
-            "company-filing",
-            "company-filing"
-          ],
-          "origins": [
-            "insights",
-            "insights",
-            "insights",
-            "insights"
-          ],
-          "citations": [
-            {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "Q1 2025-26: Gas 1.685 (Domestic 0.800 + Exports 0.032 + CGD included)",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 28 Oct 2025",
-              "quote": "During the year, we registered highest quarterly gas sales of 1.840 MMT, which includes CGD sales of 44 TMT",
-              "page": 5
-            },
-            {
-              "doc": "Concall Transcript - 19 May 2026",
-              "quote": "During the quarter, we registered gas sales of 1,814 TMT which includes CGD sales of 54 TMT",
-              "page": 4
-            },
-            {
-              "doc": "Concall Transcript - 07 Aug 2026",
-              "quote": "During the quarter, we registered gas sales of 1,873 TMT which includes CGD sales of 67 TMT",
-              "page": 5
-            }
-          ],
-          "oneOffs": [
-            null,
-            null,
-            null,
-            null
-          ],
-          "flag": "inflecting-up",
-          "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"Refinery Throughput\" (Standalone data); latest value cited to Presentation - 27 Oct 2025, page 4."
         }
       ]
     },
@@ -3071,7 +2788,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": "Q3 FY26: No data found in excerpts. Q4 FY26: No data found in excerpts. Q1 FY27: No data found in excerpts. Q2 FY27: Management stated 'refinery GRMs in quarter 2 were... 32.15 pre-SAED' on the Q2 FY27 call."
+          "notes": "Q3 FY26: no GRM figure stated in excerpts. Q4 FY26: no GRM figure stated in excerpts. Q1 FY27: no GRM figure stated in excerpts. Q2 FY27: AI summary states 'Refinery GRM: $32.15/bbl pre-SAED' as a management-cited figure."
         },
         {
           "id": "marketing-margin",
@@ -3109,7 +2826,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q3 FY26: No numeric marketing margin per liter stated. Q4 FY26: No numeric marketing margin per liter stated. Q1 FY27: No numeric marketing margin per liter stated. Q2 FY27: Management said 'marketing margins were decent as compared to sign"
+          "notes": "Q3 FY26: no marketing margin per litre stated. Q4 FY26: no marketing margin per litre stated. Q1 FY27: no marketing margin per litre stated. Q2 FY27: AI summary mentions 'Marketing margins improved vs significant under-recovery in quarter 1"
         },
         {
           "id": "throughput",
@@ -3171,7 +2888,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31885,
+      "ctxChars": 31884,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -3263,7 +2980,7 @@
             null
           ],
           "flag": null,
-          "notes": "Petchem margin in $/t not stated in any excerpt. Q1 FY26 concall mentions polymer segment loss of ₹249 crore and feedstock cost ~$10.5-10.6/MMBtu but no per-tonne margin. Q2 FY26 concall mentions loss of ₹299 crore and feedstock ~$10.5-10.6"
+          "notes": "Petchem margin not stated in any of the excerpts. The documents report polymer production volumes (TMT) and segment PBT/losses, but do not provide margin per tonne in $/t. Q1 FY26 concall mentions polymer segment incurred loss of Rs 130 cro"
         },
         {
           "id": "gas-marketing-volume",
@@ -3499,7 +3216,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32397,
+      "ctxChars": 34208,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -3586,19 +3303,19 @@
             4.62,
             4.67,
             4.77,
-            4.892
+            4.89
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "mgmt-claim"
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             {
@@ -3616,7 +3333,11 @@
               "quote": "we achieved overall average sales volume of 4.766 mmscmd as against 4.672 mmscmd in the previous quarter",
               "page": 4
             },
-            null
+            {
+              "doc": "Concall Transcript - 06 Nov 2026",
+              "quote": "we achieved overall sales volume of 4.892 MMSCMD as against 4.766 MMSCMD in the previous quarter",
+              "page": 4
+            }
           ],
           "oneOffs": [
             null,
@@ -3637,19 +3358,19 @@
             3.28,
             3.35,
             3.5,
-            3.552
+            3.55
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "mgmt-claim"
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             {
@@ -3667,7 +3388,11 @@
               "quote": "Sales volume of the CNG has increased from 3.185 mmscmd to 3.496 mmscmd",
               "page": 4
             },
-            null
+            {
+              "doc": "Concall Transcript - 06 Nov 2026",
+              "quote": "Sales volume of CNG has increased by 9.14% from 3.26 MMSCMD to 3.55 MMSCMD.",
+              "page": 4
+            }
           ],
           "oneOffs": [
             null,
@@ -3675,7 +3400,7 @@
             null,
             null
           ],
-          "flag": "decelerating",
+          "flag": "steady",
           "beyondBrief": true,
           "notes": null
         },
@@ -3688,19 +3413,19 @@
             0.6,
             0.6,
             0.62,
-            0.639
+            0.64
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "mgmt-claim"
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             {
@@ -3718,7 +3443,11 @@
               "quote": "Sales for domestic DPNG has increased from 0.571 mmscmd to 0.623 mmscmd",
               "page": 4
             },
-            null
+            {
+              "doc": "Concall Transcript - 06 Nov 2026",
+              "quote": "Sales volume for domestic DPNG has increased by 9.84% from 0.58 MMSCMD to 0.64 MMSCMD.",
+              "page": 4
+            }
           ],
           "oneOffs": [
             null,
@@ -3726,7 +3455,7 @@
             null,
             null
           ],
-          "flag": "decelerating",
+          "flag": "steady",
           "beyondBrief": true,
           "notes": null
         },
@@ -3745,13 +3474,13 @@
             "company-filing",
             "company-filing",
             "company-filing",
-            "mgmt-claim"
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "model"
+            "insights"
           ],
           "citations": [
             {
@@ -3769,15 +3498,19 @@
               "quote": "In case of industrial and commercial, sales volume has decreased from 0.698 mmscmd to 0.648 mmscmd",
               "page": 4
             },
-            null
+            {
+              "doc": "Concall Transcript - 06 Nov 2026",
+              "quote": "there is a decrease in sales volume of 7.48% from 0.76 MMSCMD to 0.70 MMSCMD",
+              "page": 4
+            }
           ],
           "oneOffs": [
             null,
             null,
             null,
-            "Supply restrictions + higher Brent"
+            null
           ],
-          "flag": "decelerating",
+          "flag": "inflecting-up",
           "notes": null
         }
       ]
@@ -4747,7 +4480,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34355,
+      "ctxChars": 34354,
       "kpis": [
         {
           "id": "tanker-freight-rate",

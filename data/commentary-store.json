@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-11-08T14:05:30.101Z",
+  "generatedAt": "2026-11-09T17:07:23.538Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -793,9 +793,32 @@
           "attempts": 2,
           "model": "gpt-4o",
           "at": "2026-07-28T18:19:40.113Z"
+        },
+        "Q2 FY27": {
+          "toneId": "constructive",
+          "score": 4,
+          "quote": "Now seeing recovery, especially in stainless steel: Standalone order book: >₹2,600 cr, ~30% higher QoQ",
+          "rationale": "Management framed past 9-12 months as difficult but now sees clear demand recovery with 30% QoQ order book growth and strong bidding pipeline.",
+          "driver": "order book recovery",
+          "direction": "positive",
+          "signal": "Management expects utilization to normalize over the next year, driving margin improvement from current levels, with near-term stability and stronger gains anticipated as capacity utilization returns to optimum.",
+          "mgmtDataPoints": [
+            "Standalone order book: >₹2,600 cr (~30% higher QoQ)",
+            "Stainless steel order book: ~₹1,000 cr",
+            "Carbon steel order book: ~₹1,700 cr",
+            "Active bidding pipeline: ~₹5,000+ cr",
+            "Consolidated EBITDA margin guidance: 16-18% (±1%)",
+            "Spiral Mill 3 capacity: 100,000 TPA"
+          ],
+          "implication": "Order book momentum and commissioning of new capacity should support volume growth over the next two quarters, though margin expansion will be gradual and contingent on utilization improvement and freight cost normalization.",
+          "doc": "Concall AI summary (Q2 FY27)",
+          "fingerprint": "3fb4d13f69e4",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-09T17:07:00.685Z"
         }
       },
-      "updatedAt": "2026-07-28T18:19:40.113Z"
+      "updatedAt": "2026-11-09T17:07:00.685Z"
     },
     "welspun-corp": {
       "cells": {
@@ -1130,9 +1153,32 @@
           "attempts": 1,
           "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
           "at": "2026-08-08T06:23:36.939Z"
+        },
+        "Q2 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "sharp rebound driven by inventory gains + integrated offsets Q2 net profit: ₹21,630 cr vs Q1 net loss ₹2,661 cr",
+          "rationale": "Management highlighted strong profit turnaround, aggressive diversification success, and multi-factor profitability across segments despite volatile crude environment.",
+          "driver": "inventory gains and integrated margin offsets",
+          "direction": "positive",
+          "signal": "Management demonstrated tactical agility with spot procurement rising to 87% and leveraged inventory gains plus diversified product margins to deliver sharp earnings recovery despite crude volatility.",
+          "mgmtDataPoints": [
+            "Q2 net profit: ₹21,630 cr",
+            "H1 PAT: ₹18,969 cr",
+            "Inventory gain: ₹6,948 cr",
+            "Refining throughput: 18.1 MMT",
+            "Capacity utilization: 102.3%",
+            "GRM (incl. SAD): US$18.52/bbl"
+          ],
+          "implication": "Continued reliance on inventory management and spot crude flexibility will be critical; if crude stabilizes or reverses, inventory tailwinds may fade, testing whether operational cost gains and diversified product margins can sustain elevat",
+          "doc": "Concall AI summary (Q2 FY27)",
+          "fingerprint": "687ca85f6a28",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-09T17:07:07.681Z"
         }
       },
-      "updatedAt": "2026-08-08T06:23:36.939Z"
+      "updatedAt": "2026-11-09T17:07:07.681Z"
     },
     "bpcl": {
       "cells": {
@@ -1580,9 +1626,30 @@
           "attempts": 1,
           "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
           "at": "2026-08-20T06:14:45.558Z"
+        },
+        "Q2 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "This has been our best ever second quarter as well as our best ever half year in terms of both PBT and PAT.",
+          "rationale": "Management highlights record-breaking profitability and strong volume growth with upbeat language.",
+          "driver": "LNG throughput volume",
+          "direction": "positive",
+          "signal": "Management conveyed strong operational momentum with volumes rising sequentially and year-on-year, underpinning record profitability for the period.",
+          "mgmtDataPoints": [
+            "Q2 FY27 LNG processed: 231 TBTU",
+            "Q2 FY27 Dahej throughput: 216 TBTU",
+            "Sequential volume growth: 12%",
+            "YoY volume growth: 1%"
+          ],
+          "implication": "The record performance and volume uptick suggest continued strong utilization and earnings momentum into the second half of FY27.",
+          "doc": "Concall transcript (Q2 FY27)",
+          "fingerprint": "8b7e0ae83f45",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-09T17:07:17.645Z"
         }
       },
-      "updatedAt": "2026-08-20T06:14:45.558Z"
+      "updatedAt": "2026-11-09T17:07:17.645Z"
     },
     "igl": {
       "cells": {
