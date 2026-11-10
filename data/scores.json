@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-09T17:07:23.590Z",
+  "generatedAt": "2026-11-10T13:55:17.043Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -115,18 +115,18 @@
       ]
     },
     "coincident": {
-      "score": 9,
+      "score": 26,
       "prev": -5,
-      "delta": -22,
+      "delta": 12,
       "deltaBasis": "kpi-only",
-      "level": "flat",
-      "direction": "falling",
+      "level": "positive",
+      "direction": "rising",
       "kpisScored": 18,
       "kpisTotal": 40,
       "kpisBeyondBrief": 13,
       "tonesScored": 15,
       "companiesScored": 11,
-      "staleKpis": 21,
+      "staleKpis": 16,
       "oneOffKpis": 2,
       "unknownKpis": 0,
       "lowCoverage": true,
@@ -146,6 +146,27 @@
           "company": "GAIL",
           "label": "Gas transmission volume",
           "flag": "inflecting-down"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "petronet-lng",
+          "company": "Petronet LNG",
+          "label": "Regas utilisation %",
+          "flag": "inflecting-up"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "petronet-lng",
+          "company": "Petronet LNG",
+          "label": "Volume",
+          "flag": "inflecting-up"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "petronet-lng",
+          "company": "Petronet LNG",
+          "label": "Dahej throughput",
+          "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
@@ -277,26 +298,26 @@
     }
   },
   "divergence": {
-    "value": 47,
+    "value": 30,
     "leadingSign": 1,
-    "coincidentSign": 0,
+    "coincidentSign": 1,
     "signsDiffer": false
   },
   "divergenceSeries": [
     null,
     null,
     -49,
-    90
+    56
   ],
   "stage": {
-    "stageId": "early-upcycle",
-    "position": 35,
-    "ruleId": "early-upcycle",
-    "ruleLabel": "Leading turning positive off a low base, coincident not yet following",
+    "stageId": "mid-upcycle",
+    "position": 55,
+    "ruleId": "mid-upcycle",
+    "ruleLabel": "Leading strongly positive, coincident positive and accelerating, lagging turning",
     "confidence": "normal",
     "because": [
-      "Leading 56 (strong-positive, rising), coincident 9 (flat, falling), lagging 100 (strong-positive).",
-      "Leading turning positive off a low base, coincident not yet following."
+      "Leading 56 (strong-positive, rising), coincident 26 (positive, rising), lagging 100 (strong-positive).",
+      "Leading strongly positive, coincident positive and accelerating, lagging turning."
     ]
   },
   "macro": {
@@ -359,8 +380,8 @@
     ]
   },
   "stageMacro": {
-    "stageId": "early-upcycle",
-    "expected": "crude recovering",
+    "stageId": "mid-upcycle",
+    "expected": "crude trending up",
     "observed": "crude rising",
     "agrees": true
   },
@@ -455,7 +476,7 @@
     {
       "groupId": "coincident",
       "kind": "low-coverage",
-      "text": "Moving now: 23 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 18 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "groupId": "lagging",
@@ -474,7 +495,7 @@
       "id": "coverage-coincident",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moving now: 23 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 18 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "coverage-lagging",
@@ -535,7 +556,7 @@
     {
       "id": "call",
       "label": "Cycle call",
-      "text": "Early Upcycle (Just turning up)."
+      "text": "Mid Upcycle (Picking up speed)."
     },
     {
       "id": "leading",
@@ -545,7 +566,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are flat and falling — IOCL Throughput, GAIL Gas transmission volume, IGL EBITDA / scm."
+      "text": "Coincident indicators are positive and rising — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Regas utilisation %."
     },
     {
       "id": "macro",
@@ -555,7 +576,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +47. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +30. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -565,37 +586,37 @@
     {
       "id": "implication",
       "label": "Implication for the next 1–2 quarters",
-      "text": "First new orders are landing. Only the early movers feel it."
+      "text": "Orders are broad. Most of the sector is busy."
     }
   ],
   "actions": {
-    "stageId": "early-upcycle",
-    "stageLabel": "Early Upcycle",
-    "stagePlainLabel": "Just turning up",
-    "why": "Oilfield services and first-line capex enablers have the most operating leverage to a capex turn; order books inflect here first and hardest",
+    "stageId": "mid-upcycle",
+    "stageLabel": "Mid Upcycle",
+    "stagePlainLabel": "Picking up speed",
+    "why": "The capex wave broadens from early movers to the wider process-equipment ecosystem; second-line enablers catch up",
     "research": [
       {
-        "label": "Deep Industries",
-        "companyId": "deep-industries"
+        "label": "L&T (hydrocarbon)",
+        "companyId": "lt"
       },
       {
-        "label": "Jindal Drilling",
-        "companyId": "jindal-drilling"
+        "label": "ISGEC",
+        "companyId": null
       },
       {
-        "label": "Engineers India",
-        "companyId": "engineers-india"
+        "label": "Anup Engineering",
+        "companyId": null
       },
       {
-        "label": "Ratnamani",
-        "companyId": "ratnamani"
+        "label": "JNK",
+        "companyId": null
       },
       {
-        "label": "Welspun",
-        "companyId": "welspun-corp"
+        "label": "DEE Development",
+        "companyId": null
       },
       {
-        "label": "Man Industries",
+        "label": "Inox India",
         "companyId": null
       }
     ]
@@ -1039,39 +1060,34 @@
   ],
   "changes": [
     {
-      "kind": "score",
-      "text": "Moves first moved up 13 points to 56."
+      "kind": "stage-call",
+      "text": "The cycle call moved from Just turning up to Picking up speed."
     },
     {
       "kind": "score",
-      "text": "Moving now moved up 22 points to 9."
-    },
-    {
-      "kind": "alert",
-      "text": "New alert: IOCL moved 3 tone steps up (cautious → confident) in Q2 FY27."
+      "text": "Moving now moved up 17 points to 26."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-08T14:05:30.164Z",
+    "generatedAt": "2026-11-09T17:07:23.590Z",
     "asOf": "Q2 FY27",
     "scoringVersion": 2,
     "stageId": "early-upcycle",
     "scores": {
-      "leading": 43,
-      "coincident": -13,
+      "leading": 56,
+      "coincident": 9,
       "lagging": 100
     },
     "alertIds": [
       "coverage-coincident",
       "coverage-lagging",
       "coverage-leading",
-      "divergence",
       "tone-castrol-india",
       "tone-deep-industries",
       "tone-gujarat-gas",
       "tone-hpcl",
+      "tone-iocl",
       "tone-lt",
-      "tone-petronet-lng",
       "tone-ratnamani",
       "tone-shipping-corp"
     ]

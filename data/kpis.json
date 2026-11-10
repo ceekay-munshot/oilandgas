@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-09T17:05:33.186Z",
+  "generatedAt": "2026-11-10T13:54:43.098Z",
   "quarters": [
     "Q3 FY26",
     "Q4 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 28,
     "kpiCells": 381,
-    "realCells": 257,
-    "nullCells": 124,
+    "realCells": 260,
+    "nullCells": 121,
     "kpis": 97,
     "kpisWithTrend": 60
   },
@@ -617,10 +617,10 @@
         "Q1 FY27",
         "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 27903,
+      "ctxChars": 27908,
       "kpis": [
         {
           "id": "regas-utilisation",
@@ -631,19 +631,19 @@
             94,
             90.1,
             65.6,
-            null
+            73
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "insights"
           ],
           "citations": [
             {
@@ -661,7 +661,11 @@
               "quote": "the capacity utilization for Dahej was 65.6%",
               "page": 5
             },
-            null
+            {
+              "doc": "Concall Transcript - 09 Nov 2026",
+              "quote": "Dahej operated at 73% compared with 66% in the previous quarter and 92% in the corresponding quarter",
+              "page": 3
+            }
           ],
           "oneOffs": [
             null,
@@ -669,8 +673,8 @@
             null,
             null
           ],
-          "flag": "decelerating",
-          "notes": "From Screener Insights row \"Dahej Terminal Capacity Utilization\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
+          "flag": "inflecting-up",
+          "notes": null
         },
         {
           "id": "volume",
@@ -681,19 +685,19 @@
             233,
             219,
             207,
-            null
+            231
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "insights"
           ],
           "citations": [
             {
@@ -711,7 +715,11 @@
               "quote": "the overall LNG volume processed was 207 TBTU compared to 220 TBTU in the corresponding quarter",
               "page": 3
             },
-            null
+            {
+              "doc": "Concall Transcript - 09 Nov 2026",
+              "quote": "we processed 231 TBTU of LNG during the quarter compared to 207 TBTU in the previous quarter and 228 TBTU in the corresponding quarter last year",
+              "page": 3
+            }
           ],
           "oneOffs": [
             null,
@@ -719,8 +727,8 @@
             null,
             null
           ],
-          "flag": "decelerating",
-          "notes": "From Screener Insights row \"Total LNG Throughput\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
+          "flag": "inflecting-up",
+          "notes": null
         },
         {
           "id": "dahej-throughput",
@@ -731,19 +739,19 @@
             214,
             201,
             192,
-            null
+            216
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "insights"
           ],
           "citations": [
             {
@@ -761,7 +769,11 @@
               "quote": "Dahej, our flagship terminal, processed 192 TBTU of LNG during the quarter",
               "page": 3
             },
-            null
+            {
+              "doc": "Concall Transcript - 09 Nov 2026",
+              "quote": "At Dahej, throughput stood at 216 TBTU as against 192 TBTU in the previous quarter and 211 TBTU in the corresponding quarter last year.",
+              "page": 3
+            }
           ],
           "oneOffs": [
             null,
@@ -769,8 +781,8 @@
             null,
             null
           ],
-          "flag": "decelerating",
-          "notes": "From Screener Insights row \"Dahej Terminal LNG Throughput\"; latest value cited to Concall Transcript - 20 Feb 2026, page 3."
+          "flag": "inflecting-up",
+          "notes": null
         },
         {
           "id": "kochi-throughput",
@@ -4480,7 +4492,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34354,
+      "ctxChars": 34383,
       "kpis": [
         {
           "id": "tanker-freight-rate",

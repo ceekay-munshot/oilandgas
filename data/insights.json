@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-09T17:03:58.831Z",
+  "generatedAt": "2026-11-10T13:53:07.814Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -905,7 +905,6 @@
       "toggled": "/insights/company/2461/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Sep 2023",
         "Dec 2023",
         "Mar 2024",
         "Jun 2024",
@@ -916,10 +915,10 @@
         "Sep 2025",
         "Dec 2025",
         "Mar 2026",
-        "Jun 2026"
+        "Jun 2026",
+        "Sep 2026"
       ],
       "periodsIso": [
-        "2023-09",
         "2023-12",
         "2024-03",
         "2024-06",
@@ -930,7 +929,8 @@
         "2025-09",
         "2025-12",
         "2026-03",
-        "2026-06"
+        "2026-06",
+        "2026-09"
       ],
       "rows": [
         {
@@ -938,7 +938,6 @@
           "unit": "TBTU",
           "scope": null,
           "values": [
-            210,
             218,
             219,
             248,
@@ -949,14 +948,10 @@
             211,
             214,
             201,
-            192
+            192,
+            216
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 06 Nov 2023",
-              "quote": "Throughput in Dahej, it has been 210 TBTU",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 05 Feb 2024",
               "quote": "total throughput has been 218 TBTU",
@@ -1011,6 +1006,11 @@
               "doc": "Concall Transcript - 19 Aug 2026",
               "quote": "Dahej, our flagship terminal, processed 192 TBTU of LNG during the quarter",
               "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 09 Nov 2026",
+              "quote": "At Dahej, throughput stood at 216 TBTU as against 192 TBTU in the previous quarter and 211 TBTU in the corresponding quarter last year.",
+              "page": 3
             }
           ]
         },
@@ -1019,7 +1019,6 @@
           "unit": "TBTU",
           "scope": null,
           "values": [
-            223,
             232,
             234,
             262,
@@ -1027,17 +1026,13 @@
             228,
             205,
             220,
-            null,
+            228,
             233,
             219,
-            207
+            207,
+            231
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 06 Nov 2023",
-              "quote": "Total throughput of Dahej and Kochi has been to the extent of 223 TBTU in the current quarter",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 05 Feb 2024",
               "quote": "If you look at Dahej and Kochi Terminal together, we have registered 232 TBTU of throughput in this quarter",
@@ -1073,7 +1068,11 @@
               "quote": "Overall volume processed during the quarter was 220 TBTU",
               "page": 3
             },
-            null,
+            {
+              "doc": "Concall Transcript - 09 Nov 2026",
+              "quote": "we processed 231 TBTU of LNG during the quarter compared to 207 TBTU in the previous quarter and 228 TBTU in the corresponding quarter last year",
+              "page": 3
+            },
             {
               "doc": "Concall Transcript - 20 Feb 2026",
               "quote": "the overall LNG volume processed by the company stood at 233 TBTU",
@@ -1088,6 +1087,84 @@
               "doc": "Concall Transcript - 19 Aug 2026",
               "quote": "the overall LNG volume processed was 207 TBTU compared to 220 TBTU in the corresponding quarter",
               "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 09 Nov 2026",
+              "quote": "we processed 231 TBTU of LNG during the quarter compared to 207 TBTU in the previous quarter and 228 TBTU in the corresponding quarter last year",
+              "page": 3
+            }
+          ]
+        },
+        {
+          "label": "Dahej Terminal Capacity Utilization",
+          "unit": "%",
+          "scope": null,
+          "values": [
+            96,
+            97,
+            109,
+            98,
+            93,
+            null,
+            null,
+            92,
+            94,
+            90.1,
+            65.6,
+            73
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 05 Feb 2024",
+              "quote": "Dahej has been utilized to the extent of 96% this time",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 30 May 2024",
+              "quote": "operated at 109% this time in Dahej as compared to 97% in the previous quarter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 31 Jul 2024",
+              "quote": "the Dahej performance overall, it has been 109%",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 30 Oct 2024",
+              "quote": "the utilization of the Dahej terminal, it is at the level of 98%",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 04 Feb 2025",
+              "quote": "the capacity utilization, it has been 93% this time",
+              "page": 2
+            },
+            null,
+            null,
+            {
+              "doc": "Concall Transcript - 09 Nov 2026",
+              "quote": "Dahej operated at 73% compared with 66% in the previous quarter and 92% in the corresponding quarter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 20 Feb 2026",
+              "quote": "Capacity utilization at Dahej improved to 94%, up from 92% in the previous quarter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 11 May 2026",
+              "quote": "capacity utilization at 90.1% during the current quarter",
+              "page": 3
+            },
+            {
+              "doc": "Concall Transcript - 19 Aug 2026",
+              "quote": "the capacity utilization for Dahej was 65.6%",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 09 Nov 2026",
+              "quote": "Dahej operated at 73% compared with 66% in the previous quarter and 92% in the corresponding quarter",
+              "page": 3
             }
           ]
         },
@@ -1096,7 +1173,6 @@
           "unit": "TBTU",
           "scope": null,
           "values": [
-            13,
             14,
             15,
             14,
@@ -1107,14 +1183,10 @@
             null,
             19,
             18,
+            null,
             null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 06 Nov 2023",
-              "quote": "Total throughput of Dahej and Kochi has been to the extent of 223 TBTU",
-              "page": 3
-            },
             {
               "doc": "Concall Transcript - 05 Feb 2024",
               "quote": "we have registered 232 TBTU of throughput in this quarter",
@@ -1161,75 +1233,56 @@
               "quote": "the overall LNG volume processed by the company stood at 219 TBTU",
               "page": 3
             },
+            null,
             null
           ]
         },
         {
-          "label": "Dahej Terminal Capacity Utilization",
-          "unit": "%",
+          "label": "Dahej Terminal Installed Regasification Capacity",
+          "unit": "MMTPA",
           "scope": null,
           "values": [
-            93,
-            96,
-            97,
-            109,
-            98,
-            93,
+            null,
+            17.5,
             null,
             null,
             null,
-            94,
-            90.1,
-            65.6
+            17.5,
+            null,
+            null,
+            null,
+            22.5,
+            null,
+            22.5
           ],
           "citations": [
+            null,
             {
-              "doc": "Concall Transcript - 06 Nov 2023",
-              "quote": "our utilization has been 93% of Dahej Terminal",
-              "page": 3
-            },
-            {
-              "doc": "Concall Transcript - 05 Feb 2024",
-              "quote": "Dahej has been utilized to the extent of 96% this time",
-              "page": 3
-            },
-            {
-              "doc": "Concall Transcript - 30 May 2024",
-              "quote": "operated at 109% this time in Dahej as compared to 97% in the previous quarter",
-              "page": 3
-            },
-            {
-              "doc": "Concall Transcript - 31 Jul 2024",
-              "quote": "the Dahej performance overall, it has been 109%",
-              "page": 3
-            },
-            {
-              "doc": "Concall Transcript - 30 Oct 2024",
-              "quote": "the utilization of the Dahej terminal, it is at the level of 98%",
-              "page": 4
-            },
-            {
-              "doc": "Concall Transcript - 04 Feb 2025",
-              "quote": "the capacity utilization, it has been 93% this time",
-              "page": 2
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2023-24 Dahej Installed Regasification capacity 17.5 MMTPA",
+              "page": 23
             },
             null,
             null,
             null,
             {
-              "doc": "Concall Transcript - 20 Feb 2026",
-              "quote": "Capacity utilization at Dahej improved to 94%, up from 92% in the previous quarter",
-              "page": 3
+              "doc": "Annual Report - 31 Mar 2025",
+              "quote": "FY 2024-25 Dahej Installed Regasification capacity 17.5 MMTPA",
+              "page": 23
             },
+            null,
+            null,
+            null,
             {
-              "doc": "Concall Transcript - 11 May 2026",
-              "quote": "capacity utilization at 90.1% during the current quarter",
-              "page": 3
+              "doc": "Credit Rating - 16 Apr 2026",
+              "quote": "Dahej, with capacity of 17.5 MMTPA (the largest and oldest facility in India, expanded to 22.5 MMTPA on 31st March 2026)",
+              "page": 1
             },
+            null,
             {
-              "doc": "Concall Transcript - 19 Aug 2026",
-              "quote": "the capacity utilization for Dahej was 65.6%",
-              "page": 5
+              "doc": "Concall Transcript - 09 Nov 2026",
+              "quote": "the utilization percentages for the current and previous quarters are based on Dahej's expanded capacity of 22.5 million ton per annum compared to 17.5 million metric ton per annum last year",
+              "page": 3
             }
           ]
         },
@@ -1241,7 +1294,6 @@
             null,
             null,
             null,
-            null,
             22,
             null,
             null,
@@ -1249,10 +1301,10 @@
             27,
             29,
             null,
-            23.27
+            23.27,
+            null
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -1279,50 +1331,6 @@
               "doc": "Concall Transcript - 19 Aug 2026",
               "quote": "and Kochi was 23.27%.",
               "page": 5
-            }
-          ]
-        },
-        {
-          "label": "Dahej Terminal Installed Regasification Capacity",
-          "unit": "MMTPA",
-          "scope": null,
-          "values": [
-            null,
-            null,
-            17.5,
-            null,
-            null,
-            null,
-            17.5,
-            null,
-            null,
-            null,
-            22.5,
-            null
-          ],
-          "citations": [
-            null,
-            null,
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "FY 2023-24 Dahej Installed Regasification capacity 17.5 MMTPA",
-              "page": 23
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Annual Report - 31 Mar 2025",
-              "quote": "FY 2024-25 Dahej Installed Regasification capacity 17.5 MMTPA",
-              "page": 23
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Credit Rating - 16 Apr 2026",
-              "quote": "Dahej, with capacity of 17.5 MMTPA (the largest and oldest facility in India, expanded to 22.5 MMTPA on 31st March 2026)",
-              "page": 1
             },
             null
           ]
@@ -1334,8 +1342,8 @@
           "values": [
             null,
             null,
-            null,
             72,
+            null,
             null,
             null,
             null,
@@ -1348,12 +1356,12 @@
           "citations": [
             null,
             null,
-            null,
             {
               "doc": "Annual Report - 31 Mar 2025",
               "quote": "Highest No. of Ships handled in a Quarter: 72 (Q1 2024-25)",
               "page": 21
             },
+            null,
             null,
             null,
             null,
@@ -10901,7 +10909,6 @@
       "toggled": "/insights/company/1204/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Sep 2023",
         "Dec 2023",
         "Mar 2024",
         "Jun 2024",
@@ -10912,10 +10919,10 @@
         "Sep 2025",
         "Dec 2025",
         "Mar 2026",
-        "Jun 2026"
+        "Jun 2026",
+        "Sep 2026"
       ],
       "periodsIso": [
-        "2023-09",
         "2023-12",
         "2024-03",
         "2024-06",
@@ -10926,7 +10933,8 @@
         "2025-09",
         "2025-12",
         "2026-03",
-        "2026-06"
+        "2026-06",
+        "2026-09"
       ],
       "rows": [
         {
@@ -10936,19 +10944,18 @@
           "values": [
             null,
             null,
-            null,
             53344,
             40645,
             45556,
             53182,
             33865,
-            28492,
+            29974,
             47281,
             61424,
-            93026
+            93026,
+            73322
           ],
           "citations": [
-            null,
             null,
             null,
             {
@@ -10977,9 +10984,9 @@
               "page": 24
             },
             {
-              "doc": "Presentation - 11 Dec 2025",
-              "quote": "Crude Carriers: Q2 FY25 28,492",
-              "page": 13
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Crude Carriers",
+              "page": 26
             },
             {
               "doc": "Presentation - 29 Jan 2026",
@@ -10995,6 +11002,11 @@
               "doc": "Presentation - 04 Aug 2026",
               "quote": "Crude Carriers",
               "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Crude Carriers",
+              "page": 26
             }
           ]
         },
@@ -11005,19 +11017,18 @@
           "values": [
             null,
             null,
-            null,
             13608,
             11720,
             16478,
             14921,
             14883,
-            16686,
+            15695,
             17983,
             16678,
-            22601
+            22601,
+            24308
           ],
           "citations": [
-            null,
             null,
             null,
             {
@@ -11046,9 +11057,9 @@
               "page": 24
             },
             {
-              "doc": "Presentation - 11 Dec 2025",
-              "quote": "Dry Bulk: Q2 FY25 16,686",
-              "page": 13
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Dry Bulk",
+              "page": 26
             },
             {
               "doc": "Presentation - 29 Jan 2026",
@@ -11064,6 +11075,11 @@
               "doc": "Presentation - 04 Aug 2026",
               "quote": "Dry Bulk",
               "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Dry Bulk",
+              "page": 26
             }
           ]
         },
@@ -11074,19 +11090,18 @@
           "values": [
             null,
             null,
-            null,
             28860,
             31100,
             31255,
             35506,
             43868,
-            43507,
+            43146,
             43611,
             45216,
-            41528
+            41528,
+            46208
           ],
           "citations": [
-            null,
             null,
             null,
             {
@@ -11115,9 +11130,9 @@
               "page": 24
             },
             {
-              "doc": "Presentation - 11 Dec 2025",
-              "quote": "LPG Carriers: Q2 FY25 43,507",
-              "page": 13
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "LPG Carriers",
+              "page": 26
             },
             {
               "doc": "Presentation - 29 Jan 2026",
@@ -11133,6 +11148,11 @@
               "doc": "Presentation - 04 Aug 2026",
               "quote": "LPG Carriers",
               "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "LPG Carriers",
+              "page": 26
             }
           ]
         },
@@ -11143,19 +11163,18 @@
           "values": [
             null,
             null,
-            null,
             33142,
             27743,
             28566,
             37637,
             24774,
-            28978,
+            25110,
             25117,
             30511,
-            45471
+            45471,
+            32114
           ],
           "citations": [
-            null,
             null,
             null,
             {
@@ -11184,9 +11203,9 @@
               "page": 24
             },
             {
-              "doc": "Presentation - 11 Dec 2025",
-              "quote": "Product Carriers: Q2 FY25 28,978",
-              "page": 13
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Product Carriers",
+              "page": 26
             },
             {
               "doc": "Presentation - 29 Jan 2026",
@@ -11202,6 +11221,11 @@
               "doc": "Presentation - 04 Aug 2026",
               "quote": "Product Carriers",
               "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Product Carriers",
+              "page": 26
             }
           ]
         },
@@ -11210,7 +11234,6 @@
           "unit": "Days",
           "scope": null,
           "values": [
-            3684,
             3690,
             3744,
             null,
@@ -11221,14 +11244,10 @@
             3494,
             3581,
             3345,
-            3497
+            3497,
+            3553
           ],
           "citations": [
-            {
-              "doc": "Presentation - 01 Feb 2023",
-              "quote": "Owned Tonnage: 3,684",
-              "page": 13
-            },
             {
               "doc": "Presentation - 31 Jan 2024",
               "quote": "Owned Tonnage: 3,690",
@@ -11271,6 +11290,11 @@
               "doc": "Presentation - 04 Aug 2026",
               "quote": "Owned Tonnage",
               "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Owned Tonnage",
+              "page": 26
             }
           ]
         },
@@ -11279,7 +11303,6 @@
           "unit": "Days",
           "scope": null,
           "values": [
-            3778,
             3690,
             3835,
             null,
@@ -11290,14 +11313,10 @@
             3678,
             3765,
             3525,
-            3679
+            3679,
+            3737
           ],
           "citations": [
-            {
-              "doc": "Presentation - 01 Feb 2023",
-              "quote": "Total Revenue Days: 3,778",
-              "page": 13
-            },
             {
               "doc": "Presentation - 31 Jan 2024",
               "quote": "Total Revenue Days: 3,690",
@@ -11340,6 +11359,11 @@
               "doc": "Presentation - 04 Aug 2026",
               "quote": "Total Revenue Days",
               "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Total Revenue Days",
+              "page": 26
             }
           ]
         },
@@ -11348,7 +11372,6 @@
           "unit": "Number of Vessels",
           "scope": null,
           "values": [
-            null,
             null,
             42,
             null,
@@ -11359,10 +11382,10 @@
             null,
             null,
             40,
-            null
+            null,
+            40
           ],
           "citations": [
-            null,
             null,
             {
               "doc": "Presentation - 31 Jan 2024",
@@ -11385,7 +11408,61 @@
               "quote": "As on March 31, 2026, your Company's fleet stood at 40 vessels",
               "page": 39
             },
-            null
+            null,
+            {
+              "doc": "Presentation - 04 Aug 2026",
+              "quote": "Fleet (3-Aug-26)",
+              "page": 22
+            }
+          ]
+        },
+        {
+          "label": "Revenue Days - Offshore (Total)",
+          "unit": "Days",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            1896,
+            1891,
+            null,
+            null,
+            1923,
+            1923
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 04 Aug 2026",
+              "quote": "Breakup of Revenue Days – Offshore",
+              "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Breakup of Revenue Days – Offshore",
+              "page": 26
+            },
+            null,
+            null,
+            {
+              "doc": "Presentation - 04 Aug 2026",
+              "quote": "Breakup of Revenue Days – Offshore",
+              "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Breakup of Revenue Days – Offshore",
+              "page": 26
+            }
           ]
         },
         {
@@ -11393,7 +11470,6 @@
           "unit": "MT",
           "scope": null,
           "values": [
-            null,
             null,
             3358258,
             null,
@@ -11404,10 +11480,10 @@
             null,
             null,
             3204105,
-            null
+            null,
+            3244888
           ],
           "citations": [
-            null,
             null,
             {
               "doc": "Presentation - 31 Jan 2024",
@@ -11430,47 +11506,11 @@
               "quote": "Total Tonnage (DWT)",
               "page": 100
             },
-            null
-          ]
-        },
-        {
-          "label": "Revenue Days - Offshore (Total)",
-          "unit": "Days",
-          "scope": null,
-          "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            1896,
-            null,
-            null,
-            null,
-            1923
-          ],
-          "citations": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
             null,
             {
               "doc": "Presentation - 04 Aug 2026",
-              "quote": "Breakup of Revenue Days – Offshore",
-              "page": 24
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 04 Aug 2026",
-              "quote": "Breakup of Revenue Days – Offshore",
-              "page": 24
+              "quote": "Fleet (3-Aug-26)",
+              "page": 22
             }
           ]
         }
