@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-10T13:55:17.043Z",
+  "generatedAt": "2026-11-10T15:28:44.072Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -1060,22 +1060,18 @@
   ],
   "changes": [
     {
-      "kind": "stage-call",
-      "text": "The cycle call moved from Just turning up to Picking up speed."
-    },
-    {
-      "kind": "score",
-      "text": "Moving now moved up 17 points to 26."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-09T17:07:23.590Z",
+    "generatedAt": "2026-11-10T13:55:17.043Z",
     "asOf": "Q2 FY27",
     "scoringVersion": 2,
-    "stageId": "early-upcycle",
+    "stageId": "mid-upcycle",
     "scores": {
       "leading": 56,
-      "coincident": 9,
+      "coincident": 26,
       "lagging": 100
     },
     "alertIds": [
