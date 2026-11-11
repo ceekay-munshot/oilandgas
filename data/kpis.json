@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-10T15:28:16.174Z",
+  "generatedAt": "2026-11-11T13:06:30.882Z",
   "quarters": [
     "Q3 FY26",
     "Q4 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 28,
     "kpiCells": 381,
-    "realCells": 260,
-    "nullCells": 121,
+    "realCells": 256,
+    "nullCells": 125,
     "kpis": 97,
     "kpisWithTrend": 60
   },
@@ -3623,10 +3623,10 @@
       "name": "Aegis Logistics",
       "slug": "AEGISLOG",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
@@ -3639,29 +3639,24 @@
           "unit": "'000 MT",
           "flagBasis": "yoy",
           "values": [
-            1407,
             1361,
             1223,
-            1124
+            1124,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 May 2026",
-              "quote": "1,064 1,407 Q2FY25 Q2FY26",
-              "page": 11
-            },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "1,221 1,361 Q3FY25 Q3FY26",
@@ -3676,7 +3671,8 @@
               "doc": "Presentation - 06 Aug 2026",
               "quote": "1161 1124 Q1FY26 Q1FY27",
               "page": 8
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -3685,7 +3681,7 @@
             null
           ],
           "flag": "decelerating",
-          "notes": null
+          "notes": "From Screener Insights row \"LPG Terminal Throughput Volume (Logistics)\"; latest value cited to Presentation - 30 May 2026, page 11."
         },
         {
           "id": "terminal-utilisation",
@@ -3723,7 +3719,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not stated in any of the excerpts. The Q2 FY26 concall mentions 'higher utilization levels' and 'improved utilization levels' at various ports but no specific percentage figure is given. Q3 FY26 concall similarly ment"
+          "notes": "Terminal utilisation % not explicitly stated in any of the excerpts for Q3 FY26, Q4 FY26, Q1 FY27, or Q2 FY27. The documents mention 'high utilization levels' and 'improved utilization levels' at various ports (Mumbai, Kochi, Pipavav liquid"
         },
         {
           "id": "lpg-distribution-volume",
@@ -3731,29 +3727,24 @@
           "unit": "'000 MT",
           "flagBasis": "level",
           "values": [
-            192,
             183,
             234,
-            277
+            277,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 May 2026",
-              "quote": "129 192 Q2FY25 Q2FY26",
-              "page": 11
-            },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "127 183 Q3FY25 Q3FY26",
@@ -3768,7 +3759,8 @@
               "doc": "Presentation - 06 Aug 2026",
               "quote": "145 277 Q1FY26 Q1FY27",
               "page": 8
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -3778,7 +3770,7 @@
           ],
           "flag": "decelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"LPG Distribution Volume\"; latest value cited to Presentation - 30 May 2026, page 11."
         },
         {
           "id": "lpg-sourcing-volume",
@@ -3786,29 +3778,24 @@
           "unit": "'000 MT",
           "flagBasis": "level",
           "values": [
-            208,
             151,
             129,
-            121
+            121,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 May 2026",
-              "quote": "194 208 Q2FY25 Q2FY26",
-              "page": 11
-            },
             {
               "doc": "Presentation - 30 May 2026",
               "quote": "140 151 Q3FY25 Q3FY26",
@@ -3823,7 +3810,8 @@
               "doc": "Presentation - 06 Aug 2026",
               "quote": "119 121 Q1FY26 Q1FY27",
               "page": 8
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -3833,7 +3821,7 @@
           ],
           "flag": "decelerating",
           "beyondBrief": true,
-          "notes": null
+          "notes": "From Screener Insights row \"LPG Sourcing Volume\"; latest value cited to Presentation - 30 May 2026, page 11."
         }
       ]
     },
@@ -3841,15 +3829,15 @@
       "name": "Aegis Vopak",
       "slug": "AEGISVOPAK",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33094,
+      "ctxChars": 33095,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3857,29 +3845,24 @@
           "unit": "million MT",
           "flagBasis": "yoy",
           "values": [
-            0.68,
             0.67,
             3.9,
-            0.9
+            0.9,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 11 Nov 2025",
-              "quote": "Gas report for the quarter was INR 0.68 million metric tons",
-              "page": 6
-            },
             {
               "doc": "Concall Transcript - 05 Feb 2026",
               "quote": "gas throughput was 0.67 million metric tons",
@@ -3894,7 +3877,8 @@
               "doc": "Concall Transcript - 19 Aug 2026",
               "quote": "On the gas side, quarterly throughput stood at approximately 0.9 million metric tons.",
               "page": 7
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -3903,7 +3887,7 @@
             null
           ],
           "flag": "inflecting-down",
-          "notes": null
+          "notes": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 05 Feb 2026, page 7."
         },
         {
           "id": "terminal-utilisation",
@@ -3941,7 +3925,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not disclosed in any of the excerpts for Q2 FY26, Q3 FY26, Q4 FY26, or Q1 FY27. The screener insights table shows capacity figures but no utilisation percentages. The concall transcripts mention 'high capacity utiliza"
+          "notes": "Terminal utilisation % not stated in any of the excerpts for Q3 FY26, Q4 FY26, Q1 FY27, or Q2 FY27. The screener insights table does not include this metric, and the concall transcripts do not mention utilisation percentages."
         }
       ]
     },
@@ -3949,15 +3933,15 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
+        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27",
         "Q2 FY27"
       ],
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33109,
+      "ctxChars": 33110,
       "kpis": [
         {
           "id": "sps-spread",
@@ -4005,9 +3989,9 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
+            76962,
             91265,
             100664,
-            70842,
             95242
           ],
           "sourceTags": [
@@ -4024,6 +4008,11 @@
           ],
           "citations": [
             {
+              "doc": "Presentation - 24 Oct 2025",
+              "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
+              "page": 15
+            },
+            {
               "doc": "Concall Transcript - 26 Jan 2026",
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
               "page": 3
@@ -4032,11 +4021,6 @@
               "doc": "Presentation - 24 Apr 2026",
               "quote": "95,556 1,00,664 Q4-FY25 Q4-FY26",
               "page": 16
-            },
-            {
-              "doc": "Presentation - 27 Jul 2026",
-              "quote": "Total Sales Volume of the manufactured products in Q1FY27 was 70,842 MT",
-              "page": 18
             },
             {
               "doc": "Presentation - 23 Oct 2026",
@@ -4050,7 +4034,7 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "inflecting-down",
           "notes": null
         }
       ]
@@ -4832,7 +4816,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21447,
+      "ctxChars": 21400,
       "kpis": [
         {
           "id": "freight-rate",

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-10T15:28:44.072Z",
+  "generatedAt": "2026-11-11T13:07:20.766Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -115,9 +115,9 @@
       ]
     },
     "coincident": {
-      "score": 26,
-      "prev": -5,
-      "delta": 12,
+      "score": 18,
+      "prev": -14,
+      "delta": 7,
       "deltaBasis": "kpi-only",
       "level": "positive",
       "direction": "rising",
@@ -201,7 +201,7 @@
           "companyId": "supreme-petrochem",
           "company": "Supreme Petrochem",
           "label": "Volume",
-          "flag": "inflecting-up"
+          "flag": "inflecting-down"
         },
         {
           "kind": "kpi",
@@ -298,7 +298,7 @@
     }
   },
   "divergence": {
-    "value": 30,
+    "value": 38,
     "leadingSign": 1,
     "coincidentSign": 1,
     "signsDiffer": false
@@ -306,8 +306,8 @@
   "divergenceSeries": [
     null,
     null,
-    -49,
-    56
+    -40,
+    70
   ],
   "stage": {
     "stageId": "mid-upcycle",
@@ -316,7 +316,7 @@
     "ruleLabel": "Leading strongly positive, coincident positive and accelerating, lagging turning",
     "confidence": "normal",
     "because": [
-      "Leading 56 (strong-positive, rising), coincident 26 (positive, rising), lagging 100 (strong-positive).",
+      "Leading 56 (strong-positive, rising), coincident 18 (positive, rising), lagging 100 (strong-positive).",
       "Leading strongly positive, coincident positive and accelerating, lagging turning."
     ]
   },
@@ -576,7 +576,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +30. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +38. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -1015,7 +1015,7 @@
           "quarter": "Q2 FY27",
           "direction": "positive",
           "driver": "volume growth and pricing realization",
-          "drift": 0
+          "drift": 1
         },
         {
           "companyId": "castrol-india",
@@ -1053,19 +1053,19 @@
           "quarter": "Q2 FY27",
           "direction": "positive",
           "driver": "volume growth and pricing realization",
-          "drift": 0
+          "drift": 1
         }
       ]
     }
   ],
   "changes": [
     {
-      "kind": "none",
-      "text": "Nothing material moved since the last refresh."
+      "kind": "score",
+      "text": "Moving now moved down 8 points to 18."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-10T13:55:17.043Z",
+    "generatedAt": "2026-11-10T15:28:44.072Z",
     "asOf": "Q2 FY27",
     "scoringVersion": 2,
     "stageId": "mid-upcycle",

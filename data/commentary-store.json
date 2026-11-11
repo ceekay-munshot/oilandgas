@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-11-10T15:28:44.015Z",
+  "generatedAt": "2026-11-11T13:07:20.708Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -2075,9 +2075,29 @@
           "attempts": 1,
           "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
           "at": "2026-08-20T06:14:52.194Z"
+        },
+        "Q2 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "I'm really pleased to announce this landmark development for Aegis Logistics...a transformational step in Aegis' journey",
+          "rationale": "Management is very upbeat about the major Tristar acquisition, calling it transformational and expressing confidence in growth trajectory and synergies.",
+          "driver": "Tristar acquisition",
+          "direction": "positive",
+          "signal": "Management is pursuing aggressive inorganic growth through a large international acquisition to transform from India-focused to a global integrated energy logistics platform, signaling expansion ambitions.",
+          "mgmtDataPoints": [
+            "Tristar stake acquisition: 89.8%",
+            "Tristar consideration: US$809 million",
+            "Expected transaction close: Q4 FY27"
+          ],
+          "implication": "The next two quarters will likely focus on closing the Tristar deal and integration planning, with management emphasizing the transformational growth potential and synergies from the global expansion.",
+          "doc": "Concall transcript (Q2 FY27)",
+          "fingerprint": "c1ed877e7c76",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-11T13:07:09.678Z"
         }
       },
-      "updatedAt": "2026-08-20T06:14:52.194Z"
+      "updatedAt": "2026-11-11T13:07:09.678Z"
     },
     "aegis-vopak": {
       "cells": {
@@ -2167,9 +2187,29 @@
           "attempts": 1,
           "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
           "at": "2026-08-19T07:48:51.081Z"
+        },
+        "Q2 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "I'm pleased to report a record-breaking profit in the first half of this",
+          "rationale": "Management announces a landmark transformational acquisition and reports record-breaking profit at the halfway mark.",
+          "driver": "Tristar acquisition",
+          "direction": "positive",
+          "signal": "Management is pursuing aggressive international expansion through a major acquisition to transform from India-focused to a global integrated energy logistics platform, signaling strong growth ambitions.",
+          "mgmtDataPoints": [
+            "Tristar stake acquisition: 89.8%",
+            "Tristar acquisition consideration: US$809 million",
+            "Expected transaction close: Q4 FY27"
+          ],
+          "implication": "The company is likely to focus on integration planning and regulatory approvals for the Tristar deal over the next two quarters while maintaining strong operational momentum domestically.",
+          "doc": "Concall transcript (Q2 FY27)",
+          "fingerprint": "8b7e0ae83f45",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-11T13:07:15.395Z"
         }
       },
-      "updatedAt": "2026-08-19T07:48:51.081Z"
+      "updatedAt": "2026-11-11T13:07:15.395Z"
     },
     "supreme-petrochem": {
       "cells": {

@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-10T15:28:04.647Z",
+  "generatedAt": "2026-11-11T13:06:25.035Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -334,9 +334,9 @@
           "periodIso": "2026-07",
           "url": "https://www.deepindustries.com/docs/TranscriptQ1.pdf",
           "source": "deepindustries.com",
-          "status": "ok",
-          "chars": 54080,
-          "pages": 20,
+          "status": "http_429",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt"
         },
@@ -1863,9 +1863,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 95882,
-          "pages": 31,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -3257,14 +3257,14 @@
         "cons": 2
       },
       "summariesAvailable": 42,
-      "transcriptsFound": 41,
+      "transcriptsFound": 42,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Nov 2026",
           "periodIso": "2026-11",
-          "url": "https://www.screener.in/concalls/summary/23358672/",
+          "url": "https://www.screener.in/concalls/summary/23390040/",
           "source": "screener.in",
           "status": "gated",
           "chars": 72,
@@ -3361,6 +3361,19 @@
         {
           "type": "transcript",
           "role": "transcript",
+          "period": "Nov 2026",
+          "periodIso": "2026-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=8c4eb7ad-d42f-4a99-be61-fdce9aa0eb61.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 48267,
+          "pages": 18,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/AEGISLOG/transcript-2026-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
           "period": "Aug 2026",
           "periodIso": "2026-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=dfddf588-87ed-48eb-9e29-193c0b200451.pdf",
@@ -3422,19 +3435,6 @@
           "pages": 17,
           "via": "browser",
           "cache": "pipeline/cache/docs/AEGISLOG/transcript-2025-08.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Nov 2024",
-          "periodIso": "2024-11",
-          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=65eba500-2091-45e4-803b-b6b3d3bd1264.pdf",
-          "source": "bseindia.com",
-          "status": "ok",
-          "chars": 24219,
-          "pages": 12,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/AEGISLOG/transcript-2024-11.txt"
         }
       ]
     },
@@ -3448,14 +3448,14 @@
         "cons": 3
       },
       "summariesAvailable": 6,
-      "transcriptsFound": 5,
+      "transcriptsFound": 6,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Nov 2026",
           "periodIso": "2026-11",
-          "url": "https://www.screener.in/concalls/summary/23358673/",
+          "url": "https://www.screener.in/concalls/summary/23390039/",
           "source": "screener.in",
           "status": "gated",
           "chars": 72,
@@ -3549,6 +3549,19 @@
         "cache": "pipeline/cache/docs/AEGISVOPAK/ppt-2026-08.txt"
       },
       "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2026",
+          "periodIso": "2026-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=0b84a9e2-3b5f-47a5-9a2e-2e5c0f58e151.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 48185,
+          "pages": 18,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/AEGISVOPAK/transcript-2026-11.txt"
+        },
         {
           "type": "transcript",
           "role": "transcript",
@@ -3747,9 +3760,9 @@
           "periodIso": "2026-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f80a7261-54f2-4326-bab2-127066e65e64.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 30783,
-          "pages": 14,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/SPLPETRO/transcript-2026-08.txt"
         },
@@ -4416,9 +4429,23 @@
         "pros": 5,
         "cons": 2
       },
-      "summariesAvailable": 43,
+      "summariesAvailable": 44,
       "transcriptsFound": 42,
       "summaries": [
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Nov 2026",
+          "periodIso": "2026-11",
+          "url": "https://www.screener.in/concalls/summary/23392952/",
+          "source": "screener.in",
+          "status": "gated",
+          "chars": 72,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/GESHIP/summary-2026-11.txt",
+          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
+        },
         {
           "type": "summary",
           "role": "summary",
@@ -4487,20 +4514,6 @@
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GESHIP/summary-2025-12.txt",
-          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "Aug 2025",
-          "periodIso": "2025-08",
-          "url": "https://www.screener.in/concalls/summary/23024888/",
-          "source": "screener.in",
-          "status": "gated",
-          "chars": 72,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/GESHIP/summary-2025-08.txt",
           "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
         }
       ],
@@ -4604,7 +4617,7 @@
       "view": "consolidated",
       "url": "https://www.screener.in/company/SCI/consolidated/",
       "analysis": {
-        "pros": 3,
+        "pros": 2,
         "cons": 5
       },
       "summariesAvailable": 2,
