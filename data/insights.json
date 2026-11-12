@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-11T13:04:56.106Z",
+  "generatedAt": "2026-11-12T14:06:38.880Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -8139,7 +8139,6 @@
       "toggled": "/insights/company/1285467/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Nov 2021",
         "Jan 2023",
         "Aug 2023",
         "Mar 2024",
@@ -8150,10 +8149,10 @@
         "Sep 2025",
         "Dec 2025",
         "Mar 2026",
-        "Jun 2026"
+        "Jun 2026",
+        "Sep 2026"
       ],
       "periodsIso": [
-        "2021-11",
         "2023-01",
         "2023-08",
         "2024-03",
@@ -8164,7 +8163,8 @@
         "2025-09",
         "2025-12",
         "2026-03",
-        "2026-06"
+        "2026-06",
+        "2026-09"
       ],
       "rows": [
         {
@@ -8172,7 +8172,6 @@
           "unit": "'000 MT",
           "scope": null,
           "values": [
-            23,
             70,
             null,
             70.8,
@@ -8183,14 +8182,10 @@
             200.8,
             200.8,
             225.8,
-            225.8
+            225.8,
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 May 2026",
-              "quote": "LPG Static Capacity Ramp-up... Pre JV Capacities (Nov-21): 19 (Pipavav) + 4 (Mangalore) = 23",
-              "page": 21
-            },
             {
               "doc": "Credit Rating - 23 Jan 2023",
               "quote": "cumulative 70 thousand metric tonne of gas terminalling capacity and 1,330 thousand KL of liquid terminalling capacity",
@@ -8237,7 +8232,8 @@
               "doc": "Presentation - 07 Aug 2026",
               "quote": "225.8k MT",
               "page": 9
-            }
+            },
+            null
           ]
         },
         {
@@ -8245,7 +8241,6 @@
           "unit": "million cbm",
           "scope": null,
           "values": [
-            0.51,
             1.33,
             null,
             1.5,
@@ -8256,14 +8251,10 @@
             1.7,
             1.7,
             1.7,
-            1.7
+            1.7,
+            null
           ],
           "citations": [
-            {
-              "doc": "Prospectus - 28 May 2025",
-              "quote": "Kandla: Liquid 140,000 CBM, Pipavav: Liquid 120,000 CBM, Mangalore: Liquid 75,000 CBM, Haldia: Liquid 173,500 CBM",
-              "page": null
-            },
             {
               "doc": "Credit Rating - 23 Jan 2023",
               "quote": "AVTL is 51% owned by AELL and 49% by Vopak... cumulative 70 thousand metric tonne of gas terminalling capacity and 1,330 thousand KL of liquid terminalling capacity",
@@ -8306,7 +8297,8 @@
               "doc": "Presentation - 07 Aug 2026",
               "quote": "1.7 mn cbm Liquid Storage Capacity",
               "page": 9
-            }
+            },
+            null
           ]
         },
         {
@@ -8314,7 +8306,6 @@
           "unit": "count",
           "scope": null,
           "values": [
-            4,
             null,
             5,
             null,
@@ -8325,14 +8316,10 @@
             6,
             6,
             6,
-            6
+            6,
+            null
           ],
           "citations": [
-            {
-              "doc": "Prospectus - 28 May 2025",
-              "quote": "At Time of JV Formation (Nov 2021): Kandla, Pipavav, Mangalore, Haldia (4 ports). Kochi and JNPA were not part of this initial JV formation",
-              "page": null
-            },
             null,
             {
               "doc": "Presentation - 19 Jun 2025",
@@ -8371,6 +8358,64 @@
               "doc": "Presentation - 07 Aug 2026",
               "quote": "22 Terminals across 6 Ports",
               "page": 12
+            },
+            null
+          ]
+        },
+        {
+          "label": "LPG/Gas Throughput",
+          "unit": "million MT",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            0.38,
+            null,
+            null,
+            0.52,
+            0.68,
+            0.67,
+            null,
+            0.9,
+            1.1
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            {
+              "doc": "Prospectus - 25 Nov 2024",
+              "quote": "Throughput for Gas Terminal Division (MT)",
+              "page": 193
+            },
+            null,
+            null,
+            {
+              "doc": "Concall Transcript - 13 Aug 2025",
+              "quote": "the throughput for the quarter, which is 522,000 metric tons that we did from Kandla and Pipavav",
+              "page": 9
+            },
+            {
+              "doc": "Concall Transcript - 11 Nov 2025",
+              "quote": "Gas report for the quarter was INR 0.68 million metric tons",
+              "page": 6
+            },
+            {
+              "doc": "Concall Transcript - 05 Feb 2026",
+              "quote": "gas throughput was 0.67 million metric tons",
+              "page": 7
+            },
+            null,
+            {
+              "doc": "Concall Transcript - 19 Aug 2026",
+              "quote": "On the gas side, quarterly throughput stood at approximately 0.9 million metric tons.",
+              "page": 7
+            },
+            {
+              "doc": "Concall Transcript - 10 Nov 2026",
+              "quote": "That is 1.1 million tons.",
+              "page": 16
             }
           ]
         },
@@ -8384,16 +8429,15 @@
             null,
             null,
             null,
-            null,
             20,
             22,
             22,
             22,
             22,
-            22
+            22,
+            null
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -8428,60 +8472,8 @@
               "doc": "Presentation - 07 Aug 2026",
               "quote": "22 Terminals across 6 Ports",
               "page": 12
-            }
-          ]
-        },
-        {
-          "label": "LPG/Gas Throughput",
-          "unit": "million MT",
-          "scope": null,
-          "values": [
-            null,
-            null,
-            null,
-            null,
-            0.38,
-            null,
-            null,
-            0.52,
-            0.68,
-            0.67,
-            null,
-            0.9
-          ],
-          "citations": [
-            null,
-            null,
-            null,
-            null,
-            {
-              "doc": "Prospectus - 25 Nov 2024",
-              "quote": "Throughput for Gas Terminal Division (MT)",
-              "page": 193
             },
-            null,
-            null,
-            {
-              "doc": "Concall Transcript - 13 Aug 2025",
-              "quote": "the throughput for the quarter, which is 522,000 metric tons that we did from Kandla and Pipavav",
-              "page": 9
-            },
-            {
-              "doc": "Concall Transcript - 11 Nov 2025",
-              "quote": "Gas report for the quarter was INR 0.68 million metric tons",
-              "page": 6
-            },
-            {
-              "doc": "Concall Transcript - 05 Feb 2026",
-              "quote": "gas throughput was 0.67 million metric tons",
-              "page": 7
-            },
-            null,
-            {
-              "doc": "Concall Transcript - 19 Aug 2026",
-              "quote": "On the gas side, quarterly throughput stood at approximately 0.9 million metric tons.",
-              "page": 7
-            }
+            null
           ]
         },
         {
@@ -8495,15 +8487,14 @@
             null,
             null,
             null,
-            null,
             59.1,
             56.5,
             59,
             null,
-            54.1
+            54.1,
+            null
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -8530,7 +8521,8 @@
               "doc": "Concall Transcript - 19 Aug 2026",
               "quote": "liquid terminaling contributed 54.1%, while gas terminaling contributed 45.9% during the quarter",
               "page": 7
-            }
+            },
+            null
           ]
         },
         {
@@ -8547,12 +8539,11 @@
             null,
             null,
             null,
-            null,
+            0,
             0,
             36
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -8568,9 +8559,14 @@
               "page": 16
             },
             {
-              "doc": "Presentation - 30 May 2026",
-              "quote": "36,000 MT Static Capacity Ammonia Storage Terminal; Completion by Q1 FY27",
-              "page": 16
+              "doc": "Presentation - 07 Aug 2026",
+              "quote": "Upcoming Facility",
+              "page": 9
+            },
+            {
+              "doc": "Concall Transcript - 10 Nov 2026",
+              "quote": "This is 36,000 metric tons of specialized ammonia storage and terminaling at Pipavav.",
+              "page": 6
             }
           ]
         }
@@ -8710,7 +8706,7 @@
             80,
             82,
             82,
-            null
+            78
           ],
           "citations": [
             null,
@@ -8744,7 +8740,64 @@
               "quote": "around 17-I8% of the top line",
               "page": 6
             },
-            null
+            {
+              "doc": "Concall Transcript - 02 Nov 2026",
+              "quote": "Around 22%",
+              "page": 7
+            }
+          ]
+        },
+        {
+          "label": "Expandable Polystyrene (EPS) Installed Capacity",
+          "unit": "MTPA",
+          "scope": "Standalone data",
+          "values": [
+            null,
+            110000,
+            null,
+            null,
+            null,
+            110000,
+            null,
+            null,
+            null,
+            110000,
+            143000,
+            145000
+          ],
+          "citations": [
+            null,
+            {
+              "doc": "Presentation - 23 Apr 2025",
+              "quote": "Installed Effective Capacities EPS 1,10,000 MTPA",
+              "page": 6
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 23 Apr 2025",
+              "quote": "Installed Effective Capacities EPS 1,10,000 MTPA",
+              "page": 6
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 24 Apr 2026",
+              "quote": "Installed Effective Capacities EPS 1,10,000 MTPA",
+              "page": 6
+            },
+            {
+              "doc": "Concall Transcript - 04 Aug 2026",
+              "quote": "So, now we have expanded the capacity to 1,43,000.",
+              "page": 8
+            },
+            {
+              "doc": "Concall Transcript - 02 Nov 2026",
+              "quote": "we are now at 1,45,000 tons of capacity spread between both the locations",
+              "page": 14
+            }
           ]
         },
         {
@@ -8757,11 +8810,11 @@
             null,
             null,
             null,
-            60000,
+            30000,
             null,
             null,
             null,
-            60000,
+            50000,
             50000,
             50000
           ],
@@ -8776,17 +8829,17 @@
             null,
             null,
             {
-              "doc": "Presentation - 23 Apr 2025",
-              "quote": "MASTERBATCHES/ COMPOUNDS 1,10,000 MTPA",
-              "page": 6
+              "doc": "Concall Transcript - 04 Aug 2026",
+              "quote": "Earlier we were at 30,000",
+              "page": 11
             },
             null,
             null,
             null,
             {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "MASTERBATCHES/ COMPOUNDS 1,10,000 MTPA",
-              "page": 6
+              "doc": "Concall Transcript - 04 Aug 2026",
+              "quote": "We implemented 20,000 tons last year.",
+              "page": 11
             },
             {
               "doc": "Presentation - 27 Jul 2026",
@@ -8903,52 +8956,101 @@
           ]
         },
         {
-          "label": "Expandable Polystyrene (EPS) Installed Capacity",
-          "unit": "MTPA",
+          "label": "OEM Share of Customer Mix",
+          "unit": "%",
           "scope": "Standalone data",
           "values": [
             null,
-            110000,
+            null,
+            50,
             null,
             null,
             null,
-            110000,
+            50,
             null,
             null,
             null,
-            110000,
-            143000,
-            null
+            50,
+            50
           ],
           "citations": [
             null,
+            null,
             {
-              "doc": "Presentation - 23 Apr 2025",
-              "quote": "Installed Effective Capacities EPS 1,10,000 MTPA",
+              "doc": "Concall Transcript - 30 Jul 2024",
+              "quote": "I would say for both categories, you can take around 50-50 or 45% for OEM and 55% for non-OEM",
+              "page": 11
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Concall Transcript - 24 Jan 2025",
+              "quote": "the business is divided almost 50:50 between the OEMs and non-OEMs",
               "page": 6
             },
             null,
             null,
             null,
             {
+              "doc": "Concall Transcript - 30 Apr 2026",
+              "quote": "for both categories, you can take around 50-50 or 45% for OEM and 55% for non-OEM",
+              "page": 7
+            },
+            {
+              "doc": "Concall Transcript - 02 Nov 2026",
+              "quote": "They're almost the same, 50-50",
+              "page": 12
+            }
+          ]
+        },
+        {
+          "label": "PS and EPS Domestic Market Share",
+          "unit": "%",
+          "scope": "Standalone data",
+          "values": [
+            null,
+            50,
+            null,
+            null,
+            null,
+            50,
+            null,
+            null,
+            null,
+            50,
+            null,
+            60
+          ],
+          "citations": [
+            null,
+            {
               "doc": "Presentation - 23 Apr 2025",
-              "quote": "Installed Effective Capacities EPS 1,10,000 MTPA",
-              "page": 6
+              "quote": "Market Leader in Polystyrene and Expanded Polystyrene with market share exceeding 50%",
+              "page": 3
+            },
+            null,
+            null,
+            null,
+            {
+              "doc": "Presentation - 23 Apr 2025",
+              "quote": "Market Leader in Polystyrene and Expanded Polystyrene with market share exceeding 50%",
+              "page": 3
             },
             null,
             null,
             null,
             {
               "doc": "Presentation - 24 Apr 2026",
-              "quote": "Installed Effective Capacities EPS 1,10,000 MTPA",
-              "page": 6
+              "quote": "Market Leader in Polystyrene and Expanded Polystyrene with market share exceeding 50%",
+              "page": 3
             },
+            null,
             {
-              "doc": "Concall Transcript - 04 Aug 2026",
-              "quote": "So, now we have expanded the capacity to 1,43,000.",
-              "page": 8
-            },
-            null
+              "doc": "Concall Transcript - 02 Nov 2026",
+              "quote": "We have a market share of around 60%",
+              "page": 10
+            }
           ]
         },
         {
@@ -8992,96 +9094,6 @@
             null,
             null,
             null,
-            null,
-            null
-          ]
-        },
-        {
-          "label": "OEM Share of Customer Mix",
-          "unit": "%",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            null,
-            50,
-            null,
-            null,
-            null,
-            50,
-            null,
-            null,
-            null,
-            50,
-            null
-          ],
-          "citations": [
-            null,
-            null,
-            {
-              "doc": "Concall Transcript - 30 Jul 2024",
-              "quote": "I would say for both categories, you can take around 50-50 or 45% for OEM and 55% for non-OEM",
-              "page": 11
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Concall Transcript - 24 Jan 2025",
-              "quote": "the business is divided almost 50:50 between the OEMs and non-OEMs",
-              "page": 6
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Concall Transcript - 30 Apr 2026",
-              "quote": "for both categories, you can take around 50-50 or 45% for OEM and 55% for non-OEM",
-              "page": 7
-            },
-            null
-          ]
-        },
-        {
-          "label": "PS and EPS Domestic Market Share",
-          "unit": "%",
-          "scope": "Standalone data",
-          "values": [
-            null,
-            50,
-            null,
-            null,
-            null,
-            50,
-            null,
-            null,
-            null,
-            50,
-            null,
-            null
-          ],
-          "citations": [
-            null,
-            {
-              "doc": "Presentation - 23 Apr 2025",
-              "quote": "Market Leader in Polystyrene and Expanded Polystyrene with market share exceeding 50%",
-              "page": 3
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 23 Apr 2025",
-              "quote": "Market Leader in Polystyrene and Expanded Polystyrene with market share exceeding 50%",
-              "page": 3
-            },
-            null,
-            null,
-            null,
-            {
-              "doc": "Presentation - 24 Apr 2026",
-              "quote": "Market Leader in Polystyrene and Expanded Polystyrene with market share exceeding 50%",
-              "page": 3
-            },
             null,
             null
           ]
@@ -9705,7 +9717,7 @@
             null,
             8815,
             10060,
-            8299,
+            10223,
             9248,
             7923,
             8274,
@@ -9732,9 +9744,9 @@
               "page": 5
             },
             {
-              "doc": "Presentation - 22 May 2025",
-              "quote": "Manufacturing Gross Margin Spread (INR/kL)",
-              "page": 18
+              "doc": "Concall Transcript - 31 Jan 2024",
+              "quote": "The manufacturing gross margin spread stood at INR10,223 per KL, compared to INR10,060 per KL in the previous quarter",
+              "page": 5
             },
             {
               "doc": "Presentation - 26 May 2026",
@@ -9986,6 +9998,47 @@
           ]
         },
         {
+          "label": "Capacity Utilization",
+          "unit": "%",
+          "scope": null,
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            97,
+            61
+          ],
+          "citations": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+              "doc": "Concall Transcript - 28 Jul 2026",
+              "quote": "On a company level, all 3 plants taken together, it's around 97%.",
+              "page": 14
+            },
+            {
+              "doc": "Concall Transcript - 02 Nov 2026",
+              "quote": "The consol level, it is around 61%.",
+              "page": 6
+            }
+          ]
+        },
+        {
           "label": "Overseas Revenue Share",
           "unit": "%",
           "scope": null,
@@ -10022,43 +10075,6 @@
               "doc": "Concall Transcript - 28 Jul 2026",
               "quote": "Exports contributed approximately 51% of consolidated revenue compared with around 37% in the corresponding quarter last year",
               "page": 5
-            },
-            null
-          ]
-        },
-        {
-          "label": "Capacity Utilization",
-          "unit": "%",
-          "scope": null,
-          "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            97,
-            null
-          ],
-          "citations": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            {
-              "doc": "Concall Transcript - 28 Jul 2026",
-              "quote": "On a company level, all 3 plants taken together, it's around 97%.",
-              "page": 14
             },
             null
           ]

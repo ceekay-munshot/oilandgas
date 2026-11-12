@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-11T13:06:25.035Z",
+  "generatedAt": "2026-11-12T14:08:08.190Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -770,7 +770,7 @@
       "view": "consolidated",
       "url": "https://www.screener.in/company/OIL/consolidated/",
       "analysis": {
-        "pros": 2,
+        "pros": 3,
         "cons": 0
       },
       "summariesAvailable": 22,
@@ -1346,22 +1346,36 @@
         "pros": 1,
         "cons": 0
       },
-      "summariesAvailable": 22,
-      "transcriptsFound": 21,
+      "summariesAvailable": 23,
+      "transcriptsFound": 22,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Nov 2026",
           "periodIso": "2026-11",
-          "url": "https://www.screener.in/concalls/summary/23370779/",
+          "url": "https://www.screener.in/concalls/summary/23394685/",
           "source": "screener.in",
           "status": "ok",
-          "chars": 6900,
+          "chars": 7518,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/RATNAMANI/summary-2026-11.txt",
-          "sample": "Q2 FY27 Performance Snapshot (Consolidated vs. Standalone) Consolidated : Revenue from operations: ₹1,348 cr (+13% YoY) (vs ₹1,192 cr) EBITDA: ₹220 cr , margin "
+          "sample": "Financial performance (Q2 FY27 / H1 context) Consolidated: Revenue INR 1,348 cr (+13% YoY) ; EBITDA INR 220 cr (16.3%) ; PBT INR 174 cr ; PAT INR 133 cr . Stand"
+        },
+        {
+          "type": "summary",
+          "role": "summary",
+          "period": "Nov 2026",
+          "periodIso": "2026-11",
+          "url": "https://www.screener.in/concalls/summary/23394685/",
+          "source": "screener.in",
+          "status": "ok",
+          "chars": 7518,
+          "pages": null,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/RATNAMANI/summary-2026-11.txt",
+          "sample": "Financial performance (Q2 FY27 / H1 context) Consolidated: Revenue INR 1,348 cr (+13% YoY) ; EBITDA INR 220 cr (16.3%) ; PBT INR 174 cr ; PAT INR 133 cr . Stand"
         },
         {
           "type": "summary",
@@ -1418,20 +1432,6 @@
           "via": "browser",
           "cache": "pipeline/cache/docs/RATNAMANI/summary-2024-11.txt",
           "sample": "Ratnamani Metals & Tubes – Q2 FY25 Earnings Call Summary (Nov 18, 2024) 1. Performance Overview & Margin Outlook Q2 FY25 (Standalone): Revenue: Rs. 917 crore EB"
-        },
-        {
-          "type": "summary",
-          "role": "summary",
-          "period": "May 2024",
-          "periodIso": "2024-05",
-          "url": "https://www.screener.in/concalls/summary/22915826/",
-          "source": "screener.in",
-          "status": "ok",
-          "chars": 2249,
-          "pages": null,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/RATNAMANI/summary-2024-05.txt",
-          "sample": "Financial Performance: Company achieved its best ever performance in FY24 with consolidated revenues crossing Rs. 5,100 crores and profits approximately Rs. 600"
         }
       ],
       "ppt": {
@@ -1448,6 +1448,19 @@
         "cache": "pipeline/cache/docs/RATNAMANI/ppt-2026-11.txt"
       },
       "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2026",
+          "periodIso": "2026-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=cedbe3a2-6bbd-44d2-a58a-017b081cd81a.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 30211,
+          "pages": 13,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/RATNAMANI/transcript-2026-11.txt"
+        },
         {
           "type": "transcript",
           "role": "transcript",
@@ -1512,19 +1525,6 @@
           "pages": 14,
           "via": "browser",
           "cache": "pipeline/cache/docs/RATNAMANI/transcript-2024-05.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Nov 2023",
-          "periodIso": "2023-11",
-          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=03c7909b-74d3-4993-871e-05332c9f5e03.pdf",
-          "source": "bseindia.com",
-          "status": "ok",
-          "chars": 30302,
-          "pages": 13,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/RATNAMANI/transcript-2023-11.txt"
         }
       ]
     },
@@ -1863,9 +1863,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 95882,
+          "pages": 31,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -2367,12 +2367,12 @@
           "periodIso": "2026-01",
           "url": "https://www.screener.in/concalls/summary/23143924/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 72,
+          "status": "ok",
+          "chars": 8448,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/HINDPETRO/summary-2026-01.txt",
-          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
+          "sample": "Executive snapshot (Q3 FY26) Standalone PAT: INR 4,072 cr (vs INR 3,023 cr , +32.6% YoY ). 9M FY26 standalone PAT: INR 12,274 cr ( +206% YoY ). Management empha"
         },
         {
           "type": "summary",
@@ -3760,9 +3760,9 @@
           "periodIso": "2026-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f80a7261-54f2-4326-bab2-127066e65e64.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 30783,
+          "pages": 14,
           "via": "browser",
           "cache": "pipeline/cache/docs/SPLPETRO/transcript-2026-08.txt"
         },
@@ -3964,9 +3964,9 @@
           "periodIso": "2026-05",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b2502bf8-680b-48ed-a5f0-5409b7938365.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 40455,
-          "pages": 14,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/CASTROLIND/transcript-2026-05.txt"
         },

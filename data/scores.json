@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-11T13:07:20.766Z",
+  "generatedAt": "2026-11-12T14:09:19.378Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -115,9 +115,9 @@
       ]
     },
     "coincident": {
-      "score": 18,
-      "prev": -14,
-      "delta": 7,
+      "score": 34,
+      "prev": -18,
+      "delta": 39,
       "deltaBasis": "kpi-only",
       "level": "positive",
       "direction": "rising",
@@ -126,7 +126,7 @@
       "kpisBeyondBrief": 13,
       "tonesScored": 15,
       "companiesScored": 11,
-      "staleKpis": 16,
+      "staleKpis": 14,
       "oneOffKpis": 2,
       "unknownKpis": 0,
       "lowCoverage": true,
@@ -194,14 +194,14 @@
           "companyId": "aegis-vopak",
           "company": "Aegis Vopak",
           "label": "LPG throughput",
-          "flag": "inflecting-down"
+          "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
           "companyId": "supreme-petrochem",
           "company": "Supreme Petrochem",
           "label": "Volume",
-          "flag": "inflecting-down"
+          "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
@@ -298,7 +298,7 @@
     }
   },
   "divergence": {
-    "value": 38,
+    "value": 22,
     "leadingSign": 1,
     "coincidentSign": 1,
     "signsDiffer": false
@@ -306,8 +306,8 @@
   "divergenceSeries": [
     null,
     null,
-    -40,
-    70
+    -36,
+    42
   ],
   "stage": {
     "stageId": "mid-upcycle",
@@ -316,7 +316,7 @@
     "ruleLabel": "Leading strongly positive, coincident positive and accelerating, lagging turning",
     "confidence": "normal",
     "because": [
-      "Leading 56 (strong-positive, rising), coincident 18 (positive, rising), lagging 100 (strong-positive).",
+      "Leading 56 (strong-positive, rising), coincident 34 (positive, rising), lagging 100 (strong-positive).",
       "Leading strongly positive, coincident positive and accelerating, lagging turning."
     ]
   },
@@ -476,7 +476,7 @@
     {
       "groupId": "coincident",
       "kind": "low-coverage",
-      "text": "Moving now: 18 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 16 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "groupId": "lagging",
@@ -495,7 +495,7 @@
       "id": "coverage-coincident",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moving now: 18 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 16 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "coverage-lagging",
@@ -576,7 +576,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +38. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +22. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -1015,7 +1015,7 @@
           "quarter": "Q2 FY27",
           "direction": "positive",
           "driver": "volume growth and pricing realization",
-          "drift": 1
+          "drift": 0
         },
         {
           "companyId": "castrol-india",
@@ -1053,7 +1053,7 @@
           "quarter": "Q2 FY27",
           "direction": "positive",
           "driver": "volume growth and pricing realization",
-          "drift": 1
+          "drift": 0
         }
       ]
     }
@@ -1061,17 +1061,17 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moving now moved down 8 points to 18."
+      "text": "Moving now moved up 16 points to 34."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-10T15:28:44.072Z",
+    "generatedAt": "2026-11-11T13:07:20.766Z",
     "asOf": "Q2 FY27",
     "scoringVersion": 2,
     "stageId": "mid-upcycle",
     "scores": {
       "leading": 56,
-      "coincident": 26,
+      "coincident": 18,
       "lagging": 100
     },
     "alertIds": [

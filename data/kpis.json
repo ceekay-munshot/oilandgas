@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-11T13:06:30.882Z",
+  "generatedAt": "2026-11-12T14:08:23.553Z",
   "quarters": [
     "Q3 FY26",
     "Q4 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 28,
     "kpiCells": 381,
-    "realCells": 256,
-    "nullCells": 125,
+    "realCells": 257,
+    "nullCells": 124,
     "kpis": 97,
     "kpisWithTrend": 60
   },
@@ -1217,7 +1217,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34054,
+      "ctxChars": 34099,
       "kpis": [
         {
           "id": "capex-vs-budget",
@@ -1780,7 +1780,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33048,
+      "ctxChars": 33049,
       "kpis": [
         {
           "id": "order-book",
@@ -1864,7 +1864,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q4 FY25: No order inflow figure stated for the quarter. Q2 FY26: Management mentioned carbon steel domestic order booking in the quarter was ₹750 cr, but this is only one segment (carbon steel domestic), not total pipe order inflow for the "
+          "notes": "Q4 FY25: No order inflow figure stated for the quarter. Q2 FY26: Management mentioned INR 750 cr carbon steel domestic order booking 'in the quarter' but this is only a subset (carbon steel domestic only, excludes stainless and export order"
         }
       ]
     },
@@ -2762,7 +2762,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34111,
+      "ctxChars": 34112,
       "kpis": [
         {
           "id": "grm",
@@ -2800,7 +2800,7 @@
             null
           ],
           "flag": "accelerating",
-          "notes": "Q3 FY26: no GRM figure stated in excerpts. Q4 FY26: no GRM figure stated in excerpts. Q1 FY27: no GRM figure stated in excerpts. Q2 FY27: AI summary states 'Refinery GRM: $32.15/bbl pre-SAED' as a management-cited figure."
+          "notes": "Q3 FY26: not stated in excerpts. Q4 FY26: not stated in excerpts (Q3 FY26 AI summary mentions $8.85/bbl reported GRM with contamination impact, but that is Q3 not Q4). Q1 FY27: not stated in excerpts. Q2 FY27: AI summary states 'Refinery GR"
         },
         {
           "id": "marketing-margin",
@@ -2838,7 +2838,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q3 FY26: no marketing margin per litre stated. Q4 FY26: no marketing margin per litre stated. Q1 FY27: no marketing margin per litre stated. Q2 FY27: AI summary mentions 'Marketing margins improved vs significant under-recovery in quarter 1"
+          "notes": "Q3 FY26: not stated in excerpts. Q4 FY26: not stated in excerpts. Q1 FY27: not stated in excerpts (only qualitative commentary on LPG under-recovery per cylinder, not marketing margin per liter). Q2 FY27: not stated in excerpts (only qualit"
         },
         {
           "id": "throughput",
@@ -3834,10 +3834,10 @@
         "Q1 FY27",
         "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33095,
+      "ctxChars": 33125,
       "kpis": [
         {
           "id": "lpg-throughput",
@@ -3848,19 +3848,19 @@
             0.67,
             3.9,
             0.9,
-            null
+            1.1
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            null
+            "insights"
           ],
           "citations": [
             {
@@ -3878,7 +3878,11 @@
               "quote": "On the gas side, quarterly throughput stood at approximately 0.9 million metric tons.",
               "page": 7
             },
-            null
+            {
+              "doc": "Concall Transcript - 10 Nov 2026",
+              "quote": "That is 1.1 million tons.",
+              "page": 16
+            }
           ],
           "oneOffs": [
             null,
@@ -3886,8 +3890,8 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
-          "notes": "From Screener Insights row \"LPG/Gas Throughput\"; latest value cited to Concall Transcript - 05 Feb 2026, page 7."
+          "flag": "inflecting-up",
+          "notes": null
         },
         {
           "id": "terminal-utilisation",
@@ -3925,7 +3929,7 @@
             null
           ],
           "flag": null,
-          "notes": "Terminal utilisation % not stated in any of the excerpts for Q3 FY26, Q4 FY26, Q1 FY27, or Q2 FY27. The screener insights table does not include this metric, and the concall transcripts do not mention utilisation percentages."
+          "notes": "Terminal utilisation % not stated in any of the excerpts for Q3 FY26, Q4 FY26, Q1 FY27, or Q2 FY27. The SCREENER INSIGHTS table does not include this metric, and none of the concall transcripts mention utilisation percentages."
         }
       ]
     },
@@ -3933,15 +3937,15 @@
       "name": "Supreme Petrochem",
       "slug": "SPLPETRO",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
+        "Q1 FY27",
         "Q2 FY27"
       ],
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33110,
+      "ctxChars": 33117,
       "kpis": [
         {
           "id": "sps-spread",
@@ -3989,9 +3993,9 @@
           "unit": "MT",
           "flagBasis": "level",
           "values": [
-            76962,
             91265,
             100664,
+            70842,
             95242
           ],
           "sourceTags": [
@@ -4008,11 +4012,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 24 Oct 2025",
-              "quote": "Total sales volume in H1-FY26 were lower by 2.3% ie from 174813 MT sold in H1-FY25 to 170826 MT in H1-FY 26",
-              "page": 15
-            },
-            {
               "doc": "Concall Transcript - 26 Jan 2026",
               "quote": "the sales volume of the manufactured products stood at 91,265 MT in Q3 as against 85,537 MT in Q3 FY'25",
               "page": 3
@@ -4021,6 +4020,11 @@
               "doc": "Presentation - 24 Apr 2026",
               "quote": "95,556 1,00,664 Q4-FY25 Q4-FY26",
               "page": 16
+            },
+            {
+              "doc": "Presentation - 27 Jul 2026",
+              "quote": "Total Sales Volume of the manufactured products in Q1FY27 was 70,842 MT",
+              "page": 18
             },
             {
               "doc": "Presentation - 23 Oct 2026",
@@ -4034,7 +4038,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": "inflecting-up",
           "notes": null
         }
       ]
@@ -4043,8 +4047,8 @@
       "name": "Castrol India",
       "slug": "CASTROLIND",
       "quarters": [
+        "Q2 FY26",
         "Q3 FY26",
-        "Q4 FY26",
         "Q1 FY27",
         "Q2 FY27"
       ],
@@ -4059,30 +4063,26 @@
           "unit": "% YoY",
           "flagBasis": "yoy",
           "values": [
-            7.5,
+            7,
             7.5,
             5,
             null
           ],
           "sourceTags": [
             "mgmt-claim",
-            "company-filing",
+            "mgmt-claim",
             "company-filing",
             null
           ],
           "origins": [
             "model",
-            "insights",
+            "model",
             "insights",
             null
           ],
           "citations": [
             null,
-            {
-              "doc": "Concall Transcript - 04 May 2026",
-              "quote": "7% to 8% volume growth is what we have delivered for the quarter",
-              "page": 6
-            },
+            null,
             {
               "doc": "Presentation - 21 Aug 2026",
               "quote": "Average growth in volume sold vs 2Q 2025",
@@ -4091,13 +4091,13 @@
             null
           ],
           "oneOffs": [
+            "No Q2 FY26 data",
             "No Q3 FY26 data",
-            null,
             null,
             null
           ],
           "flag": null,
-          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Concall Transcript - 04 May 2026, page 6."
+          "notes": "From Screener Insights row \"Volume Growth YoY\"; latest value cited to Presentation - 21 Aug 2026, page 9."
         },
         {
           "id": "base-oil-spread",
@@ -4153,7 +4153,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 33820,
+      "ctxChars": 33822,
       "kpis": [
         {
           "id": "base-oil-spread",
