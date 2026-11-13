@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-13T13:32:53.621Z",
+  "generatedAt": "2026-11-13T15:09:02.564Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -333,7 +333,7 @@
         "id": "brent",
         "label": "Crude",
         "direction": "rising",
-        "percentile": 82,
+        "percentile": 55,
         "supports": "up",
         "vote": "supports"
       },
@@ -341,7 +341,7 @@
         "id": "crack-spread",
         "label": "Crack spread",
         "direction": "falling",
-        "percentile": 45,
+        "percentile": 27,
         "supports": "up",
         "vote": "opposes"
       },
@@ -571,7 +571,7 @@
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude rising (82th pctile); Crack spread falling (45th pctile); USD/INR flat (45th pctile)."
+      "text": "Crude rising (55th pctile); Crack spread falling (27th pctile); USD/INR flat (45th pctile)."
     },
     {
       "id": "divergence",
@@ -1065,12 +1065,12 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-12T15:50:25.685Z",
+    "generatedAt": "2026-11-13T13:32:53.621Z",
     "asOf": "Q2 FY27",
     "scoringVersion": 2,
     "stageId": "mid-upcycle",
     "scores": {
-      "leading": 56,
+      "leading": 60,
       "coincident": 34,
       "lagging": 100
     },

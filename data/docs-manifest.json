@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-13T13:31:43.886Z",
+  "generatedAt": "2026-11-13T15:08:30.004Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -1863,9 +1863,9 @@
           "periodIso": "2026-04",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=971d8c86-397a-4780-b843-5a84d3006d0b.pdf",
           "source": "bseindia.com",
-          "status": "not_pdf",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 95882,
+          "pages": 31,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/transcript-2026-04.txt"
         },
@@ -4673,12 +4673,11 @@
           "periodIso": "2026-05",
           "url": "https://www.shipindia.com/upload/investorsubpage/transcript.pdf",
           "source": "shipindia.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 55234,
+          "pages": 21,
           "via": "browser",
-          "cache": "pipeline/cache/docs/SCI/transcript-2026-05.txt",
-          "error": "apiRequestContext.get: Max redirect count exceeded\nCall log:\n  - → GET https://www.shipindia.com/upload/investorsubpage/transcript.pdf\n    - user-agent: Mozilla"
+          "cache": "pipeline/cache/docs/SCI/transcript-2026-05.txt"
         },
         {
           "type": "transcript",
@@ -4687,12 +4686,11 @@
           "periodIso": "2025-11",
           "url": "https://www.shipindia.com/upload/investorsubpage/Transcript_Antique-ShippingCorp-Nov10-2025.pdf",
           "source": "shipindia.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 96434,
+          "pages": 21,
           "via": "browser",
-          "cache": "pipeline/cache/docs/SCI/transcript-2025-11.txt",
-          "error": "apiRequestContext.get: Max redirect count exceeded\nCall log:\n  - → GET https://www.shipindia.com/upload/investorsubpage/Transcript_Antique-ShippingCorp-Nov10-20"
+          "cache": "pipeline/cache/docs/SCI/transcript-2025-11.txt"
         }
       ]
     },
