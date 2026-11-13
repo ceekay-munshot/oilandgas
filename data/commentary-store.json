@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-11-12T15:50:25.633Z",
+  "generatedAt": "2026-11-13T13:32:53.568Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -230,9 +230,32 @@
           "attempts": 2,
           "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
           "at": "2026-08-14T07:09:41.987Z"
+        },
+        "Q2 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "We are very confident that we will achieve four this year … once we achieve four… [we] should remain there for 4.2, 4.3, and we will keep on growing",
+          "rationale": "Management expressed strong conviction about sustaining and growing crude production beyond 4 MTPA, highlighted all-time high run-rates, and framed 100+ well drilling as the new normal.",
+          "driver": "crude production step-change",
+          "direction": "positive",
+          "signal": "Management signaled sustained drilling intensity at 100+ wells per year to hold crude output above 4 MTPA and grow further, while NRL expansion mechanical completion and ramp-up through FY29 underpin downstream capacity.",
+          "mgmtDataPoints": [
+            "Crude production: 1.021 MMT in Q2 FY27, +20% YoY",
+            "Current crude run-rate: ~11,300 tpd (~4.05 MTPA)",
+            "Crude production target: 4 MTPA this year, then 4.2–4.3 MTPA",
+            "Drilling target: 100 wells for the year",
+            "H1 FY27 drilling: 42 new wells (16 exploratory, 26 development)",
+            "Rigs operating: 29, with 5–6 more planned"
+          ],
+          "implication": "Crude volumes should remain elevated near 4 MTPA through H2 FY27 on sustained drilling, while gas remains constrained; NRL commissioning slip to Mar'27 defers downstream earnings contribution but poses no operational risk.",
+          "doc": "Concall AI summary (Q2 FY27)",
+          "fingerprint": "56a5d0f5b7db",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-13T13:32:14.757Z"
         }
       },
-      "updatedAt": "2026-08-14T07:09:41.987Z"
+      "updatedAt": "2026-11-13T13:32:14.757Z"
     },
     "deep-industries": {
       "cells": {

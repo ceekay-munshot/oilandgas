@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-12T15:49:59.325Z",
+  "generatedAt": "2026-11-13T13:31:51.148Z",
   "quarters": [
     "Q3 FY26",
     "Q4 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
-    "kpiCells": 381,
-    "realCells": 257,
-    "nullCells": 124,
+    "kpiCells": 385,
+    "realCells": 255,
+    "nullCells": 130,
     "kpis": 97,
-    "kpisWithTrend": 60
+    "kpisWithTrend": 58
   },
   "companies": {
     "deep-industries": {
@@ -1209,10 +1209,10 @@
       "name": "Oil India",
       "slug": "OIL",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
@@ -1226,21 +1226,21 @@
           "flagBasis": "level",
           "values": [
             null,
-            null,
             13025,
-            3050
+            3050,
+            null
           ],
           "sourceTags": [
             null,
-            null,
             "mgmt-claim",
-            "mgmt-claim"
+            "mgmt-claim",
+            null
           ],
           "origins": [
             null,
-            null,
             "model",
-            "model"
+            "model",
+            null
           ],
           "citations": [
             null,
@@ -1255,7 +1255,7 @@
             null
           ],
           "flag": null,
-          "notes": "Q2 FY26: no single-quarter capex stated. Q3 FY26: no single-quarter capex stated. Q4 FY26: no single-quarter capex stated; FY26 full-year capex ₹13,026 cr mentioned but not Q4 alone. Q1 FY27: Q1 capex spend ~₹3,050 cr stated in concall AI s"
+          "notes": "Q3 FY26: No capex vs budget figure stated. Q4 FY26: No capex vs budget figure stated; FY26 full-year capex was ₹13,025 cr but no budget comparison given. Q1 FY27: Q1 capex spend ~₹3,050 cr stated, FY27 budget estimate ₹8,600 cr mentioned, b"
         },
         {
           "id": "production-volume",
@@ -1263,29 +1263,24 @@
           "unit": "MMT",
           "flagBasis": "level",
           "values": [
-            0.85,
             0.86,
             null,
-            0.95
+            0.95,
+            null
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing",
             null,
-            "company-filing"
+            "company-filing",
+            null
           ],
           "origins": [
             "insights",
-            "insights",
             null,
-            "insights"
+            "insights",
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 21 Nov 2025",
-              "quote": "The crude oil production for the quarter stood at 0.848 million metric tons, a minor decrease of 0.6% on quarter-to-quarter",
-              "page": 4
-            },
             {
               "doc": "Concall Transcript - 17 Feb 2026",
               "quote": "The crude oil production for the quarter is 0.858 MMT, which is increased by 1.18% on quarter-to-quarter",
@@ -1296,7 +1291,8 @@
               "doc": "Concall Transcript - 12 Aug 2026",
               "quote": "The crude oil production for the quarter was 0.95 MMT, which has increased by 11 plus percentage on year-to-year basis.",
               "page": 4
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -1304,7 +1300,7 @@
             null,
             null
           ],
-          "flag": "accelerating",
+          "flag": null,
           "notes": "6.64 MMT / bcm (model) withheld: does not match this row's unit MMT"
         },
         {
@@ -1314,33 +1310,29 @@
           "flagBasis": "level",
           "values": [
             0.8,
-            0.8,
             null,
-            0.4
+            0.4,
+            null
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing",
             null,
-            "inference"
+            "inference",
+            null
           ],
           "origins": [
             "insights",
-            "insights",
             null,
-            "model"
+            "model",
+            null
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 21 Nov 2025",
-              "quote": "The natural gas production for the quarter stood at 0.804 bcm at marginal decrease of minus 2.8% on quarter-to-quarter",
-              "page": 4
-            },
             {
               "doc": "Concall Transcript - 17 Feb 2026",
               "quote": "The natural gas production for the quarter is 0.801 bcm, which is almost at par with the previous quarter",
               "page": 5
             },
+            null,
             null,
             null
           ],
@@ -1350,8 +1342,8 @@
             null,
             null
           ],
-          "flag": "decelerating",
-          "notes": "From Screener Insights row \"Natural Gas Production\" (Standalone data); latest value cited to Concall Transcript - 21 Nov 2025, page 4."
+          "flag": null,
+          "notes": "From Screener Insights row \"Natural Gas Production\" (Standalone data); latest value cited to Concall Transcript - 17 Feb 2026, page 5."
         }
       ]
     },
@@ -2435,7 +2427,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31330,
+      "ctxChars": 31376,
       "kpis": [
         {
           "id": "grm",
@@ -2511,7 +2503,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin per litre not disclosed in any of the excerpts. Q2 FY26 concall mentions LPG under-recovery ~₹100/cylinder and current ~₹40/cylinder, but no aggregate marketing margin per litre. Q1 FY27 concall references 'considerable pre"
+          "notes": "Marketing margin per litre not disclosed in any of the excerpts. The Q1 FY27 concall summary mentions 'considerable pressure on marketing margins on retail fuels' and the Q2 FY27 summary discusses LPG under-recoveries and inventory gains af"
         },
         {
           "id": "throughput",
@@ -3228,7 +3220,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34208,
+      "ctxChars": 32397,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -4815,12 +4807,14 @@
       "slug": "SCI",
       "quarters": [
         "Q2 FY26",
-        "Q4 FY26"
+        "Q3 FY26",
+        "Q4 FY26",
+        "Q1 FY27"
       ],
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21400,
+      "ctxChars": 9401,
       "kpis": [
         {
           "id": "freight-rate",
@@ -4829,15 +4823,21 @@
           "flagBasis": "level",
           "values": [
             47817,
-            216387
+            null,
+            216387,
+            null
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing"
+            null,
+            "company-filing",
+            null
           ],
           "origins": [
             "insights",
-            "insights"
+            null,
+            "insights",
+            null
           ],
           "citations": [
             {
@@ -4845,18 +4845,22 @@
               "quote": "VLCC MEG-CHINA 270,000 MT TD3C TCE Qtr-II 47,817.44",
               "page": 19
             },
+            null,
             {
               "doc": "Presentation - 11 May 2026",
               "quote": "VLCC MEG-CHINA 270,000 MT TD3C TCE Qtr-IV 216,387",
               "page": 17
-            }
+            },
+            null
           ],
           "oneOffs": [
+            null,
+            null,
             null,
             null
           ],
           "flag": null,
-          "notes": null
+          "notes": "From Screener Insights row \"VLCC TD3C (MEG-China) average TCE rate\"; latest value cited to Presentation - 07 Nov 2025, page 19."
         },
         {
           "id": "aframax-rate",
@@ -4865,15 +4869,21 @@
           "flagBasis": "level",
           "values": [
             32709,
-            80914
+            null,
+            80914,
+            null
           ],
           "sourceTags": [
             "company-filing",
-            "company-filing"
+            null,
+            "company-filing",
+            null
           ],
           "origins": [
             "insights",
-            "insights"
+            null,
+            "insights",
+            null
           ],
           "citations": [
             {
@@ -4881,18 +4891,22 @@
               "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-II 32,708.75",
               "page": 19
             },
+            null,
             {
               "doc": "Presentation - 11 May 2026",
               "quote": "AFRAMAX: KUWAIT-SNG 80,000 MT TD8 TCE Qtr-IV 80,914",
               "page": 17
-            }
+            },
+            null
           ],
           "oneOffs": [
+            null,
+            null,
             null,
             null
           ],
           "flag": null,
-          "notes": null
+          "notes": "From Screener Insights row \"Aframax TD8 (Kuwait-Singapore) average TCE rate\"; latest value cited to Presentation - 07 Nov 2025, page 19."
         }
       ]
     },
