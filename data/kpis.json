@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-13T15:08:35.441Z",
+  "generatedAt": "2026-11-14T12:36:54.439Z",
   "quarters": [
     "Q3 FY26",
     "Q4 FY26",
@@ -13,11 +13,11 @@
   "note": "Each KPI value is taken straight from a company filing/PPT or a management statement on the concall - never estimated. A quarter the sources do not state is null. Trajectory flags are computed in code from the four values. sourceTags name where each value came from (framework.json). Each company carries its OWN `quarters` - the four most recent quarters its documents actually report, oldest first - so values[i] aligns to that company's quarters[i], not to the top-level list, which is only a display fallback. The window rolls forward on its own as new concalls appear on Screener.",
   "coverage": {
     "companies": 28,
-    "kpiCells": 381,
-    "realCells": 255,
-    "nullCells": 126,
-    "kpis": 97,
-    "kpisWithTrend": 58
+    "kpiCells": 401,
+    "realCells": 276,
+    "nullCells": 125,
+    "kpis": 102,
+    "kpisWithTrend": 63
   },
   "companies": {
     "deep-industries": {
@@ -1359,7 +1359,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32435,
+      "ctxChars": 32288,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -1397,7 +1397,7 @@
             null
           ],
           "flag": null,
-          "notes": "No offshore rig utilisation percentage data found in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The excerpts provide rig counts (operating vs total fleet), contract status, and dehire/refurbishment timelines, but no expl"
+          "notes": "No offshore rig utilisation percentage data found in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The excerpts provide rig counts, deployment status, and contract details, but do not state a utilisation percentage figure."
         },
         {
           "id": "charter-day-rate",
@@ -2427,7 +2427,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31376,
+      "ctxChars": 31398,
       "kpis": [
         {
           "id": "grm",
@@ -2503,7 +2503,7 @@
             null
           ],
           "flag": null,
-          "notes": "Marketing margin per litre not disclosed in any of the excerpts. The Q1 FY27 concall summary mentions 'considerable pressure on marketing margins on retail fuels' and the Q2 FY27 summary discusses LPG under-recoveries and inventory gains af"
+          "notes": "Marketing margin per litre not disclosed in any of the excerpts. The documents discuss marketing operations, volumes, and LPG under-recoveries, but do not provide a per-litre marketing margin figure for any quarter. Q2 FY26 mentions 'suppre"
         },
         {
           "id": "throughput",
@@ -2514,19 +2514,19 @@
             17.6,
             19.7,
             19.2,
-            null
+            18.1
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "official",
-            null
+            "company-filing"
           ],
           "origins": [
             "insights",
             "insights",
             "ppac",
-            null
+            "insights"
           ],
           "citations": [
             {
@@ -2540,7 +2540,175 @@
               "page": 5
             },
             null,
+            {
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "refineries achieved crude throughput of 18.1 MMT with a",
+              "page": 4
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
             null
+          ],
+          "flag": "decelerating",
+          "notes": null
+        },
+        {
+          "id": "refinery-utilisation",
+          "label": "Refinery utilisation",
+          "unit": "%",
+          "flagBasis": "level",
+          "values": [
+            99.5,
+            113.9,
+            109.4,
+            102.3
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 27 Oct 2025",
+              "quote": "Q2 2025-26: Refinery Capacity utilization (%) 99.5",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 19 May 2026",
+              "quote": "Q4 2025-26: Refinery Capacity utilization (%) 113.9",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "Refineries achieved crude throughput of 19.2 MMT with a capacity utilisation of 109.4%",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "capacity utilization of 102.3% in comparison to throughput of 19.2 MMT",
+              "page": 4
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "petchem-sales",
+          "label": "Petchem sales",
+          "unit": "MMT",
+          "flagBasis": "level",
+          "values": [
+            0.77,
+            0.9,
+            0.77,
+            0.86
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 28 Oct 2025",
+              "quote": "The sales of petrochemical products, including exports, during this quarter was 0.77 MMT",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 19 May 2026",
+              "quote": "For Q4 2025-26, sale of 0.901 MMT was achieved as compared to 0.893 MMT in the preceding quarter",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "The sale of petrochemical products, including exports during this quarter was 0.768 MMT",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "0.858 MMT compared to sale of 0.768 MMT in the preceding quarter.",
+              "page": 5
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "inflecting-up",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "pipeline-throughput",
+          "label": "Pipeline throughput",
+          "unit": "MMT",
+          "flagBasis": "level",
+          "values": [
+            24.1,
+            27.7,
+            28.5,
+            25.3
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 27 Oct 2025",
+              "quote": "Q2 2025-26: Pipeline Throughput (MMT) 24.1",
+              "page": 4
+            },
+            {
+              "doc": "Presentation - 19 May 2026",
+              "quote": "Q4 2025-26: Pipeline Throughput (MMT) 27.7",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "highest ever quarterly throughput of 28.5 MMT with capacity utilization of 79.9%",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "pipeline throughput was 25.3 MMT with a capacity utilization of",
+              "page": 4
+            }
           ],
           "oneOffs": [
             null,
@@ -2549,7 +2717,118 @@
             null
           ],
           "flag": "inflecting-down",
-          "notes": "From Screener Insights row \"Refinery Throughput\" (Standalone data); latest value cited to Presentation - 27 Oct 2025, page 4."
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "total-sales-volume",
+          "label": "Total sales volume",
+          "unit": "MMT",
+          "flagBasis": "level",
+          "values": [
+            24.26,
+            27.34,
+            26.21,
+            25.23
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Presentation - 27 Oct 2025",
+              "quote": "Q2 2025-26: Total Sales (a+b+c) 24.262 MMT",
+              "page": 5
+            },
+            {
+              "doc": "Presentation - 19 May 2026",
+              "quote": "Q4 2025-26: Total Sales (a+b+c) 27.343 MMT",
+              "page": 6
+            },
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "The total sales volume during the quarter was 26.211 MMT",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "The total sales volume during the quarter was 25.228 MMT as compared to 26.211",
+              "page": 5
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
+          "beyondBrief": true,
+          "notes": null
+        },
+        {
+          "id": "gas-sales",
+          "label": "Gas sales",
+          "unit": "MMT",
+          "flagBasis": "level",
+          "values": [
+            1.84,
+            1.81,
+            1.87,
+            1.93
+          ],
+          "sourceTags": [
+            "company-filing",
+            "company-filing",
+            "company-filing",
+            "company-filing"
+          ],
+          "origins": [
+            "insights",
+            "insights",
+            "insights",
+            "insights"
+          ],
+          "citations": [
+            {
+              "doc": "Concall Transcript - 28 Oct 2025",
+              "quote": "During the year, we registered highest quarterly gas sales of 1.840 MMT, which includes CGD sales of 44 TMT",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 19 May 2026",
+              "quote": "During the quarter, we registered gas sales of 1,814 TMT which includes CGD sales of 54 TMT",
+              "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 07 Aug 2026",
+              "quote": "During the quarter, we registered gas sales of 1,873 TMT which includes CGD sales of 67 TMT",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "we registered gas sales of 1,933 TMT, which includes CGD sales of",
+              "page": 5
+            }
+          ],
+          "oneOffs": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "flag": "decelerating",
+          "beyondBrief": true,
+          "notes": null
         }
       ]
     },

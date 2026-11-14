@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-13T15:06:59.704Z",
+  "generatedAt": "2026-11-14T12:35:09.776Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -4521,7 +4521,6 @@
       "toggled": "/insights/company/1448/quarter/?is_consolidated=1",
       "note": null,
       "periods": [
-        "Sep 2023",
         "Dec 2023",
         "Mar 2024",
         "Jun 2024",
@@ -4532,10 +4531,10 @@
         "Sep 2025",
         "Dec 2025",
         "Mar 2026",
-        "Jun 2026"
+        "Jun 2026",
+        "Sep 2026"
       ],
       "periodsIso": [
-        "2023-09",
         "2023-12",
         "2024-03",
         "2024-06",
@@ -4546,7 +4545,8 @@
         "2025-09",
         "2025-12",
         "2026-03",
-        "2026-06"
+        "2026-06",
+        "2026-09"
       ],
       "rows": [
         {
@@ -4554,7 +4554,6 @@
           "unit": "MMT",
           "scope": "Standalone data",
           "values": [
-            17.5,
             18.5,
             18.3,
             18.7,
@@ -4565,14 +4564,10 @@
             17.6,
             19.4,
             19.7,
-            19.2
+            19.2,
+            18.1
           ],
           "citations": [
-            {
-              "doc": "Concall Transcript - 02 May 2025 Source",
-              "quote": null,
-              "page": null
-            },
             {
               "doc": "Concall Transcript - 02 May 2025",
               "quote": "throughput of 18.1 MMT and a capacity utilization of 102.3%. And also higher than the corresponding quarter FY '24, which was at 18.3 MMT",
@@ -4627,6 +4622,11 @@
               "doc": "Concall Transcript - 07 Aug 2026",
               "quote": "Refineries achieved crude throughput of 19.2 MMT with a capacity utilisation of 109.4%",
               "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "refineries achieved crude throughput of 18.1 MMT with a",
+              "page": 4
             }
           ]
         },
@@ -4637,19 +4637,18 @@
           "values": [
             null,
             null,
-            null,
             106.7,
             94.5,
             102.3,
             107.1,
             106.7,
-            99.5,
+            99.4,
             109.7,
             113.9,
-            109.4
+            109.4,
+            102.3
           ],
           "citations": [
-            null,
             null,
             null,
             {
@@ -4678,8 +4677,8 @@
               "page": 4
             },
             {
-              "doc": "Presentation - 27 Oct 2025",
-              "quote": "Q2 2025-26: Refinery Capacity utilization (%) 99.5",
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "For the corresponding quarter of financial year 25-26, the throughput was at 17.6 MMT with a capacity utilization of 99.4%.",
               "page": 4
             },
             {
@@ -4696,6 +4695,11 @@
               "doc": "Concall Transcript - 07 Aug 2026",
               "quote": "Refineries achieved crude throughput of 19.2 MMT with a capacity utilisation of 109.4%",
               "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "capacity utilization of 102.3% in comparison to throughput of 19.2 MMT",
+              "page": 4
             }
           ]
         },
@@ -4708,17 +4712,16 @@
             null,
             null,
             null,
-            null,
             0.89,
             0.83,
             0.83,
             0.77,
             0.89,
             0.9,
-            0.77
+            0.77,
+            0.86
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -4757,6 +4760,11 @@
               "doc": "Concall Transcript - 07 Aug 2026",
               "quote": "The sale of petrochemical products, including exports during this quarter was 0.768 MMT",
               "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "0.858 MMT compared to sale of 0.768 MMT in the preceding quarter.",
+              "page": 5
             }
           ]
         },
@@ -4769,17 +4777,16 @@
             null,
             null,
             null,
-            null,
             24.9,
             25.8,
             26.3,
             24.1,
             27.6,
             27.7,
-            28.5
+            28.5,
+            25.3
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -4818,6 +4825,11 @@
               "doc": "Concall Transcript - 07 Aug 2026",
               "quote": "highest ever quarterly throughput of 28.5 MMT with capacity utilization of 79.9%",
               "page": 4
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "pipeline throughput was 25.3 MMT with a capacity utilization of",
+              "page": 4
             }
           ]
         },
@@ -4831,16 +4843,15 @@
             null,
             null,
             null,
-            null,
             23.19,
             26.33,
             24.26,
             27.18,
             27.34,
-            26.21
+            26.21,
+            25.23
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -4875,6 +4886,11 @@
               "doc": "Concall Transcript - 07 Aug 2026",
               "quote": "The total sales volume during the quarter was 26.211 MMT",
               "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "The total sales volume during the quarter was 25.228 MMT as compared to 26.211",
+              "page": 5
             }
           ]
         },
@@ -4889,15 +4905,14 @@
             null,
             null,
             null,
-            null,
             1.69,
             1.84,
             1.94,
             1.81,
-            1.87
+            1.87,
+            1.93
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -4928,6 +4943,11 @@
               "doc": "Concall Transcript - 07 Aug 2026",
               "quote": "During the quarter, we registered gas sales of 1,873 TMT which includes CGD sales of 67 TMT",
               "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "we registered gas sales of 1,933 TMT, which includes CGD sales of",
+              "page": 5
             }
           ]
         },
@@ -4946,11 +4966,10 @@
             null,
             null,
             null,
-            null,
-            43138
+            43138,
+            43245
           ],
           "citations": [
-            null,
             null,
             null,
             null,
@@ -4964,6 +4983,11 @@
             {
               "doc": "Concall Transcript - 07 Aug 2026",
               "quote": "During the quarter, 320 retail outlets were commissioned, taking the total number to 43138.",
+              "page": 5
+            },
+            {
+              "doc": "Concall Transcript - 31 Oct 2026",
+              "quote": "126 retail outlets were commissioned, taking the total number to 43,245.",
               "page": 5
             }
           ]

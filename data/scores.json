@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-13T15:09:02.564Z",
+  "generatedAt": "2026-11-14T12:37:32.414Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -115,15 +115,15 @@
       ]
     },
     "coincident": {
-      "score": 34,
+      "score": 37,
       "prev": -18,
-      "delta": 39,
+      "delta": 43,
       "deltaBasis": "kpi-only",
       "level": "positive",
       "direction": "rising",
       "kpisScored": 18,
       "kpisTotal": 40,
-      "kpisBeyondBrief": 13,
+      "kpisBeyondBrief": 18,
       "tonesScored": 15,
       "companiesScored": 11,
       "staleKpis": 14,
@@ -133,13 +133,6 @@
       "weakestTag": "derived",
       "reducedConfidence": true,
       "signals": [
-        {
-          "kind": "kpi",
-          "companyId": "iocl",
-          "company": "IOCL",
-          "label": "Throughput",
-          "flag": "inflecting-down"
-        },
         {
           "kind": "kpi",
           "companyId": "gail",
@@ -298,7 +291,7 @@
     }
   },
   "divergence": {
-    "value": 26,
+    "value": 23,
     "leadingSign": 1,
     "coincidentSign": 1,
     "signsDiffer": false
@@ -307,7 +300,7 @@
     null,
     null,
     -36,
-    50
+    46
   ],
   "stage": {
     "stageId": "mid-upcycle",
@@ -316,7 +309,7 @@
     "ruleLabel": "Leading strongly positive, coincident positive and accelerating, lagging turning",
     "confidence": "normal",
     "because": [
-      "Leading 60 (strong-positive, rising), coincident 34 (positive, rising), lagging 100 (strong-positive).",
+      "Leading 60 (strong-positive, rising), coincident 37 (positive, rising), lagging 100 (strong-positive).",
       "Leading strongly positive, coincident positive and accelerating, lagging turning."
     ]
   },
@@ -566,7 +559,7 @@
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are positive and rising — IOCL Throughput, GAIL Gas transmission volume, Petronet LNG Regas utilisation %."
+      "text": "Coincident indicators are positive and rising — GAIL Gas transmission volume, Petronet LNG Regas utilisation %, Petronet LNG Volume."
     },
     {
       "id": "macro",
@@ -576,7 +569,7 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +26. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +23. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -1065,7 +1058,7 @@
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-13T13:32:53.621Z",
+    "generatedAt": "2026-11-13T15:09:02.564Z",
     "asOf": "Q2 FY27",
     "scoringVersion": 2,
     "stageId": "mid-upcycle",
