@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-15T14:31:25.967Z",
+  "generatedAt": "2026-11-16T14:07:56.081Z",
   "quarters": [
     "Q3 FY26",
     "Q4 FY26",
@@ -1359,7 +1359,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32288,
+      "ctxChars": 32550,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -1397,7 +1397,7 @@
             null
           ],
           "flag": null,
-          "notes": "No offshore rig utilisation percentage data found in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The excerpts provide rig counts, deployment status, and contract details, but do not state a utilisation percentage figure."
+          "notes": "No offshore rig utilisation percentage data found in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The Screener Insights table shows rig counts (rigs operating overseas, number of owned rigs, number of rigs in fleet) but do"
         },
         {
           "id": "charter-day-rate",
@@ -3499,7 +3499,7 @@
       "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34208,
+      "ctxChars": 32397,
       "kpis": [
         {
           "id": "cng-png-volume-growth",
@@ -4326,7 +4326,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31613,
+      "ctxChars": 33725,
       "kpis": [
         {
           "id": "lubricant-volume",
@@ -4743,15 +4743,15 @@
       "name": "GE Shipping",
       "slug": "GESHIP",
       "quarters": [
-        "Q2 FY26",
         "Q3 FY26",
         "Q4 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
-      "asOf": "Q1 FY27",
+      "asOf": "Q2 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 34383,
+      "ctxChars": 34382,
       "kpis": [
         {
           "id": "tanker-freight-rate",
@@ -4759,10 +4759,10 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            28492,
             47281,
             61424,
-            93026
+            93026,
+            73322
           ],
           "sourceTags": [
             "company-filing",
@@ -4777,11 +4777,6 @@
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Presentation - 11 Dec 2025",
-              "quote": "Crude Carriers: Q2 FY25 28,492",
-              "page": 13
-            },
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "Crude Carriers: Q3 FY26 47,281",
@@ -4796,6 +4791,11 @@
               "doc": "Presentation - 04 Aug 2026",
               "quote": "Crude Carriers",
               "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Crude Carriers",
+              "page": 26
             }
           ],
           "oneOffs": [
@@ -4804,7 +4804,7 @@
             null,
             null
           ],
-          "flag": "accelerating",
+          "flag": "inflecting-down",
           "notes": null
         },
         {
@@ -4813,10 +4813,10 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3678,
             3765,
             3525,
-            3679
+            3679,
+            3737
           ],
           "sourceTags": [
             "company-filing",
@@ -4831,11 +4831,6 @@
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Presentation - 11 Dec 2025",
-              "quote": "Total Revenue Days: 3,678",
-              "page": 12
-            },
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "Total Revenue Days: 3,765",
@@ -4850,6 +4845,11 @@
               "doc": "Presentation - 04 Aug 2026",
               "quote": "Total Revenue Days",
               "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Total Revenue Days",
+              "page": 26
             }
           ],
           "oneOffs": [
@@ -4858,7 +4858,7 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "decelerating",
           "notes": null
         },
         {
@@ -4867,10 +4867,10 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            28978,
             25117,
             30511,
-            45471
+            45471,
+            32114
           ],
           "sourceTags": [
             "company-filing",
@@ -4885,11 +4885,6 @@
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Presentation - 11 Dec 2025",
-              "quote": "Product Carriers: Q2 FY25 28,978",
-              "page": 13
-            },
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "Product Carriers: Q3 FY26 25,117",
@@ -4904,6 +4899,11 @@
               "doc": "Presentation - 04 Aug 2026",
               "quote": "Product Carriers",
               "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Product Carriers",
+              "page": 26
             }
           ],
           "oneOffs": [
@@ -4912,7 +4912,7 @@
             null,
             null
           ],
-          "flag": "accelerating",
+          "flag": "inflecting-down",
           "notes": null
         },
         {
@@ -4921,10 +4921,10 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            43507,
             43611,
             45216,
-            41528
+            41528,
+            46208
           ],
           "sourceTags": [
             "company-filing",
@@ -4939,11 +4939,6 @@
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Presentation - 11 Dec 2025",
-              "quote": "LPG Carriers: Q2 FY25 43,507",
-              "page": 13
-            },
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "LPG Carriers: Q3 FY26 43,611",
@@ -4958,6 +4953,11 @@
               "doc": "Presentation - 04 Aug 2026",
               "quote": "LPG Carriers",
               "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "LPG Carriers",
+              "page": 26
             }
           ],
           "oneOffs": [
@@ -4966,7 +4966,7 @@
             null,
             null
           ],
-          "flag": "inflecting-down",
+          "flag": "inflecting-up",
           "beyondBrief": true,
           "notes": null
         },
@@ -4976,10 +4976,10 @@
           "unit": "USD/day",
           "flagBasis": "level",
           "values": [
-            16686,
             17983,
             16678,
-            22601
+            22601,
+            24308
           ],
           "sourceTags": [
             "company-filing",
@@ -4994,11 +4994,6 @@
             "insights"
           ],
           "citations": [
-            {
-              "doc": "Presentation - 11 Dec 2025",
-              "quote": "Dry Bulk: Q2 FY25 16,686",
-              "page": 13
-            },
             {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "Dry Bulk: Q3 FY26 17,983",
@@ -5013,6 +5008,11 @@
               "doc": "Presentation - 04 Aug 2026",
               "quote": "Dry Bulk",
               "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Dry Bulk",
+              "page": 26
             }
           ],
           "oneOffs": [
@@ -5021,7 +5021,7 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "decelerating",
           "beyondBrief": true,
           "notes": null
         },
@@ -5031,10 +5031,10 @@
           "unit": "Days",
           "flagBasis": "level",
           "values": [
-            3494,
             3581,
             3345,
-            3497
+            3497,
+            3553
           ],
           "sourceTags": [
             "company-filing",
@@ -5050,11 +5050,6 @@
           ],
           "citations": [
             {
-              "doc": "Presentation - 11 Dec 2025",
-              "quote": "Owned Tonnage: 3,494",
-              "page": 12
-            },
-            {
               "doc": "Presentation - 29 Jan 2026",
               "quote": "Owned Tonnage: 3,581",
               "page": 25
@@ -5068,6 +5063,11 @@
               "doc": "Presentation - 04 Aug 2026",
               "quote": "Owned Tonnage",
               "page": 24
+            },
+            {
+              "doc": "Presentation - 09 Nov 2026",
+              "quote": "Owned Tonnage",
+              "page": 26
             }
           ],
           "oneOffs": [
@@ -5076,7 +5076,7 @@
             null,
             null
           ],
-          "flag": "inflecting-up",
+          "flag": "decelerating",
           "notes": null
         }
       ]
@@ -5091,7 +5091,7 @@
       "asOf": "Q4 FY26",
       "provider": "openai",
       "model": "gpt-4o",
-      "ctxChars": 21400,
+      "ctxChars": 21447,
       "kpis": [
         {
           "id": "freight-rate",

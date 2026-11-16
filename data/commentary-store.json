@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-11-15T14:31:52.404Z",
+  "generatedAt": "2026-11-16T14:08:31.339Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -2885,9 +2885,29 @@
           "attempts": 1,
           "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
           "at": "2026-08-11T06:35:15.037Z"
+        },
+        "Q2 FY27": {
+          "toneId": "cautious",
+          "score": 2,
+          "quote": "In the last 10-12 days, rates have dropped off very significantly for crude tankers, specifically for Aframaxes and Suezmaxes.",
+          "rationale": "Management highlights sharp recent declines in tanker rates and emphasizes risk premiums they do not participate in, tempering the strong quarterly result.",
+          "driver": "crude tanker spot rates",
+          "direction": "negative",
+          "signal": "Management sees tanker rates falling sharply from recent peaks though still historically elevated, with daily declines continuing as traffic patterns normalize through key straits.",
+          "mgmtDataPoints": [
+            "Interim dividend: INR 14.40 per share",
+            "Suezmax spot rates (peak): $350,000-$400,000 per day",
+            "Suezmax spot rates (current): $130,000-$150,000 per day"
+          ],
+          "implication": "The sharp and ongoing rate declines suggest softer earnings in the next quarter unless the tanker market stabilizes or geopolitical premiums return.",
+          "doc": "Concall transcript (Q2 FY27)",
+          "fingerprint": "8b7e0ae83f45",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-16T14:08:26.490Z"
         }
       },
-      "updatedAt": "2026-08-11T06:35:15.037Z"
+      "updatedAt": "2026-11-16T14:08:26.490Z"
     },
     "shipping-corp": {
       "cells": {

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-15T14:31:52.458Z",
+  "generatedAt": "2026-11-16T14:08:31.398Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -248,18 +248,18 @@
       ]
     },
     "lagging": {
-      "score": 100,
-      "prev": -43,
-      "delta": 143,
+      "score": -60,
+      "prev": 100,
+      "delta": -200,
       "deltaBasis": "kpi-only",
-      "level": "strong-positive",
-      "direction": "rising",
+      "level": "strong-negative",
+      "direction": "falling",
       "kpisScored": 4,
       "kpisTotal": 7,
       "kpisBeyondBrief": 2,
       "tonesScored": 2,
       "companiesScored": 1,
-      "staleKpis": 7,
+      "staleKpis": 3,
       "oneOffKpis": 0,
       "unknownKpis": 0,
       "lowCoverage": true,
@@ -270,15 +270,22 @@
           "kind": "kpi",
           "companyId": "ge-shipping",
           "company": "GE Shipping",
-          "label": "Fleet deployment",
-          "flag": "inflecting-up"
+          "label": "Realised tanker freight rate",
+          "flag": "inflecting-down"
         },
         {
           "kind": "kpi",
           "companyId": "ge-shipping",
           "company": "GE Shipping",
-          "label": "Revenue days (owned)",
-          "flag": "inflecting-up"
+          "label": "TCY - product carriers",
+          "flag": "inflecting-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "ge-shipping",
+          "company": "GE Shipping",
+          "label": "Freight / shipping outlook",
+          "flag": "tone-down"
         },
         {
           "kind": "tone",
@@ -309,7 +316,7 @@
     "ruleLabel": "Leading strongly positive, coincident positive and accelerating, lagging turning",
     "confidence": "normal",
     "because": [
-      "Leading 60 (strong-positive, rising), coincident 37 (positive, rising), lagging 100 (strong-positive).",
+      "Leading 60 (strong-positive, rising), coincident 37 (positive, rising), lagging -60 (strong-negative).",
       "Leading strongly positive, coincident positive and accelerating, lagging turning."
     ]
   },
@@ -318,7 +325,7 @@
     "opposing": 1,
     "silent": 4,
     "macroBias": "mixed",
-    "scoreBias": "up",
+    "scoreBias": "down",
     "agree": null,
     "conflict": false,
     "tiles": [
@@ -430,6 +437,16 @@
       "direction": "down"
     },
     {
+      "companyId": "ge-shipping",
+      "name": "GE Shipping",
+      "from": "confident",
+      "to": "cautious",
+      "fromQuarter": "Q1 FY27",
+      "quarter": "Q2 FY27",
+      "steps": -3,
+      "direction": "down"
+    },
+    {
       "companyId": "lt",
       "name": "L&T",
       "from": "neutral",
@@ -474,7 +491,7 @@
     {
       "groupId": "lagging",
       "kind": "low-coverage",
-      "text": "Moves last: 7 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves last: 3 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     }
   ],
   "alerts": [
@@ -494,7 +511,7 @@
       "id": "coverage-lagging",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moves last: 7 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moves last: 3 of 7 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "tone-deep-industries",
@@ -525,6 +542,12 @@
       "severity": "warn",
       "kind": "tone-drift",
       "text": "Castrol India moved 3 tone steps down (confident → cautious) in Q2 FY27."
+    },
+    {
+      "id": "tone-ge-shipping",
+      "severity": "warn",
+      "kind": "tone-drift",
+      "text": "GE Shipping moved 3 tone steps down (confident → cautious) in Q2 FY27."
     },
     {
       "id": "tone-lt",
@@ -574,7 +597,7 @@
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "Deep Industries (confident → cautious); Ratnamani Metals (defensive → constructive); IOCL (cautious → confident); HPCL (defensive → constructive); Castrol India (confident → cautious); L&T (neutral → confident); and 2 more."
+      "text": "Deep Industries (confident → cautious); Ratnamani Metals (defensive → constructive); IOCL (cautious → confident); HPCL (defensive → constructive); Castrol India (confident → cautious); GE Shipping (confident → cautious); and 3 more."
     },
     {
       "id": "implication",
@@ -950,17 +973,17 @@
       "label": "Freight / shipping outlook",
       "bucket": "lagging",
       "listenFor": "Fleet redeployment plans, charter rate outlook, global vessel-supply tightness commentary",
-      "state": "2 companies heard, leaning positive (2 positive, 0 negative); Shipping Corp of India moved 2 steps up.",
-      "mood": "positive",
+      "state": "2 companies heard, split (1 positive, 1 negative); GE Shipping moved 3 steps down, Shipping Corp of India moved 2 steps up.",
+      "mood": "mixed",
       "members": [
         {
           "companyId": "ge-shipping",
           "name": "GE Shipping",
-          "toneId": "confident",
-          "quarter": "Q1 FY27",
-          "direction": "positive",
-          "driver": "tanker freight rates",
-          "drift": 0
+          "toneId": "cautious",
+          "quarter": "Q2 FY27",
+          "direction": "negative",
+          "driver": "crude tanker spot rates",
+          "drift": -3
         },
         {
           "companyId": "shipping-corp",
@@ -974,6 +997,15 @@
       ],
       "drivers": [
         {
+          "companyId": "ge-shipping",
+          "name": "GE Shipping",
+          "toneId": "cautious",
+          "quarter": "Q2 FY27",
+          "direction": "negative",
+          "driver": "crude tanker spot rates",
+          "drift": -3
+        },
+        {
           "companyId": "shipping-corp",
           "name": "Shipping Corp of India",
           "toneId": "confident",
@@ -981,15 +1013,6 @@
           "direction": "positive",
           "driver": "annual financial performance",
           "drift": 2
-        },
-        {
-          "companyId": "ge-shipping",
-          "name": "GE Shipping",
-          "toneId": "confident",
-          "quarter": "Q1 FY27",
-          "direction": "positive",
-          "driver": "tanker freight rates",
-          "drift": 0
         }
       ]
     },
@@ -1053,12 +1076,16 @@
   ],
   "changes": [
     {
-      "kind": "none",
-      "text": "Nothing material moved since the last refresh."
+      "kind": "score",
+      "text": "Moves last moved down 160 points to -60."
+    },
+    {
+      "kind": "alert",
+      "text": "New alert: GE Shipping moved 3 tone steps down (confident → cautious) in Q2 FY27."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-15T13:07:47.432Z",
+    "generatedAt": "2026-11-15T14:31:52.458Z",
     "asOf": "Q2 FY27",
     "scoringVersion": 2,
     "stageId": "mid-upcycle",
