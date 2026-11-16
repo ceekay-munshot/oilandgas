@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Management tone per company/quarter, kept across runs",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-11-16T14:08:31.339Z",
+  "generatedAt": "2026-11-16T16:39:32.106Z",
   "note": "One entry per company/quarter, for every quarter ever classified - not just the current window. A run only asks the model about quarters it does not already have a tone for, and a null never overwrites a real tone. Each tone is a reading of that quarter's own concall, with the quote it rests on. Delete a cell (or run with --refresh) to force re-classification.",
   "companies": {
     "ongc": {
@@ -479,9 +479,32 @@
           "attempts": 1,
           "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
           "at": "2026-08-15T06:07:51.776Z"
+        },
+        "Q2 FY27": {
+          "toneId": "confident",
+          "score": 5,
+          "quote": "the CAPEX cycle in India has started",
+          "rationale": "Management described a 'significantly good quarter' with strong EBITDA growth, reaffirmed structural margins, and emphasized a clear turn in India's upstream capex cycle with improving ONGC tender activity and multiple rehires.",
+          "driver": "ONGC tendering activity and rig redeployment",
+          "direction": "positive",
+          "signal": "Management sees a structural upturn in India upstream capex with multiple rigs ready for redeployment; near-term earnings ramp depends on mobilization timing rather than demand risk, with owned-rig margins expected to lift profitability fur",
+          "mgmtDataPoints": [
+            "EBITDA margin: 35-40% normalized range",
+            "Order book: ₹1,552 cr as of 30-Sep",
+            "Order book upside: ₹2,600-2,700 cr upon Virtue 1 and Jindal Star contracts",
+            "Day rate (new rehire): ~$55,700/day",
+            "Net cash: ₹295 cr (30-Sep) vs ₹128 cr (31-Mar)",
+            "Refurbishment capex: ₹70-90 cr per rig"
+          ],
+          "implication": "Expect order book to step up materially as pending ONGC awards convert and the refurbished owned rig mobilizes, driving EBITDA margin expansion and cash generation over the next two quarters.",
+          "doc": "Concall AI summary (Q2 FY27)",
+          "fingerprint": "f2bf1a68e72a",
+          "attempts": 1,
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "at": "2026-11-16T16:39:05.843Z"
         }
       },
-      "updatedAt": "2026-08-15T06:07:51.776Z"
+      "updatedAt": "2026-11-16T16:39:05.843Z"
     },
     "engineers-india": {
       "cells": {

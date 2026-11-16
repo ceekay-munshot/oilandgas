@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-16T14:08:31.398Z",
+  "generatedAt": "2026-11-16T16:39:32.157Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,9 +38,9 @@
   "asOf": "Q2 FY27",
   "scores": {
     "leading": {
-      "score": 60,
-      "prev": -54,
-      "delta": 125,
+      "score": 69,
+      "prev": -29,
+      "delta": 100,
       "deltaBasis": "kpi-only",
       "level": "strong-positive",
       "direction": "rising",
@@ -97,6 +97,13 @@
           "company": "Deep Industries",
           "label": "Upstream capex intent",
           "flag": "tone-down"
+        },
+        {
+          "kind": "tone",
+          "companyId": "jindal-drilling",
+          "company": "Jindal Drilling",
+          "label": "Upstream capex intent",
+          "flag": "tone-up"
         },
         {
           "kind": "tone",
@@ -298,7 +305,7 @@
     }
   },
   "divergence": {
-    "value": 23,
+    "value": 32,
     "leadingSign": 1,
     "coincidentSign": 1,
     "signsDiffer": false
@@ -306,7 +313,7 @@
   "divergenceSeries": [
     null,
     null,
-    -36,
+    -11,
     46
   ],
   "stage": {
@@ -316,7 +323,7 @@
     "ruleLabel": "Leading strongly positive, coincident positive and accelerating, lagging turning",
     "confidence": "normal",
     "because": [
-      "Leading 60 (strong-positive, rising), coincident 37 (positive, rising), lagging -60 (strong-negative).",
+      "Leading 69 (strong-positive, rising), coincident 37 (positive, rising), lagging -60 (strong-negative).",
       "Leading strongly positive, coincident positive and accelerating, lagging turning."
     ]
   },
@@ -395,6 +402,16 @@
       "quarter": "Q2 FY27",
       "steps": -3,
       "direction": "down"
+    },
+    {
+      "companyId": "jindal-drilling",
+      "name": "Jindal Drilling",
+      "from": "cautious",
+      "to": "confident",
+      "fromQuarter": "Q1 FY27",
+      "quarter": "Q2 FY27",
+      "steps": 3,
+      "direction": "up"
     },
     {
       "companyId": "ratnamani",
@@ -520,6 +537,12 @@
       "text": "Deep Industries moved 3 tone steps down (confident → cautious) in Q2 FY27."
     },
     {
+      "id": "tone-jindal-drilling",
+      "severity": "info",
+      "kind": "tone-drift",
+      "text": "Jindal Drilling moved 3 tone steps up (cautious → confident) in Q2 FY27."
+    },
+    {
       "id": "tone-ratnamani",
       "severity": "info",
       "kind": "tone-drift",
@@ -592,12 +615,12 @@
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +23. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +32. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
       "label": "Tone drift watchlist",
-      "text": "Deep Industries (confident → cautious); Ratnamani Metals (defensive → constructive); IOCL (cautious → confident); HPCL (defensive → constructive); Castrol India (confident → cautious); GE Shipping (confident → cautious); and 3 more."
+      "text": "Deep Industries (confident → cautious); Jindal Drilling (cautious → confident); Ratnamani Metals (defensive → constructive); IOCL (cautious → confident); HPCL (defensive → constructive); Castrol India (confident → cautious); and 4 more."
     },
     {
       "id": "implication",
@@ -643,8 +666,8 @@
       "label": "Upstream capex intent",
       "bucket": "leading",
       "listenFor": "Capex/drilling guidance up, flat or down; new block awards; rig additions or deferrals; tendering activity from ONGC/OIL",
-      "state": "4 companies heard, split (2 positive, 2 negative); Deep Industries moved 3 steps down.",
-      "mood": "mixed",
+      "state": "4 companies heard, leaning positive (3 positive, 1 negative); Deep Industries moved 3 steps down, Jindal Drilling moved 3 steps up.",
+      "mood": "positive",
       "members": [
         {
           "companyId": "ongc",
@@ -676,11 +699,11 @@
         {
           "companyId": "jindal-drilling",
           "name": "Jindal Drilling",
-          "toneId": "cautious",
-          "quarter": "Q1 FY27",
-          "direction": "negative",
-          "driver": "rig contract roll-offs and refurbishment cycle",
-          "drift": -1
+          "toneId": "confident",
+          "quarter": "Q2 FY27",
+          "direction": "positive",
+          "driver": "ONGC tendering activity and rig redeployment",
+          "drift": 3
         }
       ],
       "drivers": [
@@ -694,13 +717,13 @@
           "drift": -3
         },
         {
-          "companyId": "ongc",
-          "name": "ONGC",
-          "toneId": "constructive",
+          "companyId": "jindal-drilling",
+          "name": "Jindal Drilling",
+          "toneId": "confident",
           "quarter": "Q2 FY27",
           "direction": "positive",
-          "driver": "production recovery and TSP program ramp-up",
-          "drift": -1
+          "driver": "ONGC tendering activity and rig redeployment",
+          "drift": 3
         }
       ]
     },
@@ -1077,22 +1100,22 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moves last moved down 160 points to -60."
+      "text": "Moves first moved up 9 points to 69."
     },
     {
       "kind": "alert",
-      "text": "New alert: GE Shipping moved 3 tone steps down (confident → cautious) in Q2 FY27."
+      "text": "New alert: Jindal Drilling moved 3 tone steps up (cautious → confident) in Q2 FY27."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-15T14:31:52.458Z",
+    "generatedAt": "2026-11-16T14:08:31.398Z",
     "asOf": "Q2 FY27",
     "scoringVersion": 2,
     "stageId": "mid-upcycle",
     "scores": {
       "leading": 60,
       "coincident": 37,
-      "lagging": 100
+      "lagging": -60
     },
     "alertIds": [
       "coverage-coincident",
@@ -1100,6 +1123,7 @@
       "coverage-leading",
       "tone-castrol-india",
       "tone-deep-industries",
+      "tone-ge-shipping",
       "tone-gujarat-gas",
       "tone-hpcl",
       "tone-iocl",

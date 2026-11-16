@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-16T14:07:56.081Z",
+  "generatedAt": "2026-11-16T16:39:00.199Z",
   "quarters": [
     "Q3 FY26",
     "Q4 FY26",
@@ -14,8 +14,8 @@
   "coverage": {
     "companies": 28,
     "kpiCells": 401,
-    "realCells": 276,
-    "nullCells": 125,
+    "realCells": 273,
+    "nullCells": 128,
     "kpis": 102,
     "kpisWithTrend": 63
   },
@@ -1351,15 +1351,15 @@
       "name": "Jindal Drilling",
       "slug": "JINDRILL",
       "quarters": [
-        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
-        "Q1 FY27"
+        "Q1 FY27",
+        "Q2 FY27"
       ],
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 32550,
+      "ctxChars": 32552,
       "kpis": [
         {
           "id": "rig-utilisation",
@@ -1397,7 +1397,7 @@
             null
           ],
           "flag": null,
-          "notes": "No offshore rig utilisation percentage data found in any of the excerpts for Q1 FY26, Q2 FY26, Q3 FY26, or Q1 FY27. The Screener Insights table shows rig counts (rigs operating overseas, number of owned rigs, number of rigs in fleet) but do"
+          "notes": "No offshore rig utilisation percentage data found in any of the excerpts for Q2 FY26, Q3 FY26, Q1 FY27, or Q2 FY27. The Screener Insights table shows rig counts (rigs operating overseas, number of owned rigs, number of rigs in fleet) but do"
         },
         {
           "id": "charter-day-rate",
@@ -1408,26 +1408,21 @@
             48324,
             48324,
             48324,
-            48324
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Jul 2025",
-              "quote": "Discovery-I May 23 - May 26 48,324",
-              "page": 6
-            },
             {
               "doc": "Presentation - 04 Nov 2025",
               "quote": "Discovery-I May 23 - May 26 48,324",
@@ -1442,7 +1437,8 @@
               "doc": "Presentation - 10 Aug 2026",
               "quote": "Discovery-I May 23 - October 26 48,324",
               "page": 6
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -1451,7 +1447,7 @@
             null
           ],
           "flag": "steady",
-          "notes": null
+          "notes": "From Screener Insights row \"Day rate - Discovery-I (USD per operating day)\"; latest value cited to Presentation - 04 Nov 2025, page 6."
         },
         {
           "id": "order-book",
@@ -1459,29 +1455,24 @@
           "unit": "Rs. crore",
           "flagBasis": "qoq",
           "values": [
-            1538,
             1369,
             1183,
-            1310
+            1310,
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Jul 2025",
-              "quote": "Total 180 1538",
-              "page": 6
-            },
             {
               "doc": "Presentation - 04 Nov 2025",
               "quote": "Total 155 1369",
@@ -1496,7 +1487,8 @@
               "doc": "Presentation - 10 Aug 2026",
               "quote": "Total 136 1310",
               "page": 6
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -1505,7 +1497,7 @@
             null
           ],
           "flag": "inflecting-up",
-          "notes": null
+          "notes": "From Screener Insights row \"Rig order book\"; latest value cited to Presentation - 04 Nov 2025, page 6."
         },
         {
           "id": "day-rate-supreme",
@@ -1516,26 +1508,21 @@
             88859,
             88859,
             88859,
-            88859
+            null
           ],
           "sourceTags": [
             "company-filing",
             "company-filing",
             "company-filing",
-            "company-filing"
+            null
           ],
           "origins": [
             "insights",
             "insights",
             "insights",
-            "insights"
+            null
           ],
           "citations": [
-            {
-              "doc": "Presentation - 30 Jul 2025",
-              "quote": "Jindal Supreme October 24 - October 27 88,859",
-              "page": 6
-            },
             {
               "doc": "Presentation - 04 Nov 2025",
               "quote": "Jindal Supreme October 24 - October 27 88,859",
@@ -1550,7 +1537,8 @@
               "doc": "Presentation - 10 Aug 2026",
               "quote": "Jindal Supreme October 24 - October 27 88,859",
               "page": 6
-            }
+            },
+            null
           ],
           "oneOffs": [
             null,
@@ -1559,7 +1547,7 @@
             null
           ],
           "flag": "steady",
-          "notes": null
+          "notes": "From Screener Insights row \"Day rate - Jindal Supreme (USD per operating day)\"; latest value cited to Presentation - 04 Nov 2025, page 6."
         }
       ]
     },
