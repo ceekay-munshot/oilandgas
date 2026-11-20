@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-11-19T15:54:46.006Z",
+  "generatedAt": "2026-11-20T15:44:24.873Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
@@ -10,7 +10,7 @@
   "coverage": {
     "tilesLive": 6,
     "tilesTotal": 6,
-    "linesLive": 9,
+    "linesLive": 8,
     "linesTotal": 9
   },
   "tiles": [
@@ -147,7 +147,7 @@
             },
             {
               "date": "2026-11-01",
-              "value": 94.96,
+              "value": 94.65,
               "partial": true
             }
           ]
@@ -309,7 +309,7 @@
       "status": "live",
       "source": "Trading Economics - naphtha spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-11-18",
+      "asOf": "2026-11-19",
       "lines": [
         {
           "id": "naphtha",
@@ -321,11 +321,11 @@
           "source": "Trading Economics - naphtha spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-11-18",
+          "asOf": "2026-11-19",
           "series": [
             {
-              "date": "2026-11-18",
-              "value": 736.5,
+              "date": "2026-11-19",
+              "value": 737.42,
               "spot": true
             }
           ]
@@ -344,7 +344,7 @@
       "status": "live",
       "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-11-18",
+      "asOf": "2026-11-19",
       "lines": [
         {
           "id": "jkm",
@@ -356,11 +356,11 @@
           "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-11-18",
+          "asOf": "2026-11-19",
           "series": [
             {
-              "date": "2026-11-18",
-              "value": 26.5,
+              "date": "2026-11-19",
+              "value": 27.52,
               "spot": true
             }
           ]
@@ -371,17 +371,12 @@
           "shortLabel": "APM",
           "color": "#0891B2",
           "primary": false,
-          "status": "live",
-          "source": "PPAC, Ministry of Petroleum & Natural Gas - domestic gas notification for 1 November 2026 to 30 November 2026, issued 2026-10-31 (https://ppac.gov.in/download.php?file=importantnews/1793446029_Dom_Natural_gas_price_Nov_2026.pdf)",
-          "sourceTag": "official",
-          "notes": "ONGC/OIL nomination-gas ceiling of $7.00/mmbtu, below the notified price of $12.00. This month only - PPAC publishes each month as a separate scanned notification.",
-          "asOf": "2026-11-01",
-          "series": [
-            {
-              "date": "2026-11-01",
-              "value": 7
-            }
-          ]
+          "status": "awaiting",
+          "source": null,
+          "sourceTag": "unknown",
+          "asOf": null,
+          "series": [],
+          "awaitingReason": "Could not read the PPAC gas notification"
         }
       ]
     },
@@ -455,7 +450,7 @@
             },
             {
               "date": "2026-11-01",
-              "value": 94.05,
+              "value": 93.96,
               "partial": true
             }
           ]
@@ -472,7 +467,7 @@
       "supports": "up",
       "supportsWhy": "Busier tankers mean more cargoes are actually moving.",
       "status": "live",
-      "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via firecrawl)",
+      "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via scrapedo)",
       "sourceTag": "external",
       "asOf": "2026-11-01",
       "lines": [
@@ -482,7 +477,7 @@
           "color": "#B91C1C",
           "primary": true,
           "status": "live",
-          "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via firecrawl)",
+          "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via scrapedo)",
           "sourceTag": "external",
           "notes": "Latest level only - the Baltic Exchange licenses the history, so this line has no 12-month trend.",
           "asOf": "2026-11-01",
