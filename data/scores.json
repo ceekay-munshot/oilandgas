@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-16T16:39:32.157Z",
+  "generatedAt": "2026-11-23T16:43:11.729Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -38,36 +38,36 @@
   "asOf": "Q2 FY27",
   "scores": {
     "leading": {
-      "score": 69,
+      "score": 64,
       "prev": -29,
-      "delta": 100,
+      "delta": 92,
       "deltaBasis": "kpi-only",
       "level": "strong-positive",
       "direction": "rising",
-      "kpisScored": 9,
+      "kpisScored": 11,
       "kpisTotal": 23,
       "kpisBeyondBrief": 12,
       "tonesScored": 8,
-      "companiesScored": 5,
-      "staleKpis": 11,
+      "companiesScored": 6,
+      "staleKpis": 0,
       "oneOffKpis": 0,
       "unknownKpis": 0,
-      "lowCoverage": true,
+      "lowCoverage": false,
       "weakestTag": "mgmt-claim",
       "reducedConfidence": false,
       "signals": [
         {
           "kind": "kpi",
-          "companyId": "deep-industries",
-          "company": "Deep Industries",
-          "label": "Rig / asset utilisation %",
+          "companyId": "oil-india",
+          "company": "Oil India",
+          "label": "Natural gas production",
           "flag": "inflecting-up"
         },
         {
           "kind": "kpi",
-          "companyId": "jindal-drilling",
-          "company": "Jindal Drilling",
-          "label": "Order book",
+          "companyId": "deep-industries",
+          "company": "Deep Industries",
+          "label": "Rig / asset utilisation %",
           "flag": "inflecting-up"
         },
         {
@@ -122,18 +122,18 @@
       ]
     },
     "coincident": {
-      "score": 37,
+      "score": 42,
       "prev": -18,
-      "delta": 43,
+      "delta": 52,
       "deltaBasis": "kpi-only",
-      "level": "positive",
+      "level": "strong-positive",
       "direction": "rising",
       "kpisScored": 18,
       "kpisTotal": 40,
       "kpisBeyondBrief": 18,
       "tonesScored": 15,
       "companiesScored": 11,
-      "staleKpis": 14,
+      "staleKpis": 12,
       "oneOffKpis": 2,
       "unknownKpis": 0,
       "lowCoverage": true,
@@ -187,6 +187,13 @@
           "companyId": "mahanagar-gas",
           "company": "Mahanagar Gas",
           "label": "Industrial & commercial volume",
+          "flag": "inflecting-up"
+        },
+        {
+          "kind": "kpi",
+          "companyId": "aegis-logistics",
+          "company": "Aegis Logistics",
+          "label": "LPG throughput",
           "flag": "inflecting-up"
         },
         {
@@ -305,7 +312,7 @@
     }
   },
   "divergence": {
-    "value": 32,
+    "value": 22,
     "leadingSign": 1,
     "coincidentSign": 1,
     "signsDiffer": false
@@ -314,7 +321,7 @@
     null,
     null,
     -11,
-    46
+    29
   ],
   "stage": {
     "stageId": "mid-upcycle",
@@ -323,18 +330,18 @@
     "ruleLabel": "Leading strongly positive, coincident positive and accelerating, lagging turning",
     "confidence": "normal",
     "because": [
-      "Leading 69 (strong-positive, rising), coincident 37 (positive, rising), lagging -60 (strong-negative).",
+      "Leading 64 (strong-positive, rising), coincident 42 (strong-positive, rising), lagging -60 (strong-negative).",
       "Leading strongly positive, coincident positive and accelerating, lagging turning."
     ]
   },
   "macro": {
-    "supporting": 1,
+    "supporting": 2,
     "opposing": 1,
-    "silent": 4,
-    "macroBias": "mixed",
+    "silent": 3,
+    "macroBias": "up",
     "scoreBias": "down",
-    "agree": null,
-    "conflict": false,
+    "agree": false,
+    "conflict": true,
     "tiles": [
       {
         "id": "brent",
@@ -371,10 +378,10 @@
       {
         "id": "inr-usd",
         "label": "USD/INR",
-        "direction": "flat",
+        "direction": "falling",
         "percentile": 45,
         "supports": "down",
-        "vote": "silent"
+        "vote": "supports"
       },
       {
         "id": "baltic-dirty",
@@ -496,14 +503,9 @@
   ],
   "coverageWarnings": [
     {
-      "groupId": "leading",
-      "kind": "low-coverage",
-      "text": "Moves first: 11 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
-    },
-    {
       "groupId": "coincident",
       "kind": "low-coverage",
-      "text": "Moving now: 16 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 14 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "groupId": "lagging",
@@ -513,16 +515,16 @@
   ],
   "alerts": [
     {
-      "id": "coverage-leading",
-      "severity": "info",
-      "kind": "low-coverage",
-      "text": "Moves first: 11 of 23 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "id": "macro-conflict",
+      "severity": "review",
+      "kind": "macro-conflict",
+      "text": "Flagged for review: the market backdrop points up while the scores are moving down."
     },
     {
       "id": "coverage-coincident",
       "severity": "info",
       "kind": "low-coverage",
-      "text": "Moving now: 16 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
+      "text": "Moving now: 14 of 40 KPIs are stale or one-off-flagged (over a third), so the score carries a low-coverage warning."
     },
     {
       "id": "coverage-lagging",
@@ -600,22 +602,22 @@
     {
       "id": "leading",
       "label": "Leading indicators",
-      "text": "Leading indicators are strongly positive and rising — driven by Deep Industries Rig / asset utilisation %, Jindal Drilling Order book, Engineers India Order inflow."
+      "text": "Leading indicators are strongly positive and rising — driven by Oil India Natural gas production, Deep Industries Rig / asset utilisation %, Engineers India Order inflow."
     },
     {
       "id": "coincident",
       "label": "Coincident indicators",
-      "text": "Coincident indicators are positive and rising — GAIL Gas transmission volume, Petronet LNG Regas utilisation %, Petronet LNG Volume."
+      "text": "Coincident indicators are strongly positive and rising — GAIL Gas transmission volume, Petronet LNG Regas utilisation %, Petronet LNG Volume."
     },
     {
       "id": "macro",
       "label": "Macro backdrop",
-      "text": "Crude rising (55th pctile); Crack spread falling (27th pctile); USD/INR flat (45th pctile)."
+      "text": "Crude rising (55th pctile); Crack spread falling (27th pctile); USD/INR falling (45th pctile). Flagged for manual review: the backdrop and the scores disagree."
     },
     {
       "id": "divergence",
       "label": "Divergence",
-      "text": "Leading minus coincident is +32. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
+      "text": "Leading minus coincident is +22. Both buckets sit on the same side of zero, so this is a matter of degree rather than a turn."
     },
     {
       "id": "watchlist",
@@ -1100,20 +1102,24 @@
   "changes": [
     {
       "kind": "score",
-      "text": "Moves first moved up 9 points to 69."
+      "text": "Moves first moved down 5 points to 64."
+    },
+    {
+      "kind": "score",
+      "text": "Moving now moved up 5 points to 42."
     },
     {
       "kind": "alert",
-      "text": "New alert: Jindal Drilling moved 3 tone steps up (cautious → confident) in Q2 FY27."
+      "text": "New alert: Flagged for review: the market backdrop points up while the scores are moving down."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-16T14:08:31.398Z",
+    "generatedAt": "2026-11-16T16:39:32.157Z",
     "asOf": "Q2 FY27",
     "scoringVersion": 2,
     "stageId": "mid-upcycle",
     "scores": {
-      "leading": 60,
+      "leading": 69,
       "coincident": 37,
       "lagging": -60
     },
@@ -1127,6 +1133,7 @@
       "tone-gujarat-gas",
       "tone-hpcl",
       "tone-iocl",
+      "tone-jindal-drilling",
       "tone-lt",
       "tone-ratnamani",
       "tone-shipping-corp"

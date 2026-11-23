@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-16T16:38:16.722Z",
+  "generatedAt": "2026-11-23T16:36:10.503Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -19,7 +19,7 @@
       "url": "https://www.screener.in/company/ONGC/consolidated/",
       "analysis": {
         "pros": 2,
-        "cons": 1
+        "cons": 2
       },
       "summariesAvailable": 13,
       "transcriptsFound": 12,
@@ -116,11 +116,12 @@
         "periodIso": "2025-02",
         "url": "https://ongcindia.com/documents/77751/2660534/InvestorPresentation_Q3-FY25.pdf/551ceb5b-6e93-7f8b-16e6-85b057d0e079",
         "source": "ongcindia.com",
-        "status": "ok",
-        "chars": 17552,
-        "pages": 40,
+        "status": "error",
+        "chars": 0,
+        "pages": null,
         "via": "browser",
-        "cache": "pipeline/cache/docs/ONGC/ppt-2025-02.txt"
+        "cache": "pipeline/cache/docs/ONGC/ppt-2025-02.txt",
+        "error": "apiRequestContext.get: Timeout 40000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/InvestorPresentation_Q3-FY25.pdf/551ceb5b-6e9"
       },
       "transcripts": [
         {
@@ -130,11 +131,12 @@
           "periodIso": "2026-08",
           "url": "https://ongcindia.com/documents/77751/2660534/Transcription-Q1-FY2627.pdf",
           "source": "ongcindia.com",
-          "status": "ok",
-          "chars": 48767,
-          "pages": 23,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/ONGC/transcript-2026-08.txt"
+          "cache": "pipeline/cache/docs/ONGC/transcript-2026-08.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Transcription-Q1-FY2627.pdf\n    - user-agent:"
         },
         {
           "type": "transcript",
@@ -156,11 +158,12 @@
           "periodIso": "2026-02",
           "url": "https://ongcindia.com/web/eng/investors/transcription",
           "source": "ongcindia.com",
-          "status": "not_pdf",
+          "status": "error",
           "chars": 0,
           "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/ONGC/transcript-2026-02.txt"
+          "cache": "pipeline/cache/docs/ONGC/transcript-2026-02.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; L"
         },
         {
           "type": "transcript",
@@ -169,11 +172,12 @@
           "periodIso": "2025-11",
           "url": "https://ongcindia.com/documents/77751/2660534/Transcription181125.pdf/6f9e95e9-c665-e747-03f8-feba399d7aa3",
           "source": "ongcindia.com",
-          "status": "ok",
-          "chars": 43146,
-          "pages": 18,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/ONGC/transcript-2025-11.txt"
+          "cache": "pipeline/cache/docs/ONGC/transcript-2025-11.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Transcription181125.pdf/6f9e95e9-c665-e747-03"
         },
         {
           "type": "transcript",
@@ -182,11 +186,12 @@
           "periodIso": "2025-08",
           "url": "https://ongcindia.com/web/eng/investors/transcription",
           "source": "ongcindia.com",
-          "status": "not_pdf",
+          "status": "error",
           "chars": 0,
           "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/ONGC/transcript-2025-08.txt"
+          "cache": "pipeline/cache/docs/ONGC/transcript-2025-08.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/web/eng/investors/transcription\n    - user-agent: Mozilla/5.0 (X11; L"
         },
         {
           "type": "transcript",
@@ -195,11 +200,12 @@
           "periodIso": "2025-05",
           "url": "https://ongcindia.com/documents/77751/2660534/Q4FY25Earnings.pdf/072c156d-073f-dea7-492b-e7bc3d5ae10e",
           "source": "ongcindia.com",
-          "status": "ok",
-          "chars": 42938,
-          "pages": 19,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/ONGC/transcript-2025-05.txt"
+          "cache": "pipeline/cache/docs/ONGC/transcript-2025-05.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://ongcindia.com/documents/77751/2660534/Q4FY25Earnings.pdf/072c156d-073f-dea7-492b-e7"
         }
       ]
     },
@@ -774,21 +780,21 @@
         "cons": 0
       },
       "summariesAvailable": 23,
-      "transcriptsFound": 22,
+      "transcriptsFound": 23,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Nov 2026",
           "periodIso": "2026-11",
-          "url": "https://www.screener.in/concalls/summary/23398093/",
+          "url": "https://www.screener.in/concalls/summary/23414624/",
           "source": "screener.in",
           "status": "ok",
-          "chars": 10096,
+          "chars": 10791,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/OIL/summary-2026-11.txt",
-          "sample": "Oil India delivered a record H1 FY27, driven by a step-change in crude output (management cited an “all-time high” ~11.3k+ tpd run-rate) and stronger commodity "
+          "sample": "Overview (Main takeaways) Oil India reported a step-change in upstream profitability on materially higher crude realizations and ~20% YoY crude volume growth , "
         },
         {
           "type": "summary",
@@ -878,6 +884,19 @@
         {
           "type": "transcript",
           "role": "transcript",
+          "period": "Nov 2026",
+          "periodIso": "2026-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e1ad31af-8a0b-4f3e-8d6c-0016e7150741.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 48072,
+          "pages": 19,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/OIL/transcript-2026-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
           "period": "Aug 2026",
           "periodIso": "2026-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=446efde6-34f5-4d65-b403-85acfbd635fa.pdf",
@@ -939,19 +958,6 @@
           "pages": 18,
           "via": "browser",
           "cache": "pipeline/cache/docs/OIL/transcript-2025-08.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Jun 2025",
-          "periodIso": "2025-06",
-          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5a30a3b6-08da-4fd2-b224-30cc489c3a16.pdf",
-          "source": "bseindia.com",
-          "status": "ok",
-          "chars": 81643,
-          "pages": 27,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/OIL/transcript-2025-06.txt"
         }
       ]
     },
@@ -965,21 +971,21 @@
         "cons": 1
       },
       "summariesAvailable": 12,
-      "transcriptsFound": 11,
+      "transcriptsFound": 12,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
           "period": "Nov 2026",
           "periodIso": "2026-11",
-          "url": "https://www.screener.in/concalls/summary/23406854/",
+          "url": "https://www.screener.in/concalls/summary/23425334/",
           "source": "screener.in",
           "status": "ok",
-          "chars": 6100,
+          "chars": 5758,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/JINDRILL/summary-2026-11.txt",
-          "sample": "Overview (main takeaways) Q2 FY27 was described as a “ significantly good quarter ,” driven less by revenue expansion and more by profitability and cash generat"
+          "sample": "Overview (main takeaways) Q2 FY27 was positioned as a strong quarter operationally and financially, with QoQ EBITDA expansion (₹104cr → ₹131cr) and improving ne"
         },
         {
           "type": "summary",
@@ -1069,6 +1075,19 @@
         {
           "type": "transcript",
           "role": "transcript",
+          "period": "Nov 2026",
+          "periodIso": "2026-11",
+          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=4da1ee56-bc38-452a-9a8a-ed6f8c61f17b.pdf",
+          "source": "bseindia.com",
+          "status": "ok",
+          "chars": 12581,
+          "pages": 8,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/JINDRILL/transcript-2026-11.txt"
+        },
+        {
+          "type": "transcript",
+          "role": "transcript",
           "period": "Aug 2026",
           "periodIso": "2026-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d2b7c813-9254-489d-b0ef-2c9eea1e4ec2.pdf",
@@ -1130,19 +1149,6 @@
           "pages": 18,
           "via": "browser",
           "cache": "pipeline/cache/docs/JINDRILL/transcript-2025-06.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Feb 2025",
-          "periodIso": "2025-02",
-          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=42924435-a993-4204-a5d1-920d0b1e2c5d.pdf",
-          "source": "bseindia.com",
-          "status": "ok",
-          "chars": 46135,
-          "pages": 25,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/JINDRILL/transcript-2025-02.txt"
         }
       ]
     },
@@ -1543,15 +1549,15 @@
         {
           "type": "summary",
           "role": "summary",
-          "period": "Oct 2026",
-          "periodIso": "2026-10",
+          "period": "Nov 2026",
+          "periodIso": "2026-11",
           "url": "https://www.screener.in/concalls/summary/23347885/",
           "source": "screener.in",
           "status": "ok",
           "chars": 8790,
           "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/WELCORP/summary-2026-10.txt",
+          "cache": "pipeline/cache/docs/WELCORP/summary-2026-11.txt",
           "sample": "Q2 & H1 FY27 Performance: Records, Returns, and Balance Sheet Strength Profitability hit new highs: Q2 FY27 EBITDA: ₹782 cr , +25% YoY (“ record all-time high ”"
         },
         {
@@ -1628,15 +1634,15 @@
       "ppt": {
         "type": "ppt",
         "role": "ppt",
-        "period": "Oct 2026",
-        "periodIso": "2026-10",
-        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=8b379781-b35f-4b21-86b8-81f2fd6f95be.pdf",
+        "period": "Nov 2026",
+        "periodIso": "2026-11",
+        "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=1a32596c-a51b-4012-a6e5-453ca0039fdb.pdf",
         "source": "bseindia.com",
         "status": "ok",
-        "chars": 16355,
-        "pages": 23,
+        "chars": 31582,
+        "pages": 62,
         "via": "browser",
-        "cache": "pipeline/cache/docs/WELCORP/ppt-2026-10.txt"
+        "cache": "pipeline/cache/docs/WELCORP/ppt-2026-11.txt"
       },
       "transcripts": [
         {
@@ -1808,12 +1814,12 @@
           "periodIso": "2025-08",
           "url": "https://www.screener.in/concalls/summary/23038091/",
           "source": "screener.in",
-          "status": "gated",
-          "chars": 72,
+          "status": "ok",
+          "chars": 14901,
           "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/RELIANCE/summary-2025-08.txt",
-          "sample": "Limit exceeded - Please try again later Limit: 80 summaries in 24 hours."
+          "sample": "Consolidated performance, capital allocation and operating posture (FY25) Record scale: Consolidated revenue ₹10.71 lakh crore (first Indian company to cross $1"
         }
       ],
       "ppt": {
@@ -2205,11 +2211,12 @@
         "periodIso": "2026-07",
         "url": "https://www.bharatpetroleum.in/images/files/investor-presentation-q1-2026-27-upload.pdf",
         "source": "bharatpetroleum.in",
-        "status": "ok",
-        "chars": 43413,
+        "status": "http_403",
+        "chars": 0,
         "pages": null,
-        "via": "firecrawl",
-        "cache": "pipeline/cache/docs/BPCL/ppt-2026-07.txt"
+        "via": "browser",
+        "cache": "pipeline/cache/docs/BPCL/ppt-2026-07.txt",
+        "error": "scraper returned only 0 chars"
       },
       "transcripts": [
         {
@@ -3254,7 +3261,7 @@
       "url": "https://www.screener.in/company/AEGISLOG/consolidated/",
       "analysis": {
         "pros": 3,
-        "cons": 2
+        "cons": 3
       },
       "summariesAvailable": 42,
       "transcriptsFound": 42,
@@ -4895,21 +4902,21 @@
         "cons": 3
       },
       "summariesAvailable": 10,
-      "transcriptsFound": 8,
+      "transcriptsFound": 9,
       "summaries": [
         {
           "type": "summary",
           "role": "summary",
-          "period": "Oct 2026",
-          "periodIso": "2026-10",
-          "url": "https://www.screener.in/concalls/summary/23348961/",
+          "period": "Nov 2026",
+          "periodIso": "2026-11",
+          "url": "https://www.screener.in/concalls/summary/23406860/",
           "source": "screener.in",
           "status": "ok",
-          "chars": 8412,
+          "chars": 7646,
           "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/ASIANENE/summary-2026-10.txt",
-          "sample": "Executive takeaways (H1/Q2 FY27) AESL delivered step-change growth in H1 FY27 with revenue up 148% YoY to INR 537.9 cr , EBITDA up 148% to INR 52.3 cr (10% marg"
+          "cache": "pipeline/cache/docs/ASIANENE/summary-2026-11.txt",
+          "sample": "Asian Energy Services (AESL) used the call to (1) underline a structurally improving E&P outsourcing environment in India (post Vedanta integrated-field work), "
         },
         {
           "type": "summary",
@@ -4985,17 +4992,30 @@
       "ppt": {
         "type": "ppt",
         "role": "ppt",
-        "period": "Oct 2026",
-        "periodIso": "2026-10",
+        "period": "Nov 2026",
+        "periodIso": "2026-11",
         "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=ff93030e-ff43-4b9a-9f37-4d8df2207a42.pdf",
         "source": "bseindia.com",
         "status": "ok",
         "chars": 23880,
         "pages": 27,
         "via": "browser",
-        "cache": "pipeline/cache/docs/ASIANENE/ppt-2026-10.txt"
+        "cache": "pipeline/cache/docs/ASIANENE/ppt-2026-11.txt"
       },
       "transcripts": [
+        {
+          "type": "transcript",
+          "role": "transcript",
+          "period": "Nov 2026",
+          "periodIso": "2026-11",
+          "url": "https://www.asianenergy.com/pdf/Investor-Relations/Financial-Reports/Financial-Year-2025-26/AESL-Q4-&-H1-F-27-Earnings-Call-Transcript.pdf",
+          "source": "asianenergy.com",
+          "status": "ok",
+          "chars": 26742,
+          "pages": 9,
+          "via": "browser",
+          "cache": "pipeline/cache/docs/ASIANENE/transcript-2026-11.txt"
+        },
         {
           "type": "transcript",
           "role": "transcript",
@@ -5060,19 +5080,6 @@
           "pages": 12,
           "via": "browser",
           "cache": "pipeline/cache/docs/ASIANENE/transcript-2024-11.txt"
-        },
-        {
-          "type": "transcript",
-          "role": "transcript",
-          "period": "Aug 2022",
-          "periodIso": "2022-08",
-          "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=79f4b22d-602a-4eac-8d10-9e303ee69ff7.pdf",
-          "source": "bseindia.com",
-          "status": "ok",
-          "chars": 30491,
-          "pages": 12,
-          "via": "browser",
-          "cache": "pipeline/cache/docs/ASIANENE/transcript-2022-08.txt"
         }
       ]
     }

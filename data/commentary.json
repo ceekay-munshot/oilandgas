@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "title": "Per-company management tone, classified from concall documents",
   "generatedBy": "pipeline/extract-commentary.mjs",
-  "generatedAt": "2026-11-16T16:39:05.821Z",
+  "generatedAt": "2026-11-23T16:42:51.755Z",
   "note": "Each quarter's tone is a reading of how management sounded on that quarter's earnings call - one of five steps in framework.json toneScale - grounded in a quote from the call, never a number the company reported and never a guess. A quarter with no cached concall is null. Each company carries its OWN `quarters` (the four most recent its concalls report, oldest first); tones[i] aligns to quarters[i].",
   "toneScaleVersion": 2,
   "coverage": {
     "companies": 28,
-    "quarterCells": 107,
-    "tonedQuarters": 99,
+    "quarterCells": 106,
+    "tonedQuarters": 98,
     "nullQuarters": 8
   },
   "companies": {
@@ -16,7 +16,6 @@
       "name": "ONGC",
       "slug": "ONGC",
       "quarters": [
-        "Q4 FY25",
         "Q2 FY26",
         "Q1 FY27",
         "Q2 FY27"
@@ -25,25 +24,6 @@
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
       "tones": [
-        {
-          "quarter": "Q4 FY25",
-          "toneId": "constructive",
-          "score": 4,
-          "quote": "Management exuded confidence on production growth and cost control.",
-          "rationale": "Management is positive about production growth and cost management despite challenges.",
-          "driver": "production growth",
-          "direction": "positive",
-          "signal": "Management is optimistic about production growth and cost control, with significant progress in renewables and strategic investments.",
-          "mgmtDataPoints": [
-            "Standalone PAT FY25: INR 35,610 crore",
-            "Standalone crude oil FY25: 18.558 MMT",
-            "Natural gas FY26 target: 21 BCM",
-            "Natural gas FY27 target: 22 BCM",
-            "Well drilling FY25: 578 wells"
-          ],
-          "implication": "Continued focus on production growth and cost control should support financial performance in the near term.",
-          "doc": "Concall AI summary (Q4 FY25)"
-        },
         {
           "quarter": "Q2 FY26",
           "toneId": "cautious",
