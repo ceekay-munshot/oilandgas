@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-23T16:36:10.503Z",
+  "generatedAt": "2026-11-23T19:08:10.589Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -5010,11 +5010,12 @@
           "periodIso": "2026-11",
           "url": "https://www.asianenergy.com/pdf/Investor-Relations/Financial-Reports/Financial-Year-2025-26/AESL-Q4-&-H1-F-27-Earnings-Call-Transcript.pdf",
           "source": "asianenergy.com",
-          "status": "ok",
-          "chars": 26742,
-          "pages": 9,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/ASIANENE/transcript-2026-11.txt"
+          "cache": "pipeline/cache/docs/ASIANENE/transcript-2026-11.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.asianenergy.com/pdf/Investor-Relations/Financial-Reports/Financial-Year-2025-26"
         },
         {
           "type": "transcript",

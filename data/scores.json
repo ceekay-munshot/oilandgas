@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Cycle scores",
   "generatedBy": "pipeline/rescore.mjs",
-  "generatedAt": "2026-11-23T16:43:11.729Z",
+  "generatedAt": "2026-11-23T19:14:30.347Z",
   "note": "Bucket scores are the mean momentum of every flagged KPI in the group, 0-100 with 50 neutral. The previous quarter is the same calculation on a series one quarter shorter, so the change arrow is a measurement, not a memory. A group with nothing flagged scores null.",
   "sourceTag": "derived",
   "scoringVersion": 2,
@@ -1101,32 +1101,24 @@
   ],
   "changes": [
     {
-      "kind": "score",
-      "text": "Moves first moved down 5 points to 64."
-    },
-    {
-      "kind": "score",
-      "text": "Moving now moved up 5 points to 42."
-    },
-    {
-      "kind": "alert",
-      "text": "New alert: Flagged for review: the market backdrop points up while the scores are moving down."
+      "kind": "none",
+      "text": "Nothing material moved since the last refresh."
     }
   ],
   "previous": {
-    "generatedAt": "2026-11-16T16:39:32.157Z",
+    "generatedAt": "2026-11-23T16:43:11.729Z",
     "asOf": "Q2 FY27",
     "scoringVersion": 2,
     "stageId": "mid-upcycle",
     "scores": {
-      "leading": 69,
-      "coincident": 37,
+      "leading": 64,
+      "coincident": 42,
       "lagging": -60
     },
     "alertIds": [
       "coverage-coincident",
       "coverage-lagging",
-      "coverage-leading",
+      "macro-conflict",
       "tone-castrol-india",
       "tone-deep-industries",
       "tone-ge-shipping",
