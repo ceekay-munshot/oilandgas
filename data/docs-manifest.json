@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-24T16:24:14.840Z",
+  "generatedAt": "2026-11-24T18:42:22.506Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -2216,7 +2216,7 @@
         "pages": null,
         "via": "browser",
         "cache": "pipeline/cache/docs/BPCL/ppt-2026-07.txt",
-        "error": "Every scraper failed for https://www.bharatpetroleum.in/images/files/investor-presentation-q1-2026-27-upload.pdf (firecrawl: 401 Unauthorized for https://api.fi"
+        "error": "scraper returned only 0 chars"
       },
       "transcripts": [
         {
@@ -5010,12 +5010,11 @@
           "periodIso": "2026-11",
           "url": "https://www.asianenergy.com/pdf/Investor-Relations/Financial-Reports/Financial-Year-2025-26/AESL-Q4-&-H1-F-27-Earnings-Call-Transcript.pdf",
           "source": "asianenergy.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 26742,
+          "pages": 9,
           "via": "browser",
-          "cache": "pipeline/cache/docs/ASIANENE/transcript-2026-11.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.asianenergy.com/pdf/Investor-Relations/Financial-Reports/Financial-Year-2025-26"
+          "cache": "pipeline/cache/docs/ASIANENE/transcript-2026-11.txt"
         },
         {
           "type": "transcript",
