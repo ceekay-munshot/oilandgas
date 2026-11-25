@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "Screener Premium Investors -> Insights, per company",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-24T18:40:53.877Z",
+  "generatedAt": "2026-11-25T16:09:29.208Z",
   "note": "Structured operational rows lifted straight from Screener's Insights grid - already per-period, so no model is involved and nothing is estimated. `view` says whether the quarterly or yearly toggle was captured; some rows (reserves, RRR) are only ever published annually. A blank period is null, never 0. Units come from the row label.",
   "companies": {
     "deep-industries": {
@@ -10531,7 +10531,7 @@
           ]
         },
         {
-          "label": "Medical Oxygen Daily Delivery",
+          "label": "Merchant Deliveries",
           "unit": "TPD",
           "scope": "Standalone data",
           "values": [
@@ -10541,12 +10541,12 @@
             null,
             null,
             null,
-            300,
-            1700,
             null,
-            300,
-            300,
-            null
+            null,
+            null,
+            null,
+            24854,
+            25306
           ],
           "citations": [
             null,
@@ -10555,28 +10555,20 @@
             null,
             null,
             null,
-            {
-              "doc": "Annual Report - 31 Dec 2020",
-              "quote": "around 300 tons of Liquid Oxygen per day across India",
-              "page": 4
-            },
-            {
-              "doc": "Annual Report - 31 Dec 2021",
-              "quote": "ramping up medical oxygen production up to 1,700 tpd",
-              "page": 22
-            },
+            null,
+            null,
+            null,
             null,
             {
-              "doc": "Presentation - 12 Aug 2024",
-              "quote": "> 300 tonnes of Medical Oxygen delivered every day by Linde Team to meet Hospital's demands",
-              "page": 4
+              "doc": "Presentation - 13 Aug 2026",
+              "quote": "Merchant Deliveries (TPD)",
+              "page": 11
             },
             {
-              "doc": "Presentation - 14 Aug 2025",
-              "quote": "> 300 tonnes of Medical Oxygen delivered every day by Linde Team to meet Hospital's demands",
-              "page": 8
-            },
-            null
+              "doc": "Presentation - 13 Aug 2026",
+              "quote": "Merchant Deliveries (TPD)",
+              "page": 11
+            }
           ]
         }
       ]
