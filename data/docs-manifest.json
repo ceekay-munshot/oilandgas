@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-25T16:10:58.198Z",
+  "generatedAt": "2026-11-25T18:01:40.213Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -2647,11 +2647,12 @@
           "periodIso": "2025-07",
           "url": "https://www.gailonline.com/pdf/InvestorsZone/GAIL%20Q1FY26%20Earnings%20Call%20Transcript.pdf",
           "source": "gailonline.com",
-          "status": "ok",
-          "chars": 37823,
-          "pages": 11,
+          "status": "error",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2025-07.txt"
+          "cache": "pipeline/cache/docs/GAIL/transcript-2025-07.txt",
+          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.gailonline.com/pdf/InvestorsZone/GAIL%20Q1FY26%20Earnings%20Call%20Transcript.p"
         },
         {
           "type": "transcript",
