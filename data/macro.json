@@ -2,15 +2,15 @@
   "schemaVersion": 2,
   "title": "Market backdrop",
   "generatedBy": "pipeline/fetch-macro.mjs",
-  "generatedAt": "2026-11-24T18:22:54.845Z",
+  "generatedAt": "2026-11-25T17:32:59.447Z",
   "note": "Fetched from public sources. Series that could not be fetched are written with an empty series array and status \"awaiting\" - never estimated, never carried forward. Each line holds monthly points, oldest first.",
   "months": 12,
   "flatBandPct": 1.5,
   "flagLookbackMonths": 3,
   "coverage": {
-    "tilesLive": 5,
+    "tilesLive": 6,
     "tilesTotal": 6,
-    "linesLive": 7,
+    "linesLive": 8,
     "linesTotal": 9
   },
   "tiles": [
@@ -147,7 +147,7 @@
             },
             {
               "date": "2026-11-01",
-              "value": 94.65,
+              "value": 93.41,
               "partial": true
             }
           ]
@@ -309,7 +309,7 @@
       "status": "live",
       "source": "Trading Economics - naphtha spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-11-23",
+      "asOf": "2026-11-24",
       "lines": [
         {
           "id": "naphtha",
@@ -321,11 +321,11 @@
           "source": "Trading Economics - naphtha spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-11-23",
+          "asOf": "2026-11-24",
           "series": [
             {
-              "date": "2026-11-23",
-              "value": 717.39,
+              "date": "2026-11-24",
+              "value": 732.75,
               "spot": true
             }
           ]
@@ -344,7 +344,7 @@
       "status": "live",
       "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
       "sourceTag": "external",
-      "asOf": "2026-11-23",
+      "asOf": "2026-11-24",
       "lines": [
         {
           "id": "jkm",
@@ -356,11 +356,11 @@
           "source": "Trading Economics - LNG Japan/Korea Marker spot (direct fetch)",
           "sourceTag": "external",
           "notes": "Spot quote only - no free history is published, so this line has no 12-month trend.",
-          "asOf": "2026-11-23",
+          "asOf": "2026-11-24",
           "series": [
             {
-              "date": "2026-11-23",
-              "value": 28.64,
+              "date": "2026-11-24",
+              "value": 28.81,
               "spot": true
             }
           ]
@@ -450,7 +450,7 @@
             },
             {
               "date": "2026-11-01",
-              "value": 93.84,
+              "value": 93.75,
               "partial": true
             }
           ]
@@ -466,22 +466,28 @@
       "decimals": 0,
       "supports": "up",
       "supportsWhy": "Busier tankers mean more cargoes are actually moving.",
-      "status": "awaiting",
-      "source": null,
-      "sourceTag": "unknown",
-      "asOf": null,
+      "status": "live",
+      "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via scrapedo)",
+      "sourceTag": "external",
+      "asOf": "2026-11-01",
       "lines": [
         {
           "id": "baltic-dirty",
           "label": "Baltic Dirty Tanker",
           "color": "#B91C1C",
           "primary": true,
-          "status": "awaiting",
-          "source": null,
-          "sourceTag": "unknown",
-          "asOf": null,
-          "series": [],
-          "awaitingReason": "No \"Baltic Dirty Tanker live stock price is <number>\" sentence on the page"
+          "status": "live",
+          "source": "investing.com - Baltic Dirty Tanker (BAID), latest published level (scraped via scrapedo)",
+          "sourceTag": "external",
+          "notes": "Latest level only - the Baltic Exchange licenses the history, so this line has no 12-month trend.",
+          "asOf": "2026-11-01",
+          "series": [
+            {
+              "date": "2026-11-01",
+              "value": 1107,
+              "spot": true
+            }
+          ]
         }
       ]
     }
