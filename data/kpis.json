@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Per-company KPIs, extracted from Screener documents",
   "generatedBy": "pipeline/extract-kpis.mjs",
-  "generatedAt": "2026-11-25T18:07:36.578Z",
+  "generatedAt": "2026-11-26T15:55:52.171Z",
   "quarters": [
     "Q3 FY26",
     "Q4 FY26",
@@ -3142,7 +3142,7 @@
       "name": "GAIL",
       "slug": "GAIL",
       "quarters": [
-        "Q4 FY25",
+        "Q1 FY26",
         "Q2 FY26",
         "Q3 FY26",
         "Q1 FY27"
@@ -3150,7 +3150,7 @@
       "asOf": "Q1 FY27",
       "provider": "claude",
       "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-      "ctxChars": 31883,
+      "ctxChars": 31884,
       "kpis": [
         {
           "id": "gas-transmission-volume",
@@ -3158,7 +3158,7 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
-            123.65,
+            120.62,
             123.59,
             125.45,
             122.36
@@ -3177,9 +3177,9 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "Natural gas transmission volume stood at 123.65 MMSCMD in quarter four",
-              "page": 3
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "the natural gas transmission volume was 120.62 MMSCMD in Q1",
+              "page": 2
             },
             {
               "doc": "Concall Transcript - 31 Oct 2025",
@@ -3242,7 +3242,7 @@
             null
           ],
           "flag": null,
-          "notes": "No petchem margin data found in any of the excerpts. The documents report polymer production volumes (TMT) and segment losses/breakeven commentary, but do not state a margin figure in $/t or any other unit for the petrochemical segment for "
+          "notes": "Petchem margin not disclosed in any of the excerpts. The documents report polymer production volumes (177 TMT Q1 FY26, 220 TMT Q2 FY26, 219 TMT Q3 FY26, 51 TMT Q1 FY27) and segment losses (Q1 FY27: ₹130 crores loss mentioned), but no margin"
         },
         {
           "id": "gas-marketing-volume",
@@ -3250,7 +3250,7 @@
           "unit": "MMSCMD",
           "flagBasis": "level",
           "values": [
-            99.99,
+            105.45,
             105.49,
             103.98,
             93.82
@@ -3269,9 +3269,9 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "gas marketing volume stood at 99.99 MMSCMD in current quarter as against 98.14 MMSCMD previous quarter",
-              "page": 3
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "Gas marketing volume during the quarter stood at 105.45 MMSCMD as against 106.53 MMSCMD in Q4 financial year '25",
+              "page": 2
             },
             {
               "doc": "Concall Transcript - 31 Oct 2025",
@@ -3305,7 +3305,7 @@
           "unit": "TMT",
           "flagBasis": "level",
           "values": [
-            1114,
+            1131,
             1167,
             1188,
             1077
@@ -3324,8 +3324,8 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "LPG transmission stood at 1114 TMT as against 1095 TMT in previous quarter",
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "The LPG transmission was also flat, it was 1,131 TMT as against 1,132 TMT in Q4 FY'20",
               "page": 3
             },
             {
@@ -3360,7 +3360,7 @@
           "unit": "TMT",
           "flagBasis": "level",
           "values": [
-            248,
+            177,
             220,
             219,
             51
@@ -3379,9 +3379,9 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "Polymer production stood at 248 TMT as against 205 TMT last quarter",
-              "page": 3
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "Polymer production is down to 177 TMT in Q1 as against 215 TMT in previous quarter",
+              "page": 2
             },
             {
               "doc": "Concall Transcript - 31 Oct 2025",
@@ -3415,7 +3415,7 @@
           "unit": "TMT",
           "flagBasis": "level",
           "values": [
-            265,
+            199,
             221,
             199,
             232
@@ -3434,8 +3434,8 @@
           ],
           "citations": [
             {
-              "doc": "Concall Transcript - 17 May 2024",
-              "quote": "LHC production is stood at 265 TMT against 249 TMT in previous quarter",
+              "doc": "Concall Transcript - 31 Jul 2025",
+              "quote": "LHC production is almost flat, and it stood at 199 TMT as against 196 TMT in previous quarter",
               "page": 3
             },
             {

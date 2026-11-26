@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Concall summary, PPT & transcript manifest",
   "generatedBy": "pipeline/scrape-screener.mjs",
-  "generatedAt": "2026-11-25T18:01:40.213Z",
+  "generatedAt": "2026-11-26T15:49:55.800Z",
   "cacheDir": "pipeline/cache/docs",
   "sourcePriority": [
     "financials.json analysis (Screener Pros/Cons - the cheapest summary)",
@@ -340,9 +340,9 @@
           "periodIso": "2026-07",
           "url": "https://www.deepindustries.com/docs/TranscriptQ1.pdf",
           "source": "deepindustries.com",
-          "status": "ok",
-          "chars": 54080,
-          "pages": 20,
+          "status": "http_415",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/DEEPINDS/transcript-2026-07.txt"
         },
@@ -2647,12 +2647,11 @@
           "periodIso": "2025-07",
           "url": "https://www.gailonline.com/pdf/InvestorsZone/GAIL%20Q1FY26%20Earnings%20Call%20Transcript.pdf",
           "source": "gailonline.com",
-          "status": "error",
-          "chars": 0,
-          "pages": null,
+          "status": "ok",
+          "chars": 37823,
+          "pages": 11,
           "via": "browser",
-          "cache": "pipeline/cache/docs/GAIL/transcript-2025-07.txt",
-          "error": "apiRequestContext.get: Timeout 25000ms exceeded.\nCall log:\n  - → GET https://www.gailonline.com/pdf/InvestorsZone/GAIL%20Q1FY26%20Earnings%20Call%20Transcript.p"
+          "cache": "pipeline/cache/docs/GAIL/transcript-2025-07.txt"
         },
         {
           "type": "transcript",
@@ -3234,9 +3233,9 @@
           "periodIso": "2025-08",
           "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=0ebfe992-d94e-48f1-bd74-2525d856f022.pdf",
           "source": "bseindia.com",
-          "status": "ok",
-          "chars": 54418,
-          "pages": 22,
+          "status": "not_pdf",
+          "chars": 0,
+          "pages": null,
           "via": "browser",
           "cache": "pipeline/cache/docs/GUJENERGY/transcript-2025-08.txt"
         },
